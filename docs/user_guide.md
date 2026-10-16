@@ -10,6 +10,8 @@ Begin with the default image. Optional controls sit under **Image appearance**. 
 
 Single-exposure export produces JSON. Compare's **Save comparison (.zip)** preserves notes and viewing settings. **Open a saved comparison** restores notes, viewport, palette, stretch, sampling and wipe after integrity validation. Download before closing a tab. Files under `output/browser-0.4` and the walkthrough contain explicitly labeled automated examples, not discoveries.
 
+In Explore, **Save exposure view (.json)** records the selected exposure, position, zoom and appearance. **Open a saved exposure view** restores it using the matching verified local product; invalid files leave your current view intact. Old 0.4 records work too. Selecting a date also updates the observation in the browser address so reload, bookmarks and Back/Forward return to that date; use the JSON record to preserve the full appearance and viewport.
+
 Check the scientific-review banner first. This release contains real M101 observations and remains PENDING. Visual differences may reflect wavelength, response, background, alignment, blending or artifacts.
 
 Captions show UTC observation dates and local wavelengths/bandwidths. Move over an image to inspect ICRS coordinates and per-pixel spectral context. The blue-gray mask is unsupported data. Both observations share orientation, viewport and intensity scale.

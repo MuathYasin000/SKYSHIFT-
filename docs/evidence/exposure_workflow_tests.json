@@ -1,0 +1,86 @@
+{
+  "date_utc": "2026-10-16T17:46:10.348Z",
+  "browser_version": "153.0.8010.12",
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "Existing Explore view saves and reopens its selected date, sky position and appearance",
+      "status": "pass"
+    },
+    {
+      "name": "Repeated dates and saved views reuse the bounded verified exposure cache",
+      "status": "pass"
+    },
+    {
+      "name": "Forged metadata, remote source, approval and malformed imports preserve the current view",
+      "status": "pass"
+    },
+    {
+      "name": "Actual 0.4 exported record remains compatible",
+      "status": "pass"
+    },
+    {
+      "name": "Selected observation survives reload, bookmarks and Back/Forward navigation",
+      "status": "pass"
+    },
+    {
+      "name": "Unavailable observation links explain their fallback rather than silently mislabel data",
+      "status": "pass"
+    },
+    {
+      "name": "Slower field selection cannot replace a newer selected exposure",
+      "status": "pass"
+    },
+    {
+      "name": "A pending imported view cannot override a newer manual selection",
+      "status": "pass"
+    },
+    {
+      "name": "Import failure during initial data loading does not strand the loading state",
+      "status": "pass"
+    },
+    {
+      "name": "390px keyboard import and date selection remain usable without horizontal overflow",
+      "status": "pass"
+    },
+    {
+      "name": "320px keyboard import and date selection remain usable without horizontal overflow",
+      "status": "pass"
+    },
+    {
+      "name": "Compare annotations, integrity validation and ZIP reopening survive the shared-helper refactor",
+      "status": "pass"
+    },
+    {
+      "name": "All main local pages still load without uncaught module errors",
+      "status": "pass"
+    },
+    {
+      "name": "New controls pass automated accessibility checks without external runtime requests",
+      "status": "pass",
+      "detail": {
+        "violations": [],
+        "manual_review": [
+          "aria-prohibited-attr",
+          "color-contrast",
+          "label-content-name-mismatch"
+        ]
+      }
+    }
+  ],
+  "external": [],
+  "page_errors": [],
+  "scientific_approval": "PENDING",
+  "independent_novice_validation": "NOT CONDUCTED",
+  "javascript_suite": {
+    "command": "node --test web/tests/*.test.mjs",
+    "passed": 43,
+    "failed": 0,
+    "skipped": 0
+  },
+  "integrity_checks": {
+    "curated_data_files_compared_to_0_4": 19,
+    "all_compared_bytes_unchanged": true,
+    "unchanged_html_not_rewritten": true
+  }
+}

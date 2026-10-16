@@ -1,11 +1,14 @@
 import {loadCatalog,galleries,make} from './site.js';
-import {decodeArray,sha256,pixelToSky} from './science.js';
+import {pixelToSky} from './science.js';
 import {defaultVisualization,displayLevel,paletteRGB,validateVisualization} from './visualization.js';
 import {stories,availability,friendlyDate} from './field-guide.js';
 import {showSources} from './visitor.js';
+import {createExposureLoader} from './exposure-loader.js';
+import {MAX_VIEW_RECORD_BYTES,createExposureRecord,parseExposureRecord,resolveExposureRecord,validateExposureRecord} from './exposure-records.js';
 
 const $=id=>document.getElementById(id);
-const state={catalog:null,field:null,product:null,arrays:null,entry:null,visual:{...defaultVisualization},zoom:1,cx:0,cy:0,contrast:1,request:0};
+const state={catalog:null,field:null,product:null,arrays:null,entry:null,visual:{...defaultVisualization},zoom:1,cx:0,cy:0,contrast:1,request:0,importRequest:0};
+const loadExposure=createExposureLoader();
 let source=null;
 
 function busy(value){
@@ -51,21 +54,22 @@ function draw(){
 }
 function setZoom(z){if(!state.product)return;state.zoom=Math.max(1,Math.min(20,z));draw();}
 
-async function selectObservation(entry,index){
+async function selectObservation(entry,index,remember=false){
   const seq=++state.request;
+  const button=$('observation-timeline').children[index],returnFocus=document.activeElement===button;
+  if(!$('open-context').disabled)fileFeedback('Use an Explore JSON record. Comparison ZIPs reopen in Compare.');
   state.entry=entry;state.product=null;state.arrays=null;source=null;
   $('explore-error').hidden=true;$('explore-retry').hidden=true;$('exposure-summary').textContent='Checking the selected exposure…';busy(true);
   try{
-    const r=await fetch(entry.url);if(!r.ok)throw Error('This exposure could not be loaded from your local server.');
-    const bytes=new Uint8Array(await r.arrayBuffer());if(await sha256(bytes)!==entry.sha256)throw Error('The exposure did not match its recorded checksum. It has not been displayed.');
+    const loaded=await loadExposure(entry);
     if(seq!==state.request)return;
-    const p=JSON.parse(new TextDecoder().decode(bytes));
-    if(p.dataset_kind!=='real'||p.usage!=='single_observation_only'||p.scientific_approval!=='PENDING')throw Error('This exposure has an unsupported data identity.');
-    state.product=p;state.arrays=Object.fromEntries(Object.entries(p.arrays).map(([k,v])=>[k,decodeArray(v)]));
-    const [h,w]=p.shape;for(const a of Object.values(state.arrays))if(a.length!==h*w)throw Error('Exposure arrays have inconsistent shapes.');
+    state.product=loaded.product;state.arrays=loaded.arrays;
+    const [h,w]=state.product.shape;
     state.zoom=1;state.cx=(w-1)/2;state.cy=(h-1)/2;state.contrast=1;$('explore-contrast').value=1;
     for(const [i,b]of [...$('observation-timeline').children].entries()){b.classList.toggle('selected',i===index);b.setAttribute('aria-pressed',String(i===index));}
-    facts();busy(false);render();
+    facts();busy(false);render();$('explore-coordinate').textContent='Move over the image to read a prepared pixel.';
+    if(remember)rememberExposure(state.field,entry);
+    if(returnFocus)button.focus({preventScroll:true});
   }catch(e){
     if(seq!==state.request)return;
     state.product=null;state.arrays=null;source=null;busy(false);$('explore-loading').hidden=true;
@@ -74,8 +78,8 @@ async function selectObservation(entry,index){
   }
 }
 
-function choose(id){
-  const f=state.catalog.fields.find(f=>f.id===id)||state.catalog.fields[0],story=stories[f.id],status=availability(f);state.field=f;
+function describeField(f){
+  const story=stories[f.id],status=availability(f);state.field=f;
   $('explore-title').textContent=f.title;$('explore-description').textContent='Explore a single real infrared exposure. This larger view is not a time comparison.';
   $('compare-link').hidden=!status.limited;$('explore-status').textContent=status.explanation;
   $('object-kind').textContent=story?.kind||'CURATED SKY REGION';$('object-name').textContent=story?.name||f.title;
@@ -85,9 +89,23 @@ function choose(id){
   $('observation-timeline').replaceChildren();
   for(const [i,o]of f.observations.entries()){
     const b=make('button',friendlyDate(o.time_start_utc));b.title='Individual exposure · '+friendlyDate(o.time_start_utc,true);b.setAttribute('aria-label','View single exposure '+friendlyDate(o.time_start_utc));
-    b.addEventListener('click',()=>selectObservation(o,i));$('observation-timeline').append(b);
+    b.addEventListener('click',()=>selectObservation(o,i,true));$('observation-timeline').append(b);
   }
-  selectObservation(f.observations[0],0);
+}
+function rememberExposure(field,entry){
+  const url=new URL(location.href);url.searchParams.set('field',field.id);url.searchParams.set('observation',entry.observation_id);url.hash='explorer';
+  if(url.href!==location.href)history.pushState(null,'',url);
+}
+function choose(id,observationId){
+  const known=state.catalog.fields.find(f=>f.id===id),f=known||state.catalog.fields[0];
+  const requested=f.observations.findIndex(o=>o.observation_id===observationId),index=requested>=0?requested:0;
+  describeField(f);const pending=selectObservation(f.observations[index],index);
+  if(id&&!known)fileFeedback('Requested sky region is unavailable. Showing '+f.title+' instead.',true);
+  else if(observationId&&requested<0)fileFeedback('Requested observation is unavailable. Showing this field’s first verified exposure instead.',true);
+  return pending;
+}
+function openLocation(){
+  const query=new URLSearchParams(location.search);return choose(query.get('field')||'m101',query.get('observation'));
 }
 
 const canvas=$('explore-canvas');let drag=null;
@@ -117,8 +135,37 @@ $('context-source').onclick=e=>{if(state.product)showSources([state.product.obse
 $('explore-retry').onclick=()=>{const i=state.field.observations.indexOf(state.entry);selectObservation(state.entry,i);};
 $('export-context').onclick=()=>{
   if(!state.product)return;
-  const p=state.product,record={schema_version:'1.0',record_kind:'single_observation_view',field:state.field.id,product_url:state.entry.url,product_sha256:state.entry.sha256,observation:p.observation,region:p.region,wcs:p.wcs,native_shape:p.native_shape,prepared_shape:p.shape,processing:p.processing,array_hashes:Object.fromEntries(Object.entries(p.arrays).map(([k,v])=>[k,v.numeric_sha256])),visualization:state.visual,display:{...p.display,vmax:p.display.vmin+(p.display.vmax-p.display.vmin)/state.contrast},viewport:{zoom:state.zoom,center_x:state.cx,center_y:state.cy},scientific_approval:'PENDING',limitations:p.limitations};
+  const p=state.product,record=createExposureRecord(state.field,state.entry,p,{visualization:state.visual,contrast:state.contrast,viewport:{zoom:state.zoom,center_x:state.cx,center_y:state.cy}});
   const a=make('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json'}));a.download='SKYSHIFT-'+p.observation.observation_id+'-single-view.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),10000);
+};
+function fileFeedback(message,error=false){$('view-record-feedback').textContent=message;$('view-record-feedback').classList.toggle('is-error',error);}
+$('open-context').onclick=()=>$('import-context-file').click();
+$('import-context-file').onchange=async event=>{
+  const file=event.currentTarget.files?.[0];event.currentTarget.value='';if(!file||!state.catalog)return;
+  const importSeq=++state.importRequest,selectionSeq=state.request;
+  $('open-context').disabled=true;fileFeedback('Checking your saved exposure view…');
+  try{
+    if(file.size>MAX_VIEW_RECORD_BYTES)throw Error('Saved exposure view must be a JSON file no larger than 128 KB.');
+    const record=parseExposureRecord(new Uint8Array(await file.arrayBuffer()));
+    const {field,entry,index}=resolveExposureRecord(record,state.catalog);
+    const loaded=await loadExposure(entry);
+    const view=validateExposureRecord(record,field,entry,loaded.product);
+    if(importSeq!==state.importRequest)return;
+    if(selectionSeq!==state.request){fileFeedback('Opening canceled because you selected another exposure.');return;}
+    // Commit only after all validation succeeds. Bad files leave the current view intact.
+    state.request++;describeField(field);
+    state.product=loaded.product;state.arrays=loaded.arrays;state.entry=entry;state.visual=view.visualization;
+    state.contrast=view.contrast;state.zoom=view.viewport.zoom;state.cx=view.viewport.center_x;state.cy=view.viewport.center_y;
+    for(const key of ['stretch','palette','interpolation'])$('explore-'+key).value=state.visual[key];
+    $('explore-contrast').value=state.contrast;
+    for(const [i,button]of [...$('observation-timeline').children].entries()){button.classList.toggle('selected',i===index);button.setAttribute('aria-pressed',String(i===index));}
+    $('explore-error').hidden=true;$('explore-retry').hidden=true;
+    facts();busy(false);render();$('explore-coordinate').textContent='Move over the image to read a prepared pixel.';
+    rememberExposure(field,entry);
+    fileFeedback('Saved exposure view restored. Scientific data and restrictions are unchanged.');
+    $('explore-canvas').focus({preventScroll:true});
+  }catch(e){if(importSeq===state.importRequest)fileFeedback('Could not open this view: '+e.message,true);}
+  finally{if(importSeq===state.importRequest)$('open-context').disabled=false;}
 };
 function skyMap(catalog){
   const svg=$('sky-map'),NS='http://www.w3.org/2000/svg';
@@ -127,5 +174,5 @@ function skyMap(catalog){
   for(let ra=0;ra<=360;ra+=60){const x=45+(360-ra)/360*645;add('line',{x1:x,y1:25,x2:x,y2:225,stroke:'#273b59'});add('text',{x:x-10,y:245,fill:'#97afd2','font-size':10},ra+'°');}
   for(const f of catalog.fields){const x=45+(360-f.ra_deg)/360*645,y=25+(90-f.dec_deg)/180*200;add('circle',{cx:x,cy:y,r:4,fill:'#ed6861'});add('text',{x:x>620?x-13:x+10,y:y<40?y+19:y-9,'text-anchor':x>620?'end':'start',fill:'#e2ebff','font-size':12},f.id==='ngc188'?'NGC 188':f.id.toUpperCase());}
 }
-try{state.catalog=await loadCatalog();galleries(state.catalog,choose);skyMap(state.catalog);choose(new URLSearchParams(location.search).get('field')||'m101');window.addEventListener('popstate',()=>choose(new URLSearchParams(location.search).get('field')||'m101'));}
+try{state.catalog=await loadCatalog();galleries(state.catalog,choose);skyMap(state.catalog);$('open-context').disabled=false;openLocation();window.addEventListener('popstate',openLocation);}
 catch(e){$('explore-title').textContent='The local catalogue could not be opened.';state.product=null;busy(false);$('explore-error').hidden=false;$('explore-error').textContent=e.message;}

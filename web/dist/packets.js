@@ -1,6 +1,8 @@
 import {unzipSync,strFromU8} from './vendor/fflate.js';
 import {sha256,validateAnnotation,validateDisplay} from './science.js';
 import {validateVisualization} from './visualization.js';
+import {equalEvidence} from './evidence-identity.js';
+export {equalEvidence} from './evidence-identity.js';
 
 export function safeName(name){
   const parts=name.split('/');
@@ -29,9 +31,6 @@ export function inspectZipBounds(bytes){
   if(pos!==end)throw Error('ZIP directory length mismatch');
   return names;
 }
-
-function canonical(value){if(Array.isArray(value))return value.map(canonical);if(value&&typeof value==='object')return Object.fromEntries(Object.keys(value).sort().map(k=>[k,canonical(value[k])]));return value;}
-export function equalEvidence(a,b){return JSON.stringify(canonical(a))===JSON.stringify(canonical(b));}
 
 export async function openComparison(bytes,baseline,common){
   const entries=inspectZipBounds(bytes);

@@ -2,6 +2,10 @@
 
 Local release 0.4, 16 October 2026. Scientific snapshot 0.2.0 is preserved unchanged. This evidence register supplements the master plan and backlog, with explicit subsequent user instructions recorded below. Completion is independent of an event deadline.
 
+**Current development:** Explore now reopens its saved JSON records with strict local-product and metadata validation, restores date/viewport/appearance, caches up to four verified exposures, preserves keyboard focus, rejects stale asynchronous results, and keeps the selected observation in reloadable/bookmarkable URLs. Existing 0.4 exports remain compatible. Current checks: 43 JavaScript tests and 14 targeted browser cases; evidence in `docs/evidence/exposure_workflow_tests.json`. Scientific datasets and processing code are unchanged; no new pair or scientific approval is claimed. The previous standalone 0.4 snapshot remains preserved; these changes are in the default workspace application.
+
+**Permanent user direction:** no new videos, recordings, presentations, voiceovers, PDF progress reports or routine duplicate backups unless explicitly requested. Preserve existing artifacts. Focus on application code, functionality, scientific integrity and targeted verification; small technical/test records are allowed. See root `AGENTS.md`.
+
 **0.4 visitor update:** field stories and clear availability, question-first annotations, three-step comparison guidance, simple source dialogs, contextual explanations, collapsed advanced controls, responsive layouts and fail-closed loading. All 22 new Playwright acceptance cases pass on the workspace application. See [0.4 evidence](visitor_experience_0.4.md). A further 100 smaller-region alternative pairings produced no candidates; no additional temporal comparison was enabled.
 
 **Human UX scope changed by the user:** sole human UX evaluation is direct user feedback. Independent novice validation is NOT CONDUCTED and is not a development blocker. Do not recruit participants or claim automated tests replace them. Human scientific reviews remain separate and PENDING.

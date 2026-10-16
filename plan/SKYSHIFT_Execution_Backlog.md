@@ -2,6 +2,8 @@
 
 Companion to the master plan | Version 1.0 | Baseline: 16 October 2026
 
+**Latest user override:** media/presentation/PDF progress deliverables (including T28/T29's artifact generation) and routine duplicate backups are suspended unless explicitly requested again. Existing artifacts remain intact. Prioritize application implementation, targeted verification and small necessary technical updates; do not repeat candidate screening without a justified new objective/strategy. Root `AGENTS.md` records these permanent working rules.
+
 **Subsequent user direction, 16 October 2026:** independent localhost is the default runtime. The user is the sole human UX evaluator and explicitly declined external novice recruitment/studies. Original T22/E11 sessions remain NOT CONDUCTED, not a blocker for software development; they must not be marked complete or replaced with automated test outcomes. Scientific human-review gates remain PENDING. Current executed evidence is in `docs/feature_status.md` and `docs/visitor_experience_0.4.md`; original rows below are retained for traceability.
 
 All tasks are **planned**. No implementation or real-pair validation is claimed. Work is organized by dependencies and acceptance evidence, not dates or weekly availability. S, M, and L are relative complexity labels, not time estimates. Split large tasks after their uncertainty is resolved.
