@@ -1,0 +1,4907 @@
+{
+  "dataset_kind": "real",
+  "status": "feasibility_screen_only",
+  "input_failures": [
+    {
+      "path": "data\\raw\\ngc188\\2026W08_2A_0269_3_D2.fits",
+      "error": "Requested center is outside this cutout"
+    }
+  ],
+  "pairs": [
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0097_1",
+      "observation_b": "2025W36_1A_0724_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 2.854469814814815
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.908937290883908e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9539773854393969
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 1.072135690788513,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2026W07_2A_0542_2",
+      "observation_b": "2026W09_1A_0413_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 9.707117372685184
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 6.055352443206101e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9109303709581432
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 1.3785716456720554,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0218_3",
+      "observation_b": "2025W36_2B_0026_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 2.6465845254629627
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 1.121835172409632e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9398928783971434
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 3.141191493274572,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2026W08_1A_0591_2",
+      "observation_b": "2026W08_2A_0132_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 1.0176821875
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.079351082450566e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9343384249156913
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 3.16497108711886,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2026W07_2A_0542_2",
+      "observation_b": "2026W08_1A_0591_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 3.7331417939814813
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.926713871056561e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9178734378099583
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 4.224993812015889,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2026W08_2A_0608_1",
+      "observation_b": "2026W09_1A_0413_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 2.3771264467592594
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 2.673441158940512e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9111287442967665
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 4.387049900092401,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0097_1",
+      "observation_b": "2025W36_1A_0157_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 0.2720344560185185
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.8899871551216725e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9452489585399723
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 4.403545524162328,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_1",
+      "observation_b": "2025W36_1A_0724_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 2.5824353587962965
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.908937290883908e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9549692521325134
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 5.674140811745524,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2026W08_1A_0591_2",
+      "observation_b": "2026W09_1A_0413_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 5.973975578703704
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 6.055352443206101e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9383058916881571
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 5.7639066587273975,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_4",
+      "observation_b": "2025W36_1A_0218_3",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 0.27027574074074073
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.934983706949197e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.949216425312438
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 5.840164197465891,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2026W07_2A_0542_2",
+      "observation_b": "2026W08_2A_0608_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 7.329990925925926
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 2.673441158940512e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.8920849037889308
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 5.942224667612968,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2026W07_2A_0542_2",
+      "observation_b": "2026W08_2A_0132_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 4.750823981481481
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.926713871056561e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9061694108311843
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 7.728152195160993,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0097_1",
+      "observation_b": "2025W36_1A_0157_4",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 0.27651122685185187
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.8899871551216725e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9508034120214243
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 7.971503052861945,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_1",
+      "observation_b": "2025W36_1A_0218_3",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 0.27475251157407404
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 8.060577545752186e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9424717317992461
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 9.368081663532672,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2026W08_2A_0132_1",
+      "observation_b": "2026W09_1A_0413_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 4.956293391203704
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 6.055352443206101e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9256099980162666
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 9.403099531054119,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_4",
+      "observation_b": "2025W36_1A_0724_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 2.577958587962963
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.908937290883908e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9605237056139655
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 9.404862631156464,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_4",
+      "observation_b": "2025W36_2B_0026_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 2.9168602662037038
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 1.121835172409632e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9482245586193215
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 9.498330847268335,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2026W08_1A_0591_2",
+      "observation_b": "2026W08_2A_0608_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 3.5968491319444444
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 2.673441158940512e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9178734378099583
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 10.863959560558499,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_1",
+      "observation_b": "2025W36_2B_0026_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 2.921337037037037
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 1.121835172409632e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9408847450902599
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 13.336173288840554,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2026W08_2A_0132_1",
+      "observation_b": "2026W08_2A_0608_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 2.5791669444444447
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 2.673441158940512e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9047807974608213
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 14.946148327453479,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0097_1",
+      "observation_b": "2025W36_1A_0218_3",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 0.5467869675925926
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.8899871551216725e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9458440785558421
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 15.024178997897344,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0218_3",
+      "observation_b": "2025W36_1A_0724_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 2.3076828472222224
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.908937290883908e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9517952787145407
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 16.804303753269767,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0097_1",
+      "observation_b": "2025W36_2B_0026_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 3.193371493055556
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.8899871551216725e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9420749851219996
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 19.429959095952718,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0724_2",
+      "observation_b": "2025W36_2B_0026_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 0.33890167824074074
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.908937290883908e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9496131719896845
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 21.424733748081675,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_1",
+      "observation_b": "2026W09_1A_0413_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 176.42685336805553
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 8.060577545752186e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.937512398333664
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 0.8634860582365714,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.4177742511406467
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0218_3",
+      "observation_b": "2026W08_2A_0132_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 171.1958074652778
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.934983706949197e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9303709581432256
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 0.8694213939397024,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.41658401110890697
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0097_1",
+      "observation_b": "2026W08_2A_0608_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 174.32176137731483
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 2.673441158940512e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9178734378099583
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 0.8772508317669383,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.40051577068042055
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0724_2",
+      "observation_b": "2026W08_2A_0608_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 171.4672915625
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.908937290883908e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9275937314024995
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 1.7436966997676981,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.01606824042848641
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_1",
+      "observation_b": "2026W07_2A_0542_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 166.71973599537037
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 8.060577545752186e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9172783177940885
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 2.068758523163573,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_4",
+      "observation_b": "2026W07_2A_0542_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 166.71525922453702
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.926713871056561e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9226343979369173
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 2.5416534931382104,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_1",
+      "observation_b": "2025W36_1A_0157_4",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "fail",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 0.0044767708333333335
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "pass",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 8.060577545752186e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9502082920055545
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 3.1585532985418614,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_4",
+      "observation_b": "2026W08_1A_0591_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 170.44840101851852
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 1.5886128777928248e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9488196786351915
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 3.1611597025431264,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_2B_0026_2",
+      "observation_b": "2026W08_2A_0132_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 168.54922293981483
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 1.121835172409632e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9273953580638762
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 3.950288811416236,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_4",
+      "observation_b": "2026W09_1A_0413_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 176.4223765972222
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 6.055352443206101e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9436619718309859
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 3.9590427683383735,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0218_3",
+      "observation_b": "2026W08_1A_0591_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 170.17812527777778
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.934983706949197e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9440587185082325
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 4.044705006200035,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0097_1",
+      "observation_b": "2026W09_1A_0413_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 176.69888782407406
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.8899871551216725e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9398928783971434
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 4.999973788313239,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_1",
+      "observation_b": "2026W08_2A_0608_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 174.0497269212963
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 2.673441158940512e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9174766911327118
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 5.178250974112271,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0724_2",
+      "observation_b": "2026W09_1A_0413_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 173.84441800925927
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.908937290883908e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9466375719103353
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 6.22936183996171,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_1",
+      "observation_b": "2026W08_1A_0591_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 170.45287778935187
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 8.060577545752186e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9444554651854791
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 6.365918711809579,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0097_1",
+      "observation_b": "2026W07_2A_0542_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 166.9917704513889
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.8899871551216725e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9186669311644515
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 6.533888091270844,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_4",
+      "observation_b": "2026W08_2A_0132_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 171.4660832060185
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.079351082450566e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9387026383654037
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 6.594220128284596,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_2B_0026_2",
+      "observation_b": "2026W08_1A_0591_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 167.5315407523148
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 1.121835172409632e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9406863717516366
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 7.427990856473695,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0724_2",
+      "observation_b": "2026W07_2A_0542_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 164.13730063657408
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.908937290883908e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9260067446935132
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 7.826495566370616,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0218_3",
+      "observation_b": "2026W07_2A_0542_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 166.4449834837963
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.934983706949197e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.914897837730609
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 8.630858466741394,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_4",
+      "observation_b": "2026W08_2A_0608_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 174.04525015046295
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 2.673441158940512e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9218409045824241
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 8.750685191660281,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0157_1",
+      "observation_b": "2026W08_2A_0132_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 171.47055997685183
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 8.060577545752186e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9325530648680818
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 9.944218929492745,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0218_3",
+      "observation_b": "2026W09_1A_0413_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 176.1521008564815
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 6.055352443206101e-09
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9345367982543146
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 10.200928462078847,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0097_1",
+      "observation_b": "2026W08_1A_0591_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 170.72491224537038
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.8899871551216725e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9466375719103353
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 11.443074905129775,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_2B_0026_2",
+      "observation_b": "2026W07_2A_0542_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 163.79839895833334
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 1.121835172409632e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9117238643126364
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 12.453933226787388,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0724_2",
+      "observation_b": "2026W08_1A_0591_2",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 167.87044243055556
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.908937290883908e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9535806387621504
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 13.013845940633844,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_2B_0026_2",
+      "observation_b": "2026W09_1A_0413_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 173.50551633101853
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 1.121835172409632e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9333465582225748
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 14.090542308300382,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0097_1",
+      "observation_b": "2026W08_2A_0132_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 171.74259443287036
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.8899871551216725e-08
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9325530648680818
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 15.548953215353903,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0218_3",
+      "observation_b": "2026W08_2A_0608_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 173.77497440972223
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 2.673441158940512e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9154929577464789
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 15.829094728724764,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_1A_0724_2",
+      "observation_b": "2026W08_2A_0132_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 168.88812461805557
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 4.908937290883908e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9406863717516366
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 17.36179764112171,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    },
+    {
+      "region": {
+        "ra_deg": 11.9,
+        "dec_deg": 85.25,
+        "size_deg": 0.12,
+        "frame": "icrs"
+      },
+      "observation_a": "2025W36_2B_0026_2",
+      "observation_b": "2026W08_2A_0608_1",
+      "policy": {
+        "version": "screening-v0.1",
+        "max_wavelength_separation_in_bandwidths": 0.25,
+        "minimum_common_fraction": 0.5,
+        "maximum_roundtrip_pixel": 0.001,
+        "minimum_time_separation_days": 0.01
+      },
+      "suitability": {
+        "policy_version": "screening-v0.1",
+        "status": "rejected",
+        "checks": [
+          {
+            "code": "distinct_epochs",
+            "status": "pass",
+            "explanation": "Physical observations must differ and have a useful declared time separation.",
+            "measurements": {
+              "time_separation_days": 171.12838988425926
+            }
+          },
+          {
+            "code": "homogeneous_release",
+            "status": "fail",
+            "explanation": "This initial screen requires identical release and pipeline version.",
+            "measurements": {}
+          },
+          {
+            "code": "science_spectral_calibration",
+            "status": "pass",
+            "explanation": "Scientific screening requires full CWAVE/CBAND calibration data.",
+            "measurements": {}
+          },
+          {
+            "code": "archive_provenance",
+            "status": "pass",
+            "explanation": "Source and calibration archive URLs and verified file identities are required.",
+            "measurements": {}
+          },
+          {
+            "code": "known_quality_flags",
+            "status": "pass",
+            "explanation": "Unknown active flag bits must be investigated.",
+            "measurements": {
+              "unknown_pixels_a": 0,
+              "unknown_pixels_b": 0
+            }
+          },
+          {
+            "code": "coordinate_roundtrip",
+            "status": "pass",
+            "explanation": "Coordinate arithmetic check; this does not measure absolute alignment.",
+            "measurements": {
+              "max_pixel_error": 2.673441158940512e-07
+            }
+          },
+          {
+            "code": "common_coverage",
+            "status": "pass",
+            "explanation": "Both observations need common unflagged and calibrated support.",
+            "measurements": {
+              "common_fraction": 0.9125173576671295
+            }
+          },
+          {
+            "code": "local_spectral_screen",
+            "status": "fail",
+            "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+            "measurements": {
+              "max_separation_bandwidths": 20.22808820030598,
+              "threshold": 0.25,
+              "compatible_fraction_of_grid": 0.0
+            }
+          }
+        ],
+        "limitations": [
+          "Engineering feasibility screen only. No validated motion, photometry, or discovery.",
+          "Thresholds are provisional engineering choices, not NASA standards.",
+          "WCS reprojection does not establish reference-source alignment."
+        ]
+      }
+    }
+  ]
+}

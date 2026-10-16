@@ -1,0 +1,61 @@
+{
+  "status": "pass",
+  "pair_id": "pair-52ad675d929b0740c23b",
+  "scientific_approval": "PENDING",
+  "arrays": {
+    "SCI_A": {
+      "pass": true,
+      "max_absolute_error": 0.0
+    },
+    "SCI_B": {
+      "pass": true,
+      "max_absolute_error": 0.0
+    },
+    "VALID_A": {
+      "pass": true,
+      "max_absolute_error": 0.0
+    },
+    "VALID_B": {
+      "pass": true,
+      "max_absolute_error": 0.0
+    },
+    "COMMON": {
+      "pass": true,
+      "max_absolute_error": 0.0
+    },
+    "WAVE_A": {
+      "pass": true,
+      "max_absolute_error": 0.0
+    },
+    "WAVE_B": {
+      "pass": true,
+      "max_absolute_error": 0.0
+    },
+    "BAND_A": {
+      "pass": true,
+      "max_absolute_error": 0.0
+    },
+    "BAND_B": {
+      "pass": true,
+      "max_absolute_error": 0.0
+    },
+    "SEPARATION": {
+      "pass": true,
+      "max_absolute_error": 0.0
+    }
+  },
+  "annotations_verified": 1,
+  "display_settings": {
+    "vmin": 0.8790797120332718,
+    "vmax": 8.81986990928652,
+    "stretch": "asinh",
+    "asinh_a": 0.1,
+    "zoom": 1.0,
+    "center_x": 11.5,
+    "center_y": 11.5,
+    "view_mode": "side_by_side",
+    "selected_epoch": "A",
+    "blink_interval_ms": 1500
+  },
+  "note": "This independently reruns the preparation arithmetic. It is not human scientific approval."
+}

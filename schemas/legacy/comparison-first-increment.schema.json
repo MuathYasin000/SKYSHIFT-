@@ -1,0 +1,463 @@
+{
+  "$defs": {
+    "Annotation": {
+      "additionalProperties": false,
+      "properties": {
+        "annotation_id": {
+          "title": "Annotation Id",
+          "type": "string"
+        },
+        "pair_id": {
+          "title": "Pair Id",
+          "type": "string"
+        },
+        "ra_deg": {
+          "exclusiveMaximum": 360,
+          "minimum": 0,
+          "title": "Ra Deg",
+          "type": "number"
+        },
+        "dec_deg": {
+          "maximum": 90,
+          "minimum": -90,
+          "title": "Dec Deg",
+          "type": "number"
+        },
+        "category": {
+          "enum": [
+            "uncertain",
+            "possible_position_difference",
+            "possible_brightness_difference",
+            "quality_issue"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 2000,
+          "title": "Note",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "frame": {
+          "const": "icrs",
+          "default": "icrs",
+          "title": "Frame",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotation_id",
+        "pair_id",
+        "ra_deg",
+        "dec_deg",
+        "category",
+        "note",
+        "created_at"
+      ],
+      "title": "Annotation",
+      "type": "object"
+    },
+    "CheckResult": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pass",
+            "restricted",
+            "fail",
+            "pending"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "explanation": {
+          "title": "Explanation",
+          "type": "string"
+        },
+        "measurements": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Measurements",
+          "type": "object"
+        }
+      },
+      "required": [
+        "code",
+        "status",
+        "explanation"
+      ],
+      "title": "CheckResult",
+      "type": "object"
+    },
+    "DisplaySettings": {
+      "additionalProperties": false,
+      "properties": {
+        "vmin": {
+          "title": "Vmin",
+          "type": "number"
+        },
+        "vmax": {
+          "title": "Vmax",
+          "type": "number"
+        },
+        "stretch": {
+          "default": "asinh",
+          "enum": [
+            "linear",
+            "asinh"
+          ],
+          "title": "Stretch",
+          "type": "string"
+        }
+      },
+      "required": [
+        "vmin",
+        "vmax"
+      ],
+      "title": "DisplaySettings",
+      "type": "object"
+    },
+    "FileRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size_bytes": {
+          "minimum": 1,
+          "title": "Size Bytes",
+          "type": "integer"
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Url"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "size_bytes"
+      ],
+      "title": "FileRecord",
+      "type": "object"
+    },
+    "Observation": {
+      "additionalProperties": false,
+      "properties": {
+        "observation_id": {
+          "title": "Observation Id",
+          "type": "string"
+        },
+        "release": {
+          "enum": [
+            "qr2",
+            "qr3"
+          ],
+          "title": "Release",
+          "type": "string"
+        },
+        "detector": {
+          "maximum": 6,
+          "minimum": 1,
+          "title": "Detector",
+          "type": "integer"
+        },
+        "pipeline_version": {
+          "title": "Pipeline Version",
+          "type": "string"
+        },
+        "time_start_utc": {
+          "format": "date-time",
+          "title": "Time Start Utc",
+          "type": "string"
+        },
+        "time_end_utc": {
+          "format": "date-time",
+          "title": "Time End Utc",
+          "type": "string"
+        },
+        "original_timescale": {
+          "title": "Original Timescale",
+          "type": "string"
+        },
+        "science_unit": {
+          "title": "Science Unit",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/FileRecord"
+        },
+        "spectral_calibration": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FileRecord"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "center_wavelength_um": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Center Wavelength Um"
+        },
+        "center_bandwidth_um": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Center Bandwidth Um"
+        },
+        "hdus": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Hdus",
+          "type": "array"
+        }
+      },
+      "required": [
+        "observation_id",
+        "release",
+        "detector",
+        "pipeline_version",
+        "time_start_utc",
+        "time_end_utc",
+        "original_timescale",
+        "science_unit",
+        "source",
+        "hdus"
+      ],
+      "title": "Observation",
+      "type": "object"
+    },
+    "SkyRegion": {
+      "additionalProperties": false,
+      "properties": {
+        "ra_deg": {
+          "exclusiveMaximum": 360,
+          "minimum": 0,
+          "title": "Ra Deg",
+          "type": "number"
+        },
+        "dec_deg": {
+          "maximum": 90,
+          "minimum": -90,
+          "title": "Dec Deg",
+          "type": "number"
+        },
+        "size_deg": {
+          "exclusiveMinimum": 0,
+          "maximum": 0.5,
+          "title": "Size Deg",
+          "type": "number"
+        },
+        "frame": {
+          "const": "icrs",
+          "default": "icrs",
+          "title": "Frame",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ra_deg",
+        "dec_deg",
+        "size_deg"
+      ],
+      "title": "SkyRegion",
+      "type": "object"
+    },
+    "Suitability": {
+      "additionalProperties": false,
+      "properties": {
+        "policy_version": {
+          "title": "Policy Version",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "accepted_qualitative",
+            "restricted",
+            "rejected",
+            "pending"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "checks": {
+          "items": {
+            "$ref": "#/$defs/CheckResult"
+          },
+          "title": "Checks",
+          "type": "array"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "policy_version",
+        "status",
+        "checks",
+        "limitations"
+      ],
+      "title": "Suitability",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "app_version": {
+      "title": "App Version",
+      "type": "string"
+    },
+    "pair_id": {
+      "title": "Pair Id",
+      "type": "string"
+    },
+    "dataset_kind": {
+      "enum": [
+        "real",
+        "synthetic",
+        "real_with_synthetic_injection"
+      ],
+      "title": "Dataset Kind",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "region": {
+      "$ref": "#/$defs/SkyRegion"
+    },
+    "observations": {
+      "items": {
+        "$ref": "#/$defs/Observation"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "title": "Observations",
+      "type": "array"
+    },
+    "suitability": {
+      "$ref": "#/$defs/Suitability"
+    },
+    "processing": {
+      "additionalProperties": true,
+      "title": "Processing",
+      "type": "object"
+    },
+    "prepared_files": {
+      "items": {
+        "$ref": "#/$defs/FileRecord"
+      },
+      "title": "Prepared Files",
+      "type": "array"
+    },
+    "display": {
+      "$ref": "#/$defs/DisplaySettings"
+    },
+    "annotations": {
+      "items": {
+        "$ref": "#/$defs/Annotation"
+      },
+      "title": "Annotations",
+      "type": "array"
+    },
+    "software_versions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Software Versions",
+      "type": "object"
+    },
+    "citations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Citations",
+      "type": "array"
+    }
+  },
+  "required": [
+    "app_version",
+    "pair_id",
+    "dataset_kind",
+    "created_at",
+    "region",
+    "observations",
+    "suitability",
+    "processing",
+    "prepared_files",
+    "display",
+    "software_versions",
+    "citations"
+  ],
+  "title": "ComparisonManifest",
+  "type": "object"
+}

@@ -1,0 +1,20 @@
+# Release communication audit
+
+Final materials: the seven-page release report, eight-slide presentation, and 180-second screen-based walkthrough under output/. Original concept report/deck/video remain unchanged. Release packet m101-review-v6.zip is the documentation-corrected canonical snapshot; its scientific manifest and prepared FITS are identical to v4.
+
+| Claim | Evidence | Report / slides / walkthrough |
+| --- | --- | --- |
+| Real SPHEREx observations | Native FITS, hashes, QR2 IDs and UTC intervals | Inputs section / slide 2 / scene 2 |
+| Restricted field and supported pixels | Shared WCS, 24 x 24 masks, 94.44% support | Preparation / slide 2 / scene 2 |
+| Independent reference residuals | Registration-v2, 13 in-context references, no corrective fit | Registration / slide 3 / scene 3 |
+| Scientific interpretation remains limited | Spectral/ePSF/background diagnostics and reviewer questions | Suitability and review / slides 4,8 / scenes 4,8 |
+| Working application | Actual production screenshots and browser QA | Software / slide 5 / scene 5 |
+| ICRS notes/export/reopening | Production QA annotation and reconstructed packet | Software/evidence / slide 6 / scene 6 |
+| Reproducible evidence | Hash-verified originals, ten-array reconstruction, fresh environment | Evidence / slide 7 / scene 7 |
+| Tests | 61 Python and 23 JavaScript tests, executed JUnit records | Verification / slide 7 / scene 7 |
+| Scientific and internal human review PENDING | Blank review records; no actual reviewer supplied | Prominent throughout / slide 8 / scene 8 |
+| Novice usability unfinished | Five-session protocol, no invented participants | Remaining gates / slide 8 / scene 8 |
+
+The depicted note is explicitly a QA demonstration, not a finding. Synthetic shifts, PSF/background scenes and failure inputs are software controls. The public images themselves are real observations. The walkthrough uses actual screenshot/diagnostic states with disclosed generic computer narration; it is not a live screen recording. Captions have approximate sentence timing. No fabricated discovery, precision estimate, reviewer identity/signature or scientific approval appears.
+
+Source citations appear in the report, packet and slide notes. Scientific measurements are taken from the corrected records. The obsolete 16-reference diagnostic is preserved and identified as superseded. A reviewer-guide wording correction removed a stale rounded residual; it did not alter scientific arrays or their identity.

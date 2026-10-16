@@ -1,0 +1,12 @@
+{
+  "url": "https://irsa.ipac.caltech.edu/SIA?COLLECTION=spherex_qr2&POS=circle+210.80227+54.34895+0.005",
+  "parameters": {
+    "COLLECTION": "spherex_qr2",
+    "POS": "circle 210.80227 54.34895 0.005"
+  },
+  "attempted_at": "2026-10-16T12:53:45.550552+00:00",
+  "status": "complete",
+  "retrieved_at": "2026-10-16T12:53:49.892750+00:00",
+  "response_sha256": "cddde4d2a1ec0b19839ef5dc04947cb577d9a18f2f00583999c8221ac46f5428",
+  "row_count": 370
+}
