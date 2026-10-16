@@ -1,0 +1,46 @@
+/* Same live scientific DOM/controllers in both modes; only presentation changes. */
+body.immersive-embedded .site-header,
+body.immersive-embedded .site-footer,
+body.immersive-embedded #sky-locator,
+body.immersive-embedded .coordinate-reference,
+body.immersive-embedded .catalogue-recovery {
+  display: none;
+}
+body.immersive-embedded {
+  background: #08111b;
+}
+body.immersive-embedded .visitor-explore .explorer {
+  padding: 22px 4% 40px;
+  border: 0;
+}
+body.immersive-embedded .view-file-controls {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  background: #091421f5;
+  padding: 10px 0;
+}
+body.immersive-embedded .explorer-title {
+  margin-bottom: 12px;
+}
+body.immersive-embedded .explorer-title h2 {
+  font-size: 28px;
+}
+body.immersive-embedded .visitor-compare-intro {
+  padding-top: 20px;
+}
+body.immersive-embedded .visitor-compare-intro h1 {
+  font-size: 37px;
+}
+body.immersive-embedded .viewer-help {
+  font-size: 11px;
+}
+body.immersive-embedded #back-to-sky {
+  display: none;
+}
+body.immersive-embedded .visit-subnav {
+  padding-bottom: 12px;
+}
+body.immersive-embedded .comparison-context {
+  padding: 15px;
+}

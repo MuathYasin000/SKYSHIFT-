@@ -6,6 +6,10 @@ Traceable qualitative inspection of real SPHEREx observations, developed by Proj
 
 The authoritative planning baseline remains [the master plan](plan/SKYSHIFT_Master_Plan.md) and [execution backlog](plan/SKYSHIFT_Execution_Backlog.md). See [current status](docs/feature_status.md), [acceptance evidence](docs/release_acceptance.md), [data dossier](docs/data_dossier.md), and [reviewer instructions](docs/reviewer_guide.md).
 
+The default home now opens the **Immersive Explorer**: a real-time 3D observatory, schematic solar system and ICRS sky-field navigator. NASA’s downloadable Hubble/Webb models and planetary assets are stored locally, with original sources, usage terms and hashes under **Assets & credits**. SPHEREx is an original, explicitly illustrative component model, informed by official spacecraft references; it is not an engineering twin. No NASA Eyes application assets were extracted.
+
+**Classic View** uses the same live scientific document and preserves its viewport, questions, annotations and exports when toggled. Direct standalone access remains `http://localhost:3000/explore.html` and `/compare.html`; the former editorial homepage remains `/classic-home.html`. WebGL failure leaves Classic science available. The rendering layer pauses during scientific work and when hidden. Sound starts muted, requires a click, and is silent in Classic mode. Solar arrangement, scale and lighting are illustrative; no live ephemeris or measured deep-sky distances are implied.
+
 ## Use the application
 
 Double-click **[start_skyshift.bat](start_skyshift.bat)** or run it from PowerShell:

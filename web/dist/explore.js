@@ -246,3 +246,8 @@ async function loadAvailableFields(){
 }
 $('catalogue-retry').onclick=()=>loadAvailableFields();window.addEventListener('popstate',()=>{if(state.catalog)openLocation();});
 loadAvailableFields();
+// The same verified viewer is embedded in the immersive shell. Commands never supply data or URLs.
+window.addEventListener('message',event=>{
+  if(event.source!==window.parent||event.origin!==location.origin||window.parent===window)return;
+  if(event.data?.type==='skyshift:select-field'&&state.catalog?.fields.some(f=>f.id===event.data.field))chooseFromSky(event.data.field);
+});

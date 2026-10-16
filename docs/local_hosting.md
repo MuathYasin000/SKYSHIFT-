@@ -39,7 +39,7 @@ Restore an older version by stopping the current server and starting the older r
 
 ## Security and verification
 
-The host serves GET/HEAD requests, rejects traversal and hidden paths, disables directory listing, checks local Host headers, sets explicit scientific-file MIME types, and adds content security, framing, permissions and content-type headers. Scripts, fonts, images and data should be vendored under `web/dist` to work with the local-only content policy. Display images may use data/blob URLs; network data requests are restricted to the local origin.
+The host serves GET/HEAD requests, rejects traversal and hidden paths, disables directory listing, checks local Host headers, sets explicit scientific-file MIME types, and adds content security, framing, permissions and content-type headers. Scripts, fonts, images and data should be vendored under `web/dist` to work with the local-only content policy. Display images may use data/blob URLs; network data requests are restricted to the local origin and local blob resources. Same-origin framing supports the shared immersive/Classic scientific workspace; other sites cannot frame the application. Local Draco workers and WASM decode vendored NASA models without an external service.
 
 Run the meaningful HTTP and fault controls:
 

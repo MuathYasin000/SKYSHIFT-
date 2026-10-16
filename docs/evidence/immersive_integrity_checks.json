@@ -1,0 +1,82 @@
+{
+  "checked_at_utc": "2026-10-16T19:46:25.528213+00:00",
+  "baseline_commit": "b8d9aab2c55a7cd0e255b4af529bb54e915afba8",
+  "unchanged_scientific_assets": {
+    "web/dist/data/bundle.json": "b36ac03cac9711dbe4aeb0a64ac8cfc898509317d5758d0adb2d2aabacc5effd",
+    "web/dist/data/catalog.json": "17ad6e099632f13b77d1adae1c9f9c62291e3160da435ea02536183461d5c826",
+    "web/dist/data/explore-catalog.json": "7197f418f2b09922796494943e97a973a9130f8ef69d27da7272a4a508ec2d39",
+    "web/dist/data/explore/m101-2025W49_2A_0756_3.json": "d5fe609fc17c1727496eb622b796993ea431138e4d5d2475c5e2dabf5f6b019f",
+    "web/dist/data/explore/m101-2025W49_2A_0756_3.png": "56d89cfada9a5f9d1972c9c34e0f0e66a62b40fe83131505b6a894605d7553e2",
+    "web/dist/data/explore/m101-2025W50_1A_0736_3.json": "3805e172f1fab3f211a634bce269f4c17c401e541b118504108ac508496ee63f",
+    "web/dist/data/explore/m101-2025W50_1A_0736_3.png": "c2075c60ab5539f166583dae9f0c1a24702768037881e06f2d11e9d9cfd6a981",
+    "web/dist/data/explore/m42-2025W37_2A_0010_1.json": "0b27840ae389f3d30f1f4b4e88612e284e747c818a103003257397fafd7418be",
+    "web/dist/data/explore/m42-2025W37_2A_0010_1.png": "df907f141934b2b0303f34ac5e8200d9d1cbbd15e30df0bccf938bd127621e46",
+    "web/dist/data/explore/m67-2025W44_2B_0657_2.json": "bfc3b5bf23083dbf97c033927aba9ab5df6e8a6f4c1d03f75e948833821ba86b",
+    "web/dist/data/explore/m67-2025W44_2B_0657_2.png": "566f5f1942e41e2a17d74253d1592c98671ec1f85fee2a61b026d3a6c2736e4c",
+    "web/dist/data/explore/ngc188-2025W36_1A_0724_2.json": "b3f8720ae20ba4bcfb2adba4d9961aa98cc732dfce6124c26b5a1950ab381e91",
+    "web/dist/data/explore/ngc188-2025W36_1A_0724_2.png": "41f2b089ec81ffc7ca93cf2d3ec536e7403ce7414b39cf609afdbcf2cf79335b",
+    "web/dist/data/pair.fits": "7f0cf23f13e52418b6066e50b173afe1f709c6359ba4259b8ccfb6a0d71f2788",
+    "web/dist/data/provenance-audit.json": "83ba2fcff9bab2167203136d1359721b33f3fc52a8656e3a89de68ab5a27c731",
+    "web/dist/data/review-part-0.bin": "23c44f3918935634bf3081afa2c39b50d50742b4961f959b5189fc58349e534d",
+    "web/dist/data/review-part-1.bin": "dc521c7f2a92ca6e43c7d0707bb40ea10d6f9df975ac4e2c04e3db66d0e6456b",
+    "web/dist/data/review-part-2.bin": "2c586275a1d1de3887e4ae9cceb55d3e468c90bf0367a618acf3ea2933550f88",
+    "web/dist/data/review-part-3.bin": "e91f0d3869d9781dd926e295b7b84228fc65c594eabb66618826938da01d162f",
+    "web/dist/data/review-part-4.bin": "55e17525ee56e65a4c5d69b947cdea7513fa9b6ec5b70e7f55bc68fdb9494746",
+    "web/dist/data/review-part-5.bin": "2520ca83bf2b0a41f993f7f3f90b5f14034e6cf365bf9f7965703862a0652e42"
+  },
+  "scientific_package_and_base_preparer_unchanged": true,
+  "official_user_logo_byte_identical": true,
+  "logo_sha256": "5b7eb030b8b6e8c59f9ad7f35a8fcb9be4056efd3916b7c47bc701cacb6e5611",
+  "scientific_approval": "PENDING",
+  "qualified_reviewer_assessment": "not completed",
+  "independent_novice_validation": "NOT CONDUCTED",
+  "new_temporal_pairs_enabled": 0,
+  "tests": {
+    "python_passed": 98,
+    "javascript_passed": 62,
+    "chromium_immersive_cases_passed": 24,
+    "edge_immersive_cases_passed": 24,
+    "standalone_saved_workflow_cases_passed": 14,
+    "standalone_spatial_cases_passed": 15
+  },
+  "app_source_sha256": {
+    "index.html": "2cd714496d1669216266391aa168d6ff918b9fc0c225669e402f6a9eee5ff059",
+    "immersive.js": "60145115380684b6be679a024dbb4861d31dd01e2d75cc529e8d72d3d9bd52b9",
+    "space-scene.js": "3271438a0054ec996035d12f2a2c8ce7a986769581b1e7021d09f4a6ec16e4d9",
+    "spherex-model.js": "17c118c8d56055bff100f3e18b4fbac5fda9b20f3bcbc0f1165d29125a34c224",
+    "space-content.js": "ec4c25e927bd38385e4f917bbae9f38c7f9211bff4d4eb9efe3c766228ae3674",
+    "space-preferences.js": "53f0c4479e6a87bb1f9286acb89c07c4003486ff309f8170a9eb05cfb256a164",
+    "space-audio.js": "f21643e57f48002b8f365400a6d41b7e32c36adf007fd1408066b35ef4b59a20",
+    "workspace-bridge.js": "4be1afe7b76b9b2ecaba41f378821c3aca9733f16b8449bb187f68ded670a2ed",
+    "immersive.css": "1654e6b716307128a02ddc092abb57a391537c166de9fdfc29078022c4f82369",
+    "immersive-science.css": "68286608025c7fc70bba8844633017d91578e1a6e8098e40d779561a6929dc48",
+    "assets/space/manifest.json": "fe05ac15d4af89d0436fef06dc8e05e1b4b4e90fad96dbe671296fed03469dda"
+  },
+  "limitations": [
+    "Functional vertical slice; not the entire long-term product completed.",
+    "Solar geometry/scale/orientations are schematic, not live ephemerides.",
+    "Deep-sky navigation uses ICRS directions only; no measured distances or survey coverage.",
+    "SPHEREx geometry is an original artistic visualization, not an engineering twin.",
+    "Touch is emulated; no physical-device, Firefox or Safari validation.",
+    "Automated accessibility checks have manual-review items; independent novice validation is NOT CONDUCTED.",
+    "Recorded CPU render-submission timings are not GPU completion times or a 60 FPS guarantee."
+  ],
+  "browser_receipts": {
+    "immersive_workspace_tests": {
+      "passed": 24,
+      "sha256": "23682655e373d77c6abaf65e99c6247ebb4f6479f31498d34f76f7d9e08600cc"
+    },
+    "immersive_workspace_tests_edge": {
+      "passed": 24,
+      "sha256": "9f46dd559038a1bc506cf75d49895dcc011229cb1cf322b5764bfb89055be831"
+    },
+    "exposure_workflow_tests": {
+      "passed": 14,
+      "sha256": "9f6375f4b1ab8bf36ab034a854fb9d77a33977d1968112e6def4346091a4864f"
+    },
+    "spatial_exploration_tests": {
+      "passed": 15,
+      "sha256": "f1711392e8429b1f7db799060d33aa4990cebd61982c311c1453354c3bc617a4"
+    }
+  }
+}

@@ -10,3 +10,5 @@ The user's latest instructions override older master-plan/backlog deliverable re
 - The user is the sole human UX evaluator. Do not recruit participants or make surveys; independent novice validation remains NOT CONDUCTED.
 - Qualified scientific approval and internal human review remain PENDING until actually documented. Do not invent findings, identities or approvals. These gates do not block unrelated engineering work.
 - Give brief milestone updates: Implemented, Verified, Next, and Blockers only when user intervention is genuinely needed. Do not spawn agents unless explicitly requested.
+
+- The current user explicitly authorizes in-application 3D models, textures, fonts and optional original sound effects. Prefer reusable official assets with recorded sources, terms and hashes; never extract NASA Eyes assets without download/reuse permission. Preserve the shared scientific workspace and standalone Classic access when changing the immersive shell. No promotional media is authorized.

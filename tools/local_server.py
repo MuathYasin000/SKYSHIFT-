@@ -24,10 +24,10 @@ import webbrowser
 ROOT = Path(__file__).resolve().parents[1]
 SERVER_VERSION = '1.0'
 CONTENT_SECURITY_POLICY = (
-    "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; "
-    "img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; "
+    "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; "
+    "img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; "
     "media-src 'self' blob:; object-src 'none'; base-uri 'self'; "
-    "frame-ancestors 'none'; form-action 'self'"
+    "frame-ancestors 'self'; form-action 'self'"
 )
 
 
@@ -81,7 +81,7 @@ class LocalHandler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         for name, value in {
-            'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY',
+            'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'SAMEORIGIN',
             'Referrer-Policy': 'strict-origin-when-cross-origin',
             'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
             'Cross-Origin-Opener-Policy': 'same-origin',

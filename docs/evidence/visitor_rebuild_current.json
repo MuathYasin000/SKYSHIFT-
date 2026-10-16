@@ -1,9 +1,9 @@
 {
   "status": "pass",
   "checked_files": {
-    "explore.html": "50dbcae7ad78a3299ade65e350f6eb72a64136cce622fe3d5a39ce3dd6de55a6",
-    "compare.html": "af53ee0dd9c37afca1dc0a78faea351ce68c85d0da0d1870e9cf08aa4760afd5",
-    "site.js": "34187d4ada8923f0753a772eb8931ccba109d3b76348da1d51cb8495713e111b",
+    "explore.html": "653c19f1538a2fe05743d8d21913b2f72534a740ab5d2afa6344a432c03f442f",
+    "compare.html": "84c5c6772b21bdb0a8dd46e8491f7972609c672d0e7e1969b857c721601bd478",
+    "site.js": "b3d82bfc75c42b11bce13051b7439ccc33964c2752cc4ce1da1eafb7e519fdd5",
     "app.js": "c583ee27b7b9d2c8a75fde3390c93c215121c79d54c16459a41255d695a089eb"
   },
   "html_regenerated": [

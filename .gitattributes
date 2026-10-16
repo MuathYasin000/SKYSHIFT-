@@ -1,2 +1,5 @@
 # Preserve the exact bytes used by provenance records and source fingerprints.
 * -text
+# Preserve upstream formatting in vendored libraries and their license text.
+web/dist/vendor/three/** -whitespace
+web/dist/assets/fonts/OFL.txt -whitespace

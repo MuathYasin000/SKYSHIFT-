@@ -84,7 +84,9 @@ def test_mime_head_and_security_headers(running):
         assert int(headers['Content-Length']) > 0
         assert headers['X-Content-Type-Options'] == 'nosniff'
         assert "connect-src 'self'" in headers['Content-Security-Policy']
-        assert headers['X-Frame-Options'] == 'DENY'
+        assert headers['X-Frame-Options'] == 'SAMEORIGIN'
+        assert "frame-ancestors 'self'" in headers['Content-Security-Policy']
+        assert "connect-src 'self' blob:" in headers['Content-Security-Policy']
 
 
 def test_precompressed_text_decompresses_to_exact_original(running):
