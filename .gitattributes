@@ -3,3 +3,4 @@
 # Preserve upstream formatting in vendored libraries and their license text.
 web/dist/vendor/three/** -whitespace
 web/dist/assets/fonts/OFL.txt -whitespace
+web/dist/assets/fonts/Outfit-OFL.txt -whitespace
