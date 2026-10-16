@@ -2,8 +2,9 @@ import {decodeArray,sha256} from './science.js';
 import {equalEvidence} from './evidence-identity.js';
 
 // Bound the cache to the four curated exposures; rejected loads are never cached.
-export function createExposureLoader(fetcher=globalThis.fetch,maxEntries=4){
+export function createExposureLoader(fetcher=globalThis.fetch,maxEntries=4,timeoutMs=12000){
   if(!Number.isInteger(maxEntries)||maxEntries<1||maxEntries>8)throw Error('Invalid exposure cache size');
+  if(typeof fetcher!=='function'||!Number.isFinite(timeoutMs)||timeoutMs<1||timeoutMs>60000)throw Error('Invalid exposure loader configuration');
   const cache=new Map();
   return async function load(entry){
     if(!/^\.\/data\/explore\/[A-Za-z0-9_-]+\.json$/.test(entry.url)||!/^[a-f0-9]{64}$/.test(entry.sha256))throw Error('Exposure must reference a verified local product.');
@@ -12,7 +13,9 @@ export function createExposureLoader(fetcher=globalThis.fetch,maxEntries=4){
     if(promise){cache.delete(key);cache.set(key,promise);}
     else{
       promise=(async()=>{
-        const response=await fetcher(entry.url);
+        const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeoutMs);
+        try{
+        const response=await fetcher(entry.url,{signal:controller.signal});
         if(!response.ok)throw Error('This exposure could not be loaded from your local server.');
         const bytes=new Uint8Array(await response.arrayBuffer());
         if(bytes.length>8*1024*1024)throw Error('This exposure exceeds the supported local product size.');
@@ -25,6 +28,8 @@ export function createExposureLoader(fetcher=globalThis.fetch,maxEntries=4){
         for(const value of Object.values(product.arrays))if(!equalEvidence(value.shape,product.shape))throw Error('Exposure arrays have inconsistent shapes.');
         for(const [name,value]of Object.entries(product.arrays))if(value.dtype!==(name==='VALID'?'uint8':'float32'))throw Error('Exposure array encoding does not match its scientific role.');
         return {product,arrays};
+        }catch(e){if(controller.signal.aborted)throw Error('This local exposure is taking too long to load. Check the server and retry.');throw e;}
+        finally{clearTimeout(timer);}
       })();
       cache.set(key,promise);
       while(cache.size>maxEntries)cache.delete(cache.keys().next().value);

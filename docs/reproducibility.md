@@ -25,4 +25,6 @@ The review command recomputes native Gaia registration and response diagnostics,
 
 ## Preservation and restoration
 
-Back up the unchanged packet, external packet SHA-256, source commit, lock and deployment version separately. Keep failed decisions. Never overwrite immutable scientific releases. Restore the browser using its exact archived static assets/source commit and recorded Sites project ID. A changed preparation identity cannot silently reuse saved comparisons.
+Back up the unchanged packet, external packet SHA-256, source commit, lock and deployment version separately. Keep failed decisions. Never overwrite immutable scientific releases. Restore the independent local application from its matching static assets and source commit. The Sites deployment is historical evidence only. A changed preparation identity cannot silently reuse saved comparisons.
+
+Single-exposure JSONs reopen against exact local catalogue/product identities; version 1.1 additionally validates coordinate questions against the original prepared quality mask. They reference scientific arrays rather than embedding original FITS. Orion can also be reconstructed offline from its preserved original cutout and calibration using `.venv/Scripts/python.exe tools/reconstruct_orion_context.py --output <new-directory>`. Its JSON and preview must reproduce byte for byte; this does not grant scientific approval.

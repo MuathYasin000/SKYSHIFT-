@@ -13,7 +13,7 @@ test('visitor availability uses the declared dataset status and never approves s
   assert.match(availability({comparison_status:'provisional_restricted'}).explanation,/review is still pending/);
 });
 test('object stories name their actual field context and retain primary NASA sources',()=>{
-  assert.deepEqual(Object.keys(stories).sort(),['m101','m67','ngc188']);
+  assert.deepEqual(Object.keys(stories).sort(),['m101','m42','m67','ngc188']);
   for(const s of Object.values(stories))assert.match(s.source,/^https:\/\/science\.nasa\.gov\//);
   assert.match(stories.m67.story,/does not establish cluster membership/);
   assert.match(stories.ngc188.caution,/not available/);

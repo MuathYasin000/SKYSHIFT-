@@ -1,6 +1,8 @@
 import {stories,availability,friendlyDate} from './field-guide.js';
+import {fetchCatalogue} from './catalogue.js';
+import {createExplorationMemory} from './exploration-memory.js';
 export function navigation(){const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('#site-nav');toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open);});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav?.classList.contains('open')){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.focus();}});}
-export async function loadCatalog(){const r=await fetch('./data/explore-catalog.json');if(!r.ok)throw Error('The local observation catalogue could not be loaded.');return r.json();}
+export const loadCatalog=fetchCatalogue;
 export function make(tag,text,cls){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;}
 export function galleries(catalog,onChoose){
   for(const gallery of document.querySelectorAll('[data-gallery]')){
@@ -23,6 +25,7 @@ export function galleries(catalog,onChoose){
   }
 }
 navigation();
+if(document.querySelector('.hero-actions')&&createExplorationMemory().read().record){const resume=make('a','Resume exploration ↗','quiet-link');resume.href='./explore.html?resume=1#explorer';document.querySelector('.hero-actions').append(resume);}
 if(document.querySelector('[data-gallery]')&&!document.querySelector('#explorer'))loadCatalog().then(c=>galleries(c)).catch(e=>{for(const g of document.querySelectorAll('[data-gallery]'))g.textContent=e.message;});
 if(document.querySelector('#audit-json')){
   fetch('./data/provenance-audit.json').then(r=>{if(!r.ok)throw Error('Recorded audit unavailable');return r.json();}).then(a=>{document.querySelector('#audit-json').textContent=JSON.stringify(a,null,2);const summary=document.querySelector('#audit-summary');summary.replaceChildren();for(const [number,text]of [['4 / 4','Original cutout & calibration SHA-256 matches'],['10 / 10','Prepared browser arrays reproduced exactly'],['PENDING','Qualified scientific approval']]){const d=make('div',undefined,'audit-stat');d.append(make('strong',number),make('span',text));summary.append(d);}}).catch(e=>document.querySelector('#audit-summary').textContent=e.message);

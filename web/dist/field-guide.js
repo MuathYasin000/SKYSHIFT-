@@ -1,5 +1,13 @@
 // Educational copy is separate from calibrated observations and suitability decisions.
 export const stories = {
+  m42: {
+    name:'The Orion Nebula',kind:'Star-forming nebular region',constellation:'Orion',
+    short:'A single infrared view into a region of gas and young stars. This cutout covers part of the nebula.',
+    story:'The Orion Nebula is a star-forming region in Orion. This is one real SPHEREx exposure of part of it, at a much coarser resolution than familiar Hubble photographs. The displayed light can include both stars and extended emission; individual sources are not identified here.',
+    look:'Tap a bright or faint part of the image to inspect its measured wavelength. Blue gaps are excluded measurements, not empty space.',
+    caution:'Several measurements near the bright centre are excluded by quality checks. The blue shapes are missing usable data, not nebular structure. No time comparison has been validated here.',
+    source:'https://science.nasa.gov/asset/hubble/the-orion-nebula-handout/'
+  },
   m101: {
     name: 'The Pinwheel Galaxy', kind: 'Spiral galaxy', constellation: 'Ursa Major',
     short: 'A galaxy seen almost face-on. Our small infrared view explores its bright central region.',
@@ -28,6 +36,7 @@ export const stories = {
 
 export function availability(field) {
   const limited = field.comparison_status === 'provisional_restricted';
+  if(field.comparison_status==='unavailable')return {limited:false,label:'Single-exposure exploration',action:'Explore this exposure',explanation:'No time comparison has been validated for this field. Explore this real exposure; a single image cannot establish change over time.',technical:'Temporal screening and independent source registration have not been performed for this single-exposure context.'};
   if(!limited&&field.comparison_status!=='incompatible_tested_pairs')return {limited:false,label:'Time comparison unavailable',action:'Inspect available exposure',explanation:'No supported time comparison is available for this field. Inspect its source records and suitability status before drawing conclusions.',technical:'No eligible curated temporal pair declared.'};
   return {
     limited,

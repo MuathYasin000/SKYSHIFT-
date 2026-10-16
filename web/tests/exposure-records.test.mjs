@@ -60,7 +60,7 @@ test('small-file bounds, malformed UTF-8, non-JSON and wrong record versions fai
   for(const input of [new Uint8Array(),new Uint8Array(MAX_VIEW_RECORD_BYTES+1),new Uint8Array([255]),new TextEncoder().encode('not JSON'),new TextEncoder().encode('null'),new TextEncoder().encode(JSON.stringify({...saved(),schema_version:'9'}))])assert.throws(()=>parseExposureRecord(input));
 });
 
-test('all four real exposures can export and validate without altering numeric source bytes',async()=>{
+test('all curated real exposures can export and validate without altering numeric source bytes',async()=>{
   for(const f of catalog.fields)for(const e of f.observations){
     const raw=await readFile(new URL('../dist/'+e.url.slice(2),import.meta.url)),p=JSON.parse(raw);
     const before=JSON.stringify(p.arrays),r=createExposureRecord(f,e,p,{visualization:defaultVisualization,contrast:.5,viewport:{zoom:1,center_x:(p.shape[1]-1)/2,center_y:(p.shape[0]-1)/2}});
@@ -79,6 +79,10 @@ test('a checksum failure is not cached and retry genuinely loads verified bytes'
   let calls=0;const load=createExposureLoader(async()=>response(++calls===1?new Uint8Array([1,2,3]):bytes));
   await assert.rejects(load(entry),/checksum/);const result=await load(entry);
   assert.equal(calls,2);assert.equal(result.product.observation.observation_id,entry.observation_id);
+});
+test('stalled exposure requests time out clearly and do not poison retry',async()=>{
+  let calls=0;const load=createExposureLoader((url,{signal})=>++calls===1?new Promise((resolve,reject)=>signal.addEventListener('abort',()=>reject(new Error('aborted')))):Promise.resolve(response(bytes)),4,5);
+  await assert.rejects(load(entry),/taking too long/);assert.equal((await load(entry)).product.observation.observation_id,entry.observation_id);
 });
 
 test('LRU exposure cache stays bounded and rejects remote sources before any fetch',async()=>{

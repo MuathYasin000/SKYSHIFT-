@@ -18,7 +18,8 @@ def decode(entry):
 
 def test_contexts_match_native_data_and_conservative_masks():
     catalog=json.loads((ROOT/'web/dist/data/explore-catalog.json').read_text())
-    assert len(catalog['fields'])==3
+    assert {f['id'] for f in catalog['fields']}=={'m101','m67','ngc188','m42'}
+    assert next(f for f in catalog['fields'] if f['id']=='m42')['comparison_status']=='unavailable'
     count=0
     for field in catalog['fields']:
         for entry in field['observations']:
@@ -40,11 +41,23 @@ def test_contexts_match_native_data_and_conservative_masks():
             np.testing.assert_array_equal(np.asarray(science,dtype=np.float32)[valid],decode(p['arrays']['SCI'])[valid])
             assert np.all(np.isnan(decode(p['arrays']['SCI'])[~valid]))
             for layer in p['arrays'].values():assert numeric_hash(decode(layer))==layer['numeric_sha256']
-    assert count==4
+    assert count==5
 
 def test_rebuilding_context_assets_is_byte_reproducible(tmp_path):
     spec=importlib.util.spec_from_file_location('exploration',ROOT/'tools/build_exploration_assets.py')
     module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
     module.build(tmp_path/'explore')
+    # The fingerprinted historical preparer still reproduces its original three fields.
     for path in (ROOT/'web/dist/data/explore').glob('*'):
+        if path.name.startswith('m42-'):continue
         assert (tmp_path/'explore'/path.name).read_bytes()==path.read_bytes()
+
+
+def test_orion_context_reconstructs_offline_from_original_bytes(tmp_path,monkeypatch):
+    monkeypatch.syspath_prepend(str(ROOT/'tools'))
+    from reconstruct_orion_context import reconstruct
+    rebuilt=reconstruct(tmp_path/'orion')
+    assert rebuilt['comparison_status']=='unavailable'
+    for path in (ROOT/'web/dist/data/explore').glob('m42-*'):
+        assert (tmp_path/'orion'/path.name).read_bytes()==path.read_bytes()
+    with pytest.raises(FileExistsError):reconstruct(tmp_path/'orion')

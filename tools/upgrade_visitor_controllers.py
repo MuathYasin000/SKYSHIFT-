@@ -1,6 +1,8 @@
 """Reproduce the 0.4 controller migration from preserved 0.3 source templates."""
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];WEB=ROOT/'web/dist';T=ROOT/'tools/templates'
+if 'attachViewportInput' in (WEB/'app.js').read_text(encoding='utf-8') or 'fetchCatalogue' in (WEB/'site.js').read_text(encoding='utf-8'):
+    raise SystemExit('Historical 0.3-to-0.4 migration refused: current JS controllers are maintained directly and contain newer functionality. No files changed.')
 for name in ['site.js','app.js']:
     template=T/(name.replace('.js','_0.3.js'))
     if not template.exists():template.write_bytes((WEB/name).read_bytes())

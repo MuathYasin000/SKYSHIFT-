@@ -1,0 +1,69 @@
+{
+  "date_utc": "2026-10-16T19:06:39.760Z",
+  "browser_version": "153.0.8010.12",
+  "results": [
+    {
+      "name": "A quality gap cannot become a single-exposure question",
+      "status": "pass"
+    },
+    {
+      "name": "A usable pixel opens a keyboard-accessible question dialog with honest context",
+      "status": "pass"
+    },
+    {
+      "name": "Question export retains verified source identity, ICRS coordinates and quality support",
+      "status": "pass"
+    },
+    {
+      "name": "Field changes preserve tab questions without leaking them into another exposure or automatic history",
+      "status": "pass"
+    },
+    {
+      "name": "Explore questions survive Compare return and reload in the same tab",
+      "status": "pass"
+    },
+    {
+      "name": "Locate, edit, delete and reopening preserve the actual exported question",
+      "status": "pass"
+    },
+    {
+      "name": "A forged masked coordinate is rejected without replacing a valid view or questions",
+      "status": "pass"
+    },
+    {
+      "name": "Corrupted tab history cannot attach a question to an excluded measurement",
+      "status": "pass"
+    },
+    {
+      "name": "Blocked tab storage still permits questions and explicitly asks for a JSON save",
+      "status": "pass"
+    },
+    {
+      "name": "Questions reconstruct in a fresh browser context and 1.0 exports remain reopenable",
+      "status": "pass"
+    },
+    {
+      "name": "390px touch inspection and question export work without horizontal overflow",
+      "status": "pass"
+    },
+    {
+      "name": "320px touch inspection and question export work without horizontal overflow",
+      "status": "pass"
+    },
+    {
+      "name": "New question controls and modal pass automated accessibility checks and stay local",
+      "status": "pass",
+      "detail": {
+        "violations": [],
+        "manual_review": [
+          "label-content-name-mismatch"
+        ]
+      }
+    }
+  ],
+  "external": [],
+  "errors": [],
+  "touch_scope": "Chromium emulated touchscreen; not physical device or human validation",
+  "scientific_approval": "PENDING",
+  "independent_novice_validation": "NOT CONDUCTED"
+}

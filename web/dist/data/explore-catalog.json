@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "scope": "Three curated real fields; no general all-sky or multi-epoch availability claim",
+  "scope": "Four curated real fields; single-exposure exploration plus one restricted M101 comparison candidate; no all-sky availability claim",
   "fields": [
     {
       "id": "m101",
@@ -87,6 +87,32 @@
           "native_shape": [
             117,
             117
+          ],
+          "shape": [
+            118,
+            118
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m42",
+      "title": "Orion Nebula \u00b7 M42",
+      "description": "A real single-band infrared view of part of the Orion Nebula, a star-forming region in Orion. No temporal comparison is available.",
+      "ra_deg": 83.82083333333334,
+      "dec_deg": -5.391108333333334,
+      "size_deg": 0.2,
+      "comparison_status": "unavailable",
+      "observations": [
+        {
+          "url": "./data/explore/m42-2025W37_2A_0010_1.json",
+          "sha256": "0b27840ae389f3d30f1f4b4e88612e284e747c818a103003257397fafd7418be",
+          "preview": "./data/explore/m42-2025W37_2A_0010_1.png",
+          "observation_id": "2025W37_2A_0010_1",
+          "time_start_utc": "2025-09-11T12:41:53.027000Z",
+          "native_shape": [
+            117,
+            118
           ],
           "shape": [
             118,

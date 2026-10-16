@@ -1,5 +1,5 @@
 {
-  "date_utc": "2026-10-16T17:46:10.348Z",
+  "date_utc": "2026-10-16T19:06:08.115Z",
   "browser_version": "153.0.8010.12",
   "base": "http://localhost:3000",
   "results": [
@@ -71,16 +71,5 @@
   "external": [],
   "page_errors": [],
   "scientific_approval": "PENDING",
-  "independent_novice_validation": "NOT CONDUCTED",
-  "javascript_suite": {
-    "command": "node --test web/tests/*.test.mjs",
-    "passed": 43,
-    "failed": 0,
-    "skipped": 0
-  },
-  "integrity_checks": {
-    "curated_data_files_compared_to_0_4": 19,
-    "all_compared_bytes_unchanged": true,
-    "unchanged_html_not_rewritten": true
-  }
+  "independent_novice_validation": "NOT CONDUCTED"
 }

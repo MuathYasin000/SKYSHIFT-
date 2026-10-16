@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "checked_files": {
+    "explore.html": "50dbcae7ad78a3299ade65e350f6eb72a64136cce622fe3d5a39ce3dd6de55a6",
+    "compare.html": "af53ee0dd9c37afca1dc0a78faea351ce68c85d0da0d1870e9cf08aa4760afd5",
+    "site.js": "34187d4ada8923f0753a772eb8931ccba109d3b76348da1d51cb8495713e111b",
+    "app.js": "c583ee27b7b9d2c8a75fde3390c93c215121c79d54c16459a41255d695a089eb"
+  },
+  "html_regenerated": [
+    "explore.html",
+    "compare.html"
+  ],
+  "controllers_maintained_directly": true,
+  "science_rebuilt": false
+}
