@@ -20,6 +20,14 @@ The standalone production snapshot is `output/local-production/skyshift-0.4-visi
 
 Evidence is in `docs/evidence/*0.4*`, `output/browser-0.4`, `output/browser-0.4-production`, `research/expansion-0.4`, and the versioned media/release folders. See `visitor_experience_0.4.md` for scope, corrected defects and reproduction commands. The complete 0.3 backup and public historical deployment remain preserved.
 
+## Verified preservation
+
+Tested source commit: `85b15acf77d2b09ad104dfa197cd1db111f6f21c`. The verified complete root history bundle is `output/history/SKYSHIFT_root_0.4.bundle`.
+
+Complete ordinary local project backup: `output/SKYSHIFT_Local_Full_Backup_0.4.zip`, 2,028,108,843 bytes. All 1,295 source members were read back and matched their recorded size and SHA-256; the archive additionally contains its own manifest and restoration instructions. Archive SHA-256: `9b87749dcf68f39ea77c88202c21e6d40b53a91bbfcb0dd50393f2cb4cc90ff0`. Receipt: `docs/evidence/backup_0.4_verification.json`.
+
+This preserves source, scientific inputs/calibration/prepared data, research rejections, production releases, original local artifacts, new raw browser footage, final demo and Git bundles. Reproducibly installed environments, temporary build files, runtime stop credentials, logs and older backup ZIPs are excluded; the earlier 0.3 backup remains separately preserved. The backup's own final receipt is external to the archive; the archive contains its internal file manifest.
+
 ## Remaining work and interpretation
 
 The user is the sole human UX evaluator. Independent novice validation **NOT CONDUCTED** and not a development blocker; no recruitment/survey infrastructure was created. Await actual direct user feedback for further corrections instead of inventing human findings.
