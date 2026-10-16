@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "runtime_url": "http://localhost:3000",
+  "scientific_approval": "PENDING",
+  "tested_source_commit": "2f914976e436a9aff0a0df37c687b85055319a57",
+  "backup": {
+    "archive": "D:\\Nasa_SKYSHIFT\\output\\SKYSHIFT_Local_Full_Backup_0.3.zip",
+    "sha256": "dd7df5852375eae12afb2eb5994934938ea366a189123225390a4a3b55810b0a",
+    "size_bytes": 1794053182,
+    "source_bytes": 2053171338,
+    "files_verified": 1088,
+    "source_commit": "2f914976e436a9aff0a0df37c687b85055319a57",
+    "scientific_approval": "PENDING",
+    "all_member_hashes_match": true,
+    "exclusions": [
+      ".git",
+      ".pytest_cache",
+      ".skyshift-local",
+      ".venv",
+      "__pycache__",
+      "node_modules",
+      "tmp",
+      "older output backup ZIPs",
+      "*.log",
+      "*.pyc",
+      "*.pyo"
+    ]
+  },
+  "workspace_browser_passes": 17,
+  "production_browser_passes": 17,
+  "actual_browser_export_sha256": "9eed4e2fbb2fb30ae49927401cb0d0d331d103c36d594195ea18421ed0ef1128",
+  "offline_reconstruction_result_sha256": "aa0c58a0d85dee46ca05e6e0b2552aec57486ed7f1d4bb6184f2c16ae4a3b67b",
+  "production_inventory_sha256": "0b30bb8a2d7f31d1c990423368bf30eb8dfdc7d295e23814b1d3483b34a3e2cb",
+  "artifacts": {
+    "output\\pdf\\SKYSHIFT_Local_Release_0.3.pdf": "d7ec765a174f11c4014b969b10e2d0f36c7ca37470cddc0adf6ffb6a7f25c6b5",
+    "output\\presentation\\SKYSHIFT_Local_Release_0.3_final.pptx": "ab5fce5f72a064b5a820b336769f2fd01ea8b5f84ce0c9dfeda464bdbeb6cd38",
+    "output\\video\\SKYSHIFT_Local_Engineering_Update_0.3.mp4": "a1b0dac294d53501221c7f78965a784fb48329d0f62778ac0ccdcefa07df9bf8"
+  },
+  "note": "Handoff/receipt documents added after the verified source backup; executable scientific and frontend files are unchanged."
+}
