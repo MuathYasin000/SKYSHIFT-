@@ -1,5 +1,7 @@
 # First real-data feasibility dossier
 
+**0.3 audit addendum:** the restricted M101 science snapshot is unchanged. Independent re-fetching verified both native cutout hashes, full spectral calibration and ePSF. All ten current browser arrays match preserved FITS and fresh source reconstruction exactly. Historical public hashes match. See [provenance audit](provenance_audit_0.3.md). Four larger single-exposure contexts now support three-field exploration; they do not gain temporal suitability. Scientific approval and real internal human technical review remain PENDING.
+
 **Status: candidate only, scientific review pending.** This is the first acquired sample and restricted-region screen. It is not a completed real-pair validation or a detection result.
 
 ## Discovery and acquisition

@@ -13,4 +13,5 @@ research/
 tmp/
 output/
 *.log
+.skyshift-local/
 

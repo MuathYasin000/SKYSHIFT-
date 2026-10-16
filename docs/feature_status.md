@@ -1,6 +1,10 @@
 # Implementation status
 
-Release 0.2.0, 16 October 2026. This evidence register supplements the unchanged master plan and backlog. Completion is independent of an event deadline.
+Local release 0.3, 16 October 2026. Scientific snapshot 0.2.0 is preserved unchanged. This evidence register supplements the unchanged master plan and backlog. Completion is independent of an event deadline.
+
+Current additions: independent localhost production server and Windows launchers; Home/Explore/Compare/Discover/Methodology redesign; authentic attributed mission composites; four larger single-exposure contexts across three real fields; asinh/linear/log display, grayscale/false-color palettes, smooth/pixel sampling, wipe overlay; versioned presentation extension in evidence exports; end-to-end authenticity audit and independently re-fetched archive/calibration matches. Ordinary static assets, source, data, scripts and release snapshots remain local. No ChatGPT hosting service is required. See [0.3 verification](redesign_verification_0.3.md).
+
+**Acceptance distinction:** the 0.2 browser checks below are historical. Release 0.3 additionally passes 17 explicitly authorized independent Playwright Chromium checks, including inspected desktop/mobile layouts, browser export/reopen, full-packet download, reduced-motion and integrity-failure behavior. Work's integrated browser permission is unchanged. Broader browser/device testing and real novice sessions remain open.
 
 | Area | Actual status | Evidence / remaining work |
 | --- | --- | --- |

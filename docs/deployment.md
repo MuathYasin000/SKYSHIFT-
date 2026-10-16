@@ -1,4 +1,6 @@
-# Public deployment
+# Historical public deployment (0.2)
+
+**Current default: independent local hosting at http://localhost:3000.** Run `start_skyshift.bat`. See [local hosting](local_hosting.md). The user explicitly superseded public publication with local execution. No 0.3 publication, credential restoration, deletion, replacement hosting project, or hosting-account dependency is authorized or required. The record below preserves the previous release unchanged.
 
 Verified production URL: https://skyshift-project-mercury.surebream11.chatgpt.site
 

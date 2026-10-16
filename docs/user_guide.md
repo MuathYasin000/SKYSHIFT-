@@ -1,5 +1,13 @@
 # Using SKYSHIFT
 
+Local release 0.3: double-click `start_skyshift.bat` and open http://localhost:3000. Keep its server window open. Stop with Ctrl+C or `stop_skyshift.bat`; restart with the startup script. Prepared viewing needs Python 3.11+ and a modern browser, without external hosting or internet.
+
+Start at **Explore the sky**. Choose M101, M67 outskirts or NGC 188. Larger contexts are individual exposures with exact dates and source facts. M67/NGC 188 have no temporal comparison because tested wider pairs failed the wavelength screen. M101 links to a smaller provisional comparison. **Discover SPHEREx** explains the mission; **Methodology** contains the provenance audit and image credits.
+
+Choose Asinh to reveal faint intensity, Linear for a proportional scale, or Log for normalized display intensity. Ember/Ice are single-band false colors. Smooth interpolation changes display only; prepared pixels expose the actual grid. Both comparison dates share the transform. A wipe overlay and focused-canvas arrow-key pan supplement the original controls.
+
+Single-exposure export produces JSON. Compare exports ZIP with separately hashed visualization settings. Reopen the ZIP in Compare to restore notes, viewport, palette, stretch, sampling and wipe. Export notes before closing a tab. Files under `output/browser-0.3` contain explicitly labeled QA controls, not discoveries.
+
 Check the scientific-review banner first. This release contains real M101 observations and remains PENDING. Visual differences may reflect wavelength, response, background, alignment, blending or artifacts.
 
 Captions show UTC observation dates and local wavelengths/bandwidths. Move over an image to inspect ICRS coordinates and per-pixel spectral context. The blue-gray mask is unsupported data. Both observations share orientation, viewport and intensity scale.

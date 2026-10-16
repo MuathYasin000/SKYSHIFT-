@@ -1,5 +1,7 @@
 # Release acceptance record
 
+**0.3 local release addendum:** independent local hosting is now the default. The five-page redesign and larger three-field explorer pass 92 Python tests, 28 JavaScript tests and 17 independent Playwright Chromium acceptance checks. Actual browser export/reopen, complete-packet hash, offline reconstruction with all ten errors 0.0, inspected desktop/mobile layouts and fail-closed integrity behavior are recorded in [0.3 verification](redesign_verification_0.3.md). No public publication was attempted. The 0.2 record below remains historical. Human technical review, qualified scientific assessment, novice usability and broader browser/device testing remain open.
+
 Release 0.2.0 is an engineering review release. It is **not a completed scientifically accepted project**. Human technical review, external scientific assessment and the planned novice sessions remain open. The user's instruction permits independent software development while these assessments are pending.
 
 The master plan and original backlog remain authoritative. Their original all-planned text is a historical baseline; this register records executed work. The original Streamlit frontend choice was replaced with a small static browser application so public inspection/export needs no Python server or credentials. Scientific processing remains in Python. This is a recorded engineering decision, not a relaxation of scientific gates.

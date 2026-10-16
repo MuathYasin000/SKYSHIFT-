@@ -1,0 +1,1248 @@
+{
+  "schema_version": "1.0",
+  "created_at_utc": "2026-10-16T15:21:49.549769+00:00",
+  "scope": "Data authenticity and reproducibility, distinct from scientific approval",
+  "local": {
+    "pair_id": "pair-52ad675d929b0740c23b",
+    "release": "m101-review-v6",
+    "scientific_approval": "PENDING",
+    "dataset_kind": "real",
+    "manifest_match": true,
+    "files": [
+      {
+        "path": "prepared/pair.fits",
+        "sha256": "7f0cf23f13e52418b6066e50b173afe1f709c6359ba4259b8ccfb6a0d71f2788",
+        "expected_sha256": "7f0cf23f13e52418b6066e50b173afe1f709c6359ba4259b8ccfb6a0d71f2788",
+        "match": true,
+        "size_bytes": 60480
+      },
+      {
+        "path": "sources/A.fits",
+        "sha256": "48acaf60861e1ca7eac5cc0119c63f3c5ecf5714fd7f9eaefa59aa1e69a5cd03",
+        "expected_sha256": "48acaf60861e1ca7eac5cc0119c63f3c5ecf5714fd7f9eaefa59aa1e69a5cd03",
+        "match": true,
+        "size_bytes": 5382720
+      },
+      {
+        "path": "sources/B.fits",
+        "sha256": "27943f13c77d7b1b6927fcbba15341d2589f79a923322732ab8608fbb4940dbb",
+        "expected_sha256": "27943f13c77d7b1b6927fcbba15341d2589f79a923322732ab8608fbb4940dbb",
+        "match": true,
+        "size_bytes": 5440320
+      },
+      {
+        "path": "calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "expected_sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "match": true,
+        "size_bytes": 33312960
+      }
+    ],
+    "arrays": {
+      "SCI_A": {
+        "browser_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "c4b61076a1f5d73d2899997a18dcf53220418131a697140054486f5542d1e2d3",
+          "numeric_sha256_b": "c4b61076a1f5d73d2899997a18dcf53220418131a697140054486f5542d1e2d3",
+          "max_absolute_difference": 0.0,
+          "finite_count": 544
+        },
+        "reconstructed_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "c4b61076a1f5d73d2899997a18dcf53220418131a697140054486f5542d1e2d3",
+          "numeric_sha256_b": "c4b61076a1f5d73d2899997a18dcf53220418131a697140054486f5542d1e2d3",
+          "max_absolute_difference": 0.0,
+          "finite_count": 544
+        },
+        "browser_raw_little_endian_sha256": "c4b61076a1f5d73d2899997a18dcf53220418131a697140054486f5542d1e2d3",
+        "prepared_little_endian_sha256": "c4b61076a1f5d73d2899997a18dcf53220418131a697140054486f5542d1e2d3",
+        "browser_to_prepared_bytes_match": true,
+        "manifest_numeric_hash_match": true
+      },
+      "SCI_B": {
+        "browser_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "221413f1452f612e8916c516fcd0f68169efb7411e0616774e63d70310b19d0f",
+          "numeric_sha256_b": "221413f1452f612e8916c516fcd0f68169efb7411e0616774e63d70310b19d0f",
+          "max_absolute_difference": 0.0,
+          "finite_count": 544
+        },
+        "reconstructed_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "221413f1452f612e8916c516fcd0f68169efb7411e0616774e63d70310b19d0f",
+          "numeric_sha256_b": "221413f1452f612e8916c516fcd0f68169efb7411e0616774e63d70310b19d0f",
+          "max_absolute_difference": 0.0,
+          "finite_count": 544
+        },
+        "browser_raw_little_endian_sha256": "221413f1452f612e8916c516fcd0f68169efb7411e0616774e63d70310b19d0f",
+        "prepared_little_endian_sha256": "221413f1452f612e8916c516fcd0f68169efb7411e0616774e63d70310b19d0f",
+        "browser_to_prepared_bytes_match": true,
+        "manifest_numeric_hash_match": true
+      },
+      "VALID_A": {
+        "browser_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+          "numeric_sha256_b": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "reconstructed_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+          "numeric_sha256_b": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "browser_raw_little_endian_sha256": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+        "prepared_little_endian_sha256": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+        "browser_to_prepared_bytes_match": true,
+        "manifest_numeric_hash_match": true
+      },
+      "VALID_B": {
+        "browser_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "6c6897240943a4e1218c0016a09d07f5ce5f57fe99c390cad571e4c2adb30015",
+          "numeric_sha256_b": "6c6897240943a4e1218c0016a09d07f5ce5f57fe99c390cad571e4c2adb30015",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "reconstructed_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "6c6897240943a4e1218c0016a09d07f5ce5f57fe99c390cad571e4c2adb30015",
+          "numeric_sha256_b": "6c6897240943a4e1218c0016a09d07f5ce5f57fe99c390cad571e4c2adb30015",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "browser_raw_little_endian_sha256": "6c6897240943a4e1218c0016a09d07f5ce5f57fe99c390cad571e4c2adb30015",
+        "prepared_little_endian_sha256": "6c6897240943a4e1218c0016a09d07f5ce5f57fe99c390cad571e4c2adb30015",
+        "browser_to_prepared_bytes_match": true,
+        "manifest_numeric_hash_match": true
+      },
+      "COMMON": {
+        "browser_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+          "numeric_sha256_b": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "reconstructed_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+          "numeric_sha256_b": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "browser_raw_little_endian_sha256": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+        "prepared_little_endian_sha256": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+        "browser_to_prepared_bytes_match": true,
+        "manifest_numeric_hash_match": true
+      },
+      "WAVE_A": {
+        "browser_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "777a76afafaf3fb85a18b0d8b7015472517feaed7498b9437109a1b8bc7c1e9e",
+          "numeric_sha256_b": "777a76afafaf3fb85a18b0d8b7015472517feaed7498b9437109a1b8bc7c1e9e",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "reconstructed_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "777a76afafaf3fb85a18b0d8b7015472517feaed7498b9437109a1b8bc7c1e9e",
+          "numeric_sha256_b": "777a76afafaf3fb85a18b0d8b7015472517feaed7498b9437109a1b8bc7c1e9e",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "browser_raw_little_endian_sha256": "777a76afafaf3fb85a18b0d8b7015472517feaed7498b9437109a1b8bc7c1e9e",
+        "prepared_little_endian_sha256": "777a76afafaf3fb85a18b0d8b7015472517feaed7498b9437109a1b8bc7c1e9e",
+        "browser_to_prepared_bytes_match": true,
+        "manifest_numeric_hash_match": true
+      },
+      "WAVE_B": {
+        "browser_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "483efe59c272b2020b802812009f1512c666e62cff267d249f7856215a236b0a",
+          "numeric_sha256_b": "483efe59c272b2020b802812009f1512c666e62cff267d249f7856215a236b0a",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "reconstructed_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "483efe59c272b2020b802812009f1512c666e62cff267d249f7856215a236b0a",
+          "numeric_sha256_b": "483efe59c272b2020b802812009f1512c666e62cff267d249f7856215a236b0a",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "browser_raw_little_endian_sha256": "483efe59c272b2020b802812009f1512c666e62cff267d249f7856215a236b0a",
+        "prepared_little_endian_sha256": "483efe59c272b2020b802812009f1512c666e62cff267d249f7856215a236b0a",
+        "browser_to_prepared_bytes_match": true,
+        "manifest_numeric_hash_match": true
+      },
+      "BAND_A": {
+        "browser_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "b9d66b8bfd9e9fe13b60d0a9423fd828634c24b95fef81a28c98a44933119f70",
+          "numeric_sha256_b": "b9d66b8bfd9e9fe13b60d0a9423fd828634c24b95fef81a28c98a44933119f70",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "reconstructed_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "b9d66b8bfd9e9fe13b60d0a9423fd828634c24b95fef81a28c98a44933119f70",
+          "numeric_sha256_b": "b9d66b8bfd9e9fe13b60d0a9423fd828634c24b95fef81a28c98a44933119f70",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "browser_raw_little_endian_sha256": "b9d66b8bfd9e9fe13b60d0a9423fd828634c24b95fef81a28c98a44933119f70",
+        "prepared_little_endian_sha256": "b9d66b8bfd9e9fe13b60d0a9423fd828634c24b95fef81a28c98a44933119f70",
+        "browser_to_prepared_bytes_match": true,
+        "manifest_numeric_hash_match": true
+      },
+      "BAND_B": {
+        "browser_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "aa49861d3f2de1e0eb2260df810f5628c388abc0daca0437eed844b60e15c51f",
+          "numeric_sha256_b": "aa49861d3f2de1e0eb2260df810f5628c388abc0daca0437eed844b60e15c51f",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "reconstructed_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "aa49861d3f2de1e0eb2260df810f5628c388abc0daca0437eed844b60e15c51f",
+          "numeric_sha256_b": "aa49861d3f2de1e0eb2260df810f5628c388abc0daca0437eed844b60e15c51f",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "browser_raw_little_endian_sha256": "aa49861d3f2de1e0eb2260df810f5628c388abc0daca0437eed844b60e15c51f",
+        "prepared_little_endian_sha256": "aa49861d3f2de1e0eb2260df810f5628c388abc0daca0437eed844b60e15c51f",
+        "browser_to_prepared_bytes_match": true,
+        "manifest_numeric_hash_match": true
+      },
+      "SEPARATION": {
+        "browser_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "61b56f984adfd5b610f0672cdf2be0ea63cba058febb0460df2d77e3ff9606e5",
+          "numeric_sha256_b": "61b56f984adfd5b610f0672cdf2be0ea63cba058febb0460df2d77e3ff9606e5",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "reconstructed_to_prepared": {
+          "match": true,
+          "shape": [
+            24,
+            24
+          ],
+          "numeric_sha256_a": "61b56f984adfd5b610f0672cdf2be0ea63cba058febb0460df2d77e3ff9606e5",
+          "numeric_sha256_b": "61b56f984adfd5b610f0672cdf2be0ea63cba058febb0460df2d77e3ff9606e5",
+          "max_absolute_difference": 0.0,
+          "finite_count": 576
+        },
+        "browser_raw_little_endian_sha256": "61b56f984adfd5b610f0672cdf2be0ea63cba058febb0460df2d77e3ff9606e5",
+        "prepared_little_endian_sha256": "61b56f984adfd5b610f0672cdf2be0ea63cba058febb0460df2d77e3ff9606e5",
+        "browser_to_prepared_bytes_match": true,
+        "manifest_numeric_hash_match": true
+      }
+    },
+    "observations": [
+      {
+        "observation_id": "2025W49_2A_0756_3",
+        "detector": 2,
+        "release": "qr2",
+        "pipeline_version": "6.4+psffix1",
+        "time_start_utc": "2025-12-07T22:47:38.056000Z",
+        "time_end_utc": "2025-12-07T22:49:33.174000Z",
+        "original_source": {
+          "path": "sources/A.fits",
+          "sha256": "48acaf60861e1ca7eac5cc0119c63f3c5ecf5714fd7f9eaefa59aa1e69a5cd03",
+          "size_bytes": 5382720,
+          "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W49_2A/l2b-v20-2025-342/2/level2_2025W49_2A_0756_3D2_spx_l2b-v20-2025-342.fits?center=210.80227%2C54.34895&size=0.3",
+          "retrieved_at_utc": null
+        },
+        "spectral_calibration": {
+          "path": "calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+          "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+          "size_bytes": 33312960,
+          "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+          "retrieved_at_utc": null
+        },
+        "native_cutout_shape_yx": [
+          116,
+          176
+        ],
+        "native_valid_fraction": 0.9596884796238244,
+        "image_unit": "MJy/sr",
+        "native_psf_fwhm_header_arcsec": 5.153916273778412,
+        "native_sky_bounds_deg": {
+          "ra": [
+            210.4364130107985,
+            211.04137299232542
+          ],
+          "dec": [
+            54.13902704398485,
+            54.48842754403472
+          ]
+        },
+        "center_wavelength_um": 1.100600242614746,
+        "center_bandwidth_um": 0.02492571622133255,
+        "time_semantics": "Exposure interval, not download time; XPOSURE is meaningful integration time, distinct from elapsed interval.",
+        "archive_inventory_check": {
+          "match": true,
+          "archive_time_rounding_tolerance_seconds": 0.0433,
+          "archive_to_fits_time_difference_seconds": {
+            "start": 0.0016420148313045502,
+            "end": 0.034301262348890305
+          },
+          "manifest_to_fits_time_difference_seconds": {
+            "DATE-BEG": 0.0,
+            "DATE-END": 0.0
+          },
+          "publisher_did": "ivo://irsa.ipac/spherex_qr2?2025W49_2A_0756_3/D2",
+          "archive_pixel_scale_arcsec": 6.15,
+          "archive_full_detector_shape": [
+            2040,
+            2040
+          ],
+          "archive_integration_time_seconds": 113.5826,
+          "fits_integration_time_seconds": 113.5826
+        },
+        "calibration_history": [
+          "[CALIB] dichroic 2ca9ffb7-e6e9-4f8c-b85e-75ef2671614d",
+          "[CALIB] gain_factors 74478304-abf1-4a9c-9eb2-926090a84446",
+          "[CALIB] initial_distortion_table f34a9ef8-e81a-4c7d-8322-e7da6e458ef9",
+          "[CALIB] nonfunc 14c3b71f-5632-4e40-925e-bfa636e01952",
+          "[CALIB] spectral_wcs a9cb438e-e37d-4888-a1a5-5a9db6ad0737",
+          "[CALIB] gain_factors 74478304-abf1-4a9c-9eb2-926090a84446",
+          "[CALIB] nonlinear_pars 81296b79-30e6-44ee-a7c1-5167be3e254a",
+          "[CALIB] readnoise_pars f6a0f49d-4bf8-43cb-ab45-46a912f0f98c",
+          "[CALIB] abs_gain_matrix 17b9dc97-03e7-4e17-9d1c-56abae92edc5",
+          "[CALIB] average_psf b50151c0-9248-4ada-ae66-eff2f6879fa3",
+          "[CALIB] dark c082adae-af5b-43f2-9130-03ddb1eeec1c",
+          "[CALIB] spectral_wcs a9cb438e-e37d-4888-a1a5-5a9db6ad0737"
+        ]
+      },
+      {
+        "observation_id": "2025W50_1A_0736_3",
+        "detector": 2,
+        "release": "qr2",
+        "pipeline_version": "6.4+psffix1",
+        "time_start_utc": "2025-12-11T05:01:27.448000Z",
+        "time_end_utc": "2025-12-11T05:03:22.566000Z",
+        "original_source": {
+          "path": "sources/B.fits",
+          "sha256": "27943f13c77d7b1b6927fcbba15341d2589f79a923322732ab8608fbb4940dbb",
+          "size_bytes": 5440320,
+          "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_1A/l2b-v20-2025-345/2/level2_2025W50_1A_0736_3D2_spx_l2b-v20-2025-345.fits?center=210.80227%2C54.34895&size=0.3",
+          "retrieved_at_utc": null
+        },
+        "spectral_calibration": {
+          "path": "calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+          "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+          "size_bytes": 33312960,
+          "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+          "retrieved_at_utc": null
+        },
+        "native_cutout_shape_yx": [
+          137,
+          176
+        ],
+        "native_valid_fraction": 0.9654114134041142,
+        "image_unit": "MJy/sr",
+        "native_psf_fwhm_header_arcsec": 5.153916273778412,
+        "native_sky_bounds_deg": {
+          "ra": [
+            210.4425234396113,
+            211.08701354301843
+          ],
+          "dec": [
+            54.13508306062713,
+            54.510893723126486
+          ]
+        },
+        "center_wavelength_um": 1.105954647064209,
+        "center_bandwidth_um": 0.026426851749420166,
+        "time_semantics": "Exposure interval, not download time; XPOSURE is meaningful integration time, distinct from elapsed interval.",
+        "archive_inventory_check": {
+          "match": true,
+          "archive_time_rounding_tolerance_seconds": 0.0433,
+          "archive_to_fits_time_difference_seconds": {
+            "start": 0.04000305198132992,
+            "end": 0.013737729750573635
+          },
+          "manifest_to_fits_time_difference_seconds": {
+            "DATE-BEG": 0.0,
+            "DATE-END": 0.0
+          },
+          "publisher_did": "ivo://irsa.ipac/spherex_qr2?2025W50_1A_0736_3/D2",
+          "archive_pixel_scale_arcsec": 6.15,
+          "archive_full_detector_shape": [
+            2040,
+            2040
+          ],
+          "archive_integration_time_seconds": 113.5826,
+          "fits_integration_time_seconds": 113.5826
+        },
+        "calibration_history": [
+          "[CALIB] dichroic 2ca9ffb7-e6e9-4f8c-b85e-75ef2671614d",
+          "[CALIB] gain_factors 74478304-abf1-4a9c-9eb2-926090a84446",
+          "[CALIB] initial_distortion_table f34a9ef8-e81a-4c7d-8322-e7da6e458ef9",
+          "[CALIB] nonfunc 14c3b71f-5632-4e40-925e-bfa636e01952",
+          "[CALIB] spectral_wcs a9cb438e-e37d-4888-a1a5-5a9db6ad0737",
+          "[CALIB] gain_factors 74478304-abf1-4a9c-9eb2-926090a84446",
+          "[CALIB] nonlinear_pars 81296b79-30e6-44ee-a7c1-5167be3e254a",
+          "[CALIB] readnoise_pars f6a0f49d-4bf8-43cb-ab45-46a912f0f98c",
+          "[CALIB] abs_gain_matrix 17b9dc97-03e7-4e17-9d1c-56abae92edc5",
+          "[CALIB] average_psf b50151c0-9248-4ada-ae66-eff2f6879fa3",
+          "[CALIB] dark c082adae-af5b-43f2-9130-03ddb1eeec1c",
+          "[CALIB] spectral_wcs a9cb438e-e37d-4888-a1a5-5a9db6ad0737"
+        ]
+      }
+    ],
+    "code_identity_checks": {
+      "archive.py": {
+        "expected_sha256": "c2b4329ce72547067624d89b3a02cd46c4493c5531f582765b7d76375f623ce0",
+        "live_source_match": true,
+        "retained_reproduction_source_match": true
+      },
+      "cli.py": {
+        "expected_sha256": "2db2d1ea0c7833f1845c9fa86db370945bebc196afaba1d45f7f6394fdf530f0",
+        "live_source_match": true,
+        "retained_reproduction_source_match": true
+      },
+      "coordinates.py": {
+        "expected_sha256": "e2110afd7dc56f35dbc9a8a63ba8f5592ae8f5308881465af9adcb2eade45755",
+        "live_source_match": true,
+        "retained_reproduction_source_match": true
+      },
+      "evidence.py": {
+        "expected_sha256": "c50e93fef7efeaa4179bb05ec0c5976d1ff9e6163988c1f486849d828e99718a",
+        "live_source_match": true,
+        "retained_reproduction_source_match": true
+      },
+      "models.py": {
+        "expected_sha256": "250cb99f4211c0e0facd98b07315fc2b8d36e15973d06dd033bd9e66a5af8987",
+        "live_source_match": true,
+        "retained_reproduction_source_match": true
+      },
+      "preparation.py": {
+        "expected_sha256": "830c0bbde576d2f3e43933c89af4c794493ce10e9593de19db6f42d04ec34e5b",
+        "live_source_match": true,
+        "retained_reproduction_source_match": true
+      },
+      "products.py": {
+        "expected_sha256": "a1a2156ccd942b75d6b5df1346cb62458374c47cbfd095e51968b93fa2b323ab",
+        "live_source_match": true,
+        "retained_reproduction_source_match": true
+      },
+      "registration.py": {
+        "expected_sha256": "fbf68c1edc2924a4e5c00ad50cc74b2d829d6eb58fb5e9de76213d9644fabe76",
+        "live_source_match": true,
+        "retained_reproduction_source_match": true
+      },
+      "response.py": {
+        "expected_sha256": "c9c87d00ad1d0632202ffe46d65535f14a5926c24c09a4158323c29b8421a276",
+        "live_source_match": true,
+        "retained_reproduction_source_match": true
+      },
+      "suitability.py": {
+        "expected_sha256": "d9e4dd0a864dc15fc68daaa73d4027fe4b1095cb60a533497e99d3465a7775f9",
+        "live_source_match": true,
+        "retained_reproduction_source_match": true
+      },
+      "__init__.py": {
+        "expected_sha256": "d6bf464dd253614b6ebf16d82adeecd85f6d7881929505d9dc21b330237e5aee",
+        "live_source_match": true,
+        "retained_reproduction_source_match": true
+      }
+    },
+    "prepared_grid": {
+      "shape_yx": [
+        24,
+        24
+      ],
+      "requested_width_deg": 0.04,
+      "pixel_scale_arcsec": 6.15,
+      "actual_grid_width_arcmin": 2.4600000000000004,
+      "common_supported_pixels": 544,
+      "common_supported_fraction": 0.9444444444444444,
+      "projection": "North-up ICRS TAN",
+      "interpolation": "bilinear",
+      "comparison_width_not_instrument_resolution": true
+    },
+    "calibration_association": "Public file identity verified; exact pipeline UUID-to-public calibration-file association requires qualified review.",
+    "limitations": [
+      "Provenance authenticity is distinct from scientific comparison approval.",
+      "No human scientific approval or discovery is established by this audit.",
+      "Initial raw retrieval timestamps were not recorded and cannot be retrospectively asserted.",
+      "The two observations are near 1.1 microns; they are not full-color images or all 102 spectral channels.",
+      "No quantitative variability, motion or significance product is supported.",
+      "The 0.3 degree native context supports inspection and registration, not an approved temporal comparison over that entire context."
+    ]
+  },
+  "network": [
+    {
+      "name": "native-A.fits",
+      "url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W49_2A/l2b-v20-2025-342/2/level2_2025W49_2A_0756_3D2_spx_l2b-v20-2025-342.fits?center=210.80227%2C54.34895&size=0.3",
+      "attempted_at_utc": "2026-10-16T15:21:49.990785+00:00",
+      "expected_sha256": "48acaf60861e1ca7eac5cc0119c63f3c5ecf5714fd7f9eaefa59aa1e69a5cd03",
+      "http_status": 200,
+      "response_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W49_2A/l2b-v20-2025-342/2/level2_2025W49_2A_0756_3D2_spx_l2b-v20-2025-342.fits?center=210.80227%2C54.34895&size=0.3",
+      "response_headers": {
+        "Content-Type": "application/fits",
+        "ETag": null,
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:21:53 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "48acaf60861e1ca7eac5cc0119c63f3c5ecf5714fd7f9eaefa59aa1e69a5cd03",
+      "size_bytes": 5382720,
+      "retrieved_at_utc": "2026-10-16T15:22:04.439769+00:00",
+      "hash_match": true
+    },
+    {
+      "name": "native-B.fits",
+      "url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_1A/l2b-v20-2025-345/2/level2_2025W50_1A_0736_3D2_spx_l2b-v20-2025-345.fits?center=210.80227%2C54.34895&size=0.3",
+      "attempted_at_utc": "2026-10-16T15:21:49.991784+00:00",
+      "expected_sha256": "27943f13c77d7b1b6927fcbba15341d2589f79a923322732ab8608fbb4940dbb",
+      "http_status": 200,
+      "response_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_1A/l2b-v20-2025-345/2/level2_2025W50_1A_0736_3D2_spx_l2b-v20-2025-345.fits?center=210.80227%2C54.34895&size=0.3",
+      "response_headers": {
+        "Content-Type": "application/fits",
+        "ETag": null,
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:21:53 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "27943f13c77d7b1b6927fcbba15341d2589f79a923322732ab8608fbb4940dbb",
+      "size_bytes": 5440320,
+      "retrieved_at_utc": "2026-10-16T15:22:06.206273+00:00",
+      "hash_match": true
+    },
+    {
+      "name": "spectral-calibration.fits",
+      "url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+      "attempted_at_utc": "2026-10-16T15:21:49.992785+00:00",
+      "expected_sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+      "http_status": 200,
+      "response_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+      "response_headers": {
+        "Content-Type": "binary/octet-stream",
+        "ETag": "\"21add77837d658e3dfe4bcbd73b4af3d\"",
+        "Last-Modified": "Fri, 03 Apr 2026 15:52:54 GMT",
+        "Date": "Fri, 16 Oct 2026 15:21:53 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+      "size_bytes": 33312960,
+      "retrieved_at_utc": "2026-10-16T15:21:57.057032+00:00",
+      "hash_match": true
+    },
+    {
+      "name": "epsf-calibration.fits",
+      "url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr3/epsf/cal-epsf-v1-2026-191/2/epsf_D2_spx_cal-epsf-v1-2026-191.fits",
+      "attempted_at_utc": "2026-10-16T15:21:49.992785+00:00",
+      "expected_sha256": "7b94af0250aa7e56a9e78af34ca2c1373985926c0a0f3263218d1b0ddc94a926",
+      "http_status": 200,
+      "response_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr3/epsf/cal-epsf-v1-2026-191/2/epsf_D2_spx_cal-epsf-v1-2026-191.fits",
+      "response_headers": {
+        "Content-Type": "binary/octet-stream",
+        "ETag": "\"4271972259cb7f0c352e8140af073be8\"",
+        "Last-Modified": "Thu, 17 Sep 2026 14:40:10 GMT",
+        "Date": "Fri, 16 Oct 2026 15:21:53 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "7b94af0250aa7e56a9e78af34ca2c1373985926c0a0f3263218d1b0ddc94a926",
+      "size_bytes": 7943040,
+      "retrieved_at_utc": "2026-10-16T15:21:55.101962+00:00",
+      "hash_match": true
+    },
+    {
+      "name": "archive-sia.xml",
+      "url": "https://irsa.ipac.caltech.edu/SIA?COLLECTION=spherex_qr2&POS=circle+210.80227+54.34895+0.005",
+      "attempted_at_utc": "2026-10-16T15:21:55.104875+00:00",
+      "expected_sha256": null,
+      "http_status": 200,
+      "response_url": "https://irsa.ipac.caltech.edu/SIA?COLLECTION=spherex_qr2&POS=circle+210.80227+54.34895+0.005",
+      "response_headers": {
+        "Content-Type": "application/x-votable+xml",
+        "ETag": null,
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:22:00 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "a0b481304dfac6da8456b74d4251ff57f3099ad9eae8275087aa5eb9e6eefc77",
+      "size_bytes": 796746,
+      "retrieved_at_utc": "2026-10-16T15:22:00.827738+00:00",
+      "hash_match": null
+    },
+    {
+      "name": "official-guide.html",
+      "url": "https://caltech-ipac.github.io/spherex-archive-documentation/spherex-data-products/",
+      "attempted_at_utc": "2026-10-16T15:21:57.077758+00:00",
+      "expected_sha256": null,
+      "http_status": 200,
+      "response_url": "https://caltech-ipac.github.io/spherex-archive-documentation/spherex-data-products/",
+      "response_headers": {
+        "Content-Type": "text/html; charset=utf-8",
+        "ETag": "\"6abb0f1a-27b9c\"",
+        "Last-Modified": "Tue, 29 Sep 2026 01:06:34 GMT",
+        "Date": "Fri, 16 Oct 2026 15:21:59 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "6cdbe80911d97ec9aa7d78f73c40789b80dd52b1fbd1e1c9f685efd542932689",
+      "size_bytes": 162716,
+      "retrieved_at_utc": "2026-10-16T15:21:57.717645+00:00",
+      "hash_match": null
+    },
+    {
+      "name": "deployed-catalog.json",
+      "url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/catalog.json",
+      "attempted_at_utc": "2026-10-16T15:21:57.717645+00:00",
+      "expected_sha256": null,
+      "http_status": 200,
+      "response_url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/catalog.json",
+      "response_headers": {
+        "Content-Type": "application/json",
+        "ETag": "\"83161d6459145d13f88045657087687b\"",
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:22:01 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "17ad6e099632f13b77d1adae1c9f9c62291e3160da435ea02536183461d5c826",
+      "size_bytes": 1394,
+      "retrieved_at_utc": "2026-10-16T15:21:59.545897+00:00",
+      "hash_match": null
+    },
+    {
+      "name": "deployed-bundle.json",
+      "url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/bundle.json",
+      "attempted_at_utc": "2026-10-16T15:22:06.467218+00:00",
+      "expected_sha256": "b36ac03cac9711dbe4aeb0a64ac8cfc898509317d5758d0adb2d2aabacc5effd",
+      "http_status": 200,
+      "response_url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/bundle.json",
+      "response_headers": {
+        "Content-Type": "application/json",
+        "ETag": "\"8aa9c538cc90aa55a698e347ad8548d2\"",
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:22:09 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "b36ac03cac9711dbe4aeb0a64ac8cfc898509317d5758d0adb2d2aabacc5effd",
+      "size_bytes": 125268,
+      "retrieved_at_utc": "2026-10-16T15:22:07.005619+00:00",
+      "hash_match": true
+    },
+    {
+      "name": "deployed-pair.fits",
+      "url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/pair.fits",
+      "attempted_at_utc": "2026-10-16T15:22:07.023092+00:00",
+      "expected_sha256": "7f0cf23f13e52418b6066e50b173afe1f709c6359ba4259b8ccfb6a0d71f2788",
+      "http_status": 200,
+      "response_url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/pair.fits",
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"d07f4ba236d7a078c3a6d10a12974a3d\"",
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:22:09 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "7f0cf23f13e52418b6066e50b173afe1f709c6359ba4259b8ccfb6a0d71f2788",
+      "size_bytes": 60480,
+      "retrieved_at_utc": "2026-10-16T15:22:07.658290+00:00",
+      "hash_match": true
+    },
+    {
+      "name": "deployed-review-part-0.bin",
+      "url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-0.bin",
+      "attempted_at_utc": "2026-10-16T15:22:07.023092+00:00",
+      "expected_sha256": "23c44f3918935634bf3081afa2c39b50d50742b4961f959b5189fc58349e534d",
+      "http_status": 200,
+      "response_url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-0.bin",
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"212ec3ec0871bb5568ad297d419ea5f2\"",
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:22:10 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "23c44f3918935634bf3081afa2c39b50d50742b4961f959b5189fc58349e534d",
+      "size_bytes": 8000000,
+      "retrieved_at_utc": "2026-10-16T15:22:13.135004+00:00",
+      "hash_match": true
+    },
+    {
+      "name": "deployed-review-part-1.bin",
+      "url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-1.bin",
+      "attempted_at_utc": "2026-10-16T15:22:07.023092+00:00",
+      "expected_sha256": "dc521c7f2a92ca6e43c7d0707bb40ea10d6f9df975ac4e2c04e3db66d0e6456b",
+      "http_status": 200,
+      "response_url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-1.bin",
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"bf47d4377e9697cf6ce617b4e4b1eb48\"",
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:22:09 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "dc521c7f2a92ca6e43c7d0707bb40ea10d6f9df975ac4e2c04e3db66d0e6456b",
+      "size_bytes": 8000000,
+      "retrieved_at_utc": "2026-10-16T15:22:12.543175+00:00",
+      "hash_match": true
+    },
+    {
+      "name": "deployed-review-part-2.bin",
+      "url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-2.bin",
+      "attempted_at_utc": "2026-10-16T15:22:07.024093+00:00",
+      "expected_sha256": "2c586275a1d1de3887e4ae9cceb55d3e468c90bf0367a618acf3ea2933550f88",
+      "http_status": 200,
+      "response_url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-2.bin",
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"ed12c697454552181eb44a083866550f\"",
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:22:09 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "2c586275a1d1de3887e4ae9cceb55d3e468c90bf0367a618acf3ea2933550f88",
+      "size_bytes": 8000000,
+      "retrieved_at_utc": "2026-10-16T15:22:13.135004+00:00",
+      "hash_match": true
+    },
+    {
+      "name": "deployed-review-part-3.bin",
+      "url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-3.bin",
+      "attempted_at_utc": "2026-10-16T15:22:07.658290+00:00",
+      "expected_sha256": "e91f0d3869d9781dd926e295b7b84228fc65c594eabb66618826938da01d162f",
+      "http_status": 200,
+      "response_url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-3.bin",
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"7919130a7a22b1a5ac1767b6c774a882\"",
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:22:10 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "e91f0d3869d9781dd926e295b7b84228fc65c594eabb66618826938da01d162f",
+      "size_bytes": 8000000,
+      "retrieved_at_utc": "2026-10-16T15:22:10.105675+00:00",
+      "hash_match": true
+    },
+    {
+      "name": "deployed-review-part-4.bin",
+      "url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-4.bin",
+      "attempted_at_utc": "2026-10-16T15:22:10.112547+00:00",
+      "expected_sha256": "55e17525ee56e65a4c5d69b947cdea7513fa9b6ec5b70e7f55bc68fdb9494746",
+      "http_status": 200,
+      "response_url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-4.bin",
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"7691176eeef8deef5ce37042d154b463\"",
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:22:12 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "55e17525ee56e65a4c5d69b947cdea7513fa9b6ec5b70e7f55bc68fdb9494746",
+      "size_bytes": 8000000,
+      "retrieved_at_utc": "2026-10-16T15:22:11.289288+00:00",
+      "hash_match": true
+    },
+    {
+      "name": "deployed-review-part-5.bin",
+      "url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-5.bin",
+      "attempted_at_utc": "2026-10-16T15:22:11.292856+00:00",
+      "expected_sha256": "2520ca83bf2b0a41f993f7f3f90b5f14034e6cf365bf9f7965703862a0652e42",
+      "http_status": 200,
+      "response_url": "https://skyshift-project-mercury.surebream11.chatgpt.site/data/review-part-5.bin",
+      "response_headers": {
+        "Content-Type": "application/octet-stream",
+        "ETag": "\"2f6bdd837a5895f440aeac7470484fcd\"",
+        "Last-Modified": null,
+        "Date": "Fri, 16 Oct 2026 15:22:13 GMT"
+      },
+      "status": "retrieved",
+      "sha256": "2520ca83bf2b0a41f993f7f3f90b5f14034e6cf365bf9f7965703862a0652e42",
+      "size_bytes": 697263,
+      "retrieved_at_utc": "2026-10-16T15:22:11.620701+00:00",
+      "hash_match": true
+    }
+  ],
+  "native_refetch_comparisons": [
+    {
+      "name": "native-A.fits",
+      "comparison": {
+        "byte_identical": true,
+        "hdus": [
+          {
+            "name": "PRIMARY",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "IMAGE",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "FLAGS",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "VARIANCE",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "ZODI",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "PSF",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "WCS-WAVE",
+            "data_equal": true,
+            "changed_header_keywords": []
+          }
+        ],
+        "all_data_equal": true
+      }
+    },
+    {
+      "name": "native-B.fits",
+      "comparison": {
+        "byte_identical": true,
+        "hdus": [
+          {
+            "name": "PRIMARY",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "IMAGE",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "FLAGS",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "VARIANCE",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "ZODI",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "PSF",
+            "data_equal": true,
+            "changed_header_keywords": []
+          },
+          {
+            "name": "WCS-WAVE",
+            "data_equal": true,
+            "changed_header_keywords": []
+          }
+        ],
+        "all_data_equal": true
+      }
+    }
+  ],
+  "earlier_authenticated_source_retrievals": [
+    {
+      "url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W49_2A/l2b-v20-2025-342/2/level2_2025W49_2A_0756_3D2_spx_l2b-v20-2025-342.fits?center=210.80227%2C54.34895&size=0.3",
+      "sha256": "48acaf60861e1ca7eac5cc0119c63f3c5ecf5714fd7f9eaefa59aa1e69a5cd03",
+      "retrieved_at_utc": "2026-10-16T15:20:11.875103+00:00",
+      "evidence_audit": "research/audit_0.3/20261016T151954631473Z/audit.json",
+      "retained_response": "research/audit_0.3/20261016T151954631473Z/native-A.fits",
+      "evidence_audit_sha256": "0e48eea4c6942d78cf559c23e29790ac967135ef85e1e5b1ae83c1af4c51fe96"
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_1A/l2b-v20-2025-345/2/level2_2025W50_1A_0736_3D2_spx_l2b-v20-2025-345.fits?center=210.80227%2C54.34895&size=0.3",
+      "sha256": "27943f13c77d7b1b6927fcbba15341d2589f79a923322732ab8608fbb4940dbb",
+      "retrieved_at_utc": "2026-10-16T15:20:06.966722+00:00",
+      "evidence_audit": "research/audit_0.3/20261016T151954631473Z/audit.json",
+      "retained_response": "research/audit_0.3/20261016T151954631473Z/native-B.fits",
+      "evidence_audit_sha256": "0e48eea4c6942d78cf559c23e29790ac967135ef85e1e5b1ae83c1af4c51fe96"
+    }
+  ],
+  "earlier_preserved_failures": [
+    {
+      "name": "native-A.fits",
+      "url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W49_2A/l2b-v20-2025-342/2/level2_2025W49_2A_0756_3D2_spx_l2b-v20-2025-342.fits?center=210.80227%2C54.34895&size=0.3",
+      "attempted_at_utc": "2026-10-16T15:14:33.357831+00:00",
+      "expected_sha256": "48acaf60861e1ca7eac5cc0119c63f3c5ecf5714fd7f9eaefa59aa1e69a5cd03",
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 503: Service Unavailable",
+      "evidence_audit": "research/audit_0.3/20261016T151432997858Z/audit.json"
+    }
+  ],
+  "live_archive": {
+    "row_count": 370,
+    "observations": [
+      {
+        "observation_id": "2025W49_2A_0756_3",
+        "exact_row_count": 1,
+        "row": {
+          "s_ra": "207.09951212997314",
+          "s_dec": "54.082368056579064",
+          "facility_name": "SPHEREx",
+          "instrument_name": "SPHEREx",
+          "dataproduct_subtype": "science",
+          "calib_level": "2",
+          "dataproduct_type": "image",
+          "energy_bandpassname": "SPHEREx-D2",
+          "energy_emband": "Infrared",
+          "obs_id": "2025W49_2A_0756_3",
+          "s_resolution": "3.075000",
+          "em_min": "1.10330e-06",
+          "em_max": "1.64990e-06",
+          "em_res_power": "41.400000",
+          "proposal_title": "SPHEREx LVF Survey Data",
+          "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W49_2A/l2b-v20-2025-342/2/level2_2025W49_2A_0756_3D2_spx_l2b-v20-2025-342.fits",
+          "access_format": "image/fits",
+          "access_estsize": "71635",
+          "t_exptime": "113.582600",
+          "s_region": "POLYGON ICRS 207.2527594124053 51.637998176708564 202.9475258157544 53.92178699220091 206.9457988837308 56.55824373292156 211.32281583272305 54.10972582978083 207.2527594124053 51.637998176708564",
+          "obs_collection": "spherex_qr2",
+          "obs_intent": "science",
+          "algorithm_name": "exposure",
+          "facility_keywords": null,
+          "instrument_keywords": null,
+          "environment_photometric": null,
+          "proposal_id": null,
+          "proposal_pi": null,
+          "proposal_project": "SPHEREx",
+          "target_name": "SPS_28043",
+          "target_type": "field",
+          "target_standard": "0",
+          "target_moving": "0",
+          "target_keywords": null,
+          "obs_release_date": "2026-01-20 18:46:46",
+          "s_xel1": "2040",
+          "s_xel2": "2040",
+          "s_pixel_scale": "6.150",
+          "position_timedependent": "0",
+          "t_min": "61016.949746",
+          "t_max": "61016.951078",
+          "t_resolution": null,
+          "t_xel": null,
+          "obs_publisher_did": "ivo://irsa.ipac/spherex_qr2?2025W49_2A_0756_3/D2",
+          "s_fov": "3.485e+00",
+          "em_xel": null,
+          "pol_states": null,
+          "pol_xel": null,
+          "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"qr2/level2/2025W49_2A/l2b-v20-2025-342/2/level2_2025W49_2A_0756_3D2_spx_l2b-v20-2025-342.fits\", \"region\": \"us-east-1\"}}",
+          "o_ucd": null,
+          "upload_row_id": "1"
+        },
+        "check": {
+          "match": true,
+          "archive_time_rounding_tolerance_seconds": 0.0433,
+          "archive_to_fits_time_difference_seconds": {
+            "start": 0.0016420148313045502,
+            "end": 0.034301262348890305
+          },
+          "manifest_to_fits_time_difference_seconds": {
+            "DATE-BEG": 0.0,
+            "DATE-END": 0.0
+          },
+          "publisher_did": "ivo://irsa.ipac/spherex_qr2?2025W49_2A_0756_3/D2",
+          "archive_pixel_scale_arcsec": 6.15,
+          "archive_full_detector_shape": [
+            2040,
+            2040
+          ],
+          "archive_integration_time_seconds": 113.5826,
+          "fits_integration_time_seconds": 113.5826
+        }
+      },
+      {
+        "observation_id": "2025W50_1A_0736_3",
+        "exact_row_count": 1,
+        "row": {
+          "s_ra": "210.76181751214452",
+          "s_dec": "52.154091651293356",
+          "facility_name": "SPHEREx",
+          "instrument_name": "SPHEREx",
+          "dataproduct_subtype": "science",
+          "calib_level": "2",
+          "dataproduct_type": "image",
+          "energy_bandpassname": "SPHEREx-D2",
+          "energy_emband": "Infrared",
+          "obs_id": "2025W50_1A_0736_3",
+          "s_resolution": "3.075000",
+          "em_min": "1.10330e-06",
+          "em_max": "1.64990e-06",
+          "em_res_power": "41.400000",
+          "proposal_title": "SPHEREx LVF Survey Data",
+          "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_1A/l2b-v20-2025-345/2/level2_2025W50_1A_0736_3D2_spx_l2b-v20-2025-345.fits",
+          "access_format": "image/fits",
+          "access_estsize": "71635",
+          "t_exptime": "113.582600",
+          "s_region": "POLYGON ICRS 211.02614018941634 49.7133882400753 206.80401522327034 51.92312780525685 210.48309673807333 54.626060736108954 214.79971815303443 52.26313247333375 211.02614018941634 49.7133882400753",
+          "obs_collection": "spherex_qr2",
+          "obs_intent": "science",
+          "algorithm_name": "exposure",
+          "facility_keywords": null,
+          "instrument_keywords": null,
+          "environment_photometric": null,
+          "proposal_id": null,
+          "proposal_pi": null,
+          "proposal_project": "SPHEREx",
+          "target_name": "SPS_28060",
+          "target_type": "field",
+          "target_standard": "0",
+          "target_moving": "0",
+          "target_keywords": null,
+          "obs_release_date": "2026-01-20 18:46:46",
+          "s_xel1": "2040",
+          "s_xel2": "2040",
+          "s_pixel_scale": "6.150",
+          "position_timedependent": "0",
+          "t_min": "61020.209345",
+          "t_max": "61020.210678",
+          "t_resolution": null,
+          "t_xel": null,
+          "obs_publisher_did": "ivo://irsa.ipac/spherex_qr2?2025W50_1A_0736_3/D2",
+          "s_fov": "3.485e+00",
+          "em_xel": null,
+          "pol_states": null,
+          "pol_xel": null,
+          "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"qr2/level2/2025W50_1A/l2b-v20-2025-345/2/level2_2025W50_1A_0736_3D2_spx_l2b-v20-2025-345.fits\", \"region\": \"us-east-1\"}}",
+          "o_ucd": null,
+          "upload_row_id": "1"
+        },
+        "check": {
+          "match": true,
+          "archive_time_rounding_tolerance_seconds": 0.0433,
+          "archive_to_fits_time_difference_seconds": {
+            "start": 0.04000305198132992,
+            "end": 0.013737729750573635
+          },
+          "manifest_to_fits_time_difference_seconds": {
+            "DATE-BEG": 0.0,
+            "DATE-END": 0.0
+          },
+          "publisher_did": "ivo://irsa.ipac/spherex_qr2?2025W50_1A_0736_3/D2",
+          "archive_pixel_scale_arcsec": 6.15,
+          "archive_full_detector_shape": [
+            2040,
+            2040
+          ],
+          "archive_integration_time_seconds": 113.5826,
+          "fits_integration_time_seconds": 113.5826
+        }
+      }
+    ]
+  },
+  "deployed": {
+    "base_url": "https://skyshift-project-mercury.surebream11.chatgpt.site/",
+    "catalog_declared_hash_match": true,
+    "scope": "Historical public 0.2 release; 0.3 redesign is local-first and does not modify this site",
+    "bundle_matches_local_bytes": true,
+    "pair_id": "pair-52ad675d929b0740c23b",
+    "manifest_matches_immutable_release": true,
+    "array_comparisons": {
+      "SCI_A": {
+        "match": true,
+        "shape": [
+          24,
+          24
+        ],
+        "numeric_sha256_a": "c4b61076a1f5d73d2899997a18dcf53220418131a697140054486f5542d1e2d3",
+        "numeric_sha256_b": "c4b61076a1f5d73d2899997a18dcf53220418131a697140054486f5542d1e2d3",
+        "max_absolute_difference": 0.0,
+        "finite_count": 544
+      },
+      "SCI_B": {
+        "match": true,
+        "shape": [
+          24,
+          24
+        ],
+        "numeric_sha256_a": "221413f1452f612e8916c516fcd0f68169efb7411e0616774e63d70310b19d0f",
+        "numeric_sha256_b": "221413f1452f612e8916c516fcd0f68169efb7411e0616774e63d70310b19d0f",
+        "max_absolute_difference": 0.0,
+        "finite_count": 544
+      },
+      "VALID_A": {
+        "match": true,
+        "shape": [
+          24,
+          24
+        ],
+        "numeric_sha256_a": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+        "numeric_sha256_b": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+        "max_absolute_difference": 0.0,
+        "finite_count": 576
+      },
+      "VALID_B": {
+        "match": true,
+        "shape": [
+          24,
+          24
+        ],
+        "numeric_sha256_a": "6c6897240943a4e1218c0016a09d07f5ce5f57fe99c390cad571e4c2adb30015",
+        "numeric_sha256_b": "6c6897240943a4e1218c0016a09d07f5ce5f57fe99c390cad571e4c2adb30015",
+        "max_absolute_difference": 0.0,
+        "finite_count": 576
+      },
+      "COMMON": {
+        "match": true,
+        "shape": [
+          24,
+          24
+        ],
+        "numeric_sha256_a": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+        "numeric_sha256_b": "1de1806047108f7ad5c91108001b7a87934c04b12188514c335af01873fa7e67",
+        "max_absolute_difference": 0.0,
+        "finite_count": 576
+      },
+      "WAVE_A": {
+        "match": true,
+        "shape": [
+          24,
+          24
+        ],
+        "numeric_sha256_a": "777a76afafaf3fb85a18b0d8b7015472517feaed7498b9437109a1b8bc7c1e9e",
+        "numeric_sha256_b": "777a76afafaf3fb85a18b0d8b7015472517feaed7498b9437109a1b8bc7c1e9e",
+        "max_absolute_difference": 0.0,
+        "finite_count": 576
+      },
+      "WAVE_B": {
+        "match": true,
+        "shape": [
+          24,
+          24
+        ],
+        "numeric_sha256_a": "483efe59c272b2020b802812009f1512c666e62cff267d249f7856215a236b0a",
+        "numeric_sha256_b": "483efe59c272b2020b802812009f1512c666e62cff267d249f7856215a236b0a",
+        "max_absolute_difference": 0.0,
+        "finite_count": 576
+      },
+      "BAND_A": {
+        "match": true,
+        "shape": [
+          24,
+          24
+        ],
+        "numeric_sha256_a": "b9d66b8bfd9e9fe13b60d0a9423fd828634c24b95fef81a28c98a44933119f70",
+        "numeric_sha256_b": "b9d66b8bfd9e9fe13b60d0a9423fd828634c24b95fef81a28c98a44933119f70",
+        "max_absolute_difference": 0.0,
+        "finite_count": 576
+      },
+      "BAND_B": {
+        "match": true,
+        "shape": [
+          24,
+          24
+        ],
+        "numeric_sha256_a": "aa49861d3f2de1e0eb2260df810f5628c388abc0daca0437eed844b60e15c51f",
+        "numeric_sha256_b": "aa49861d3f2de1e0eb2260df810f5628c388abc0daca0437eed844b60e15c51f",
+        "max_absolute_difference": 0.0,
+        "finite_count": 576
+      },
+      "SEPARATION": {
+        "match": true,
+        "shape": [
+          24,
+          24
+        ],
+        "numeric_sha256_a": "61b56f984adfd5b610f0672cdf2be0ea63cba058febb0460df2d77e3ff9606e5",
+        "numeric_sha256_b": "61b56f984adfd5b610f0672cdf2be0ea63cba058febb0460df2d77e3ff9606e5",
+        "max_absolute_difference": 0.0,
+        "finite_count": 576
+      }
+    },
+    "prepared_fits_hash_match": true,
+    "review_packet_part_hashes_match": true,
+    "review_packet_sha256": "2187c38e4e97e8c94999e0ac9794a69e9c357f04ead6298e56b877ed64e30d78",
+    "review_packet_matches_local_archive": true,
+    "review_packet_manifest_matches_immutable_release": true
+  }
+}

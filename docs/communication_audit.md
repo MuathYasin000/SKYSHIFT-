@@ -1,5 +1,7 @@
 # Release communication audit
 
+0.3 addendum: local production is the default. New output artifacts are `output/pdf/SKYSHIFT_Local_Release_0.3.pdf`, `output/presentation/SKYSHIFT_Local_Release_0.3_final.pptx`, and `output/video/SKYSHIFT_Local_Engineering_Update_0.3.mp4`. They use actual new local-browser screenshots and scientific products. The new narration discloses a generic computer voice and screenshot/slide format, without claiming a live recording. Scientific and internal human approval stay PENDING. Independent Chromium checks now pass; Work's browser setting remains unchanged. Historical 0.2 materials below remain separate and unchanged.
+
 Final materials: the seven-page release report, eight-slide presentation, and 180-second screen-based walkthrough under output/. Original concept report/deck/video remain unchanged. Release packet m101-review-v6.zip is the documentation-corrected canonical snapshot; its scientific manifest and prepared FITS are identical to v4.
 
 | Claim | Evidence | Report / slides / walkthrough |

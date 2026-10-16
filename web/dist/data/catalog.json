@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "bundle_url": "./data/bundle.json",
+  "bundle_sha256": "b36ac03cac9711dbe4aeb0a64ac8cfc898509317d5758d0adb2d2aabacc5effd",
+  "review_packet": {
+    "name": "m101-review-v6.zip",
+    "size_bytes": 40697263,
+    "parts": [
+      {
+        "url": "./data/review-part-0.bin",
+        "size_bytes": 8000000,
+        "sha256": "23c44f3918935634bf3081afa2c39b50d50742b4961f959b5189fc58349e534d"
+      },
+      {
+        "url": "./data/review-part-1.bin",
+        "size_bytes": 8000000,
+        "sha256": "dc521c7f2a92ca6e43c7d0707bb40ea10d6f9df975ac4e2c04e3db66d0e6456b"
+      },
+      {
+        "url": "./data/review-part-2.bin",
+        "size_bytes": 8000000,
+        "sha256": "2c586275a1d1de3887e4ae9cceb55d3e468c90bf0367a618acf3ea2933550f88"
+      },
+      {
+        "url": "./data/review-part-3.bin",
+        "size_bytes": 8000000,
+        "sha256": "e91f0d3869d9781dd926e295b7b84228fc65c594eabb66618826938da01d162f"
+      },
+      {
+        "url": "./data/review-part-4.bin",
+        "size_bytes": 8000000,
+        "sha256": "55e17525ee56e65a4c5d69b947cdea7513fa9b6ec5b70e7f55bc68fdb9494746"
+      },
+      {
+        "url": "./data/review-part-5.bin",
+        "size_bytes": 697263,
+        "sha256": "2520ca83bf2b0a41f993f7f3f90b5f14034e6cf365bf9f7965703862a0652e42"
+      }
+    ]
+  },
+  "scientific_approval": "PENDING"
+}

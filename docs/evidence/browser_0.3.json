@@ -1,0 +1,88 @@
+{
+  "created_at_utc": "2026-10-16T15:39:20.188Z",
+  "base": "http://localhost:3000",
+  "browser": "independent fresh-profile Playwright Chromium",
+  "browser_version": "153.0.8010.12",
+  "work_browser_permission_changed": false,
+  "scientific_approval": "PENDING",
+  "results": [
+    {
+      "name": "Desktop homepage, three real-field previews, local assets",
+      "status": "pass"
+    },
+    {
+      "name": "Explorer loads hash-verified larger M101 context and exposes source records",
+      "status": "pass"
+    },
+    {
+      "name": "Single-exposure timeline, contrast, palettes, zoom, prepared pixels and view export",
+      "status": "pass"
+    },
+    {
+      "name": "M67 and NGC188 contexts remain unavailable for temporal comparison",
+      "status": "pass"
+    },
+    {
+      "name": "Comparison loads real pair with pending science and both dates",
+      "status": "pass"
+    },
+    {
+      "name": "Comparison A/B, blink, shared zoom, display extension and wipe overlay",
+      "status": "pass"
+    },
+    {
+      "name": "Coordinate annotation, browser export and browser reopening restore evidence",
+      "status": "pass"
+    },
+    {
+      "name": "Browser export verifies with actual evidence parser and tampering fails",
+      "status": "pass",
+      "detail": {
+        "export_sha256": "9eed4e2fbb2fb30ae49927401cb0d0d331d103c36d594195ea18421ed0ef1128",
+        "annotation": "explicit QA control",
+        "scientific_approval": "PENDING"
+      }
+    },
+    {
+      "name": "Full self-contained review packet downloads with original exact hash",
+      "status": "pass",
+      "detail": {
+        "bytes": 40697263
+      }
+    },
+    {
+      "name": "Methodology audit and four credited official images load",
+      "status": "pass"
+    },
+    {
+      "name": "tablet navigation, all five pages and scientific canvases have no horizontal overflow",
+      "status": "pass"
+    },
+    {
+      "name": "mobile navigation, all five pages and scientific canvases have no horizontal overflow",
+      "status": "pass"
+    },
+    {
+      "name": "narrow navigation, all five pages and scientific canvases have no horizontal overflow",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced-motion disables blink and keyboard opens/closes navigation",
+      "status": "pass"
+    },
+    {
+      "name": "Keyboard pan updates the shared viewport and out-of-support notes fail clearly",
+      "status": "pass"
+    },
+    {
+      "name": "Changed scientific bundle fails closed with a clear integrity error",
+      "status": "pass"
+    },
+    {
+      "name": "All runtime requests stayed on localhost and no browser script errors occurred",
+      "status": "pass"
+    }
+  ],
+  "external_requests": [],
+  "script_errors": []
+}

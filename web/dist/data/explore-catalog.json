@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "scope": "Three curated real fields; no general all-sky or multi-epoch availability claim",
+  "fields": [
+    {
+      "id": "m101",
+      "title": "M101 \u00b7 Pinwheel Galaxy",
+      "description": "A nearby spiral galaxy field in Ursa Major. Explore the wider context, then enter the small wavelength-screened comparison.",
+      "ra_deg": 210.80227,
+      "dec_deg": 54.34895,
+      "size_deg": 0.3,
+      "comparison_status": "provisional_restricted",
+      "observations": [
+        {
+          "url": "./data/explore/m101-2025W49_2A_0756_3.json",
+          "sha256": "d5fe609fc17c1727496eb622b796993ea431138e4d5d2475c5e2dabf5f6b019f",
+          "preview": "./data/explore/m101-2025W49_2A_0756_3.png",
+          "observation_id": "2025W49_2A_0756_3",
+          "time_start_utc": "2025-12-07T22:47:38.056000Z",
+          "native_shape": [
+            116,
+            176
+          ],
+          "shape": [
+            176,
+            176
+          ]
+        },
+        {
+          "url": "./data/explore/m101-2025W50_1A_0736_3.json",
+          "sha256": "3805e172f1fab3f211a634bce269f4c17c401e541b118504108ac508496ee63f",
+          "preview": "./data/explore/m101-2025W50_1A_0736_3.png",
+          "observation_id": "2025W50_1A_0736_3",
+          "time_start_utc": "2025-12-11T05:01:27.448000Z",
+          "native_shape": [
+            137,
+            176
+          ],
+          "shape": [
+            176,
+            176
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m67",
+      "title": "M67 outskirts",
+      "description": "A field near an open star cluster in Cancer. These observations are available for inspection; the tested wider pairs failed the wavelength screen.",
+      "ra_deg": 132.925,
+      "dec_deg": 11.8,
+      "size_deg": 0.2,
+      "comparison_status": "incompatible_tested_pairs",
+      "observations": [
+        {
+          "url": "./data/explore/m67-2025W44_2B_0657_2.json",
+          "sha256": "bfc3b5bf23083dbf97c033927aba9ab5df6e8a6f4c1d03f75e948833821ba86b",
+          "preview": "./data/explore/m67-2025W44_2B_0657_2.png",
+          "observation_id": "2025W44_2B_0657_2",
+          "time_start_utc": "2025-11-02T02:02:25.483000Z",
+          "native_shape": [
+            117,
+            117
+          ],
+          "shape": [
+            118,
+            118
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ngc188",
+      "title": "NGC 188 region",
+      "description": "A northern star-cluster region close to the celestial pole. Inspect a real infrared exposure; no tested wider pair met the temporal comparison criteria.",
+      "ra_deg": 11.9,
+      "dec_deg": 85.25,
+      "size_deg": 0.2,
+      "comparison_status": "incompatible_tested_pairs",
+      "observations": [
+        {
+          "url": "./data/explore/ngc188-2025W36_1A_0724_2.json",
+          "sha256": "b3f8720ae20ba4bcfb2adba4d9961aa98cc732dfce6124c26b5a1950ab381e91",
+          "preview": "./data/explore/ngc188-2025W36_1A_0724_2.png",
+          "observation_id": "2025W36_1A_0724_2",
+          "time_start_utc": "2025-09-04T06:43:07.103000Z",
+          "native_shape": [
+            117,
+            117
+          ],
+          "shape": [
+            118,
+            118
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -2,21 +2,25 @@
 
 Traceable qualitative inspection of real SPHEREx observations, developed by Project Mercury Team.
 
-**Release 0.2.0 is a working scientific review application. Scientific approval and human internal technical review remain PENDING.** The restricted M101 field passes declared engineering screens and Gaia-reference registration checks. These do not confirm motion, variability, a discovery, or human scientific approval.
+**Release 0.3 is an independent, locally hosted scientific exploration application. Scientific approval and human internal technical review remain PENDING.** The original science snapshot, pair identity and reconstruction code remain version 0.2.0. The restricted M101 field passes declared engineering screens and Gaia-reference registration checks. These do not confirm motion, variability, a discovery, or human scientific approval.
 
 The authoritative planning baseline remains [the master plan](plan/SKYSHIFT_Master_Plan.md) and [execution backlog](plan/SKYSHIFT_Execution_Backlog.md). See [current status](docs/feature_status.md), [acceptance evidence](docs/release_acceptance.md), [data dossier](docs/data_dossier.md), and [reviewer instructions](docs/reviewer_guide.md).
 
 ## Use the application
 
-The verified hosted URL and deployment identity are recorded in [deployment.md](docs/deployment.md). To run locally in PowerShell:
+Double-click **[start_skyshift.bat](start_skyshift.bat)** or run it from PowerShell:
 
 ```powershell
-.\.venv\Scripts\python.exe -m http.server 8765 --directory web/dist --bind 127.0.0.1
+.\start_skyshift.bat
 ```
 
-Open http://127.0.0.1:8765 in a modern browser. One curated M101 pair supports synchronized pan/zoom, side-by-side inspection, A/B switching, optional slow blinking, shared display scaling, coordinate notes, evidence export, and reopening compatible comparisons.
+Open **http://localhost:3000** in a modern browser. Keep the server window open. Stop with Ctrl+C or `stop_skyshift.bat`; restart with `start_skyshift.bat`. Only Python 3.11+ and a modern browser are needed to view the already prepared data. No hosting account, npm installation, credentials or internet are needed for the curated application. See [local hosting and production builds](docs/local_hosting.md).
 
-Notes remain in this browser tab until exported. They are not sent to a SKYSHIFT server. No accounts, database, analytics, or developer credentials are required. Hosting infrastructure handles ordinary HTTP requests. See [the user guide](docs/user_guide.md).
+The redesigned Home, Explore, Compare, Discover SPHEREx and Methodology pages distinguish official mission composites from scientific data. Three real fields provide larger single-exposure contexts; M67/NGC 188 tested temporal pairs remain incompatible. The restricted M101 pair supports synchronized pan/zoom, side-by-side inspection, A/B switching, optional slow blinking, shared asinh/linear/log display, single-band palettes, smooth or pixel sampling, wipe overlay, coordinate notes, evidence export, and reopening compatible comparisons. Scientific approval remains pending.
+
+The [end-to-end provenance audit](docs/provenance_audit_0.3.md) independently re-fetched originals/calibration and verified all ten browser arrays against original-source reconstruction. Inspect the audit and original-source links inside Methodology. The historical public deployment is preserved as evidence in [deployment.md](docs/deployment.md); further development does not depend on it.
+
+Notes remain in this browser tab until exported. They are not sent to a SKYSHIFT server. No accounts, database, analytics, or developer credentials are required. The local loopback server serves read-only assets. See [the user guide](docs/user_guide.md).
 
 ## Install and test
 
@@ -32,6 +36,14 @@ node --test web/tests/*.test.mjs
 
 The buildless frontend needs no npm installation. Vendored fflate 0.8.2 includes its MIT license. Real-data integration tests skip explicitly when the immutable local snapshot is absent. Synthetic scenes are software controls, not astronomical observations.
 
+To create a standalone local production snapshot with verified assets, gzip transport compression, startup scripts and checksums:
+
+```powershell
+.\.venv\Scripts\python.exe tools/build_local_release.py --name skyshift-my-release
+```
+
+It creates a new folder in `output/local-production`; earlier snapshots are never overwritten. The same ordinary static application can later use an independent provider and domain. New observations, live Gaia/archive queries and external source links need internet. Numerical reconstruction is offline-capable when supplied the complete original review packet and installed pinned scientific dependencies.
+
 ## Reconstruct and review
 
 Download the complete review packet. Use a new output directory every time:
@@ -43,7 +55,7 @@ skyshift review m101-review-v6.zip --output independently-reproduced
 
 Reconstruction validates every archive hash and scientific input identity, reruns all ten prepared arrays and WCS, and verifies annotation support. Review additionally reruns Gaia-reference registration and response diagnostics. Neither grants approval or executes code supplied by a packet. Only trusted, separately installed code runs.
 
-Compact browser exports embed prepared FITS, notes, exact settings, diagnostics, preview, citations, and original source/calibration references. They may need archive access. To use originals from an extracted full packet:
+Compact browser exports embed prepared FITS, notes, exact settings, diagnostics, preview, citations, and original source/calibration references. A separately hashed `visualization.json` preserves the 0.3 presentation extension (palette, log display, interpolation, wipe); the browser restores it while Python reconstruction retains its original scientific schema. They may need archive access. To use originals from an extracted full packet:
 
 ```powershell
 skyshift reconstruct saved-comparison.zip --source-cache reconstructed --output reopened
