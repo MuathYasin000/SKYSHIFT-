@@ -2,7 +2,7 @@
 
 Traceable qualitative inspection of real SPHEREx observations, developed by Project Mercury Team.
 
-**Release 0.3 is an independent, locally hosted scientific exploration application. Scientific approval and human internal technical review remain PENDING.** The original science snapshot, pair identity and reconstruction code remain version 0.2.0. The restricted M101 field passes declared engineering screens and Gaia-reference registration checks. These do not confirm motion, variability, a discovery, or human scientific approval.
+**Release 0.4 is an independent, locally hosted scientific exploration application. Scientific approval and human internal technical review remain PENDING.** The original science snapshot, pair identity and reconstruction code remain version 0.2.0. The restricted M101 field passes declared engineering screens and Gaia-reference registration checks. These do not confirm motion, variability, a discovery, or human scientific approval.
 
 The authoritative planning baseline remains [the master plan](plan/SKYSHIFT_Master_Plan.md) and [execution backlog](plan/SKYSHIFT_Execution_Backlog.md). See [current status](docs/feature_status.md), [acceptance evidence](docs/release_acceptance.md), [data dossier](docs/data_dossier.md), and [reviewer instructions](docs/reviewer_guide.md).
 
@@ -17,6 +17,8 @@ Double-click **[start_skyshift.bat](start_skyshift.bat)** or run it from PowerSh
 Open **http://localhost:3000** in a modern browser. Keep the server window open. Stop with Ctrl+C or `stop_skyshift.bat`; restart with `start_skyshift.bat`. Only Python 3.11+ and a modern browser are needed to view the already prepared data. No hosting account, npm installation, credentials or internet are needed for the curated application. See [local hosting and production builds](docs/local_hosting.md).
 
 The redesigned Home, Explore, Compare, Discover SPHEREx and Methodology pages distinguish official mission composites from scientific data. Three real fields provide larger single-exposure contexts; M67/NGC 188 tested temporal pairs remain incompatible. The restricted M101 pair supports synchronized pan/zoom, side-by-side inspection, A/B switching, optional slow blinking, shared asinh/linear/log display, single-band palettes, smooth or pixel sampling, wipe overlay, coordinate notes, evidence export, and reopening compatible comparisons. Scientific approval remains pending.
+
+The [0.4 visitor experience](docs/visitor_experience_0.4.md) adds meaningful field descriptions, explicit availability, guided comparison steps, question-first notes, contextual explanations, and accessible original-source panels. Optional display controls and technical records stay collapsed initially. Loading and corrupted-data failures hide stale images and disable export. The user is the sole human UX evaluator; independent novice validation is **NOT CONDUCTED**, by the user's instruction, and is not a development blocker.
 
 The [end-to-end provenance audit](docs/provenance_audit_0.3.md) independently re-fetched originals/calibration and verified all ten browser arrays against original-source reconstruction. Inspect the audit and original-source links inside Methodology. The historical public deployment is preserved as evidence in [deployment.md](docs/deployment.md); further development does not depend on it.
 
@@ -80,7 +82,7 @@ Python handles archive access, FITS/calibration interpretation, masks, spectral 
 
 The 24 x 24 north-up grid has 6.15-arcsecond pixels, 94.44% common support, and nominal width 2.4 arcminutes. Registration uses an 18-arcminute context: 13 references across four quadrants, median residual 0.31 arcsec and p95 2.01 arcsec. These describe this sample, not absolute precision or a detection threshold.
 
-CWAVE/CBAND agreement is an engineering screen. PSF differences, backgrounds, blending, interpolation covariance and unflagged artifacts limit interpretation. No PSF matching, background subtraction, calibrated significance map, photometric variability, automatic detection, orbit fitting, arbitrary-field browser search, or citizen-science moderation platform is implemented. Human review and five novice usability sessions remain open.
+CWAVE/CBAND agreement is an engineering screen. PSF differences, backgrounds, blending, interpolation covariance and unflagged artifacts limit interpretation. No PSF matching, background subtraction, calibrated significance map, photometric variability, automatic detection, orbit fitting, arbitrary-field browser search, or citizen-science moderation platform is implemented. Human technical and qualified scientific reviews remain open. Independent novice sessions are NOT CONDUCTED; the user explicitly chose direct personal feedback instead of recruiting participants. This does not establish independent novice comprehension.
 
 ## Attribution
 

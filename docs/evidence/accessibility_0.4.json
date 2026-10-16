@@ -1,0 +1,92 @@
+[
+  {
+    "page": "index",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 16
+      },
+      {
+        "id": "link-in-text-block",
+        "impact": "serious",
+        "nodes": 1
+      }
+    ]
+  },
+  {
+    "page": "explore",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "impact": "serious",
+        "nodes": 1
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 20
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": 2
+      }
+    ]
+  },
+  {
+    "page": "compare",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "aria-prohibited-attr",
+        "impact": "serious",
+        "nodes": 1
+      },
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 3
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": 2
+      }
+    ]
+  },
+  {
+    "page": "discover",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 3
+      }
+    ]
+  },
+  {
+    "page": "methodology",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "page": "source dialog",
+    "violations": [],
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": 1
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "impact": "serious",
+        "nodes": 1
+      }
+    ]
+  }
+]

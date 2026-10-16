@@ -28,7 +28,7 @@ The browser address is then http://localhost:3001. The server binds only to `127
 After finishing and testing the website source:
 
 ```powershell
-.venv/Scripts/python.exe tools/build_local_release.py --name skyshift-0.3-local-release
+.venv/Scripts/python.exe tools/build_local_release.py --name skyshift-0.4-local-release --app-version 0.4.0
 ```
 
 This creates a new folder under `output/local-production`. An existing release with that name is never overwritten. The folder contains the complete static website, local server, startup and stop scripts, release metadata, and `SHA256SUMS.json`. Copy the whole folder together; run its own startup script to use that snapshot. A system Python 3.11 or newer is sufficient for static hosting; scientific reconstruction has its own pinned Python dependencies in the exported evidence packet.

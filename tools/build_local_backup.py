@@ -5,7 +5,7 @@ The archive never overwrites a previous backup. No publication or network activi
 """
 from pathlib import Path
 from datetime import datetime,timezone
-import hashlib,json,os,subprocess,zipfile
+import argparse,hashlib,json,os,re,subprocess,zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
 EXCLUDED_DIRS={'.git','.venv','.pytest_cache','__pycache__','.skyshift-local','node_modules','tmp'}
@@ -26,8 +26,9 @@ def selected_files(root,archive):
             if relative.parts[0]=='output' and 'backup' in name.lower() and path.suffix.lower()=='.zip':continue
             yield path,relative.as_posix()
 
-def build():
-    archive=ROOT/'output/SKYSHIFT_Local_Full_Backup_0.3.zip'
+def build(version='0.4'):
+    if not re.fullmatch(r'[0-9]+\.[0-9]+(?:\.[0-9]+)?',version):raise ValueError('Use a numeric release version')
+    archive=ROOT/f'output/SKYSHIFT_Local_Full_Backup_{version}.zip'
     if archive.exists():raise FileExistsError('Preserve the previous backup; select a new release name in the builder.')
     head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
     manifest={'schema_version':'1.0','created_at_utc':datetime.now(timezone.utc).isoformat(),'source_commit':head,
@@ -55,7 +56,10 @@ def build():
             verified+=1
         if len(z.infolist())!=verified+2:raise ValueError('Unexpected backup members')
     result={'archive':str(archive),'sha256':sha256_file(archive),'size_bytes':archive.stat().st_size,'source_bytes':total,'files_verified':verified,'source_commit':head,'scientific_approval':'PENDING','all_member_hashes_match':True,'exclusions':manifest['exclusions']}
-    (ROOT/'output/Local_Backup_0.3_Verification.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
+    (ROOT/f'output/Local_Backup_{version}_Verification.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
     print(json.dumps(result,indent=2))
 
-if __name__=='__main__':build()
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--version',default='0.4')
+    build(parser.parse_args().version)

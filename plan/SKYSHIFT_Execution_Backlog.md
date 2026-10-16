@@ -2,6 +2,8 @@
 
 Companion to the master plan | Version 1.0 | Baseline: 16 October 2026
 
+**Subsequent user direction, 16 October 2026:** independent localhost is the default runtime. The user is the sole human UX evaluator and explicitly declined external novice recruitment/studies. Original T22/E11 sessions remain NOT CONDUCTED, not a blocker for software development; they must not be marked complete or replaced with automated test outcomes. Scientific human-review gates remain PENDING. Current executed evidence is in `docs/feature_status.md` and `docs/visitor_experience_0.4.md`; original rows below are retained for traceability.
+
 All tasks are **planned**. No implementation or real-pair validation is claimed. Work is organized by dependencies and acceptance evidence, not dates or weekly availability. S, M, and L are relative complexity labels, not time estimates. Split large tasks after their uncertainty is resolved.
 
 ## 1. Work board

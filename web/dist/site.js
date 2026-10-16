@@ -1,7 +1,27 @@
+import {stories,availability,friendlyDate} from './field-guide.js';
 export function navigation(){const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('#site-nav');toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open);});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav?.classList.contains('open')){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.focus();}});}
 export async function loadCatalog(){const r=await fetch('./data/explore-catalog.json');if(!r.ok)throw Error('The local observation catalogue could not be loaded.');return r.json();}
 export function make(tag,text,cls){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;}
-export function galleries(catalog,onChoose){for(const gallery of document.querySelectorAll('[data-gallery]')){gallery.replaceChildren();for(const field of catalog.fields){const obs=field.observations[0],card=make('article',undefined,'field-card'),a=make('a');a.href=`./explore.html?field=${field.id}#explorer`;const preview=make('div',undefined,'field-preview'),img=make('img');img.src=obs.preview;img.alt=`Real single-band SPHEREx exposure of ${field.title}, ${obs.time_start_utc.slice(0,10)}; masked areas dark blue`;img.loading='lazy';preview.append(img,make('span','REAL SPHEREx · SINGLE EXPOSURE','preview-label'));const body=make('div',undefined,'field-card-body');body.append(make('span',field.id==='m101'?'Restricted comparison · review pending':'Tested pairs incompatible','field-status'));const h=make('h3',field.title);h.append(make('span','↗'));body.append(h,make('p',field.description));const meta=make('div',undefined,'field-meta');meta.append(make('span',obs.time_start_utc.slice(0,10)+' UTC'),make('span',`${Math.round(field.size_deg*60)}′ context · QR2`));body.append(meta);a.append(preview,body);card.append(a);gallery.append(card);if(onChoose)a.addEventListener('click',e=>{e.preventDefault();history.replaceState(null,'',`?field=${field.id}#explorer`);onChoose(field.id);document.querySelector('#explorer').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});});}}}
+export function galleries(catalog,onChoose){
+  for(const gallery of document.querySelectorAll('[data-gallery]')){
+    gallery.replaceChildren();
+    for(const field of catalog.fields){
+      const obs=field.observations[0],story=stories[field.id],status=availability(field);
+      const card=make('article',undefined,'field-card'),a=make('a');
+      a.href=`./explore.html?field=${field.id}#explorer`;a.dataset.field=field.id;
+      const preview=make('div',undefined,'field-preview'),img=make('img');
+      img.src=obs.preview;img.alt=`Real single-band SPHEREx exposure of ${field.title}; excluded data shown in blue`;img.loading='lazy';
+      preview.append(img,make('span','REAL SPHEREx EXPOSURE','preview-label'));
+      const body=make('div',undefined,'field-card-body');
+      body.append(make('span',status.label,'field-status'),make('div',story?.kind||'Curated sky region','field-kind'));
+      body.append(make('h3',story?.name||field.title),make('p',story?.short||field.description));
+      const meta=make('div',undefined,'field-meta');
+      meta.append(make('span',friendlyDate(obs.time_start_utc)+' UTC'),make('span',field.observations.length+' curated '+(field.observations.length===1?'exposure':'exposures')));
+      const action=make('div',status.action,'field-action');action.append(make('span','↗'));body.append(meta,action);a.append(preview,body);card.append(a);gallery.append(card);
+      if(onChoose)a.addEventListener('click',event=>{event.preventDefault();history.pushState(null,'',`?field=${field.id}#explorer`);onChoose(field.id);document.querySelector('#explorer').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});});
+    }
+  }
+}
 navigation();
 if(document.querySelector('[data-gallery]')&&!document.querySelector('#explorer'))loadCatalog().then(c=>galleries(c)).catch(e=>{for(const g of document.querySelectorAll('[data-gallery]'))g.textContent=e.message;});
 if(document.querySelector('#audit-json')){

@@ -1,5 +1,9 @@
 # Release acceptance record
 
+**0.4 visitor release addendum:** the current Explore/Compare workflow passes 22 explicitly authorized fresh-profile Playwright Chromium checks, including responsive 320/390/1024/1440-pixel layouts, keyboard dialogs, delayed/corrupt data, source references, annotations, saved comparisons and unchanged full-review-packet downloads. All ten scientific arrays in the actual browser export reconstruct offline with zero error. Current evidence and limits: [visitor experience 0.4](visitor_experience_0.4.md).
+
+**User-directed UX scope change:** independent novice validation is NOT CONDUCTED. The user explicitly declined recruiting participants and chose direct personal feedback as the human UX review. Historical T22/E11 requirements below are superseded for present development and are not falsely completed. No participant system is required. Qualified scientific approval and human internal technical review remain PENDING; those gates were not waived.
+
 **0.3 local release addendum:** independent local hosting is now the default. The five-page redesign and larger three-field explorer pass 92 Python tests, 28 JavaScript tests and 17 independent Playwright Chromium acceptance checks. Actual browser export/reopen, complete-packet hash, offline reconstruction with all ten errors 0.0, inspected desktop/mobile layouts and fail-closed integrity behavior are recorded in [0.3 verification](redesign_verification_0.3.md). No public publication was attempted. The 0.2 record below remains historical. Human technical review, qualified scientific assessment, novice usability and broader browser/device testing remain open.
 
 Release 0.2.0 is an engineering review release. It is **not a completed scientifically accepted project**. Human technical review, external scientific assessment and the planned novice sessions remain open. The user's instruction permits independent software development while these assessments are pending.

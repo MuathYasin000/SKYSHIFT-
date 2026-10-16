@@ -36,7 +36,7 @@ def load_release(directory):
     if path.exists():
         raw = json.loads(path.read_text(encoding='utf-8'))
         return {k: raw[k] for k in ('release_id', 'app_version', 'created_at_utc') if k in raw}
-    return {'release_id': 'workspace', 'app_version': '0.3-local-workspace'}
+    return {'release_id': 'workspace', 'app_version': '0.4-local-workspace'}
 
 
 def accepts_gzip(header):
