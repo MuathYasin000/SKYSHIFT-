@@ -209,6 +209,7 @@ function skyMap(catalog){
   for(let ra=0;ra<=360;ra+=60){const x=45+(360-ra)/360*645;add('line',{x1:x,y1:25,x2:x,y2:225,stroke:'#273b59'});add('text',{x:x-10,y:245,fill:'#97afd2','font-size':10},ra+'°');}
   for(const f of catalog.fields){const x=45+(360-f.ra_deg)/360*645,y=25+(90-f.dec_deg)/180*200;add('circle',{cx:x,cy:y,r:4,fill:'#ed6861'});add('text',{x:x>620?x-13:x+10,y:y<40?y+19:y-9,'text-anchor':x>620?'end':'start',fill:'#e2ebff','font-size':12},f.id==='ngc188'?'NGC 188':f.id.toUpperCase());}
 }
+let pendingShellField=null;
 function chooseFromSky(id){
   if(!state.catalog)return;atlas?.select(id);
   const url=new URL(location.href);url.search='';url.searchParams.set('field',id);url.hash='explorer';if(url.href!==location.href)history.pushState(null,'',url);
@@ -224,6 +225,9 @@ async function loadAvailableFields(){
     const saved=memory.read();resumeRecord=saved.record;$('resume-feedback').textContent=saved.error||'';
     if(resumeRecord)try{resolveExposureRecord(resumeRecord,state.catalog);$('resume-exploration').hidden=false;}catch{resumeRecord=null;$('resume-exploration').hidden=true;}
     $('catalogue-retry').hidden=true;const query=new URLSearchParams(location.search);
+    if(pendingShellField&&state.catalog.fields.some(f=>f.id===pendingShellField)){
+      const target=pendingShellField;pendingShellField=null;await chooseFromSky(target);return;
+    }
     async function resumeSafely(selectionSeq){
       try{await restoreRecord(resumeRecord,selectionSeq,++state.importRequest,false);}
       catch(e){
@@ -249,5 +253,9 @@ loadAvailableFields();
 // The same verified viewer is embedded in the immersive shell. Commands never supply data or URLs.
 window.addEventListener('message',event=>{
   if(event.source!==window.parent||event.origin!==location.origin||window.parent===window)return;
-  if(event.data?.type==='skyshift:select-field'&&state.catalog?.fields.some(f=>f.id===event.data.field))chooseFromSky(event.data.field);
+  if(event.data?.type==='skyshift:request-controller-status')window.parent.postMessage({type:'skyshift:viewer-ready'},location.origin);
+  if(event.data?.type==='skyshift:select-field'&&typeof event.data.field==='string'){
+    if(!state.catalog)pendingShellField=event.data.field;
+    else if(state.catalog.fields.some(f=>f.id===event.data.field)&&state.field?.id!==event.data.field)chooseFromSky(event.data.field);
+  }
 });

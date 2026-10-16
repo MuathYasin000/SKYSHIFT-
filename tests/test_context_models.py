@@ -15,7 +15,7 @@ def unpack(path):
     return json.loads(data[20:20+length]),data[28+length:]
 
 
-@pytest.mark.parametrize('name',['sun','mercury','saturn','uranus'])
+@pytest.mark.parametrize('name',['sun','mercury','saturn','uranus','earth-natural'])
 def test_real_context_optimization_preserves_geometry_and_alpha(name):
     source=ROOT/'data/raw/context-assets'/(name+'-original.glb')
     if not source.exists():pytest.skip('Downloaded context original is absent')

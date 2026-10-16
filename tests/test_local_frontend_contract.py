@@ -22,6 +22,9 @@ def test_all_pages_have_unique_ids_and_resolvable_local_links():
         p=Page(path.read_text(encoding='utf-8'));assert len(set(p.ids))==len(p.ids),path.name
         for ref in p.refs:
             if ref.startswith(('https:','http:','mailto:','#','data:')):continue
+            # These read-only routes are provided by LocalHandler and exercised
+            # over HTTP in test_local_server, rather than static disk files.
+            if ref in ('/healthz', '/version.json'):continue
             file,_,anchor=ref.partition('#');file=file.partition('?')[0]
             target=path.parent/file
             if target.is_dir():target=target/'index.html'

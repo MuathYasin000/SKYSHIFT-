@@ -1,0 +1,21 @@
+{
+  "date_utc": "2026-10-16T21:03:02.005Z",
+  "server": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.1",
+    "directory_id": "cf30d37f4287c0b3",
+    "content_id": "fbbb4a9154ddbb3c07f41d6737b9c016d8a22c03fed3f5329e3d4b771d7af459",
+    "release_id": "workspace",
+    "app_version": "0.5-local-workspace"
+  },
+  "scope": "Fresh browser after actual project server stop/start; imported existing exported records, no claim of automatic private-note persistence across closed tabs",
+  "status": "pass",
+  "verified": [
+    "all three telescope models loaded",
+    "saved exposure question reconstructed",
+    "saved comparison note reconstructed",
+    "comparison evidence exported again"
+  ],
+  "errors": []
+}

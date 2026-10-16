@@ -7,5 +7,11 @@
   "errors": [],
   "scientific_approval": "PENDING",
   "independent_novice_validation": "NOT CONDUCTED",
-  "outcome": "Initial readiness timed out at 30 seconds during concurrent Chromium/Edge verification; no browser script error was captured. An immediate isolated diagnostic loaded all local modules and data successfully. Cause remains unconfirmed; final checks run sequentially."
+  "outcome": "Initial readiness timed out at 30 seconds during concurrent Chromium/Edge verification; no browser script error was captured. An immediate isolated diagnostic loaded all local modules and data successfully. Cause remains unconfirmed; final checks run sequentially.",
+  "follow_up": {
+    "evidence": "concurrent_startup_tests.json and telescope_integrity_checks.json",
+    "finding": "Subsequent concurrent browser diagnostics reproduced refused ES-module requests and an inert controller. Controlled Windows connection bursts reproduced resets with the inherited backlog of five and none in three trials with backlog 128. HTTP/1.1 connection reuse was also enabled after a later network-buffer error.",
+    "limit": "The original timed-out run did not capture failed requests, so its exact cause cannot be established retrospectively.",
+    "current_verification": "Three two-browser startup trials passed with installed Chrome and Edge. User reported It now responds after refreshing the repaired application."
+  }
 }

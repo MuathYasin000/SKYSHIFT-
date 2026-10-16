@@ -51,7 +51,9 @@
       "original_dimensions": [
         1440,
         720
-      ]
+      ],
+      "status": "not_integrated",
+      "selection_note": "Retained terrain map; replaced in the explorer by NASA VTAD Earth GLB with natural-color imagery."
     },
     {
       "id": "mars",
@@ -233,9 +235,23 @@
       "credit": "Project Mercury Team / SKYSHIFT original educational geometry",
       "source_page": "https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/",
       "terms": "Original project code; NASA references credited. No engineering geometry extracted from NASA Eyes.",
-      "sha256": "17c118c8d56055bff100f3e18b4fbac5fda9b20f3bcbc0f1165d29125a34c224",
-      "modifications": "Artistic geometry informed by published dimensions and spacecraft photographs; internal optics and fittings simplified",
+      "sha256": "b1bfa701c372bd7634b24488dc81a6661f24099aa2119a112aa902a582fdbe9a",
+      "modifications": "Original source-informed educational geometry with illustrative foil micro-normals, shield seams and supports; no engineering-twin or measured-surface claim.",
       "purpose": "Illustrative educational model, not an engineering digital twin"
+    },
+    {
+      "id": "earth-natural",
+      "source_page": "https://science.nasa.gov/learn/heat/resource/earth-3d-model/",
+      "download_url": "https://assets.science.nasa.gov/content/dam/science/psd/solar/2023/09/e/Earth_1_12756.glb",
+      "file": "assets/space/earth-natural.glb",
+      "original_sha256": "05a5aea99db8ab472487a06debc3b5d0b2cae7636a1a6b9ecfa40b7d1722ba23",
+      "sha256": "bc421b730fde54e528a171958a709bb76ce615e7fb72e87e83b21519c4df2a23",
+      "bytes": 502500,
+      "retrieved_at_utc": "2026-10-16T20:10:31.824022+00:00",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "credit": "NASA Visualization Technology Applications and Development (VTAD)",
+      "purpose": "Contextual Earth visualization, not live clouds, weather or SPHEREx measurements",
+      "modifications": "Embedded textures downsampled to at most 2048px; opaque textures JPEG quality 88; alpha retained as PNG; mesh, materials and geometry unchanged."
     }
   ],
   "candidates_reviewed": [
@@ -281,10 +297,10 @@
       "local_license": "vendor/three/draco/LICENSE"
     },
     {
-      "name": "Space Grotesk",
-      "source": "https://github.com/google/fonts/tree/main/ofl/spacegrotesk",
+      "name": "Outfit",
+      "source": "https://github.com/google/fonts/tree/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/outfit",
       "license": "SIL Open Font License 1.1",
-      "local_license": "assets/fonts/OFL.txt"
+      "local_license": "assets/fonts/Outfit-OFL.txt"
     }
   ],
   "asset_preparation_tool_sha256": "d85d40b42023cbc59501b305492d8eba9d81e52b606acd45257a657902f5aeaa"

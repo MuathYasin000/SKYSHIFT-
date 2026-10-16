@@ -42,10 +42,10 @@ export const bodies = [
     radius: 0.8,
     orbit: 13,
     angle: 5.4,
-    texture: "earth",
+    model: "earth-natural",
     kind: "OUR HOME WORLD",
     description:
-      "SPHEREx surveys the infrared sky from Earth orbit. Explore this textured globe as planetary context, then visit the observatory to learn how its measurements are made.",
+      "Our ocean world, seen through NASA’s reusable Earth model. Its surface imagery is visual context, with illustrative lighting and no live weather. SPHEREx surveys the infrared sky from Earth orbit.",
     source: "https://science.nasa.gov/earth/",
   },
   {

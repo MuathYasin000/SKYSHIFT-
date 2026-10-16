@@ -1,6 +1,6 @@
 # Running SKYSHIFT locally
 
-Double-click **start_skyshift.bat** in the project folder. SKYSHIFT opens at **http://localhost:3000**. Keep the server window open while using the application. Press **Ctrl+C** in that window, or double-click **stop_skyshift.bat**, to stop it.
+Double-click **start_skyshift.bat** in the project folder. SKYSHIFT opens at **http://localhost:3000**. Keep the server window open while using the application. Running the startup script again reopens the same project server; it does not replace another application. Press **Ctrl+C** in that window, or double-click **stop_skyshift.bat**, to stop it.
 
 The launcher uses the existing project `.venv` interpreter when available, then the installed Windows Python launcher, then `python`. Python **3.11 or newer** is required. Starting the website does not install packages, retrieve astronomical data, request credentials, or publish a website. Browser interaction uses already prepared data. External reference links require internet access when opened; the local application and its supplied imagery do not.
 
@@ -21,14 +21,14 @@ stop_skyshift.bat --port 3001
 
 The browser address is then http://localhost:3001. The server binds only to `127.0.0.1`; it is not exposed to a local network or the public internet. There is no user login, remote database, tracking service, or telemetry in this hosting layer. Notes belong to the existing browser application and evidence exports; this static server does not accept annotation uploads.
 
-`/healthz` returns the application health and release identity. `/version.json` returns the release identity. These endpoints expose no machine paths or shutdown token. The local stop script authenticates using an unguessable runtime token stored under `.skyshift-local`; an unrelated process cannot be stopped through this script merely because it occupies the selected port.
+`/healthz` returns the application health and release identity. `/version.json` returns the release identity. They include a UI content fingerprint, and expose no machine paths or shutdown token. The Windows server uses a 128-connection accept queue and HTTP/1.1 connection reuse; shutdown waits for the server to close before returning. The local stop script authenticates using an unguessable runtime token stored under `.skyshift-local`; an unrelated process cannot be stopped through this script merely because it occupies the selected port.
 
 ## Independent production release
 
 After finishing and testing the website source:
 
 ```powershell
-.venv/Scripts/python.exe tools/build_local_release.py --name skyshift-0.4-local-release --app-version 0.4.0
+.venv/Scripts/python.exe tools/build_local_release.py --name skyshift-0.5-local-release --app-version 0.5.0
 ```
 
 This creates a new folder under `output/local-production`. An existing release with that name is never overwritten. The folder contains the complete static website, local server, startup and stop scripts, release metadata, and `SHA256SUMS.json`. Copy the whole folder together; run its own startup script to use that snapshot. A system Python 3.11 or newer is sufficient for static hosting; scientific reconstruction has its own pinned Python dependencies in the exported evidence packet.

@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import shutil
 import threading
+from concurrent.futures import ThreadPoolExecutor
 
 import pytest
 
@@ -37,6 +38,7 @@ def running(tmp_path):
     server = server_module.LocalServer(directory, port=0)
     thread = threading.Thread(target=server.serve_forever, kwargs={'poll_interval': .01}, daemon=True)
     thread.start()
+    server.test_thread = thread
     yield server, directory
     server.shutdown(); server.server_close(); thread.join(timeout=2)
 
@@ -59,6 +61,36 @@ def test_loopback_static_html_health_and_version(running):
     assert headers['Content-Type'] == 'text/html'
     assert json.loads(request(server, '/healthz')[2])['status'] == 'ok'
     assert json.loads(request(server, '/version.json')[2])['application'] == 'SKYSHIFT'
+
+
+def test_parallel_module_loading_does_not_refuse_connections(running):
+    server, _ = running
+    barrier = threading.Barrier(48)
+    def fetch_module(_):
+        barrier.wait(timeout=5)
+        return request(server, '/app.js')[0]
+    with ThreadPoolExecutor(max_workers=48) as pool:
+        assert list(pool.map(fetch_module, range(48))) == [200] * 48
+
+
+def test_served_content_identity_changes_when_ui_changes(running):
+    server, directory = running
+    before = json.loads(request(server, '/healthz')[2])
+    (directory/'app.js').write_text('export const value = 2;')
+    after = json.loads(request(server, '/version.json')[2])
+    assert len(before['content_id']) == 64
+    assert before['content_id'] != after['content_id']
+
+
+def test_startup_reopens_only_the_same_local_directory(running, monkeypatch):
+    server, directory = running
+    port = server.server_address[1]
+    assert server_module.same_local_server(directory, port)
+    assert not server_module.same_local_server(directory.parent, port)
+    opened = []
+    monkeypatch.setattr(server_module.webbrowser, 'open', opened.append)
+    assert server_module.main(['--directory', str(directory), '--port', str(port), '--open-browser']) == 0
+    assert opened == [f'http://localhost:{port}']
 
 
 @pytest.mark.parametrize('path', ['/../outside.txt', '/%2e%2e/outside.txt', '/..%5coutside.txt', '/.secret', '/private/', '/missing', '/C:/Windows/win.ini', '/%00'])
@@ -117,7 +149,18 @@ def test_stop_requires_matching_recorded_token(running, tmp_path):
     assert server_module.stop_server(state) == 1
     assert request(server, '/healthz')[0] == 200
     state.write_text(json.dumps({'port': server.server_address[1], 'token': server.shutdown_token}))
+    # Mirror main()'s close-and-unlink handshake; this fixture otherwise runs
+    # serve_forever directly and has no launcher to retire its state file.
+    def retire():
+        server.test_thread.join(timeout=3)
+        if not server.test_thread.is_alive():
+            server.server_close()
+            state.unlink(missing_ok=True)
+    retiring = threading.Thread(target=retire)
+    retiring.start()
     assert server_module.stop_server(state) == 0
+    retiring.join(timeout=3)
+    assert not retiring.is_alive()
 
 
 def test_build_preserves_previous_release_and_all_asset_hashes(tmp_path):

@@ -5,17 +5,49 @@ import * as THREE from "./vendor/three/three.module.js";
 export function createSPHEREx() {
   const root = new THREE.Group();
   root.name = "SPHEREx · SKYSHIFT artistic visualization";
+  // Original micro-normal pattern for illustrative insulating foil. This is
+  // a material treatment, not measured spacecraft surface/engineering data.
+  const n = 128,
+    pixels = new Uint8Array(n * n * 4);
+  const height = (x, y) =>
+    Math.sin(x * 0.54 + Math.sin(y * 0.21) * 3) * 0.28 +
+    Math.sin(y * 0.61 + x * 0.17) * 0.18 +
+    Math.sin(x * 1.17 - y * 0.93) * 0.08;
+  for (let y = 0; y < n; y++)
+    for (let x = 0; x < n; x++) {
+      const dx = height(x + 1, y) - height(x - 1, y),
+        dy = height(x, y + 1) - height(x, y - 1);
+      const v = new THREE.Vector3(-dx, -dy, 1).normalize(),
+        i = (y * n + x) * 4;
+      pixels.set(
+        [
+          Math.round((v.x * 0.5 + 0.5) * 255),
+          Math.round((v.y * 0.5 + 0.5) * 255),
+          Math.round((v.z * 0.5 + 0.5) * 255),
+          255,
+        ],
+        i,
+      );
+    }
+  const foil = new THREE.DataTexture(pixels, n, n);
+  foil.wrapS = foil.wrapT = THREE.RepeatWrapping;
+  foil.repeat.set(10, 3);
+  foil.needsUpdate = true;
   const metal = new THREE.MeshStandardMaterial({
     color: 0xd5d9dc,
     metalness: 0.9,
     roughness: 0.29,
     side: THREE.DoubleSide,
+    normalMap: foil,
+    normalScale: new THREE.Vector2(0.18, 0.18),
   });
   const white = new THREE.MeshStandardMaterial({
     color: 0xf2eee2,
     metalness: 0.26,
     roughness: 0.38,
     side: THREE.DoubleSide,
+    normalMap: foil,
+    normalScale: new THREE.Vector2(0.09, 0.09),
   });
   const gold = new THREE.MeshStandardMaterial({
     color: 0xb29649,
@@ -32,6 +64,22 @@ export function createSPHEREx() {
     mesh.position.set(...position);
     mesh.userData.component = component;
     root.add(mesh);
+    return mesh;
+  }
+  function rod(a, b, r, material, component) {
+    const start = new THREE.Vector3(...a),
+      end = new THREE.Vector3(...b),
+      direction = end.clone().sub(start);
+    const mesh = part(
+      new THREE.CylinderGeometry(r, r, direction.length(), 8),
+      material,
+      start.clone().add(end).multiplyScalar(0.5).toArray(),
+      component,
+    );
+    mesh.quaternion.setFromUnitVectors(
+      new THREE.Vector3(0, 1, 0),
+      direction.normalize(),
+    );
     return mesh;
   }
   // The 3.2m outer opening and 1.7m cone envelope are documented; inner cones are illustrative.
@@ -72,6 +120,21 @@ export function createSPHEREx() {
       "radiators",
     );
     ring.rotation.z = Math.PI;
+  }
+  const seam = metal.clone();
+  seam.color.set(0xb7b4aa);
+  seam.roughness = 0.62;
+  for (let i = 0; i < 12; i++) {
+    const a = (i * Math.PI) / 6,
+      c = Math.cos(a),
+      s = Math.sin(a);
+    rod(
+      [0.533 * c, -0.699, 0.533 * s],
+      [1.603 * c, 0.999, 1.603 * s],
+      0.004,
+      seam,
+      "shields",
+    );
   }
   const body = part(
     new THREE.CylinderGeometry(0.5, 0.48, 0.68, 12),
@@ -165,6 +228,13 @@ export function createSPHEREx() {
       "radiators",
     );
     strut.rotation.z = 0.12;
+    rod(
+      [Math.cos(a) * 0.46, -1.42, Math.sin(a) * 0.46],
+      [Math.cos(a + 0.4) * 0.72, -0.7, Math.sin(a + 0.4) * 0.72],
+      0.012,
+      metal,
+      "radiators",
+    );
   }
   part(
     new THREE.CylinderGeometry(0.4, 0.32, 0.12, 32),

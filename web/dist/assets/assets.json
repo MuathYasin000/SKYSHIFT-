@@ -8,7 +8,7 @@
   "assets": [
     {
       "id": "spherex-all-sky",
-      "title": "SPHEREx’s First All-Sky Map",
+      "title": "SPHEREx\u00e2\u20ac\u2122s First All-Sky Map",
       "publication_date": "2025-12-18",
       "category": "official_observed_infrared_composite",
       "instrument": "SPHEREx",
@@ -21,7 +21,7 @@
       "file": "spherex-all-sky.jpg",
       "max_dimension": 2400,
       "alt": "An oval SPHEREx infrared sky mosaic with a bright Milky Way band, red dust clouds and blue gas structures.",
-      "caption": "Official SPHEREx infrared composite · May–December 2025 · NASA/JPL-Caltech",
+      "caption": "Official SPHEREx infrared composite \u00c2\u00b7 May\u00e2\u20ac\u201cDecember 2025 \u00c2\u00b7 NASA/JPL-Caltech",
       "recommended_use": "Mission introduction or full-image all-sky educational overview. Preserve an uncropped overview somewhere accessible if a hero uses a CSS crop.",
       "interpretation_limits": [
         "Visible colors encode selected infrared wavelengths; these are not the colors a human eye would see.",
@@ -68,7 +68,7 @@
       "file": "spherex-vela.jpg",
       "max_dimension": 2400,
       "alt": "A dense SPHEREx infrared starfield in the Vela Molecular Ridge, with a yellow gas-and-dust cloud on the right.",
-      "caption": "Vela Molecular Ridge · Official SPHEREx infrared composite · NASA/JPL-Caltech",
+      "caption": "Vela Molecular Ridge \u00c2\u00b7 Official SPHEREx infrared composite \u00c2\u00b7 NASA/JPL-Caltech",
       "recommended_use": "Strong wide hero or mission-education section; label as an official composite and link to the source. This field is not a validated SKYSHIFT temporal pair.",
       "infrared_color_mapping_microns": {
         "red": [
@@ -116,7 +116,7 @@
     },
     {
       "id": "spherex-spacecraft-concept",
-      "title": "SPHEREx in Orbit (Artist’s Concept)",
+      "title": "SPHEREx in Orbit (Artist\u00e2\u20ac\u2122s Concept)",
       "publication_date": "2025-01-23",
       "photojournal_id": "PIA26531",
       "category": "official_artist_illustration",
@@ -128,11 +128,11 @@
       "original_file": "spherex-spacecraft-concept-original.jpg",
       "file": "spherex-spacecraft-concept.jpg",
       "max_dimension": null,
-      "alt": "Official artist’s illustration of the cone-shaped SPHEREx spacecraft above Earth; this is not a photograph.",
-      "caption": "SPHEREx in orbit · Artist’s concept · NASA/JPL-Caltech",
-      "recommended_use": "Discover SPHEREx explanation of the telescope, with the artist’s-concept label immediately adjacent.",
+      "alt": "Official artist\u00e2\u20ac\u2122s illustration of the cone-shaped SPHEREx spacecraft above Earth; this is not a photograph.",
+      "caption": "SPHEREx in orbit \u00c2\u00b7 Artist\u00e2\u20ac\u2122s concept \u00c2\u00b7 NASA/JPL-Caltech",
+      "recommended_use": "Discover SPHEREx explanation of the telescope, with the artist\u00e2\u20ac\u2122s-concept label immediately adjacent.",
       "interpretation_limits": [
-        "Artist’s concept; not a spacecraft photograph, measurement, observed starfield or satellite position product.",
+        "Artist\u00e2\u20ac\u2122s concept; not a spacecraft photograph, measurement, observed starfield or satellite position product.",
         "Never show this illustration as a preview for the actual M101 comparison or use it as scientific evidence."
       ],
       "retrieved_date": "2026-10-16",
@@ -174,7 +174,7 @@
       "file": "m101-hubble-context.jpg",
       "max_dimension": null,
       "alt": "An optical-color Hubble mosaic of spiral galaxy M101, shown for educational context rather than SPHEREx data.",
-      "caption": "M101 · Hubble mosaic, not SPHEREx data · Educational context",
+      "caption": "M101 \u00c2\u00b7 Hubble mosaic, not SPHEREx data \u00c2\u00b7 Educational context",
       "recommended_use": "An explicitly labeled educational M101 context card; include the full source credit nearby or via an accessible credits panel.",
       "interpretation_limits": [
         "This is a Hubble mosaic with ground-based image elements near the edges, not SPHEREx data.",
@@ -203,6 +203,34 @@
       ],
       "usage_basis": "Educational/informational reuse with the stated credit and source link, subject to NASA media guidelines and, where applicable, JPL image-use policy. No NASA/JPL/Caltech endorsement claimed; logo use is not licensed by this record.",
       "source_snapshot_sha256": "eea0bb3ce7efad0e16d591ae89daa8eb8a448d02fd68086e4d7c62954586a182"
+    },
+    {
+      "id": "webb-deep-field",
+      "file": "webb-deep-field.webp",
+      "title": "Webb\u2019s First Deep Field Unveiled (NIRCam Image)",
+      "instrument": "Webb / NIRCam",
+      "category": "official_observed_infrared_composite",
+      "source_page": "https://science.nasa.gov/asset/webb/webbs-first-deep-field-unveiled-nircam-image/",
+      "asset_url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2022/07/STScI-01G8H15R2PGEXQD7TYYBFJ3FT4.png/jcr:content/renditions/cq5dam.web.1280.1280.png",
+      "credit": "NASA, ESA, CSA, STScI",
+      "publication_date": "2022-07-11",
+      "retrieved_at_utc": "2026-10-16T20:36:20.744578+00:00",
+      "original_file": "data\\raw\\context-assets\\webb-deep-field.png",
+      "original_sha256": "a50a9e7031c32c6ca086b075155cd770c7e350f20c836375ff4099d445f72610",
+      "sha256": "dac4a84bcfad2d06bf7201718e68c60578d5460566776dfdd30049e6f462f33b",
+      "bytes": 216368,
+      "dimensions": [
+        1254,
+        1280
+      ],
+      "modifications": "Official 1280px rendition converted to WebP quality 90, no crop or invented detail",
+      "usage_guidelines": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "interpretation_limits": [
+        "Multi-filter NIRCam composite; representative published image, not a live telescope feed.",
+        "Different object and epoch from SPHEREx and Hubble examples; not a matched comparison.",
+        "No synthetic wavelength filtering or data inference from this image."
+      ],
+      "is_skyshift_comparison_evidence": false
     }
   ],
   "excluded_options": [

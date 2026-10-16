@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
 import hmac
+import hashlib
 from http import HTTPStatus
 from http.client import HTTPConnection
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -18,11 +19,12 @@ import secrets
 import socket
 import sys
 import threading
+import time
 from urllib.parse import unquote, urlsplit
 import webbrowser
 
 ROOT = Path(__file__).resolve().parents[1]
-SERVER_VERSION = '1.0'
+SERVER_VERSION = '1.1'
 CONTENT_SECURITY_POLICY = (
     "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; "
     "img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; "
@@ -36,7 +38,17 @@ def load_release(directory):
     if path.exists():
         raw = json.loads(path.read_text(encoding='utf-8'))
         return {k: raw[k] for k in ('release_id', 'app_version', 'created_at_utc') if k in raw}
-    return {'release_id': 'workspace', 'app_version': '0.4-local-workspace'}
+    return {'release_id': 'workspace', 'app_version': '0.5-local-workspace'}
+
+
+def content_identity(directory):
+    """Identify the served UI without reading or rewriting scientific datasets."""
+    digest = hashlib.sha256()
+    for path in sorted(Path(directory).glob('*')):
+        if path.is_file() and path.suffix in ('.html', '.js', '.css'):
+            digest.update(path.name.encode())
+            digest.update(path.read_bytes())
+    return digest.hexdigest()
 
 
 def accepts_gzip(header):
@@ -58,12 +70,17 @@ def accepts_gzip(header):
 class LocalServer(ThreadingHTTPServer):
     daemon_threads = True
     allow_reuse_address = False
+    # Windows rejects excess TCP connections when the inherited backlog of five
+    # fills during parallel ES-module loading. One refused import prevents the
+    # entire controller from executing, leaving an apparently frozen HUD.
+    request_queue_size = 128
 
     def __init__(self, directory, port=3000):
         self.directory = Path(directory).resolve(strict=True)
         if not (self.directory/'index.html').is_file():
             raise ValueError('Application directory does not contain index.html')
         self.release = load_release(self.directory)
+        self.directory_id = hashlib.sha256(str(self.directory).lower().encode()).hexdigest()[:16]
         self.shutdown_token = secrets.token_urlsafe(32)
         super().__init__(('127.0.0.1', port), LocalHandler)
 
@@ -71,6 +88,7 @@ class LocalServer(ThreadingHTTPServer):
 class LocalHandler(SimpleHTTPRequestHandler):
     server_version = 'SKYSHIFT/' + SERVER_VERSION
     sys_version = ''
+    protocol_version = 'HTTP/1.1'
     extensions_map = {**SimpleHTTPRequestHandler.extensions_map,
         '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json',
         '.fits': 'application/fits', '.fit': 'application/fits', '.bin': 'application/octet-stream',
@@ -78,6 +96,12 @@ class LocalHandler(SimpleHTTPRequestHandler):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(args[2].directory), **kwargs)
+
+    def setup(self):
+        super().setup()
+        # Reuse browser connections for module/texture bursts instead of
+        # churning Windows TCP buffers; release idle browser connections.
+        self.connection.settimeout(15)
 
     def end_headers(self):
         for name, value in {
@@ -132,10 +156,12 @@ class LocalHandler(SimpleHTTPRequestHandler):
         path = urlsplit(self.path).path
         if path == '/healthz':
             self.send_json(HTTPStatus.OK, {'status': 'ok', 'application': 'SKYSHIFT',
-                'server_version': SERVER_VERSION, **self.server.release})
+                'server_version': SERVER_VERSION, 'directory_id': self.server.directory_id,
+                'content_id': content_identity(self.server.directory), **self.server.release})
             return None
         if path == '/version.json':
-            self.send_json(HTTPStatus.OK, {'application': 'SKYSHIFT', 'server_version': SERVER_VERSION, **self.server.release})
+            self.send_json(HTTPStatus.OK, {'application': 'SKYSHIFT', 'server_version': SERVER_VERSION,
+                'content_id': content_identity(self.server.directory), **self.server.release})
             return None
         target = self.resolve_requested()
         if target is None:
@@ -198,11 +224,43 @@ def stop_server(state_file):
         if response.status != HTTPStatus.OK:
             print('SKYSHIFT could not verify the running server. No unrelated process was stopped.')
             return 1
+        # The shutdown response precedes serve_forever exiting. Wait for main's
+        # close-and-unlink handshake so an immediate restart cannot race bind().
+        deadline = time.monotonic() + 5
+        while state_file.exists() and time.monotonic() < deadline:
+            try:
+                if json.loads(state_file.read_text()).get('token') != state['token']:
+                    break
+            except (OSError, ValueError):
+                break
+            time.sleep(.05)
+        if state_file.exists():
+            try:
+                if json.loads(state_file.read_text()).get('token') == state['token']:
+                    print('SKYSHIFT accepted shutdown but has not finished closing. Wait briefly before restarting.')
+                    return 1
+            except (OSError, ValueError):
+                pass
         print('SKYSHIFT local server stopped.')
         return 0
     except (OSError, ValueError, KeyError):
         print('The recorded SKYSHIFT server is not available. No unrelated process was stopped.')
         return 1
+
+
+def same_local_server(directory, port):
+    """Only reopen a server identifying this exact local content directory."""
+    try:
+        connection = HTTPConnection('127.0.0.1', port, timeout=2)
+        connection.request('GET', '/healthz')
+        response = connection.getresponse()
+        payload = json.loads(response.read())
+        connection.close()
+        directory_id = hashlib.sha256(str(Path(directory).resolve()).lower().encode()).hexdigest()[:16]
+        return (response.status == 200 and payload.get('application') == 'SKYSHIFT'
+                and payload.get('directory_id') == directory_id)
+    except (OSError, ValueError):
+        return False
 
 
 def main(argv=None):
@@ -223,6 +281,11 @@ def main(argv=None):
     try:
         server = LocalServer(args.directory, args.port)
     except OSError:
+        if args.open_browser and same_local_server(args.directory, args.port):
+            address = f'http://localhost:{args.port}'
+            print(f'SKYSHIFT is already running at {address}. Opening the existing local application.')
+            webbrowser.open(address)
+            return 0
         print(f'Cannot start SKYSHIFT: localhost:{args.port} is occupied or unavailable. '
               'Run stop_skyshift.bat for this project, close the other server, or use --port 3001.', file=sys.stderr)
         return 1

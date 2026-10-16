@@ -1,0 +1,504 @@
+/* Observation lens and mission explanations belong to the same exploration. */
+.space-actions #observations-button {
+  border-color: #8cd9db70;
+  color: #c0ebeb;
+}
+.mission-dock {
+  position: fixed;
+  z-index: 7;
+  left: 50%;
+  bottom: 104px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  padding: 7px;
+  background: #101010d9;
+  border: 1px solid #ffffff26;
+  backdrop-filter: blur(16px);
+}
+.mission-dock > span {
+  position: absolute;
+  bottom: calc(100% + 13px);
+  width: 100%;
+  left: 0;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: #c3c0b6;
+  pointer-events: none;
+}
+.mission-dock button {
+  min-width: 126px;
+  text-align: left;
+  font-size: 15px;
+  background: none;
+  padding: 10px 16px;
+  border-color: transparent;
+}
+.mission-dock button b {
+  font-size: 9px;
+  font-weight: 400;
+  color: #aaa;
+  margin-right: 8px;
+}
+.mission-dock button small {
+  display: block;
+  margin-top: 5px;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: #bcb9b0;
+}
+.mission-dock [data-telescope="spherex"][aria-pressed="true"] {
+  border-color: #8cd9db;
+  color: #8cd9db;
+}
+.mission-dock [data-telescope="webb-b"][aria-pressed="true"] {
+  border-color: #e9bd73;
+  color: #e9bd73;
+}
+.mission-dock [data-telescope="hubble"][aria-pressed="true"] {
+  border-color: #b6b9ed;
+  color: #b6b9ed;
+}
+body[data-environment="observatory"] .space-context {
+  bottom: 230px;
+  width: 270px;
+}
+body[data-environment="observatory"]:not(.observing-open):not(.science-open)
+  .space-context {
+  top: 175px;
+  bottom: auto;
+  max-height: calc(100svh - 415px);
+}
+body[data-environment="observatory"] #from-hardware-to-sky {
+  background: transparent;
+  color: #b6d6d6;
+  border-color: #ffffff30;
+}
+body[data-environment="observatory"] .context-summary {
+  -webkit-line-clamp: 3;
+}
+.telescope-experience {
+  --mission-accent: #8cd9db;
+  position: fixed;
+  z-index: 8;
+  right: 24px;
+  top: 175px;
+  bottom: 215px;
+  width: 390px;
+  padding: 24px;
+  overflow: auto;
+  scrollbar-width: thin;
+  background: #141414f2;
+  border: 1px solid #ffffff30;
+  border-top: 2px solid var(--mission-accent);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 70px #0009;
+}
+.mission-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 15px;
+}
+.mission-heading .space-eyebrow {
+  color: var(--mission-accent);
+}
+.mission-heading h2 {
+  font-weight: 300;
+  font-size: 29px;
+  margin: 0;
+  line-height: 1.15;
+}
+#mission-close {
+  font-size: 22px;
+  padding: 4px 11px;
+  flex-shrink: 0;
+}
+.mission-band {
+  color: var(--mission-accent);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+.mission-stages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  border-block: 1px solid #ffffff25;
+  padding: 12px 0;
+  margin-top: 20px;
+}
+.mission-stages button {
+  font-size: 10px;
+  padding: 9px 4px;
+  background: transparent;
+  border-color: transparent;
+}
+.mission-stages button[aria-pressed="true"] {
+  color: var(--mission-accent);
+  border-bottom-color: var(--mission-accent);
+}
+.telescope-experience h3 {
+  margin: 20px 0 10px;
+  font-size: 18px;
+  font-weight: 450;
+}
+#mission-step-copy {
+  color: #d2cfc7;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.mission-component-info {
+  font-size: 12px;
+  color: #c3e5e3;
+  line-height: 1.8;
+  border-left: 2px solid #8cd9db;
+  padding-left: 12px;
+}
+#mission-hardware {
+  font-size: 12px;
+  margin: 16px 0;
+}
+#mission-hardware summary {
+  cursor: pointer;
+  color: #b9d7d6;
+  padding: 8px 0;
+}
+.mission-channels {
+  display: flex;
+  gap: 7px;
+  margin: 20px 0 12px;
+}
+.mission-channels button {
+  flex: 1;
+  height: 58px;
+  padding: 0;
+  border: 1px solid var(--channel);
+  background: color-mix(in srgb, var(--channel) 30%, #171717);
+  box-shadow: inset 0 -20px 24px #0005;
+}
+.mission-channels button:hover,
+.mission-channels button[aria-pressed="true"] {
+  background: var(--channel);
+  border-color: #fff;
+  transform: translateY(-3px);
+}
+#mission-spectrum-hint {
+  color: #aaa79e;
+  font-size: 11px;
+  line-height: 1.7;
+}
+#mission-published {
+  margin: 18px 0;
+}
+.mission-image-wrap {
+  background: #030303;
+  min-height: 100px;
+  border: 1px solid #ffffff30;
+}
+#mission-image {
+  width: 100%;
+  max-height: 245px;
+  object-fit: contain;
+  display: block;
+}
+#mission-image-status {
+  font-size: 10px;
+  color: #c4c1b8;
+  line-height: 1.7;
+  margin-top: 10px;
+}
+#mission-image-source {
+  font-size: 11px;
+  display: inline-block;
+  margin: 10px 0;
+}
+#mission-image-retry {
+  padding: 4px 8px;
+  min-height: 34px;
+  font-size: 10px;
+  margin-left: 8px;
+}
+.mission-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.mission-fields button {
+  font-size: 11px;
+  padding: 7px 10px;
+}
+.mission-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid #ffffff25;
+  padding-top: 14px;
+  margin-top: 20px;
+}
+.mission-bottom a {
+  font-size: 11px;
+}
+.mission-disclaimer {
+  font-size: 10px;
+  line-height: 1.75;
+  color: #a8a59c;
+}
+.observing-open .space-context {
+  display: none;
+}
+.observing-open .hud-info strong {
+  color: #8cd9db;
+}
+body:after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+}
+body[data-feedback="select"]:after,
+body[data-feedback="component"]:after {
+  animation: selection-feedback 0.85s ease-out;
+  border: 1px solid #8cd9db55;
+}
+body[data-feedback="travel"]:after {
+  animation: travel-feedback 0.85s ease-out;
+  background: radial-gradient(
+    ellipse at 40% 40%,
+    transparent 35%,
+    #8cd9db12 75%,
+    transparent
+  );
+}
+body[data-feedback="observe"]:after,
+body[data-feedback="lens"]:after {
+  animation: lens-feedback 0.85s ease-out;
+  background: radial-gradient(ellipse at 40% 40%, #8cd9db16, transparent 65%);
+}
+@keyframes selection-feedback {
+  0% {
+    opacity: 0.8;
+    box-shadow: inset 0 0 70px #8cd9db18;
+  }
+  100% {
+    opacity: 0;
+    box-shadow: inset 0 0 0 transparent;
+  }
+}
+@keyframes travel-feedback {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+@keyframes lens-feedback {
+  0% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.science-open .space-workspace {
+  inset: 100px 18px 95px 38%;
+  background: #101010f7;
+  box-shadow: 0 15px 70px #0009;
+}
+.science-open .workspace-bar {
+  justify-content: start;
+}
+.science-open .workspace-bar p {
+  flex: 1 0 100%;
+}
+.science-open .mission-dock {
+  left: 19%;
+  width: calc(38% - 48px);
+  flex-direction: column;
+  bottom: 110px;
+}
+.science-open .mission-dock > span {
+  text-align: left;
+  font-size: 8px;
+}
+.science-open .mission-dock button {
+  padding: 8px 12px;
+  min-height: 43px;
+}
+.science-open .mission-dock button small {
+  display: inline;
+  margin-left: 12px;
+}
+.science-open .space-stage {
+  display: block;
+}
+.science-open .space-header {
+  background: linear-gradient(#000b, transparent);
+}
+.science-open .space-labels {
+  visibility: visible;
+}
+.science-open #resume-button {
+  display: none;
+}
+.science-open #observations-button {
+  border-color: #8cd9db;
+  color: #8cd9db;
+}
+.science-open .space-hud {
+  visibility: visible;
+  width: calc(38% - 48px);
+  right: auto;
+}
+.science-open .hud-controls {
+  display: none;
+}
+.science-open .hud-info {
+  max-width: none;
+}
+.science-open #credits-button {
+  display: none;
+}
+@media (max-width: 1100px) {
+  .telescope-experience {
+    width: 340px;
+    right: 18px;
+    top: 155px;
+    padding: 20px;
+  }
+  .mission-dock button {
+    min-width: 112px;
+    padding: 10px 12px;
+  }
+  .science-open .space-workspace {
+    left: 34%;
+  }
+  .science-open .mission-dock {
+    left: 17%;
+    width: calc(34% - 36px);
+  }
+  .science-open .mission-dock button small {
+    display: none;
+  }
+}
+@media (max-width: 740px) {
+  .mission-dock {
+    left: 12px;
+    right: 12px;
+    transform: none;
+    bottom: 138px;
+    justify-content: space-between;
+    gap: 3px;
+  }
+  .mission-dock button {
+    min-width: 0;
+    flex: 1;
+    font-size: 13px;
+    padding: 8px;
+  }
+  .mission-dock button b {
+    display: none;
+  }
+  .mission-dock button small {
+    font-size: 7px;
+  }
+  .mission-dock > span {
+    font-size: 8px;
+    bottom: calc(100% + 8px);
+  }
+  body[data-environment="observatory"] .space-context {
+    top: auto;
+    width: auto;
+    bottom: 245px;
+    max-height: 27svh;
+  }
+  body[data-environment="observatory"] .context-summary,
+  body[data-environment="observatory"] #from-hardware-to-sky {
+    display: none;
+  }
+  body[data-environment="observatory"] .context-state {
+    font-size: 9px;
+  }
+  .telescope-experience {
+    top: auto;
+    bottom: 233px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-height: 32svh;
+    padding: 16px;
+  }
+  .telescope-experience[data-stage="1"] {
+    max-height: 36svh;
+  }
+  .telescope-experience[data-stage="2"] {
+    max-height: 43svh;
+  }
+  body[data-environment="observatory"]:not(.observing-open):not(.science-open)
+    .space-context {
+    top: auto;
+    bottom: 245px;
+    max-height: 27svh;
+  }
+  .mission-heading h2 {
+    font-size: 23px;
+  }
+  .mission-heading .space-eyebrow {
+    margin-bottom: 6px;
+  }
+  .mission-band {
+    margin: 8px 0;
+    font-size: 10px;
+  }
+  .mission-stages {
+    margin-top: 10px;
+    padding: 7px 0;
+  }
+  .telescope-experience h3 {
+    font-size: 17px;
+    margin-top: 14px;
+  }
+  #mission-step-copy {
+    font-size: 12px;
+  }
+  .mission-bottom {
+    margin-top: 12px;
+  }
+  .mission-channels button {
+    height: 46px;
+  }
+  #mission-image {
+    max-height: 180px;
+  }
+  .science-open .space-workspace {
+    inset: 112px 0 0;
+  }
+  .science-open .mission-dock,
+  .science-open .space-hud,
+  .science-open .space-labels {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body:after {
+    animation: none !important;
+  }
+  .mission-channels button {
+    transform: none !important;
+  }
+}
+body.effects-disabled:after {
+  animation: none !important;
+}

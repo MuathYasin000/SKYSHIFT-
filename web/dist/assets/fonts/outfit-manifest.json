@@ -1,0 +1,18 @@
+{
+  "family": "Outfit",
+  "usage": "Local immersive UI and embedded scientific workspace",
+  "license": "SIL Open Font License 1.1",
+  "source_repository": "https://github.com/google/fonts/tree/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/outfit",
+  "repository_commit": "8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5",
+  "modified": false,
+  "files": [
+    {
+      "file": "Outfit.ttf",
+      "sha256": "fc7287273e66929776e2ba54f144fe699080bec29f61bf649d70d871468aeade"
+    },
+    {
+      "file": "Outfit-OFL.txt",
+      "sha256": "c676351bf8576b9aba743cd5eaa8c0e7ee0d51f805d720447b4df4ddb6a2e416"
+    }
+  ]
+}

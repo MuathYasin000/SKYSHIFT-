@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#020407" />
+    <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="SKYSHIFT: independent space exploration and verified SPHEREx scientific viewing."
@@ -16,6 +16,7 @@
     <link rel="icon" type="image/png" href="./assets/SKYSHIFT_ICON.PNG" />
     <link rel="apple-touch-icon" href="./assets/SKYSHIFT_ICON.PNG" />
     <link rel="stylesheet" href="./immersive.css" />
+    <link rel="stylesheet" href="./telescope-experience.css" />
   </head>
   <body>
     <main id="main">
@@ -40,43 +41,53 @@
             alt="SKYSHIFT — Project Mercury Team"
             width="94"
             height="94"
-          /><span>SKYSHIFT<small>PROJECT MERCURY TEAM</small></span></a
+          /><span>SKYSHIFT<small>SPACE EXPLORER</small></span></a
         >
         <nav class="space-actions" aria-label="Workspace controls">
           <button id="resume-button" hidden>Resume</button
-          ><button id="journey-button">Guided journey</button
+          ><button id="journey-button">Tour</button
           ><button id="sound-toggle" aria-pressed="false">Sound off</button
           ><button id="settings-button">Settings</button
           ><button id="help-button" aria-label="Help and controls">?</button
-          ><button id="mode-toggle">Classic View</button>
+          ><a id="observations-button" href="./explore.html">Observations</a>
         </nav>
       </header>
-      <nav class="space-tabs" aria-label="Exploration environments">
-        <button data-environment="observatory" aria-pressed="true">
-          Observatories</button
-        ><button data-environment="solar" aria-pressed="false">
-          Solar system</button
-        ><button data-environment="sky" aria-pressed="false">
-          Infrared sky
-        </button>
-      </nav>
-      <aside
-        class="destination-panel"
-        aria-label="Accessible destination selection"
+      <button
+        id="destinations-toggle"
+        class="destinations-toggle"
+        aria-expanded="true"
+        aria-controls="destinations-drawer"
       >
-        <p class="space-eyebrow" id="destination-heading">
-          CHOOSE YOUR OBSERVATORY
-        </p>
-        <label for="destination-search">Find a destination</label
-        ><input
-          id="destination-search"
-          type="search"
-          placeholder="Search destinations"
-          maxlength="100"
-        />
-        <div id="destination-list" class="destination-list"></div>
-        <p id="destination-search-status" class="sr-only" role="status"></p>
-      </aside>
+        ☰ &nbsp; Destinations
+      </button>
+      <div id="destinations-drawer" class="destinations-drawer">
+        <nav class="space-tabs" aria-label="Exploration environments">
+          <button data-environment="observatory" aria-pressed="true">
+            Telescopes</button
+          ><button data-environment="solar" aria-pressed="false">
+            Solar system</button
+          ><button data-environment="sky" aria-pressed="false">
+            Infrared sky
+          </button>
+        </nav>
+        <aside
+          class="destination-panel"
+          aria-label="Accessible destination selection"
+        >
+          <p class="space-eyebrow" id="destination-heading">
+            CHOOSE YOUR OBSERVATORY
+          </p>
+          <label for="destination-search">Find a destination</label
+          ><input
+            id="destination-search"
+            type="search"
+            placeholder="Search destinations"
+            maxlength="100"
+          />
+          <div id="destination-list" class="destination-list"></div>
+          <p id="destination-search-status" class="sr-only" role="status"></p>
+        </aside>
+      </div>
       <aside
         id="space-context"
         class="space-context"
@@ -84,15 +95,17 @@
       >
         <p id="context-kind" class="space-eyebrow">THE INFRARED OBSERVATORY</p>
         <h2 id="context-name">SPHEREx</h2>
+        <p id="context-summary" class="context-summary"></p>
+        <p id="context-state" class="context-state"></p>
         <button
           id="context-toggle"
           class="context-toggle"
-          aria-expanded="true"
+          aria-expanded="false"
           aria-controls="context-details"
         >
-          Hide details
+          About this destination +
         </button>
-        <div id="context-details">
+        <div id="context-details" hidden>
           <img id="context-preview" class="context-preview" hidden alt="" />
           <p id="context-description">
             Opening the local exploration environment…
@@ -106,21 +119,136 @@
             aria-label="Spacecraft components"
           ></div>
           <p id="component-description" role="status"></p>
+          <a
+            id="context-source"
+            href="https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/"
+            target="_blank"
+            rel="noreferrer"
+            >Original source & context ↗</a
+          >
+          <p id="context-credit" class="context-credit"></p>
         </div>
-        <button id="inspect-observation" class="space-primary" hidden>
-          Enter real observation ↗</button
-        ><button id="from-hardware-to-sky" class="space-primary">
-          Explore its real observations ↗</button
-        ><a
-          id="context-source"
-          href="https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/"
-          target="_blank"
-          rel="noreferrer"
-          >Original source & context ↗</a
-        >
-        <p id="context-credit" class="context-credit"></p>
+        <div class="context-actions">
+          <button id="look-through" class="space-primary">
+            Look through SPHEREx →
+          </button>
+          <button id="inspect-observation" class="space-primary" hidden>
+            Open real observation →
+          </button>
+          <button id="from-hardware-to-sky" class="space-primary">
+            Explore SPHEREx fields →
+          </button>
+        </div>
       </aside>
-      <div class="space-focus-title" aria-hidden="true">
+      <nav
+        id="mission-dock"
+        class="mission-dock"
+        aria-label="Featured telescopes"
+      >
+        <span>OUR EYES ON THE UNIVERSE</span>
+        <button data-telescope="spherex" aria-pressed="true">
+          <b>01</b> SPHEREx <small>MAP THE SKY</small>
+        </button>
+        <button data-telescope="webb-b" aria-pressed="false">
+          <b>02</b> Webb <small>LOOK DEEPER</small>
+        </button>
+        <button data-telescope="hubble" aria-pressed="false">
+          <b>03</b> Hubble <small>REVEAL THE VISIBLE</small>
+        </button>
+      </nav>
+      <section
+        id="telescope-experience"
+        class="telescope-experience"
+        aria-labelledby="mission-verb"
+        hidden
+      >
+        <div class="mission-heading">
+          <div>
+            <p class="space-eyebrow" id="mission-name">SPHEREx</p>
+            <h2 id="mission-verb">Map the infrared sky</h2>
+          </div>
+          <button id="mission-close" aria-label="Close telescope explanation">
+            ×
+          </button>
+        </div>
+        <p id="mission-band" class="mission-band"></p>
+        <div
+          class="mission-stages"
+          role="group"
+          aria-label="How the telescope observes"
+        >
+          <button data-observe-stage="0" aria-pressed="true">01 · Light</button
+          ><button data-observe-stage="1" aria-pressed="false">
+            02 · Instrument</button
+          ><button data-observe-stage="2" aria-pressed="false">
+            03 · Universe
+          </button>
+        </div>
+        <h3 id="mission-step-title"></h3>
+        <p id="mission-step-copy"></p>
+        <details id="mission-hardware">
+          <summary>Inspect SPHEREx hardware</summary>
+          <div
+            id="mission-components"
+            class="component-list"
+            role="group"
+            aria-label="SPHEREx hardware components"
+          ></div>
+        </details>
+        <p
+          id="mission-component-info"
+          class="mission-component-info"
+          role="status"
+          hidden
+        ></p>
+        <div id="mission-spectrum" hidden>
+          <div
+            id="mission-channels"
+            class="mission-channels"
+            role="group"
+            aria-label="Illustrative light groups"
+          ></div>
+          <p id="mission-spectrum-hint"></p>
+        </div>
+        <div
+          id="mission-fields"
+          class="mission-fields"
+          role="group"
+          aria-label="Choose a real SPHEREx field"
+          hidden
+        >
+          <button data-mission-field="m101" aria-pressed="true">M101</button
+          ><button data-mission-field="m42" aria-pressed="false">Orion</button
+          ><button data-mission-field="m67" aria-pressed="false">M67</button
+          ><button data-mission-field="ngc188" aria-pressed="false">
+            NGC 188
+          </button>
+        </div>
+        <button id="mission-field-open" class="space-primary" hidden>
+          Enter SPHEREx observation →
+        </button>
+        <figure id="mission-published" hidden>
+          <div class="mission-image-wrap">
+            <img id="mission-image" alt="" hidden />
+          </div>
+          <figcaption id="mission-image-status" role="status"></figcaption>
+          <a id="mission-image-source" target="_blank" rel="noreferrer"
+            >Published image & original source ↗</a
+          ><button id="mission-image-retry">Reload image</button>
+        </figure>
+        <div class="mission-bottom">
+          <button id="mission-next">Continue →</button
+          ><a id="mission-source" target="_blank" rel="noreferrer"
+            >How it works ↗</a
+          >
+        </div>
+        <p class="mission-disclaimer">
+          Illustrative light paths · no live pointing or exact field of view.
+          Published examples are different targets and epochs, not matched
+          observations.
+        </p>
+      </section>
+      <div class="space-focus-title sr-only" aria-hidden="true">
         <p id="focus-kicker" class="space-eyebrow">MEET THE OBSERVATORY</p>
         <h2 id="focus-title">A different way to see.</h2>
         <p id="focus-caption">
@@ -147,10 +275,10 @@
           <button id="credits-button">Assets & credits</button>
         </div>
         <div class="hud-controls" role="group" aria-label="Camera controls">
-          <button id="camera-minus" aria-label="Zoom out">−</button
-          ><button id="camera-plus" aria-label="Zoom in">+</button
-          ><button id="focus-object">Focus selected</button
-          ><button id="camera-reset">Reset view</button>
+          <button id="camera-minus" aria-label="Zoom out" disabled>−</button
+          ><button id="camera-plus" aria-label="Zoom in" disabled>+</button
+          ><button id="focus-object" disabled>Travel to selection</button
+          ><button id="camera-reset" disabled>Overview</button>
         </div>
       </footer>
       <section
@@ -164,15 +292,22 @@
             REAL SPHEREx DATA · ORIGINAL MASKS & PROVENANCE · SCIENTIFIC
             APPROVAL PENDING
           </p>
-          <button id="back-to-universe">← Return to space</button
+          <button id="back-to-universe">← Close observation lens</button
+          ><button
+            id="reload-workspace"
+            aria-label="Reload scientific viewer"
+            title="Reload scientific viewer"
+          >
+            ↻</button
           ><a
             id="standalone-science"
             href="./explore.html"
             target="_blank"
             rel="noreferrer"
-            >Standalone scientific tool ↗</a
+            >Open observations in a new tab ↗</a
           >
         </div>
+        <p id="workspace-error" role="alert" hidden></p>
         <iframe
           id="science-frame"
           class="workspace-frame"
@@ -183,9 +318,10 @@
       <aside id="render-fallback" class="space-fallback" role="alert" hidden>
         <h2>Science stays within reach.</h2>
         <p id="render-error"></p>
+        <a href="./index.html">Reload explorer ↻</a>
         <button id="retry-renderer">Retry 3D</button
-        ><button id="fallback-classic">Use Classic View</button
-        ><a href="./explore.html">Open the standalone scientific tool ↗</a>
+        ><button id="fallback-classic">Open observations</button
+        ><a href="./explore.html">Open observations without 3D ↗</a>
       </aside>
       <aside
         id="journey-strip"
@@ -207,7 +343,7 @@
           <button data-close-dialog aria-label="Close settings">×</button>
         </div>
         <label
-          >Decorative starfield<input
+          >Interaction effects & starfield<input
             id="effects-toggle"
             type="checkbox"
             checked /></label
@@ -238,12 +374,12 @@
         /></label>
         <p>
           Sound always starts muted and requires your click. These are original
-          synthesized interface effects, not sounds recorded in space. Classic
-          View is silent. Reduced-motion preferences disable camera travel
-          animation.
+          synthesized interface effects, not sounds recorded in space. The
+          observation lens is silent. Reduced-motion preferences disable camera
+          travel animation.
         </p>
         <button id="open-science-settings" class="space-primary">
-          Go to scientific workspace
+          Open observation lens
         </button>
       </dialog>
       <dialog
@@ -256,10 +392,12 @@
           <button data-close-dialog aria-label="Close help">×</button>
         </div>
         <p>
-          Choose an observatory, planet or curated sky field from the
-          destination list. Click a visible object to focus it. Drag to orbit,
-          scroll or pinch to zoom. Arrow keys rotate; + / − zoom; Home resets;
-          Escape returns from a focused workspace.
+          The telescope dock takes you to SPHEREx, Webb and Hubble. Select a
+          telescope and follow Light → Instrument → Universe. Published images
+          are sourced examples; SPHEREx also connects to the installed real
+          observations through the same exploration lens. Drag to orbit, scroll
+          or pinch to zoom. Arrow keys rotate; + / − zoom; Home resets; Escape
+          returns from a focused workspace.
         </p>
         <p>
           <strong>Three distinct environments:</strong> Solar-system positions,
@@ -272,8 +410,8 @@
           <strong>Entering an observation:</strong> the contextual scene pauses
           and the original scientific viewer opens. Its real dates, wavelengths,
           conservative quality masks, source hashes, questions and evidence
-          exports remain available. Switch Classic View without reloading that
-          workspace.
+          exports remain available. Close and reopen the observation lens
+          without reloading that workspace.
         </p>
         <p>
           Only the restricted M101 area currently offers a two-date review
@@ -282,6 +420,15 @@
         </p>
         <a href="./classic-home.html">Project introduction ↗</a> ·
         <a href="./methodology.html">Data, methods & image credits ↗</a>
+        <details class="runtime-details">
+          <summary>Startup & rendering diagnostics</summary>
+          <p id="runtime-status">
+            Open this panel while SKYSHIFT is running to read local diagnostics.
+          </p>
+          <a href="/healthz" target="_blank" rel="noreferrer"
+            >Local server status ↗</a
+          >
+        </details>
       </dialog>
       <dialog
         id="credits-dialog"
@@ -299,7 +446,7 @@
         </p>
         <div id="model-credits"></div>
         <p>
-          Three.js r180: MIT · Draco: Apache-2.0 · Space Grotesk: SIL Open Font
+          Three.js r180: MIT · Draco: Apache-2.0 · Outfit: SIL Open Font
           License. All runtime assets and licenses are stored locally.
         </p>
         <a href="./assets/space/manifest.json" target="_blank"
@@ -316,6 +463,6 @@
         </div></noscript
       >
     </main>
-    <script type="module" src="./immersive.js"></script>
+    <script type="module" src="./space-bootstrap.js"></script>
   </body>
 </html>

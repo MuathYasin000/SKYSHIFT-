@@ -19,6 +19,7 @@ const categoryLabels={uncertain:'Question for review',possible_position_differen
 async function getBytes(url,expected){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw Error(`Data request failed (${r.status}). Please reload or try later.`);const b=new Uint8Array(await r.arrayBuffer());if(expected&&await sha256(b)!==expected)throw Error('Data integrity check failed. This comparison has not been opened.');return b;}
 function persist(){try{sessionStorage.setItem('skyshift:'+state.manifest.pair_id,JSON.stringify({display:state.display,visual:state.visual,annotations:state.annotations}));}catch{/* Exports remain available when browser storage is disabled. */}}
 function stopBlink(){if(state.blink){clearInterval(state.blink);state.blink=null;}$('blink').textContent='▷ Blink between dates';$('blink').setAttribute('aria-pressed','false');}
+document.addEventListener('skyshift:workspace-hidden',stopBlink);
 
 const offscreens={};
 function renderScience(){for(const epoch of ['A','B']){const [h,w]=state.manifest.processing.shape;const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d');const pixels=ctx.createImageData(w,h);const data=state.arrays['SCI_'+epoch];for(let i=0;i<data.length;i++){const k=i*4;if(!state.arrays.COMMON[i]||!Number.isFinite(data[i])){pixels.data.set([36,54,66,255],k);}else{const v=displayLevel(data[i],state.display,state.visual);pixels.data.set([...paletteRGB(v,state.visual.palette),255],k);}}ctx.putImageData(pixels,0,0);offscreens[epoch]=canvas;}drawAll();}
@@ -104,3 +105,4 @@ $('overlay-mode').addEventListener('click',()=>{if(!state.manifest)return;const 
 $('wipe').addEventListener('input',event=>{state.visual=validateVisualization({...state.visual,wipe_position:Number(event.target.value)});drawAll();persist();});
 for(const id of ['side-mode','single-mode','epoch-a','epoch-b'])$(id).addEventListener('click',()=>markStep(2));
 initialize();
+window.addEventListener('message',event=>{if(window.parent!==window&&event.source===window.parent&&event.origin===location.origin&&event.data?.type==='skyshift:request-controller-status')window.parent.postMessage({type:'skyshift:viewer-ready'},location.origin);});

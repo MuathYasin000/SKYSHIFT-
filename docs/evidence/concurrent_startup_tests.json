@@ -1,0 +1,70 @@
+{
+  "date_utc": "2026-10-16T20:59:42.989Z",
+  "server": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.1",
+    "directory_id": "cf30d37f4287c0b3",
+    "content_id": "fbbb4a9154ddbb3c07f41d6737b9c016d8a22c03fed3f5329e3d4b771d7af459",
+    "release_id": "workspace",
+    "app_version": "0.5-local-workspace"
+  },
+  "results": [
+    {
+      "name": "Installed Chrome",
+      "version": "155.0.8059.80",
+      "trial": 0,
+      "status": "pass",
+      "all_telescopes_and_input_ready_ms": 1895.6028000000001,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Microsoft Edge",
+      "version": "155.0.4283.45",
+      "trial": 0,
+      "status": "pass",
+      "all_telescopes_and_input_ready_ms": 1678.0621999999998,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Installed Chrome",
+      "version": "155.0.8059.80",
+      "trial": 1,
+      "status": "pass",
+      "all_telescopes_and_input_ready_ms": 1675.0733999999998,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Microsoft Edge",
+      "version": "155.0.4283.45",
+      "trial": 1,
+      "status": "pass",
+      "all_telescopes_and_input_ready_ms": 1703.6346000000003,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Installed Chrome",
+      "version": "155.0.8059.80",
+      "trial": 2,
+      "status": "pass",
+      "all_telescopes_and_input_ready_ms": 1551.1048,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Microsoft Edge",
+      "version": "155.0.4283.45",
+      "trial": 2,
+      "status": "pass",
+      "all_telescopes_and_input_ready_ms": 1931.3161,
+      "errors": [],
+      "failed": []
+    }
+  ],
+  "user_session": "User reported refreshed application now responds; these are separate fresh-profile checks",
+  "scope": "Two browsers concurrently per trial, three trials; all three observatories loaded and settings opened, no external requests required"
+}
