@@ -385,6 +385,8 @@ async function activateModel() {
   modelStarting = true;
   $("activate-mission-model").disabled = true;
   $("activate-mission-model").textContent = "Opening interactive model…";
+  $("mission-model-start").classList.add("model-opening");
+  $("mission-model-start").setAttribute("aria-busy","true");
   try {
     const { createMissionModel } = await import("./mission-model.js");
     if (modelFailed) {
@@ -394,6 +396,17 @@ async function activateModel() {
       modelFailed = false;
     }
     model = createMissionModel($("mission-model-canvas"), {
+      onAnchors: anchors => {
+        const used=[];
+        for(const anchor of anchors){
+          const button=document.querySelector('[data-model-hotspot="'+anchor.id+'"]');
+          if(!button)continue;
+          const r=$("mission-model-canvas").getBoundingClientRect(),x=anchor.x*r.width,y=anchor.y*r.height;
+          const visible=anchor.visible&&!used.some(p=>Math.hypot(p.x-x,p.y-y)<48);
+          button.hidden=!visible;
+          if(visible){used.push({x,y});button.style.left=x+'px';button.style.top=y+'px';}
+        }
+      },
       onComponent: (key) =>
         document
           .querySelector('[data-website-component="' + key + '"]')
@@ -410,6 +423,7 @@ async function activateModel() {
     });
     $("mission-model-start").hidden = true;
     $("mission-model-tools").hidden = false;
+    document.querySelector('.mission-section').classList.add('walkthrough-enabled');
     $("mission-model-status").textContent =
       "Illustrative SPHEREx model · drag to rotate, scroll/pinch to zoom. Arrow keys rotate; + / − zoom; Home resets.";
     model.setVisible(surface === "home" && missionVisible);
@@ -420,6 +434,8 @@ async function activateModel() {
       e.message +
       ". Component descriptions and observations still work.";
   } finally {
+    $("mission-model-start").classList.remove("model-opening");
+    $("mission-model-start").removeAttribute("aria-busy");
     modelStarting = false;
     $("activate-mission-model").disabled = false;
     $("activate-mission-model").textContent = model

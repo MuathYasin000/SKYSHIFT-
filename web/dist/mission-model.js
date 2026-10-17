@@ -8,7 +8,7 @@ import { readPreferences } from "./space-preferences.js";
 
 export function createMissionModel(
   canvas,
-  { onComponent = () => {}, onError = () => {}, presentation = "mission" } = {},
+  { onComponent = () => {}, onError = () => {}, onAnchors = () => {}, presentation = "mission" } = {},
 ) {
   const hero = presentation === "hero";
   const lifetime = new AbortController(),
@@ -81,6 +81,11 @@ export function createMissionModel(
       frame = 0;
       renderer.render(scene, camera);
       frames++;
+      if(!hero){
+        const boxes=new Map();
+        model.traverse(o=>{const id=o.userData.component;if(o.isMesh&&id){if(!boxes.has(id))boxes.set(id,new THREE.Box3());boxes.get(id).expandByObject(o);}});
+        onAnchors([...boxes].map(([id,box])=>{const p=box.getCenter(new THREE.Vector3()).project(camera);return {id,x:(p.x+1)/2,y:(1-p.y)/2,visible:p.z>-1&&p.z<1&&Math.abs(p.x)<.9&&Math.abs(p.y)<.85};}));
+      }
     });
   }
   function resize() {
