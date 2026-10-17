@@ -1,0 +1,299 @@
+{
+  "recorded_at_utc": "2026-10-17T14:33:22.094Z",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "name": "Default-off stays silent on normal gestures; explicit opt-in starts local audio without WebGL",
+      "status": "pass",
+      "detail": {
+        "enabled": true,
+        "awaiting_gesture": false,
+        "last_cue": "zoom",
+        "recent_cues": [
+          "spherex",
+          "zoom"
+        ],
+        "active_voice_count": 2,
+        "context_state": "running",
+        "surface": "science",
+        "ambience_allowed": false,
+        "recipe_count": 25,
+        "synthesis": "dry sine; fixed pitch; smooth zero-ended envelope; no ambience"
+      }
+    },
+    {
+      "name": "Save cue follows successful export; comparison, date and panel actions use separate sound identities",
+      "status": "pass"
+    },
+    {
+      "name": "Mute works immediately, survives navigation/reload and prevents gesture-based restart",
+      "status": "pass",
+      "detail": {
+        "muted_reload_context": "not_created",
+        "voices_after_decay": 0
+      }
+    },
+    {
+      "name": "Sound palette offers editable volumes, distinct real playback and an accessible keyboard-dismissable dialog",
+      "status": "pass"
+    },
+    {
+      "name": "One audio context follows Universe and telescope selection; muting there also mutes the main website",
+      "status": "pass"
+    },
+    {
+      "name": "Actual synthesis has nonzero, unclipped, distinct numerical signals for all 25 cues",
+      "status": "pass",
+      "detail": {
+        "signals": [
+          {
+            "name": "ui",
+            "peak": 0.012617873959243298,
+            "rms": 0.0007409423414421307,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -0.04503831
+          },
+          {
+            "name": "select",
+            "peak": 0.017490288242697716,
+            "rms": 0.001224046947150528,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": 0.21828616
+          },
+          {
+            "name": "navigate",
+            "peak": 0.018916955217719078,
+            "rms": 0.001596847850606221,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": 0.17106654
+          },
+          {
+            "name": "travel",
+            "peak": 0.021949538961052895,
+            "rms": 0.0021718950436926962,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -0.99723729
+          },
+          {
+            "name": "component",
+            "peak": 0.014783624559640884,
+            "rms": 0.0010357264429507315,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -2.09241848
+          },
+          {
+            "name": "spherex",
+            "peak": 0.02549600787460804,
+            "rms": 0.002715679943076559,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": 1.90618854
+          },
+          {
+            "name": "webb-b",
+            "peak": 0.026551730930805206,
+            "rms": 0.0029516226150299958,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -21.44745874
+          },
+          {
+            "name": "hubble",
+            "peak": 0.020621376112103462,
+            "rms": 0.0020941593725249175,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -0.58768125
+          },
+          {
+            "name": "observe",
+            "peak": 0.021865475922822952,
+            "rms": 0.0019812397124390414,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -0.67225497
+          },
+          {
+            "name": "spectrum",
+            "peak": 0.015713345259428024,
+            "rms": 0.0011855196348173325,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": 2.54010188
+          },
+          {
+            "name": "lens",
+            "peak": 0.020787261426448822,
+            "rms": 0.0019439557326694193,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -9.58587483
+          },
+          {
+            "name": "close",
+            "peak": 0.013454070314764977,
+            "rms": 0.0009415741890591718,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -7.56432198
+          },
+          {
+            "name": "open",
+            "peak": 0.016100764274597168,
+            "rms": 0.0012498006069950188,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": 1.65571563
+          },
+          {
+            "name": "zoom",
+            "peak": 0.010311388410627842,
+            "rms": 0.0006062241737848738,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": 0.10937559
+          },
+          {
+            "name": "zoom_out",
+            "peak": 0.010706164874136448,
+            "rms": 0.0006476542231709293,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": 0.37020172
+          },
+          {
+            "name": "reset",
+            "peak": 0.0173441581428051,
+            "rms": 0.0014637716204554483,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": 2.58087449
+          },
+          {
+            "name": "date",
+            "peak": 0.009116058237850666,
+            "rms": 0.0004843381172125285,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": 0.07500781
+          },
+          {
+            "name": "compare",
+            "peak": 0.018246233463287354,
+            "rms": 0.0014802343350161116,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -0.84745047
+          },
+          {
+            "name": "annotate",
+            "peak": 0.017926381900906563,
+            "rms": 0.0015703343216558962,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": 1.00988929
+          },
+          {
+            "name": "save",
+            "peak": 0.036885447800159454,
+            "rms": 0.0034398765671696903,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -3.0352116
+          },
+          {
+            "name": "reopen",
+            "peak": 0.035560254007577896,
+            "rms": 0.0030131576213300757,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -3.10953483
+          },
+          {
+            "name": "delete",
+            "peak": 0.016098162159323692,
+            "rms": 0.0012497918503248725,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -1.63317562
+          },
+          {
+            "name": "toggle",
+            "peak": 0.010573897510766983,
+            "rms": 0.0005827956501193201,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -0.33316086
+          },
+          {
+            "name": "preview",
+            "peak": 0.019599586725234985,
+            "rms": 0.0018868138933239038,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -0.00306842
+          },
+          {
+            "name": "error",
+            "peak": 0.03801019489765167,
+            "rms": 0.0033851272666538105,
+            "tail_rms": 0,
+            "finite": true,
+            "signature": -8.26177225
+          }
+        ],
+        "limits": "Numerical signal checks; no claim of human listening or subjective audio quality."
+      }
+    },
+    {
+      "name": "Orbital hero action has its requested cream/spectral surface, readable text and a direct keyboard route to real observations",
+      "status": "pass",
+      "detail": {
+        "fill": "rgb(244, 233, 212)",
+        "ink": "rgb(23, 27, 32)"
+      }
+    },
+    {
+      "name": "320/390/1024 layouts show reachable sound controls and readable button states without horizontal overflow",
+      "status": "pass",
+      "detail": [
+        {
+          "width": 320,
+          "layout": "pass",
+          "automated_accessibility": "pass"
+        },
+        {
+          "width": 390,
+          "layout": "pass",
+          "automated_accessibility": "pass"
+        },
+        {
+          "width": 1024,
+          "layout": "pass",
+          "automated_accessibility": "pass"
+        }
+      ]
+    },
+    {
+      "name": "Unavailable audio and denied storage preserve silent scientific access and export",
+      "status": "pass"
+    },
+    {
+      "name": "A missing optional sound module cannot block scientific startup or exporting",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "limits": [
+    "Original interface sound design, not telescope recordings or scientific sonification",
+    "No human listening/subjective acceptance claimed",
+    "Mobile emulated; automated accessibility rules are not a manual audit",
+    "Qualified scientific approval and internal human review PENDING; independent novice validation NOT CONDUCTED"
+  ]
+}

@@ -12,7 +12,7 @@ export const opticalLessons = {
     ],
     [
       "Split",
-      "A dichroic separates the light into two detector paths; this is not a prism spreading colours into a rainbow fan.",
+      "A dichroic separates the light into two detector paths; this is not a prism spreading colors into a rainbow fan.",
     ],
     [
       "Measure",

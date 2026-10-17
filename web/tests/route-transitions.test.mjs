@@ -2,6 +2,25 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createRouteTransitions } from "../dist/route-transitions.js";
 const tick = () => new Promise((resolve) => setImmediate(resolve));
+test("Reduce effects disables optional route animation without changing navigation", async () => {
+  const f = fixture();
+  f.page.body = {
+    classList: { contains: (name) => name === "reduced-effects" },
+  };
+  let committed = false;
+  assert.equal(
+    await f.controller.run({
+      ...f,
+      commit: () => {
+        committed = true;
+      },
+    }),
+    true,
+  );
+  assert.equal(committed, true);
+  assert.equal(f.records.length, 0);
+  f.controller.dispose();
+});
 function fixture({ reduced = false, hidden = false } = {}) {
   const records = [],
     listeners = new Map();

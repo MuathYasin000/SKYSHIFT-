@@ -18,7 +18,7 @@ from local_server import CONTENT_SECURITY_POLICY, content_identity
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def stage(destination: Path, release_id='skyshift-0.7-home-layout'):
+def stage(destination: Path, release_id='skyshift-0.8-seeing-invisible'):
     source = (ROOT / 'web/dist').resolve()
     destination = destination.resolve()
     if destination.name != 'dist' or not destination.is_relative_to(ROOT / 'tmp'):
@@ -44,7 +44,7 @@ def stage(destination: Path, release_id='skyshift-0.7-home-layout'):
             shutil.copyfile(p, target)
         hashes[relative.as_posix()] = digest
     release = dict(schema_version='1.0', release_id=release_id,
-                   app_version='0.7-home-layout', created_at_utc=datetime.now(timezone.utc).isoformat(),
+                   app_version='0.8-seeing-invisible', created_at_utc=datetime.now(timezone.utc).isoformat(),
                    scientific_approval='PENDING', content_id=content_identity(source),
                    source_asset_sha256=hashes)
     (destination/'release.json').write_text(json.dumps(release, indent=2)+'\n', encoding='utf-8')
@@ -68,6 +68,6 @@ def stage(destination: Path, release_id='skyshift-0.7-home-layout'):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--destination', type=Path, required=True)
-    parser.add_argument('--release-id', default='skyshift-0.7-home-layout')
+    parser.add_argument('--release-id', default='skyshift-0.8-seeing-invisible')
     args = parser.parse_args()
     print(json.dumps(stage(args.destination, args.release_id), indent=2))

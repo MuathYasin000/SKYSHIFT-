@@ -58,6 +58,7 @@ export function createRouteTransitions({
     const allowed = () =>
       animate &&
       !motion?.matches &&
+      !page?.body?.classList?.contains("reduced-effects") &&
       !page?.hidden &&
       typeof outgoing?.animate === "function" &&
       typeof incoming?.animate === "function";

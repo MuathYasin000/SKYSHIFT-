@@ -4,6 +4,22 @@ import fs from "node:fs/promises";
 import { createHash } from "node:crypto";
 const root = new URL("../dist/assets/", import.meta.url),
   hash = (b) => createHash("sha256").update(b).digest("hex");
+
+test("observatory mono font and OFL notice retain their recorded original bytes", async () => {
+  const manifest = JSON.parse(
+    await fs.readFile(new URL("fonts/observatory-fonts.json", root), "utf8"),
+  );
+  for (const a of manifest.assets) {
+    const bytes = await fs.readFile(new URL("fonts/" + a.file, root));
+    assert.equal(hash(bytes), a.sha256);
+    assert.equal(bytes.length, a.bytes);
+    assert.equal(a.license, "SIL Open Font License 1.1");
+    assert.match(
+      a.source,
+      /^https:\/\/raw.githubusercontent.com\/google\/fonts\//,
+    );
+  }
+});
 test("new website fonts retain exact pinned upstream bytes and OFL notices locally", async () => {
   const manifest = JSON.parse(
     await fs.readFile(new URL("fonts/website-fonts.json", root), "utf8"),

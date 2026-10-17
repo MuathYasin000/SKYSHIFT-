@@ -5,6 +5,7 @@ import { attachViewportInput } from "./viewport-input.js";
 import { stories, availability, friendlyDate } from "./field-guide.js";
 import { createExplorationMemory } from "./exploration-memory.js";
 import { evidenceTrail } from "./evidence-trail.js";
+import { readPreferences } from "./space-preferences.js";
 
 // Native UI: no iframe, secondary document or second controller. Both presentations
 // operate on one investigation object and the same scientific Canvas2D viewports.
@@ -61,17 +62,44 @@ export function createObservationConsole({
   evidenceButton.id = "instrument-evidence";
   toolbar.append(evidenceButton);
   evidenceButton.onclick = () => {
-    const v=engine.active;
-    if(!v) return;
-    const body=panel("Evidence trail");
-    body.append(node("p","Original archive identities and calibration records. Copy exact checksums or open the source; full processing and masks remain in Sources & suitability."));
-    for(const record of evidenceTrail(v.kind === "pair" ? v.manifest.observations : [v.product.observation])){
-      const card=node("section",undefined,"evidence-record");
-      card.append(node("h4",record.id),node("p",record.date+" UTC"));
-      for(const reference of record.references){
-        card.append(node("strong",reference.label),node("code",reference.sha256||"Checksum unavailable"));
-        if(reference.url){const link=node("a","Open original source ↗");link.href=reference.url;link.target="_blank";link.rel="noopener noreferrer";card.append(link);}
-        if(reference.sha256){const copy=node("button","Copy SHA-256");copy.onclick=async()=>{try{await navigator.clipboard.writeText(reference.sha256);copy.textContent="Copied ✓";}catch{copy.textContent="Select checksum above to copy manually";}};card.append(copy);}
+    const v = engine.active;
+    if (!v) return;
+    const body = panel("Evidence trail");
+    body.append(
+      node(
+        "p",
+        "Original archive identities and calibration records. Copy exact checksums or open the source; full processing and masks remain in Sources & suitability.",
+      ),
+    );
+    for (const record of evidenceTrail(
+      v.kind === "pair" ? v.manifest.observations : [v.product.observation],
+    )) {
+      const card = node("section", undefined, "evidence-record");
+      card.append(node("h4", record.id), node("p", record.date + " UTC"));
+      for (const reference of record.references) {
+        card.append(
+          node("strong", reference.label),
+          node("code", reference.sha256 || "Checksum unavailable"),
+        );
+        if (reference.url) {
+          const link = node("a", "Open original source ↗");
+          link.href = reference.url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          card.append(link);
+        }
+        if (reference.sha256) {
+          const copy = node("button", "Copy SHA-256");
+          copy.onclick = async () => {
+            try {
+              await navigator.clipboard.writeText(reference.sha256);
+              copy.textContent = "Copied ✓";
+            } catch {
+              copy.textContent = "Select checksum above to copy manually";
+            }
+          };
+          card.append(copy);
+        }
       }
       body.append(card);
     }
@@ -90,7 +118,11 @@ export function createObservationConsole({
   }
   function transitionDate() {
     clearDateTransition();
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches || !opened)
+    if (
+      matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !readPreferences().effects ||
+      !opened
+    )
       return;
     const c = $("instrument-canvas-a"),
       overlay = document.createElement("canvas");
@@ -771,7 +803,7 @@ export function createObservationConsole({
     );
     for (const [key, label, options] of [
       ["stretch", "Brightness stretch", ["linear", "asinh", "log"]],
-      ["palette", "Colour map", ["grayscale", "ember", "ice"]],
+      ["palette", "Color map", ["grayscale", "ember", "ice"]],
       ["interpolation", "Pixel rendering", ["nearest", "smooth"]],
     ]) {
       const l = node("label", label),

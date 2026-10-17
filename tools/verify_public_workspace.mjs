@@ -70,14 +70,14 @@ try {
       assert.equal(await page.locator(".mission-launch").count(), 1);
       assert.equal(
         (await page.evaluate(() => skyshiftSound.diagnostics())).enabled,
-        true,
+        false,
       );
       const r = await page.request.get(origin + "/release.json");
       assert.equal(r.status(), 200);
       const release = await r.json();
       assert.equal(
         release.release_id,
-        process.env.SKYSHIFT_EXPECTED_RELEASE || "skyshift-0.7-home-layout",
+        process.env.SKYSHIFT_EXPECTED_RELEASE || "skyshift-0.8-seeing-invisible",
       );
       await page.screenshot({ path: out + "/public-home.png" });
       return {
@@ -171,7 +171,7 @@ try {
     "Static sine playback, mute and all three telescope models work",
     async () => {
       await page.click("#site-more");
-      await page.click("[data-open-sound]");
+      await page.click("[data-open-sound]:visible");
       await page.click('[data-preview-sound="spherex"]');
       assert.equal(
         (await page.evaluate(() => skyshiftSound.diagnostics())).context_state,

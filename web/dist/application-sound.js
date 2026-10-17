@@ -3,6 +3,10 @@ import { createSpaceAudio } from "./space-audio.js";
 import { readPreferences, savePreferences } from "./space-preferences.js";
 export const applicationPreferences = readPreferences();
 export const applicationAudio = createSpaceAudio(applicationPreferences);
+if (typeof document !== "undefined")
+  document.addEventListener("skyshift:effects", (e) => {
+    applicationPreferences.effects = Boolean(e.detail);
+  });
 export function soundForControl(e) {
   const id = e.id || "",
     d = e.dataset || {},
@@ -109,7 +113,7 @@ export function installApplicationSound() {
     };
     host.querySelector(".sound-palette").append(b);
   }
-  const persist = () => {p.effects=readPreferences().effects;savePreferences(p);};
+  const persist = () => savePreferences(p);
   function sync() {
     const d = audio.diagnostics();
     document
@@ -120,7 +124,7 @@ export function installApplicationSound() {
         b.title = d.enabled
           ? "Mute all SKYSHIFT sound"
           : "Turn SKYSHIFT sound on";
-        b.innerHTML = `<svg class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="${d.enabled ? 'M17 8q5 4 0 8' : 'M17 9l5 6m0-6-5 6'}"/></svg><span class="sound-word">Sound ${d.enabled ? "on" : "off"}</span>`;
+        b.innerHTML = `<svg class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="${d.enabled ? "M17 8q5 4 0 8" : "M17 9l5 6m0-6-5 6"}"/></svg><span class="sound-word">Sound ${d.enabled ? "on" : "off"}</span>`;
         b.setAttribute(
           "aria-label",
           d.enabled ? "Mute SKYSHIFT sound" : "Turn SKYSHIFT sound on",

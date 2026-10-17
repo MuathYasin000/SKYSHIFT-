@@ -110,8 +110,8 @@ export function createTelescopeExperience({
     $("mission-field-open").hidden = mission !== "spherex" || stage !== 2;
     $("mission-spectrum-hint").textContent =
       mission === "spherex"
-        ? "Select an illustrative colour key. These six keys explain 102 infrared colours; they are not six measured filters. The external paths remain parallel."
-        : "Select a colour key for the same incoming paths. It is not a filter simulation or a wavelength-dependent deflection; published pixels stay unchanged.";
+        ? "Select an illustrative color key. These six keys explain 102 infrared colors; they are not six measured filters. The external paths remain parallel."
+        : "Select a color key for the same incoming paths. It is not a filter simulation or a wavelength-dependent deflection; published pixels stay unchanged.";
     getScene()?.observe(mission, stage);
     if (stage === 2) image(story);
     else {

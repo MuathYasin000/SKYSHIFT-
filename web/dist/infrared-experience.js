@@ -367,10 +367,18 @@ export function installInfraredExperience() {
   }
   $("vision-effects").onclick = () => {
     enabled = !enabled;
-    const p=readPreferences();p.effects=enabled;savePreferences(p);
+    const p = readPreferences();
+    p.effects = enabled;
+    savePreferences(p);
+    document.dispatchEvent(
+      new CustomEvent("skyshift:effects", { detail: enabled }),
+    );
     sync();
   };
-  document.addEventListener("skyshift:effects",e=>{enabled=Boolean(e.detail);sync();});
+  document.addEventListener("skyshift:effects", (e) => {
+    enabled = Boolean(e.detail);
+    sync();
+  });
   new MutationObserver(sync).observe(body, {
     attributes: true,
     attributeFilter: ["data-surface"],

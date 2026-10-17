@@ -46,8 +46,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:11.161367+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "5e18afce2860f02a215c09954fff5d3d1ca140cafa26c368d24d7636dd6705a7",
       "original_dimensions": [
         1440,
@@ -67,8 +67,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:11.860283+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "12ec6bf02ebd42a246edc778cb2ce8c595b4d9f0892badf0bfff8abb2303c780",
       "original_dimensions": [
         1440,
@@ -86,8 +86,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:12.354150+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "ac2d387f8ea56a59f45dea37993c779a730f49d7d9fdbc8d36c307a351b1f1a1",
       "original_dimensions": [
         720,
@@ -105,8 +105,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:12.992036+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "e395bced59e95339efbdd002d4a0bbbf81fe323a6694f3a4039120560c80e789",
       "original_dimensions": [
         1440,
@@ -124,8 +124,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:14.340339+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "1318334a5089fb186d39996f60677b5f5b42cde74158ceff97b3e2283bfd41d4",
       "original_dimensions": [
         1913,
@@ -143,8 +143,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:15.915030+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "e9bb2b7bcfb98d3f1adc6f2e20e833a00c11e9677238d8a00ae7431214ca70aa",
       "original_dimensions": [
         720,
@@ -224,7 +224,7 @@
     {
       "id": "logo",
       "file": "assets/SKYSHIFT_ICON.PNG",
-      "credit": "Project Mercury Team \u00b7 supplied by the user",
+      "credit": "Project Mercury Team · supplied by the user",
       "source_page": "User-supplied official project logo",
       "terms": "User-authorized project use; original artwork preserved",
       "sha256": "5b7eb030b8b6e8c59f9ad7f35a8fcb9be4056efd3916b7c47bc701cacb6e5611",
@@ -304,9 +304,9 @@
       "credit": "SKYSHIFT / Project Mercury Team; actual local interactive hero screenshot",
       "source_page": "http://localhost:3000/",
       "terms": "User-requested Open Graph preview; original project model/UI with credited reference sources; no NASA endorsement",
-      "sha256": "0a0950473b2317764aa0edcb58b331757b9a610c4db1cfc89df60c383adb666b",
-      "bytes": 587461,
-      "modifications": "Native isolated browser screenshot, 1200 x 630; no image synthesis or postprocessing; interactive hero remains real 3D",
+      "sha256": "4a3cd30fdf943c6e8a9c2424adf4e9dc1575f9d6f830a686a4af76425f8420d8",
+      "bytes": 790711,
+      "modifications": "Actual local browser screenshot at 1920 x 1008, downsampled to 1200 x 630 with Lanczos. No compositing, generated image content or altered astronomical detail; interactive hero remains real 3D. Capture record: assets/seeing-invisible.json.",
       "purpose": "Open Graph preview only; not astronomical data"
     },
     {

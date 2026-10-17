@@ -6,7 +6,7 @@
 
 ## Publish the corrected application on Netlify
 
-The user selected **Netlify**, superseding the earlier Cloudflare suggestion. The corrected homepage is available on localhost and in the independent upload folder. No Netlify account, project, deployment or domain has been created here yet. The old ChatGPT-hosted site is preserved as history and does not contain the latest layout repair.
+The user selected **Netlify**, superseding the earlier Cloudflare suggestion. The corrected homepage is available on localhost and in the independent upload folder. The user supplied the existing Netlify address https://skyshiftt.netlify.app/. This revision has been implemented locally; no Netlify account access or public deployment was performed by this session. Update the same existing Netlify project to preserve that identity. The old ChatGPT-hosted site is preserved as history and does not contain the latest layout repair.
 
 ### Upload through your browser
 
@@ -40,13 +40,13 @@ $env:SKYSHIFT_TEST_NAME='netlify_public'
 node tools/verify_public_workspace.mjs https://YOUR-ACTUAL-PROJECT.netlify.app
 ```
 
-That command checks the actual public build, source hashes, evidence export/reopening, telescopes and sound, preserving previous receipts. Public Netlify verification remains **NOT RUN** until an actual URL is available. To use your own domain later, open your Netlify project's **Domain management** and follow its custom-domain and DNS instructions.
+That command checks the actual public build, source hashes, evidence export/reopening, telescopes and sound, preserving previous receipts. Verification of this redesigned build on the user-supplied Netlify URL remains **NOT RUN**; the local source and independent static stage are verified separately. To use your own domain later, open your Netlify project's **Domain management** and follow its custom-domain and DNS instructions.
 
 The static upload already includes a Netlify-compatible `_headers` file with the same security policy used locally. SKYSHIFT uses hash routes (`#compare`, `#observations`); no catch-all SPA rewrite or second science engine is needed. All viewing assets and six hashed review-packet parts are included. Notes remain local to each visitor's browser and should be exported to move devices. Retrieving new archive observations and opening external references require internet. Scientific approval and internal human review remain PENDING.
 
 Official references checked on 17 October 2026: [manual publication](https://docs.netlify.com/manage/projects/add-new-project/), [upload troubleshooting](https://docs.netlify.com/resources/troubleshooting/error-reference/), [custom headers](https://docs.netlify.com/manage/routing/headers/), [CLI deploy](https://cli.netlify.com/commands/deploy/). No hosting plan purchase or domain purchase has been assumed.
 
-**Verification of this revision:** 17 homepage/workflow scenarios each in Chrome and Edge, 91 JavaScript unit tests and 24 Python frontend/server checks pass. A separate ordinary Python static server (no SKYSHIFT server routes and no Sites integration) passed four static-host smoke/integrity/export/3D/audio checks. See `evidence/home_layout_tests_chrome.json`, `evidence/home_layout_tests_edge.json` and `evidence/independent_static_tests.json`. Browser widths 320–2560 pixels are emulated; these are not physical-device or subjective design certifications. Scientific approval and human internal review remain PENDING.
+**Verification of redesign 0.8:** 103 JavaScript tests, 24 Python frontend/server checks, all 19 product journeys each in Chrome and Edge, seven new design/interaction/accessibility groups each in Chrome and Edge, ten sound-control journeys, responsive layouts and source-data integrity passed. The refreshed independent upload contains 153 source files plus four static-host metadata/header files. Four ordinary-static-server checks passed, including source hashes, FITS/review parts, evidence export/reopening and all three telescope models. See `evidence/observatory_static_tests.json`, `evidence/observatory_product_tests.json`, `evidence/observatory_final_product_tests_edge.json` and `evidence/observatory_design_tests_chrome.json`. Mobile sizes are emulated; subjective listening/design acceptance and physical-device certification are not claimed. Scientific approval and internal human review remain PENDING.
 
 ---
 

@@ -582,7 +582,7 @@ export function createSpaceScene(
     const started = performance.now();
     if (animation) {
       const t = Math.min(1, (now - animation.start) / 850),
-        k = t < .5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+        k = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
       camera.position.lerpVectors(animation.from, animation.to, k);
       controls.target.lerpVectors(animation.targetFrom, animation.targetTo, k);
       if (t === 1) animation = null;
@@ -614,7 +614,7 @@ export function createSpaceScene(
   function travel(position, target) {
     const to = new THREE.Vector3(...position),
       targetTo = new THREE.Vector3(...target);
-    if (reduced.matches) {
+    if (reduced.matches || !preferences.effects) {
       camera.position.copy(to);
       controls.target.copy(targetTo);
       animation = null;
@@ -935,6 +935,7 @@ export function createSpaceScene(
     });
   }
   function setEffects(value) {
+    controls.enableDamping=value&&!reduced.matches;
     scene.traverse((o) => {
       if (o.userData.illustrativeAtmosphere) o.visible = value;
     });

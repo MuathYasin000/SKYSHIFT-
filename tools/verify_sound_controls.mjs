@@ -75,13 +75,17 @@ async function axe(p) {
 try {
   const { c, p } = await context();
   await check(
-    "Default-on waits for first real gesture; homepage keyboard navigation starts audio without WebGL or remote services",
+    "Default-off stays silent on normal gestures; explicit opt-in starts local audio without WebGL",
     async () => {
       await ready(p, "#compare");
       await science(p);
       let d = await p.evaluate(() => skyshiftSound.diagnostics());
-      assert.equal(d.enabled, true);
+      assert.equal(d.enabled, false);
       assert.equal(d.context_state, "not_created");
+      await p.click("#instrument-zoom-in");
+      assert.equal((await p.evaluate(()=>skyshiftSound.diagnostics())).enabled,false);
+      await p.click("#site-sound");
+      await p.waitForTimeout(100);
       await p.locator("#instrument-zoom-in").focus();
       await p.keyboard.press("Enter");
       await p.waitForFunction(
@@ -162,7 +166,7 @@ try {
     "Sound palette offers editable volumes, distinct real playback and an accessible keyboard-dismissable dialog",
     async () => {
       await p.click("#site-more");
-      await p.click("[data-open-sound]");
+      await p.click("[data-open-sound]:visible");
       await p.locator("#sound-settings[open]").waitFor();
       assert.deepEqual(await axe(p), []);
       assert.equal(await p.locator("#sound-air").count(), 0);
@@ -254,7 +258,7 @@ try {
           // OfflineAudioContext produces ephemeral sample arrays only: no WAV, recording or media artifact.
           let ctx;
           const audio = createSpaceAudio(
-            { effects_volume: 0.5, ambience_volume: 0 },
+            { sound_enabled:true, effects_volume: 0.5, ambience_volume: 0 },
             {
               Audio: class {
                 constructor() {
@@ -313,7 +317,7 @@ try {
   );
   await c.close();
   await check(
-    "Orbital hero action has its own dark/spectral surface, readable text and a direct keyboard route to real observations",
+    "Orbital hero action has its requested cream/spectral surface, readable text and a direct keyboard route to real observations",
     async () => {
       const { c, p } = await context();
       try {
@@ -326,15 +330,15 @@ try {
         assert.equal(await hero.getAttribute("href"), "#compare");
         assert.equal(await hero.locator(".launch-spectrum i").count(), 6);
         const style = await hero.evaluate((e) => ({
-          fill: getComputedStyle(e).backgroundImage,
+          fill: getComputedStyle(e).backgroundColor,
           ink: getComputedStyle(e).color,
         }));
-        assert.match(style.fill, /radial-gradient/);
+        assert.equal(style.fill, "rgb(244, 233, 212)");
         assert.ok(
           !style.fill.includes("231, 242, 247"),
           "Rejected pale-blue generic fill",
         );
-        assert.equal(style.ink, "rgb(250, 241, 227)");
+        assert.equal(style.ink, "rgb(23, 27, 32)");
         assert.deepEqual(await axe(p), []);
         await p.screenshot({ path: out + "/hero-desktop.png" });
         await hero.focus();
@@ -386,7 +390,7 @@ try {
             "Sound belongs in the same header row as More",
           );
           await p.click("#site-more");
-          await p.click("[data-open-sound]");
+          await p.click("[data-open-sound]:visible");
           assert.deepEqual(await axe(p), []);
           await p.screenshot({ path: `${out}/palette-${width}.png` });
           await p.locator("#sound-settings-close").click();
@@ -441,7 +445,7 @@ try {
         await p.click("#instrument-zoom-in");
         await p.click("#site-sound");
         await p.click("#site-more");
-        await p.click("[data-open-sound]");
+        await p.click("[data-open-sound]:visible");
         await p.click('[data-preview-sound="hubble"]');
         assert.match(
           await p.locator("#sound-status").innerText(),

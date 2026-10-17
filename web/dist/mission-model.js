@@ -8,7 +8,12 @@ import { readPreferences } from "./space-preferences.js";
 
 export function createMissionModel(
   canvas,
-  { onComponent = () => {}, onError = () => {}, onAnchors = () => {}, presentation = "mission" } = {},
+  {
+    onComponent = () => {},
+    onError = () => {},
+    onAnchors = () => {},
+    presentation = "mission",
+  } = {},
 ) {
   const hero = presentation === "hero";
   const lifetime = new AbortController(),
@@ -74,18 +79,61 @@ export function createMissionModel(
     disposed = false,
     selected = null,
     down = null,
-    userModified = false;
+    userModified = false,
+    flight = null,
+    componentCenters = null;
   function draw() {
     if (!visible || disposed || document.hidden || frame) return;
-    frame = requestAnimationFrame(() => {
+    frame = requestAnimationFrame((now) => {
       frame = 0;
+      if (!visible || disposed || document.hidden) return;
+      if (flight) {
+        const t =
+            matchMedia("(prefers-reduced-motion:reduce)").matches ||
+            !readPreferences().effects
+              ? 1
+              : Math.min(1, (now - flight.started) / 700),
+          k = t * t * (3 - 2 * t);
+        camera.position.lerpVectors(flight.from, flight.to, k);
+        controls.target.lerpVectors(flight.targetFrom, flight.targetTo, k);
+        controls.update();
+        if (t === 1) flight = null;
+      }
       renderer.render(scene, camera);
       frames++;
-      if(!hero){
-        const boxes=new Map();
-        model.traverse(o=>{const id=o.userData.component;if(o.isMesh&&id){if(!boxes.has(id))boxes.set(id,new THREE.Box3());boxes.get(id).expandByObject(o);}});
-        onAnchors([...boxes].map(([id,box])=>{const p=box.getCenter(new THREE.Vector3()).project(camera);return {id,x:(p.x+1)/2,y:(1-p.y)/2,visible:p.z>-1&&p.z<1&&Math.abs(p.x)<.9&&Math.abs(p.y)<.85};}));
+      if (!hero) {
+        if (!componentCenters) {
+          const boxes = new Map();
+          model.updateMatrixWorld(true);
+          model.traverse((o) => {
+            const id = o.userData.component;
+            if (o.isMesh && id) {
+              if (!boxes.has(id)) boxes.set(id, new THREE.Box3());
+              boxes.get(id).expandByObject(o);
+            }
+          });
+          componentCenters = [...boxes].map(([id, box]) => ({
+            id,
+            center: box.getCenter(new THREE.Vector3()),
+          }));
+        }
+        onAnchors(
+          componentCenters.map(({ id, center }) => {
+            const p = center.clone().project(camera);
+            return {
+              id,
+              x: (p.x + 1) / 2,
+              y: (1 - p.y) / 2,
+              visible:
+                p.z > -1 &&
+                p.z < 1 &&
+                Math.abs(p.x) < 0.9 &&
+                Math.abs(p.y) < 0.85,
+            };
+          }),
+        );
       }
+      if (flight) draw();
     });
   }
   function resize() {
@@ -98,6 +146,7 @@ export function createMissionModel(
     draw();
   }
   function reset() {
+    flight = null;
     userModified = false;
     selected = null;
     model.traverse((o) => {
@@ -126,6 +175,7 @@ export function createMissionModel(
   }
   controls.addEventListener("change", draw);
   controls.addEventListener("start", () => {
+    flight = null;
     userModified = true;
   });
   const observer = new ResizeObserver(resize);
@@ -148,15 +198,29 @@ export function createMissionModel(
     if (!box.isEmpty()) {
       const center = box.getCenter(new THREE.Vector3()),
         size = box.getSize(new THREE.Vector3()).length();
-      controls.target.copy(center);
-      camera.position
-        .copy(center)
+      const destination = center
+        .clone()
         .add(
           new THREE.Vector3(-1, 0.7, 1.6)
             .normalize()
             .multiplyScalar(Math.max(2.5, size * 1.6)),
         );
-      controls.update();
+      if (
+        matchMedia("(prefers-reduced-motion:reduce)").matches ||
+        !readPreferences().effects
+      ) {
+        flight = null;
+        controls.target.copy(center);
+        camera.position.copy(destination);
+        controls.update();
+      } else
+        flight = {
+          started: performance.now(),
+          from: camera.position.clone(),
+          to: destination,
+          targetFrom: controls.target.clone(),
+          targetTo: center,
+        };
     }
     draw();
   }
@@ -182,6 +246,7 @@ export function createMissionModel(
     down = null;
   });
   listen(canvas, "keydown", (e) => {
+    flight = null;
     if (["+", "=", "-"].includes(e.key)) {
       e.preventDefault();
       zoom(e.key === "-" ? 1.2 : 0.8);
@@ -211,6 +276,7 @@ export function createMissionModel(
     );
   });
   function zoom(factor) {
+    flight = null;
     userModified = true;
     const d = camera.position.clone().sub(controls.target),
       distance = Math.max(2, Math.min(12, d.length() * factor));
@@ -226,6 +292,7 @@ export function createMissionModel(
     focusComponent,
     setVisible(value) {
       visible = Boolean(value);
+      if (!visible) flight = null;
       if (!visible && frame) {
         cancelAnimationFrame(frame);
         frame = 0;

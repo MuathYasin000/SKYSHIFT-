@@ -303,7 +303,15 @@ function renderFields() {
       field.observations.map((o) => friendlyDate(o.time_start_utc)).join(" / "),
       "field-date",
     );
-    content.append(dates, node("p", field.observations.map(o=>o.observation_id).join(" / "), "field-source-id"), node("strong", "Open observation →", "field-action"));
+    content.append(
+      dates,
+      node(
+        "p",
+        field.observations.map((o) => o.observation_id).join(" / "),
+        "field-source-id",
+      ),
+      node("strong", "Open observation →", "field-action"),
+    );
     link.append(wrap, content);
     card.append(link);
     const reveal = node("button", "◉ Reveal preview", "field-reveal-toggle");
@@ -386,7 +394,7 @@ async function activateModel() {
   $("activate-mission-model").disabled = true;
   $("activate-mission-model").textContent = "Opening interactive model…";
   $("mission-model-start").classList.add("model-opening");
-  $("mission-model-start").setAttribute("aria-busy","true");
+  $("mission-model-start").setAttribute("aria-busy", "true");
   try {
     const { createMissionModel } = await import("./mission-model.js");
     if (modelFailed) {
@@ -396,15 +404,25 @@ async function activateModel() {
       modelFailed = false;
     }
     model = createMissionModel($("mission-model-canvas"), {
-      onAnchors: anchors => {
-        const used=[];
-        for(const anchor of anchors){
-          const button=document.querySelector('[data-model-hotspot="'+anchor.id+'"]');
-          if(!button)continue;
-          const r=$("mission-model-canvas").getBoundingClientRect(),x=anchor.x*r.width,y=anchor.y*r.height;
-          const visible=anchor.visible&&!used.some(p=>Math.hypot(p.x-x,p.y-y)<48);
-          button.hidden=!visible;
-          if(visible){used.push({x,y});button.style.left=x+'px';button.style.top=y+'px';}
+      onAnchors: (anchors) => {
+        const used = [];
+        for (const anchor of anchors) {
+          const button = document.querySelector(
+            '[data-model-hotspot="' + anchor.id + '"]',
+          );
+          if (!button) continue;
+          const r = $("mission-model-canvas").getBoundingClientRect(),
+            x = anchor.x * r.width,
+            y = anchor.y * r.height;
+          const visible =
+            anchor.visible &&
+            !used.some((p) => Math.hypot(p.x - x, p.y - y) < 48);
+          button.hidden = !visible;
+          if (visible) {
+            used.push({ x, y });
+            button.style.left = x + "px";
+            button.style.top = y + "px";
+          }
         }
       },
       onComponent: (key) =>
@@ -423,7 +441,9 @@ async function activateModel() {
     });
     $("mission-model-start").hidden = true;
     $("mission-model-tools").hidden = false;
-    document.querySelector('.mission-section').classList.add('walkthrough-enabled');
+    document
+      .querySelector(".mission-section")
+      .classList.add("walkthrough-enabled");
     $("mission-model-status").textContent =
       "Illustrative SPHEREx model · drag to rotate, scroll/pinch to zoom. Arrow keys rotate; + / − zoom; Home resets.";
     model.setVisible(surface === "home" && missionVisible);

@@ -436,7 +436,7 @@ try {
       assert.deepEqual(after.display, before.display);
       assert.equal(
         (await p.evaluate(() => skyshiftSpace.audio())).enabled,
-        true,
+        false,
       );
     },
   );
@@ -465,6 +465,7 @@ try {
       await p.waitForFunction(
         () => skyshiftSpace.diagnostics().scene === "solar",
       );
+      if(!(await p.evaluate(()=>skyshiftSpace.audio())).enabled) await p.click("#sound-toggle");
       await p.click("#sound-toggle");
       assert.equal(
         (await p.evaluate(() => skyshiftSpace.audio())).enabled,
