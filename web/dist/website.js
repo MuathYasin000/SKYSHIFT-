@@ -303,10 +303,10 @@ function renderFields() {
       field.observations.map((o) => friendlyDate(o.time_start_utc)).join(" / "),
       "field-date",
     );
-    content.append(dates, node("strong", "View observation →", "field-action"));
+    content.append(dates, node("p", field.observations.map(o=>o.observation_id).join(" / "), "field-source-id"), node("strong", "Open observation →", "field-action"));
     link.append(wrap, content);
     card.append(link);
-    const reveal = node("button", "Reveal preview ◉", "field-reveal-toggle");
+    const reveal = node("button", "◉ Reveal preview", "field-reveal-toggle");
     reveal.setAttribute("aria-pressed", "false");
     reveal.setAttribute(
       "aria-label",
@@ -316,8 +316,8 @@ function renderFields() {
       const active = card.classList.toggle("preview-revealed");
       reveal.setAttribute("aria-pressed", String(active));
       reveal.textContent = active
-        ? "Original infrared preview ✓"
-        : "Reveal preview ◉";
+        ? "◉ Original preview · on"
+        : "◉ Reveal preview";
     };
     card.append(reveal);
     if (field.comparison_status === "provisional_restricted") {

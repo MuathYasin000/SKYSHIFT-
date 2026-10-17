@@ -241,10 +241,11 @@
                 >Find a sky region</label
               ><input
                 id="home-field-search"
+                list="sky-region-suggestions"
                 type="search"
                 placeholder="Find a sky region"
                 maxlength="100"
-              /><button id="home-resume" hidden>Resume investigation →</button>
+              /><datalist id="sky-region-suggestions"><option value="M101"></option><option value="M67"></option><option value="NGC 188"></option><option value="Orion"></option></datalist><kbd class="search-shortcut">⌘/Ctrl K</kbd><button id="home-resume" hidden>↺ Resume investigation</button>
             </div>
           </div>
           <p class="preview-explanation">
@@ -252,7 +253,7 @@
             views use the same infrared exposure; no visible-light image or
             extra detail is synthesized.
           </p>
-          <div id="home-fields" class="home-fields" aria-live="polite"></div>
+          <div id="home-fields" class="home-fields" aria-live="polite"><div class="field-skeleton" aria-hidden="true"></div><div class="field-skeleton" aria-hidden="true"></div><div class="field-skeleton" aria-hidden="true"></div><div class="field-skeleton" aria-hidden="true"></div></div>
           <p id="home-fields-status" class="field-status" role="status">
             Loading the verified local catalogue…
           </p>
