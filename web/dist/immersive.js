@@ -6,6 +6,7 @@ import { createExplorationMemory } from "./exploration-memory.js";
 import { createSpaceAudio } from "./space-audio.js";
 import { telescopeStories } from "./telescope-stories.js";
 import { createTelescopeExperience } from "./telescope-experience.js";
+import { placeLabels } from "./infrared-layout.js";
 
 export function createUniverse({ observationConsole, onOpenScience, onExit }) {
   let activeView = true;
@@ -147,27 +148,35 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     if (!scene) return;
     const width = innerWidth,
       height = innerHeight;
-    for (const p of scene.positions()) {
+    const obstacles = [
+      ...document.querySelectorAll(
+        ".destinations-drawer:not([hidden]),.space-context,.space-header,.space-hud,.telescope-story:not([hidden]),.mission-dock",
+      ),
+    ]
+      .filter((el) => !el.hidden)
+      .map((el) => el.getBoundingClientRect());
+    const positions = scene.positions().map((p) => {
+      const b = document.querySelector('[data-object="' + p.id + '"]');
+      return {
+        ...p,
+        x: p.x * width,
+        y: p.y * height,
+        width: b ? Number((b.dataset.labelWidth ||= b.offsetWidth || 90)) : 90,
+        height: b
+          ? Number((b.dataset.labelHeight ||= b.offsetHeight || 32))
+          : 32,
+        selected: p.id === selected,
+      };
+    });
+    for (const p of placeLabels(positions, obstacles, width, height)) {
       const b = document.querySelector('[data-object="' + p.id + '"]');
       if (!b) continue;
-      const x = p.x * width,
-        y = p.y * height;
-      b.style.left = x + "px";
-      b.style.top = y + "px";
-      const occluded = [
-        ...document.querySelectorAll(
-          ".destinations-drawer:not([hidden]),.space-context,.space-header,.space-hud",
-        ),
-      ].some((el) => {
-        const r = el.getBoundingClientRect();
-        return (
-          x > r.left - 45 &&
-          x < r.right + 45 &&
-          y > r.top - 20 &&
-          y < r.bottom + 20
-        );
-      });
-      b.hidden = !p.visible || y < 85 || y > height - 75 || occluded;
+      b.hidden = p.hidden;
+      if (!p.hidden) {
+        b.style.left = p.left + "px";
+        b.style.top = p.top + "px";
+        b.style.opacity = p.opacity;
+      }
     }
   }
   $("universe").addEventListener("space-frame", positionLabels);
@@ -194,7 +203,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
         "Field centres occupy their real directions on a celestial sphere. No measured 3D depth is implied.",
       ],
     }[environment];
-    $("scene-type").textContent = text[0];
+    $("scene-type").textContent = text[0] + " · ILLUSTRATIVE BACKDROP";
     $("focus-kicker").textContent = text[1];
     $("focus-title").textContent = text[2];
     $("focus-caption").textContent = text[3];

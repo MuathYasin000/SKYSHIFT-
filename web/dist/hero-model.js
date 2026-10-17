@@ -27,6 +27,8 @@ export function installHeroModel() {
     model?.dispose();
     model = null;
     container.dataset.modelState = "failed";
+    if ($("hero-readiness"))
+      $("hero-readiness").textContent = "3D UNAVAILABLE · SCIENCE AVAILABLE";
     $("hero-model-message").hidden = false;
     $("hero-model-message").textContent =
       "3D is unavailable. Your observations still work.";
@@ -60,6 +62,8 @@ export function installHeroModel() {
       });
       model.setVisible(visible());
       container.dataset.modelState = "ready";
+      if ($("hero-readiness"))
+        $("hero-readiness").textContent = "LOCAL VIEW READY";
       $("hero-model-message").hidden = true;
       controls.hidden = false;
     } catch (e) {

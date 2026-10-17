@@ -274,6 +274,38 @@
       "credit": "NASA Visualization Technology Applications and Development (VTAD)",
       "purpose": "Contextual Earth visualization, not live clouds, weather or SPHEREx measurements",
       "modifications": "Embedded textures downsampled to at most 2048px; opaque textures JPEG quality 88; alpha retained as PNG; mesh, materials and geometry unchanged."
+    },
+    {
+      "id": "logo-outlined",
+      "file": "assets/LOGO2.PNG",
+      "credit": "Project Mercury Team / supplied by the user",
+      "source_page": "User attachment LOGO2.PNG, 17 October 2026",
+      "terms": "User-authorized project use; original artwork preserved",
+      "sha256": "9a8996f1d57c7f655ed2a6d6e37d47912fd76a77d22c390384373c3d08992d9b",
+      "bytes": 775265,
+      "modifications": "none"
+    },
+    {
+      "id": "universe-atmosphere",
+      "modifications": "Original procedural shader source; no external imagery imported",
+      "file": "space-atmosphere.js",
+      "credit": "SKYSHIFT / Project Mercury Team original procedural shaders",
+      "source_page": "Original SKYSHIFT source code",
+      "terms": "Original project code; no external imagery or measurements used",
+      "sha256": "325e2146ed0942d3cb43e5273851ddad98a1cf54e9641a0eacc344f1d5fb6acb",
+      "bytes": 2005,
+      "purpose": "Illustrative backdrop and Earth rim glow, not a measured sky map or atmospheric model"
+    },
+    {
+      "id": "seeing-invisible-social-preview",
+      "file": "assets/seeing-invisible.png",
+      "credit": "SKYSHIFT / Project Mercury Team; actual local interactive hero screenshot",
+      "source_page": "http://localhost:3000/",
+      "terms": "User-requested Open Graph preview; original project model/UI with credited reference sources; no NASA endorsement",
+      "sha256": "0a0950473b2317764aa0edcb58b331757b9a610c4db1cfc89df60c383adb666b",
+      "bytes": 587461,
+      "modifications": "Native isolated browser screenshot, 1200 x 630; no image synthesis or postprocessing; interactive hero remains real 3D",
+      "purpose": "Open Graph preview only; not astronomical data"
     }
   ],
   "candidates_reviewed": [

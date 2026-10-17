@@ -1,0 +1,42 @@
+{
+  "recorded_date_utc": "2026-10-17",
+  "scope": "Optional homepage presentation only; never a prerequisite for scientific loading or runtime internet",
+  "libraries": [
+    {
+      "name": "GSAP",
+      "version": "3.13.0",
+      "file": "gsap.min.js",
+      "download_url": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js",
+      "source": "https://gsap.com/community/standard-license/",
+      "license": "GSAP Standard License",
+      "notice": "GSAP-LICENSE.txt",
+      "bytes": 72435,
+      "sha256": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6",
+      "modifications": "none; upstream proprietary/license headers retained"
+    },
+    {
+      "name": "GSAP ScrollTrigger",
+      "version": "3.13.0",
+      "file": "ScrollTrigger.min.js",
+      "download_url": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js",
+      "source": "https://gsap.com/community/standard-license/",
+      "license": "GSAP Standard License",
+      "notice": "GSAP-LICENSE.txt",
+      "bytes": 44157,
+      "sha256": "308219390e5e3b84cda0c481e70caa9820883ae10bda44e6e9a149a81aac4b3f",
+      "modifications": "none; upstream proprietary/license headers retained"
+    },
+    {
+      "name": "Lenis",
+      "version": "1.3.11",
+      "file": "lenis.mjs",
+      "download_url": "https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.mjs",
+      "source": "https://github.com/darkroomengineering/lenis",
+      "license": "MIT",
+      "notice": "Lenis-LICENSE.txt",
+      "bytes": 31986,
+      "sha256": "cae3e8e19647cc469b5f059f1c5585715ffa918dc63ec68701879383a658e6c1",
+      "modifications": "none; upstream proprietary/license headers retained"
+    }
+  ]
+}

@@ -9,24 +9,44 @@
       content="Explore real SPHEREx observations, compare the restricted M101 field across two dates, and save reproducible investigations. Independent Project Mercury Team application."
     />
     <title>SKYSHIFT — SPHEREx observations & comparison</title>
-    <link rel="icon" href="./assets/SKYSHIFT_ICON.PNG" type="image/png" />
+    <link rel="icon" href="./assets/LOGO2.PNG" type="image/png" />
+    <meta property="og:title" content="SKYSHIFT — Seeing the Invisible" />
+    <meta
+      property="og:description"
+      content="Explore authentic SPHEREx observations. Compare carefully. Keep the evidence."
+    />
+    <meta property="og:image" content="./assets/seeing-invisible.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="SKYSHIFT's actual interactive SPHEREx model and Seeing the Invisible spectrum. Illustrative spacecraft model."
+    />
     <link rel="stylesheet" href="./immersive.css" />
     <link rel="stylesheet" href="./telescope-experience.css" />
     <link rel="stylesheet" href="./observation-console.css" />
     <link rel="stylesheet" href="./website.css" />
     <link rel="stylesheet" href="./orbital-design.css" />
+    <link rel="stylesheet" href="./infrared-experience.css" />
   </head>
   <body data-surface="home">
+    <div class="reading-spectrum" aria-hidden="true">
+      <div data-spectrum></div>
+    </div>
+    <div id="infrared-lens" aria-hidden="true">
+      <span>IR / DISPLAY LENS</span>
+    </div>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header" id="site-header">
       <a class="site-brand" href="#home" aria-label="SKYSHIFT home"
         ><img
-          src="./assets/SKYSHIFT_ICON.PNG"
+          src="./assets/LOGO2.PNG"
           width="56"
           height="56"
-          alt="SKYSHIFT — Project Mercury Team"
-        /><span>SKYSHIFT<small>SPHEREx observation explorer</small></span></a
-      >
+          alt="SKYSHIFT — Project Mercury Team" /><span
+          >SKYSHIFT<small>SPHEREx observation explorer</small
+          ><i data-spectrum aria-hidden="true"></i></span
+      ></a>
       <nav class="site-navigation" aria-label="Main navigation">
         <a href="#observations" data-route="observations">Observations</a
         ><a href="#compare" data-route="compare">Compare</a
@@ -49,11 +69,16 @@
       <section id="home-view" class="website-content">
         <div class="home-intro orbital-hero">
           <div class="hero-grid" aria-hidden="true"></div>
+          <div class="hero-stars stars-near" aria-hidden="true"></div>
+          <div class="hero-stars stars-far" aria-hidden="true"></div>
           <div class="intro-copy">
             <p class="eyebrow">
               <span class="status-dot"></span> A NEW PERSPECTIVE ON THE UNIVERSE
             </p>
-            <h1>Explore & compare<br />the <span>invisible.</span></h1>
+            <h1 aria-label="Explore & compare the invisible.">
+              <span class="headline-line">Explore & compare</span
+              ><span class="headline-line">the <em>invisible.</em></span>
+            </h1>
             <p class="intro-lead">
               There’s more to the sky than meets the eye. Explore real infrared
               observations from NASA’s SPHEREx telescope. Compare available
@@ -71,10 +96,24 @@
               M101 offers a restricted two-date comparison. Scientific approval
               is <strong>PENDING</strong>.
             </p>
+            <div class="vision-controls">
+              <button id="vision-effects" aria-pressed="true">
+                ◉ Infrared lens on</button
+              ><span>Display effect only · real pixels stay unchanged</span>
+            </div>
           </div>
           <figure class="hero-observatory">
             <div class="orbital-lettering" aria-hidden="true">
               INFRA<br /><span>RED</span>
+            </div>
+            <div class="hero-flare" aria-hidden="true"></div>
+            <div class="hero-hud">
+              <span
+                ><i class="status-dot"></i>
+                <b id="hero-readiness">LOCAL VIEW LOADING</b></span
+              ><span id="hero-field-coordinates"
+                >M101 · RA 210.802° / Dec +54.349°</span
+              ><small>Curated field centre · not spacecraft pointing</small>
             </div>
             <div class="orbital-rings" aria-hidden="true">
               <i></i><i></i><i></i><span class="orbit-point"></span>
@@ -136,8 +175,10 @@
             <span>01 / OBSERVE</span><span>02 / COMPARE</span
             ><span>03 / INVESTIGATE</span>
           </div>
+          <div class="hero-spectrum" data-spectrum aria-hidden="true"></div>
         </div>
         <section class="field-section" aria-labelledby="fields-heading">
+          <div class="section-spectrum" data-spectrum aria-hidden="true"></div>
           <div class="section-heading">
             <div>
               <p class="eyebrow">THE OBSERVATION COLLECTION / 01–04</p>
@@ -154,6 +195,11 @@
               /><button id="home-resume" hidden>Resume investigation →</button>
             </div>
           </div>
+          <p class="preview-explanation">
+            Move over a field or use Reveal preview to lift the dimming. Both
+            views use the same infrared exposure; no visible-light image or
+            extra detail is synthesized.
+          </p>
           <div id="home-fields" class="home-fields" aria-live="polite"></div>
           <p id="home-fields-status" class="field-status" role="status">
             Loading the verified local catalogue…
@@ -184,6 +230,11 @@
               alt="SPHEREx published infrared composite of the Vela Molecular Ridge, with stars and bright clouds of gas and dust"
               loading="lazy"
             />
+            <div class="vela-dim" aria-hidden="true"></div>
+            <div class="vela-divider" aria-hidden="true"><span>↔</span></div>
+            <p class="vela-treatment">
+              Dimmed display ← → Published infrared composite
+            </p>
             <figcaption>
               <span
                 >VELA MOLECULAR RIDGE
@@ -207,6 +258,7 @@
               What do these colours mean? +
             </button>
             <div id="infrared-legend" hidden>
+              <div data-spectrum aria-hidden="true"></div>
               <p>
                 These colours represent infrared wavelengths, not what human
                 eyes would see.
@@ -221,6 +273,20 @@
               </p>
             </div>
           </figure>
+          <label class="vela-control" for="vela-reveal"
+            >Reveal the published infrared composite
+            <input
+              id="vela-reveal"
+              type="range"
+              min="0"
+              max="100"
+              value="55"
+            /><output id="vela-reveal-value">55%</output
+            ><small
+              >Display demonstration using one image; the dimmed side is not a
+              visible-light observation.</small
+            ></label
+          >
         </section>
         <section
           id="mission-section"
@@ -233,7 +299,9 @@
             <p>
               SPHEREx surveys the sky in infrared light. Its filters measure
               different wavelengths at different positions, building a view
-              across <strong>102 infrared colours</strong>.
+              across
+              <strong><span data-count="102">102</span> infrared colours</strong
+              >.
             </p>
             <p>
               Get to know the spacecraft. Select a component to learn why
@@ -372,6 +440,13 @@
               target="_blank"
               rel="noreferrer"
               >dqnamo Kitchen ↗</a
+            >. Scroll storytelling uses locally supplied GSAP / ScrollTrigger
+            and Lenis.
+            <a
+              href="./vendor/scroll/manifest.json"
+              target="_blank"
+              rel="noreferrer"
+              >Versions, sources &amp; terms ↗</a
             >.
           </p>
         </footer>

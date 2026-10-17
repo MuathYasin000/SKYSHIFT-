@@ -195,7 +195,30 @@ function renderFields() {
     image.width = 260;
     image.height = 160;
     const wrap = node("div", undefined, "field-image");
-    wrap.append(image, node("span", "REAL SPHEREx EXPOSURE"));
+    const revealImage = image.cloneNode();
+    revealImage.alt = "";
+    revealImage.setAttribute("aria-hidden", "true");
+    revealImage.className = "field-reveal-image";
+    const reticle = node("i", undefined, "field-reticle");
+    reticle.setAttribute("aria-hidden", "true");
+    wrap.append(
+      image,
+      revealImage,
+      reticle,
+      node("span", "REAL SPHEREx EXPOSURE"),
+    );
+    const coordinates = node(
+      "small",
+      `RA ${field.ra_deg.toFixed(3)}° / Dec ${field.dec_deg >= 0 ? "+" : ""}${field.dec_deg.toFixed(3)}°`,
+      "field-coordinates",
+    );
+    wrap.append(coordinates);
+    card.style.setProperty(
+      "--field-glow",
+      { m101: "#ffb15d", m67: "#ee926c", ngc188: "#c08bdd", m42: "#ee719a" }[
+        field.id
+      ] || "#ffb15d",
+    );
     const content = node("div", undefined, "field-card-copy");
     content.append(
       node("p", story?.kind || "SPHEREx field", "eyebrow"),
@@ -210,6 +233,20 @@ function renderFields() {
     content.append(dates, node("strong", "View observation →", "field-action"));
     link.append(wrap, content);
     card.append(link);
+    const reveal = node("button", "Reveal preview ◉", "field-reveal-toggle");
+    reveal.setAttribute("aria-pressed", "false");
+    reveal.setAttribute(
+      "aria-label",
+      "Reveal original infrared preview of " + (story?.name || field.title),
+    );
+    reveal.onclick = () => {
+      const active = card.classList.toggle("preview-revealed");
+      reveal.setAttribute("aria-pressed", String(active));
+      reveal.textContent = active
+        ? "Original infrared preview ✓"
+        : "Reveal preview ◉";
+    };
+    card.append(reveal);
     if (field.comparison_status === "provisional_restricted") {
       const compare = node("a", "Compare two dates →", "field-compare");
       compare.href = "#compare";

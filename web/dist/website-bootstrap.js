@@ -18,6 +18,11 @@ try {
     .catch((error) =>
       console.warn("Optional interface details unavailable:", error),
     );
+  import("./infrared-experience.js")
+    .then(({ installInfraredExperience }) => installInfraredExperience())
+    .catch((error) =>
+      console.warn("Optional infrared presentation unavailable:", error),
+    );
 } catch (error) {
   document.body.dataset.controller = "failed";
   const box = document.getElementById("site-error");

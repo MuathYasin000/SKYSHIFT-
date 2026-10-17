@@ -1,0 +1,7 @@
+GSAP and ScrollTrigger 3.13.0
+Copyright 2025, GreenSock. All rights reserved.
+Original proprietary headers are retained unmodified in both distributed files.
+Subject to the GSAP Standard License: https://gsap.com/standard-license
+Full terms: https://gsap.com/community/standard-license/
+Used in SKYSHIFT's web interface, not a visual animation builder.
+This library is not MIT licensed. The Standard License and its restrictions apply.

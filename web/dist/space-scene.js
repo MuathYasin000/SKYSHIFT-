@@ -7,6 +7,10 @@ import { bodies, fieldVector, bodyPosition } from "./space-content.js";
 import { createSPHEREx } from "./spherex-model.js";
 import { telescopeStories } from "./telescope-stories.js";
 import { createObservationEffects } from "./observation-effects.js";
+import {
+  createInfraredBackdrop,
+  createEarthAtmosphere,
+} from "./space-atmosphere.js";
 
 export function createSpaceScene(
   canvas,
@@ -284,6 +288,10 @@ export function createSpaceScene(
       earth.scale.multiplyScalar(3.3);
       earth.position.set(-7, -4, -12);
       earthContext.add(earth);
+      const atmosphere = createEarthAtmosphere(3.3);
+      atmosphere.visible = preferences.effects;
+      atmosphere.position.copy(earth.position);
+      earthContext.add(atmosphere);
       const orbit = new THREE.LineLoop(
         new THREE.BufferGeometry().setFromPoints(
           Array.from({ length: 180 }, (_, i) => {
@@ -318,7 +326,7 @@ export function createSpaceScene(
     },
     starPositions = [],
     colors = [];
-  for (let i = 0; i < 6000; i++) {
+  for (let i = 0; i < (preferences.quality === "low" ? 3500 : 10000); i++) {
     const z = rand() * 2 - 1,
       a = rand() * Math.PI * 2,
       r = 400;
@@ -368,6 +376,8 @@ export function createSpaceScene(
     }),
   );
   scene.add(stars);
+  const infraredBackdrop = createInfraredBackdrop();
+  scene.add(infraredBackdrop);
   const gridMaterial = new THREE.LineBasicMaterial({
     color: 0x294c59,
     transparent: true,
@@ -444,6 +454,12 @@ export function createSpaceScene(
         });
         objects.set(b.id, object);
         solarGroup.add(object);
+        if (b.id === "earth") {
+          const atmosphere = createEarthAtmosphere(b.radius);
+          atmosphere.visible = preferences.effects;
+          atmosphere.position.copy(object.position);
+          solarGroup.add(atmosphere);
+        }
         if (active === "solar")
           onStatus(
             "Loading NASA worlds · " +
@@ -844,9 +860,11 @@ export function createSpaceScene(
     return [...list].map(([id, o]) => {
       const world = o.getWorldPosition(new THREE.Vector3());
       if (active === "observatory") world.y -= 2.25;
+      const distance = camera.position.distanceTo(world);
       const p = world.project(camera);
       return {
         id,
+        distance,
         x: (p.x + 1) / 2,
         y: (1 - p.y) / 2,
         visible:
@@ -859,7 +877,11 @@ export function createSpaceScene(
     });
   }
   function setEffects(value) {
+    scene.traverse((o) => {
+      if (o.userData.illustrativeAtmosphere) o.visible = value;
+    });
     stars.visible = value;
+    infraredBackdrop.visible = value;
     observing.setEnabled(value);
     invalidate();
   }

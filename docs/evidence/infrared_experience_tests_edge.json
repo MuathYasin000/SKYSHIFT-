@@ -1,0 +1,84 @@
+{
+  "recorded_at_utc": "2026-10-17T09:44:07.387Z",
+  "browser": "155.0.4283.45",
+  "results": [
+    {
+      "name": "New outlined logo is the original user file; spectrum strips contain exactly 102 decorative bars",
+      "status": "pass",
+      "detail": {
+        "logo_sha256": "9a8996f1d57c7f655ed2a6d6e37d47912fd76a77d22c390384373c3d08992d9b"
+      }
+    },
+    {
+      "name": "Fine-pointer infrared lens illuminates the hero and lifts real preview dimming without inventing RA/Dec",
+      "status": "pass"
+    },
+    {
+      "name": "Explicit preview reveal toggles on and off and card navigation retains the real exposure route",
+      "status": "pass"
+    },
+    {
+      "name": "Vela slider supports keyboard and actual dragging, with an accurate same-image explanation and spectrum legend",
+      "status": "pass"
+    },
+    {
+      "name": "Optional smooth scrolling moves and settles without a permanent animation frame; effects toggle restores native presentation",
+      "status": "pass"
+    },
+    {
+      "name": "Real comparison retains restricted status, unfiltered scientific pixels and usable glowing wipe; date crossfade is transient display only",
+      "status": "pass"
+    },
+    {
+      "name": "Universe shaders compile, labels avoid each other, and every destination remains available in the drawer",
+      "status": "pass",
+      "detail": {
+        "visible_labels": [
+          "Sun",
+          "Mercury",
+          "Venus",
+          "Earth",
+          "Mars",
+          "Jupiter",
+          "Saturn",
+          "Uranus",
+          "Neptune",
+          "Moon"
+        ]
+      }
+    },
+    {
+      "name": "Touch and responsive presentation at 1024px preserves CTA, reveal and comparison",
+      "status": "pass"
+    },
+    {
+      "name": "Touch and responsive presentation at 390px preserves CTA, reveal and comparison",
+      "status": "pass"
+    },
+    {
+      "name": "Touch and responsive presentation at 320px preserves CTA, reveal and comparison",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced motion disables lens, parallax, entrance/orbit animations, smoothing and date blending while preserving preview controls",
+      "status": "pass"
+    },
+    {
+      "name": "Missing animation library leaves the 3D hero, observations, preview buttons and native scrolling usable",
+      "status": "pass"
+    },
+    {
+      "name": "Direct scientific route requests neither optional 3D nor animation libraries",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "limits": [
+    "Display effects are not measured infrared calibration or visible-light comparisons",
+    "Mobile tests are emulated",
+    "User visual acceptance unclaimed",
+    "Qualified scientific approval and internal human review PENDING",
+    "Independent novice validation NOT CONDUCTED"
+  ]
+}

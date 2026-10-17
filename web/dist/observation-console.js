@@ -56,6 +56,59 @@ export function createObservationConsole({
     <dialog id="instrument-question" class="space-dialog"><form method="dialog"><div class="dialog-top"><h2>Your question about this position</h2><button value="cancel" formnovalidate aria-label="Cancel question">×</button></div><p id="instrument-question-position"></p><label for="instrument-question-text">Question or note</label><textarea id="instrument-question-text" maxlength="1500" rows="4" required></textarea><p>User hypothesis only. No measured motion or confirmed variability.</p><div class="instrument-actions"><button value="cancel" formnovalidate>Cancel</button><button id="instrument-question-save" type="button">Save question</button></div><p id="instrument-question-error" role="alert"></p></form></dialog>
     <dialog id="instrument-information" class="space-dialog"><div class="dialog-top"><h2>Source identities & scientific limits</h2><button id="instrument-information-close" aria-label="Close scientific information">×</button></div><div id="instrument-information-body"></div></dialog>`;
   const toolbar = root.querySelector(".instrument-viewbar > div");
+  const compatibility = node("span", "", "compatibility-badge");
+  compatibility.id = "instrument-compatibility";
+  compatibility.title =
+    "Availability is an engineering screen, not scientific approval. Open Sources & suitability for the evidence.";
+  root.querySelector(".instrument-selection").append(compatibility);
+  let dateTransition = null;
+  function clearDateTransition() {
+    dateTransition?.remove();
+    dateTransition = null;
+    $("instrument-canvas-a").style.pointerEvents = "";
+  }
+  function transitionDate() {
+    clearDateTransition();
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches || !opened)
+      return;
+    const c = $("instrument-canvas-a"),
+      overlay = document.createElement("canvas");
+    overlay.width = c.width;
+    overlay.height = c.height;
+    overlay.getContext("2d").drawImage(c, 0, 0);
+    overlay.className = "date-transition";
+    overlay.setAttribute("aria-hidden", "true");
+    overlay.removeAttribute("tabindex");
+    const label = node(
+      "span",
+      "Switching dates · display transition",
+      "date-transition-label",
+    );
+    const wrap = node("div", undefined, "date-transition-wrap");
+    const rect = c.getBoundingClientRect(),
+      parent = $("instrument-figure-a").getBoundingClientRect();
+    Object.assign(wrap.style, {
+      top: rect.top - parent.top + "px",
+      left: rect.left - parent.left + "px",
+      width: rect.width + "px",
+      height: rect.height + "px",
+      right: "auto",
+      bottom: "auto",
+    });
+    wrap.append(overlay, label);
+    $("instrument-figure-a").append(wrap);
+    dateTransition = wrap;
+    c.style.pointerEvents = "none";
+    const animation = overlay.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: 180,
+      easing: "ease-out",
+    });
+    animation.finished
+      .then(() => {
+        if (dateTransition === wrap) clearDateTransition();
+      })
+      .catch(() => {});
+  }
   toolbar.classList.add("instrument-toolbar");
   toolbar.id = "instrument-tools";
   const toolsToggle = node("button", "Tools ▾");
@@ -297,6 +350,12 @@ export function createObservationConsole({
       b.onclick = () => {
         if (pair) {
           stopBlink();
+          if (
+            v.display.view_mode === "single" &&
+            !v.visual.wipe &&
+            v.display.selected_epoch !== "AB"[index]
+          )
+            transitionDate();
           v.display.selected_epoch = "AB"[index];
           v.display.view_mode = "single";
           v.visual.wipe = false;
@@ -306,6 +365,10 @@ export function createObservationConsole({
       $("instrument-dates").append(b);
     });
     $("instrument-comparison").hidden = !pair;
+    compatibility.dataset.state = pair ? "restricted" : "single";
+    compatibility.textContent = pair
+      ? "RESTRICTED · review pending"
+      : "SINGLE EXPOSURE";
     $("instrument-compare").hidden =
       pair || v.field.comparison_status !== "provisional_restricted";
     $("instrument-exposure").hidden = !pair;
@@ -1083,6 +1146,7 @@ export function createObservationConsole({
       }
     },
     close() {
+      clearDateTransition();
       closeTools();
       engine.persist();
       opened = false;
