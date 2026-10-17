@@ -1271,3 +1271,93 @@ body:not(.infrared-effects) .field-card {
 body:not([data-surface="home"]) .reading-spectrum {
   display: none;
 }
+
+/* Full-bleed scenery, bounded reading widths. Never hide content overflow to
+   conceal a layout fault: only decorative layers are clipped to the viewport. */
+#home-view > :not(.orbital-hero) {
+  width: min(1440px, calc(100% - 2 * var(--home-gutter)));
+  margin-inline: auto;
+}
+#home-view > .story-rail {
+  width: fit-content;
+  max-width: calc(100% - 2 * var(--home-gutter));
+  margin-inline: max(var(--home-gutter), calc((100% - 1440px) / 2)) auto;
+}
+#home-view .orbital-hero {
+  --hero-gutter: max(var(--home-gutter), calc((100% - 1440px) / 2));
+  padding-inline: var(--hero-gutter);
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  column-gap: clamp(20px, 3vw, 48px);
+}
+#home-view .intro-copy {
+  min-width: 0;
+}
+#home-view .hero-grid,
+#home-view .hero-stars,
+#home-view .orbital-hero::before {
+  inset-inline: 0;
+  overflow: clip;
+}
+#home-view .hero-stars {
+  /* Offset the star texture instead of translating its box outside the page. */
+  transform: none;
+  background-position: var(--depth-x, 0px) var(--depth-y, 0px);
+}
+#home-view .hero-index {
+  inset-inline: var(--hero-gutter);
+}
+#home-view .orbital-rings {
+  inset: 4% 6% 8%;
+  transform: none;
+}
+#home-view .hero-observatory figcaption {
+  max-width: 60%;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 1000px) {
+  #home-view .orbital-hero {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 32px;
+    padding-block: 32px 64px;
+  }
+  #home-view .intro-copy {
+    width: 100%;
+    max-width: 720px;
+    justify-self: center;
+  }
+  #home-view .intro-lead {
+    max-width: 620px;
+  }
+  #home-view .hero-observatory {
+    grid-row: 1;
+    width: 100%;
+    max-width: 680px;
+    justify-self: center;
+    height: clamp(280px, 37vw, 360px);
+    margin: 0;
+  }
+  #home-view .orbital-hero h1 {
+    font-size: clamp(34px, 6vw, 54px);
+  }
+}
+@media (max-width: 560px) {
+  #home-view .orbital-hero {
+    gap: 24px;
+    padding-block: 20px 54px;
+  }
+  #home-view .hero-observatory {
+    height: 245px;
+  }
+  #home-view .hero-observatory figcaption {
+    max-width: 100%;
+  }
+  #home-view .orbital-lettering {
+    font-size: clamp(72px, 20vw, 100px);
+    left: 0;
+  }
+  #home-view .hero-index {
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 7px;
+  }
+}

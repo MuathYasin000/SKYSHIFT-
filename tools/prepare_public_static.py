@@ -1,7 +1,7 @@
 """Stage only the verified static application for a conventional public host.
 
 No host credentials or hosting IDs are written into the independent application.
-Run in the project root with --destination tmp/publication-source/dist.
+Run in the project root with --destination tmp/skyshift-upload/dist.
 """
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from local_server import CONTENT_SECURITY_POLICY, content_identity
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def stage(destination: Path):
+def stage(destination: Path, release_id='skyshift-0.7-home-layout'):
     source = (ROOT / 'web/dist').resolve()
     destination = destination.resolve()
     if destination.name != 'dist' or not destination.is_relative_to(ROOT / 'tmp'):
@@ -43,8 +43,8 @@ def stage(destination: Path):
         if not target.exists() or hashlib.sha256(target.read_bytes()).hexdigest() != digest:
             shutil.copyfile(p, target)
         hashes[relative.as_posix()] = digest
-    release = dict(schema_version='1.0', release_id='skyshift-0.7-sine-orbital',
-                   app_version='0.7-sine-orbital', created_at_utc=datetime.now(timezone.utc).isoformat(),
+    release = dict(schema_version='1.0', release_id=release_id,
+                   app_version='0.7-home-layout', created_at_utc=datetime.now(timezone.utc).isoformat(),
                    scientific_approval='PENDING', content_id=content_identity(source),
                    source_asset_sha256=hashes)
     (destination/'release.json').write_text(json.dumps(release, indent=2)+'\n', encoding='utf-8')
@@ -68,4 +68,6 @@ def stage(destination: Path):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--destination', type=Path, required=True)
-    print(json.dumps(stage(parser.parse_args().destination), indent=2))
+    parser.add_argument('--release-id', default='skyshift-0.7-home-layout')
+    args = parser.parse_args()
+    print(json.dumps(stage(args.destination, args.release_id), indent=2))

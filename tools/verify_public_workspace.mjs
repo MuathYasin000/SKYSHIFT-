@@ -1,13 +1,23 @@
-// Verify a publicly deployed static SKYSHIFT build with no login or bypass token.
+// Verify static SKYSHIFT on HTTPS or a loopback staging server; no auth bypass.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
 import { pathToFileURL } from "node:url";
 import { createHash } from "node:crypto";
 const base = process.argv[2];
-if (!base || new URL(base).protocol !== "https:")
-  throw Error("Provide the deployed HTTPS URL");
+if (!base)
+  throw Error("Provide the deployed HTTPS URL or loopback staging URL");
+const address = new URL(base);
+if (
+  address.protocol !== "https:" &&
+  !(
+    address.protocol === "http:" &&
+    ["localhost", "127.0.0.1"].includes(address.hostname)
+  )
+)
+  throw Error("Remote verification requires HTTPS");
+const recordName = process.env.SKYSHIFT_TEST_NAME || "public_workspace";
 const origin = new URL(base).origin,
-  out = "tmp/public-workspace-qa",
+  out = "tmp/" + recordName + "-qa",
   results = [],
   errors = [],
   requests = [];
@@ -48,7 +58,7 @@ async function science() {
 }
 try {
   await check(
-    "Public HTTPS visitor reaches the current orbital hero and real 3D spacecraft without a login",
+    "Static visitor reaches the current orbital hero and real 3D spacecraft without a login",
     async () => {
       const response = await page.goto(origin + "/");
       assert.equal(response.status(), 200);
@@ -65,7 +75,10 @@ try {
       const r = await page.request.get(origin + "/release.json");
       assert.equal(r.status(), 200);
       const release = await r.json();
-      assert.equal(release.release_id, "skyshift-0.7-sine-orbital");
+      assert.equal(
+        release.release_id,
+        process.env.SKYSHIFT_EXPECTED_RELEASE || "skyshift-0.7-home-layout",
+      );
       await page.screenshot({ path: out + "/public-home.png" });
       return {
         release_id: release.release_id,
@@ -75,7 +88,7 @@ try {
     },
   );
   await check(
-    "Public scientific bundle, FITS and complete review parts match the exact local source hashes",
+    "Static scientific bundle, FITS and complete review parts match the exact local source hashes",
     async () => {
       const catalogue = JSON.parse(
         await fs.readFile("web/dist/data/catalog.json", "utf8"),
@@ -114,7 +127,7 @@ try {
     },
   );
   await check(
-    "Hero launches real comparison; public export and reopening preserve a changed viewport",
+    "Hero launches real comparison; static export and reopening preserve a changed viewport",
     async () => {
       await page.locator(".mission-launch").click();
       await science();
@@ -155,7 +168,7 @@ try {
     },
   );
   await check(
-    "Public sine playback, mute and all three telescope models work over HTTPS",
+    "Static sine playback, mute and all three telescope models work",
     async () => {
       await page.click("#site-more");
       await page.click("[data-open-sound]");
@@ -209,11 +222,15 @@ try {
   await page.screenshot({ path: out + "/failure.png" }).catch(() => {});
 } finally {
   await fs.writeFile(
-    "docs/evidence/public_workspace_tests.json",
+    "docs/evidence/" + recordName + "_tests.json",
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),
         base_url: origin,
+        deployment_scope:
+          address.protocol === "http:"
+            ? "local static staging, not a public deployment"
+            : "public HTTPS",
         browser: browser.version(),
         profile:
           "fresh; no login, cookies, publishing credential or auth bypass",
@@ -226,7 +243,7 @@ try {
             new URL(r.url).origin === origin,
         ),
         limits: [
-          "Public smoke and integrity tests; local regression receipts are separate",
+          "Static smoke and integrity tests; scope is recorded above; local regression receipts are separate",
           "No subjective sound/visual approval or qualified scientific review inferred",
           "Qualified scientific approval and internal human review PENDING; independent novice validation NOT CONDUCTED",
         ],

@@ -1,10 +1,32 @@
-# Local and public execution
+# Independent hosting and publication history
 
 **Default development and execution:** the independent application at http://localhost:3000, started with `start_skyshift.bat`. See [local hosting](local_hosting.md). No public hosting account is required for localhost or the curated offline application.
 
-**Current public application:** [SKYSHIFT](https://skyshift-project-mercury.surebream11.chatgpt.site), updated on 17 October 2026 following the user's explicit request for public availability. Visitors need no login. Public static hosting does not require the Windows computer to stay on. Local notes remain in each visitor's browser; export before closing a tab or moving devices. This is optional publication of the same application, not a new hosting dependency. It can also be staged for another conventional static provider and the user's future domain.
+**Previous public deployment (preserved, no further publishing):** [SKYSHIFT](https://skyshift-project-mercury.surebream11.chatgpt.site), updated on 17 October 2026 following the user's explicit request for public availability. Visitors need no login. Public static hosting does not require the Windows computer to stay on. Local notes remain in each visitor's browser; export before closing a tab or moving devices. This is optional publication of the same application, not a new hosting dependency. It can also be staged for another conventional static provider and the user's future domain.
 
-| Current identity | Value |
+## Publish the corrected application independently
+
+The latest user instruction stops ChatGPT Sites development. The layout repair is available on localhost and in the prepared independent upload folder; it has **not** been published to a new provider. The previous public site below remains historical and does not contain this layout repair. No new hosting account or public project was created.
+
+1. Run `D:\Nasa_SKYSHIFT\prepare_web_upload.bat` whenever you want to refresh the upload. It validates and stages the static application at `D:\Nasa_SKYSHIFT\tmp\skyshift-upload\dist`. Python is needed only for this local preparation. The hosted app needs no Python, database or npm build.
+2. Create or sign in to your own [Cloudflare account](https://dash.cloudflare.com/). Open **Workers & Pages → Create application → Get started → Drag and drop your files**. Choose **Pages / Direct Upload** if the dashboard shows a Workers/Pages choice.
+3. Choose an available project name, for example `skyshift-mercury`. Drag the prepared **dist folder** into the upload area. Its `index.html`, `assets`, `data` and `vendor` must be at the deployed site's root. Upload the entire prepared folder; do not upload the full project, virtual environment or old Sites archive.
+4. Select **Deploy site** (or **Save and Deploy**). Cloudflare supplies the actual `https://<available-project-name>.pages.dev` address. The name is not reserved by this project. Share that address; your PC can then be off.
+5. Open the result in a fresh browser: check the full-width homepage, drag the telescope, open Compare, export an investigation and reopen it. In this workspace, `node tools/verify_public_workspace.mjs https://YOUR-ACTUAL-SITE.pages.dev` runs the automated public smoke/integrity/export checks. The new provider's deployment is unverified until those checks are run there.
+
+The prepared upload has 149 files; its largest file is 8,000,000 bytes. These fit the documented drag-and-drop limits of 1,000 files and 25 MiB per file. It includes static security headers, public runtime metadata, original source identities, all viewing assets and all six hashed review-packet parts. It contains no hosting credentials or ChatGPT runtime integration. Curated views, 3D, sound, notes and evidence reconstruction run in visitors' browsers. Retrieving new observations and following external NASA references require internet. Private notes remain browser-local and should be exported to move between devices; there is no shared user database.
+
+For later updates, rerun the preparation script, then choose **Create a new deployment** in that same Pages project and upload the refreshed folder. Direct Upload projects cannot be switched to Git integration in place; automatic Git deployments would require a separate Git-integrated Pages project. To add your own domain later, open the Pages project's **Custom domains → Set up a custom domain** and follow the DNS instructions before sharing it.
+
+Official instructions checked on 17 October 2026: [Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/), [custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/). No cloud subscription, credentials or domain purchase has been assumed on the user's behalf.
+
+**Verification of this revision:** 17 homepage/workflow scenarios each in Chrome and Edge, 91 JavaScript unit tests and 24 Python frontend/server checks pass. A separate ordinary Python static server (no SKYSHIFT server routes and no Sites integration) passed four static-host smoke/integrity/export/3D/audio checks. See `evidence/home_layout_tests_chrome.json`, `evidence/home_layout_tests_edge.json` and `evidence/independent_static_tests.json`. Browser widths 320–2560 pixels are emulated; these are not physical-device or subjective design certifications. Scientific approval and human internal review remain PENDING.
+
+---
+
+## Previous Sites version 4 (historical)
+
+| Historical identity | Value |
 | --- | --- |
 | Existing project, preserved | appgprj_6ad224d35b908191a0566896f57187a7 |
 | Release | skyshift-0.7-sine-orbital |
@@ -20,7 +42,7 @@ The 145 frontend assets were copied byte for byte from `web/dist`; the public st
 
 **Executed public verification:** four fresh-profile Chrome scenarios passed, without login, publishing credentials or auth bypass. They verified the public hero and 3D model, exact bundle/FITS/all six review-part hashes, comparison ZIP download and changed-viewport reopening, sine playback/mute and all three optional telescope models with the optical explanation. See [the machine-readable receipt](evidence/public_workspace_tests.json). Local verification additionally passed 91 JavaScript tests, 24 Python frontend/server checks, ten targeted scenarios each in Chrome and Edge and 19 full product journeys in Chrome. Public smoke coverage is not a physical-device, subjective listening, scientific or independent novice certification.
 
-## Current publication procedure
+## Historical Sites publication procedure (superseded)
 
 Keep local source under `web/dist` independent. Open the existing hosting source into `tmp/publication-source` using the Sites source helper, then run `tools/prepare_public_static.py --destination tmp/publication-source/dist`. Validate the exact staged hashes, use the source helper to push/package, save the exact version and deploy it. On this Windows host, Git Bash must be on PATH and GNU tar needs `TAR_OPTIONS=--force-local` to interpret the drive-letter archive path. Credentials belong only in memory/stdin, never files, logs or command arguments. The hosting metadata is confined to the temporary publication checkout.
 
