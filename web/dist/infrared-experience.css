@@ -1317,11 +1317,14 @@ body:not([data-surface="home"]) .reading-spectrum {
 /* Desktop is an edge-aligned observatory, not a centred 1440px landing card.
    Keep this independent of the approved mobile/tablet composition below. */
 @media (min-width: 1001px) {
-  body[data-surface="home"] .site-header {
-    padding-inline: clamp(24px, 2.25vw, 48px);
+  body[data-surface] {
+    --desktop-gutter: clamp(24px, 2.25vw, 48px);
+  }
+  body[data-surface] .site-header {
+    padding-inline: var(--desktop-gutter);
   }
   #home-view {
-    --home-gutter: clamp(24px, 2.25vw, 48px);
+    --home-gutter: var(--desktop-gutter);
   }
   #home-view .orbital-hero {
     --hero-gutter: var(--home-gutter);
@@ -1338,6 +1341,17 @@ body:not([data-surface="home"]) .reading-spectrum {
   }
   #home-view .intro-lead {
     max-width: clamp(440px, 32vw, 620px);
+  }
+  .science-page .observation-console {
+    inset-inline: var(--desktop-gutter);
+  }
+}
+/* Short desktop windows deliberately scroll vertically. Keep that relative
+   layout instead of offsetting it twice with fixed-position side insets. */
+@media (min-width: 1001px) and (max-height: 720px) {
+  .science-page .observation-console {
+    inset-inline: auto;
+    margin-inline: var(--desktop-gutter);
   }
 }
 @media (max-width: 1000px) {
