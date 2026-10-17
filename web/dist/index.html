@@ -62,12 +62,12 @@
       <button
         id="site-sound"
         data-sound-toggle
-        aria-pressed="true"
-        aria-label="Mute SKYSHIFT sound"
-        title="Mute all SKYSHIFT sound"
+        aria-pressed="false"
+        aria-label="Turn SKYSHIFT sound on"
+        title="Turn SKYSHIFT sound on"
       >
         <span class="sound-wave" aria-hidden="true"><i></i><i></i><i></i></span
-        ><span class="sound-word">Sound on</span>
+        ><span class="sound-word">Sound off</span>
       </button>
       <button
         id="site-more"
@@ -83,12 +83,13 @@
           <div class="hero-grid" aria-hidden="true"></div>
           <div class="hero-stars stars-near" aria-hidden="true"></div>
           <div class="hero-stars stars-far" aria-hidden="true"></div>
+          <div class="hero-stars stars-mid" aria-hidden="true"></div>
           <div class="intro-copy">
             <p class="eyebrow">
               <span class="status-dot"></span> A NEW PERSPECTIVE ON THE UNIVERSE
             </p>
             <h1 aria-label="Explore & compare the invisible.">
-              <span class="headline-line">Explore & compare</span
+              <span class="headline-line">Explore &amp;</span><span class="headline-line">compare</span
               ><span class="headline-line">the <em>invisible.</em></span>
             </h1>
             <p class="intro-lead">
@@ -130,7 +131,7 @@
                   ><small>SPHEREx / OBSERVATION LAB</small
                   ><strong>Explore &amp; Compare</strong
                   ><span
-                    >Real observations. Two dates. Your questions.</span
+                    >Two dates. One field. Your evidence.</span
                   ></span
                 >
                 <span class="launch-arrow" aria-hidden="true">↗</span>
@@ -143,8 +144,7 @@
               >
             </div>
             <p class="intro-note">
-              M101 offers a restricted two-date comparison. Scientific approval
-              is <strong>PENDING</strong>.
+              M101 offers a restricted two-date comparison. <span class="status-pending" title="Engineering screens are documented. Qualified astronomical review is not complete.">Scientific approval PENDING</span>
             </p>
             <div class="vision-controls">
               <button id="vision-effects" aria-pressed="true">
@@ -164,6 +164,7 @@
               ><span id="hero-field-coordinates"
                 >M101 · RA 210.802° / Dec +54.349°</span
               ><small>Curated field centre · not spacecraft pointing</small>
+              <small id="hero-cursor-position">DISPLAY POSITION / move over the hero</small>
             </div>
             <div class="orbital-rings" aria-hidden="true">
               <i></i><i></i><i></i><span class="orbit-point"></span>
