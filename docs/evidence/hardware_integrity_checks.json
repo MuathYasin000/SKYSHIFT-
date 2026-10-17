@@ -1,0 +1,76 @@
+{
+  "recorded_date_utc": "2026-10-17",
+  "scope": "Photo-assisted SPHEREx model revision; engineering verification only",
+  "baseline_commit": "a15ee2e",
+  "preserved": {
+    "tracked_scientific_assets_unchanged": 21,
+    "python_scientific_source_unchanged": true,
+    "native_investigation_and_observation_console_unchanged": true,
+    "comparison_pair": "pair-52ad675d929b0740c23b",
+    "method": "git diff --quiet a15ee2e -- web/dist/data src/skyshift web/dist/investigation.js web/dist/observation-console.js returned 0"
+  },
+  "source_sha256": {
+    "web/dist/spherex-model.js": "3c3684dd73d66b2e9ff58c4d4acdcd37e4afb45286856608364ea48720c3ad47",
+    "web/dist/spherex-materials.js": "eb9cced008c8a676de3e147a7f8c441d5bbae7638f917f7cedb82a98d36d6298",
+    "web/dist/hardware-studio.js": "8b2e66b54fb701d26102968dabb5af51299e7e3e3079bae44118b0336b628eef"
+  },
+  "reference_record": "web/dist/assets/space/spherex-hardware-references.json",
+  "executed_checks": {
+    "javascript_unit_tests": {
+      "passed": 76,
+      "failed": 0,
+      "skipped": 0
+    },
+    "python_frontend_contracts": {
+      "passed": 4
+    },
+    "dedicated_hero_browser_checks": {
+      "passed": 13,
+      "receipt": "hardware_model_tests.json"
+    },
+    "chrome_product_journeys": {
+      "passed": 19,
+      "receipt": "hardware_product_tests.json"
+    },
+    "edge_product_journeys": {
+      "passed": 19,
+      "receipt": "hardware_product_tests_edge.json"
+    },
+    "production_static_asset_validation": "PASS",
+    "scientific_asset_validation": "PASS",
+    "full_python_suite": "Not rerun for this model-only change; prior receipts remain historical"
+  },
+  "sampled_hero_render": {
+    "draw_calls": 29,
+    "triangles": 86040,
+    "idle_frame_delta": 0
+  },
+  "visual_inspection": {
+    "screenshots": [
+      "tmp/hardware-details-qa/home-1440.png",
+      "tmp/hardware-details-qa/home-320.png",
+      "tmp/hardware-qa/mission-model.png",
+      "tmp/hardware-qa/universe.png",
+      "tmp/hardware-realism-qa/top.png",
+      "tmp/hardware-realism-qa/underside.png"
+    ],
+    "method": "Agent inspection of actual isolated-browser renders; no human visual acceptance inferred"
+  },
+  "limitations": [
+    "Geometry and materials are photo-informed approximations, not manufacturing CAD or photogrammetry",
+    "Fine surface fields and studio reflections are original illustrative appearance assets, not measured scans",
+    "Indistinguishability from real hardware has not been established",
+    "Mobile browser tests are emulated, not physical-device tests",
+    "Qualified scientific approval and internal human review PENDING",
+    "Independent novice validation NOT CONDUCTED; user visual acceptance unclaimed"
+  ],
+  "post_restart": {
+    "recorded_at_utc": "2026-10-17T09:14:29.532Z",
+    "content_id": "4042251fd463fb1e15d539f6378f8e0445ca03ea669f93e35f529f882e8abb07",
+    "release_id": "workspace",
+    "hero_rendered": true,
+    "comparison_loaded": true,
+    "page_errors": [],
+    "current_source_identity_matches": true
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "recorded_at_utc": "2026-10-17T09:11:25.250Z",
+  "browser": "155.0.4283.45",
+  "profile": "isolated, not the user session",
+  "results": [
+    {
+      "name": "Homepage shows the requested real 3D SPHEREx model without loading the optional Universe",
+      "status": "pass",
+      "detail": {
+        "hero_model_rendered": true,
+        "universe_downloads": 0,
+        "preview_cards": 4
+      }
+    },
+    {
+      "name": "Primary call to action opens the actual restricted comparison in one action",
+      "status": "pass"
+    },
+    {
+      "name": "Simple date controls, linked viewport, draggable wipe and blinking work",
+      "status": "pass"
+    },
+    {
+      "name": "Pixel inspection and question add, edit, locate, ZIP save and reopening",
+      "status": "pass"
+    },
+    {
+      "name": "Sources and diagnostics stay optional and preserve exact archive identities",
+      "status": "pass"
+    },
+    {
+      "name": "Home and direct navigation preserve the same scientific state and canvas",
+      "status": "pass"
+    },
+    {
+      "name": "Single observations have clear availability and no nonfunctional comparison control",
+      "status": "pass"
+    },
+    {
+      "name": "Field search and contextual NASA composite legend are functional",
+      "status": "pass"
+    },
+    {
+      "name": "Website spacecraft viewer is opt-in, selectable and pauses offscreen",
+      "status": "pass"
+    },
+    {
+      "name": "Optional universe loads only on entry and returns without losing scientific work",
+      "status": "pass"
+    },
+    {
+      "name": "Universe spacecraft, secondary observatories, solar system and optional audio remain usable",
+      "status": "pass"
+    },
+    {
+      "name": "Fresh profiles reopen current and previous-version JSON/ZIP investigations",
+      "status": "pass"
+    },
+    {
+      "name": "Readable responsive home, comparison and touch questions at 1024px",
+      "status": "pass"
+    },
+    {
+      "name": "Readable responsive home, comparison and touch questions at 390px",
+      "status": "pass"
+    },
+    {
+      "name": "Readable responsive home, comparison and touch questions at 320px",
+      "status": "pass"
+    },
+    {
+      "name": "Science works with WebGL disabled; optional 3D failure has a website exit",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced motion keeps manual comparison accessible and disables blinking",
+      "status": "pass"
+    },
+    {
+      "name": "Corrupted single data are refused and retry preserves source checks",
+      "status": "pass"
+    },
+    {
+      "name": "Keyboard inspection and automated accessibility rules on home and science",
+      "status": "pass",
+      "detail": {
+        "science": {
+          "violations": [],
+          "incomplete": 1
+        },
+        "home": {
+          "violations": [],
+          "incomplete": 1
+        }
+      }
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "limits": [
+    "Qualified scientific approval PENDING",
+    "Internal human review PENDING",
+    "Independent novice usability validation NOT CONDUCTED",
+    "Mobile testing is emulation, not physical-device validation",
+    "Automated rules do not establish human usability or manual accessibility certification"
+  ]
+}

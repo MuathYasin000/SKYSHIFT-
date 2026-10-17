@@ -2,7 +2,7 @@
 // geometry and source-supported component identifiers; no scientific engine.
 import * as THREE from "./vendor/three/three.module.js";
 import { OrbitControls } from "./vendor/three/OrbitControls.js";
-import { RoomEnvironment } from "./vendor/three/RoomEnvironment.js";
+import { createHardwareStudio } from "./hardware-studio.js";
 import { createSPHEREx } from "./spherex-model.js";
 import { readPreferences } from "./space-preferences.js";
 
@@ -26,7 +26,7 @@ export function createMissionModel(
   );
   renderer.setClearColor(hero ? "#070a12" : "#0c1115", hero ? 0 : 1);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = 0.95;
   renderer.shadowMap.enabled = preferences.quality !== "low";
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   const scene = new THREE.Scene(),
@@ -34,20 +34,22 @@ export function createMissionModel(
     controls = new OrbitControls(camera, canvas),
     model = createSPHEREx();
   scene.add(model);
-  model.rotation.z = hero ? -0.22 : 0;
+  // Present the coverglass cell face rather than a grazing white reflection.
+  model.rotation.y = -0.2;
+  model.rotation.z = hero ? -0.08 : 0;
   model.traverse((o) => {
     if (o.isMesh) {
       o.castShadow = true;
       o.receiveShadow = true;
     }
   });
-  const room = new RoomEnvironment();
+  const room = createHardwareStudio();
   const pmrem = new THREE.PMREMGenerator(renderer),
-    env = pmrem.fromScene(room, 0.04);
+    env = pmrem.fromScene(room.scene, 0.02);
   room.dispose();
   scene.environment = env.texture;
-  scene.environmentIntensity = 0.65;
-  const key = new THREE.DirectionalLight("#fff4e4", 3.2);
+  scene.environmentIntensity = 0.8;
+  const key = new THREE.DirectionalLight("#fff7ed", 2.8);
   key.position.set(-3, 5, 6);
   key.castShadow = preferences.quality !== "low";
   key.shadow.mapSize.set(1024, 1024);
@@ -56,9 +58,9 @@ export function createMissionModel(
   key.shadow.camera.near = 0.5;
   key.shadow.camera.far = 20;
   key.shadow.normalBias = 0.025;
-  const rim = new THREE.DirectionalLight("#8fb8ed", 2.1);
+  const rim = new THREE.DirectionalLight("#c6d9ee", 1.3);
   rim.position.set(3, 1, -4);
-  scene.add(key, rim, new THREE.HemisphereLight("#edf3ff", "#292322", 0.75));
+  scene.add(key, rim, new THREE.HemisphereLight("#edf3ff", "#292322", 0.35));
   controls.enableDamping = false;
   controls.enablePan = false;
   // Homepage scrolling takes precedence; explicit zoom buttons remain available.

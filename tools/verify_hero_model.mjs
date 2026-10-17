@@ -15,7 +15,9 @@ const browser = await chromium.launch({
       "C:/Program Files/Google/Chrome/Application/chrome.exe",
   }),
   results = [];
-await fs.mkdir("tmp/hero3d-details-qa", { recursive: true });
+const testName = process.env.SKYSHIFT_TEST_NAME || "hero3d",
+  out = "tmp/" + testName + "-details-qa";
+await fs.mkdir(out, { recursive: true });
 async function page(options = {}) {
   const c = await browser.newContext({
     viewport: { width: 1440, height: 900 },
@@ -87,7 +89,7 @@ try {
             .boundingBox();
           assert.ok(a.y + a.height <= height);
           await p.screenshot({
-            path: `tmp/hero3d-details-qa/home-${width}.png`,
+            path: out + `/home-${width}.png`,
           });
           const d = await p.evaluate(() => skyshiftHero.diagnostics());
           assert.equal(d.model.presentation, "hero");
@@ -427,7 +429,7 @@ try {
   process.exitCode = 1;
 } finally {
   await fs.writeFile(
-    "docs/evidence/hero3d_model_tests.json",
+    "docs/evidence/" + testName + "_model_tests.json",
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

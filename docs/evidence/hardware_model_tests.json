@@ -1,0 +1,87 @@
+{
+  "recorded_at_utc": "2026-10-17T09:10:33.184Z",
+  "browser": "155.0.8059.80",
+  "profile": "isolated",
+  "results": [
+    {
+      "name": "Real hero geometry renders with visible comparison access at 1440x900",
+      "status": "pass",
+      "detail": {
+        "draw_calls": 29,
+        "triangles": 86040,
+        "idle_frame_delta": 0
+      }
+    },
+    {
+      "name": "Real hero geometry renders with visible comparison access at 1024x768",
+      "status": "pass",
+      "detail": {
+        "draw_calls": 29,
+        "triangles": 86040,
+        "idle_frame_delta": 0
+      }
+    },
+    {
+      "name": "Real hero geometry renders with visible comparison access at 390x844",
+      "status": "pass",
+      "detail": {
+        "draw_calls": 29,
+        "triangles": 86040,
+        "idle_frame_delta": 0
+      }
+    },
+    {
+      "name": "Real hero geometry renders with visible comparison access at 320x667",
+      "status": "pass",
+      "detail": {
+        "draw_calls": 29,
+        "triangles": 86040,
+        "idle_frame_delta": 0
+      }
+    },
+    {
+      "name": "Drag, keyboard rotation, zoom, reset and actual mesh selection work",
+      "status": "pass",
+      "detail": {
+        "selected": "shields"
+      }
+    },
+    {
+      "name": "Wheel scrolls the website and offscreen rendering stops",
+      "status": "pass"
+    },
+    {
+      "name": "Direct comparison downloads no 3D modules; leaving the hero pauses it",
+      "status": "pass"
+    },
+    {
+      "name": "Actual WebGL loss retries with a fresh canvas and science remains usable",
+      "status": "pass"
+    },
+    {
+      "name": "Unavailable WebGL offers a clear fallback without blocking comparison or export",
+      "status": "pass"
+    },
+    {
+      "name": "A missing hero controller leaves the scientific application ready",
+      "status": "pass"
+    },
+    {
+      "name": "Delayed model loading cannot initialize hidden graphics after entering science",
+      "status": "pass"
+    },
+    {
+      "name": "Touch rotation preserves ordinary vertical page scrolling",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced motion renders a static interactive model without an idle animation loop",
+      "status": "pass"
+    }
+  ],
+  "limits": [
+    "Model fittings and materials are illustrative, not certified CAD",
+    "Scientific approval and internal human review PENDING",
+    "Mobile devices emulated; no independent human UX study"
+  ]
+}

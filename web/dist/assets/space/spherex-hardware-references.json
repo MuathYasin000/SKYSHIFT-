@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "inspected_date_utc": "2026-10-17",
+  "scope": "Model appearance references only; not scientific observation data",
+  "method": "Original procedural geometry/materials informed by independently viewed official assembly photographs and the JPL press kit. No photogrammetry, manufacturing CAD, texture extraction, or NASA Eyes assets used.",
+  "images": [
+    {
+      "id": "assembly-front",
+      "page": "https://science.nasa.gov/blogs/spherex/2025/03/11/meet-the-spacecraft-spherex/",
+      "download": "https://science.nasa.gov/wp-content/uploads/2025/03/PIA26542large.jpg",
+      "local_reference": "data/raw/spherex-hardware-reference/assembled.jpg",
+      "credit": "NASA/JPL-Caltech/BAE Systems",
+      "sha256": "5ac76bc648477e4d10dad50422ac98930fb703279876e93d9e50c7a75701ca86",
+      "dimensions": [1919,1919],
+      "bytes": 409574,
+      "used_for": "Broad shield spacing, reflective inner faces, foil edge appearance and latch placement patterns"
+    },
+    {
+      "id": "assembly-upright",
+      "page": "https://spherex.caltech.edu/image/spherex-observatory-assembled-upright-view",
+      "download": "https://spherex.caltech.edu/system/avm_images/binaries/11/larger/24-06590_SPHEREx_OuterShieldInstalled-Edit.jpg",
+      "local_reference": "data/raw/spherex-hardware-reference/upright.jpg",
+      "credit": "BAE Systems, Courtesy NASA/JPL-Caltech",
+      "sha256": "7d34af71697e84bb5924703165c67a914cf93a9206ed018b75c10bb4a55162f1",
+      "dimensions": [1024,1024],
+      "bytes": 870416,
+      "used_for": "White exterior panel joints/latches, asymmetric equipment deck, blankets, harnesses and base band",
+      "limit": "Solar array absent in this assembly photograph. Ground fixtures and test covers were not treated as flight hardware."
+    },
+    {
+      "id": "radiator",
+      "page": "https://science.nasa.gov/photojournal/spherex-v-groove-radiator/",
+      "download": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia25/pia25786/PIA25786.jpg",
+      "local_reference": "data/raw/spherex-hardware-reference/radiator.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "sha256": "061872efa7f5c3f165f7b2d3325f595965075b0ba429e55b2361089509268f94",
+      "dimensions": [8256,5504],
+      "bytes": 3669332,
+      "used_for": "Reflective radiator surfaces, bands, struts and tape details"
+    },
+    {
+      "id": "telescope",
+      "page": "https://science.nasa.gov/photojournal/spherex-telescope-at-jpl/",
+      "download": "https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia25/pia25787/PIA25787.jpg",
+      "local_reference": "data/raw/spherex-hardware-reference/telescope.jpg",
+      "credit": "NASA/JPL-Caltech",
+      "sha256": "20176fb303c25cba530e3fb1e3639fef88485bfa2344f3e53313fa9aeb582316",
+      "dimensions": [8256,5504],
+      "bytes": 4341911,
+      "used_for": "Black ribbed telescope housing, support framing and visible aperture-area topology"
+    }
+  ],
+  "architecture_reference": "https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/",
+  "documented_dimensions_m": {"outer_shield_diameter":3.2,"shield_height":1.7,"shield_wall_thickness":0.019,"observatory_height_approx":2.6,"solar_array": [2.67,1.02]},
+  "inferred_details": ["Inner shield radii/heights and exact gaps", "Exact latch/fastener counts and coordinates", "Solar-cell count, mounting details and coverglass optics", "Hidden bus geometry, cables, housings and labels", "Fine surface roughness and manufacturing imperfections"],
+  "reference_use": "Educational visual study. Photo pixels, people, logos and clean-room reflections are not baked into model textures.",
+  "terms": ["https://spherex.caltech.edu/page/image-use-policy", "https://www.nasa.gov/nasa-brand-center/images-and-media/"],
+  "transport": "Windows curl HTTPS with certificate verification enabled",
+  "review_status": "Visual approximation; no engineering fidelity certification or indistinguishability validation"
+}
