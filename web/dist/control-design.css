@@ -1,0 +1,360 @@
+/* Shared control surfaces. No filters or colour transforms touch scientific pixels. */
+:root {
+  --control-fill: linear-gradient(180deg, #202c39, #131d29);
+  --control-edge: #9cbcd03d;
+  --control-ink: #e4edf5;
+  --control-shadow: inset 0 1px 0 #d6eaff0c, 0 2px 5px #0003;
+  --control-radius: 11px;
+}
+body[data-surface]
+  :is(button, .primary-link, .secondary-link, .space-primary):not(
+    [data-channel]
+  ):not(#instrument-wipe-handle) {
+  background: var(--control-fill);
+  color: var(--control-ink);
+  border: 1px solid var(--control-edge);
+  border-radius: var(--control-radius);
+  box-shadow: var(--control-shadow);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  min-height: 44px;
+  cursor: pointer;
+  transition:
+    border-color 0.18s,
+    box-shadow 0.18s,
+    background 0.18s,
+    transform 0.14s;
+  -webkit-tap-highlight-color: transparent;
+}
+body[data-surface]
+  :is(button, .primary-link, .secondary-link, .space-primary):not(
+    [data-channel]
+  ):not(#instrument-wipe-handle):hover:not(:disabled) {
+  border-color: #aacfe48a;
+  box-shadow:
+    inset 0 1px 0 #ebf8ff19,
+    0 3px 14px #0004;
+}
+body[data-surface]
+  :is(button, .primary-link, .secondary-link, .space-primary):not(
+    [data-channel]
+  ):not(#instrument-wipe-handle):active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 4px #0005;
+}
+body[data-surface]
+  :is(button, .primary-link, .secondary-link, .space-primary):not(
+    [data-channel]
+  ):not(#instrument-wipe-handle):disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+  box-shadow: none;
+}
+body[data-surface]
+  :is(button, a, input, select, textarea, canvas, summary):focus-visible {
+  outline: 2px solid #b3e8fc;
+  outline-offset: 4px;
+}
+/* A pale titanium finish reserves contrast for the next significant action. */
+body[data-surface]
+  :is(
+    .intro-actions .primary-link,
+    #instrument-save,
+    #instrument-question-save,
+    #observations-button,
+    .space-primary,
+    .sound-palette button
+  ) {
+  --control-fill: linear-gradient(160deg, #e7f2f7, #b4cbd8);
+  --control-ink: #111e2b;
+  --control-edge: #d7edf9;
+  --control-shadow: inset 0 1px 0 #fff9, 0 2px 8px #0004;
+}
+body[data-surface]
+  :is(
+    button[aria-pressed="true"],
+    .mission-dock button[aria-pressed="true"],
+    .instrument-dates button[aria-pressed="true"],
+    .instrument-comparison button[aria-pressed="true"],
+    button[aria-current="true"]
+  ):not([data-channel]) {
+  --control-fill: linear-gradient(150deg, #24424e, #162e39);
+  --control-edge: #83c5d5a6;
+  --control-ink: #d6f4fc;
+  --control-shadow: inset 0 1px 0 #ceefff15, 0 0 0 1px #7ec7d00b;
+}
+body[data-surface]
+  :is(
+    #site-more,
+    #site-sound,
+    #sound-toggle,
+    .space-actions button,
+    .hero-model-controls button,
+    .story-rail button,
+    .field-reveal-toggle
+  ) {
+  --control-fill: linear-gradient(160deg, #152231d9, #101824e6);
+  --control-edge: #bfd6e62d;
+  --control-radius: 10px;
+}
+body[data-surface] .intro-actions .primary-link {
+  padding: 16px 22px;
+  gap: 24px;
+}
+body[data-surface] :is(.primary-link, .secondary-link)::after {
+  display: none;
+}
+body[data-surface] .site-navigation {
+  border-radius: 14px;
+  background: #0f1924;
+}
+body[data-surface] .site-navigation a {
+  border-radius: 9px;
+}
+body[data-surface] .site-navigation a[aria-current] {
+  background: #2540527a;
+}
+body[data-surface] .mission-dock {
+  border-radius: 16px;
+  padding: 7px;
+  background: #0b1420ed;
+  border-color: #9fbdd82b;
+}
+body[data-surface] .mission-dock button {
+  border-radius: 10px;
+}
+body[data-surface] .space-actions {
+  border-radius: 16px;
+  gap: 5px;
+  padding: 5px;
+}
+body[data-surface] .space-actions :is(button, a) {
+  padding-inline: 12px;
+}
+body[data-surface] .instrument-comparison {
+  border-radius: 13px;
+  padding: 4px;
+  background: #0c1721;
+  border-color: #a7c5d42b;
+}
+body[data-surface] .instrument-comparison button {
+  padding-inline: 14px;
+}
+body[data-surface] .instrument-dates button {
+  border-radius: 11px;
+}
+body[data-surface] .mission-stages button {
+  font-size: 11px;
+}
+body[data-surface] #site-sound {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: none;
+  white-space: nowrap;
+  font-size: 12px;
+  padding: 0 11px;
+}
+.sound-wave {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+  height: 18px;
+  width: 19px;
+}
+.sound-wave i {
+  width: 3px;
+  height: 7px;
+  border-radius: 2px;
+  background: #b8dde7;
+}
+.sound-wave i:nth-child(2) {
+  height: 15px;
+}
+.sound-wave i:nth-child(3) {
+  height: 11px;
+}
+[data-audio-state="off"] .sound-wave i {
+  height: 2px;
+  background: #8497a8;
+}
+body[data-surface] #site-sound[data-audio-state="off"] {
+  color: #b4bfca;
+}
+#sound-settings {
+  width: min(600px, calc(100vw - 28px));
+  padding: 28px;
+  max-height: 90svh;
+  overflow: auto;
+}
+#sound-settings h2 {
+  margin: 5px 0 0;
+  font-size: 28px;
+}
+#sound-settings h3 {
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  margin-top: 25px;
+}
+#sound-settings p {
+  color: #b7c6d4;
+  font-size: 14px;
+  line-height: 1.65;
+}
+#sound-settings .space-eyebrow {
+  color: #97c4d4;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+}
+#sound-status {
+  font-size: 13px;
+  min-height: 24px;
+}
+#sound-settings .sound-level {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  font-size: 15px;
+  margin-top: 20px;
+  color: #dfebf3;
+}
+#sound-settings .sound-level input {
+  grid-column: 1/-1;
+  width: 100%;
+  accent-color: #95c6dc;
+  min-height: 28px;
+}
+.sound-level output {
+  font-variant-numeric: tabular-nums;
+  color: #a2b9c9;
+}
+#sound-settings .sound-fine {
+  font-size: 13px;
+  line-height: 1.65;
+}
+.sound-palette {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.sound-palette button {
+  font-size: 12px;
+  padding: 10px 7px;
+}
+@media (max-width: 1100px) and (min-width: 801px) {
+  .site-header {
+    gap: 10px;
+    padding-inline: 20px;
+  }
+  .site-brand span {
+    font-size: 16px;
+  }
+  .site-navigation a {
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+  #site-sound .sound-word {
+    display: none;
+  }
+  body[data-surface] #site-sound {
+    width: 44px;
+    padding: 0;
+  }
+}
+@media (max-width: 800px) {
+  body[data-surface] .site-header {
+    grid-template-columns: minmax(0, 1fr) 44px auto;
+    grid-template-rows: 52px 44px;
+  }
+  body[data-surface] .site-header .site-brand {
+    grid-row: 1;
+    grid-column: 1;
+  }
+  body[data-surface] .site-header #site-sound {
+    grid-row: 1;
+    grid-column: 2;
+  }
+  body[data-surface] .site-header #site-more {
+    grid-row: 1;
+    grid-column: 3;
+  }
+  body[data-surface] .site-header .site-navigation {
+    grid-row: 2;
+    grid-column: 1/-1;
+  }
+  body[data-surface] #site-sound {
+    order: 1;
+    width: 44px;
+    padding: 0;
+    margin-left: auto;
+  }
+  #site-sound .sound-word {
+    display: none;
+  }
+  body[data-surface] #site-more {
+    margin-left: 0;
+    min-width: 44px;
+  }
+  body[data-surface] .site-navigation {
+    border-radius: 0;
+    background: transparent;
+  }
+  body[data-surface] .site-header {
+    column-gap: 7px;
+  }
+}
+@media (max-width: 560px) {
+  body[data-surface] .site-brand small {
+    font-size: 8px;
+  }
+  body[data-surface] .site-brand span {
+    font-size: 15px;
+  }
+  body[data-surface] .site-brand span > i {
+    width: 110px;
+  }
+  body[data-surface] .site-brand img {
+    width: 38px;
+    height: 38px;
+  }
+  body[data-surface] .site-brand {
+    gap: 7px;
+  }
+  body[data-surface] .site-header {
+    padding-inline: 12px;
+  }
+  body[data-surface] .space-actions :is(button, a) {
+    padding-inline: 8px;
+  }
+  #sound-settings {
+    padding: 20px;
+  }
+  .sound-palette {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body[data-surface] .instrument-comparison button {
+    padding-inline: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-surface]
+    :is(button, .primary-link, .secondary-link, .space-primary) {
+    transition: none;
+  }
+  body[data-surface]
+    :is(button, .primary-link, .secondary-link, .space-primary):active {
+    transform: none;
+  }
+}
+@media (forced-colors: active) {
+  body[data-surface] :is(button, .primary-link, .secondary-link) {
+    border: 1px solid ButtonText;
+    box-shadow: none;
+  }
+  body[data-surface] button[aria-pressed="true"] {
+    outline: 2px solid Highlight;
+    outline-offset: -4px;
+  }
+}

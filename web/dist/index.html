@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="./website.css" />
     <link rel="stylesheet" href="./orbital-design.css" />
     <link rel="stylesheet" href="./infrared-experience.css" />
+    <link rel="stylesheet" href="./control-design.css" />
   </head>
   <body data-surface="home">
     <div class="reading-spectrum" aria-hidden="true">
@@ -57,6 +58,16 @@
           >3D Universe <span aria-hidden="true">↗</span></a
         >
       </nav>
+      <button
+        id="site-sound"
+        data-sound-toggle
+        aria-pressed="true"
+        aria-label="Mute SKYSHIFT sound"
+        title="Mute all SKYSHIFT sound"
+      >
+        <span class="sound-wave" aria-hidden="true"><i></i><i></i><i></i></span
+        ><span class="sound-word">Sound on</span>
+      </button>
       <button
         id="site-more"
         aria-label="Sources, methods and application information"
@@ -475,6 +486,7 @@
           ×
         </button>
       </div>
+      <button data-open-sound>Sound design & volume ↗</button>
       <p>
         SKYSHIFT is an independent Project Mercury Team application. It uses
         real SPHEREx observations with original source identities, calibration

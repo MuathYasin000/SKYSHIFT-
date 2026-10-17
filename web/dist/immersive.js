@@ -1,9 +1,12 @@
 import { fetchCatalogue } from "./catalogue.js";
 import { stories, availability, friendlyDate } from "./field-guide.js";
 import { bodies, hardware, components } from "./space-content.js";
-import { readPreferences, savePreferences } from "./space-preferences.js";
+import { savePreferences } from "./space-preferences.js";
 import { createExplorationMemory } from "./exploration-memory.js";
-import { createSpaceAudio } from "./space-audio.js";
+import {
+  applicationAudio,
+  applicationPreferences,
+} from "./application-sound.js";
 import { telescopeStories } from "./telescope-stories.js";
 import { createTelescopeExperience } from "./telescope-experience.js";
 import { placeLabels } from "./infrared-layout.js";
@@ -11,8 +14,8 @@ import { placeLabels } from "./infrared-layout.js";
 export function createUniverse({ observationConsole, onOpenScience, onExit }) {
   let activeView = true;
   const $ = (id) => document.getElementById(id),
-    preferences = readPreferences(),
-    audio = createSpaceAudio(preferences);
+    preferences = applicationPreferences,
+    audio = applicationAudio;
   // Scientific presentation mode is owned by the native console, not this legacy
   // rendering preference. Both modes use the same investigation state.
   preferences.mode = "immersive";
@@ -449,7 +452,6 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
   }
   async function openScience(field) {
     if (telescopeExperience.open) telescopeExperience.close(true);
-    audio.suspend();
     return onOpenScience(field);
   }
   function closeScience() {
@@ -543,6 +545,10 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
   ])
     $(button).onclick = () => {
       openDialog(dialog, $(button));
+      if (dialog === "settings-dialog") {
+        $("effects-volume").value = preferences.effects_volume;
+        $("ambience-volume").value = preferences.ambience_volume;
+      }
       if (dialog === "help-dialog") {
         const d = scene?.diagnostics();
         $("runtime-status").textContent =
@@ -614,25 +620,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
       persist();
     };
   }
-  $("sound-toggle").onclick = async () => {
-    if (workspace) {
-      status("Return to exploration to use optional sound.");
-      return;
-    }
-    try {
-      const enabled = await audio.toggle();
-      $("sound-toggle").textContent = enabled ? "Sound on" : "Sound off";
-      $("sound-toggle").setAttribute("aria-pressed", String(enabled));
-      audio.cue("spherex");
-    } catch (e) {
-      status(e.message, true);
-    }
-  };
-  document.addEventListener("visibilitychange", () =>
-    document.hidden || !activeView
-      ? audio.suspend()
-      : !workspace && audio.resume(),
-  );
+  // Global sound controls and visibility lifecycle are owned by application-sound.
   document.addEventListener("keydown", (e) => {
     if (!activeView) return;
     if (e.defaultPrevented || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName))
@@ -773,12 +761,10 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
       activeView = true;
       scene?.setPaused(false);
       if (!scene) startScene();
-      audio.resume();
     },
     deactivate() {
       activeView = false;
       scene?.setPaused(true);
-      audio.suspend();
       for (const d of document.querySelectorAll("#universe-view dialog[open]"))
         d.close();
     },

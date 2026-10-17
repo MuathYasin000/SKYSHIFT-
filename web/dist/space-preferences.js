@@ -7,20 +7,22 @@ export function readPreferences(storage) {
       mode: p.mode === "classic" ? "classic" : "immersive",
       effects: p.effects !== false,
       quality: p.quality === "low" ? "low" : "auto",
+      sound_enabled: p.sound_enabled !== false,
       effects_volume: Number.isFinite(p.effects_volume)
         ? Math.min(1, Math.max(0, p.effects_volume))
-        : 0.3,
+        : 0.5,
       ambience_volume: Number.isFinite(p.ambience_volume)
         ? Math.min(1, Math.max(0, p.ambience_volume))
-        : 0.08,
+        : 0.12,
     };
   } catch {
     return {
       mode: "immersive",
       effects: true,
       quality: "auto",
-      effects_volume: 0.3,
-      ambience_volume: 0.08,
+      sound_enabled: true,
+      effects_volume: 0.5,
+      ambience_volume: 0.12,
     };
   }
 }

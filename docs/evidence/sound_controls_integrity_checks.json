@@ -1,0 +1,104 @@
+{
+  "recorded_at_utc": "2026-10-17T12:19:11.443786+00:00",
+  "baseline_commit": "9181f01",
+  "scope": "Original in-application sound design and interface control styling; no scientific processing changes",
+  "localhost": "http://localhost:3000",
+  "default_sound": "Enabled after first browser gesture; explicit mute persists; no autoplay-policy override",
+  "runtime": "Native Web Audio, local JavaScript/CSS; no remote sound files, telemetry or new runtime packages",
+  "sound_authorship": "Original SKYSHIFT procedural synthesis, seeded noise and transient/tonal recipes; not telescope recordings or data sonification",
+  "api_references": [
+    "https://www.w3.org/TR/webaudio/",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Best_practices"
+  ],
+  "executed_checks": {
+    "javascript": {
+      "passed": 90,
+      "failed": 0,
+      "skipped": 0
+    },
+    "python_frontend_server": {
+      "passed": 24
+    },
+    "browser_suites": {
+      "sound_controls_tests.json": {
+        "passed": 9,
+        "browser": "155.0.8059.80",
+        "sha256": "b1ed7da4f2f28090612255ddbba887144d5e8ef7f688d51dbef99e3254e890f2"
+      },
+      "sound_controls_tests_edge.json": {
+        "passed": 9,
+        "browser": "155.0.4283.45",
+        "sha256": "f87c2660dfb01041cc2c97a5bc890f9ddf63d72ce47d6dd4331583d68a0323ba"
+      },
+      "sound_controls_product_tests.json": {
+        "passed": 19,
+        "browser": "155.0.8059.80",
+        "sha256": "3f0c8c705c4319b3308ca6c996ab2c3b09bf4ae7f298478283dc5bf3b303a24d"
+      },
+      "sound_controls_product_tests_edge.json": {
+        "passed": 19,
+        "browser": "155.0.4283.45",
+        "sha256": "902845c5b3c38b7bc14781d51e3d89f4c995a92ffd9e1c0d9c07058a613e989f"
+      }
+    },
+    "static_reference_validation": "PASS",
+    "scientific_asset_hash_validation": "PASS"
+  },
+  "preservation": {
+    "tracked_scientific_assets_unchanged": 21,
+    "python_scientific_source_unchanged": true,
+    "investigation_and_science_engine_unchanged": true,
+    "model_geometry_and_asset_records_unchanged": true
+  },
+  "source_files": [
+    {
+      "file": "web/dist/space-audio.js",
+      "sha256": "7dbc497b0404085006ab51ab6c26c92700b365ff0e3594321a41da02f8373ca1"
+    },
+    {
+      "file": "web/dist/application-sound.js",
+      "sha256": "ba8db026b5d028da8dadefc71e98c55b4ebb10708f29501acf7f3227154482d4"
+    },
+    {
+      "file": "web/dist/control-design.css",
+      "sha256": "878df22030b0d2884d87e2ece6b333370254f8545fd56ba96b9cf1cc42538195"
+    },
+    {
+      "file": "web/dist/space-preferences.js",
+      "sha256": "aae00d93bec37d12818038c417f923e4c85d5b812204498dd0f48e8181279dc6"
+    },
+    {
+      "file": "web/dist/website.js",
+      "sha256": "5519687952e81ef52ae0d40bceb2e8fc41e46eb53f2c9f78791c6b83fb7bd6db"
+    },
+    {
+      "file": "web/dist/immersive.js",
+      "sha256": "87692af7f0813b5fe30844dc4c0cae0c0b5aa77a102deec180ecc1fd3af55fe1"
+    },
+    {
+      "file": "web/dist/observation-console.js",
+      "sha256": "21fc5440adf0233dd801ceb71fa23d9717aed75010f9caaf67040869912b7de5"
+    },
+    {
+      "file": "tools/verify_sound_controls.mjs",
+      "sha256": "915fc79e712ffbe47d2b48437d494827290391a7e434bc1e815b76a5152a19ca"
+    }
+  ],
+  "limits": [
+    "No human listening or subjective design approval claimed",
+    "Mobile emulation; automated accessibility rules only",
+    "Qualified scientific approval and internal human review PENDING",
+    "Independent novice validation NOT CONDUCTED"
+  ],
+  "restart_smoke": {
+    "recorded_at_utc": "2026-10-17T12:19:47.961Z",
+    "status": "PASS",
+    "browser": "155.0.8059.80",
+    "health_app_version": "0.7-local-workspace",
+    "hero_rendered": true,
+    "gesture_audio_and_preview": true,
+    "comparison_export_and_reopen_restores_zoom": true,
+    "mute_survives_reload": true,
+    "page_errors": []
+  }
+}

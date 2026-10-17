@@ -925,6 +925,9 @@ export function createObservationConsole({
           : [...v.questions, q],
       );
       $("instrument-question").close();
+      document.dispatchEvent(
+        new CustomEvent("skyshift-sound", { detail: "annotate" }),
+      );
       notes();
       draw();
       cue("component");
@@ -1053,6 +1056,9 @@ export function createObservationConsole({
     $("instrument-save").disabled = true;
     try {
       download(await engine.save());
+      document.dispatchEvent(
+        new CustomEvent("skyshift-sound", { detail: "save" }),
+      );
       tell(
         "Investigation saved with source identities, coordinates, display settings and questions. Comparison ZIPs include prepared FITS, masks and hashes.",
       );

@@ -97,6 +97,9 @@ async function point(page, kind = "pair") {
       r = document
         .getElementById("instrument-canvas-a")
         .getBoundingClientRect(),
+      handle = document
+        .getElementById("instrument-wipe-handle")
+        .getBoundingClientRect(),
       s = Math.min(r.width / w, r.height / h) * v.display.zoom;
     let best,
       d = Infinity;
@@ -104,10 +107,16 @@ async function point(page, kind = "pair") {
       for (let x = 0; x < w; x++)
         if (m[y * w + x]) {
           const screenX = r.width / 2 + (x - v.display.center_x) * s;
-          // The divider is a drag handle, not a scientific pixel target.
+          const clientX = r.x + screenX,
+            clientY = r.y + r.height / 2 - (y - v.display.center_y) * s;
+          // Use the actual interactive handle bounds, including its border and
+          // touch footprint, instead of a hardcoded 24px half-width.
           if (
             v.visual.wipe &&
-            Math.abs(screenX - (r.width * v.visual.wipe_position) / 100) < 24
+            clientX >= handle.left - 3 &&
+            clientX <= handle.right + 3 &&
+            clientY >= handle.top - 3 &&
+            clientY <= handle.bottom + 3
           )
             continue;
           const n = Math.hypot(x - v.display.center_x, y - v.display.center_y);
@@ -427,12 +436,12 @@ try {
       assert.deepEqual(after.display, before.display);
       assert.equal(
         (await p.evaluate(() => skyshiftSpace.audio())).enabled,
-        false,
+        true,
       );
     },
   );
   await check(
-    "Universe spacecraft, secondary observatories, solar system and optional audio remain usable",
+    "Universe spacecraft, secondary observatories, solar system and persistent sound controls remain usable",
     async () => {
       await p.click(".site-navigation a[data-route=universe]");
       await p.click("[data-telescope=spherex]");
@@ -459,7 +468,7 @@ try {
       await p.click("#sound-toggle");
       assert.equal(
         (await p.evaluate(() => skyshiftSpace.audio())).enabled,
-        true,
+        false,
       );
       await p.click("#classic-toggle");
       await p.waitForFunction(

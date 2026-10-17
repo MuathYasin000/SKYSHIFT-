@@ -8,7 +8,6 @@ import {
   PerspectiveCamera,
   Vector3,
 } from "../dist/vendor/three/three.module.js";
-import { soundCues, createSpaceAudio } from "../dist/space-audio.js";
 
 test("mission stories identify different published targets and never simulate measured filters", async () => {
   assert.deepEqual(Object.keys(telescopeStories), [
@@ -86,92 +85,4 @@ test("visible light diagrams respond to channel selection and stop animating whe
   effect.close();
   assert.equal(effect.diagnostics().open, false);
   effect.dispose();
-});
-test("interaction cues have distinct envelopes and pitches instead of a single reused beep", () => {
-  assert.equal(
-    new Set(Object.values(soundCues).map((s) => JSON.stringify(s))).size,
-    Object.keys(soundCues).length,
-  );
-  for (const cue of Object.values(soundCues)) {
-    assert.ok(cue.gain > 0 && cue.gain <= 0.12);
-    for (const [frequency, delay, duration] of cue.notes) {
-      assert.ok(frequency >= 100 && frequency <= 1000);
-      assert.ok(delay >= 0 && delay < 0.3);
-      assert.ok(duration > 0 && duration < 0.4);
-    }
-  }
-});
-test("sound requires opt-in, throttles bursts, varies spectrum pitch and suspends when muted", async () => {
-  const originalDocument = globalThis.document;
-  globalThis.document = { hidden: false };
-  const played = [];
-  let stamp = 0;
-  class Audio {
-    state = "suspended";
-    currentTime = 0;
-    destination = {};
-    createGain() {
-      return {
-        gain: {
-          value: 0,
-          setTargetAtTime() {},
-          setValueAtTime() {},
-          linearRampToValueAtTime() {},
-          exponentialRampToValueAtTime() {},
-        },
-        connect() {},
-        disconnect() {},
-      };
-    }
-    createOscillator() {
-      return {
-        frequency: {
-          value: 0,
-          setValueAtTime(v) {
-            played.push(v);
-          },
-          exponentialRampToValueAtTime() {},
-        },
-        connect() {},
-        disconnect() {},
-        start() {},
-        stop() {},
-      };
-    }
-    async resume() {
-      this.state = "running";
-    }
-    async suspend() {
-      this.state = "suspended";
-    }
-    async close() {
-      this.state = "closed";
-    }
-  }
-  try {
-    const audio = createSpaceAudio(
-      { effects_volume: 0.3, ambience_volume: 0.08 },
-      { Audio, now: () => stamp },
-    );
-    assert.equal(audio.cue("spherex"), false);
-    assert.equal(played.length, 0);
-    await audio.toggle();
-    assert.equal(audio.cue("spherex"), true);
-    assert.equal(audio.cue("hubble"), false);
-    stamp += 100;
-    audio.cue("hubble");
-    stamp += 100;
-    audio.cue("spectrum", 0);
-    const lower = played.at(-1);
-    stamp += 100;
-    audio.cue("spectrum", 5);
-    assert.ok(played.at(-1) > lower);
-    await audio.toggle();
-    stamp += 100;
-    assert.equal(audio.cue("webb-b"), false);
-    assert.equal(audio.diagnostics().context_state, "suspended");
-    await audio.dispose();
-  } finally {
-    globalThis.document = originalDocument;
-  }
 });

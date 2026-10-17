@@ -15,6 +15,22 @@ let surface = "home",
   modelStarting = false,
   modelFailed = false,
   missionVisible = false;
+let sound = null;
+// Optional sound loads independently; a missing audio module must never gate science.
+import("./application-sound.js")
+  .then(({ installApplicationSound }) => {
+    sound = installApplicationSound();
+    sound.setSurface(surface);
+  })
+  .catch(() => {
+    const button = $("site-sound");
+    button.disabled = true;
+    button.setAttribute(
+      "aria-label",
+      "Sound unavailable; observations remain available",
+    );
+    button.title = "Sound unavailable; observations remain available";
+  });
 const consoleView = createObservationConsole({
   root: $("space-workspace"),
   onClose: () => navigate("home"),
@@ -30,6 +46,7 @@ const consoleView = createObservationConsole({
     });
   },
   onMode: () => {},
+  cue: (name) => sound?.cue(name),
 });
 function node(tag, text, cls) {
   const e = document.createElement(tag);
@@ -51,6 +68,7 @@ function setSurface(next) {
   universe?.deactivate();
   model?.setVisible(false);
   surface = next;
+  sound?.setSurface(next);
   document.body.dataset.surface = next;
   document.body.classList.toggle("science-page", next === "science");
   document.body.classList.toggle("science-open", next === "science");
@@ -129,6 +147,7 @@ async function routeChanged() {
           onExit: () => navigate("home"),
         });
       universe.activate();
+      sound?.sync();
       $("universe-loading").hidden = true;
     } catch (e) {
       if (ticket === routeSequence) {
