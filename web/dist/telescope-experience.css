@@ -1,4 +1,123 @@
 /* Observation lens and mission explanations belong to the same exploration. */
+.optics-ray-label {
+  position: fixed;
+  z-index: 5;
+  transform: translate(-50%, -100%);
+  font:
+    10px Consolas,
+    monospace;
+  letter-spacing: 0.1em;
+  color: #e8d0a8;
+  background: #090f1ed9;
+  border: 1px solid #c7af8540;
+  border-radius: 5px;
+  padding: 7px 10px;
+  pointer-events: none;
+}
+.optics-ray-label small {
+  display: block;
+  font:
+    10px "Source Sans 3",
+    sans-serif;
+  letter-spacing: 0;
+  color: #b6c5d6;
+  margin-top: 4px;
+}
+.mission-direction-note {
+  color: #d7c2a0;
+  font-size: 12px;
+  line-height: 1.65;
+  padding: 10px 12px;
+  border-left: 2px solid var(--mission-accent);
+  background: #d8b47508;
+}
+.optics-details {
+  border: 1px solid #b0cbe02a;
+  border-radius: 9px;
+  padding: 12px;
+  margin: 14px 0;
+  background: #0b1323;
+}
+.optics-details summary {
+  font-size: 14px;
+  color: #e8d3af;
+  cursor: pointer;
+  min-height: 28px;
+}
+#optics-figure {
+  margin: 12px -8px;
+}
+#mission-optics svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.optics-outline {
+  stroke: #b6c5d68c;
+  stroke-width: 2;
+  fill: #1c2b3b33;
+}
+.optics-mirror {
+  fill: none;
+  stroke: #ecd19e;
+  stroke-width: 5;
+}
+.optics-detector {
+  fill: #1c3449;
+  stroke: #9fc9da;
+  stroke-width: 1.5;
+}
+.optics-labels {
+  fill: #c8d7e5;
+  font:
+    15px "Source Sans 3",
+    sans-serif;
+}
+.optics-path {
+  fill: none;
+  stroke: #8698af50;
+  stroke-width: 2;
+}
+.optics-path.current {
+  stroke: #ffd092;
+  stroke-width: 3;
+}
+.optics-trace-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.optics-trace-controls button {
+  font-size: 12px;
+  padding: 7px 10px;
+}
+#optics-step-description {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #dce4ed;
+}
+.optics-diagram-limit {
+  font-size: 11px;
+  color: #afbed0;
+  line-height: 1.6;
+}
+#optics-dialog {
+  width: min(950px, calc(100vw - 28px));
+  max-height: 90svh;
+}
+#optics-dialog p {
+  font-size: 16px;
+  line-height: 1.7;
+}
+@media (max-width: 740px) {
+  .optics-ray-label {
+    font-size: 8px;
+    max-width: 140px;
+  }
+  .optics-ray-label small {
+    font-size: 9px;
+  }
+}
 .space-actions #observations-button {
   border-color: #8cd9db70;
   color: #c0ebeb;

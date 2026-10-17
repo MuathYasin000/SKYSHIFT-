@@ -1,0 +1,268 @@
+{
+  "recorded_at_utc": "2026-10-17T10:24:36.862Z",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "name": "Decoded detailed Webb retains source triangle topology and world bounds within Draco quantization tolerance; Hubble opening is clear",
+      "status": "pass",
+      "detail": {
+        "original": {
+          "meshes": 1657,
+          "triangles": 493785,
+          "uv": 1604,
+          "min": [
+            -17.67538792229486,
+            -0.7586307667135244,
+            -7.386690759290273
+          ],
+          "max": [
+            9.721711158752441,
+            11.245918090345643,
+            7.386679973444306
+          ]
+        },
+        "optimized": {
+          "meshes": 54,
+          "triangles": 493785,
+          "uv": 46,
+          "min": [
+            -17.67538833618164,
+            -0.7586309909820557,
+            -7.386691093444824
+          ],
+          "max": [
+            9.721710205078125,
+            11.245759010314941,
+            7.386880874633789
+          ]
+        },
+        "hubbleRefinement": {
+          "mission": "hubble",
+          "materials": 5,
+          "appearance": "source-informed PBR; not measured BRDF or engineering certification",
+          "removed_cover_triangles": 96,
+          "door_state": "illustrative open",
+          "internal_recess": "appearance only; no reconstructed internal optics"
+        },
+        "hubble_ray_hits": [
+          {
+            "x": 32.4,
+            "z": 0,
+            "y": 181,
+            "name": ""
+          },
+          {
+            "x": 22.91025971044414,
+            "z": 22.910259710444137,
+            "y": 181,
+            "name": ""
+          },
+          {
+            "x": 1.9839278146187122e-15,
+            "z": 32.4,
+            "y": 181,
+            "name": ""
+          },
+          {
+            "x": -22.910259710444137,
+            "z": 22.91025971044414,
+            "y": 181,
+            "name": ""
+          },
+          {
+            "x": -32.4,
+            "z": 3.9678556292374245e-15,
+            "y": 181,
+            "name": ""
+          },
+          {
+            "x": -22.910259710444144,
+            "z": -22.910259710444137,
+            "y": 181,
+            "name": ""
+          },
+          {
+            "x": -5.951783443856136e-15,
+            "z": -32.4,
+            "y": 181,
+            "name": ""
+          },
+          {
+            "x": 22.910259710444134,
+            "z": -22.910259710444144,
+            "y": 181,
+            "name": ""
+          },
+          {
+            "x": 0,
+            "z": 0,
+            "y": 181.00000000000003,
+            "name": ""
+          }
+        ],
+        "webb_ray_hits": [
+          {
+            "x": 5.104726346848779,
+            "material": "James_Webb_Space_Telescope:carbonfiber"
+          },
+          {
+            "x": 1.053883786129692,
+            "material": "James_Webb_Space_Telescope:mirror_blinn"
+          },
+          {
+            "x": 1.0540781703141757,
+            "material": "James_Webb_Space_Telescope:mirror_blinn"
+          },
+          {
+            "x": 1.0538866498601607,
+            "material": "James_Webb_Space_Telescope:mirror_blinn"
+          },
+          {
+            "x": 1.0538926872082293,
+            "material": "James_Webb_Space_Telescope:mirror_blinn"
+          },
+          {
+            "x": 1.0537215628771612,
+            "material": "James_Webb_Space_Telescope:mirror_blinn"
+          },
+          {
+            "x": 1.0547232176590722,
+            "material": "James_Webb_Space_Telescope:mirror_blinn"
+          },
+          {
+            "x": 1.0538756530108717,
+            "material": "James_Webb_Space_Telescope:mirror_blinn"
+          }
+        ]
+      }
+    },
+    {
+      "name": "All three telescope beams enter their own aperture; colours and camera orbit cannot change the model direction",
+      "status": "pass",
+      "detail": [
+        {
+          "id": "webb-b",
+          "frame": {
+            "origin": [
+              -6.70000076580497,
+              0.4505204942602744,
+              -2.0653472547858547
+            ],
+            "outward": [
+              2.220446049250313e-16,
+              0,
+              1
+            ],
+            "radius": 0.4307025275497468
+          },
+          "refinement": {
+            "hubble": {
+              "mission": "hubble",
+              "materials": 5,
+              "appearance": "source-informed PBR; not measured BRDF or engineering certification",
+              "removed_cover_triangles": 96,
+              "door_state": "illustrative open",
+              "internal_recess": "appearance only; no reconstructed internal optics"
+            },
+            "webb-detail": {
+              "mission": "webb-detail",
+              "materials": 54,
+              "appearance": "source-informed PBR; not measured BRDF or engineering certification"
+            }
+          }
+        },
+        {
+          "id": "hubble",
+          "frame": {
+            "origin": [
+              6.699654366793216,
+              2.3003017102173295,
+              -2.79984015432992
+            ],
+            "outward": [
+              0,
+              1,
+              0
+            ],
+            "radius": 0.3425383350852775
+          },
+          "refinement": {
+            "hubble": {
+              "mission": "hubble",
+              "materials": 5,
+              "appearance": "source-informed PBR; not measured BRDF or engineering certification",
+              "removed_cover_triangles": 96,
+              "door_state": "illustrative open",
+              "internal_recess": "appearance only; no reconstructed internal optics"
+            },
+            "webb-detail": {
+              "mission": "webb-detail",
+              "materials": 54,
+              "appearance": "source-informed PBR; not measured BRDF or engineering certification"
+            }
+          }
+        },
+        {
+          "id": "spherex",
+          "frame": {
+            "origin": [
+              -0.01671935122759763,
+              0.4402976681385021,
+              -0.00913382320420942
+            ],
+            "outward": [
+              -0.08761206554319244,
+              0.9950041652780258,
+              -0.047862689546603394
+            ],
+            "radius": 0.085
+          },
+          "refinement": {
+            "hubble": {
+              "mission": "hubble",
+              "materials": 5,
+              "appearance": "source-informed PBR; not measured BRDF or engineering certification",
+              "removed_cover_triangles": 96,
+              "door_state": "illustrative open",
+              "internal_recess": "appearance only; no reconstructed internal optics"
+            },
+            "webb-detail": {
+              "mission": "webb-detail",
+              "materials": 54,
+              "appearance": "source-informed PBR; not measured BRDF or engineering certification"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Each internal schematic has four distinct explanations, an accessible expanded dialog and original credited published pixels",
+      "status": "pass"
+    },
+    {
+      "name": "Low quality uses original NASA B with its correct aperture; reduced motion and effects-off stop animation",
+      "status": "pass",
+      "detail": {
+        "quality": "low",
+        "model": "NASA B",
+        "stationary_frames": 8
+      }
+    },
+    {
+      "name": "Delayed or failed detailed Webb never substitutes an unaligned beam and does not block direct scientific access",
+      "status": "pass"
+    },
+    {
+      "name": "390 and 320 mobile layouts keep mission controls, enlarged diagrams and keyboard exit reachable",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "limits": [
+    "Illustrative optical paths; no flight pointing, field-of-view or focal prescriptions simulated",
+    "PBR materials are appearance estimates, not measured BRDF",
+    "Qualified scientific approval and internal human review PENDING",
+    "Independent novice validation NOT CONDUCTED"
+  ]
+}

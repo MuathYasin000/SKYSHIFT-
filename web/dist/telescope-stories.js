@@ -12,7 +12,7 @@ export const telescopeStories = {
     steps: [
       [
         "Collect light",
-        "Infrared light from the sky enters a cooled telescope. The cones shield it from unwanted light and heat.",
+        "Nearly parallel light from a distant on-axis source enters the cooled telescope inside the shields. The shields block unwanted light and heat; they do not focus the beam. The shown direction follows the illustrative model’s aperture, not measured flight pointing.",
       ],
       [
         "Separate wavelengths",
@@ -43,7 +43,7 @@ export const telescopeStories = {
     steps: [
       [
         "Gather faint light",
-        "The segmented primary mirror collects light and sends it via the secondary mirror toward instruments behind the primary. The ray fan shown here is conceptual, not an optical ray trace.",
+        "Light arrives at the exposed gold primary mirror from the observing side, above the sunshield. The external rays stay parallel until the mirror. Internal reflections are explained separately; this is not an optical ray trace or live pointing.",
       ],
       [
         "Choose an instrument",
@@ -75,7 +75,7 @@ export const telescopeStories = {
     steps: [
       [
         "Gather starlight",
-        "A primary mirror collects light, which reflects from a secondary mirror toward scientific instruments. The illustrated light fan is not Hubble’s actual field of view or current pointing.",
+        "Light enters the open tube from its front, travels to the primary mirror, then reflects toward the secondary and through the primary’s central opening to the instruments. The 3D rays show incoming direction only, not Hubble’s field of view or current pointing.",
       ],
       [
         "Reveal different light",

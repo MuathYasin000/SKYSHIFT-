@@ -18,7 +18,7 @@
       "modifications": "none",
       "credit": "NASA/Goddard Space Flight Center",
       "status": "not_integrated",
-      "reason": "493,785 triangles and 1,600 meshes; lighter official B model selected"
+      "reason": "Original preserved; optimized transform-baked derivative integrated as webb-detail. Low quality retains official B."
     },
     {
       "id": "hubble",
@@ -31,8 +31,9 @@
       "retrieved_at_utc": "2026-10-16T19:22:10.385187+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "none",
-      "credit": "NASA/Goddard Space Flight Center"
+      "modifications": "Original GLB bytes/colour atlases retained. Runtime SKYSHIFT source-informed metal/roughness masks and illustrative open door/recess. Details and limits: assets/space/observatory-optics-references.json.",
+      "credit": "NASA/Goddard Space Flight Center",
+      "refinement_record": "assets/space/observatory-optics-references.json"
     },
     {
       "id": "earth",
@@ -215,9 +216,10 @@
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "sha256": "4958e61e5a564f2efcc32cd516b9d36ea0b9bc644f64dbcfe182ce8a422ae526",
       "bytes": 1004248,
-      "modifications": "none",
+      "modifications": "Original NASA B GLB bytes retained for Low quality. Runtime source-informed PBR appearance; model-aligned incoming direction. Standard quality uses the detailed A derivative. Details: assets/space/observatory-optics-references.json.",
       "purpose": "Educational infrared observatory context; not SPHEREx data",
-      "retrieved_at_utc": "2026-10-16T19:24:03.035911+00:00"
+      "retrieved_at_utc": "2026-10-16T19:24:03.035911+00:00",
+      "refinement_record": "assets/space/observatory-optics-references.json"
     },
     {
       "id": "logo",
@@ -306,6 +308,20 @@
       "bytes": 587461,
       "modifications": "Native isolated browser screenshot, 1200 x 630; no image synthesis or postprocessing; interactive hero remains real 3D",
       "purpose": "Open Graph preview only; not astronomical data"
+    },
+    {
+      "id": "webb-detail",
+      "file": "assets/space/webb-detail.glb",
+      "source_page": "https://science.nasa.gov/3d-resources/james-webb-space-telescope-a/",
+      "download_url": "https://raw.githubusercontent.com/nasa/NASA-3D-Resources/11ebb4ee043715aefbba6aeec8a61746fad67fa7/3D%20Models/James%20Webb%20Space%20Telescope%20%28A%29/James%20Webb%20Space%20Telescope%20%28A%29.glb",
+      "credit": "NASA/Goddard Space Flight Center; SKYSHIFT optimization and runtime material refinements",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "original_sha256": "ea4a53f71f1e7477d8b90e30d1299b2cb33faea18acdcaf831dc9d3ebf1b7750",
+      "sha256": "3de051a2526d30fb152ade16e0486fe05ea598d12c3183bdba97f10073fe115d",
+      "bytes": 5338244,
+      "modifications": "Full source world transforms baked before batching into 54 compatible material/attribute groups; glTF Transform SDK 4.5.1, sequential Draco position16/normal12 scene quantization. Source triangles retained; no simplification. Reproduce with tools/prepare_webb_detail.mjs. Runtime PBR appearance in observatory-hardware.js. Standard/high use A; Low uses preserved official B.",
+      "purpose": "Detailed educational Webb context, not engineering CAD, live pointing or SPHEREx evidence",
+      "refinement_record": "assets/space/observatory-optics-references.json"
     }
   ],
   "candidates_reviewed": [

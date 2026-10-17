@@ -1,5 +1,6 @@
 import { telescopeStories, observingColors } from "./telescope-stories.js";
 import { components } from "./space-content.js";
+import { createOpticsExplainer } from "./optics-explainer.js";
 
 export function createTelescopeExperience({
   getScene,
@@ -10,6 +11,7 @@ export function createTelescopeExperience({
 }) {
   const $ = (id) => document.getElementById(id),
     panel = $("telescope-experience");
+  const optics = createOpticsExplainer($("mission-optics"));
   let mission = null,
     stage = 0,
     field = "m101",
@@ -89,6 +91,10 @@ export function createTelescopeExperience({
     $("mission-band").textContent = story.band;
     $("mission-step-title").textContent = story.steps[stage][0];
     $("mission-step-copy").textContent = story.steps[stage][1];
+    optics.set(mission, stage);
+    $("mission-direction-note").hidden = stage === 2;
+    $("mission-direction-note").textContent =
+      "Arrows move from space toward the aperture, stopping on foreground hardware where present. These parallel on-axis paths show direction, not field of view or measured throughput. Speed and lengths are illustrative.";
     $("mission-source").href = story.source;
     $("mission-source").textContent = "How " + story.short + " works ↗";
     panel.dataset.mission = mission;
@@ -104,8 +110,8 @@ export function createTelescopeExperience({
     $("mission-field-open").hidden = mission !== "spherex" || stage !== 2;
     $("mission-spectrum-hint").textContent =
       mission === "spherex"
-        ? "Select an illustrative color group to follow its light path. These six groups explain 102 infrared colors; they are not six measured filters."
-        : "Select a diagram color to follow that light path. Colors are explanatory; they do not change or simulate the published image.";
+        ? "Select an illustrative colour key. These six keys explain 102 infrared colours; they are not six measured filters. The external paths remain parallel."
+        : "Select a colour key for the same incoming paths. It is not a filter simulation or a wavelength-dependent deflection; published pixels stay unchanged.";
     getScene()?.observe(mission, stage);
     if (stage === 2) image(story);
     else {
@@ -136,6 +142,7 @@ export function createTelescopeExperience({
       audio.cue("observe");
     },
     close(silent = false) {
+      optics.close();
       panel.hidden = true;
       document.body.classList.remove("observing-open");
       imageSequence++;

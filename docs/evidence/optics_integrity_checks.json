@@ -1,0 +1,78 @@
+{
+  "recorded_at_utc": "2026-10-17T10:21:36.407682+00:00",
+  "scope": "Webb/Hubble hardware and model-aligned educational light paths; no science preparation changes",
+  "baseline_commit": "92b0db9",
+  "localhost": "http://localhost:3000",
+  "preservation": {
+    "tracked_scientific_assets_unchanged": 21,
+    "python_scientific_source_unchanged": true,
+    "investigation_engine_unchanged": true,
+    "spherex_geometry_materials_unchanged": true,
+    "original_hubble_and_webb_b_bytes_unchanged": true
+  },
+  "models": [
+    {
+      "id": "hubble",
+      "bytes": 1694988,
+      "sha256": "e5ba4de15c7d359ac8fa1ab7e286aff42dec09c0fadae3db99252587f39fa384"
+    },
+    {
+      "id": "webb-b",
+      "bytes": 1004248,
+      "sha256": "4958e61e5a564f2efcc32cd516b9d36ea0b9bc644f64dbcfe182ce8a422ae526"
+    },
+    {
+      "id": "webb-detail",
+      "bytes": 5338244,
+      "sha256": "3de051a2526d30fb152ade16e0486fe05ea598d12c3183bdba97f10073fe115d"
+    }
+  ],
+  "executed_checks": {
+    "javascript_tests": {
+      "passed": 87,
+      "failed": 0,
+      "skipped": 0
+    },
+    "python_frontend_server_tests": {
+      "passed": 24
+    },
+    "browser_suites": {
+      "telescope_optics_tests.json": {
+        "passed": 6,
+        "browser": "155.0.8059.80",
+        "sha256": "07f23690b15a12cf80d79aac75b08ef9b160f34f6406bb109e02ea0c4c2f7711"
+      },
+      "optics_product_tests.json": {
+        "passed": 19,
+        "browser": "155.0.8059.80",
+        "sha256": "314ff22e449bc3486baec1361df7387d9dcf0272f2482ef2705b761b529b9833"
+      },
+      "optics_product_tests_edge.json": {
+        "passed": 19,
+        "browser": "155.0.4283.45",
+        "sha256": "b1bea3f8e7c9c89ec6daaec8c76c98c7693c34a39f54081a0f03a4ae97ef2354"
+      }
+    },
+    "static_references": "PASS",
+    "scientific_asset_hashes": "PASS",
+    "reference_and_implementation_hashes": "PASS"
+  },
+  "limits": [
+    "Qualified scientific approval and internal human review PENDING",
+    "Independent novice validation NOT CONDUCTED",
+    "Source-informed appearance, not flight CAD or optical ray tracing",
+    "Mobile checks emulated; no physical-device/60 FPS claim"
+  ],
+  "restart_smoke": {
+    "recorded_at_utc": "2026-10-17T10:25:12.916Z",
+    "browser": "155.0.8059.80",
+    "status": "PASS",
+    "server_restarted": true,
+    "detailed_webb_loaded": true,
+    "model_aligned_beam_and_foreground_occlusion": true,
+    "comparison_export_and_reopen_restores_zoom": true,
+    "page_errors": [],
+    "health_app_version": "0.7-local-workspace",
+    "harness_correction": "First smoke attempt used an incorrect import selector; corrected to the existing instrument-file input."
+  }
+}

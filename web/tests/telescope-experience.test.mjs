@@ -44,8 +44,14 @@ test("mission stories identify different published targets and never simulate me
 });
 test("visible light diagrams respond to channel selection and stop animating when disabled or reduced", () => {
   const effect = createObservationEffects(),
-    camera = new PerspectiveCamera();
-  effect.configure(new Vector3(0, 0, 0), "#8cd9db", 1, 3);
+    camera = new PerspectiveCamera(),
+    frame = {
+      origin: new Vector3(),
+      outward: new Vector3(0, 1, 0),
+      radius: 0.1,
+      length: 3,
+    };
+  effect.configure(frame, "#8cd9db", 1, 3);
   assert.equal(effect.update(500, camera), true);
   assert.equal(effect.diagnostics().channel, 3);
   effect.setEnabled(false);
@@ -54,16 +60,26 @@ test("visible light diagrams respond to channel selection and stop animating whe
   effect.setMotion(false);
   assert.equal(effect.update(500, camera), false);
   effect.setMotion(true);
-  effect.configure(new Vector3(), "#fff", 0, -1, "webb-b");
-  assert.equal(effect.diagnostics().illustrative_spread, 0.45);
+  effect.configure(
+    { ...frame, outward: new Vector3(0, 0, 1) },
+    "#fff",
+    0,
+    -1,
+    "webb-b",
+  );
+  assert.equal(
+    effect.diagnostics().external_geometry,
+    "parallel rays toward model aperture; no FOV cone",
+  );
   effect.setImage({
     src: "synthetic-image-fixture",
     naturalWidth: 1600,
     naturalHeight: 800,
   });
-  effect.configure(new Vector3(), "#fff", 2);
+  effect.configure(frame, "#fff", 2);
   assert.equal(effect.update(500, camera), false);
-  assert.equal(effect.diagnostics().published_image_visible, true);
+  assert.equal(effect.diagnostics().published_image_visible, false);
+  assert.match(effect.diagnostics().published_image_location, /2D panel only/);
   effect.clearImage();
   effect.update(500, camera);
   assert.equal(effect.diagnostics().published_image_visible, false);

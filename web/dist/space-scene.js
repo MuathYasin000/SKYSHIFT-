@@ -2,7 +2,13 @@ import * as THREE from "./vendor/three/three.module.js";
 import { OrbitControls } from "./vendor/three/OrbitControls.js";
 import { GLTFLoader } from "./vendor/three/GLTFLoader.js";
 import { DRACOLoader } from "./vendor/three/DRACOLoader.js";
-import { RoomEnvironment } from "./vendor/three/RoomEnvironment.js";
+import { createHardwareStudio } from "./hardware-studio.js";
+import { refineObservatory } from "./observatory-hardware.js";
+import {
+  sourceOpticalFrame,
+  spherexOpticalFrame,
+  worldOpticalFrame,
+} from "./telescope-optics.js";
 import { bodies, fieldVector, bodyPosition } from "./space-content.js";
 import { createSPHEREx } from "./spherex-model.js";
 import { telescopeStories } from "./telescope-stories.js";
@@ -41,8 +47,23 @@ export function createSpaceScene(
   controls.minDistance = 2.5;
   controls.maxDistance = 180;
   controls.enablePan = false;
+  const studio = createHardwareStudio();
+  // Broad virtual reflection card: presentation lighting, not a Sun model.
+  const card = new THREE.Mesh(
+    new THREE.PlaneGeometry(10, 7),
+    new THREE.MeshBasicMaterial({
+      color: new THREE.Color("#fff4dd").multiplyScalar(3),
+      side: THREE.DoubleSide,
+    }),
+  );
+  card.position.set(3, -1, 7);
+  card.lookAt(0, 0, 0);
+  studio.scene.add(card);
   const pmrem = new THREE.PMREMGenerator(renderer),
-    environment = pmrem.fromScene(new RoomEnvironment(), 0.04);
+    environment = pmrem.fromScene(studio.scene, 0.04);
+  studio.dispose();
+  card.geometry.dispose();
+  card.material.dispose();
   scene.environment = environment.texture;
   scene.environmentIntensity = 0.55;
   const ambient = new THREE.HemisphereLight(0xf1eddf, 0x252220, 0.65);
@@ -80,6 +101,7 @@ export function createSpaceScene(
       triangles: 0,
       assets_loaded: [],
       textured_models: {},
+      hardware_refinements: {},
       scene: "observatory",
       webgl: "ready",
     };
@@ -129,9 +151,15 @@ export function createSpaceScene(
             center = box.getCenter(new THREE.Vector3()),
             size = box.getSize(new THREE.Vector3()),
             pivot = new THREE.Group();
+          if (id === "webb-b" || id === "webb-detail" || id === "hubble") {
+            metrics.hardware_refinements[id] = refineObservatory(root, id);
+            pivot.userData.optics = sourceOpticalFrame(id, center);
+          }
           root.position.sub(center);
           pivot.add(root);
           pivot.scale.setScalar(2 / Math.max(size.x, size.y, size.z));
+          // Present A's +X observing side in the same scene orientation as B's +Z.
+          if (id === "webb-detail") pivot.rotation.y = -Math.PI / 2;
           root.traverse((o) => {
             if (o.isMesh) {
               o.castShadow = false;
@@ -198,6 +226,7 @@ export function createSpaceScene(
     }
   }
   const spherex = createSPHEREx();
+  spherex.userData.optics = spherexOpticalFrame();
   spherex.position.set(...telescopeStories.spherex.position);
   modelGroup.add(spherex);
   objects.set("spherex", spherex);
@@ -233,9 +262,14 @@ export function createSpaceScene(
       hardwareLoads.set(
         id,
         (async () => {
-          const object = await model(id);
+          const assetId =
+            id === "webb-b" && preferences.quality !== "low"
+              ? "webb-detail"
+              : id;
+          const object = await model(assetId);
           if (disposed) return null;
           object.scale.multiplyScalar(2);
+          object.userData.assetId = assetId;
           object.position.set(...telescopeStories[id].position);
           object.traverse((o) => {
             if (o.isMesh) o.userData.id = id;
@@ -243,6 +277,17 @@ export function createSpaceScene(
           objects.set(id, object);
           object.visible = collection || id === "spherex";
           modelGroup.add(object);
+          syncHardwareVisibility();
+          if (observingId === id) {
+            const state = observing.diagnostics();
+            observing.configure(
+              worldOpticalFrame(object),
+              telescopeStories[id].color,
+              state.stage,
+              state.channel,
+              id,
+            );
+          }
           invalidate();
           canvas.dispatchEvent(new CustomEvent("space-frame"));
           return object;
@@ -279,6 +324,18 @@ export function createSpaceScene(
   const earthContext = new THREE.Group();
   modelGroup.add(earthContext);
   let contextEarthLoading = false;
+  function syncHardwareVisibility() {
+    for (const id of Object.keys(telescopeStories)) {
+      if (objects.has(id))
+        objects.get(id).visible = observingId
+          ? id === observingId
+          : collection || id === "spherex";
+      if (telescopeHalos.has(id))
+        telescopeHalos.get(id).visible =
+          !observingId && (collection || id === "spherex");
+    }
+    earthContext.visible = !collection && !observingId;
+  }
   async function loadEarthContext() {
     if (contextEarthLoading) return;
     contextEarthLoading = true;
@@ -893,13 +950,14 @@ export function createSpaceScene(
       active = name;
       observing.close();
       observingId = null;
+      syncHardwareVisibility();
       pendingFocus = null;
       metrics.scene = name;
       modelGroup.visible = name === "observatory";
       solarGroup.visible = name === "solar";
       skyGroup.visible = name === "sky";
       ambient.intensity = name === "solar" ? 0.25 : 0.65;
-      scene.environmentIntensity = name === "solar" ? 0.3 : 0.55;
+      scene.environmentIntensity = name === "solar" ? 0.3 : 0.8;
       if (name === "solar") loadSolar();
       if (name === "observatory") loadObservatories();
       if (name === "observatory" && !collection) loadEarthContext();
@@ -912,6 +970,7 @@ export function createSpaceScene(
       for (const [id, ring] of telescopeHalos)
         ring.visible = collection || id === "spherex";
       earthContext.visible = !collection;
+      syncHardwareVisibility();
       if (collection && active === "observatory") loadObservatories();
       else if (active === "observatory") loadEarthContext();
       invalidate();
@@ -961,8 +1020,9 @@ export function createSpaceScene(
       if (!telescopeStories[id]) return;
       observingId = id;
       const position = new THREE.Vector3(...telescopeStories[id].position);
+      syncHardwareVisibility();
       observing.configure(
-        position,
+        worldOpticalFrame(objects.get(id)),
         telescopeStories[id].color,
         stage,
         channel,
@@ -977,11 +1037,24 @@ export function createSpaceScene(
         travel(
           position
             .clone()
-            .add(new THREE.Vector3(7 * fit, 6 * fit, 12 * fit))
+            .add(
+              (id === "webb-b"
+                ? new THREE.Vector3(-3.7, 2.7, 7)
+                : id === "hubble"
+                  ? new THREE.Vector3(-5.2, 4.8, 8.8)
+                  : new THREE.Vector3(-4.5, 4.4, 7)
+              ).multiplyScalar(fit),
+            )
             .toArray(),
           position
             .clone()
-            .add(new THREE.Vector3(0, 0.8, -1.7))
+            .add(
+              new THREE.Vector3(
+                0,
+                id === "webb-b" ? 0.1 : id === "hubble" ? 1.05 : 0.85,
+                0.3,
+              ),
+            )
             .toArray(),
         );
       }
@@ -990,6 +1063,7 @@ export function createSpaceScene(
     closeObservation() {
       observing.close();
       observingId = null;
+      syncHardwareVisibility();
       invalidate();
     },
     setObservationImage(image) {
@@ -1021,6 +1095,17 @@ export function createSpaceScene(
       resize();
     },
     positions,
+    lightLabel() {
+      const point = observing.labelPoint();
+      if (!point) return null;
+      const p = point.project(camera);
+      return {
+        x: (p.x + 1) / 2,
+        y: (1 - p.y) / 2,
+        visible:
+          p.z > -1 && p.z < 1 && Math.abs(p.x) < 0.95 && Math.abs(p.y) < 0.85,
+      };
+    },
     setEffects,
     setPaused(value) {
       paused = value;
@@ -1041,6 +1126,24 @@ export function createSpaceScene(
           objects.has(id),
         ),
         observing: observing.diagnostics(),
+        visible_hardware: Object.keys(telescopeStories).filter(
+          (id) => objects.get(id)?.visible,
+        ),
+        optical_frames: Object.fromEntries(
+          Object.keys(telescopeStories)
+            .filter((id) => objects.has(id))
+            .map((id) => {
+              const f = worldOpticalFrame(objects.get(id));
+              return [
+                id,
+                {
+                  origin: f.origin.toArray(),
+                  outward: f.outward.toArray(),
+                  radius: f.radius,
+                },
+              ];
+            }),
+        ),
         hover_id: hoverId,
       };
     },

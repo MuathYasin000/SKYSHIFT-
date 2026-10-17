@@ -148,6 +148,15 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     if (!scene) return;
     const width = innerWidth,
       height = innerHeight;
+    const light = scene.lightLabel(),
+      lightLabel = $("optics-ray-label");
+    if (lightLabel) {
+      lightLabel.hidden = !light?.visible;
+      if (light?.visible) {
+        lightLabel.style.left = light.x * width + "px";
+        lightLabel.style.top = light.y * height + "px";
+      }
+    }
     const obstacles = [
       ...document.querySelectorAll(
         ".destinations-drawer:not([hidden]),.space-context,.space-header,.space-hud,.telescope-story:not([hidden]),.mission-dock",
@@ -297,12 +306,21 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
         id === "spherex"
           ? "Illustrative spacecraft & orbit context · no live tracking"
           : "Reusable NASA model · educational context";
-      $("context-source").href = h.source;
-      $("context-credit").textContent = h.credit;
+      const variant =
+          id === "webb-b"
+            ? scene
+                ?.diagnostics()
+                .assets_loaded.find(
+                  (a) => a === "webb-b" || a === "webb-detail",
+                ) || (preferences.quality !== "low" ? "webb-detail" : "webb-b")
+            : id,
+        asset = manifest?.assets.find((a) => a.id === variant);
+      $("context-source").href = asset?.source_page || h.source;
+      $("context-credit").textContent = asset?.credit || h.credit;
       $("context-limitation").textContent =
         id === "spherex"
           ? "ARTISTIC VISUALIZATION · NOT A DIGITAL TWIN"
-          : "OFFICIAL DOWNLOADABLE NASA MODEL";
+          : "NASA MODEL · SKYSHIFT MATERIAL / APERTURE REFINEMENTS";
       scene?.showHardware(id, focus);
       $("look-through").textContent =
         "Look through " + telescopeStories[id].short + " →";
@@ -653,6 +671,16 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
           link.rel = "noreferrer";
           article.append(link, document.createTextNode(" · "));
         }
+      if (
+        a.refinement_record ===
+        "assets/space/observatory-optics-references.json"
+      ) {
+        const link = element("a", "Refinement sources & limits");
+        link.href = "./" + a.refinement_record;
+        link.target = "_blank";
+        link.rel = "noreferrer";
+        article.append(link);
+      }
       $("model-credits").append(article);
     }
   }
