@@ -23,17 +23,10 @@
       content="Black-and-white SKYSHIFT interface: actual illustrative SPHEREx model, wavelength ruler and Explore & Compare headline."
     />
 
-
-
-
-
-
-
-
-
   <link rel="stylesheet" href="./tokens.css">
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./components.css">
+<link rel="stylesheet" href="./shell-app.css">
 <link rel="stylesheet" href="./home.css">
 <link rel="stylesheet" href="./observations.css">
 <link rel="stylesheet" href="./compare.css">
@@ -48,11 +41,6 @@
       <span>IR LENS / M101 FIELD CENTRE<br>RA 210.802° / DEC +54.349°<br>Not spacecraft pointing</span>
     </div>
 
-
-
-
-
-
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header" id="site-header">
  <a class="site-brand" href="./index.html" aria-label="SKYSHIFT home"><img src="./assets/skyshift-mark.svg" width="36" height="42" alt=""><span>SKYSHIFT<small>SPHEREX OBSERVATION EXPLORER</small></span></a>
@@ -63,11 +51,6 @@
  <div class="chrome-actions"><button id="site-sound" data-sound-toggle aria-pressed="false" aria-label="Sound off — turn SKYSHIFT sound on" title="Turn SKYSHIFT sound on"><svg class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6m0-6-5 6"/></svg><span class="sound-word">Sound off</span></button><button id="site-more" aria-expanded="false" aria-controls="resources-menu">Resources <span aria-hidden="true">+</span></button><a href="./index.html#compare" class="header-launch">Compare dates</a></div>
  <nav id="resources-menu" class="resources-menu" aria-label="Resources" hidden><button id="resources-information">ⓘ Sources, methods & credits</button><button data-open-sound>♫ Sound & volume</button><a href="./explore.html">Explore the sky atlas →</a><a href="./index.html#mission">Interactive spacecraft →</a><a href="./compare.html">Standalone comparison →</a><a href="./guide.html">Reconstruction guide →</a><a href="./classic-home.html">Project introduction →</a></nav>
 </header>
-
-
-
-
-
 
     <main id="main" tabindex="-1">
       <p id="site-error" class="site-error" role="alert" hidden></p>
@@ -213,7 +196,6 @@
               ><br /><a
                 href="https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/"
 
-
                  target="_blank" rel="noopener noreferrer">Spacecraft reference: NASA/JPL-Caltech ↗</a
               >
             </figcaption>
@@ -225,11 +207,10 @@
             <span>01 / OBSERVE</span><span>02 / COMPARE</span
             ><span>03 / INVESTIGATE</span>
           </div>
-          <div class="hero-spectrum" aria-hidden="true"><div data-spectrum></div><div class="wavelength-endpoints"><span>0.75 μm</span><span>5.0 μm</span></div></div>
-          <div class="spectrum-caption">102 INFRARED CHANNELS · 0.75–5.0 μm<small>Schematic scale · not calibrated channel centres</small></div>
+          <div class="hero-spectrum"><div class="spectrum-caption">102 INFRARED CHANNELS · 0.75–5.0 μm<small>Schematic scale · not calibrated channel centres</small></div><div data-spectrum aria-hidden="true"></div><div class="wavelength-endpoints" aria-hidden="true"><span>0.75 μm</span><span>5.0 μm</span></div></div>
         </div>
         <section class="field-section" aria-labelledby="fields-heading">
-          <div class="section-spectrum" data-spectrum aria-hidden="true"></div>
+          <div class="section-divider" aria-hidden="true"></div>
           <div class="section-heading">
             <div>
               <p class="eyebrow">THE OBSERVATION COLLECTION / 01–04</p>
@@ -258,6 +239,7 @@
             views use the same infrared exposure; no visible-light image or
             extra detail is synthesized.
           </p>
+          <p class="mask-legend"><i class="mask-key" aria-hidden="true"></i>Masked / unsupported · hatched areas contain no usable measurement.</p>
           <div id="home-fields" class="home-fields" aria-live="polite">
             <div class="field-skeleton" aria-hidden="true"></div>
             <div class="field-skeleton" aria-hidden="true"></div>
@@ -449,7 +431,9 @@
             <h2>Curiosity, with a clear trail.</h2>
           </div>
           <article>
-            <span>01 / ORIGINAL DATA</span>
+            <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M5 3h14l6 6v20H5zM19 3v7h6M10 16h10M10 21h7"/></svg>
+            <b class="principle-number" aria-hidden="true">01</b>
+            <span>ORIGINAL DATA</span>
             <h3>Every image has a source.</h3>
             <p>
               Archive identities, calibration references and checksums stay with
@@ -457,7 +441,9 @@
             </p>
           </article>
           <article>
-            <span>02 / HONEST COMPARISONS</span>
+            <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="6" width="26" height="20"/><path d="M16 6v20M12 16h8"/></svg>
+            <b class="principle-number" aria-hidden="true">02</b>
+            <span>HONEST COMPARISONS</span>
             <h3>Compatibility comes first.</h3>
             <p>
               Available dates do not automatically make a suitable pair.
@@ -465,7 +451,9 @@
             </p>
           </article>
           <article>
-            <span>03 / REPRODUCIBLE WORK</span>
+            <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M7 3h18v26H7zM11 10h10M11 15h10M11 20h6"/><circle cx="23" cy="24" r="5"/></svg>
+            <b class="principle-number" aria-hidden="true">03</b>
+            <span>REPRODUCIBLE WORK</span>
             <h3>Your questions. Your evidence.</h3>
             <p>
               Save coordinates, settings and notes. Reopen them against the
@@ -507,21 +495,11 @@
       </div>
     </main>
 <footer class="site-footer">
- <div class="footer-wordmark" aria-hidden="true"></div>
- <div class="footer-columns"><div><h2>EXPLORE</h2><a href="./index.html#observations">Observation collection →</a><a href="./index.html#compare">Compare dates →</a><a href="./index.html#universe">3D Universe →</a><a href="./discover.html">Discover SPHEREx →</a></div><div><h2>METHODS & PROVENANCE</h2><a href="./methodology.html">Data & methodology →</a><a href="./guide.html">Reconstruct your evidence →</a><a href="./assets/assets.json" target="_blank" rel="noopener noreferrer">Image source records ↗</a><a href="./assets/space/manifest.json" target="_blank" rel="noopener noreferrer">Models, terms & hashes ↗</a></div><div><h2>CREDITS</h2><p>Project Mercury Team</p><p>SPHEREx imagery: NASA/JPL-Caltech.<br>Original astronomical data: NASA/IPAC IRSA.</p><button id="footer-sources">Sources & acknowledgments →</button></div></div>
- <p class="footer-notice">Independent educational application. No NASA endorsement. Scientific approval PENDING.</p>
- <details><summary>Sources & acknowledgments</summary><p>Original image, model and calibration identities stay with their source records. Interface type: <a href="./assets/fonts/mission-fonts.json" target="_blank" rel="noopener noreferrer">Inter & IBM Plex Mono — licenses and hashes ↗</a>.</p><p>Earlier interaction studies: <a href="https://skiper-ui.com/v1/preview/skiper40" target="_blank" rel="noopener noreferrer">Skiper UI ↗</a>, <a href="https://www.vengenceui.com/components/spotlight-navbar" target="_blank" rel="noopener noreferrer">Vengeance UI ↗</a> and <a href="https://www.dqnamo.com/kitchen" target="_blank" rel="noopener noreferrer">dqnamo Kitchen ↗</a>. <a href="./vendor/ui-patterns/sources.json" target="_blank" rel="noopener noreferrer">Original pattern notices ↗</a>. Optional scroll presentation uses <a href="./vendor/scroll/manifest.json" target="_blank" rel="noopener noreferrer">locally supplied GSAP / ScrollTrigger and Lenis ↗</a>.</p></details>
+<div aria-hidden="true" class="footer-wordmark"></div>
+<div class="footer-columns"><div><p class="label">EXPLORE</p><a href="./index.html#observations">Observation collection →</a><a href="./index.html#compare">Compare dates →</a><a href="./index.html#universe">3D Universe →</a><a href="./discover.html">Discover SPHEREx →</a></div><div><p class="label">METHODS &amp; PROVENANCE</p><a href="./methodology.html">Data &amp; methodology →</a><a href="./guide.html">Reconstruct your evidence →</a><a href="./assets/assets.json" target="_blank" rel="noopener noreferrer">Image source records ↗</a><a href="./assets/space/manifest.json" target="_blank" rel="noopener noreferrer">Models, terms &amp; hashes ↗</a></div><div><p class="label">CREDITS</p><p>Project Mercury Team</p><p>SPHEREx imagery: NASA/JPL-Caltech.<br/>Original astronomical data: NASA/IPAC IRSA.</p></div></div>
+<p class="footer-notice">Independent educational application. No NASA endorsement. Scientific approval PENDING.</p>
+<details id="footer-credits"><summary>Sources &amp; acknowledgments</summary><p>Original image, model and calibration identities stay with their source records. Interface type: <a href="./assets/fonts/mission-fonts.json" target="_blank" rel="noopener noreferrer">Inter &amp; IBM Plex Mono — licenses and hashes ↗</a>.</p><p>Earlier interaction studies: <a href="https://skiper-ui.com/v1/preview/skiper40" target="_blank" rel="noopener noreferrer">Skiper UI ↗</a>, <a href="https://www.vengenceui.com/components/spotlight-navbar" target="_blank" rel="noopener noreferrer">Vengeance UI ↗</a> and <a href="https://www.dqnamo.com/kitchen" target="_blank" rel="noopener noreferrer">dqnamo Kitchen ↗</a>. <a href="./vendor/ui-patterns/sources.json" target="_blank" rel="noopener noreferrer">Original pattern notices ↗</a>. Optional scroll presentation uses <a href="./vendor/scroll/manifest.json" target="_blank" rel="noopener noreferrer">locally supplied GSAP / ScrollTrigger and Lenis ↗</a>.</p></details>
 </footer>
-
-
-
-
-
-
-
-
-
-
 
     <dialog id="site-information" class="space-dialog">
       <div class="dialog-top">

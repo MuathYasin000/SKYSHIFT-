@@ -62,6 +62,9 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
   };
   function status(text, error = false) {
     $("space-status").textContent = text;
+    $("space-status").dataset.loading = String(
+      !error && /loading|decoding|checking/i.test(text),
+    );
     $("space-status").classList.toggle("status-error", Boolean(error));
   }
   function persist() {
@@ -168,7 +171,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     }
     const obstacles = [
       ...document.querySelectorAll(
-        ".destinations-drawer:not([hidden]),.space-context,.space-header,.space-hud,.telescope-story:not([hidden]),.mission-dock",
+        ".destinations-drawer:not([hidden]),.space-context,.space-header,.space-hud,.mission-dock>span,.telescope-story:not([hidden]),.mission-dock",
       ),
     ]
       .filter((el) => !el.hidden)
@@ -220,6 +223,20 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
       }
     }
   }
+  const earthStatus = document.createElement("p");
+  earthStatus.className = "earth-context-status";
+  earthStatus.hidden = true;
+  earthStatus.setAttribute("role", "status");
+  document.getElementById("universe-view").append(earthStatus);
+  $("universe").addEventListener("earth-context", (e) => {
+    earthStatus.hidden = e.detail.state !== "failed";
+    earthStatus.textContent =
+      e.detail.state === "failed"
+        ? "Earth context unavailable: " +
+          e.detail.reason +
+          ". Telescope and observations remain available."
+        : "";
+  });
   $("universe").addEventListener("space-frame", positionLabels);
   function sceneCopy() {
     const text = {
@@ -490,7 +507,6 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     !observationConsole.engine.active &&
     !createExplorationMemory().read().record;
   $("resume-button").onclick = () => openScience();
-  $("classic-toggle").onclick = onExit;
 
   document
     .querySelectorAll("button[data-environment]")
@@ -762,15 +778,19 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
   select(selected, false);
   startScene();
 
-  const compact = matchMedia("(max-width:740px)");
+  const compact = matchMedia("(max-width:800px)");
   function contextDetails(open) {
+    $("space-context").classList.toggle("details-open", open);
     $("context-details").hidden = !open;
     $("context-toggle").setAttribute("aria-expanded", String(open));
     $("context-toggle").querySelector(".context-toggle-label").textContent =
-      open ? "Close details" : "About & sources";
+      open ? "Close details" : compact.matches ? "More" : "About & sources";
     $("context-toggle").querySelector(".context-toggle-indicator").textContent =
       open ? "−" : "+";
   }
+  compact.addEventListener("change", () =>
+    contextDetails(!$("context-details").hidden),
+  );
   contextDetails(false);
   setDestinations(false);
   $("context-toggle").onclick = () =>

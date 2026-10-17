@@ -901,4 +901,206 @@
   #mission-optics .optics-diagram-limit {
     font: 12px/1.6 var(--mono);
   }
+  .space-context .context-summary {
+    display: block;
+    overflow: visible;
+    max-height: none;
+    height: auto;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    white-space: normal;
+  }
+  .space-context {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .space-actions {
+    height: 48px;
+    align-items: stretch;
+    flex-wrap: nowrap;
+  }
+  .space-actions button,
+  .space-actions a {
+    min-width: 44px;
+    max-height: 48px;
+    padding: 10px 14px;
+    white-space: nowrap;
+  }
+  .toolbar-icon {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    display: block;
+  }
+  .space-actions a#observations-button {
+    padding: 10px 16px;
+  }
+  .space-context {
+    top: 88px;
+    bottom: auto;
+    height: auto;
+    max-height: calc(100% - 288px);
+  }
+  .space-context .context-summary {
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
+    max-height: none;
+  }
+  .mission-dock {
+    bottom: 72px;
+  }
+  .mission-dock > span {
+    bottom: calc(100% + 16px);
+    left: 0;
+    text-align: center;
+  }
+  .hud-info {
+    max-width: 65%;
+  }
+  .context-sheet-toggle {
+    display: none;
+  }
+  .earth-context-status {
+    position: absolute;
+    left: 24px;
+    top: 80px;
+    z-index: 3;
+    max-width: 300px;
+    font: 12px/1.6 var(--mono);
+    padding: 8px;
+    background: var(--black);
+    border: 1px solid var(--line);
+  }
+  .space-context.details-open::after {
+    content: "Scroll for source details ↓";
+    position: sticky;
+    bottom: -24px;
+    display: block;
+    background: var(--black);
+    padding: 8px 0;
+    font: 12px var(--mono);
+    color: var(--text-3);
+    border-top: 1px solid var(--line);
+  }
+  @media (max-width: 800px) {
+    .space-actions button,
+    .space-actions a,
+    .space-actions a#observations-button {
+      padding: 10px;
+      width: 44px;
+      height: 44px;
+    }
+    .toolbar-icon {
+      width: 20px;
+      height: 20px;
+    }
+    .space-context {
+      inset: auto 16px 136px;
+      max-height: calc(100% - 240px);
+      padding: 12px 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 4px 12px;
+    }
+    .space-context .space-eyebrow {
+      display: none;
+    }
+    .space-context h2 {
+      grid-column: 1;
+      font-size: 24px;
+      max-width: none;
+      margin: 0;
+    }
+    .space-context .context-state {
+      grid-column: 1/-1;
+      font: 12px/1.5 var(--mono);
+      margin: 0;
+    }
+    .space-context .context-summary {
+      display: none;
+    }
+    .space-context .context-toggle {
+      grid-column: 2;
+      grid-row: 1;
+      min-width: 100px;
+      width: auto;
+      padding: 10px 24px;
+      font-size: 12px;
+    }
+    .context-toggle-label {
+      font-size: 12px;
+    }
+    .space-context .context-actions {
+      display: none;
+    }
+    .space-context.details-open {
+      display: block;
+    }
+    .space-context.details-open .context-summary {
+      display: block;
+      margin-top: 12px;
+    }
+    .space-context.details-open .context-actions {
+      display: grid;
+    }
+    .space-context.details-open .context-toggle {
+      width: 100%;
+      margin-top: 12px;
+    }
+    .space-context.details-open #context-details {
+      margin-top: 16px;
+    }
+    .mission-dock {
+      bottom: 56px;
+    }
+    .mission-dock > span {
+      font-size: 12px;
+    }
+    .earth-context-status {
+      left: 16px;
+      top: 136px;
+      max-width: calc(100% - 32px);
+    }
+    .space-context.details-open::after {
+      bottom: -12px;
+    }
+  }
+}
+
+@layer pages {
+  .mission-dock > span {
+    width: 100%;
+  }
+  @media (max-width: 800px) {
+    .space-context:not(.details-open) .context-state {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  #space-status[data-loading="true"]::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, transparent, var(--white), transparent);
+    animation: loading-sweep 1.5s linear infinite;
+  }
+  @keyframes loading-sweep {
+    from {
+      background-position: -200px 0;
+    }
+    to {
+      background-position: 200px 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #space-status[data-loading="true"]::before {
+      animation: none;
+    }
+  }
 }

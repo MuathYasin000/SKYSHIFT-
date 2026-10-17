@@ -569,13 +569,20 @@
     touch-action: none;
   }
   .canvas-stamp {
-    font: 12px var(--mono);
     position: absolute;
-    bottom: 12px;
-    left: 12px;
-    background: var(--black);
-    padding: 6px 8px;
-    color: var(--text-2);
+    inset: auto auto 12px 12px;
+    width: max-content;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    max-width: calc(100% - 24px);
+    padding: 4px 8px;
+    background: var(--image-label);
+    color: var(--white);
+    font: 12px/16px var(--mono);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 2;
   }
   .image-footer {
     padding: 12px;
@@ -783,6 +790,378 @@
     }
     .instrument-actions button {
       flex-grow: 1;
+    }
+  }
+  body[data-page="compare"] > main {
+    padding-top: 24px;
+  }
+  .visitor-compare-intro {
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    gap: 32px;
+    margin-bottom: 16px;
+  }
+  .visitor-compare-intro .eyebrow {
+    margin-bottom: 8px;
+  }
+  .visitor-compare-intro h1 {
+    font-size: 56px;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    max-width: 22ch;
+  }
+  .visitor-compare-intro > div > p:not(.eyebrow) {
+    font-size: 16px;
+    max-width: 65ch;
+  }
+  .comparison-context {
+    padding: 16px;
+  }
+  .comparison-context > .review-tag {
+    display: inline-flex;
+    margin-bottom: 8px;
+  }
+  .comparison-context details p {
+    font-size: 14px;
+  }
+  .comparison-context details summary {
+    font-size: 14px;
+  }
+  .visitor-journey {
+    padding: 0;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .visitor-journey li {
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .visitor-journey small {
+    display: none;
+  }
+  .workspace {
+    margin-top: 0;
+  }
+  .workspace-heading {
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .workspace-heading h2 {
+    font: 24px/1.25 var(--mono);
+  }
+  .workspace-heading .eyebrow {
+    display: none;
+  }
+  .workspace-heading .data-label {
+    font: 12px/1.5 var(--mono);
+  }
+  .workspace-heading .visitor-context-bar {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    gap: 8px;
+  }
+  .comparison-timeline {
+    margin: 4px 0;
+    font: 12px/1.6 var(--mono);
+  }
+  .toolbar {
+    padding: 8px 0;
+    gap: 12px;
+    align-items: center;
+  }
+  .toolbar .segmented {
+    flex-wrap: nowrap;
+  }
+  .toolbar button {
+    padding: 10px 12px;
+  }
+  .zoom-controls {
+    gap: 8px;
+  }
+  .comparison-extras {
+    margin: 16px 0;
+  }
+  .image-panel > figcaption {
+    padding: 10px 12px;
+    min-height: 60px;
+    align-items: center;
+  }
+  .image-panel .canvas-wrap {
+    aspect-ratio: auto;
+    height: clamp(320px, 54vh, 560px);
+    min-height: 320px;
+  }
+  .notebook {
+    align-self: start;
+    height: max-content;
+    position: sticky;
+    top: 88px;
+  }
+  .notebook-bottom {
+    margin-top: 24px;
+  }
+  .viewer-help,
+  .coordinate-bar {
+    text-align: left;
+  }
+  .segmented [aria-pressed="true"],
+  .instrument-comparison [aria-pressed="true"] {
+    background: var(--white);
+    color: var(--black);
+  }
+  .legacy-wipe-handle,
+  #instrument-wipe-handle {
+    width: 44px;
+    height: 44px;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+  }
+  .legacy-wipe-handle span,
+  #instrument-wipe-handle span {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font: 12px var(--mono);
+  }
+  .legacy-wipe-handle i,
+  #instrument-wipe-handle i {
+    height: 18px;
+    width: 1px;
+    background: var(--line-strong);
+  }
+  @media (max-width: 800px) {
+    body[data-page="compare"] > main {
+      display: flex;
+      flex-direction: column;
+      padding-top: 24px;
+      gap: 16px;
+    }
+    body[data-page="compare"] > main > * {
+      order: 6;
+    }
+    .visitor-compare-intro,
+    .visitor-compare-intro > div {
+      display: contents;
+    }
+    .visitor-compare-intro .eyebrow {
+      order: -4;
+      margin: 0;
+    }
+    .visitor-compare-intro h1 {
+      order: -3;
+      font-size: 40px;
+      margin: 0;
+    }
+    .visitor-compare-intro > div > p:not(.eyebrow) {
+      order: 3;
+      margin: 0;
+    }
+    .visitor-compare-intro > .comparison-context {
+      order: 4;
+    }
+    body[data-page="compare"] > main > .comparison-stage {
+      order: 0;
+    }
+    #loading,
+    #fatal {
+      order: -1;
+    }
+    body[data-page="compare"] > main > .visitor-journey {
+      order: 2;
+      gap: 8px;
+    }
+    .visitor-journey li {
+      letter-spacing: 0;
+      font-size: 12px;
+    }
+    .visitor-journey li b {
+      font-size: 12px;
+    }
+    .workspace-heading {
+      gap: 8px;
+    }
+    .workspace-heading h2 {
+      font-size: 20px;
+    }
+    .workspace-heading .data-label {
+      display: none;
+    }
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      padding-block: 4px;
+    }
+    .toolbar .segmented {
+      grid-column: 1/-1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .toolbar .segmented button {
+      padding: 8px 4px;
+      font-size: 12px;
+    }
+    .toolbar .annotation-controls button {
+      font-size: 12px;
+      padding: 8px;
+    }
+    .zoom-controls button {
+      padding: 8px;
+    }
+    .image-panel > figcaption {
+      min-height: 64px;
+    }
+    .image-panel .canvas-wrap {
+      height: 360px;
+    }
+    .viewer-layout {
+      gap: 24px;
+    }
+    .notebook {
+      position: static;
+    }
+    .comparison-context {
+      width: 100%;
+    }
+  }
+
+  .image-panel > figcaption > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .image-panel > figcaption strong {
+    font-size: 14px;
+  }
+  .legacy-wipe-handle > span,
+  #instrument-wipe-handle > span {
+    white-space: nowrap;
+    font: 12px var(--mono);
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .legacy-wipe-handle > span i,
+  #instrument-wipe-handle > span i {
+    width: 1px;
+    height: 18px;
+    display: inline-block;
+  }
+  .notebook .empty-notes {
+    padding: 16px 0;
+    gap: 8px;
+  }
+  .notebook-bottom p {
+    font-size: 14px;
+  }
+  .notebook p {
+    margin: 12px 0;
+  }
+  .notebook .notebook-bottom {
+    gap: 8px;
+  }
+  .notebook {
+    padding: 20px;
+  }
+  .metric span,
+  .metric small {
+    font-family: var(--mono);
+  }
+  .instrument-viewtools {
+    margin-left: auto;
+  }
+  .instrument-epoch-tools {
+    order: 0;
+  }
+  .instrument-viewbar {
+    order: 0;
+  }
+  .comparison-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .comparison-toolbar .instrument-comparison {
+    width: auto;
+  }
+  .instrument-inspection {
+    margin-top: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .instrument-canvases {
+    border: 1px solid var(--line-strong);
+  }
+  @media (max-width: 800px) {
+    .comparison-toolbar {
+      gap: 8px;
+    }
+    .comparison-toolbar .instrument-comparison {
+      width: 100%;
+    }
+    .comparison-toolbar .instrument-comparison button {
+      font-size: 12px;
+      padding: 8px;
+      flex: 1;
+    }
+    .instrument-viewtools {
+      margin: 0;
+    }
+    .instrument-selection {
+      gap: 8px;
+      padding-block: 12px;
+    }
+  }
+}
+
+/* Preserve the verified viewer's footprint during source and mask checks. The
+   native hidden attribute still keeps the unfinished workspace out of the a11y tree. */
+body[data-page="compare"] .comparison-stage {
+  position: relative;
+  min-width: 0;
+}
+body[data-page="compare"] .comparison-stage > .viewer-loading {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+}
+body[data-page="compare"] #workspace[hidden] {
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+}
+body[data-page="compare"]
+  .comparison-stage:has(#fatal:not([hidden]))
+  #workspace[hidden] {
+  display: none;
+}
+@layer pages {
+  .comparison-timeline {
+    min-height: 20px;
+  }
+  @media (max-width: 800px) {
+    .comparison-timeline {
+      min-height: 39px;
+    }
+    .visitor-compare-intro > .comparison-context {
+      order: -1;
+      padding: 0;
+      border: 0;
+    }
+    .comparison-context > .review-tag {
+      margin: 0;
+    }
+    .comparison-context > details {
+      margin-top: 4px;
     }
   }
 }

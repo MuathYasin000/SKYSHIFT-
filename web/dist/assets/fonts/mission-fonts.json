@@ -3,11 +3,13 @@
     {
       "file": "InterVariable.woff2",
       "source": "https://raw.githubusercontent.com/rsms/inter/master/docs/font-files/InterVariable.woff2",
-      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
-      "bytes": 352240,
+      "sha256": "10f4019d33cf0a8efe6be0a08e670fdb333efc531faf457a03cea812cea639f7",
+      "bytes": 137324,
       "license": "SIL Open Font License 1.1",
       "license_file": "Inter-OFL.txt",
-      "modification": "none"
+      "modification": "Local Latin/used-interface Unicode subset of upstream Inter Variable; glyph outlines and variable weight axis preserved. All used UI codepoints retained; original upstream font recoverable at aa0189c.",
+      "original_sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "original_bytes": 352240
     },
     {
       "file": "Inter-OFL.txt",

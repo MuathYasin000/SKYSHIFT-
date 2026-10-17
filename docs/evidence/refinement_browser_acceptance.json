@@ -1,0 +1,378 @@
+{
+  "recorded_at_utc": "2026-10-17T18:31:57.607Z",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "name": "home 1440: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [
+          "SPHEREx / OBSERVATION LABExplore & CompareTwo dates. One field. Your evidence.\n                \u00e2\u2020\u2014"
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "Home 1440: one icon and numeral, readable word, ruler spacing",
+      "status": "pass",
+      "detail": {
+        "cards": [
+          {
+            "icons": 1,
+            "numerals": 1
+          },
+          {
+            "icons": 1,
+            "numerals": 1
+          },
+          {
+            "icons": 1,
+            "numerals": 1
+          }
+        ],
+        "word": {
+          "color": "rgb(255, 255, 255)",
+          "stroke": "1.5px",
+          "strokeColor": "rgb(255, 255, 255)"
+        },
+        "caption_to_ticks": 20,
+        "ticks_to_labels": 12,
+        "rulers": 1
+      }
+    },
+    {
+      "name": "compare 1440: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "Compare 1440: first image, divider keyboard and both labels",
+      "status": "pass",
+      "detail": {
+        "canvasY": 566.5625,
+        "stamps": [
+          {
+            "width": 109.609375,
+            "height": 24,
+            "left": 12,
+            "bottom": 12,
+            "pointer": "none"
+          },
+          {
+            "width": 109.609375,
+            "height": 24,
+            "left": 12,
+            "bottom": 12,
+            "pointer": "none"
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore 1440: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "discover 1440: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "methodology 1440: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "guide 1440: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "universe 1440: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [
+          "observations-button"
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "Universe 1440: source-backed Earth and single toolbar",
+      "status": "pass",
+      "detail": {
+        "earth": {
+          "state": "ready",
+          "position": [
+            -5,
+            -1.4,
+            -4.5
+          ],
+          "atmosphere": true,
+          "schematic": true
+        },
+        "icons": [
+          {
+            "w": 20,
+            "h": 20
+          },
+          {
+            "w": 20,
+            "h": 20
+          },
+          {
+            "w": 20,
+            "h": 20
+          },
+          {
+            "w": 20,
+            "h": 20
+          }
+        ],
+        "gpu": {
+          "vendor": "Google Inc. (NVIDIA)",
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 SUPER (0x000021C4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "javascript_readPixels_calls": 0
+        }
+      }
+    },
+    {
+      "name": "native-compare 1440: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "home 390: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [
+          "SPHEREx / OBSERVATION LABExplore & CompareTwo dates. One field. Your evidence.\n                \u00e2\u2020\u2014"
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "Home 390: one icon and numeral, readable word, ruler spacing",
+      "status": "pass",
+      "detail": {
+        "cards": [
+          {
+            "icons": 1,
+            "numerals": 1
+          },
+          {
+            "icons": 1,
+            "numerals": 1
+          },
+          {
+            "icons": 1,
+            "numerals": 1
+          }
+        ],
+        "word": {
+          "color": "rgb(255, 255, 255)",
+          "stroke": "1.5px",
+          "strokeColor": "rgb(255, 255, 255)"
+        },
+        "caption_to_ticks": 20,
+        "ticks_to_labels": 12,
+        "rulers": 1
+      }
+    },
+    {
+      "name": "compare 390: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "Compare 390: first image, divider keyboard and both labels",
+      "status": "pass",
+      "detail": {
+        "canvasY": 648,
+        "stamps": [
+          {
+            "width": 109.609375,
+            "height": 24,
+            "left": 12,
+            "bottom": 12,
+            "pointer": "none"
+          },
+          {
+            "width": 109.609375,
+            "height": 24,
+            "left": 12,
+            "bottom": 12,
+            "pointer": "none"
+          }
+        ]
+      }
+    },
+    {
+      "name": "explore 390: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "discover 390: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "methodology 390: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "guide 390: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "universe 390: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [
+          "observations-button"
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "Universe 390: source-backed Earth and single toolbar",
+      "status": "pass",
+      "detail": {
+        "earth": {
+          "state": "ready",
+          "position": [
+            -5,
+            -1.4,
+            -4.5
+          ],
+          "atmosphere": true,
+          "schematic": true
+        },
+        "icons": [
+          {
+            "w": 20,
+            "h": 20
+          },
+          {
+            "w": 20,
+            "h": 20
+          },
+          {
+            "w": 20,
+            "h": 20
+          },
+          {
+            "w": 20,
+            "h": 20
+          }
+        ],
+        "gpu": {
+          "vendor": "Google Inc. (NVIDIA)",
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 SUPER (0x000021C4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "javascript_readPixels_calls": 0
+        }
+      }
+    },
+    {
+      "name": "native-compare 390: typography, links, viewport, primary action",
+      "status": "pass",
+      "detail": {
+        "under": [],
+        "links": [],
+        "red": [],
+        "overflow": false
+      }
+    },
+    {
+      "name": "Hero word remains readable through the animated intro",
+      "status": "pass",
+      "detail": {
+        "frames": 100
+      }
+    },
+    {
+      "name": "Earth checksum failure is explained without disabling the telescope",
+      "status": "pass",
+      "detail": {
+        "reason": "Earth context unavailable: Context asset checksum mismatch: earth-natural. Telescope and observations remain available.",
+        "scope": "Intentional fault injection is separate from zero-failure normal journeys"
+      }
+    }
+  ],
+  "page_errors": [],
+  "console_errors": [],
+  "gpu_warnings": [],
+  "failed_requests": [],
+  "http_errors": [],
+  "limits": [
+    "Chromium reports its renderer in each Universe result. Mobile sizes and touch are emulated; Safari, driver profiling and subjective sound acceptance are not certified.",
+    "Qualified scientific approval/internal human review PENDING; independent novice validation NOT CONDUCTED."
+  ]
+}

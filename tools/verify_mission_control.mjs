@@ -211,7 +211,7 @@ try {
         ).interpolation,
         "nearest",
       );
-      await p.locator("#instrument-wipe").focus();
+      await p.locator("#instrument-wipe-handle").focus();
       await p.keyboard.press("ArrowRight");
       assert.equal(await p.locator("#instrument-wipe").inputValue(), "51");
       await p.click("#instrument-evidence");

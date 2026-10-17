@@ -1,3 +1,4 @@
+import { drawMaskedPixels } from "./mask-display.js";
 const theme = uiTheme();
 import { uiTheme, drawPixelGuide } from "./ui-theme.js";
 import { showSources, markStep } from "./visitor.js";
@@ -90,7 +91,7 @@ function stopBlink() {
     clearInterval(state.blink);
     state.blink = null;
   }
-  $("blink").textContent = "▷ Blink between dates";
+  $("blink").textContent = "Blink";
   $("blink").setAttribute("aria-pressed", "false");
 }
 document.addEventListener("skyshift:workspace-hidden", stopBlink);
@@ -170,6 +171,14 @@ function drawCanvas(canvas, epoch) {
       if (!state.arrays.COMMON[y * mw + x])
         ctx.fillRect(x - g.cx - 0.5, y - g.cy - 0.5, 1, 1);
   ctx.restore();
+  drawMaskedPixels(
+    ctx,
+    g,
+    state.display,
+    state.manifest.processing.shape,
+    state.arrays.COMMON,
+    theme,
+  );
   if (state.visual.wipe && canvas.id === "canvas-a") {
     const split = (g.width * state.visual.wipe_position) / 100;
     ctx.strokeStyle = theme.white;
@@ -223,14 +232,14 @@ function drawCanvas(canvas, epoch) {
   const length = Math.min(g.width * 0.2, 80),
     arcsec = (length / g.scale) * 6.15;
   ctx.beginPath();
-  ctx.moveTo(16, g.height - 20);
-  ctx.lineTo(16 + length, g.height - 20);
-  ctx.moveTo(16, g.height - 24);
-  ctx.lineTo(16, g.height - 16);
-  ctx.moveTo(16 + length, g.height - 24);
-  ctx.lineTo(16 + length, g.height - 16);
+  ctx.moveTo(16, g.height - 52);
+  ctx.lineTo(16 + length, g.height - 52);
+  ctx.moveTo(16, g.height - 56);
+  ctx.lineTo(16, g.height - 48);
+  ctx.moveTo(16 + length, g.height - 56);
+  ctx.lineTo(16 + length, g.height - 48);
   ctx.stroke();
-  ctx.fillText(arcsec.toFixed(1) + " arcsec", 16, g.height - 30);
+  ctx.fillText(arcsec.toFixed(1) + " arcsec", 16, g.height - 62);
   ctx.fillText("N ↑", g.width - 43, 23);
   ctx.fillText("E ←", g.width - 43, 37);
 }
@@ -247,6 +256,10 @@ function drawNow() {
   const handle = $("legacy-wipe-handle");
   handle.hidden = !state.visual.wipe;
   handle.style.left = state.visual.wipe_position + "%";
+  handle.setAttribute(
+    "aria-valuenow",
+    String(Math.round(state.visual.wipe_position)),
+  );
   drawCanvas(
     $("canvas-a"),
     state.display.view_mode === "single" ? state.display.selected_epoch : "A",
@@ -277,7 +290,7 @@ function setViewport(
 function setMode(mode, keepWipe = false) {
   stopBlink();
   if (!keepWipe) state.visual.wipe = false;
-  $("wipe-controls").hidden = !state.visual.wipe;
+  $("wipe-controls").hidden = true;
   $("overlay-mode").setAttribute("aria-pressed", String(state.visual.wipe));
   state.display.view_mode = mode;
   $("images").classList.toggle("single", mode === "single");
@@ -533,7 +546,11 @@ for (const id of ["close-note", "cancel-note"])
 $("coordinate-note").addEventListener("click", () => openNote());
 $("mark-mode").addEventListener("click", () => setMarking(!state.marking));
 $("side-mode").addEventListener("click", () => setMode("side_by_side"));
-$("single-mode").addEventListener("click", () => setMode("single"));
+$("single-mode").addEventListener("click", () => {
+  const current = state.display.selected_epoch;
+  setMode("single");
+  setEpoch(current === "A" ? "B" : "A");
+});
 $("epoch-a").addEventListener("click", () => setEpoch("A"));
 $("epoch-b").addEventListener("click", () => setEpoch("B"));
 $("zoom-in").addEventListener("click", () =>
@@ -562,7 +579,7 @@ $("blink").addEventListener("click", () => {
     () => setEpoch(state.display.selected_epoch === "A" ? "B" : "A"),
     1500,
   );
-  $("blink").textContent = "Ⅱ Stop blink";
+  $("blink").textContent = "Stop blink";
   $("blink").setAttribute("aria-pressed", "true");
 });
 document.addEventListener("visibilitychange", () => {
@@ -571,6 +588,10 @@ document.addEventListener("visibilitychange", () => {
 function reflectDisplay() {
   for (const key of ["stretch", "palette", "interpolation"])
     $("visual-" + key).value = state.visual[key];
+  legacyHandle.setAttribute(
+    "aria-valuenow",
+    String(state.visual.wipe_position),
+  );
   $("wipe").value = state.visual.wipe_position;
   $("stretch").value = state.display.stretch;
   $("vmin").value = state.display.vmin.toFixed(5);
@@ -1123,9 +1144,15 @@ legacyHandle.onpointermove = (e) => {
 legacyHandle.onpointerup = legacyHandle.onpointercancel = () =>
   (dividerDrag = false);
 legacyHandle.onkeydown = (e) => {
-  if (["ArrowLeft", "ArrowRight"].includes(e.key)) {
+  if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) {
     e.preventDefault();
-    divider(state.visual.wipe_position + (e.key === "ArrowLeft" ? -1 : 1));
+    divider(
+      e.key === "Home"
+        ? 0
+        : e.key === "End"
+          ? 100
+          : state.visual.wipe_position + (e.key === "ArrowLeft" ? -1 : 1),
+    );
   }
 };
 $("canvas-a").addEventListener(

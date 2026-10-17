@@ -61,9 +61,26 @@
     color: var(--blue-text);
     text-decoration-thickness: 1px;
     text-underline-offset: 4px;
+    display: inline;
+    min-height: auto;
+  }
+  :where(
+    nav a,
+    a.primary,
+    a.primary-link,
+    a.outline,
+    a.secondary-link,
+    a.header-launch,
+    .standalone-link
+  ) {
     min-height: 44px;
     display: inline-flex;
     align-items: center;
+  }
+  p a {
+    display: inline;
+    min-height: auto;
+    padding-block: 3px;
   }
   a:hover {
     color: var(--white);

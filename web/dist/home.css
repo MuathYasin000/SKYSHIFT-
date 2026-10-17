@@ -14,7 +14,7 @@
     width: min(var(--content), calc(100% - 2 * var(--gutter)));
     max-width: none;
     margin-inline: auto;
-    padding-block: 160px;
+    padding-block: 56px;
   }
   #home-view .orbital-hero {
     display: grid;
@@ -50,14 +50,14 @@
     font-style: normal;
     color: transparent;
     -webkit-text-stroke: 1.5px var(--white);
-    transition: color 0.6s var(--ease);
+    transition: none;
     margin-left: 0.06em;
   }
   .orbital-hero h1 em:hover,
   .orbital-hero.lens-active h1 em,
   .intro-complete .orbital-hero h1 em {
     color: var(--white);
-    -webkit-text-stroke: 0;
+    -webkit-text-stroke: 1.5px var(--white);
   }
   .hero-period {
     color: var(--red);
@@ -414,10 +414,30 @@
     animation: none;
   }
   .hero-spectrum {
-    position: absolute;
-    inset: auto var(--gutter) 48px;
-    height: 48px;
+    position: relative;
+    inset: auto;
+    grid-column: 1/-1;
+    width: 100%;
+    height: auto;
+    margin-top: 32px;
   }
+  .hero-spectrum .spectrum-caption {
+    position: static;
+    margin: 0 0 20px;
+    font: 12px/1.6 var(--mono);
+  }
+  .hero-spectrum [data-spectrum] {
+    margin-bottom: 12px;
+  }
+  .hero-spectrum .wavelength-endpoints {
+    margin: 0;
+    line-height: 16px;
+  }
+  .section-divider {
+    border-top: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+
   .orbital-hero > .spectrum-caption {
     grid-column: 1/-1;
     margin-top: 40px;
@@ -720,7 +740,7 @@
   }
   @media (min-width: 951px) {
     .infrared-effects:not(.reduced-effects) .headline-line {
-      animation: mission-arrival 0.7s var(--ease) both;
+      animation: headline-arrival 0.7s var(--ease) both;
     }
     .headline-line:nth-child(2) {
       animation-delay: 60ms;
@@ -769,7 +789,7 @@
     #home-view > .trust-section,
     #home-view > .mission-section,
     #home-view > .universe-entry {
-      padding-block: 80px;
+      padding-block: 32px;
     }
     #home-view .orbital-hero {
       display: flex;
@@ -779,14 +799,14 @@
       min-height: 0;
     }
     .orbital-hero .intro-copy {
-      order: 1;
+      order: 0;
     }
     .orbital-hero h1 {
       font-size: clamp(3.5rem, 10vw, 6.5rem);
     }
     #home-view .hero-observatory {
-      order: 0;
-      height: 400px;
+      order: 1;
+      height: 440px;
       margin: 0;
     }
     .hero-hud {
@@ -918,7 +938,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(1) brightness(0.45);
+    filter: grayscale(1) brightness(0.6);
   }
   .vela-divider {
     position: absolute;
@@ -1106,7 +1126,7 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
-    filter: grayscale(1) brightness(0.45);
+    filter: grayscale(1) brightness(0.6);
   }
   .model-start button,
   .model-start small {
@@ -1369,7 +1389,7 @@
   }
   @media (min-width: 1001px) and (min-height: 760px) {
     .mission-section.walkthrough-enabled {
-      min-height: 135vh;
+      min-height: 100vh;
     }
     .walkthrough-enabled .mission-model {
       position: sticky;
@@ -1493,5 +1513,297 @@
   .reduced-effects .portal-opening,
   .reduced-effects .model-opening::after {
     animation: none;
+  }
+  .orbital-lettering {
+    display: none;
+  }
+  .stars-near {
+    opacity: 0.5;
+    background-size: 277px 239px;
+  }
+  .stars-mid {
+    opacity: 0.32;
+    background-size: 223px 277px;
+  }
+  .stars-far {
+    opacity: 0.22;
+    background-size: 151px 191px;
+  }
+  #home-view .orbital-hero {
+    padding-top: 56px;
+    padding-bottom: 40px;
+    min-height: 0;
+  }
+  #home-view .hero-observatory {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto auto auto;
+    gap: 12px;
+    padding-top: 96px;
+    padding-bottom: 16px;
+    height: 650px;
+  }
+  .hero-model-canvas {
+    inset: 96px 0 188px;
+    height: calc(100% - 284px);
+  }
+  .hero-observatory::after {
+    inset: 96px 0 188px;
+  }
+  .hero-model-controls {
+    position: relative;
+    inset: auto;
+    grid-row: 2;
+    justify-content: flex-end;
+    height: 44px;
+  }
+  .hero-observatory .hero-mission-link {
+    position: static;
+    inset: auto;
+    grid-row: 3;
+    min-height: 44px;
+    justify-self: end;
+    font-size: 12px;
+  }
+  .hero-observatory figcaption {
+    position: static;
+    inset: auto;
+    grid-row: 4;
+  }
+  .hero-spectrum {
+    order: 2;
+    margin-top: 8px;
+    bottom: auto;
+  }
+  .hero-spectrum .spectrum-caption {
+    margin-bottom: 20px;
+  }
+  .hero-spectrum .spectrum-caption small {
+    margin-top: 4px;
+  }
+  .field-tools {
+    max-width: none;
+  }
+  .field-tools input {
+    width: 320px;
+    min-width: 320px;
+    max-width: 100%;
+    padding-right: 68px;
+  }
+  .field-tools .search-shortcut {
+    margin-left: -72px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .field-card {
+    display: grid;
+    grid-template-rows: 1fr auto auto;
+    align-items: stretch;
+  }
+  .field-card > a {
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+  .field-card-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .field-card-copy .field-date {
+    margin-top: auto;
+  }
+  .field-card-copy h3 {
+    margin: 0;
+  }
+  .field-reveal-toggle {
+    justify-self: start;
+    margin: 0 24px 16px;
+    font: 12px var(--mono);
+    padding: 6px 10px;
+  }
+  .field-availability {
+    margin: 0;
+    padding: 16px 24px;
+    border-top: 1px solid var(--line);
+    font: 12px/1.6 var(--mono);
+  }
+  .field-action {
+    display: none;
+  }
+  .mission-copy #website-components {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .mission-copy #website-components button {
+    margin: 0;
+    text-align: left;
+    font: 12px/1.6 var(--mono);
+    padding: 10px;
+    min-width: 0;
+  }
+  .mission-copy #website-component-description {
+    padding-left: 0;
+    margin-left: 0;
+  }
+  #mission-model-start img {
+    filter: grayscale(1) brightness(0.6);
+  }
+  .model-hotspot {
+    border-radius: 50%;
+  }
+  .model-hotspot::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    animation: hotspot-ring 2.4s ease-out infinite;
+    pointer-events: none;
+  }
+  @keyframes hotspot-ring {
+    from {
+      transform: scale(0.95);
+      opacity: 0.4;
+    }
+    to {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+  }
+  .trust-section article .principle-icon {
+    margin: 0 0 24px;
+  }
+  .trust-section article .principle-number {
+    display: block;
+    margin-bottom: 24px;
+  }
+  #vela-reveal {
+    appearance: none;
+    border: 0;
+    border-radius: 0;
+    height: 44px;
+    background: transparent;
+  }
+  #vela-reveal::-webkit-slider-runnable-track {
+    height: 16px;
+    border-block-end: 1px solid var(--line-strong);
+    background: repeating-linear-gradient(
+      to right,
+      var(--line-strong) 0 1px,
+      transparent 1px 8px
+    );
+  }
+  #vela-reveal::-webkit-slider-thumb {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: var(--white);
+    border: 1px solid var(--black);
+    border-radius: var(--radius);
+    margin-top: -4px;
+  }
+  @media (max-width: 800px) {
+    #home-view .orbital-hero {
+      padding-top: 24px;
+      gap: 32px;
+    }
+    .orbital-hero .intro-copy {
+      order: 0;
+    }
+    .orbital-hero h1 {
+      font-size: clamp(3rem, 11vw, 4rem);
+      margin-block: 20px;
+    }
+    .orbital-hero .intro-lead {
+      margin-bottom: 24px;
+    }
+    .mission-launch {
+      padding: 14px 16px;
+    }
+    .launch-copy strong {
+      font-size: 16px;
+    }
+    .launch-copy > span {
+      display: none;
+    }
+    .intro-actions {
+      gap: 12px;
+    }
+    .orbital-hero .intro-note {
+      margin-top: 16px;
+    }
+    .vision-controls {
+      margin-top: 16px;
+    }
+    #home-view .hero-observatory {
+      order: 1;
+      height: 500px;
+      padding-top: 80px;
+    }
+    .hero-model-canvas {
+      inset: 80px 0 176px;
+      height: calc(100% - 256px);
+    }
+    .hero-observatory::after {
+      inset: 80px 0 176px;
+    }
+    .hero-model-controls {
+      inset: auto;
+    }
+    .hero-spectrum {
+      order: 2;
+      bottom: auto;
+      width: 100%;
+      max-width: none;
+    }
+    .hero-spectrum .spectrum-caption {
+      font-size: 12px;
+    }
+    .field-tools label {
+      width: 100%;
+    }
+    .field-tools input {
+      width: 100%;
+      min-width: 0;
+    }
+    .mission-copy #website-components {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .hotspot-callout {
+      display: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .model-hotspot::before {
+      animation: none;
+    }
+  }
+  .reduced-effects .model-hotspot::before {
+    animation: none;
+  }
+}
+
+@layer pages {
+  @keyframes headline-arrival {
+    from {
+      transform: translateY(20px);
+    }
+    to {
+      transform: none;
+    }
+  }
+  .stars-near {
+    background-image: radial-gradient(
+      1.6px 1.6px at 25% 30%,
+      var(--white) 55%,
+      transparent 100%
+    );
+  }
+  .stars-mid {
+    background-image: radial-gradient(
+      1.2px 1.2px at 70% 65%,
+      var(--white) 55%,
+      transparent 100%
+    );
   }
 }

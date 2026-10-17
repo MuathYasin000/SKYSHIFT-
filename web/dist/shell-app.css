@@ -1,0 +1,202 @@
+@layer structure {
+  /* App-only structural utilities; no restored legacy stylesheet stack. */
+  #main {
+    width: 100%;
+    min-width: 0;
+  }
+  .home-intro {
+    position: relative;
+  }
+  .hero-observatory {
+    min-width: 0;
+  }
+  .hero-observatory canvas {
+    display: block;
+    touch-action: none;
+  }
+  .hero-model-controls {
+    display: flex;
+  }
+  .hero-model-controls button {
+    width: 44px;
+    height: 44px;
+    padding: 8px;
+  }
+  .hero-model-retry {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+  }
+  .field-tools {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .field-tools label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .field-tools input {
+    width: 320px;
+    max-width: 100%;
+  }
+  .field-tools kbd {
+    padding: 6px;
+    border: 1px solid var(--line);
+  }
+  .home-fields {
+    min-width: 0;
+  }
+  .field-card-copy {
+    min-width: 0;
+  }
+  .field-card-copy > p {
+    overflow-wrap: anywhere;
+  }
+  #mission-model-tools {
+    position: absolute;
+    right: 16px;
+    bottom: 64px;
+    display: flex;
+    gap: 8px;
+    z-index: 4;
+  }
+  #mission-model-status {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    font: 12px/1.6 var(--mono);
+    background: var(--black);
+    padding: 8px;
+    z-index: 3;
+  }
+  #mission-model-tools button {
+    font-size: 14px;
+  }
+  .model-hotspot {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 4;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+    background: var(--black);
+    border: 1px solid var(--white);
+    font: 12px var(--mono);
+    transform: translate(-50%, -50%);
+  }
+  .hotspot-callout {
+    position: absolute;
+    left: 100%;
+    margin-left: 16px;
+    background: var(--black);
+    padding: 6px;
+    border: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  .hotspot-leader {
+    position: absolute;
+    left: 100%;
+    width: 16px;
+    height: 1px;
+    background: var(--white);
+  }
+  #instrument-panel-body input,
+  #instrument-panel-body textarea {
+    max-width: 100%;
+    width: 100%;
+  }
+  #instrument-question textarea {
+    width: 100%;
+  }
+  .instrument-panel-heading {
+    position: sticky;
+    top: 0;
+    background: var(--black);
+    padding-bottom: 16px;
+    z-index: 2;
+  }
+  .space-focus-title {
+    display: none;
+  }
+  .space-dialog p,
+  .space-dialog li {
+    font-size: 14px;
+  }
+  .space-dialog select {
+    max-width: 100%;
+  }
+  .space-dialog input[type="range"] {
+    width: 100%;
+  }
+  .space-dialog fieldset {
+    border: 1px solid var(--line);
+    margin-block: 16px;
+    min-width: 0;
+  }
+  .space-dialog label {
+    display: block;
+    margin-block: 12px;
+  }
+  .asset-credit {
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .asset-credit a {
+    overflow-wrap: anywhere;
+  }
+  .asset-credit code {
+    display: block;
+    overflow-wrap: anywhere;
+  }
+  .space-tabs {
+    margin: 0;
+  }
+  .journey-strip {
+    position: absolute;
+    left: 24px;
+    bottom: 176px;
+    z-index: 9;
+    padding: 16px;
+    background: var(--black);
+    border: 1px solid var(--line);
+    max-width: calc(100% - 48px);
+  }
+  .journey-strip p {
+    font-size: 14px;
+  }
+  .journey-strip button {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  @media (max-width: 800px) {
+    .field-tools {
+      width: 100%;
+    }
+    .field-tools label {
+      width: 100%;
+    }
+    .field-tools input {
+      width: 100%;
+      min-width: 0;
+    }
+    .hotspot-callout {
+      display: none;
+    }
+    .journey-strip {
+      left: 16px;
+      max-width: calc(100% - 32px);
+      bottom: 160px;
+    }
+  }
+}

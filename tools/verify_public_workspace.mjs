@@ -199,11 +199,11 @@ try {
       await page.click("#optics-expand");
       await page.locator("#optics-dialog[open]").waitFor();
       await page.keyboard.press("Escape");
-      await page.click("#sound-toggle");
+      await page.click("#site-sound");
       await page.waitForFunction(
         () => skyshiftSound.diagnostics().enabled === false,
       );
-      await page.click("#classic-toggle");
+      await page.click(".site-brand");
       assert.equal(
         await page.locator("#site-sound").getAttribute("aria-pressed"),
         "false",

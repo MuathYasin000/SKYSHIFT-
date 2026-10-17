@@ -44,7 +44,14 @@ def run():
             opening=opening[:-1]+' target="_blank" rel="noopener noreferrer">'
             return opening+body+(' ↗' if '↗' not in body else '')+'</a>'
         s=re.sub(r'(<a\b[^>]*href="https://[^>]*>)([\s\S]*?)</a>',external,s)
+        shell='shell-app.css' if p.name=='index.html' else 'shell-document.css'
+        if shell not in s:
+            s=s.replace('</head>','<link rel="stylesheet" href="./'+shell+'"></head>')
+        if p.name=='guide.html' and 'name="description"' not in s:
+            s=s.replace('</head>','<meta name="description" content="Reopen and reconstruct a SPHEREx comparison with its source identities, masks, saved settings and evidence."></head>')
         s='\n'.join(line.rstrip() for line in s.splitlines())+'\n'
+        # Replacing static includes must not accumulate empty lines on every run.
+        s=re.sub(r'\n(?:[ \t]*\n){2,}', '\n\n', s).rstrip()+'\n'
         if s!=p.read_text(encoding='utf-8'):p.write_text(s,encoding='utf-8',newline='\n')
 
 if __name__=='__main__':run()

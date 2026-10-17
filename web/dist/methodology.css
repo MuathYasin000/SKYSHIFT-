@@ -6,7 +6,7 @@
     counter-reset: chapter;
   }
   .methods-page .page-intro {
-    padding: 0 0 100px;
+    padding: 0 0 56px;
     max-width: 1000px;
   }
   .page-intro h1 {
@@ -19,7 +19,7 @@
     font-size: 18px;
   }
   .methods-page .editorial-section {
-    padding: 96px 0;
+    padding: 56px 0;
     border-top: 1px solid var(--line);
     position: relative;
     display: block;
@@ -155,10 +155,10 @@
       padding-top: 48px;
     }
     .methods-page .page-intro {
-      padding-bottom: 80px;
+      padding-bottom: 32px;
     }
     .methods-page .editorial-section {
-      padding-block: 80px;
+      padding-block: 32px;
     }
     .methods-page .learn-grid,
     .methods-page .steps,

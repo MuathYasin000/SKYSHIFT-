@@ -222,16 +222,6 @@
       "refinement_record": "assets/space/observatory-optics-references.json"
     },
     {
-      "id": "logo",
-      "file": "assets/SKYSHIFT_ICON.PNG",
-      "credit": "Project Mercury Team \u00b7 supplied by the user",
-      "source_page": "User-supplied official project logo",
-      "terms": "User-authorized project use; original artwork preserved",
-      "sha256": "5b7eb030b8b6e8c59f9ad7f35a8fcb9be4056efd3916b7c47bc701cacb6e5611",
-      "bytes": 491638,
-      "modifications": "none"
-    },
-    {
       "id": "spherex",
       "file": "spherex-model.js",
       "credit": "Project Mercury Team / SKYSHIFT original educational geometry",
@@ -278,16 +268,6 @@
       "modifications": "Embedded textures downsampled to at most 2048px; opaque textures JPEG quality 88; alpha retained as PNG; mesh, materials and geometry unchanged."
     },
     {
-      "id": "logo-outlined",
-      "file": "assets/LOGO2.PNG",
-      "credit": "Project Mercury Team / supplied by the user",
-      "source_page": "User attachment LOGO2.PNG, 17 October 2026",
-      "terms": "User-authorized project use; original artwork preserved",
-      "sha256": "9a8996f1d57c7f655ed2a6d6e37d47912fd76a77d22c390384373c3d08992d9b",
-      "bytes": 775265,
-      "modifications": "none"
-    },
-    {
       "id": "universe-atmosphere",
       "modifications": "SKYSHIFT monochrome illustrative star band and NASA-blue Earth rim. Static scenery only; no measured sky or atmospheric simulation.",
       "file": "space-atmosphere.js",
@@ -298,17 +278,6 @@
       "bytes": 1977,
       "purpose": "Illustrative backdrop and Earth rim glow, not a measured sky map or atmospheric model",
       "previous_sha256": "325e2146ed0942d3cb43e5273851ddad98a1cf54e9641a0eacc344f1d5fb6acb"
-    },
-    {
-      "id": "seeing-invisible-social-preview",
-      "file": "assets/seeing-invisible.png",
-      "credit": "SKYSHIFT / Project Mercury Team; actual local interactive hero screenshot",
-      "source_page": "http://localhost:3000/",
-      "terms": "User-requested Open Graph preview; original project model/UI with credited reference sources; no NASA endorsement",
-      "sha256": "4a3cd30fdf943c6e8a9c2424adf4e9dc1575f9d6f830a686a4af76425f8420d8",
-      "bytes": 790711,
-      "modifications": "Actual local browser screenshot at 1920 x 1008, downsampled to 1200 x 630 with Lanczos. No compositing, generated image content or altered astronomical detail; interactive hero remains real 3D. Capture record: assets/seeing-invisible.json.",
-      "purpose": "Open Graph preview only; not astronomical data"
     },
     {
       "id": "webb-detail",
@@ -366,12 +335,6 @@
       "source": "https://github.com/mrdoob/three.js/tree/r180/examples/jsm/libs/draco/gltf",
       "license": "Apache-2.0",
       "local_license": "vendor/three/draco/LICENSE"
-    },
-    {
-      "name": "Outfit",
-      "source": "https://github.com/google/fonts/tree/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/outfit",
-      "license": "SIL Open Font License 1.1",
-      "local_license": "assets/fonts/Outfit-OFL.txt"
     }
   ],
   "asset_preparation_tool_sha256": "d85d40b42023cbc59501b305492d8eba9d81e52b606acd45257a657902f5aeaa"

@@ -1,3 +1,4 @@
+import { drawMaskedPixels } from "./mask-display.js";
 import { createInvestigation } from "./investigation.js";
 import { pixelToSky, skyToPixel } from "./science.js";
 import { displayLevel, paletteRGB } from "./visualization.js";
@@ -44,11 +45,11 @@ export function createObservationConsole({
       <section class="instrument-view" aria-label="Observation inspection">
         <div class="instrument-viewbar"><span id="instrument-identity">Real SPHEREx pixels</span><div><button id="instrument-about">Sources & suitability</button><button id="instrument-display">Appearance</button><button id="instrument-notes">Questions <span id="instrument-note-count">0</span></button></div></div>
         <div class="instrument-epoch-tools"><div id="instrument-dates" class="instrument-dates" role="group" aria-label="Observation timeline"></div>
-        <div id="instrument-comparison" class="instrument-comparison" role="group" aria-label="Comparison presentation" hidden><button data-compare="side_by_side">Side by side</button><button data-compare="wipe">Wipe</button><button data-compare="single">A / B</button><button id="instrument-blink" aria-pressed="false">Blink</button></div></div>
+        <div id="instrument-comparison" class="instrument-comparison" role="group" aria-label="Comparison presentation" hidden><button data-compare="wipe">Wipe</button><button data-compare="side_by_side">Side by side</button><button id="instrument-blink" aria-pressed="false">Blink</button><button data-compare="single">Switch</button></div></div>
         <div id="instrument-canvases" class="instrument-canvases">
           <figure id="instrument-figure-a"><figcaption id="instrument-label-a"></figcaption><canvas id="instrument-canvas-a" tabindex="0" aria-label="Observation A, pan and zoom; click or Enter to inspect a pixel"></canvas></figure>
           <figure id="instrument-figure-b" hidden><figcaption id="instrument-label-b"></figcaption><canvas id="instrument-canvas-b" tabindex="0" aria-label="Observation B, synchronized pan and zoom; click or Enter to inspect a pixel"></canvas></figure>
-          <button id="instrument-wipe-handle" aria-label="A / B — drag to reveal the second observation; use the Reveal observation B slider for keyboard control" hidden>A / B</button>
+          <button id="instrument-wipe-handle" aria-label="A / B — drag to reveal the second observation; use arrow keys to adjust" hidden><span aria-hidden="true">‹ A <i></i> B ›</span></button>
           <div id="instrument-loading" class="instrument-loading" role="status" hidden><span></span><strong>Checking scientific data & source identity…</strong></div>
         </div>
         <label id="instrument-wipe-row" class="instrument-wipe-row" hidden>Divider position <input id="instrument-wipe" type="range" min="0" max="100" value="50"><output id="instrument-wipe-value">50%</output></label>
@@ -61,6 +62,22 @@ export function createObservationConsole({
     <p id="instrument-status" class="instrument-status" role="status"></p><button id="instrument-retry" hidden>Retry observation</button>
     <dialog id="instrument-question" class="space-dialog"><form method="dialog"><div class="dialog-top"><h2>Your question about this position</h2><button value="cancel" formnovalidate aria-label="Cancel question">×</button></div><p id="instrument-question-position"></p><label for="instrument-question-text">Question or note</label><textarea id="instrument-question-text" maxlength="1500" rows="4" required></textarea><p>User hypothesis only. No measured motion or confirmed variability.</p><div class="instrument-actions"><button value="cancel" formnovalidate>Cancel</button><button id="instrument-question-save" type="button">Save question</button></div><p id="instrument-question-error" role="alert"></p></form></dialog>
     <dialog id="instrument-information" class="space-dialog"><div class="dialog-top"><h2>Source identities & scientific limits</h2><button id="instrument-information-close" aria-label="Close scientific information">×</button></div><div id="instrument-information-body"></div></dialog>`;
+  const comparisonToolbar = document.createElement("div");
+  comparisonToolbar.className = "comparison-toolbar";
+  $("instrument-canvases").before(comparisonToolbar);
+  comparisonToolbar.append(
+    $("instrument-comparison"),
+    root.querySelector(".instrument-viewtools"),
+    $("instrument-add"),
+  );
+  $("instrument-add").textContent = "Add a note +";
+  $("instrument-add").title = "Select a supported pixel, then attach your question to its sky position.";
+  $("instrument-inspection").prepend(root.querySelector(".instrument-viewtools > span"));
+  const maskLegend = node("span", undefined, "mask-legend");
+  const maskKey = node("i", undefined, "mask-key");
+  maskKey.setAttribute("aria-hidden", "true");
+  maskLegend.append(maskKey, "Masked / unsupported · no usable measurement");
+  $("instrument-inspection").append(maskLegend);
   const approval = node(
     "span",
     "Scientific approval PENDING",
@@ -71,7 +88,7 @@ export function createObservationConsole({
   root.querySelector(".instrument-selection").append(approval);
   const metrics = node("div", undefined, "comparison-metrics");
   metrics.id = "instrument-metrics";
-  root.querySelector(".instrument-viewtools").after(metrics);
+  $("instrument-canvases").after(metrics);
   const toolbar = root.querySelector(".instrument-viewbar > div");
   const evidenceButton = node("button", "Evidence trail ↗");
   evidenceButton.id = "instrument-evidence";
@@ -473,10 +490,14 @@ export function createObservationConsole({
       pair && !v.visual.wipe && v.display.view_mode === "side_by_side";
     $("instrument-canvases").classList.toggle("is-pair", side);
     $("instrument-figure-b").hidden = !side;
-    $("instrument-wipe-row").hidden = !pair || !v.visual.wipe;
+    $("instrument-wipe-row").hidden = true;
     $("instrument-wipe-handle").hidden = !pair || !v.visual.wipe;
     $("instrument-wipe").value = v.visual.wipe_position;
     $("instrument-wipe-value").textContent = v.visual.wipe_position + "%";
+    $("instrument-wipe-handle").setAttribute(
+      "aria-valuenow",
+      String(v.visual.wipe_position),
+    );
     $("instrument-wipe-handle").style.left = v.visual.wipe_position + "%";
     $("instrument-label-a").textContent = pair
       ? v.visual.wipe
@@ -531,12 +552,12 @@ export function createObservationConsole({
                   displayLevel(data[i], v.display, v.visual),
                   v.visual.palette,
                 )
-              : [17, 17, 17]),
+              : [10, 10, 10]),
             255,
           ],
           i * 4,
         );
-        if (!valid) mi.data.set([17, 17, 17, 255], i * 4);
+        if (!valid) mi.data.set([10, 10, 10, 255], i * 4);
       }
       ctx.putImageData(im, 0, 0);
       mc.putImageData(mi, 0, 0);
@@ -615,6 +636,7 @@ export function createObservationConsole({
       ctx.lineTo(x, g.height);
       ctx.stroke();
     } else image(epoch);
+    drawMaskedPixels(ctx, g, v.display, v.shape, mask(), theme);
     if (v.kind === "pair" && guideCanvas === c.id)
       drawPixelGuide(ctx, g, v.display, v.shape, guidePoint, theme);
     function marker(point, label) {
@@ -747,6 +769,9 @@ export function createObservationConsole({
       (b.onclick = () => {
         stopBlink();
         const v = engine.active;
+        if (b.dataset.compare === "single")
+          v.display.selected_epoch =
+            v.display.selected_epoch === "A" ? "B" : "A";
         v.visual.wipe = b.dataset.compare === "wipe";
         v.display.view_mode =
           b.dataset.compare === "side_by_side" ? "side_by_side" : "single";
@@ -801,6 +826,9 @@ export function createObservationConsole({
   }
   $("instrument-wipe").oninput = (e) => wipe(e.target.value);
   const handle = $("instrument-wipe-handle");
+  handle.setAttribute("role", "slider");
+  handle.setAttribute("aria-valuemin", "0");
+  handle.setAttribute("aria-valuemax", "100");
   let dragging = false;
   handle.onpointerdown = (e) => {
     dragging = true;
@@ -815,10 +843,15 @@ export function createObservationConsole({
     dragging = false;
   };
   handle.onkeydown = (e) => {
-    if (["ArrowLeft", "ArrowRight"].includes(e.key)) {
+    if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) {
       e.preventDefault();
       wipe(
-        engine.active.visual.wipe_position + (e.key === "ArrowLeft" ? -1 : 1),
+        e.key === "Home"
+          ? 0
+          : e.key === "End"
+            ? 100
+            : engine.active.visual.wipe_position +
+              (e.key === "ArrowLeft" ? -1 : 1),
       );
     }
   };

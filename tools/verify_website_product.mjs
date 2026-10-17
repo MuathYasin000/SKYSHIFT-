@@ -250,6 +250,7 @@ try {
       const v = (await p.evaluate(() => skyshiftWebsite.diagnostics()))
         .investigation.display;
       await p.click("[data-compare=wipe]");
+      await p.locator("#instrument-wipe-handle").scrollIntoViewIfNeeded();
       const r = await p.locator("#instrument-wipe-handle").boundingBox();
       await p.mouse.move(r.x + r.width / 2, r.y + r.height / 2);
       await p.mouse.down();
@@ -429,8 +430,8 @@ try {
         true,
       );
       assert.equal(
-        await p.locator("#classic-toggle").textContent(),
-        "← Website",
+        await p.locator("#classic-toggle").count(),
+        0,
       );
       await p.click("#from-hardware-to-sky");
       await p.click("[data-destination=m42]");
@@ -471,13 +472,13 @@ try {
       await p.waitForFunction(
         () => skyshiftSpace.diagnostics().scene === "solar",
       );
-      if(!(await p.evaluate(()=>skyshiftSpace.audio())).enabled) await p.click("#sound-toggle");
-      await p.click("#sound-toggle");
+      if(!(await p.evaluate(()=>skyshiftSpace.audio())).enabled) await p.click("#site-sound");
+      await p.click("#site-sound");
       assert.equal(
         (await p.evaluate(() => skyshiftSpace.audio())).enabled,
         false,
       );
-      await p.click("#classic-toggle");
+      await p.click(".site-brand");
       await p.waitForFunction(
         () => skyshiftWebsite.diagnostics().surface === "home",
       );
@@ -582,7 +583,7 @@ try {
       if(await pp.locator("#site-menu-toggle").isVisible()) await pp.click("#site-menu-toggle");
       await pp.click(".site-navigation a[data-route=universe]");
       await pp.locator("#render-fallback").waitFor({ state: "visible" });
-      await pp.click("#classic-toggle");
+      await pp.click(".site-brand");
       if(await pp.locator("#site-menu-toggle").isVisible()) await pp.click("#site-menu-toggle");
         await pp.click(".site-navigation a[data-route=compare]");
       await loaded(pp);

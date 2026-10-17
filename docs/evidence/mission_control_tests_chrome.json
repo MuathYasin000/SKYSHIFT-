@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-10-17T15:47:03.653Z",
+  "recorded_at_utc": "2026-10-17T18:26:34.917Z",
   "browser": "155.0.8059.80",
   "results": [
     {
@@ -57,73 +57,73 @@
             "id": "",
             "tag": "TABLE",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           },
           {
             "id": "",
             "tag": "THEAD",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           },
           {
             "id": "",
             "tag": "TR",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           },
           {
             "id": "",
             "tag": "TH",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           },
           {
             "id": "reference-table",
             "tag": "TBODY",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           },
           {
             "id": "",
             "tag": "TR",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           },
           {
             "id": "",
             "tag": "TD",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           },
           {
             "id": "",
             "tag": "TR",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           },
           {
             "id": "",
             "tag": "TD",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           },
           {
             "id": "",
             "tag": "TR",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           },
           {
             "id": "",
             "tag": "TD",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           },
           {
             "id": "",
             "tag": "TR",
             "classes": "",
-            "right": 607.296875
+            "right": 500
           }
         ],
         "headers": 1,

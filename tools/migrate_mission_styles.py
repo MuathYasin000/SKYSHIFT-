@@ -63,4 +63,5 @@ def run():
     custom=original.split('/* SHARED COMPONENTS */',1)[1] if '/* SHARED COMPONENTS */' in original else ''
     target.write_text('\n'.join(result)+'\n/* SHARED COMPONENTS */'+custom,encoding='utf-8',newline='\n')
 
-if __name__=='__main__':run()
+if __name__=='__main__':
+    raise SystemExit('Historical one-off migration retired. Edit components.css and the two shell styles directly.')

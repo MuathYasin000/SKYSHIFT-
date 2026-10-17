@@ -1,3 +1,4 @@
+import { drawMaskedPixels } from "./mask-display.js";
 const theme = uiTheme();
 import { uiTheme } from "./ui-theme.js";
 import { loadCatalog, galleries, make } from "./site.js";
@@ -171,7 +172,7 @@ function render() {
           displayLevel(state.arrays.SCI[i], display, state.visual),
           state.visual.palette,
         )
-      : [20, 33, 51];
+      : [10, 10, 10];
     im.data.set([...rgb, 255], i * 4);
   }
   ctx.putImageData(im, 0, 0);
@@ -182,7 +183,7 @@ function render() {
   const maskContext = sourceMask.getContext("2d"),
     mask = maskContext.createImageData(w, h);
   for (let i = 0; i < w * h; i++)
-    if (!state.arrays.VALID[i]) mask.data.set([20, 33, 51, 255], i * 4);
+    if (!state.arrays.VALID[i]) mask.data.set([10, 10, 10, 255], i * 4);
   maskContext.putImageData(mask, 0, 0);
   draw();
 }
@@ -223,6 +224,14 @@ function drawNow() {
   ctx.imageSmoothingEnabled = false;
   ctx.drawImage(sourceMask, -state.cx - 0.5, -state.cy - 0.5);
   ctx.restore();
+  drawMaskedPixels(
+    ctx,
+    g,
+    { center_x: state.cx, center_y: state.cy },
+    state.product.shape,
+    state.arrays.VALID,
+    theme,
+  );
   ctx.font = '12px "IBM Plex Mono",monospace';
   ctx.fillStyle = theme.white;
   ctx.fillText("N ↑", g.width - 45, 26);

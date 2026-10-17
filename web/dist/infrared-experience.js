@@ -172,22 +172,6 @@ export function installInfraredExperience() {
     rail.append(b);
   }
   document.querySelector(".field-section").before(rail);
-  document.querySelectorAll(".trust-section article").forEach((article, i) => {
-    const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    icon.setAttribute("viewBox", "0 0 32 32");
-    icon.setAttribute("aria-hidden", "true");
-    const path = document.createElementNS(icon.namespaceURI, "path");
-    path.setAttribute(
-      "d",
-      [
-        "M6 4h14l6 6v18H6z M20 4v8h6 M11 17h10 M11 22h7",
-        "M16 3l11 5v8c0 6-7 11-11 13C12 27 5 22 5 16V8z M10 16l4 4 8-9",
-        "M5 9h19l-4-4 M24 9l-4 5 M27 23H8l4 4 M8 23l4-5",
-      ][i],
-    );
-    icon.append(path);
-    article.prepend(icon);
-  });
   function progress() {
     scrollFrame = 0;
     if (!home()) return;

@@ -126,11 +126,37 @@ export function createSpaceScene(
     });
     if (!response.ok)
       throw Error("Model unavailable (" + response.status + ")");
-    const bytes = await response.arrayBuffer(),
-      hash = Array.from(
-        new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)),
-        (v) => v.toString(16).padStart(2, "0"),
-      ).join("");
+    let bytes;
+    if (response.body) {
+      const reader = response.body.getReader(),
+        chunks = [];
+      let received = 0;
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        chunks.push(value);
+        received += value.byteLength;
+        onStatus(
+          "Loading " +
+            id +
+            " · " +
+            Math.min(100, Math.floor((received / asset.bytes) * 100)) +
+            "%",
+        );
+      }
+      const joined = new Uint8Array(received);
+      let offset = 0;
+      for (const chunk of chunks) {
+        joined.set(chunk, offset);
+        offset += chunk.byteLength;
+      }
+      bytes = joined.buffer;
+    } else bytes = await response.arrayBuffer();
+    onStatus("Checking " + id + " source identity…");
+    const hash = Array.from(
+      new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)),
+      (v) => v.toString(16).padStart(2, "0"),
+    ).join("");
     if (hash !== asset.sha256)
       throw Error("Context asset checksum mismatch: " + id);
     return bytes;
@@ -331,8 +357,7 @@ export function createSpaceScene(
           ? id === observingId
           : collection || id === "spherex";
       if (telescopeHalos.has(id))
-        telescopeHalos.get(id).visible =
-          !observingId && (collection || id === "spherex");
+        telescopeHalos.get(id).visible = !observingId && collection;
     }
     earthContext.visible = !collection && !observingId;
   }
@@ -340,23 +365,33 @@ export function createSpaceScene(
     if (contextEarthLoading) return;
     contextEarthLoading = true;
     try {
+      metrics.earth_context = { state: "loading", schematic: true };
       const earth = await model("earth-natural");
       if (disposed) return;
       earth.scale.multiplyScalar(3.3);
-      earth.position.set(-7, -4, -12);
+      earth.position.set(-5, -1.4, -4.5);
       earthContext.add(earth);
       const atmosphere = createEarthAtmosphere(3.3);
       atmosphere.visible = preferences.effects;
       atmosphere.position.copy(earth.position);
       earthContext.add(atmosphere);
+      metrics.earth_context = {
+        state: "ready",
+        position: earth.position.toArray(),
+        atmosphere: preferences.effects,
+        schematic: true,
+      };
+      canvas.dispatchEvent(
+        new CustomEvent("earth-context", { detail: metrics.earth_context }),
+      );
       const orbit = new THREE.LineLoop(
         new THREE.BufferGeometry().setFromPoints(
           Array.from({ length: 180 }, (_, i) => {
             const a = (i / 180) * Math.PI * 2;
             return new THREE.Vector3(
-              -7 + 5.3 * Math.cos(a),
-              -4 + 5.3 * Math.sin(a),
-              -12,
+              -5 + 5.3 * Math.cos(a),
+              -1.4 + 5.3 * Math.sin(a),
+              -4.5,
             );
           }),
         ),
@@ -366,10 +401,20 @@ export function createSpaceScene(
           opacity: 0.22,
         }),
       );
+      // No apparent flight orbit is drawn across the navigation dock.
+      orbit.visible = false;
       earthContext.add(orbit);
       invalidate();
     } catch (e) {
       contextEarthLoading = false;
+      metrics.earth_context = {
+        state: "failed",
+        reason: e.message,
+        schematic: true,
+      };
+      canvas.dispatchEvent(
+        new CustomEvent("earth-context", { detail: metrics.earth_context }),
+      );
       onStatus(
         "Earth context unavailable. SPHEREx and its scientific observations remain usable.",
       );
@@ -632,13 +677,13 @@ export function createSpaceScene(
       const rect = canvas.getBoundingClientRect(),
         fit = Math.max(
           1,
-          (rect.width <= 740 ? 1.25 : 0.8) / (rect.width / rect.height || 1),
+          (rect.width <= 740 ? 0.58 : 0.8) / (rect.width / rect.height || 1),
         );
       travel(
         collection
           ? [0, 6.5 * fit, 19 * fit]
           : [-4.7 * fit, 3.5 * fit, 8 * fit],
-        [0, -0.2, -1.5],
+        rect.width <= 740 ? [0, 0.8, 0] : [0, 0.25, -1.5],
       );
     } else if (active === "solar") travel([32, 48, 67], [0, 0, 0]);
     else travel([-45, 31, 60], [0, 0, 0]);
@@ -655,7 +700,7 @@ export function createSpaceScene(
         r.width,
         r.height,
         0,
-        r.height * (presentation === "explanation" ? 0.24 : 0.1),
+        r.height * (presentation === "explanation" ? 0.18 : 0.05),
         r.width,
         r.height,
       );
@@ -862,7 +907,10 @@ export function createSpaceScene(
       const position = new THREE.Vector3(
         ...(telescopeStories[id]?.position || [0, 0, 0]),
       );
-      const fit = Math.max(1, 0.8 / camera.aspect);
+      const fit = Math.max(
+        1,
+        (canvas.clientWidth <= 740 ? 0.58 : 0.8) / camera.aspect,
+      );
       travel(
         position
           .clone()
@@ -966,8 +1014,7 @@ export function createSpaceScene(
       collection = Boolean(value);
       for (const id of ["webb-b", "hubble"])
         if (objects.has(id)) objects.get(id).visible = collection;
-      for (const [id, ring] of telescopeHalos)
-        ring.visible = collection || id === "spherex";
+      for (const [id, ring] of telescopeHalos) ring.visible = collection;
       earthContext.visible = !collection;
       syncHardwareVisibility();
       if (collection && active === "observatory") loadObservatories();
@@ -1121,6 +1168,24 @@ export function createSpaceScene(
         camera: camera.position.toArray(),
         target: controls.target.toArray(),
         active_hardware: currentHardware,
+        earth_context: metrics.earth_context || { state: "not_requested" },
+        earth_projected: earthContext.children.length
+          ? (() => {
+              const o = earthContext.children[0],
+                p = o.getWorldPosition(new THREE.Vector3()).project(camera);
+              return {
+                x: (p.x + 1) / 2,
+                y: (1 - p.y) / 2,
+                z: p.z,
+                visible:
+                  earthContext.visible &&
+                  p.z > -1 &&
+                  p.z < 1 &&
+                  Math.abs(p.x) < 1 &&
+                  Math.abs(p.y) < 1,
+              };
+            })()
+          : null,
         loaded_telescopes: Object.keys(telescopeStories).filter((id) =>
           objects.has(id),
         ),

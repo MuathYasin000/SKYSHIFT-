@@ -10,6 +10,7 @@ export function installSiteChrome() {
     more = $("site-more"),
     toggle = $("site-menu-toggle");
   if (!header) return;
+  document.querySelectorAll(".status-pending,.review-tag").forEach(e=>{e.title="What does pending mean? Engineering checks are documented; qualified scientific approval has not been completed.";});
   const effects = document.createElement("button");
   effects.id = "reduce-effects";
   effects.className = "reduce-effects";
@@ -56,6 +57,8 @@ export function installSiteChrome() {
       if (a.dataset.route === route) a.setAttribute("aria-current", "page");
       else a.removeAttribute("aria-current");
     });
+    document.body.dataset.route = route;
+    header.querySelector(".header-launch").hidden = route === "compare";
     header.classList.remove("nav-away");
     closeMenus();
   }
@@ -76,7 +79,7 @@ export function installSiteChrome() {
     menu.hidden = !open;
     more.setAttribute("aria-expanded", String(open));
   };
-  $("resources-information").onclick = $("footer-sources").onclick = () => {
+  $("resources-information").onclick = () => {
     closeMenus();
     $("site-information").showModal();
   };

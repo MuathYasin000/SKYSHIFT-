@@ -1,3 +1,4 @@
+import { displayPreview } from "./mask-display.js";
 import { createObservationConsole } from "./observation-console.js";
 import { fetchCatalogue } from "./catalogue.js";
 import { stories, friendlyDate } from "./field-guide.js";
@@ -261,7 +262,7 @@ function renderFields() {
     link.href = "#observations/" + field.id;
     link.dataset.field = field.id;
     const image = node("img");
-    image.src = field.observations[0].preview;
+    image.src = displayPreview(field.observations[0].preview);
     image.alt =
       "Real prepared single-band SPHEREx observation of " +
       (story?.name || field.title);
@@ -304,7 +305,6 @@ function renderFields() {
         field.observations.map((o) => o.observation_id).join(" / "),
         "field-source-id",
       ),
-      node("strong", "Open observation →", "field-action"),
     );
     link.append(wrap, content);
     card.append(link);
@@ -327,21 +327,17 @@ function renderFields() {
       );
     };
     card.append(reveal);
-    if (field.comparison_status === "provisional_restricted") {
-      const compare = node("a", "Compare two dates →", "field-compare");
-      compare.href = "#compare";
-      compare.append(node("small", "Restricted small area · review pending"));
-      card.append(compare);
-    } else
-      card.append(
-        node(
-          "p",
-          field.comparison_status === "incompatible_tested_pairs"
+    card.append(
+      node(
+        "p",
+        field.comparison_status === "provisional_restricted"
+          ? "Two dates · restricted comparison available"
+          : field.comparison_status === "incompatible_tested_pairs"
             ? "Single observation · tested pairs incompatible"
             : "Single observation · no suitable pair installed",
-          "field-availability",
-        ),
-      );
+        "field-availability",
+      ),
+    );
     $("home-fields").append(card);
   }
   if (!count)
@@ -368,7 +364,7 @@ $("home-resume").onclick = () => navigate("observations");
 function information() {
   $("site-information").showModal();
 }
-$("footer-sources").onclick = information;
+
 $("site-information-close").onclick = () => $("site-information").close();
 $("infrared-legend-button").onclick = () => {
   const expanded = $("infrared-legend").hidden;

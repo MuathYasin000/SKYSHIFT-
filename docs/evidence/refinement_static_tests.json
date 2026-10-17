@@ -1,0 +1,92 @@
+{
+  "recorded_at_utc": "2026-10-17T18:32:14.007Z",
+  "base_url": "http://127.0.0.1:8769",
+  "deployment_scope": "local static staging, not a public deployment",
+  "browser": "155.0.8059.80",
+  "profile": "fresh; no login, cookies, publishing credential or auth bypass",
+  "results": [
+    {
+      "name": "Static visitor reaches the current mission-control hero and real 3D spacecraft without a login",
+      "status": "pass",
+      "detail": {
+        "release_id": "skyshift-0.9-mission-control",
+        "content_id": "fe359eaa2314760d1f679899e397e8f723f1e99b242ce57de128c67eab437a61",
+        "requires_login": false
+      }
+    },
+    {
+      "name": "Static scientific bundle, FITS and complete review parts match the exact local source hashes",
+      "status": "pass",
+      "detail": {
+        "bundle_sha256": "b36ac03cac9711dbe4aeb0a64ac8cfc898509317d5758d0adb2d2aabacc5effd",
+        "files": [
+          {
+            "url": "./data/pair.fits",
+            "sha256": "7f0cf23f13e52418b6066e50b173afe1f709c6359ba4259b8ccfb6a0d71f2788",
+            "bytes": 60480
+          },
+          {
+            "url": "./data/review-part-0.bin",
+            "sha256": "23c44f3918935634bf3081afa2c39b50d50742b4961f959b5189fc58349e534d",
+            "bytes": 8000000
+          },
+          {
+            "url": "./data/review-part-1.bin",
+            "sha256": "dc521c7f2a92ca6e43c7d0707bb40ea10d6f9df975ac4e2c04e3db66d0e6456b",
+            "bytes": 8000000
+          },
+          {
+            "url": "./data/review-part-2.bin",
+            "sha256": "2c586275a1d1de3887e4ae9cceb55d3e468c90bf0367a618acf3ea2933550f88",
+            "bytes": 8000000
+          },
+          {
+            "url": "./data/review-part-3.bin",
+            "sha256": "e91f0d3869d9781dd926e295b7b84228fc65c594eabb66618826938da01d162f",
+            "bytes": 8000000
+          },
+          {
+            "url": "./data/review-part-4.bin",
+            "sha256": "55e17525ee56e65a4c5d69b947cdea7513fa9b6ec5b70e7f55bc68fdb9494746",
+            "bytes": 8000000
+          },
+          {
+            "url": "./data/review-part-5.bin",
+            "sha256": "2520ca83bf2b0a41f993f7f3f90b5f14034e6cf365bf9f7965703862a0652e42",
+            "bytes": 697263
+          }
+        ],
+        "scientific_approval": "PENDING"
+      }
+    },
+    {
+      "name": "Hero launches real comparison; static export and reopening preserve a changed viewport",
+      "status": "pass",
+      "detail": {
+        "bytes": 41133,
+        "sha256": "7e096887b4b4e99e8137b80942ec66329338b8439acdaa99a5476ccc9b34207b",
+        "restored_zoom": 1.25
+      }
+    },
+    {
+      "name": "Static sine playback, mute and all three telescope models work",
+      "status": "pass",
+      "detail": {
+        "models": [
+          "spherex",
+          "webb-b",
+          "hubble"
+        ],
+        "audio": "dry sine",
+        "mute_shared": true
+      }
+    }
+  ],
+  "page_errors": [],
+  "non_get_application_requests": [],
+  "limits": [
+    "Static smoke and integrity tests; scope is recorded above; local regression receipts are separate",
+    "No subjective sound/visual approval or qualified scientific review inferred",
+    "Qualified scientific approval and internal human review PENDING; independent novice validation NOT CONDUCTED"
+  ]
+}

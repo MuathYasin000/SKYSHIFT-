@@ -108,7 +108,16 @@ export function installMissionInteractions() {
     const b = document.createElement("button");
     b.className = "model-hotspot";
     b.dataset.modelHotspot = chip.dataset.websiteComponent;
-    b.textContent = String(i + 1).padStart(2, "0");
+    const number = document.createElement("span");
+    number.textContent = String(i + 1).padStart(2, "0");
+    b.append(number);
+    const leader = document.createElement("i");
+    leader.className = "hotspot-leader";
+    leader.setAttribute("aria-hidden", "true");
+    const callout = document.createElement("span");
+    callout.className = "hotspot-callout";
+    callout.textContent = chip.textContent;
+    b.append(leader, callout);
     b.hidden = true;
     b.title = chip.textContent;
     b.setAttribute("aria-label", "Inspect " + chip.textContent);
@@ -162,24 +171,6 @@ export function installMissionInteractions() {
     },
     { passive: true },
   );
-  const principlePaths = [
-    '<path d="M5 3h14l6 6v20H5zM19 3v7h6M10 16h10M10 21h7"/>',
-    '<rect x="3" y="6" width="26" height="20"/><path d="M16 6v20M12 16h8"/>',
-    '<path d="M7 3h18v26H7zM11 10h10M11 15h10M11 20h6"/><circle cx="23" cy="24" r="5"/>',
-  ];
-  document.querySelectorAll(".trust-section article").forEach((article, i) => {
-    const n = document.createElement("b");
-    n.className = "principle-number";
-    n.textContent = String(i + 1).padStart(2, "0");
-    n.setAttribute("aria-hidden", "true");
-    const icon = document.createElement("span");
-    icon.className = "principle-icon";
-    icon.innerHTML =
-      '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">' +
-      principlePaths[i] +
-      "</svg>";
-    article.prepend(n, icon);
-  });
   const dot = document.createElement("i");
   dot.className = "portal-orbit-dot";
   dot.setAttribute("aria-hidden", "true");

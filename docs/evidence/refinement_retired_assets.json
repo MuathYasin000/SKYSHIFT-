@@ -1,0 +1,140 @@
+{
+  "scope": "Unused static payloads removed after active route/CSS/JS/manifest reference audit. Historical sources remain recoverable in Git; scientific files are untouched.",
+  "assets": [
+    {
+      "file": "assets/SKYSHIFT_ICON.PNG",
+      "sha256": "5b7eb030b8b6e8c59f9ad7f35a8fcb9be4056efd3916b7c47bc701cacb6e5611",
+      "bytes": 491638,
+      "recoverable_from_git": "aa0189c:web/dist/assets/SKYSHIFT_ICON.PNG"
+    },
+    {
+      "file": "assets/LOGO2.PNG",
+      "sha256": "9a8996f1d57c7f655ed2a6d6e37d47912fd76a77d22c390384373c3d08992d9b",
+      "bytes": 775265,
+      "recoverable_from_git": "aa0189c:web/dist/assets/LOGO2.PNG"
+    },
+    {
+      "file": "assets/seeing-invisible.png",
+      "sha256": "4a3cd30fdf943c6e8a9c2424adf4e9dc1575f9d6f830a686a4af76425f8420d8",
+      "bytes": 790711,
+      "recoverable_from_git": "aa0189c:web/dist/assets/seeing-invisible.png"
+    },
+    {
+      "file": "assets/seeing-invisible.json",
+      "sha256": "c1c49be89a54d3b791ee48d3b0e34e2bb6f85d34c2ca8cab4446d36d40ade362",
+      "bytes": 530,
+      "recoverable_from_git": "aa0189c:web/dist/assets/seeing-invisible.json"
+    },
+    {
+      "file": "assets/fonts/Manrope.ttf",
+      "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+      "bytes": 164700,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/Manrope.ttf"
+    },
+    {
+      "file": "assets/fonts/SourceSans3.ttf",
+      "sha256": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "bytes": 646340,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/SourceSans3.ttf"
+    },
+    {
+      "file": "assets/fonts/Outfit.ttf",
+      "sha256": "fc7287273e66929776e2ba54f144fe699080bec29f61bf649d70d871468aeade",
+      "bytes": 110884,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/Outfit.ttf"
+    },
+    {
+      "file": "assets/fonts/SpaceGrotesk.ttf",
+      "sha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72",
+      "bytes": 136676,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/SpaceGrotesk.ttf"
+    },
+    {
+      "file": "assets/fonts/IBMPlexMono-Regular.ttf",
+      "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46",
+      "bytes": 135580,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/IBMPlexMono-Regular.ttf"
+    },
+    {
+      "file": "assets/fonts/observatory-fonts.json",
+      "sha256": "5008188838763e52a075c8137219fb2e4798039daf4658f60334bd632aef3712",
+      "bytes": 691,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/observatory-fonts.json"
+    },
+    {
+      "file": "assets/fonts/website-fonts.json",
+      "sha256": "d47111cf7d94b7f5e1e0f2a7d47c8dcbfa231884d5da43b67ae7ee5ec81a96d6",
+      "bytes": 1249,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/website-fonts.json"
+    },
+    {
+      "file": "assets/fonts/outfit-manifest.json",
+      "sha256": "59bd2cae471cdba8b049562415a4681236d4a3658660c071e84805823f29ad50",
+      "bytes": 624,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/outfit-manifest.json"
+    },
+    {
+      "file": "assets/fonts/Manrope-OFL.txt",
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b",
+      "bytes": 4387,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/Manrope-OFL.txt"
+    },
+    {
+      "file": "assets/fonts/SourceSans3-OFL.txt",
+      "sha256": "09746787287a289323b0ec3cff4d1a4a801331b82b7207c1e186f5d26619a392",
+      "bytes": 4579,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/SourceSans3-OFL.txt"
+    },
+    {
+      "file": "assets/fonts/Outfit-OFL.txt",
+      "sha256": "c676351bf8576b9aba743cd5eaa8c0e7ee0d51f805d720447b4df4ddb6a2e416",
+      "bytes": 4389,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/Outfit-OFL.txt"
+    },
+    {
+      "file": "assets/fonts/OFL.txt",
+      "sha256": "564ce565c371c5e5bbf286006565a7c9aa55a9f56e7ca58d56e05d649dd61a72",
+      "bytes": 4495,
+      "recoverable_from_git": "aa0189c:web/dist/assets/fonts/OFL.txt"
+    }
+  ],
+  "historical_source_records": [
+    {
+      "id": "logo",
+      "file": "assets/SKYSHIFT_ICON.PNG",
+      "credit": "Project Mercury Team \u00b7 supplied by the user",
+      "source_page": "User-supplied official project logo",
+      "terms": "User-authorized project use; original artwork preserved",
+      "sha256": "5b7eb030b8b6e8c59f9ad7f35a8fcb9be4056efd3916b7c47bc701cacb6e5611",
+      "bytes": 491638,
+      "modifications": "none",
+      "retired_in": "0.9.1 refinement",
+      "preserved_git_revision": "aa0189c"
+    },
+    {
+      "id": "logo-outlined",
+      "file": "assets/LOGO2.PNG",
+      "credit": "Project Mercury Team / supplied by the user",
+      "source_page": "User attachment LOGO2.PNG, 17 October 2026",
+      "terms": "User-authorized project use; original artwork preserved",
+      "sha256": "9a8996f1d57c7f655ed2a6d6e37d47912fd76a77d22c390384373c3d08992d9b",
+      "bytes": 775265,
+      "modifications": "none",
+      "retired_in": "0.9.1 refinement",
+      "preserved_git_revision": "aa0189c"
+    },
+    {
+      "id": "seeing-invisible-social-preview",
+      "file": "assets/seeing-invisible.png",
+      "credit": "SKYSHIFT / Project Mercury Team; actual local interactive hero screenshot",
+      "source_page": "http://localhost:3000/",
+      "terms": "User-requested Open Graph preview; original project model/UI with credited reference sources; no NASA endorsement",
+      "sha256": "4a3cd30fdf943c6e8a9c2424adf4e9dc1575f9d6f830a686a4af76425f8420d8",
+      "bytes": 790711,
+      "modifications": "Actual local browser screenshot at 1920 x 1008, downsampled to 1200 x 630 with Lanczos. No compositing, generated image content or altered astronomical detail; interactive hero remains real 3D. Capture record: assets/seeing-invisible.json.",
+      "purpose": "Open Graph preview only; not astronomical data",
+      "retired_in": "0.9.1 refinement",
+      "preserved_git_revision": "aa0189c"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 @layer pages {
   body[data-page="guide"] > main {
     width: 100%;
-    max-width: calc(76ch + 2 * var(--gutter));
+    max-width: calc(var(--content) + 2 * var(--gutter));
     margin: 0 auto;
     padding: 80px var(--gutter);
     counter-reset: chapter;

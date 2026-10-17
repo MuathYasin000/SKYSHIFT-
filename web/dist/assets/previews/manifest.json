@@ -1,0 +1,55 @@
+{
+  "scope": "Display-only derivatives; original archive/prepared identities remain authoritative.",
+  "assets": [
+    {
+      "file": "assets/previews/m101-2025W49_2A_0756_3.webp",
+      "sha256": "b6bd592a8ecf330b7359f2271cbe1ce00dc0c41567ebd4eaace689750bfa68e1",
+      "source": "data/explore/m101-2025W49_2A_0756_3.png",
+      "source_sha256": "56d89cfada9a5f9d1972c9c34e0f0e66a62b40fe83131505b6a894605d7553e2",
+      "mask_payload": "data/explore/m101-2025W49_2A_0756_3.json",
+      "mask_payload_sha256": "d5fe609fc17c1727496eb622b796993ea431138e4d5d2475c5e2dabf5f6b019f",
+      "supported_rgb_pixels": "EXACTLY_UNCHANGED",
+      "modifications": "Excluded pixels only: neutral 10/255 with faint diagonal hatch. No upsampling or astronomical detail added."
+    },
+    {
+      "file": "assets/previews/m101-2025W50_1A_0736_3.webp",
+      "sha256": "4e734789061ab0978525199839534c7ec8cfcb092dd18c53e695cf10b3bff019",
+      "source": "data/explore/m101-2025W50_1A_0736_3.png",
+      "source_sha256": "c2075c60ab5539f166583dae9f0c1a24702768037881e06f2d11e9d9cfd6a981",
+      "mask_payload": "data/explore/m101-2025W50_1A_0736_3.json",
+      "mask_payload_sha256": "3805e172f1fab3f211a634bce269f4c17c401e541b118504108ac508496ee63f",
+      "supported_rgb_pixels": "EXACTLY_UNCHANGED",
+      "modifications": "Excluded pixels only: neutral 10/255 with faint diagonal hatch. No upsampling or astronomical detail added."
+    },
+    {
+      "file": "assets/previews/m67-2025W44_2B_0657_2.webp",
+      "sha256": "9231bab6c9a6430046ff9f9cc87c6f950edf7b3c392f069de805128b6fe76547",
+      "source": "data/explore/m67-2025W44_2B_0657_2.png",
+      "source_sha256": "566f5f1942e41e2a17d74253d1592c98671ec1f85fee2a61b026d3a6c2736e4c",
+      "mask_payload": "data/explore/m67-2025W44_2B_0657_2.json",
+      "mask_payload_sha256": "bfc3b5bf23083dbf97c033927aba9ab5df6e8a6f4c1d03f75e948833821ba86b",
+      "supported_rgb_pixels": "EXACTLY_UNCHANGED",
+      "modifications": "Excluded pixels only: neutral 10/255 with faint diagonal hatch. No upsampling or astronomical detail added."
+    },
+    {
+      "file": "assets/previews/ngc188-2025W36_1A_0724_2.webp",
+      "sha256": "bbbb3f4c3c6022c662632e105321a1d5023168d9ae6ce8b276ca34fd6cd0e5cc",
+      "source": "data/explore/ngc188-2025W36_1A_0724_2.png",
+      "source_sha256": "41f2b089ec81ffc7ca93cf2d3ec536e7403ce7414b39cf609afdbcf2cf79335b",
+      "mask_payload": "data/explore/ngc188-2025W36_1A_0724_2.json",
+      "mask_payload_sha256": "b3f8720ae20ba4bcfb2adba4d9961aa98cc732dfce6124c26b5a1950ab381e91",
+      "supported_rgb_pixels": "EXACTLY_UNCHANGED",
+      "modifications": "Excluded pixels only: neutral 10/255 with faint diagonal hatch. No upsampling or astronomical detail added."
+    },
+    {
+      "file": "assets/previews/m42-2025W37_2A_0010_1.webp",
+      "sha256": "2b4b738805793fee0bf7abcf7bf00e2f1183969f0bf04a0b28e28ce5eec534c0",
+      "source": "data/explore/m42-2025W37_2A_0010_1.png",
+      "source_sha256": "df907f141934b2b0303f34ac5e8200d9d1cbbd15e30df0bccf938bd127621e46",
+      "mask_payload": "data/explore/m42-2025W37_2A_0010_1.json",
+      "mask_payload_sha256": "0b27840ae389f3d30f1f4b4e88612e284e747c818a103003257397fafd7418be",
+      "supported_rgb_pixels": "EXACTLY_UNCHANGED",
+      "modifications": "Excluded pixels only: neutral 10/255 with faint diagonal hatch. No upsampling or astronomical detail added."
+    }
+  ]
+}

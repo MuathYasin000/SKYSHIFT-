@@ -70,7 +70,7 @@ async function inspect(environment, id, width) {
         overflow: e.scrollWidth - e.clientWidth,
       };
     });
-    assert.equal(g.label_text, open ? "Close details" : "About & sources");
+    assert.equal(g.label_text, open ? "Close details" : width <= 800 ? "More" : "About & sources");
     assert.equal(g.indicator, open ? "−" : "+");
     assert.ok(
       Math.abs(g.center_dx) < 1 && Math.abs(g.center_dy) < 2,
@@ -86,11 +86,24 @@ async function inspect(environment, id, width) {
       open,
     );
     assert.equal(await b.getAttribute("aria-controls"), "context-details");
+    const paragraph = await page.locator('.context-summary').evaluate(e => {
+      const s=getComputedStyle(e),card=e.closest('.space-context'),cs=getComputedStyle(card);
+      return {display:s.display,white_space:s.whiteSpace,overflow:s.overflowY,height:e.clientHeight,content_height:e.scrollHeight,card_scroll:cs.overflowY};
+    });
+    // A collapsed phone sheet intentionally hides the paragraph. Every expanded
+    // card and every desktop summary must expose the whole text or scroll it.
+    if(open || width>800){
+      assert.notEqual(paragraph.display,'none');
+      assert.equal(paragraph.white_space,'normal');
+      assert.ok(paragraph.content_height<=paragraph.height+1,JSON.stringify(paragraph));
+      assert.equal(paragraph.card_scroll,'auto');
+    }
     states.push({
       expanded: open,
       label_center_dx: g.center_dx,
       label_center_dy: g.center_dy,
       label_clear_of_indicator: true,
+      paragraph,
     });
   }
   // Leave the details closed so it cannot affect the next destination's layout.
