@@ -157,24 +157,6 @@ body[data-surface] #site-sound {
   font-size: 12px;
   padding: 0 11px;
 }
-/* This disclosure shares the button surface, rather than the old left-aligned
-   text-link padding. Equal padding keeps both labels centred in their box. */
-body[data-surface] #context-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  line-height: 1.25;
-  padding: 10px 12px;
-  font-size: 13px;
-  white-space: nowrap;
-}
-@media (max-width: 740px) {
-  body[data-surface] #context-toggle {
-    padding: 8px 10px;
-    font-size: 11px;
-  }
-}
 .sound-wave {
   display: inline-flex;
   gap: 3px;

@@ -732,9 +732,10 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
   function contextDetails(open) {
     $("context-details").hidden = !open;
     $("context-toggle").setAttribute("aria-expanded", String(open));
-    $("context-toggle").textContent = open
-      ? "Close details −"
-      : "About & sources +";
+    $("context-toggle").querySelector(".context-toggle-label").textContent =
+      open ? "Close details" : "About & sources";
+    $("context-toggle").querySelector(".context-toggle-indicator").textContent =
+      open ? "−" : "+";
   }
   contextDetails(false);
   setDestinations(false);
