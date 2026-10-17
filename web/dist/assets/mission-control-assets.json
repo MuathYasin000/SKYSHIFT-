@@ -1,0 +1,56 @@
+{
+  "captured_at_utc": "2026-10-17T15:39:08.475Z",
+  "browser": "155.0.8059.80",
+  "scope": "Interface assets only. Original scientific imagery, arrays, FITS, model sources and review packets unchanged.",
+  "assets": [
+    {
+      "file": "assets/space/spherex-thumbnail.webp",
+      "bytes": 4678,
+      "sha256": "f06f9114c14c97257b95c098fb455484a529c818ed3b3e24aeb64012f97fc9b8",
+      "source": "Existing SKYSHIFT createSpaceScene renderer, spherex",
+      "source_record": "assets/space/manifest.json",
+      "modifications": "Actual model screenshot; grayscale display and Lanczos resize 512x384 to 192x144, lossless WebP encoding. Illustrative model, not certified geometry."
+    },
+    {
+      "file": "assets/space/webb-b-thumbnail.webp",
+      "bytes": 3472,
+      "sha256": "2cf7c7a408c26b1fdbe8923b4d1d67366c7348b5b6fe8f12eba9a9c981894774",
+      "source": "Existing SKYSHIFT createSpaceScene renderer, webb-b",
+      "source_record": "assets/space/manifest.json",
+      "modifications": "Actual model screenshot; grayscale display and Lanczos resize 512x384 to 192x144, lossless WebP encoding. Illustrative model, not certified geometry."
+    },
+    {
+      "file": "assets/space/hubble-thumbnail.webp",
+      "bytes": 4184,
+      "sha256": "2f9c657373648708e82762ad99f8d3209831b59a4e4bf46fb3a19272147ae4f8",
+      "source": "Existing SKYSHIFT createSpaceScene renderer, hubble",
+      "source_record": "assets/space/manifest.json",
+      "modifications": "Actual model screenshot; grayscale display and Lanczos resize 512x384 to 192x144, lossless WebP encoding. Illustrative model, not certified geometry."
+    },
+    {
+      "file": "assets/mission-control.webp",
+      "bytes": 43646,
+      "sha256": "84b4842a1201602bdc52e1a283059e32475488bfc2d85b3ad402eba169871fd3",
+      "dimensions": [
+        1200,
+        630
+      ],
+      "source": "Actual live local SPHEREx hero with dedicated OG CSS layout; screenshot, not astronomical data",
+      "modifications": "Lossless WebP encoding; no generated astronomical detail."
+    },
+    {
+      "file": "assets/skyshift-mark.svg",
+      "bytes": 444,
+      "sha256": "851908d39fececef6993f5e486725771ad4413d7459ac81577bfff304a7d7767",
+      "source": "Simplified hand-coded adaptation of the user-provided SKYSHIFT S/orbit/star mark",
+      "terms": "User-provided project identity; no NASA marks"
+    },
+    {
+      "file": "assets/skyshift-wordmark.svg",
+      "bytes": 2366,
+      "sha256": "8c6973717bb4011a4600861579812b73bc2e65d372ddedfd1d3311e672b23064",
+      "source": "Outlined glyphs from InterVariable.woff2 in assets/fonts/mission-fonts.json",
+      "terms": "SIL Open Font License 1.1; see assets/fonts/Inter-OFL.txt"
+    }
+  ]
+}

@@ -1,20 +1,16 @@
 // Presentation helpers. These never transform scientific coordinates or pixels.
 export const CHANNEL_COUNT = 102;
 export function channelColor(index) {
-  const t =
-    Math.max(0, Math.min(CHANNEL_COUNT - 1, index)) / (CHANNEL_COUNT - 1);
-  const stops = [
-    [28, 60, 139],
-    [116, 84, 196],
-    [193, 77, 186],
-    [229, 77, 97],
-    [249, 130, 60],
-    [255, 207, 138],
-  ];
-  const x = t * (stops.length - 1),
-    a = Math.min(stops.length - 2, Math.floor(x)),
-    f = x - a;
-  return `rgb(${stops[a].map((v, i) => Math.round(v + (stops[a + 1][i] - v) * f)).join(",")})`;
+  // An illustrative linear ruler, NOT the detector's calibrated channel grid.
+  const wavelength =
+    0.75 +
+    (Math.max(0, Math.min(CHANNEL_COUNT - 1, index)) / (CHANNEL_COUNT - 1)) *
+      4.25;
+  return wavelength <= 0.88
+    ? "var(--blue-text)"
+    : wavelength >= 4.54 && wavelength <= 4.65
+      ? "var(--red)"
+      : "var(--white)";
 }
 export function overlaps(a, b, gap = 8) {
   return (

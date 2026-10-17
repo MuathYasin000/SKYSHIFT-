@@ -92,13 +92,12 @@ function setSurface(next) {
   $("home-view").hidden = next !== "home";
   $("space-workspace").hidden = next !== "science";
   $("universe-view").hidden = next !== "universe";
-  $("site-header").hidden = next === "universe";
+  $("site-header").hidden = false;
   $("universe-loading").hidden = true;
   $("site-information").close();
-  if (next === "home") {
-    model?.setVisible(missionVisible);
-    window.scrollTo(0, 0);
-  }
+  if (next === "home") model?.setVisible(missionVisible);
+  // Surface changes must not retain the previous long document’s footer offset.
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 }
 async function ensureUniverse() {
   if (!universeFactory)
@@ -190,6 +189,7 @@ async function routeChanged() {
       $("universe-loading").hidden = true;
     } catch (e) {
       if (ticket === routeSequence) {
+        console.error("Optional Universe initialization:", e);
         setSurface("home");
         error(e.message + " The observation tools remain available.");
         const retry = node("button", "Reload to retry 3D Universe");
@@ -286,12 +286,6 @@ function renderFields() {
       "field-coordinates",
     );
     wrap.append(coordinates);
-    card.style.setProperty(
-      "--field-glow",
-      { m101: "#ffb15d", m67: "#ee926c", ngc188: "#c08bdd", m42: "#ee719a" }[
-        field.id
-      ] || "#ffb15d",
-    );
     const content = node("div", undefined, "field-card-copy");
     content.append(
       node("p", story?.kind || "SPHEREx field", "eyebrow"),
@@ -318,7 +312,8 @@ function renderFields() {
     reveal.setAttribute("aria-pressed", "false");
     reveal.setAttribute(
       "aria-label",
-      "Reveal original infrared preview of " + (story?.name || field.title),
+      "◉ Reveal preview — original infrared view of " +
+        (story?.name || field.title),
     );
     reveal.onclick = () => {
       const active = card.classList.toggle("preview-revealed");
@@ -326,6 +321,10 @@ function renderFields() {
       reveal.textContent = active
         ? "◉ Original preview · on"
         : "◉ Reveal preview";
+      reveal.setAttribute(
+        "aria-label",
+        reveal.textContent + " — " + (story?.name || field.title),
+      );
     };
     card.append(reveal);
     if (field.comparison_status === "provisional_restricted") {
@@ -369,7 +368,7 @@ $("home-resume").onclick = () => navigate("observations");
 function information() {
   $("site-information").showModal();
 }
-$("site-more").onclick = $("footer-sources").onclick = information;
+$("footer-sources").onclick = information;
 $("site-information-close").onclick = () => $("site-information").close();
 $("infrared-legend-button").onclick = () => {
   const expanded = $("infrared-legend").hidden;

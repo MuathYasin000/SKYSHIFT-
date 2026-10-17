@@ -2,7 +2,7 @@ import {stories,availability,friendlyDate} from './field-guide.js';
 import './workspace-bridge.js';
 import {fetchCatalogue} from './catalogue.js';
 import {createExplorationMemory} from './exploration-memory.js';
-export function navigation(){const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('#site-nav');toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open);});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav?.classList.contains('open')){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.focus();}});}
+export function navigation(){import("./site-chrome.js").then(m=>m.installSiteChrome()).catch(()=>{});}
 export const loadCatalog=fetchCatalogue;
 export function make(tag,text,cls){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;}
 export function galleries(catalog,onChoose){

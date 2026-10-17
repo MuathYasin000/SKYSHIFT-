@@ -154,8 +154,9 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
   }
   function positionLabels() {
     if (!scene) return;
-    const width = innerWidth,
-      height = innerHeight;
+    const viewport = $("universe").getBoundingClientRect(),
+      width = viewport.width,
+      height = viewport.height;
     const light = scene.lightLabel(),
       lightLabel = $("optics-ray-label");
     if (lightLabel) {
@@ -171,7 +172,15 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
       ),
     ]
       .filter((el) => !el.hidden)
-      .map((el) => el.getBoundingClientRect());
+      .map((el) => {
+        const r = el.getBoundingClientRect();
+        return {
+          left: r.left - viewport.left,
+          right: r.right - viewport.left,
+          top: r.top - viewport.top,
+          bottom: r.bottom - viewport.top,
+        };
+      });
     const positions = scene.positions().map((p) => {
       const b = document.querySelector('[data-object="' + p.id + '"]');
       return {
@@ -548,10 +557,6 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     $("destinations-toggle").setAttribute("aria-expanded", String(open));
     positionLabels();
   }
-  document.querySelector(".space-brand").onclick = (event) => {
-    event.preventDefault();
-    onExit();
-  };
   function openDialog(id, trigger) {
     audio.cue("ui");
     const d = $(id);
@@ -681,7 +686,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
           const link = element("a", label + " ↗");
           link.href = url;
           link.target = "_blank";
-          link.rel = "noreferrer";
+          link.rel = "noopener noreferrer";
           article.append(link, document.createTextNode(" · "));
         }
       if (
@@ -691,7 +696,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
         const link = element("a", "Refinement sources & limits");
         link.href = "./" + a.refinement_record;
         link.target = "_blank";
-        link.rel = "noreferrer";
+        link.rel = "noopener noreferrer";
         article.append(link);
       }
       $("model-credits").append(article);

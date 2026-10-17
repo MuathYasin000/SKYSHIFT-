@@ -132,6 +132,9 @@ async function point(page, kind = "pair") {
   }, kind);
 }
 async function question(page, text, kind = "pair", touch = false) {
+  await page.locator("#instrument-canvas-a").scrollIntoViewIfNeeded();
+  // Read coordinates after the scroll and responsive font/layout have settled.
+  await page.evaluate(async()=>{const r=document.getElementById('instrument-canvas-a').getBoundingClientRect();window.scrollTo({top:scrollY+r.top+r.height/2-innerHeight/2,behavior:'instant'});await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
   const pos = await point(page, kind);
   if (touch) await page.touchscreen.tap(pos.x, pos.y);
   else await page.mouse.click(pos.x, pos.y);
@@ -140,6 +143,7 @@ async function question(page, text, kind = "pair", touch = false) {
   await page.click("#instrument-question-save");
 }
 async function axe(page) {
+  await page.waitForFunction(()=>!window.skyshiftWebsite?.diagnostics().navigation.active);
   await page.evaluate(await fs.readFile("tools/vendor/axe.min.js", "utf8"));
   return page.evaluate(async () => {
     const r = await axe.run(document, {
@@ -189,8 +193,8 @@ try {
       assert.ok(
         await p.evaluate(
           () =>
-            document.fonts.check("16px Manrope") &&
-            document.fonts.check('16px "Source Sans 3"'),
+            document.fonts.check("16px Inter") &&
+            document.fonts.check('16px "IBM Plex Mono"'),
         ),
       );
       await snap(p, "home");
@@ -207,9 +211,11 @@ try {
       await p.click(".intro-actions .primary-link");
       await loaded(p);
       assert.match(
-        await p.locator("#instrument-suitability").textContent(),
+        await p.locator(".instrument-selection .status-pending").textContent(),
         /PENDING/,
       );
+      assert.equal(await p.locator("[data-compare=wipe]").getAttribute("aria-pressed"), "true");
+      await p.click("[data-compare=side_by_side]");
       assert.equal(await p.locator("#instrument-figure-b").isVisible(), true);
       assert.equal(
         await p.locator("#instrument-canvas-a").evaluate((c) => c.height > 200),
@@ -381,7 +387,7 @@ try {
   await check(
     "Website spacecraft viewer is opt-in, selectable and pauses offscreen",
     async () => {
-      await p.click(".site-navigation a[data-route=mission]");
+      await p.click(".hero-mission-link");
       await p.click("#activate-mission-model");
       await p.waitForFunction(
         () => skyshiftWebsite.diagnostics().model?.frames > 0,
@@ -528,6 +534,7 @@ try {
           ),
           true,
         );
+        if(await pp.locator("#site-menu-toggle").isVisible()) await pp.click("#site-menu-toggle");
         await pp.click(".site-navigation a[data-route=compare]");
         await loaded(pp);
         await pp.click("[data-compare=wipe]");
@@ -572,10 +579,12 @@ try {
       await pp.click("#instrument-zoom-in");
       await question(pp, "No WebGL is needed for this question");
       await pp.click("#instrument-panel-close");
+      if(await pp.locator("#site-menu-toggle").isVisible()) await pp.click("#site-menu-toggle");
       await pp.click(".site-navigation a[data-route=universe]");
       await pp.locator("#render-fallback").waitFor({ state: "visible" });
       await pp.click("#classic-toggle");
-      await pp.click(".site-navigation a[data-route=compare]");
+      if(await pp.locator("#site-menu-toggle").isVisible()) await pp.click("#site-menu-toggle");
+        await pp.click(".site-navigation a[data-route=compare]");
       await loaded(pp);
       assert.equal(
         (await pp.evaluate(() => skyshiftWebsite.diagnostics())).investigation

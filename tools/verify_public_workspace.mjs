@@ -58,7 +58,7 @@ async function science() {
 }
 try {
   await check(
-    "Static visitor reaches the current orbital hero and real 3D spacecraft without a login",
+    "Static visitor reaches the current mission-control hero and real 3D spacecraft without a login",
     async () => {
       const response = await page.goto(origin + "/");
       assert.equal(response.status(), 200);
@@ -77,7 +77,7 @@ try {
       const release = await r.json();
       assert.equal(
         release.release_id,
-        process.env.SKYSHIFT_EXPECTED_RELEASE || "skyshift-0.8-seeing-invisible",
+        process.env.SKYSHIFT_EXPECTED_RELEASE || "skyshift-0.9-mission-control",
       );
       await page.screenshot({ path: out + "/public-home.png" });
       return {
@@ -132,7 +132,7 @@ try {
       await page.locator(".mission-launch").click();
       await science();
       assert.match(
-        await page.locator("#instrument-suitability").innerText(),
+        await page.locator(".instrument-selection .status-pending").innerText(),
         /PENDING/,
       );
       await page.click("#instrument-zoom-in");

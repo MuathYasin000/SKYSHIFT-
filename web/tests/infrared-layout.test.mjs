@@ -13,10 +13,11 @@ test("102-channel interface motif is bounded and stable, not a spectral calibrat
   const colors = Array.from({ length: CHANNEL_COUNT }, (_, i) =>
     channelColor(i),
   );
-  assert.equal(new Set(colors).size, 102);
+  assert.deepEqual([...new Set(colors)].sort(),["var(--blue-text)","var(--red)","var(--white)"].sort());
+  assert.equal(channelColor(50),"var(--white)");
   assert.equal(channelColor(-1), colors[0]);
   assert.equal(channelColor(500), colors.at(-1));
-  assert.match(colors[0], /^rgb\(28,60,139\)$/);
+  assert.equal(colors[0], "var(--blue-text)");
 });
 test("optional vendored animation libraries retain pinned identities and local license notices", async () => {
   const base = new URL("../dist/vendor/scroll/", import.meta.url),

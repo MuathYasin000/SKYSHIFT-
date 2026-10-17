@@ -91,8 +91,8 @@ export function createInvestigation({
           arrays,
           shape: m.processing.shape,
           wcs: m.processing.output_wcs,
-          display: validateDisplay(m.display, m),
-          visual: { ...defaultVisualization, interpolation: "nearest" },
+          display: validateDisplay({...m.display,view_mode:"single"}, m),
+          visual: { ...defaultVisualization, interpolation: "nearest",wipe:true },
           questions: [],
           inspection: null,
         };

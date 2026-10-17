@@ -8,6 +8,7 @@
   ></canvas>
   <div
     id="space-labels"
+    role="group"
     class="space-labels"
     aria-label="Objects in the viewport"
   ></div>
@@ -15,20 +16,13 @@
     INCOMING LIGHT<small>Parallel rays · model alignment</small>
   </div>
 </div>
-<header class="space-header">
-  <a class="space-brand" href="./index.html" aria-label="SKYSHIFT home"
-    ><img
-      src="./assets/LOGO2.PNG"
-      alt="SKYSHIFT — Project Mercury Team"
-      width="94"
-      height="94"
-    /><span>SKYSHIFT<small>THROUGH SPHEREx</small></span></a
-  >
+<div class="space-header">
+
   <nav class="space-actions" aria-label="Workspace controls">
-    <button id="classic-toggle" title="Return to website">← Website</button
-    ><button id="resume-button" hidden title="Resume your investigation">
-      Resume</button
-    ><button id="journey-button" title="Take the guided tour">⌁ Tour</button
+    <button id="classic-toggle" title="Return to website" aria-label="Return to website"><span aria-hidden="true">←</span><span class="toolbar-word">Website</span></button
+    ><button id="resume-button" hidden title="Resume your investigation" aria-label="Resume your investigation">
+      <span aria-hidden="true">↻</span><span class="toolbar-word">Resume</span></button
+    ><button id="journey-button" title="Take the guided tour" aria-label="Take the guided tour"><span aria-hidden="true">⌁</span><span class="toolbar-word">Tour</span></button
     ><button
       id="sound-toggle"
       aria-pressed="false"
@@ -37,6 +31,7 @@
       Sound off</button
     ><button
       id="settings-button"
+      aria-label="Graphics, effects and sound settings"
       title="Graphics, effects and sound preferences"
     >
       ⚙ <span class="toolbar-word">Settings</span></button
@@ -46,9 +41,9 @@
       title="Help and controls"
     >
       ?</button
-    ><a id="observations-button" href="./explore.html">Explore observations</a>
+    ><a id="observations-button" href="./explore.html" aria-label="Explore observations" title="Explore real SPHEREx observations"><span aria-hidden="true">⌖</span><span class="toolbar-word">Explore observations</span></a>
   </nav>
-</header>
+</div>
 <button
   id="destinations-toggle"
   class="destinations-toggle"
@@ -109,7 +104,7 @@
       id="context-source"
       href="https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/"
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       >Original source & context ↗</a
     >
     <p id="context-credit" class="context-credit"></p>
@@ -129,14 +124,14 @@
 <nav id="mission-dock" class="mission-dock" aria-label="Featured telescopes">
   <span>EXPLORE THROUGH SPHEREx</span>
   <button data-telescope="spherex" aria-pressed="true">
-    <svg class="observatory-mark" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="12" ry="4"/><path d="M4 6l7 17h10L28 6M11 23v6h10v-6M5 14H1v14h8"/></svg><b>01</b> SPHEREx <small>MAP THE SKY</small>
+    <img class="observatory-thumbnail" src="./assets/space/spherex-thumbnail.webp" width="48" height="36" alt="" loading="lazy"><b>01</b> SPHEREx <small>MAP THE SKY</small>
   </button>
   <button id="hangar-toggle">Other observatories</button>
   <button data-telescope="webb-b" aria-pressed="false">
-    <svg class="observatory-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2l11 6v12l-11 6-11-6V8zM16 2v24M5 8l22 12M27 8L5 20M16 26v4M1 28h30"/></svg><b>02</b> Webb <small>LOOK DEEPER</small>
+    <img class="observatory-thumbnail" src="./assets/space/webb-b-thumbnail.webp" width="48" height="36" alt="" loading="lazy"><b>02</b> Webb <small>LOOK DEEPER</small>
   </button>
   <button data-telescope="hubble" aria-pressed="false">
-    <svg class="observatory-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M12 3h8v25h-8zM12 13H1v9h11M20 13h11v9H20M12 7h8M12 24h8"/><ellipse cx="16" cy="3" rx="4" ry="2"/></svg><b>03</b> Hubble <small>REVEAL THE VISIBLE</small>
+    <img class="observatory-thumbnail" src="./assets/space/hubble-thumbnail.webp" width="48" height="36" alt="" loading="lazy"><b>03</b> Hubble <small>REVEAL THE VISIBLE</small>
   </button>
 </nav>
 <section
@@ -212,13 +207,13 @@
       <img id="mission-image" alt="" hidden />
     </div>
     <figcaption id="mission-image-status" role="status"></figcaption>
-    <a id="mission-image-source" target="_blank" rel="noreferrer"
+    <a id="mission-image-source" target="_blank" rel="noopener noreferrer"
       >Published image & original source ↗</a
     ><button id="mission-image-retry">Reload image</button>
   </figure>
   <div class="mission-bottom">
     <button id="mission-next">Continue →</button
-    ><a id="mission-source" target="_blank" rel="noreferrer">How it works ↗</a>
+    ><a id="mission-source" target="_blank" rel="noopener noreferrer">How it works ↗</a>
   </div>
   <p class="mission-disclaimer">
     Model-aligned external direction · simplified internal optics · no live
@@ -234,7 +229,7 @@
     light.
   </p>
 </div>
-<footer class="space-hud">
+<div class="space-hud">
   <div class="hud-info">
     <strong id="scene-type">CONTEXTUAL 3D · ARTISTIC SPACECRAFT MODEL</strong>
     <div id="space-status" role="status">Starting the local renderer…</div>
@@ -253,7 +248,7 @@
     ><button id="focus-object" disabled>Travel to selection</button
     ><button id="camera-reset" disabled>Overview</button>
   </div>
-</footer>
+</div>
 
 <aside id="render-fallback" class="space-fallback" role="alert" hidden>
   <h2>Science stays within reach.</h2>
@@ -307,7 +302,7 @@
       step="0.05"
   /></label>
   <p>
-    Sound defaults on after your first click or keypress; mute is remembered.
+    Sound defaults off. Your explicit sound preference is remembered.
     Short original sine-wave cues provide interface feedback, with no continuous
     ambience. Reduced-motion preferences disable camera travel animation.
   </p>
@@ -354,7 +349,7 @@
     <p id="runtime-status">
       Open this panel while SKYSHIFT is running to read local diagnostics.
     </p>
-    <a href="/healthz" target="_blank" rel="noreferrer"
+    <a href="/healthz" target="_blank" rel="noopener noreferrer"
       >Local server status ↗</a
     >
   </details>

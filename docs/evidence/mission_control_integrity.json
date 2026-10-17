@@ -1,0 +1,206 @@
+{
+  "recorded_at_utc": "2026-10-17T15:49:56.028639+00:00",
+  "baseline": "f679221",
+  "scientific_files": [
+    {
+      "file": "web/dist/data/bundle.json",
+      "sha256": "b36ac03cac9711dbe4aeb0a64ac8cfc898509317d5758d0adb2d2aabacc5effd"
+    },
+    {
+      "file": "web/dist/data/catalog.json",
+      "sha256": "17ad6e099632f13b77d1adae1c9f9c62291e3160da435ea02536183461d5c826"
+    },
+    {
+      "file": "web/dist/data/explore-catalog.json",
+      "sha256": "7197f418f2b09922796494943e97a973a9130f8ef69d27da7272a4a508ec2d39"
+    },
+    {
+      "file": "web/dist/data/explore/m101-2025W49_2A_0756_3.json",
+      "sha256": "d5fe609fc17c1727496eb622b796993ea431138e4d5d2475c5e2dabf5f6b019f"
+    },
+    {
+      "file": "web/dist/data/explore/m101-2025W49_2A_0756_3.png",
+      "sha256": "56d89cfada9a5f9d1972c9c34e0f0e66a62b40fe83131505b6a894605d7553e2"
+    },
+    {
+      "file": "web/dist/data/explore/m101-2025W50_1A_0736_3.json",
+      "sha256": "3805e172f1fab3f211a634bce269f4c17c401e541b118504108ac508496ee63f"
+    },
+    {
+      "file": "web/dist/data/explore/m101-2025W50_1A_0736_3.png",
+      "sha256": "c2075c60ab5539f166583dae9f0c1a24702768037881e06f2d11e9d9cfd6a981"
+    },
+    {
+      "file": "web/dist/data/explore/m42-2025W37_2A_0010_1.json",
+      "sha256": "0b27840ae389f3d30f1f4b4e88612e284e747c818a103003257397fafd7418be"
+    },
+    {
+      "file": "web/dist/data/explore/m42-2025W37_2A_0010_1.png",
+      "sha256": "df907f141934b2b0303f34ac5e8200d9d1cbbd15e30df0bccf938bd127621e46"
+    },
+    {
+      "file": "web/dist/data/explore/m67-2025W44_2B_0657_2.json",
+      "sha256": "bfc3b5bf23083dbf97c033927aba9ab5df6e8a6f4c1d03f75e948833821ba86b"
+    },
+    {
+      "file": "web/dist/data/explore/m67-2025W44_2B_0657_2.png",
+      "sha256": "566f5f1942e41e2a17d74253d1592c98671ec1f85fee2a61b026d3a6c2736e4c"
+    },
+    {
+      "file": "web/dist/data/explore/ngc188-2025W36_1A_0724_2.json",
+      "sha256": "b3f8720ae20ba4bcfb2adba4d9961aa98cc732dfce6124c26b5a1950ab381e91"
+    },
+    {
+      "file": "web/dist/data/explore/ngc188-2025W36_1A_0724_2.png",
+      "sha256": "41f2b089ec81ffc7ca93cf2d3ec536e7403ce7414b39cf609afdbcf2cf79335b"
+    },
+    {
+      "file": "web/dist/data/pair.fits",
+      "sha256": "7f0cf23f13e52418b6066e50b173afe1f709c6359ba4259b8ccfb6a0d71f2788"
+    },
+    {
+      "file": "web/dist/data/provenance-audit.json",
+      "sha256": "83ba2fcff9bab2167203136d1359721b33f3fc52a8656e3a89de68ab5a27c731"
+    },
+    {
+      "file": "web/dist/data/review-part-0.bin",
+      "sha256": "23c44f3918935634bf3081afa2c39b50d50742b4961f959b5189fc58349e534d"
+    },
+    {
+      "file": "web/dist/data/review-part-1.bin",
+      "sha256": "dc521c7f2a92ca6e43c7d0707bb40ea10d6f9df975ac4e2c04e3db66d0e6456b"
+    },
+    {
+      "file": "web/dist/data/review-part-2.bin",
+      "sha256": "2c586275a1d1de3887e4ae9cceb55d3e468c90bf0367a618acf3ea2933550f88"
+    },
+    {
+      "file": "web/dist/data/review-part-3.bin",
+      "sha256": "e91f0d3869d9781dd926e295b7b84228fc65c594eabb66618826938da01d162f"
+    },
+    {
+      "file": "web/dist/data/review-part-4.bin",
+      "sha256": "55e17525ee56e65a4c5d69b947cdea7513fa9b6ec5b70e7f55bc68fdb9494746"
+    },
+    {
+      "file": "web/dist/data/review-part-5.bin",
+      "sha256": "2520ca83bf2b0a41f993f7f3f90b5f14034e6cf365bf9f7965703862a0652e42"
+    }
+  ],
+  "all_scientific_bytes_unchanged": true,
+  "original_model_and_photo_files_unchanged": [
+    "web/dist/assets/space/earth-natural.glb",
+    "web/dist/assets/space/hubble.glb",
+    "web/dist/assets/space/mercury.glb",
+    "web/dist/assets/space/saturn.glb",
+    "web/dist/assets/space/sun.glb",
+    "web/dist/assets/space/uranus.glb",
+    "web/dist/assets/space/webb-b.glb",
+    "web/dist/assets/space/webb-detail.glb",
+    "web/dist/assets/m101-hubble-context.jpg",
+    "web/dist/assets/spherex-all-sky.jpg",
+    "web/dist/assets/spherex-spacecraft-concept.jpg",
+    "web/dist/assets/spherex-vela.jpg"
+  ],
+  "reconstruction": {
+    "input": "tmp/mission_control_product-qa/comparison.zip",
+    "input_sha256": "b770bba18373bcb95574d6848e8ba9f6075bd527ad904ecbbaa848cd69313e03",
+    "result": {
+      "status": "pass",
+      "pair_id": "pair-52ad675d929b0740c23b",
+      "scientific_approval": "PENDING",
+      "arrays": {
+        "SCI_A": {
+          "pass": true,
+          "max_absolute_error": 0.0
+        },
+        "SCI_B": {
+          "pass": true,
+          "max_absolute_error": 0.0
+        },
+        "VALID_A": {
+          "pass": true,
+          "max_absolute_error": 0.0
+        },
+        "VALID_B": {
+          "pass": true,
+          "max_absolute_error": 0.0
+        },
+        "COMMON": {
+          "pass": true,
+          "max_absolute_error": 0.0
+        },
+        "WAVE_A": {
+          "pass": true,
+          "max_absolute_error": 0.0
+        },
+        "WAVE_B": {
+          "pass": true,
+          "max_absolute_error": 0.0
+        },
+        "BAND_A": {
+          "pass": true,
+          "max_absolute_error": 0.0
+        },
+        "BAND_B": {
+          "pass": true,
+          "max_absolute_error": 0.0
+        },
+        "SEPARATION": {
+          "pass": true,
+          "max_absolute_error": 0.0
+        }
+      },
+      "annotations_verified": 1,
+      "display_settings": {
+        "vmin": 0.8790797120332718,
+        "vmax": 8.81986990928652,
+        "stretch": "asinh",
+        "asinh_a": 0.1,
+        "zoom": 1.25,
+        "center_x": 11.000000000021883,
+        "center_y": 12.000000000002313,
+        "view_mode": "single",
+        "selected_epoch": "A",
+        "blink_interval_ms": 1500
+      },
+      "note": "This independently reruns the preparation arithmetic. It is not human scientific approval."
+    },
+    "source_cache": "data/reconstruction/m101-v6-clean-environment",
+    "internet_required": false
+  },
+  "unit_regression": {
+    "python_passed": 107,
+    "javascript_passed": 104
+  },
+  "performance": {
+    "social_preview_bytes": 43646,
+    "mark_svg_bytes": 444,
+    "fonts": "Only local Inter WOFF2 and IBM Plex Mono WOFF2 are preloaded",
+    "photos": "Original scientific/photo JPEG bytes retained. Trial lossless WebP transcodes were 2.9\u20134.8 times larger, so they were not shipped.",
+    "lazy_assets": "Webb/Hubble models require optional collection; review parts require evidence download"
+  },
+  "scientific_approval": "PENDING",
+  "internal_human_review": "PENDING",
+  "independent_novice_validation": "NOT CONDUCTED",
+  "public_deployment": "NOT PERFORMED; existing Netlify identity preserved",
+  "browser_receipts": [
+    "mission_control_tests_chrome.json",
+    "mission_control_tests_edge.json",
+    "mission_control_product_tests.json",
+    "mission_control_sound_tests.json",
+    "mission_control_static_tests.json",
+    "mission_control_lighthouse.json",
+    "observatory_design_tests_mission-control-chrome.json",
+    "universe_disclosure_tests_mission-control-final.json",
+    "mission_control_optics_tests.json"
+  ],
+  "static_stage": {
+    "release_id": "skyshift-0.9-mission-control",
+    "content_id": "e9565ca2df5ac09c34a5778379158b7caa32115d71df934e51058e7d5ce00805",
+    "source_files": 164,
+    "total_files": 168,
+    "total_bytes": 63845450,
+    "public_deployment_performed": false
+  }
+}

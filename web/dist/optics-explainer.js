@@ -107,7 +107,7 @@ function graphic(mission, step, prefix) {
 }
 export function createOpticsExplainer(root) {
   root.innerHTML =
-    '<details class="optics-details"><summary>Trace light inside the telescope</summary><figure id="optics-figure"></figure><div class="optics-trace-controls"><button id="optics-next">Follow light →</button><button id="optics-expand">Expand diagram ↗</button></div><p id="optics-step-description" role="status"></p><p class="optics-diagram-limit">Original simplified diagram · not to scale · not an optical ray trace</p></details><dialog id="optics-dialog" class="space-dialog" aria-labelledby="optics-dialog-title"><div class="dialog-top"><h2 id="optics-dialog-title">How the light reaches the instruments</h2><button id="optics-dialog-close" aria-label="Close optics diagram">×</button></div><div id="optics-expanded"></div><p id="optics-expanded-description" role="status"></p><button id="optics-dialog-next">Follow light →</button><p>Original simplified diagram. Actual mirror shapes, separations and field angles are not simulated.</p></dialog>';
+    '<details class="optics-details"><summary>Trace light inside the telescope</summary><figure id="optics-figure" tabindex="0" role="group" aria-label="Optical diagram; scroll horizontally to read all labels"></figure><div class="optics-trace-controls"><button id="optics-next">Follow light →</button><button id="optics-expand">Expand diagram ↗</button></div><p id="optics-step-description" role="status"></p><p class="optics-diagram-limit">Original simplified diagram · not to scale · not an optical ray trace. Scroll the diagram horizontally or expand it for labels.</p></details><dialog id="optics-dialog" class="space-dialog" aria-labelledby="optics-dialog-title"><div class="dialog-top"><h2 id="optics-dialog-title">How the light reaches the instruments</h2><button id="optics-dialog-close" aria-label="Close optics diagram">×</button></div><div id="optics-expanded" tabindex="0" role="group" aria-label="Expanded optical diagram; scroll horizontally to read all labels"></div><p id="optics-expanded-description" role="status"></p><button id="optics-dialog-next">Follow light →</button><p>Original simplified diagram. Actual mirror shapes, separations and field angles are not simulated.</p></dialog>';
   const $ = (id) => root.querySelector("#" + id);
   let mission = "spherex",
     step = 0;
@@ -130,7 +130,7 @@ export function createOpticsExplainer(root) {
         link = document.createElement("a");
         link.textContent = "NASA optical design ↗";
         link.target = "_blank";
-        link.rel = "noreferrer";
+        link.rel = "noopener noreferrer";
         host.append(document.createElement("br"), link);
       }
       link.href = opticalSources[mission];

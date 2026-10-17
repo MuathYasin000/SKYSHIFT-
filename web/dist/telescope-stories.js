@@ -3,7 +3,7 @@
 export const telescopeStories = {
   spherex: {
     short: "SPHEREx",
-    color: "#8cd9db",
+    color: "#ffffff",
     position: [0, 0, 0],
     verb: "Map the infrared sky",
     band: "102 infrared colors",
@@ -34,7 +34,7 @@ export const telescopeStories = {
   },
   "webb-b": {
     short: "Webb",
-    color: "#e9bd73",
+    color: "#ffffff",
     position: [-6.7, 0.3, -2.8],
     verb: "Look deeper in infrared",
     band: "Near- & mid-infrared",
@@ -66,7 +66,7 @@ export const telescopeStories = {
   },
   hubble: {
     short: "Hubble",
-    color: "#b6b9ed",
+    color: "#ffffff",
     position: [6.7, 0.3, -2.8],
     verb: "Discover light beyond our eyes",
     band: "Ultraviolet · visible · near-infrared",
@@ -97,10 +97,10 @@ export const telescopeStories = {
   },
 };
 export const observingColors = [
-  "#ae9ce8",
-  "#7dbbe6",
-  "#84cbbd",
-  "#e7cf79",
-  "#e8a875",
-  "#db8581",
+  "#ffffff",
+  "#ffffff",
+  "#ffffff",
+  "#ffffff",
+  "#ffffff",
+  "#ffffff",
 ];

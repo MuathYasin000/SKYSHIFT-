@@ -6,6 +6,7 @@ import { stories, availability, friendlyDate } from "./field-guide.js";
 import { createExplorationMemory } from "./exploration-memory.js";
 import { evidenceTrail } from "./evidence-trail.js";
 import { readPreferences } from "./space-preferences.js";
+import { uiTheme, drawPixelGuide } from "./ui-theme.js";
 
 // Native UI: no iframe, secondary document or second controller. Both presentations
 // operate on one investigation object and the same scientific Canvas2D viewports.
@@ -18,6 +19,9 @@ export function createObservationConsole({
 }) {
   const engine = createInvestigation(),
     memory = createExplorationMemory();
+  const theme = uiTheme();
+  let guidePoint = null,
+    guideCanvas = null;
   let catalog = null,
     opened = false,
     classic = false,
@@ -32,7 +36,7 @@ export function createObservationConsole({
   root.innerHTML = `
     <header class="instrument-header">
       <div><p class="space-eyebrow">SPHEREx / SCIENCE INSTRUMENT</p><h1 id="instrument-title">Choose a window into the infrared</h1><p id="instrument-subtitle"></p></div>
-      <div class="instrument-actions"><button id="instrument-mode">Classic View</button><button id="instrument-save">Save investigation ↓</button><button id="instrument-open">Reopen ↑</button><button id="instrument-close" aria-label="Return home without losing this investigation">Home ↗</button><input id="instrument-file" type="file" accept=".json,.zip" hidden></div>
+      <div class="instrument-actions"><button id="instrument-mode">Classic View</button><button id="instrument-save">Save comparison (.zip) ↓</button><button id="instrument-open">Reopen ↑</button><button id="instrument-close" aria-label="Return home without losing this investigation">Home ↗</button><input id="instrument-file" type="file" accept=".json,.zip" hidden></div>
     </header>
     <div class="instrument-selection"><label for="instrument-field-select">Sky region</label><select id="instrument-field-select"></select><p id="instrument-spectral-summary"></p></div>
     <nav id="instrument-fields" class="instrument-fields" aria-label="Available SPHEREx regions" hidden></nav>
@@ -44,7 +48,7 @@ export function createObservationConsole({
         <div id="instrument-canvases" class="instrument-canvases">
           <figure id="instrument-figure-a"><figcaption id="instrument-label-a"></figcaption><canvas id="instrument-canvas-a" tabindex="0" aria-label="Observation A, pan and zoom; click or Enter to inspect a pixel"></canvas></figure>
           <figure id="instrument-figure-b" hidden><figcaption id="instrument-label-b"></figcaption><canvas id="instrument-canvas-b" tabindex="0" aria-label="Observation B, synchronized pan and zoom; click or Enter to inspect a pixel"></canvas></figure>
-          <button id="instrument-wipe-handle" aria-label="Drag to reveal the second observation; use the Reveal observation B slider for keyboard control" hidden>↔</button>
+          <button id="instrument-wipe-handle" aria-label="A / B — drag to reveal the second observation; use the Reveal observation B slider for keyboard control" hidden>A / B</button>
           <div id="instrument-loading" class="instrument-loading" role="status" hidden><span></span><strong>Checking scientific data & source identity…</strong></div>
         </div>
         <label id="instrument-wipe-row" class="instrument-wipe-row" hidden>Divider position <input id="instrument-wipe" type="range" min="0" max="100" value="50"><output id="instrument-wipe-value">50%</output></label>
@@ -57,6 +61,17 @@ export function createObservationConsole({
     <p id="instrument-status" class="instrument-status" role="status"></p><button id="instrument-retry" hidden>Retry observation</button>
     <dialog id="instrument-question" class="space-dialog"><form method="dialog"><div class="dialog-top"><h2>Your question about this position</h2><button value="cancel" formnovalidate aria-label="Cancel question">×</button></div><p id="instrument-question-position"></p><label for="instrument-question-text">Question or note</label><textarea id="instrument-question-text" maxlength="1500" rows="4" required></textarea><p>User hypothesis only. No measured motion or confirmed variability.</p><div class="instrument-actions"><button value="cancel" formnovalidate>Cancel</button><button id="instrument-question-save" type="button">Save question</button></div><p id="instrument-question-error" role="alert"></p></form></dialog>
     <dialog id="instrument-information" class="space-dialog"><div class="dialog-top"><h2>Source identities & scientific limits</h2><button id="instrument-information-close" aria-label="Close scientific information">×</button></div><div id="instrument-information-body"></div></dialog>`;
+  const approval = node(
+    "span",
+    "Scientific approval PENDING",
+    "status-pending",
+  );
+  approval.title =
+    "Engineering screens do not replace qualified astronomical review.";
+  root.querySelector(".instrument-selection").append(approval);
+  const metrics = node("div", undefined, "comparison-metrics");
+  metrics.id = "instrument-metrics";
+  root.querySelector(".instrument-viewtools").after(metrics);
   const toolbar = root.querySelector(".instrument-viewbar > div");
   const evidenceButton = node("button", "Evidence trail ↗");
   evidenceButton.id = "instrument-evidence";
@@ -164,37 +179,10 @@ export function createObservationConsole({
   }
   toolbar.classList.add("instrument-toolbar");
   toolbar.id = "instrument-tools";
-  const toolsToggle = node("button", "Tools ▾");
-  toolsToggle.id = "instrument-tools-toggle";
-  toolsToggle.setAttribute("aria-controls", toolbar.id);
-  toolsToggle.setAttribute("aria-expanded", "false");
-  root.querySelector(".instrument-selection").append(toolsToggle);
-  root.querySelector(".instrument-selection").append(toolbar);
+  root.querySelector(".instrument-viewbar").append(toolbar);
   function closeTools() {
     root.classList.remove("tools-open");
-    toolsToggle.setAttribute("aria-expanded", "false");
   }
-  toolsToggle.onclick = () => {
-    const open = !root.classList.contains("tools-open");
-    root.classList.toggle("tools-open", open);
-    toolsToggle.setAttribute("aria-expanded", String(open));
-  };
-  toolbar.addEventListener("click", (e) => {
-    if (e.target.closest("button")) {
-      closeTools();
-      if (matchMedia("(max-width:800px)").matches) toolsToggle.focus();
-    }
-  });
-  document.addEventListener("pointerdown", (e) => {
-    if (!toolbar.contains(e.target) && e.target !== toolsToggle) closeTools();
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && root.classList.contains("tools-open")) {
-      e.preventDefault();
-      closeTools();
-      toolsToggle.focus();
-    }
-  });
   function node(tag, text, cls) {
     const e = document.createElement(tag);
     if (text !== undefined) e.textContent = text;
@@ -368,6 +356,30 @@ export function createObservationConsole({
         ),
       );
     $("instrument-dates").replaceChildren();
+    metrics.hidden = !pair;
+    if (pair) {
+      metrics.replaceChildren();
+      const days =
+        (Date.parse(v.manifest.observations[1].time_start_utc) -
+          Date.parse(v.manifest.observations[0].time_start_utc)) /
+        86400000;
+      const coverage =
+        (v.arrays.COMMON.reduce((a, b) => a + b, 0) / v.arrays.COMMON.length) *
+        100;
+      for (const [value, label] of [
+        [days.toFixed(2) + " d", "Time baseline"],
+        [coverage.toFixed(1) + "%", "Common usable support"],
+        [
+          v.bundle.registration.median_residual_arcsec.toFixed(3) + "″",
+          "Median inter-epoch residual",
+        ],
+        [v.shape[1] + " × " + v.shape[0], "Prepared pixels · real data"],
+      ]) {
+        const item = node("div");
+        item.append(node("strong", value), node("span", label));
+        metrics.append(item);
+      }
+    }
     const observations = pair ? v.manifest.observations : v.field.observations;
     observations.forEach((o, index) => {
       const b = node("button"),
@@ -432,7 +444,7 @@ export function createObservationConsole({
         ? "Compare restricted M101 area →"
         : "No suitable second date installed";
     $("instrument-suitability").textContent = pair
-      ? "Scientific approval PENDING. Visual differences are not discoveries."
+      ? "Visual differences are questions for review, not discoveries."
       : v.field.comparison_status === "provisional_restricted"
         ? "Wider view: one exposure at a time. Only the small comparison area was screened."
         : v.field.comparison_status === "incompatible_tested_pairs"
@@ -468,7 +480,10 @@ export function createObservationConsole({
     $("instrument-wipe-handle").style.left = v.visual.wipe_position + "%";
     $("instrument-label-a").textContent = pair
       ? v.visual.wipe
-        ? "A ← WIPE → B"
+        ? "DATE A / " +
+          v.manifest.observations[0].time_start_utc +
+          "  |  DATE B / " +
+          v.manifest.observations[1].time_start_utc
         : (side ? "A" : v.display.selected_epoch) +
           " · " +
           v.manifest.observations[
@@ -516,12 +531,12 @@ export function createObservationConsole({
                   displayLevel(data[i], v.display, v.visual),
                   v.visual.palette,
                 )
-              : [20, 33, 51]),
+              : [17, 17, 17]),
             255,
           ],
           i * 4,
         );
-        if (!valid) mi.data.set([20, 33, 51, 255], i * 4);
+        if (!valid) mi.data.set([17, 17, 17, 255], i * 4);
       }
       ctx.putImageData(im, 0, 0);
       mc.putImageData(mi, 0, 0);
@@ -593,24 +608,26 @@ export function createObservationConsole({
       const x = (g.width * v.visual.wipe_position) / 100;
       image("A", 0, x);
       image("B", x, g.width);
-      ctx.strokeStyle = "#e7bb69";
+      ctx.strokeStyle = theme.white;
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(x, 0);
       ctx.lineTo(x, g.height);
       ctx.stroke();
     } else image(epoch);
+    if (v.kind === "pair" && guideCanvas === c.id)
+      drawPixelGuide(ctx, g, v.display, v.shape, guidePoint, theme);
     function marker(point, label) {
       const x = g.width / 2 + (point.x - v.display.center_x) * g.scale,
         y = g.height / 2 - (point.y - v.display.center_y) * g.scale;
-      ctx.strokeStyle = "#e7bb69";
+      ctx.strokeStyle = theme.white;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.arc(x, y, 10, 0, Math.PI * 2);
       ctx.stroke();
       if (label) {
-        ctx.font = "13px 'Source Sans 3'";
-        ctx.fillStyle = "#f1eee5";
+        ctx.font = "13px 'IBM Plex Mono'";
+        ctx.fillStyle = theme.white;
         ctx.fillText(label, x + 13, y - 8);
       }
     }
@@ -636,7 +653,7 @@ export function createObservationConsole({
     $("instrument-add").disabled = !valid;
     if (!valid)
       $("instrument-pixel").textContent =
-        "No usable measurement here. Blue areas are excluded data, not empty space. Select an unmasked pixel.";
+        "No usable measurement here. Shaded areas are excluded data, not empty space. Select an unmasked pixel.";
     else {
       const sky = v.inspection.sky,
         i = y * w + x,
@@ -666,6 +683,29 @@ export function createObservationConsole({
     }
     cue("select");
     draw();
+  }
+  for (const id of ["instrument-canvas-a", "instrument-canvas-b"]) {
+    const canvas = $(id);
+    canvas.addEventListener(
+      "pointermove",
+      (e) => {
+        if (!opened || busy || engine.active.kind !== "pair") return;
+        const r = canvas.getBoundingClientRect(),
+          g = geometry(canvas),
+          d = engine.active.display;
+        guideCanvas = id;
+        guidePoint = {
+          x: (e.clientX - r.left - g.width / 2) / g.scale + d.center_x,
+          y: -(e.clientY - r.top - g.height / 2) / g.scale + d.center_y,
+        };
+        draw();
+      },
+      { passive: true },
+    );
+    canvas.addEventListener("pointerleave", () => {
+      guidePoint = null;
+      draw();
+    });
   }
   for (const id of ["instrument-canvas-a", "instrument-canvas-b"])
     attachViewportInput($(id), {
@@ -1033,7 +1073,7 @@ export function createObservationConsole({
         const a = node("a", "Open NASA/IPAC archive source ↗");
         a.href = f.source_url;
         a.target = "_blank";
-        a.rel = "noreferrer";
+        a.rel = "noopener noreferrer";
         body.append(a);
       }
     }

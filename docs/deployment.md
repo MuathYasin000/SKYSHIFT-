@@ -4,6 +4,8 @@
 
 **Previous public deployment (preserved, no further publishing):** [SKYSHIFT](https://skyshift-project-mercury.surebream11.chatgpt.site), updated on 17 October 2026 following the user's explicit request for public availability. Visitors need no login. Public static hosting does not require the Windows computer to stay on. Local notes remain in each visitor's browser; export before closing a tab or moving devices. This is optional publication of the same application, not a new hosting dependency. It can also be staged for another conventional static provider and the user's future domain.
 
+**Latest local revision: 0.9 / Black & White Mission Control.** The existing `tmp/skyshift-upload/dist` has been refreshed incrementally with 164 source files plus four host metadata/header files. Its static-server tests verify all scientific/FITS/review-part hashes, real 3D startup, comparison export/reopening, sound and three telescopes. This is a locally verified upload, not a public deployment. Keep using the existing **skyshiftt** Netlify project; localhost needs no hosting account. Receipts: `evidence/mission_control_static_tests.json`, `evidence/mission_control_lighthouse.json`, and `evidence/mission_control_integrity.json`.
+
 ## Publish the corrected application on Netlify
 
 The user selected **Netlify**, superseding the earlier Cloudflare suggestion. The corrected homepage is available on localhost and in the independent upload folder. The user supplied the existing Netlify address https://skyshiftt.netlify.app/. This revision has been implemented locally; no Netlify account access or public deployment was performed by this session. Update the same existing Netlify project to preserve that identity. The old ChatGPT-hosted site is preserved as history and does not contain the latest layout repair.
@@ -18,7 +20,7 @@ The user selected **Netlify**, superseding the earlier Cloudflare suggestion. Th
 
 ### CLI alternative for the complete upload
 
-The prepared site has 150 files, approximately 62.9 MB total; its largest file is 8 MB. Netlify recommends CLI uploads for larger sites because drag-and-drop works best below 50 MB. That figure is a reliability recommendation, not a claimed hard rejection limit. Keep all scientific review parts and model assets in the upload.
+The current prepared site has 168 files, approximately 63.8 MB total; its largest file is 8 MB. Netlify recommends CLI uploads for larger sites because drag-and-drop works best below 50 MB. That figure is a reliability recommendation, not a claimed hard rejection limit. Keep all scientific review parts and model assets in the upload.
 
 If you prefer CLI, install Node.js with npm, then run in PowerShell:
 

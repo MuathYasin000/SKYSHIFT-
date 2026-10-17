@@ -77,6 +77,11 @@ export function installInfraredExperience() {
         if (inside) {
           hero.style.setProperty("--lens-x", x - r.left + "px");
           hero.style.setProperty("--lens-y", y - r.top + "px");
+          const panel = hero
+            .querySelector(".hero-observatory")
+            .getBoundingClientRect();
+          hero.style.setProperty("--lens-panel-x", x - panel.left + "px");
+          hero.style.setProperty("--lens-panel-y", y - panel.top - 48 + "px");
           hero.style.setProperty(
             "--depth-x",
             (x / innerWidth - 0.5) * 10 + "px",
@@ -95,25 +100,16 @@ export function installInfraredExperience() {
         if (card) {
           const c = card.getBoundingClientRect(),
             image = card.querySelector(".field-image").getBoundingClientRect();
-          card.style.setProperty(
-            "--tilt-x",
-            (0.5 - (y - c.top) / c.height) * 3 + "deg",
-          );
-          card.style.setProperty(
-            "--tilt-y",
-            ((x - c.left) / c.width - 0.5) * 4 + "deg",
-          );
           card.style.setProperty("--reveal-x", x - image.left + "px");
           card.style.setProperty("--reveal-y", y - image.top + "px");
           // Actual curated field coordinates, never cursor-generated RA/Dec.
           $("hero-field-coordinates").textContent =
             card.querySelector(".field-coordinates").textContent +
             " · field centre";
-        }
-        const button = target.closest(".primary-link");
-        if (button) {
-          const b = button.getBoundingClientRect();
-          button.style.translate = `${(x - b.left - b.width / 2) * 0.025}px ${(y - b.top - b.height / 2) * 0.06}px`;
+          lens.querySelector("span").textContent =
+            "IR LENS / CURATED FIELD CENTRE / " +
+            card.querySelector(".field-coordinates").textContent +
+            " / Not spacecraft pointing";
         }
       });
     },

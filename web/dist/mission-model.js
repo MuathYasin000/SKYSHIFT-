@@ -29,7 +29,7 @@ export function createMissionModel(
   renderer.setPixelRatio(
     Math.min(devicePixelRatio || 1, preferences.quality === "low" ? 1 : 1.5),
   );
-  renderer.setClearColor(hero ? "#070a12" : "#0c1115", hero ? 0 : 1);
+  renderer.setClearColor("black", hero ? 0 : 1);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.95;
   renderer.shadowMap.enabled = preferences.quality !== "low";
@@ -54,7 +54,7 @@ export function createMissionModel(
   room.dispose();
   scene.environment = env.texture;
   scene.environmentIntensity = 0.8;
-  const key = new THREE.DirectionalLight("#fff7ed", 2.8);
+  const key = new THREE.DirectionalLight("white", 2.8);
   key.position.set(-3, 5, 6);
   key.castShadow = preferences.quality !== "low";
   key.shadow.mapSize.set(1024, 1024);
@@ -63,9 +63,9 @@ export function createMissionModel(
   key.shadow.camera.near = 0.5;
   key.shadow.camera.far = 20;
   key.shadow.normalBias = 0.025;
-  const rim = new THREE.DirectionalLight("#c6d9ee", 1.3);
+  const rim = new THREE.DirectionalLight("white", 1.3);
   rim.position.set(3, 1, -4);
-  scene.add(key, rim, new THREE.HemisphereLight("#edf3ff", "#292322", 0.35));
+  scene.add(key, rim, new THREE.HemisphereLight("white", "black", 0.35));
   controls.enableDamping = false;
   controls.enablePan = false;
   // Homepage scrolling takes precedence; explicit zoom buttons remain available.
@@ -192,7 +192,7 @@ export function createMissionModel(
         for (const material of Array.isArray(o.material)
           ? o.material
           : [o.material])
-          material.emissive?.set(picked ? "#31484b" : "#000000");
+          material.emissive?.set(picked ? "#222222" : "black");
       }
     });
     if (!box.isEmpty()) {

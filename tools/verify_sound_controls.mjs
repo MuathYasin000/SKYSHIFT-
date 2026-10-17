@@ -317,7 +317,7 @@ try {
   );
   await c.close();
   await check(
-    "Orbital hero action has its requested cream/spectral surface, readable text and a direct keyboard route to real observations",
+    "Mission-control hero action has its requested red/black surface, readable text and a direct keyboard route to real observations",
     async () => {
       const { c, p } = await context();
       try {
@@ -328,17 +328,17 @@ try {
         await p.evaluate(() => document.fonts.ready);
         const hero = p.locator(".mission-launch");
         assert.equal(await hero.getAttribute("href"), "#compare");
-        assert.equal(await hero.locator(".launch-spectrum i").count(), 6);
+        assert.equal(await p.locator(".hero-spectrum [data-spectrum] i").count(), 102);
         const style = await hero.evaluate((e) => ({
           fill: getComputedStyle(e).backgroundColor,
           ink: getComputedStyle(e).color,
         }));
-        assert.equal(style.fill, "rgb(244, 233, 212)");
+        assert.equal(style.fill, "rgb(252, 61, 33)");
         assert.ok(
           !style.fill.includes("231, 242, 247"),
           "Rejected pale-blue generic fill",
         );
-        assert.equal(style.ink, "rgb(23, 27, 32)");
+        assert.equal(style.ink, "rgb(0, 0, 0)");
         assert.deepEqual(await axe(p), []);
         await p.screenshot({ path: out + "/hero-desktop.png" });
         await hero.focus();

@@ -1,0 +1,729 @@
+{
+  "recorded_at_utc": "2026-10-17T15:47:03.653Z",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "name": "home / 390px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          390,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "explore / 390px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          390,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "comparison-document / 390px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          390,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [
+          {
+            "id": "",
+            "tag": "TABLE",
+            "classes": "",
+            "right": 607.296875
+          },
+          {
+            "id": "",
+            "tag": "THEAD",
+            "classes": "",
+            "right": 607.296875
+          },
+          {
+            "id": "",
+            "tag": "TR",
+            "classes": "",
+            "right": 607.296875
+          },
+          {
+            "id": "",
+            "tag": "TH",
+            "classes": "",
+            "right": 607.296875
+          },
+          {
+            "id": "reference-table",
+            "tag": "TBODY",
+            "classes": "",
+            "right": 607.296875
+          },
+          {
+            "id": "",
+            "tag": "TR",
+            "classes": "",
+            "right": 607.296875
+          },
+          {
+            "id": "",
+            "tag": "TD",
+            "classes": "",
+            "right": 607.296875
+          },
+          {
+            "id": "",
+            "tag": "TR",
+            "classes": "",
+            "right": 607.296875
+          },
+          {
+            "id": "",
+            "tag": "TD",
+            "classes": "",
+            "right": 607.296875
+          },
+          {
+            "id": "",
+            "tag": "TR",
+            "classes": "",
+            "right": 607.296875
+          },
+          {
+            "id": "",
+            "tag": "TD",
+            "classes": "",
+            "right": 607.296875
+          },
+          {
+            "id": "",
+            "tag": "TR",
+            "classes": "",
+            "right": 607.296875
+          }
+        ],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "discover / 390px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          390,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "methodology / 390px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          390,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "guide / 390px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          390,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "introduction / 390px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          390,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "observations / 390px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          390,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "compare / 390px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          390,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "mission / 390px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          390,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "universe / 390px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          390,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "home / 768px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          768,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "explore / 768px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          768,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "comparison-document / 768px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          768,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "discover / 768px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          768,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "methodology / 768px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          768,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "guide / 768px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          768,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "introduction / 768px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          768,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "observations / 768px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          768,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "compare / 768px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          768,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "mission / 768px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          768,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "universe / 768px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          768,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "home / 1440px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "explore / 1440px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "comparison-document / 1440px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "discover / 1440px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "methodology / 1440px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "guide / 1440px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "introduction / 1440px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "observations / 1440px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "compare / 1440px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "mission / 1440px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "universe / 1440px",
+      "status": "pass",
+      "detail": {
+        "viewport": [
+          1440,
+          1000
+        ],
+        "under": [],
+        "legacy": [],
+        "clipped": [],
+        "overflow": false,
+        "overflowNodes": [],
+        "headers": 1,
+        "footers": 1,
+        "background": "rgb(0, 0, 0)",
+        "axe_violations": []
+      }
+    },
+    {
+      "name": "New native comparison defaults to wipe/nearest, with keyboard divider and checksum copying",
+      "status": "pass"
+    },
+    {
+      "name": "Native comparison export/reopen preserves actual viewport and wipe settings",
+      "status": "pass"
+    },
+    {
+      "name": "Shared mobile navigation and resources remain keyboard accessible",
+      "status": "pass"
+    },
+    {
+      "name": "Native science works when WebGL is unavailable and optional sound fails",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "limits": [
+    "Local isolated browser; emulated viewports, not physical-device certification.",
+    "Qualified scientific approval and internal human review PENDING; independent novice validation NOT CONDUCTED.",
+    "Public Netlify publication is not inferred from local verification."
+  ]
+}

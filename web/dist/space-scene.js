@@ -52,7 +52,7 @@ export function createSpaceScene(
   const card = new THREE.Mesh(
     new THREE.PlaneGeometry(10, 7),
     new THREE.MeshBasicMaterial({
-      color: new THREE.Color("#fff4dd").multiplyScalar(3),
+      color: new THREE.Color("white").multiplyScalar(3),
       side: THREE.DoubleSide,
     }),
   );
@@ -66,12 +66,12 @@ export function createSpaceScene(
   card.material.dispose();
   scene.environment = environment.texture;
   scene.environmentIntensity = 0.55;
-  const ambient = new THREE.HemisphereLight(0xf1eddf, 0x252220, 0.65);
+  const ambient = new THREE.HemisphereLight(0xffffff, 0x111111, 0.65);
   scene.add(ambient);
-  const key = new THREE.DirectionalLight(0xffedd4, 2.5);
+  const key = new THREE.DirectionalLight(0xffffff, 2.5);
   key.position.set(6, 8, 10);
   scene.add(key);
-  const rim = new THREE.DirectionalLight(0xd3e4f4, 0.65);
+  const rim = new THREE.DirectionalLight(0xffffff, 0.65);
   rim.position.set(-6, 2, -4);
   scene.add(rim);
   const modelGroup = new THREE.Group(),
@@ -237,7 +237,7 @@ export function createSpaceScene(
   let observingId = null,
     hoverId = null;
   const haloMaterial = new THREE.MeshBasicMaterial({
-    color: 0x8cd9db,
+    color: 0x0b3d91,
     transparent: true,
     opacity: 0.22,
     side: THREE.DoubleSide,
@@ -361,7 +361,7 @@ export function createSpaceScene(
           }),
         ),
         new THREE.LineBasicMaterial({
-          color: 0xb49b69,
+          color: 0xffffff,
           transparent: true,
           opacity: 0.22,
         }),
@@ -393,11 +393,8 @@ export function createSpaceScene(
       r * z,
       r * Math.sqrt(1 - z * z) * Math.sin(a),
     );
-    const c = new THREE.Color().setHSL(
-      0.08 + rand() * 0.55,
-      0.12,
-      0.24 + Math.pow(rand(), 2) * 0.65,
-    );
+    const brightness = 0.24 + Math.pow(rand(), 2) * 0.65,
+      c = new THREE.Color(brightness, brightness, brightness);
     colors.push(c.r, c.g, c.b);
   }
   const starGeometry = new THREE.BufferGeometry();
@@ -437,7 +434,7 @@ export function createSpaceScene(
   const infraredBackdrop = createInfraredBackdrop();
   scene.add(infraredBackdrop);
   const gridMaterial = new THREE.LineBasicMaterial({
-    color: 0x294c59,
+    color: 0xffffff,
     transparent: true,
     opacity: 0.42,
   });
@@ -469,7 +466,7 @@ export function createSpaceScene(
     const marker = new THREE.Mesh(
       new THREE.SphereGeometry(0.45, 20, 12),
       new THREE.MeshBasicMaterial({
-        color: field.id === "m101" ? 0xffbc67 : 0x6bd8e5,
+        color: field.id === "m101" ? 0xfc3d21 : 0xffffff,
       }),
     );
     marker.position.set(...fieldVector(field.ra_deg, field.dec_deg));
@@ -539,9 +536,9 @@ export function createSpaceScene(
           const orbit = new THREE.Line(
             new THREE.BufferGeometry().setFromPoints(points),
             new THREE.LineBasicMaterial({
-              color: b.id === "earth" ? 0x85c9cf : 0xc2a362,
+              color: 0xffffff,
               transparent: true,
-              opacity: 0.48,
+              opacity: 0.15,
             }),
           );
           orbit.userData.orbit = b.id;
@@ -858,7 +855,7 @@ export function createSpaceScene(
       for (const line of solarGroup.children) {
         if (line.userData.orbit)
           line.material.color.set(
-            line.userData.orbit === id ? 0x85c9cf : 0xc2a362,
+            line.userData.orbit === id ? 0x0b3d91 : 0xffffff,
           );
       }
     if (active === "observatory") {
@@ -876,19 +873,19 @@ export function createSpaceScene(
           .add(new THREE.Vector3(0, -0.2, 0))
           .toArray(),
       );
-      observing.feedback(position, telescopeStories[id]?.color || "#8cd9db");
+      observing.feedback(position, telescopeStories[id]?.color || "white");
       return;
     }
     if (active === "sky" && fieldPoints.has(id)) {
       const p = fieldPoints.get(id).position;
-      observing.feedback(p, "#8cd9db");
+      observing.feedback(p, "white");
       travel(p.clone().multiplyScalar(2.15).toArray(), [0, 0, 0]);
     } else if (active === "solar" && objects.has(id)) {
       const object = objects.get(id),
         r = bodies.find((b) => b.id === id).radius,
         p = object.position,
         fit = Math.max(1, 0.9 / camera.aspect);
-      observing.feedback(object.position, "#e7bb69");
+      observing.feedback(object.position, "white");
       controls.minDistance = Math.max(0.5, r * 1.7);
       travel(
         [p.x + r * 3 * fit, p.y + r * 1.9 * fit, p.z + r * 4 * fit],
@@ -935,7 +932,7 @@ export function createSpaceScene(
     });
   }
   function setEffects(value) {
-    controls.enableDamping=value&&!reduced.matches;
+    controls.enableDamping = value && !reduced.matches;
     scene.traverse((o) => {
       if (o.userData.illustrativeAtmosphere) o.visible = value;
     });
@@ -1083,11 +1080,11 @@ export function createSpaceScene(
           for (const m of Array.isArray(o.material) ? o.material : [o.material])
             if (m.emissive)
               m.emissive.set(
-                o.userData.component === component ? 0x273f48 : 0x000000,
+                o.userData.component === component ? 0x222222 : 0x000000,
               );
         }
       });
-      observing.feedback(spherex.position, "#8cd9db");
+      observing.feedback(spherex.position, "white");
       invalidate();
     },
     zoom,

@@ -73,7 +73,7 @@ try {
     assert.equal(await p.locator(".hero-spectrum i").count(), 102);
     assert.equal(
       await p.locator(".header-launch").textContent(),
-      "Launch Compare ↗",
+      "Compare dates",
     );
     assert.equal(
       await p.evaluate(() => skyshiftSound.diagnostics().enabled),
@@ -92,6 +92,7 @@ try {
     );
   });
   await test("Lens and effects preferences stay synchronized, including explicit sound opt-in", async () => {
+    await p.click("#site-more");
     await p.locator("#reduce-effects").click();
     assert.equal(
       await p.evaluate(() => skyshiftInfrared.diagnostics().enabled),

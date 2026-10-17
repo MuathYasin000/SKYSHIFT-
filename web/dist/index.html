@@ -3,86 +3,72 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#090c0e" />
+    <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Explore real SPHEREx observations, compare the restricted M101 field across two dates, and save reproducible investigations. Independent Project Mercury Team application."
     />
     <title>SKYSHIFT — SPHEREx observations & comparison</title>
-    <link rel="icon" href="./assets/LOGO2.PNG" type="image/png" />
-    <meta property="og:title" content="SKYSHIFT — Seeing the Invisible" />
+    <link rel="icon" href="./assets/skyshift-mark.svg" type="image/svg+xml">
+    <meta property="og:title" content="SKYSHIFT — Explore & Compare" />
     <meta
       property="og:description"
       content="Explore authentic SPHEREx observations. Compare carefully. Keep the evidence."
     />
-    <meta property="og:image" content="./assets/seeing-invisible.png" />
+    <meta property="og:image" content="./assets/mission-control.webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="SKYSHIFT's actual interactive SPHEREx model and Seeing the Invisible spectrum. Illustrative spacecraft model."
+      content="Black-and-white SKYSHIFT interface: actual illustrative SPHEREx model, wavelength ruler and Explore & Compare headline."
     />
-    <link rel="stylesheet" href="./immersive.css" />
-    <link rel="stylesheet" href="./telescope-experience.css" />
-    <link rel="stylesheet" href="./observation-console.css" />
-    <link rel="stylesheet" href="./website.css" />
-    <link rel="stylesheet" href="./orbital-design.css" />
-    <link rel="stylesheet" href="./infrared-experience.css" />
-    <link rel="stylesheet" href="./control-design.css" />
-    <link rel="stylesheet" href="./observatory-design.css" />
-    <link
-      rel="preload"
-      href="./assets/fonts/Manrope.ttf"
-      as="font"
-      type="font/ttf"
-      crossorigin
-    />
-  </head>
-  <body data-surface="home">
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="./tokens.css">
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./components.css">
+<link rel="stylesheet" href="./home.css">
+<link rel="stylesheet" href="./observations.css">
+<link rel="stylesheet" href="./compare.css">
+<link rel="stylesheet" href="./discover.css">
+<link rel="stylesheet" href="./universe.css">
+<link rel="preload" href="./assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="./assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"></head>
+  <body data-surface="home" data-shell="app" data-page="home">
     <div class="reading-spectrum" aria-hidden="true">
       <div data-spectrum></div>
     </div>
     <div id="infrared-lens" aria-hidden="true">
-      <span>IR / DISPLAY LENS</span>
+      <span>IR LENS / M101 FIELD CENTRE<br>RA 210.802° / DEC +54.349°<br>Not spacecraft pointing</span>
     </div>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header" id="site-header">
-      <a class="site-brand" href="#home" aria-label="SKYSHIFT home"
-        ><img
-          src="./assets/LOGO2.PNG"
-          width="56"
-          height="56"
-          alt="SKYSHIFT — Project Mercury Team" /><span
-          >SKYSHIFT<small>SPHEREx observation explorer</small
-          ><i data-spectrum aria-hidden="true"></i></span
-      ></a>
-      <nav class="site-navigation" aria-label="Main navigation">
-        <a href="#observations" data-route="observations">Observations</a
-        ><a href="#compare" data-route="compare">Compare</a
-        ><a href="#mission" data-route="mission"
-          ><span class="nav-label-wide">Discover SPHEREx</span
-          ><span class="nav-label-short">Mission</span></a
-        ><a href="#universe" data-route="universe" class="nav-universe"
-          >3D Universe <span aria-hidden="true">↗</span></a
-        >
-      </nav>
-      <button
-        id="site-sound"
-        data-sound-toggle
-        aria-pressed="false"
-        aria-label="Turn SKYSHIFT sound on"
-        title="Turn SKYSHIFT sound on"
-      >
-        <span class="sound-wave" aria-hidden="true"><i></i><i></i><i></i></span
-        ><span class="sound-word">Sound off</span>
-      </button>
-      <button
-        id="site-more"
-        aria-label="Sources, methods and application information"
-      >
-        Resources <span aria-hidden="true">+</span>
-      </button>
-    </header>
+
+
+
+
+
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" id="site-header">
+ <a class="site-brand" href="./index.html" aria-label="SKYSHIFT home"><img src="./assets/skyshift-mark.svg" width="36" height="42" alt=""><span>SKYSHIFT<small>SPHEREX OBSERVATION EXPLORER</small></span></a>
+ <button class="mobile-menu-toggle" id="site-menu-toggle" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false" title="Navigation">☰</button>
+ <nav class="site-navigation" id="site-nav" aria-label="Main navigation">
+  <a href="./index.html#observations" data-route="observations">Observations</a><a href="./index.html#compare" data-route="compare">Compare</a><a href="./discover.html" data-route="discover">Discover SPHEREx</a><a href="./index.html#universe" data-route="universe">3D Universe</a><a href="./methodology.html" data-route="methodology">Methodology</a>
+ </nav>
+ <div class="chrome-actions"><button id="site-sound" data-sound-toggle aria-pressed="false" aria-label="Sound off — turn SKYSHIFT sound on" title="Turn SKYSHIFT sound on"><svg class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6m0-6-5 6"/></svg><span class="sound-word">Sound off</span></button><button id="site-more" aria-expanded="false" aria-controls="resources-menu">Resources <span aria-hidden="true">+</span></button><a href="./index.html#compare" class="header-launch">Compare dates</a></div>
+ <nav id="resources-menu" class="resources-menu" aria-label="Resources" hidden><button id="resources-information">ⓘ Sources, methods & credits</button><button data-open-sound>♫ Sound & volume</button><a href="./explore.html">Explore the sky atlas →</a><a href="./index.html#mission">Interactive spacecraft →</a><a href="./compare.html">Standalone comparison →</a><a href="./guide.html">Reconstruction guide →</a><a href="./classic-home.html">Project introduction →</a></nav>
+</header>
+
+
+
+
+
+
     <main id="main" tabindex="-1">
       <p id="site-error" class="site-error" role="alert" hidden></p>
       <section id="home-view" class="website-content">
@@ -98,7 +84,7 @@
             <h1 aria-label="Explore & compare the invisible.">
               <span class="headline-line">Explore &amp; </span
               ><span class="headline-line">compare </span
-              ><span class="headline-line">the <em>invisible.</em></span>
+              ><span class="headline-line">the <em>invisible<span class="hero-period">.</span></em></span>
             </h1>
             <p class="intro-lead">
               There’s more to the sky than meets the eye. Explore real infrared
@@ -109,7 +95,7 @@
               <a
                 href="#compare"
                 class="primary-link mission-launch"
-                aria-label="Explore and compare SPHEREx observations"
+
               >
                 <svg
                   class="launch-orbit"
@@ -226,9 +212,9 @@
                 >Interactive 3D · Illustrative spacecraft model</span
               ><br /><a
                 href="https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Spacecraft reference: NASA/JPL-Caltech ↗</a
+
+
+                 target="_blank" rel="noopener noreferrer">Spacecraft reference: NASA/JPL-Caltech ↗</a
               >
             </figcaption>
             <a class="hero-mission-link animated-link" href="#mission"
@@ -239,8 +225,8 @@
             <span>01 / OBSERVE</span><span>02 / COMPARE</span
             ><span>03 / INVESTIGATE</span>
           </div>
-          <div class="hero-spectrum" data-spectrum aria-hidden="true"></div>
-          <span class="spectrum-caption">102 INFRARED CHANNELS</span>
+          <div class="hero-spectrum" aria-hidden="true"><div data-spectrum></div><div class="wavelength-endpoints"><span>0.75 μm</span><span>5.0 μm</span></div></div>
+          <div class="spectrum-caption">102 INFRARED CHANNELS · 0.75–5.0 μm<small>Schematic scale · not calibrated channel centres</small></div>
         </div>
         <section class="field-section" aria-labelledby="fields-heading">
           <div class="section-spectrum" data-spectrum aria-hidden="true"></div>
@@ -263,7 +249,7 @@
                 <option value="M67"></option>
                 <option value="NGC 188"></option>
                 <option value="Orion"></option></datalist
-              ><kbd class="search-shortcut">⌘/Ctrl K</kbd
+              ><kbd class="search-shortcut">Ctrl K</kbd
               ><button id="home-resume" hidden>↺ Resume investigation</button>
             </div>
           </div>
@@ -307,7 +293,7 @@
               alt="SPHEREx published infrared composite of the Vela Molecular Ridge, with stars and bright clouds of gas and dust"
               loading="lazy"
             />
-            <div class="vela-dim" aria-hidden="true"></div>
+            <div class="vela-dim" aria-hidden="true"><img src="./assets/spherex-vela.jpg" width="2400" height="1187" alt="" loading="lazy"></div>
             <div class="vela-divider" aria-hidden="true"><span>↔</span></div>
             <p class="vela-treatment">
               Dimmed display ← → Published infrared composite
@@ -323,7 +309,7 @@
                 href="https://science.nasa.gov/photojournal/spherex-vela-molecular-ridge/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="NASA source and image credit for Vela Molecular Ridge"
+                aria-label="NASA/JPL-Caltech — source and image credit for Vela Molecular Ridge"
                 >NASA/JPL-Caltech ↗</a
               >
             </figcaption>
@@ -348,13 +334,13 @@
               </p>
               <div class="spectral-swatches">
                 <span
-                  ><i style="background: #e85966" aria-hidden="true"></i>Red /
+                  ><i aria-hidden="true"></i>Red /
                   4.54–4.65 μm</span
                 ><span
-                  ><i style="background: #6fc993" aria-hidden="true"></i>Green /
+                  ><i aria-hidden="true"></i>Green /
                   2.83–3.20 μm</span
                 ><span
-                  ><i style="background: #7da7ef" aria-hidden="true"></i>Blue /
+                  ><i aria-hidden="true"></i>Blue /
                   0.74–0.88 μm</span
                 >
               </div>
@@ -501,73 +487,7 @@
             >Enter the 3D Universe ↗</a
           >
         </section>
-        <footer class="site-footer">
-          <div class="footer-wordmark" aria-hidden="true">SKYSHIFT</div>
-          <div data-spectrum aria-hidden="true"></div>
-          <div class="footer-columns">
-            <div>
-              <h3>EXPLORE</h3>
-              <a href="#observations">Observation collection →</a
-              ><a href="#compare">Compare two dates →</a
-              ><a href="#universe">Optional 3D Universe →</a>
-            </div>
-            <div>
-              <h3>METHODS & PROVENANCE</h3>
-              <a href="./methodology.html">Scientific methods →</a
-              ><a
-                href="./assets/assets.json"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Original imagery & source records ↗</a
-              >
-            </div>
-            <div>
-              <h3>PROJECT MERCURY TEAM</h3>
-              <a href="#mission">Meet SPHEREx →</a
-              ><button id="footer-sources">Sources & acknowledgments</button>
-            </div>
-          </div>
-          <a href="#home">SKYSHIFT / PROJECT MERCURY TEAM</a>
-          <p>
-            Independent educational application. No NASA endorsement. Scientific
-            approval PENDING.
-          </p>
-          <details>
-            <summary>Interface sources & acknowledgments</summary>
-            <p class="interface-credits">
-              Interaction details adapted from
-              <a
-                class="animated-link"
-                href="https://skiper-ui.com/v1/preview/skiper40"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Skiper UI ↗</a
-              >
-              and
-              <a
-                class="animated-link"
-                href="https://www.vengenceui.com/components/spotlight-navbar"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Vengeance UI ↗</a
-              >. Design studies:
-              <a
-                class="animated-link"
-                href="https://www.dqnamo.com/kitchen"
-                target="_blank"
-                rel="noopener noreferrer"
-                >dqnamo Kitchen ↗</a
-              >. Scroll storytelling uses locally supplied GSAP / ScrollTrigger
-              and Lenis.
-              <a
-                href="./vendor/scroll/manifest.json"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Versions, sources &amp; terms ↗</a
-              >.
-            </p>
-          </details>
-        </footer>
+
       </section>
       <section
         id="space-workspace"
@@ -586,6 +506,23 @@
         <a href="#observations">Return to observations →</a>
       </div>
     </main>
+<footer class="site-footer">
+ <div class="footer-wordmark" aria-hidden="true"></div>
+ <div class="footer-columns"><div><h2>EXPLORE</h2><a href="./index.html#observations">Observation collection →</a><a href="./index.html#compare">Compare dates →</a><a href="./index.html#universe">3D Universe →</a><a href="./discover.html">Discover SPHEREx →</a></div><div><h2>METHODS & PROVENANCE</h2><a href="./methodology.html">Data & methodology →</a><a href="./guide.html">Reconstruct your evidence →</a><a href="./assets/assets.json" target="_blank" rel="noopener noreferrer">Image source records ↗</a><a href="./assets/space/manifest.json" target="_blank" rel="noopener noreferrer">Models, terms & hashes ↗</a></div><div><h2>CREDITS</h2><p>Project Mercury Team</p><p>SPHEREx imagery: NASA/JPL-Caltech.<br>Original astronomical data: NASA/IPAC IRSA.</p><button id="footer-sources">Sources & acknowledgments →</button></div></div>
+ <p class="footer-notice">Independent educational application. No NASA endorsement. Scientific approval PENDING.</p>
+ <details><summary>Sources & acknowledgments</summary><p>Original image, model and calibration identities stay with their source records. Interface type: <a href="./assets/fonts/mission-fonts.json" target="_blank" rel="noopener noreferrer">Inter & IBM Plex Mono — licenses and hashes ↗</a>.</p><p>Earlier interaction studies: <a href="https://skiper-ui.com/v1/preview/skiper40" target="_blank" rel="noopener noreferrer">Skiper UI ↗</a>, <a href="https://www.vengenceui.com/components/spotlight-navbar" target="_blank" rel="noopener noreferrer">Vengeance UI ↗</a> and <a href="https://www.dqnamo.com/kitchen" target="_blank" rel="noopener noreferrer">dqnamo Kitchen ↗</a>. <a href="./vendor/ui-patterns/sources.json" target="_blank" rel="noopener noreferrer">Original pattern notices ↗</a>. Optional scroll presentation uses <a href="./vendor/scroll/manifest.json" target="_blank" rel="noopener noreferrer">locally supplied GSAP / ScrollTrigger and Lenis ↗</a>.</p></details>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
     <dialog id="site-information" class="space-dialog">
       <div class="dialog-top">
         <h2>Sources, methods & SKYSHIFT</h2>
@@ -613,41 +550,8 @@
         target="_blank"
         rel="noopener noreferrer"
         >3D models: sources, hashes & usage terms ↗</a
-      ><a
-        href="./assets/fonts/website-fonts.json"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Manrope & Source Sans 3: licenses & sources ↗</a
-      ><a
-        href="./vendor/ui-patterns/sources.json"
-        target="_blank"
-        rel="noopener noreferrer"
-        >Interface patterns: sources, adaptations & licenses ↗</a
       >
-      <p>
-        All supplied viewing assets are local. Opening NASA archive links or
-        retrieving new data needs internet access.
-      </p>
-      <details>
-        <summary>Local setup</summary>
-        <p>
-          On Windows, double-click <strong>start_skyshift.bat</strong> in the
-          project folder to start or reopen the independent localhost
-          application.
-        </p>
-      </details>
-      <a
-        href="./assets/fonts/observatory-fonts.json"
-        target="_blank"
-        rel="noopener noreferrer"
-        >IBM Plex Mono: sources, license & hashes ↗</a
-      >
-      <details>
-        <summary>Direct recovery tools</summary>
-        <p>Use these independent tools if the main interface cannot load.</p>
-        <a href="./explore.html">Open single observations ↗</a
-        ><a href="./compare.html">Open restricted M101 comparison ↗</a>
-      </details>
+
     </dialog>
     <noscript
       ><div class="site-error">

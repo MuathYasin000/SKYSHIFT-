@@ -1,0 +1,186 @@
+@layer pages {
+  body[data-page="methodology"] > main {
+    max-width: calc(var(--content) + 2 * var(--gutter));
+    margin: 0 auto;
+    padding: 80px var(--gutter);
+    counter-reset: chapter;
+  }
+  .methods-page .page-intro {
+    padding: 0 0 100px;
+    max-width: 1000px;
+  }
+  .page-intro h1 {
+    font-size: clamp(3.5rem, 7vw, 7rem);
+    margin-bottom: 40px;
+    max-width: 18ch;
+  }
+  .page-intro > p:not(.eyebrow) {
+    max-width: 70ch;
+    font-size: 18px;
+  }
+  .methods-page .editorial-section {
+    padding: 96px 0;
+    border-top: 1px solid var(--line);
+    position: relative;
+    display: block;
+  }
+  .methods-page .editorial-section::before {
+    counter-increment: chapter;
+    content: counter(chapter, decimal-leading-zero);
+    display: block;
+    font: 400 48px/1 var(--mono);
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+  .methods-page .editorial-section h2 {
+    max-width: 20ch;
+    margin-bottom: 32px;
+  }
+  .methods-page p {
+    max-width: 70ch;
+    margin-bottom: 24px;
+  }
+  .methods-page .section-heading {
+    display: flex;
+    gap: 32px;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  .methods-page .learn-grid,
+  .methods-page .steps {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px;
+  }
+  .methods-page .steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .methods-page .steps article {
+    border-left: 1px solid var(--line);
+    padding: 24px;
+  }
+  .methods-page .steps h3 {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  .step-number {
+    display: block;
+    font: 48px var(--mono);
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .methods-page details {
+    max-width: 100%;
+    border-block: 1px solid var(--line);
+    padding-block: 12px;
+    margin-block: 24px;
+  }
+  .methods-page summary {
+    font-size: 16px;
+  }
+  .methods-page pre {
+    max-height: 600px;
+    overflow: auto;
+    font: 12px/1.8 var(--mono);
+    color: var(--text-2);
+    margin-top: 24px;
+  }
+  .audit-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-block: 1px solid var(--line);
+    margin: 40px 0;
+  }
+  .audit-stat {
+    padding: 32px 24px;
+    border-right: 1px solid var(--line);
+  }
+  .audit-stat:last-child {
+    border-right: 0;
+  }
+  .audit-stat strong {
+    display: block;
+    font: 400 clamp(2rem, 4vw, 4rem) / 1.2 var(--mono);
+    color: var(--white);
+    margin-bottom: 16px;
+    overflow-wrap: anywhere;
+  }
+  .audit-stat span {
+    font: 12px/1.7 var(--mono);
+    color: var(--text-3);
+  }
+  .credits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-block: 40px;
+  }
+  .credit-card {
+    padding: 24px;
+    border: 1px solid var(--line);
+    background: var(--surface-1);
+    min-width: 0;
+  }
+  .credit-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    margin-bottom: 24px;
+  }
+  .credit-card h3 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  .credit-card p {
+    font-size: 14px;
+    overflow-wrap: anywhere;
+  }
+  .credit-card a {
+    font-size: 14px;
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 1000px) {
+    .credits-grid,
+    .methods-page .steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .methods-page .section-heading {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 800px) {
+    body[data-page="methodology"] > main {
+      padding-top: 48px;
+    }
+    .methods-page .page-intro {
+      padding-bottom: 80px;
+    }
+    .methods-page .editorial-section {
+      padding-block: 80px;
+    }
+    .methods-page .learn-grid,
+    .methods-page .steps,
+    .credits-grid {
+      grid-template-columns: 1fr;
+    }
+    .page-intro > p:not(.eyebrow) {
+      font-size: 16px;
+    }
+    .audit-summary {
+      grid-template-columns: 1fr;
+    }
+    .audit-stat {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+      padding: 24px;
+    }
+    .audit-stat:last-child {
+      border-bottom: 0;
+    }
+    .audit-stat strong {
+      font-size: 40px;
+    }
+  }
+}

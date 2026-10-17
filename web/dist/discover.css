@@ -1,0 +1,132 @@
+@layer pages {
+  body[data-page="discover"] > main {
+    max-width: calc(var(--content) + 2 * var(--gutter));
+    padding: 80px var(--gutter);
+    margin: 0 auto;
+  }
+  .discover-hero {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 24px;
+    position: relative;
+    padding: 0;
+    min-height: 600px;
+    align-items: center;
+  }
+  .discover-hero > img {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    grid-column: 6/13;
+    grid-row: 1;
+    width: 100%;
+    height: 600px;
+    object-fit: contain;
+  }
+  .discover-hero > div {
+    grid-column: 1/7;
+    grid-row: 1;
+    z-index: 1;
+    padding: 0;
+    background: var(--black);
+  }
+  .discover-hero h1 {
+    font-size: clamp(3.5rem, 7vw, 7rem);
+    max-width: 13ch;
+    margin-bottom: 32px;
+  }
+  .discover-hero p:not(.eyebrow) {
+    max-width: 50ch;
+    font-size: 18px;
+  }
+  .image-caption {
+    font: 12px/1.7 var(--mono);
+    color: var(--text-3);
+    padding-block: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .editorial-section {
+    padding-block: 100px;
+    border-bottom: 1px solid var(--line);
+  }
+  .editorial-section h2 {
+    margin-bottom: 32px;
+  }
+  .editorial-section p {
+    max-width: 70ch;
+  }
+  .learn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 64px;
+  }
+  .learn-grid p {
+    margin-bottom: 24px;
+  }
+  .learn-grid a {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 16px;
+  }
+  .mission-feature {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 64px;
+    padding-block: 100px;
+    align-items: center;
+  }
+  .mission-feature img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .mission-feature h2 {
+    margin-bottom: 32px;
+  }
+  .mission-feature p {
+    margin-bottom: 24px;
+  }
+  .mission-feature .caption {
+    font: 12px/1.7 var(--mono);
+    color: var(--text-3);
+  }
+  @media (max-width: 1000px) {
+    .discover-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 40px;
+    }
+    .discover-hero > img {
+      height: auto;
+      max-height: 550px;
+      order: 1;
+    }
+    .discover-hero > div {
+      order: 0;
+    }
+    .discover-hero h1 {
+      font-size: clamp(3.5rem, 9vw, 6rem);
+    }
+    .learn-grid,
+    .mission-feature {
+      gap: 40px;
+    }
+  }
+  @media (max-width: 800px) {
+    body[data-page="discover"] > main {
+      padding-top: 48px;
+    }
+    .learn-grid,
+    .mission-feature {
+      grid-template-columns: 1fr;
+    }
+    .editorial-section,
+    .mission-feature {
+      padding-block: 80px;
+    }
+    .discover-hero p:not(.eyebrow) {
+      font-size: 16px;
+    }
+  }
+}

@@ -11,9 +11,9 @@ export function createInfraredBackdrop() {
       void main(){vec3 p=normalize(direction);float band=exp(-pow((p.y*.9+p.x*.23-p.z*.13)*8.,2.));
       float cloud=.5+.22*sin(p.x*27.+sin(p.z*19.))+.15*sin(p.z*41.+p.y*23.);
       float core=exp(-pow((p.x+.38)*2.5,2.))*band;
-      vec3 cool=vec3(.012,.025,.05)*band*cloud;
-      vec3 warm=vec3(.048,.014,.025)*core*cloud;
-      gl_FragColor=vec4(vec3(.002,.004,.009)+cool+warm,1.);
+      vec3 cool=vec3(.018)*band*cloud;
+      vec3 warm=vec3(.012)*core*cloud;
+      gl_FragColor=vec4(vec3(0.)+cool+warm,1.);
       #include <tonemapping_fragment>
       #include <colorspace_fragment>
       }`,
@@ -30,7 +30,7 @@ export function createEarthAtmosphere(radius) {
     depthWrite: false,
     blending: THREE.AdditiveBlending,
     vertexShader: `varying vec3 n;varying vec3 v;void main(){vec4 p=modelViewMatrix*vec4(position,1.); n=normalize(normalMatrix*normal);v=normalize(-p.xyz);gl_Position=projectionMatrix*p;}`,
-    fragmentShader: `varying vec3 n;varying vec3 v;void main(){float rim=pow(1.-max(dot(normalize(n),normalize(v)),0.),3.5);gl_FragColor=vec4(.12,.42,.78,rim*.35);
+    fragmentShader: `varying vec3 n;varying vec3 v;void main(){float rim=pow(1.-max(dot(normalize(n),normalize(v)),0.),3.5);gl_FragColor=vec4(.043,.239,.569,rim*.35);
     #include <tonemapping_fragment>
     #include <colorspace_fragment>
     }`,

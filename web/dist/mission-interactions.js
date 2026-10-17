@@ -2,8 +2,11 @@ import { readPreferences, savePreferences } from "./space-preferences.js";
 import { CHANNEL_COUNT, channelColor } from "./infrared-layout.js";
 
 // Optional chrome only: failure never prevents opening scientific observations.
-export function installObservatoryDesign() {
+export function installMissionInteractions() {
   let effectsEnabled = readPreferences().effects;
+  document.addEventListener("skyshift:effects", (e) => {
+    effectsEnabled = Boolean(e.detail);
+  });
   let keyboardMode = false;
   document.addEventListener(
     "keydown",
@@ -26,30 +29,6 @@ export function installObservatoryDesign() {
   cursor.className = "observatory-cursor";
   cursor.setAttribute("aria-hidden", "true");
   body.append(cursor);
-  const toggle = document.createElement("button");
-  toggle.className = "reduce-effects";
-  toggle.textContent = "Reduce effects";
-  toggle.id = "reduce-effects";
-  document.querySelector(".vision-controls").append(toggle);
-  function sync() {
-    const off = !effectsEnabled;
-    body.classList.toggle("reduced-effects", off);
-    toggle.setAttribute("aria-pressed", String(off));
-    toggle.textContent = off ? "Restore effects" : "Reduce effects";
-  }
-  document.addEventListener("skyshift:effects", (e) => {
-    effectsEnabled = Boolean(e.detail);
-    sync();
-  });
-  toggle.onclick = () => {
-    const p = readPreferences();
-    p.effects = !effectsEnabled;
-    savePreferences(p);
-    document.dispatchEvent(
-      new CustomEvent("skyshift:effects", { detail: p.effects }),
-    );
-    sync();
-  };
   document.addEventListener("keydown", (e) => {
     if (
       (e.ctrlKey || e.metaKey) &&
@@ -89,73 +68,6 @@ export function installObservatoryDesign() {
   document.addEventListener("pointerleave", () =>
     cursor.classList.remove("active"),
   );
-  const header = document.getElementById("site-header"),
-    more = document.getElementById("site-more"),
-    menu = document.createElement("nav");
-  menu.className = "resources-menu";
-  menu.id = "resources-menu";
-  menu.hidden = true;
-  menu.setAttribute("aria-label", "Resources");
-  menu.innerHTML =
-    '<button id="resources-information">ⓘ Sources, methods & credits</button><button data-open-sound>♫ Sound & volume</button><a href="./methodology.html">↗ Scientific methods</a><a href="./explore.html">↗ Direct observation recovery</a><a href="./compare.html">↗ Direct comparison recovery</a>';
-  header.append(menu);
-  more.setAttribute("aria-controls", menu.id);
-  more.setAttribute("aria-expanded", "false");
-  function closeMenu() {
-    menu.hidden = true;
-    more.setAttribute("aria-expanded", "false");
-  }
-  more.onclick = () => {
-    menu.hidden = !menu.hidden;
-    more.setAttribute("aria-expanded", String(!menu.hidden));
-  };
-  menu.querySelector("#resources-information").onclick = () => {
-    closeMenu();
-    document.getElementById("site-information").showModal();
-  };
-  menu.addEventListener("click", (e) => {
-    if (e.target.closest("a,[data-open-sound]")) closeMenu();
-  });
-  document.addEventListener("click", (e) => {
-    if (!menu.contains(e.target) && !more.contains(e.target)) closeMenu();
-  });
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !menu.hidden) {
-      closeMenu();
-      more.focus();
-    }
-  });
-  const launch = document.createElement("a");
-  launch.href = "#compare";
-  launch.className = "header-launch";
-  launch.textContent = "Launch Compare ↗";
-  header.insertBefore(launch, more);
-  let last = scrollY,
-    frame = 0;
-  addEventListener(
-    "scroll",
-    () => {
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        frame = 0;
-        header.classList.toggle(
-          "nav-away",
-          body.dataset.surface === "home" &&
-            scrollY > 250 &&
-            scrollY > last + 2 &&
-            !header.contains(document.activeElement) &&
-            menu.hidden,
-        );
-        last = scrollY;
-      });
-    },
-    { passive: true },
-  );
-  new MutationObserver(() => {
-    header.classList.remove("nav-away");
-    cursor.classList.remove("active");
-    closeMenu();
-  }).observe(body, { attributes: true, attributeFilter: ["data-surface"] });
   document.querySelector(".orbital-hero").addEventListener(
     "pointermove",
     (e) => {
@@ -250,23 +162,35 @@ export function installObservatoryDesign() {
     },
     { passive: true },
   );
-  document.querySelectorAll(".trust-section article").forEach((card) =>
-    card.addEventListener(
-      "pointermove",
-      (e) => {
-        if (reduce.matches || !effectsEnabled) return;
-        const r = card.getBoundingClientRect();
-        card.style.setProperty("--glow-x", e.clientX - r.left + "px");
-        card.style.setProperty("--glow-y", e.clientY - r.top + "px");
-      },
-      { passive: true },
-    ),
-  );
+  const principlePaths = [
+    '<path d="M5 3h14l6 6v20H5zM19 3v7h6M10 16h10M10 21h7"/>',
+    '<rect x="3" y="6" width="26" height="20"/><path d="M16 6v20M12 16h8"/>',
+    '<path d="M7 3h18v26H7zM11 10h10M11 15h10M11 20h6"/><circle cx="23" cy="24" r="5"/>',
+  ];
+  document.querySelectorAll(".trust-section article").forEach((article, i) => {
+    const n = document.createElement("b");
+    n.className = "principle-number";
+    n.textContent = String(i + 1).padStart(2, "0");
+    n.setAttribute("aria-hidden", "true");
+    const icon = document.createElement("span");
+    icon.className = "principle-icon";
+    icon.innerHTML =
+      '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">' +
+      principlePaths[i] +
+      "</svg>";
+    article.prepend(n, icon);
+  });
+  const dot = document.createElement("i");
+  dot.className = "portal-orbit-dot";
+  dot.setAttribute("aria-hidden", "true");
+  document.querySelector(".universe-entry").append(dot);
   document.querySelector(".universe-entry a").addEventListener("click", () => {
     if (reduce.matches || !effectsEnabled) return;
     const home = document.getElementById("home-view");
     home.classList.add("portal-opening");
     setTimeout(() => home.classList.remove("portal-opening"), 600);
   });
-  sync();
+  if (reduce.matches || !effectsEnabled)
+    document.body.classList.add("intro-complete");
+  else setTimeout(() => document.body.classList.add("intro-complete"), 1000);
 }

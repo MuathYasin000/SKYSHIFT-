@@ -1,3 +1,4 @@
+import("./site-chrome.js").catch(e=>console.warn("Shared navigation enhancement unavailable:",e));
 document.body.dataset.controller = "starting";
 try {
   await import("./website.js");
@@ -13,11 +14,6 @@ try {
       retry.onclick = () => location.reload();
     });
   // Cosmetic enhancements never gate scientific loading or file recovery.
-  import("./orbital-interactions.js")
-    .then(({ installOrbitalInteractions }) => installOrbitalInteractions())
-    .catch((error) =>
-      console.warn("Optional interface details unavailable:", error),
-    );
   import("./infrared-experience.js")
     .then(({ installInfraredExperience }) => installInfraredExperience())
     .catch((error) =>
@@ -41,4 +37,5 @@ try {
   console.error("SKYSHIFT website startup:", error);
 }
 
-import("./observatory-design.js").then(m=>m.installObservatoryDesign()).catch(e=>console.warn("Optional observatory chrome unavailable:",e));
+
+import("./mission-interactions.js").then(m=>m.installMissionInteractions()).catch(e=>console.warn("Optional presentation unavailable:",e));

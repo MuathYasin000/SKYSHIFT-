@@ -201,7 +201,7 @@ def test_real_workspace_entry_assets_are_served_without_modification():
     thread = threading.Thread(target=server.serve_forever, kwargs={'poll_interval': .01}, daemon=True)
     thread.start()
     try:
-        for relative in ('index.html', 'app.js', 'science.js', 'style.css', 'data/catalog.json', 'data/bundle.json', 'data/pair.fits'):
+        for relative in ('index.html', 'app.js', 'science.js', 'tokens.css', 'base.css', 'components.css', 'data/catalog.json', 'data/bundle.json', 'data/pair.fits'):
             status, _, body = request(server, '/'+relative)
             assert status == 200, relative
             assert body == (directory/relative).read_bytes(), relative

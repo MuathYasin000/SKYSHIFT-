@@ -1,0 +1,82 @@
+{
+  "recorded_at_utc": "2026-10-17T15:53:56.931Z",
+  "results": [
+    {
+      "mission": "spherex",
+      "width": 390,
+      "status": "pass",
+      "appearance": {
+        "width": 490,
+        "viewbox": 490,
+        "font": 12,
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "rgb(252, 61, 33)"
+      }
+    },
+    {
+      "mission": "webb-b",
+      "width": 390,
+      "status": "pass",
+      "appearance": {
+        "width": 490,
+        "viewbox": 490,
+        "font": 12,
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "rgb(252, 61, 33)"
+      }
+    },
+    {
+      "mission": "hubble",
+      "width": 390,
+      "status": "pass",
+      "appearance": {
+        "width": 490,
+        "viewbox": 490,
+        "font": 12,
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "rgb(252, 61, 33)"
+      }
+    },
+    {
+      "mission": "spherex",
+      "width": 1440,
+      "status": "pass",
+      "appearance": {
+        "width": 652,
+        "viewbox": 490,
+        "font": 12,
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "rgb(252, 61, 33)"
+      }
+    },
+    {
+      "mission": "webb-b",
+      "width": 1440,
+      "status": "pass",
+      "appearance": {
+        "width": 652,
+        "viewbox": 490,
+        "font": 12,
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "rgb(252, 61, 33)"
+      }
+    },
+    {
+      "mission": "hubble",
+      "width": 1440,
+      "status": "pass",
+      "appearance": {
+        "width": 652,
+        "viewbox": 490,
+        "font": 12,
+        "fill": "rgb(255, 255, 255)",
+        "stroke": "rgb(252, 61, 33)"
+      }
+    }
+  ],
+  "page_errors": [],
+  "limits": [
+    "Original explanatory schematics, not measured optical ray traces.",
+    "Local automated browser and emulated widths; no qualified scientific approval inferred."
+  ]
+}

@@ -77,7 +77,9 @@ export function soundForControl(e) {
     return ["navigate", 0];
   return ["ui", 0];
 }
+let installedService;
 export function installApplicationSound() {
+  if (installedService) return installedService;
   const audio = applicationAudio,
     p = applicationPreferences;
   const host = document.createElement("dialog");
@@ -127,7 +129,9 @@ export function installApplicationSound() {
         b.innerHTML = `<svg class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="${d.enabled ? "M17 8q5 4 0 8" : "M17 9l5 6m0-6-5 6"}"/></svg><span class="sound-word">Sound ${d.enabled ? "on" : "off"}</span>`;
         b.setAttribute(
           "aria-label",
-          d.enabled ? "Mute SKYSHIFT sound" : "Turn SKYSHIFT sound on",
+          d.enabled
+            ? "Sound on — mute SKYSHIFT sound"
+            : "Sound off — turn SKYSHIFT sound on",
         );
       });
     document.getElementById("sound-status").textContent = d.enabled
@@ -225,9 +229,9 @@ export function installApplicationSound() {
   Object.defineProperty(window, "skyshiftSound", {
     value: Object.freeze({ diagnostics: () => audio.diagnostics() }),
   });
-  return {
+  return (installedService = {
     setSurface: (surface) => audio.setSurface(surface),
     cue: (name) => audio.cue(name),
     sync,
-  };
+  });
 }
