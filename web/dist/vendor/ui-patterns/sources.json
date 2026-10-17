@@ -5,7 +5,7 @@
   "adaptations": [
     {
       "name": "Vengeance UI Spotlight Navbar",
-      "website": "https://www.vengenceui.com/components/spotlight-navbar",
+      "website": "https://github.com/Ashutoshx7/VengeanceUI",
       "source_url": "https://raw.githubusercontent.com/Ashutoshx7/VengeanceUI/2cf9379129a0167f0210cfd70a4fa4415c09f9e0/src/components/ui/spotlight-navbar.tsx",
       "upstream_commit": "2cf9379129a0167f0210cfd70a4fa4415c09f9e0",
       "original_sha256": "ce17272872bb7d90a8636ac41dbe8d52c34287fcbd80013ee527e209cefba3b4",
@@ -13,8 +13,12 @@
       "license": "MIT",
       "license_file": "Vengeance-LICENSE.txt",
       "downloaded_license_sha256": "b90027fc729c84a7e3b976b046996a685f5b1a2f448f5bc3514ce32314b77c46",
-      "modifications": "Native DOM/CSS port of pointer-following spotlight and selected-link ambience; keyboard equivalent, no React/Motion, no loop",
-      "local_implementation": ["orbital-interactions.js", "orbital-design.css"]
+      "modifications": "Historical native interaction study. Current mission-interactions.js retains optional presentation effects; components.css and home.css provide the current static navigation and link treatment. The earlier pointer-following navigation spotlight is retired.",
+      "local_implementation": [
+        "mission-interactions.js",
+        "home.css",
+        "components.css"
+      ]
     },
     {
       "name": "Skiper UI Skiper40 CssLink",
@@ -26,15 +30,22 @@
       "license_reference": "https://skiper-ui.com/docs/quick-start",
       "license_file": "NOTICES.txt",
       "attribution": "Visible homepage footer and interface source records",
-      "modifications": "Link000/001 converted from React/Tailwind to native CSS; focus-visible and reduced-motion support",
-      "local_implementation": ["orbital-design.css"]
+      "modifications": "Historical link transition study; current home.css and components.css retain native link hover/focus treatments with reduced-motion support, without React or Tailwind.",
+      "local_implementation": [
+        "mission-interactions.js",
+        "home.css",
+        "components.css"
+      ]
     }
   ],
   "inspiration_only": [
     {
       "name": "dqnamo Kitchen",
       "website": "https://www.dqnamo.com/kitchen",
-      "studies": ["Tactile Button", "Iridescent Foil"],
+      "studies": [
+        "Tactile Button",
+        "Iridescent Foil"
+      ],
       "reuse_status": "No explicit source-code license identified; no source copied",
       "original_skyshift_work": "Layered press depth on primary action; restrained interface surfaces"
     }

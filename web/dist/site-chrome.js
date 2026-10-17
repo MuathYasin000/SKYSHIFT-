@@ -1,4 +1,5 @@
 import { readPreferences, savePreferences } from "./space-preferences.js";
+import {pageName,isPlainLinkClick,navigationRoute} from './navigation-links.js';
 let installed = false;
 export function installSiteChrome() {
   if (installed) return;
@@ -34,7 +35,7 @@ export function installSiteChrome() {
   document.addEventListener("skyshift:effects", (e) =>
     effectState(Boolean(e.detail)),
   );
-  const index = /\/(?:index\.html)?$/.test(location.pathname);
+  const index = pageName(location.pathname) === 'index';
   function closeMenus() {
     nav.classList.remove("open");
     menu.hidden = true;
@@ -44,15 +45,7 @@ export function installSiteChrome() {
     document.body.classList.remove("navigation-open");
   }
   function active() {
-    const filename = location.pathname.split("/").pop();
-    const route = index
-      ? location.hash.slice(1).split("/")[0] || "home"
-      : {
-          "explore.html": "observations",
-          "compare.html": "compare",
-          "discover.html": "discover",
-          "methodology.html": "methodology",
-        }[filename] || "";
+    const route = navigationRoute(location.pathname, location.hash);
     nav.querySelectorAll("[data-route]").forEach((a) => {
       if (a.dataset.route === route) a.setAttribute("aria-current", "page");
       else a.removeAttribute("aria-current");
@@ -86,11 +79,17 @@ export function installSiteChrome() {
   $("site-information-close").onclick = () => $("site-information").close();
   document.addEventListener("click", (e) => {
     const a = e.target.closest("a");
-    if (a && index) {
+    if (a && index && isPlainLinkClick(e,a)) {
       const u = new URL(a.href, location.href);
-      if (u.origin === location.origin && u.pathname.endsWith("/index.html")) {
+      if (u.origin === location.origin && pageName(u.pathname)==='index' &&
+          new URL('.',u).pathname===new URL('.',location.href).pathname && !u.search &&
+          (!u.hash || ['home','observations','compare','universe','mission','classic'].includes(u.hash.slice(1).split('/')[0]))) {
         e.preventDefault();
-        location.hash = u.hash || "#home";
+        const hash=u.hash || '#home';
+        if(location.hash===hash){
+          window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});
+          window.dispatchEvent(new HashChangeEvent('hashchange'));
+        }else location.hash = hash;
       }
     }
     if (a || e.target.closest("[data-open-sound]")) closeMenus();

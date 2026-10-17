@@ -27,12 +27,12 @@ try {
   await p.addStyleTag({
     content: `
  .site-header,.site-footer,.intro-actions,.intro-note,.vision-controls,.hero-model-controls,.hero-mission-link,.hero-hud,.orbit-point{display:none}
- #home-view .orbital-hero{padding:40px;min-height:630px;height:630px;gap:24px}
- .orbital-hero h1{font-size:72px;margin-block:24px}.orbital-hero .intro-lead{font-size:16px}
+ #home-view .observatory-hero{padding:40px;min-height:630px;height:630px;gap:24px}
+ .observatory-hero h1{font-size:72px;margin-block:24px}.observatory-hero .intro-lead{font-size:16px}
  #home-view .hero-observatory{height:450px;margin:0}.hero-model-canvas{inset:0 0 64px;height:calc(100% - 64px)}
  .hero-observatory::after{inset:0 0 64px}.hero-observatory figcaption{bottom:0}
- .orbital-hero>.spectrum-caption{position:absolute;bottom:14px;left:40px;margin:0}.spectrum-caption small{display:none}
- .hero-spectrum{inset:auto 40px 42px;height:48px}.orbital-lettering{font-size:140px;left:0;top:80px}
+ .observatory-hero>.spectrum-caption{position:absolute;bottom:14px;left:40px;margin:0}.spectrum-caption small{display:none}
+ .hero-spectrum{inset:auto 40px 42px;height:48px}.observatory-lettering{font-size:140px;left:0;top:80px}
  `,
   });
   await p.evaluate(async () => {

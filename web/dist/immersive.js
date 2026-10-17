@@ -416,7 +416,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
       $("context-source").href =
         story?.source || "https://science.nasa.gov/mission/spherex/";
       $("context-credit").textContent =
-        "Preview: real SPHEREx single-band prepared pixels. Blue gaps are excluded data. Exact sources appear in the observation.";
+        "Preview: real SPHEREx single-band prepared pixels. Hatched areas are excluded data. Exact sources appear in the observation.";
       $("context-limitation").textContent = a.explanation;
       $("context-date").textContent = f.observations
         .map((o) => friendlyDate(o.time_start_utc) + " UTC")
@@ -598,7 +598,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
           devicePixelRatio +
           " · quality " +
           preferences.quality +
-          ". Reading local server identity…";
+          ". Reading release identity…";
         fetch("/healthz", { signal: AbortSignal.timeout(3000) })
           .then((r) => {
             if (!r.ok) throw Error("HTTP " + r.status);
@@ -612,18 +612,18 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
               r.app_version +
               " · UI " +
               (r.content_id?.slice(0, 12) ||
-                "identity unavailable; restart server") +
+                "identity unavailable") +
               " · 3D " +
               (d?.webgl || "not started") +
               " · DPR " +
               devicePixelRatio +
               " · " +
               preferences.quality +
-              " quality. Diagnostics stay on this computer.";
+              " quality. Diagnostics stay in this browser.";
           })
           .catch((e) => {
             $("runtime-status").textContent =
-              "Server status could not be read: " + e.message;
+              "Release identity could not be read: " + e.message;
           });
       }
     };

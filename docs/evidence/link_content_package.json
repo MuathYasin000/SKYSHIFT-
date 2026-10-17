@@ -1,0 +1,8 @@
+{
+  "zip": "D:\\Nasa_SKYSHIFT\\output\\SKYSHIFT-0.9-mission-control-patched.zip",
+  "size_bytes": 54138861,
+  "sha256": "195ade27f2961386b4fcea655ae0fcda41d995dd5e50faa1fdfcfd52a38112df",
+  "zip_crc": "PASS",
+  "every_packaged_static_file_matches_staged_source": "PASS",
+  "content_id": "613835334d50f0f8ad898b463bcd30a1be12003a9904f5cf06c23916a7675ac4"
+}

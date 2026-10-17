@@ -30,6 +30,8 @@ export function createTelescopeExperience({
     const seq = ++imageSequence;
     $("mission-image-status").textContent = "Verifying the published image…";
     $("mission-image").hidden = true;
+    $("mission-image-source").hidden = true;
+    $("mission-image-source").removeAttribute("href");
     try {
       const catalogue = await cataloguePromise;
       const asset = catalogue.assets.find((a) => a.id === story.imageId);
@@ -69,6 +71,7 @@ export function createTelescopeExperience({
       $("mission-image-status").textContent =
         story.imageLabel + " · " + loaded.asset.credit;
       $("mission-image-source").href = loaded.asset.source_page;
+      $("mission-image-source").hidden = false;
     } catch (error) {
       if (seq !== imageSequence) return;
       $("mission-image-status").textContent =
@@ -96,6 +99,7 @@ export function createTelescopeExperience({
     $("mission-direction-note").textContent =
       "Arrows move from space toward the aperture, stopping on foreground hardware where present. These parallel on-axis paths show direction, not field of view or measured throughput. Speed and lengths are illustrative.";
     $("mission-source").href = story.source;
+    $("mission-source").hidden = false;
     $("mission-source").textContent = "How " + story.short + " works ↗";
     panel.dataset.mission = mission;
     panel.dataset.stage = stage;

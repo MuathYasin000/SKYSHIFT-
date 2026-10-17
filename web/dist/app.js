@@ -1,4 +1,5 @@
 import { drawMaskedPixels } from "./mask-display.js";
+import { spectralScreenCopy } from './spectral-screen-copy.js';
 const theme = uiTheme();
 import { uiTheme, drawPixelGuide } from "./ui-theme.js";
 import { showSources, markStep } from "./visitor.js";
@@ -427,7 +428,7 @@ function setMarking(value) {
   for (const id of ["canvas-a", "canvas-b"])
     $(id).classList.toggle("marking", value);
   $("viewer-help").textContent = value
-    ? "Tap or press Enter on usable data to attach a question. Blue gaps cannot hold a note."
+    ? "Tap or press Enter on usable data to attach a question. Hatched areas cannot hold a note."
     : "Drag to move · Scroll or pinch to zoom · Tap or Enter to inspect · Views stay synchronized";
 }
 function openNote(position = {}, existing = null) {
@@ -684,6 +685,8 @@ function populateEvidence() {
       element("strong", titles[c.code] ?? c.code),
       element("p", c.explanation),
     );
+    const spectral = spectralScreenCopy(c);
+    if(spectral)body.append(element('p',spectral));
     row.append(
       icon,
       body,

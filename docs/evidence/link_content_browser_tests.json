@@ -1,0 +1,506 @@
+{
+  "recorded_at_utc": "2026-10-17T20:07:42.422Z",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "name": "CSP page /index.html",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "CSP page /compare.html",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "CSP page /explore.html",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "CSP page /discover.html",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "CSP page /methodology.html",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "CSP page /guide.html",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "CSP page /classic-home.html",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "CSP page /index.html#observations",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "CSP page /index.html#compare",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "CSP page /index.html#universe",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "CSP page /index.html#mission",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "CSP page /explore.html?field=m101#explorer",
+      "status": "pass",
+      "detail": {
+        "status": 200,
+        "csp_violations": 0
+      }
+    },
+    {
+      "name": "Source links are hidden until assigned; telescope image sources wait for verification",
+      "status": "pass",
+      "detail": {
+        "published_source": "Shown only after image SHA-256 validation and decode"
+      }
+    },
+    {
+      "name": "Repeated current route returns to top and re-enters the route",
+      "status": "pass"
+    },
+    {
+      "name": "Root-URL home links preserve the live scientific controller",
+      "status": "pass"
+    },
+    {
+      "name": "Modified, middle-button, target and download clicks are not intercepted",
+      "status": "pass",
+      "detail": [
+        {
+          "props": {
+            "ctrlKey": true
+          },
+          "intercepted": false
+        },
+        {
+          "props": {
+            "metaKey": true
+          },
+          "intercepted": false
+        },
+        {
+          "props": {
+            "shiftKey": true
+          },
+          "intercepted": false
+        },
+        {
+          "props": {
+            "altKey": true
+          },
+          "intercepted": false
+        },
+        {
+          "props": {
+            "button": 1
+          },
+          "intercepted": false
+        },
+        {
+          "props": {
+            "target": true
+          },
+          "intercepted": false
+        },
+        {
+          "props": {
+            "download": true
+          },
+          "intercepted": false
+        }
+      ]
+    },
+    {
+      "name": "Pretty URLs highlight the same navigation routes",
+      "status": "pass",
+      "detail": {
+        "records": [
+          {
+            "path": "compare",
+            "route": "compare"
+          },
+          {
+            "path": "explore",
+            "route": "observations"
+          },
+          {
+            "path": "discover",
+            "route": "discover"
+          },
+          {
+            "path": "methodology",
+            "route": "methodology"
+          }
+        ],
+        "note": "HTML served at extensionless URL with a test rewrite; provider-specific rewrites are not assumed."
+      }
+    },
+    {
+      "name": "Home link 1: SKYSHIFTSPHEREX OBSERVATION EXPLORER",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#home"
+      }
+    },
+    {
+      "name": "Home link 2: Observations",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#compare"
+      }
+    },
+    {
+      "name": "Home link 3: Compare",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#compare"
+      }
+    },
+    {
+      "name": "Home link 4: Discover SPHEREx",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/discover.html"
+      }
+    },
+    {
+      "name": "Home link 5: 3D Universe",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#universe"
+      }
+    },
+    {
+      "name": "Home link 6: Methodology",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/methodology.html"
+      }
+    },
+    {
+      "name": "Home link 7: Compare dates",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#compare"
+      }
+    },
+    {
+      "name": "Home link 8: Explore the sky atlas →",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/explore.html"
+      }
+    },
+    {
+      "name": "Home link 9: Interactive spacecraft →",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#mission"
+      }
+    },
+    {
+      "name": "Home link 10: Standalone comparison →",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/compare.html"
+      }
+    },
+    {
+      "name": "Home link 11: Reconstruction guide →",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/guide.html"
+      }
+    },
+    {
+      "name": "Home link 12: Project introduction →",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/classic-home.html"
+      }
+    },
+    {
+      "name": "Home link 13: SPHEREx / OBSERVATION LABExplore & CompareTwo dates. One field. Your evidence. ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#compare"
+      }
+    },
+    {
+      "name": "Home link 14: ◌ Explore the Universe in 3D ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#universe"
+      }
+    },
+    {
+      "name": "Home link 15: Spacecraft reference: NASA/JPL-Caltech ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "new tab",
+        "url": "https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/",
+        "external_availability": "See curl results"
+      }
+    },
+    {
+      "name": "Home link 16: Meet the telescope ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#mission"
+      }
+    },
+    {
+      "name": "Home link 17: REAL SPHEREx EXPOSURERA 210.802° / Dec +54.349°Spiral galaxyThe Pinwheel GalaxyA galaxy seen almost face-on. Our small infrared view explores its bright central region.7 Dec 2025 / 11 Dec 20252025W49_2A_0756_3 / 2025W50_1A_0736_3",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#observations/m101"
+      }
+    },
+    {
+      "name": "Home link 18: REAL SPHEREx EXPOSURERA 132.925° / Dec +11.800°Open-cluster outskirtsAround the M67 star clusterA field near a group of stars born together. Explore the points of infrared light around its outskirts.2 Nov 20252025W44_2B_0657_2",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#observations/m67"
+      }
+    },
+    {
+      "name": "Home link 19: REAL SPHEREx EXPOSURERA 11.900° / Dec +85.250°Open-cluster regionThe NGC 188 regionA star-cluster region near the north celestial pole. Explore a real infrared exposure of this northern field.4 Sept 20252025W36_1A_0724_2",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#observations/ngc188"
+      }
+    },
+    {
+      "name": "Home link 20: REAL SPHEREx EXPOSURERA 83.821° / Dec -5.391°Star-forming nebular regionThe Orion NebulaA single infrared view into a region of gas and young stars. This cutout covers part of the nebula.11 Sept 20252025W37_2A_0010_1",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#observations/m42"
+      }
+    },
+    {
+      "name": "Home link 21: NASA/JPL-Caltech ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "new tab",
+        "url": "https://science.nasa.gov/photojournal/spherex-vela-molecular-ridge/",
+        "external_availability": "See curl results"
+      }
+    },
+    {
+      "name": "Home link 22: Official spacecraft reference ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "new tab",
+        "url": "https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/",
+        "external_availability": "See curl results"
+      }
+    },
+    {
+      "name": "Home link 23: Enter the 3D Universe ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#universe"
+      }
+    },
+    {
+      "name": "Home link 24: Observation collection →",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#observations/m42"
+      }
+    },
+    {
+      "name": "Home link 25: Compare dates →",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#compare"
+      }
+    },
+    {
+      "name": "Home link 26: 3D Universe →",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/index.html#universe"
+      }
+    },
+    {
+      "name": "Home link 27: Discover SPHEREx →",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/discover.html"
+      }
+    },
+    {
+      "name": "Home link 28: Data & methodology →",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/methodology.html"
+      }
+    },
+    {
+      "name": "Home link 29: Reconstruct your evidence →",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/guide.html"
+      }
+    },
+    {
+      "name": "Home link 30: Image source records ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "location / application surface",
+        "url": "http://localhost:3001/methodology.html#imagery"
+      }
+    },
+    {
+      "name": "Home link 31: Models, terms & hashes ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "new tab",
+        "url": "http://localhost:3001/assets/space/manifest.json",
+        "external_availability": "local"
+      }
+    },
+    {
+      "name": "Home link 32: Inter & IBM Plex Mono — licenses and hashes ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "new tab",
+        "url": "http://localhost:3001/assets/fonts/mission-fonts.json",
+        "external_availability": "local"
+      }
+    },
+    {
+      "name": "Home link 33: Skiper UI ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "new tab",
+        "url": "https://skiper-ui.com/v1/preview/skiper40",
+        "external_availability": "See curl results"
+      }
+    },
+    {
+      "name": "Home link 34: Vengeance UI ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "new tab",
+        "url": "https://github.com/Ashutoshx7/VengeanceUI",
+        "external_availability": "See curl results"
+      }
+    },
+    {
+      "name": "Home link 35: dqnamo Kitchen ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "new tab",
+        "url": "https://www.dqnamo.com/kitchen",
+        "external_availability": "See curl results"
+      }
+    },
+    {
+      "name": "Home link 36: Original pattern notices ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "new tab",
+        "url": "http://localhost:3001/vendor/ui-patterns/sources.json",
+        "external_availability": "local"
+      }
+    },
+    {
+      "name": "Home link 37: locally supplied GSAP / ScrollTrigger and Lenis ↗",
+      "status": "pass",
+      "detail": {
+        "effect": "new tab",
+        "url": "http://localhost:3001/vendor/scroll/manifest.json",
+        "external_availability": "local"
+      }
+    },
+    {
+      "name": "Resources buttons open their intended panels",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "console_errors": [],
+  "failed_requests": [],
+  "http_errors": [],
+  "csp_violations": [],
+  "scope": "Built static package served with production _headers CSP. External-click intent uses isolated response fixtures; real external HEAD availability is reported separately. Pretty-URL test supplies explicit fixture rewrites."
+}

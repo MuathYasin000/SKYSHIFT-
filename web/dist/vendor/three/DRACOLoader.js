@@ -19,7 +19,7 @@ const _taskCache = new WeakMap();
  * at the cost of additional decoding time on the client device.
  *
  * Standalone Draco files have a `.drc` extension, and contain vertex positions, normals, colors,
- * and other attributes. Draco files do not contain materials, textures, animation, or node hierarchies â€“
+ * and other attributes. Draco files do not contain materials, textures, animation, or node hierarchies –
  * to use these features, embed Draco geometry inside of a glTF file. A normal glTF file can be converted
  * to a Draco-compressed glTF file using [glTF-Pipeline]{@link https://github.com/CesiumGS/gltf-pipeline}.
  * When using Draco with glTF, an instance of `DRACOLoader` will be used internally by {@link GLTFLoader}.

@@ -114,7 +114,7 @@ try {
       await p.waitForFunction(() => skyshiftInfrared.diagnostics().lens_active);
       assert.equal(
         await p
-          .locator(".orbital-hero")
+          .locator(".observatory-hero")
           .evaluate((e) => e.classList.contains("lens-active")),
         true,
       );
@@ -415,7 +415,7 @@ try {
         );
         assert.equal(
           await p
-            .locator(".orbital-rings")
+            .locator(".observatory-rings")
             .evaluate((e) => getComputedStyle(e).animationName),
           "none",
         );

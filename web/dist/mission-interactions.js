@@ -68,7 +68,7 @@ export function installMissionInteractions() {
   document.addEventListener("pointerleave", () =>
     cursor.classList.remove("active"),
   );
-  document.querySelector(".orbital-hero").addEventListener(
+  document.querySelector(".observatory-hero").addEventListener(
     "pointermove",
     (e) => {
       if (reduce.matches || body.classList.contains("reduced-effects")) return;

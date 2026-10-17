@@ -219,7 +219,7 @@ try {
                 caption_to_ticks: ticks.top - caption.bottom,
                 ticks_to_labels: endpoints.top - ticks.bottom,
                 rulers: document.querySelectorAll(
-                  ".orbital-hero [data-spectrum]",
+                  ".observatory-hero [data-spectrum]",
                 ).length,
               };
             });

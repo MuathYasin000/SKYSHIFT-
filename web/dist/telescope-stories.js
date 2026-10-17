@@ -91,7 +91,7 @@ export const telescopeStories = {
     image: "./assets/m101-hubble-context.jpg",
     imageId: "m101-hubble-context",
     imageLabel: "M101 · published Hubble mosaic · contextual image",
-    credit: "NASA, ESA and the Hubble Heritage Team (STScI/AURA)",
+    credit: "NASA, ESA, K. Kuntz (JHU), F. Bresolin (U Hawaii), J. Trauger (JPL), J. Mould (NOAO), Y.-H. Chu (UIUC), and STScI",
     imageSource:
       "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-101/",
   },

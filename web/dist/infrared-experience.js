@@ -7,7 +7,7 @@ export function installInfraredExperience() {
     body = document.body,
     reduce = matchMedia("(prefers-reduced-motion: reduce)"),
     fine = matchMedia("(hover: hover) and (pointer: fine)"),
-    hero = document.querySelector(".orbital-hero"),
+    hero = document.querySelector(".observatory-hero"),
     lens = $("infrared-lens");
   let enabled = readPreferences().effects,
     pointerFrame = 0,
@@ -91,7 +91,7 @@ export function installInfraredExperience() {
             (y / innerHeight - 0.5) * 7 + "px",
           );
           const ghost = hero
-            .querySelector(".orbital-lettering")
+            .querySelector(".observatory-lettering")
             .getBoundingClientRect();
           hero.style.setProperty("--ghost-x", x - ghost.left + "px");
           hero.style.setProperty("--ghost-y", y - ghost.top + "px");

@@ -857,7 +857,7 @@ const RGBA_S3TC_DXT3_Format = 33778;
 const RGBA_S3TC_DXT5_Format = 33779;
 
 /**
- * PVRTC RGB compression in 4-bit mode. One block for each 4Ã—4 pixels.
+ * PVRTC RGB compression in 4-bit mode. One block for each 4×4 pixels.
  *
  * @type {number}
  * @constant
@@ -865,7 +865,7 @@ const RGBA_S3TC_DXT5_Format = 33779;
 const RGB_PVRTC_4BPPV1_Format = 35840;
 
 /**
- * PVRTC RGB compression in 2-bit mode. One block for each 8Ã—4 pixels.
+ * PVRTC RGB compression in 2-bit mode. One block for each 8×4 pixels.
  *
  * @type {number}
  * @constant
@@ -873,7 +873,7 @@ const RGB_PVRTC_4BPPV1_Format = 35840;
 const RGB_PVRTC_2BPPV1_Format = 35841;
 
 /**
- * PVRTC RGBA compression in 4-bit mode. One block for each 4Ã—4 pixels.
+ * PVRTC RGBA compression in 4-bit mode. One block for each 4×4 pixels.
  *
  * @type {number}
  * @constant
@@ -881,7 +881,7 @@ const RGB_PVRTC_2BPPV1_Format = 35841;
 const RGBA_PVRTC_4BPPV1_Format = 35842;
 
 /**
- * PVRTC RGBA compression in 2-bit mode. One block for each 8Ã—4 pixels.
+ * PVRTC RGBA compression in 2-bit mode. One block for each 8×4 pixels.
  *
  * @type {number}
  * @constant
@@ -18885,7 +18885,7 @@ class BufferGeometry extends EventDispatcher {
 		 *
 		 * Use `addGroup()` and `clearGroups()` to edit groups, rather than modifying this array directly.
 		 *
-		 * Every vertex and index must belong to exactly one group â€” groups must not share vertices or
+		 * Every vertex and index must belong to exactly one group — groups must not share vertices or
 		 * indices, and must not leave vertices or indices unused.
 		 *
 		 * @type {Array<Object>}
@@ -31186,21 +31186,21 @@ class DodecahedronGeometry extends PolyhedronGeometry {
 
 		const vertices = [
 
-			// (Â±1, Â±1, Â±1)
+			// (±1, ±1, ±1)
 			-1, -1, -1,	-1, -1, 1,
 			-1, 1, -1, -1, 1, 1,
 			1, -1, -1, 1, -1, 1,
 			1, 1, -1, 1, 1, 1,
 
-			// (0, Â±1/Ï†, Â±Ï†)
+			// (0, ±1/φ, ±φ)
 			0, - r, - t, 0, - r, t,
 			0, r, - t, 0, r, t,
 
-			// (Â±1/Ï†, Â±Ï†, 0)
+			// (±1/φ, ±φ, 0)
 			- r, - t, 0, - r, t, 0,
 			r, - t, 0, r, t, 0,
 
-			// (Â±Ï†, 0, Â±1/Ï†)
+			// (±φ, 0, ±1/φ)
 			- t, 0, - r, t, 0, - r,
 			- t, 0, r, t, 0, r
 		];
@@ -38417,7 +38417,7 @@ class MeshStandardMaterial extends Material {
  *
  * - Anisotropy: Ability to represent the anisotropic property of materials
  * as observable with brushed metals.
- * - Clearcoat: Some materials â€” like car paints, carbon fiber, and wet surfaces â€” require
+ * - Clearcoat: Some materials — like car paints, carbon fiber, and wet surfaces — require
  * a clear, reflective layer on top of another layer that may be irregular or rough.
  * Clearcoat approximates this effect, without the need for a separate transparent surface.
  * - Iridescence: Allows to render the effect where hue varies  depending on the viewing
@@ -50556,7 +50556,7 @@ class PositionalAudio extends Audio {
 
 	/**
 	 * Defines the reference distance for reducing volume as the audio source moves
-	 * further from the listener â€“ i.e. the distance at which the volume reduction
+	 * further from the listener – i.e. the distance at which the volume reduction
 	 * starts taking effect.
 	 *
 	 * @param {number} value - The reference distance to set.

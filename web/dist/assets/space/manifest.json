@@ -46,8 +46,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:11.161367+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "5e18afce2860f02a215c09954fff5d3d1ca140cafa26c368d24d7636dd6705a7",
       "original_dimensions": [
         1440,
@@ -67,8 +67,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:11.860283+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "12ec6bf02ebd42a246edc778cb2ce8c595b4d9f0892badf0bfff8abb2303c780",
       "original_dimensions": [
         1440,
@@ -86,8 +86,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:12.354150+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "ac2d387f8ea56a59f45dea37993c779a730f49d7d9fdbc8d36c307a351b1f1a1",
       "original_dimensions": [
         720,
@@ -105,8 +105,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:12.992036+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "e395bced59e95339efbdd002d4a0bbbf81fe323a6694f3a4039120560c80e789",
       "original_dimensions": [
         1440,
@@ -124,8 +124,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:14.340339+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "1318334a5089fb186d39996f60677b5f5b42cde74158ceff97b3e2283bfd41d4",
       "original_dimensions": [
         1913,
@@ -143,8 +143,8 @@
       "retrieved_at_utc": "2026-10-16T19:22:15.915030+00:00",
       "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
       "purpose": "Educational contextual 3D visualization, not SPHEREx measurement",
-      "modifications": "Downsample to at most 2048 \u00d7 1024; WebP quality 88, no added detail",
-      "credit": "NASA/JPL-Caltech \u00b7 NASA 3D Resources",
+      "modifications": "Downsample to at most 2048 × 1024; WebP quality 88, no added detail",
+      "credit": "NASA/JPL-Caltech · NASA 3D Resources",
       "original_sha256": "e9bb2b7bcfb98d3f1adc6f2e20e833a00c11e9677238d8a00ae7431214ca70aa",
       "original_dimensions": [
         720,
@@ -328,7 +328,7 @@
       "source": "https://github.com/mrdoob/three.js/tree/r180",
       "license": "MIT",
       "local_license": "vendor/three/LICENSE",
-      "modifications": "ES-module imports rewritten to relative local paths; renderer/addons otherwise unchanged"
+      "modifications": "ES-module imports rewritten to relative local paths. UTF-8 encoding corrected in explanatory comments only in three.core.js and DRACOLoader.js; executable renderer/addon logic unchanged."
     },
     {
       "name": "Draco decoder",

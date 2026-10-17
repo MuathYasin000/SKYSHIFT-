@@ -2,8 +2,9 @@ SKYSHIFT interface adaptations
 
 Vengeance UI / Spotlight Navbar
 Copyright (c) 2025-2026 Ashutoshx7. MIT License (Vengeance-LICENSE.txt).
-Native adaptation in orbital-interactions.js and orbital-design.css:
-pointer-following spotlight, active-link ambience, keyboard focus equivalent.
+Historical native adaptation; current optional effects live in mission-interactions.js.
+Current navigation and link styling live in components.css and home.css.
+The earlier pointer-following navigation spotlight has been retired.
 React state and Motion springs replaced with native events and CSS.
 Source: https://github.com/Ashutoshx7/VengeanceUI
 
@@ -17,8 +18,8 @@ Upstream source's license and usage notice:
 - No attribution required with Skiper UI Pro.
 Source comments identify the work as inspired by https://cursor.com/?from=home,
 an independent recreation, not associated with cursor.com.
-Adapted to native CSS in orbital-design.css: direction-aware underline and
-arrow transition, keyboard focus state and reduced-motion behavior.
+Current native CSS lives in home.css and components.css: link hover/focus
+treatments and reduced-motion behavior. Earlier transition studies are historical.
 Visible Skiper UI attribution is retained in the website footer; source and
 license records are linked through Sources & acknowledgments.
 Only the explicitly free Skiper40 was retrieved. No Pro components used.

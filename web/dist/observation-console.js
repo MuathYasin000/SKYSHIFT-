@@ -1,4 +1,5 @@
 import { drawMaskedPixels } from "./mask-display.js";
+import {spectralScreenCopy} from './spectral-screen-copy.js';
 import { createInvestigation } from "./investigation.js";
 import { pixelToSky, skyToPixel } from "./science.js";
 import { displayLevel, paletteRGB } from "./visualization.js";
@@ -1081,6 +1082,8 @@ export function createObservationConsole({
       ),
     );
     if (v.kind === "pair") {
+      const spectral=spectralScreenCopy(v.manifest.suitability.checks.find(c=>c.code==='local_spectral_screen'));
+      if(spectral)body.append(node('p',spectral));
       const r = v.bundle.registration;
       body.append(
         node(

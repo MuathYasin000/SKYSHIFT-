@@ -350,6 +350,7 @@ function describeField(f) {
   $("object-caution").textContent = story?.caution || "";
   $("object-source").href =
     story?.source || "https://science.nasa.gov/mission/spherex/";
+  $("object-source").hidden = false;
   for (const a of document.querySelectorAll("[data-field]")) {
     if (a.dataset.field === f.id) a.setAttribute("aria-current", "true");
     else a.removeAttribute("aria-current");

@@ -16,7 +16,7 @@
     margin-inline: auto;
     padding-block: 56px;
   }
-  #home-view .orbital-hero {
+  #home-view .observatory-hero {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 24px;
@@ -29,7 +29,7 @@
     min-height: 860px;
     align-items: start;
   }
-  .orbital-hero .intro-copy {
+  .observatory-hero .intro-copy {
     grid-column: 1/7;
     width: 100%;
     max-width: none;
@@ -37,7 +37,7 @@
     position: relative;
     z-index: 3;
   }
-  .orbital-hero h1 {
+  .observatory-hero h1 {
     font: 650 clamp(3.5rem, 7.2vw, 8rem) / 1.05 var(--sans);
     letter-spacing: -0.025em;
     margin: 24px 0 32px;
@@ -46,16 +46,16 @@
   .headline-line {
     display: block;
   }
-  .orbital-hero h1 em {
+  .observatory-hero h1 em {
     font-style: normal;
     color: transparent;
     -webkit-text-stroke: 1.5px var(--white);
     transition: none;
     margin-left: 0.06em;
   }
-  .orbital-hero h1 em:hover,
-  .orbital-hero.lens-active h1 em,
-  .intro-complete .orbital-hero h1 em {
+  .observatory-hero h1 em:hover,
+  .observatory-hero.lens-active h1 em,
+  .intro-complete .observatory-hero h1 em {
     color: var(--white);
     -webkit-text-stroke: 1.5px var(--white);
   }
@@ -63,13 +63,13 @@
     color: var(--red);
     -webkit-text-stroke: 0;
   }
-  .orbital-hero .intro-lead {
+  .observatory-hero .intro-lead {
     max-width: 46ch;
     font-size: 18px;
     line-height: 1.65;
     margin: 0 0 32px;
   }
-  .orbital-hero .eyebrow {
+  .observatory-hero .eyebrow {
     font-size: 12px;
     color: var(--text-3);
     letter-spacing: 0.14em;
@@ -120,7 +120,7 @@
   .mission-launch:hover .launch-arrow {
     transform: translate(3px, -3px);
   }
-  .orbital-hero .intro-note {
+  .observatory-hero .intro-note {
     font: 12px/1.7 var(--mono);
     color: var(--text-3);
     max-width: 54ch;
@@ -246,7 +246,7 @@
       0 100%
     );
   }
-  .orbital-lettering {
+  .observatory-lettering {
     position: absolute;
     z-index: 0;
     left: -4%;
@@ -258,7 +258,7 @@
     opacity: 0.65;
     pointer-events: none;
   }
-  .lens-active .orbital-lettering {
+  .lens-active .observatory-lettering {
     color: var(--surface-3);
   }
   .hero-flare,
@@ -267,22 +267,22 @@
   .hero-index {
     display: none;
   }
-  .orbital-rings {
+  .observatory-rings {
     position: absolute;
     inset: 12% 2% 10%;
     pointer-events: none;
     z-index: 0;
   }
-  .orbital-rings i {
+  .observatory-rings i {
     position: absolute;
     inset: 12px;
     border: 1px solid var(--line);
     border-radius: 50%;
   }
-  .orbital-rings i:nth-child(2) {
+  .observatory-rings i:nth-child(2) {
     inset: 42px;
   }
-  .orbital-rings i:nth-child(3) {
+  .observatory-rings i:nth-child(3) {
     inset: 72px;
   }
   .orbit-point {
@@ -438,7 +438,7 @@
     margin-bottom: 40px;
   }
 
-  .orbital-hero > .spectrum-caption {
+  .observatory-hero > .spectrum-caption {
     grid-column: 1/-1;
     margin-top: 40px;
     font: 12px var(--mono);
@@ -763,11 +763,11 @@
     }
   }
   @media (max-width: 1100px) {
-    #home-view .orbital-hero {
+    #home-view .observatory-hero {
       min-height: 780px;
       gap: 16px;
     }
-    .orbital-hero h1 {
+    .observatory-hero h1 {
       font-size: clamp(3.5rem, 7vw, 7rem);
     }
     #home-view .hero-observatory {
@@ -791,17 +791,17 @@
     #home-view > .universe-entry {
       padding-block: 32px;
     }
-    #home-view .orbital-hero {
+    #home-view .observatory-hero {
       display: flex;
       flex-direction: column;
       padding-block: 32px 80px;
       gap: 40px;
       min-height: 0;
     }
-    .orbital-hero .intro-copy {
+    .observatory-hero .intro-copy {
       order: 0;
     }
-    .orbital-hero h1 {
+    .observatory-hero h1 {
       font-size: clamp(3.5rem, 10vw, 6.5rem);
     }
     #home-view .hero-observatory {
@@ -825,14 +825,14 @@
     .hero-hud #hero-cursor-position {
       display: none;
     }
-    .orbital-lettering {
+    .observatory-lettering {
       top: 80px;
       font-size: clamp(5rem, 19vw, 9rem);
     }
     .hero-mission-link {
       bottom: 64px;
     }
-    .orbital-hero > .spectrum-caption {
+    .observatory-hero > .spectrum-caption {
       order: 2;
       margin: 0 0 24px;
       max-width: 34ch;
@@ -841,7 +841,7 @@
     .hero-spectrum {
       bottom: 24px;
     }
-    .orbital-hero .intro-lead {
+    .observatory-hero .intro-lead {
       font-size: 16px;
     }
     .home-fields {
@@ -1514,7 +1514,7 @@
   .reduced-effects .model-opening::after {
     animation: none;
   }
-  .orbital-lettering {
+  .observatory-lettering {
     display: none;
   }
   .stars-near {
@@ -1529,7 +1529,7 @@
     opacity: 0.22;
     background-size: 151px 191px;
   }
-  #home-view .orbital-hero {
+  #home-view .observatory-hero {
     padding-top: 56px;
     padding-bottom: 40px;
     min-height: 0;
@@ -1703,18 +1703,18 @@
     margin-top: -4px;
   }
   @media (max-width: 800px) {
-    #home-view .orbital-hero {
+    #home-view .observatory-hero {
       padding-top: 24px;
       gap: 32px;
     }
-    .orbital-hero .intro-copy {
+    .observatory-hero .intro-copy {
       order: 0;
     }
-    .orbital-hero h1 {
+    .observatory-hero h1 {
       font-size: clamp(3rem, 11vw, 4rem);
       margin-block: 20px;
     }
-    .orbital-hero .intro-lead {
+    .observatory-hero .intro-lead {
       margin-bottom: 24px;
     }
     .mission-launch {
@@ -1729,7 +1729,7 @@
     .intro-actions {
       gap: 12px;
     }
-    .orbital-hero .intro-note {
+    .observatory-hero .intro-note {
       margin-top: 16px;
     }
     .vision-controls {

@@ -13,7 +13,7 @@ export function validateExposureQuestions(questions,product,productSha,valid){
     if(typeof q.question!=='string'||!q.question.trim()||q.question.length>MAX_QUESTION_LENGTH||!Number.isFinite(q.ra_deg)||q.ra_deg<0||q.ra_deg>=360||!Number.isFinite(q.dec_deg)||Math.abs(q.dec_deg)>90||typeof q.created_at!=='string'||!/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(q.created_at)||!Number.isFinite(Date.parse(q.created_at)))throw Error('Invalid question text, sky position or timestamp.');
     if(new Date(q.created_at).toISOString()!==q.created_at)throw Error('Invalid question timestamp.');
     const point=skyToPixel(q.ra_deg,q.dec_deg,product.wcs),x=Math.round(point.x),y=Math.round(point.y);
-    if(x<0||y<0||x>=w||y>=h||!valid[y*w+x])throw Error('Choose a usable pixel inside this exposure. Blue gaps cannot support a measurement.');
+    if(x<0||y<0||x>=w||y>=h||!valid[y*w+x])throw Error('Choose a usable pixel inside this exposure. Hatched areas cannot support a measurement.');
     ids.add(q.id);return {...q};
   });
 }
