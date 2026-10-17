@@ -1,3 +1,4 @@
+import { readPreferences, savePreferences } from "./space-preferences.js";
 import { CHANNEL_COUNT, channelColor } from "./infrared-layout.js";
 
 // Optional UI presentation; imported only after the scientific controller boots.
@@ -8,7 +9,7 @@ export function installInfraredExperience() {
     fine = matchMedia("(hover: hover) and (pointer: fine)"),
     hero = document.querySelector(".orbital-hero"),
     lens = $("infrared-lens");
-  let enabled = true,
+  let enabled = readPreferences().effects,
     pointerFrame = 0,
     scrollFrame = 0,
     smoothFrame = 0,
@@ -366,8 +367,10 @@ export function installInfraredExperience() {
   }
   $("vision-effects").onclick = () => {
     enabled = !enabled;
+    const p=readPreferences();p.effects=enabled;savePreferences(p);
     sync();
   };
+  document.addEventListener("skyshift:effects",e=>{enabled=Boolean(e.detail);sync();});
   new MutationObserver(sync).observe(body, {
     attributes: true,
     attributeFilter: ["data-surface"],

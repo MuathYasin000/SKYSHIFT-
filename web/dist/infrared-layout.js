@@ -5,11 +5,11 @@ export function channelColor(index) {
     Math.max(0, Math.min(CHANNEL_COUNT - 1, index)) / (CHANNEL_COUNT - 1);
   const stops = [
     [28, 60, 139],
-    [64, 124, 185],
-    [235, 183, 89],
-    [246, 109, 45],
-    [229, 57, 61],
-    [190, 60, 139],
+    [116, 84, 196],
+    [193, 77, 186],
+    [229, 77, 97],
+    [249, 130, 60],
+    [255, 207, 138],
   ];
   const x = t * (stops.length - 1),
     a = Math.min(stops.length - 2, Math.floor(x)),

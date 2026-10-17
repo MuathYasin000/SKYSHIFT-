@@ -40,3 +40,5 @@ try {
   }
   console.error("SKYSHIFT website startup:", error);
 }
+
+import("./observatory-design.js").then(m=>m.installObservatoryDesign()).catch(e=>console.warn("Optional observatory chrome unavailable:",e));

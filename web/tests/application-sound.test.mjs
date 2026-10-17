@@ -113,7 +113,7 @@ test("raised-cosine sine envelopes have zero endpoints, bounded amplitudes and a
       assert.ok(env[1] < layer.gain * 0.01);
     }
 });
-test("sound defaults on but creates no context before unlock; persistent mute stops voices and cannot be rearmed by resume", async () => {
+test("explicit sound opt-in creates no context before unlock; persistent mute stops voices and cannot be rearmed by resume", async () => {
   const p = { sound_enabled: true, effects_volume: 0.5, ambience_volume: 0.12 };
   let stamp = 0,
     ctx;
@@ -213,7 +213,7 @@ test("hidden-document guard suppresses all voices and suspension clears pending 
   try {
     globalThis.document = { hidden: false };
     const a = createSpaceAudio(
-      { effects_volume: 0.5, ambience_volume: 0.12 },
+      { sound_enabled: true, effects_volume: 0.5, ambience_volume: 0.12 },
       { Audio, now: () => stamp },
     );
     await a.unlock();
@@ -234,3 +234,5 @@ test("hidden-document guard suppresses all voices and suspension clears pending 
     else globalThis.document = prior;
   }
 });
+
+test("new visitors start muted and cannot sound on an ordinary unlock",async()=>{const a=createSpaceAudio({}, {Audio});assert.equal(a.enabled,false);await a.unlock();assert.equal(a.cue("travel"),false);await a.dispose();});

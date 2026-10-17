@@ -65,7 +65,7 @@ export function sineEnvelope(gain, duration) {
 }
 export function createSpaceAudio(preferences, dependencies = {}) {
   let context = null,
-    enabled = preferences.sound_enabled !== false,
+    enabled = preferences.sound_enabled === true,
     suspended = false,
     disposed = false,
     surface = "home",

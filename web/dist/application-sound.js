@@ -109,7 +109,7 @@ export function installApplicationSound() {
     };
     host.querySelector(".sound-palette").append(b);
   }
-  const persist = () => savePreferences(p);
+  const persist = () => {p.effects=readPreferences().effects;savePreferences(p);};
   function sync() {
     const d = audio.diagnostics();
     document
@@ -120,9 +120,7 @@ export function installApplicationSound() {
         b.title = d.enabled
           ? "Mute all SKYSHIFT sound"
           : "Turn SKYSHIFT sound on";
-        if (b.id === "site-sound")
-          b.innerHTML = `<span class="sound-wave" aria-hidden="true"><i></i><i></i><i></i></span><span class="sound-word">Sound ${d.enabled ? "on" : "off"}</span>`;
-        else b.textContent = d.enabled ? "Sound on" : "Sound off";
+        b.innerHTML = `<svg class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="${d.enabled ? 'M17 8q5 4 0 8' : 'M17 9l5 6m0-6-5 6'}"/></svg><span class="sound-word">Sound ${d.enabled ? "on" : "off"}</span>`;
         b.setAttribute(
           "aria-label",
           d.enabled ? "Mute SKYSHIFT sound" : "Turn SKYSHIFT sound on",

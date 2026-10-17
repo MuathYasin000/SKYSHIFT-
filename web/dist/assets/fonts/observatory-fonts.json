@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "file": "IBMPlexMono-Regular.ttf",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexmono/IBMPlexMono-Regular.ttf",
+      "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46",
+      "bytes": 135580,
+      "license": "SIL Open Font License 1.1",
+      "credit": "IBM Corp."
+    },
+    {
+      "file": "IBMPlexMono-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexmono/OFL.txt",
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+      "bytes": 4456,
+      "license": "SIL Open Font License 1.1",
+      "credit": "IBM Corp."
+    }
+  ]
+}
