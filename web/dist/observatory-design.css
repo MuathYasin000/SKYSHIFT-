@@ -151,3 +151,22 @@ body[data-surface] #home-view .intro-actions .universe-launch{padding:12px 18px;
 @media(min-width:1001px) and (min-height:760px){.mission-section.walkthrough-enabled{min-height:130vh;align-items:start}.walkthrough-enabled .mission-model{position:sticky;top:130px;align-self:start}.walkthrough-enabled .mission-copy{padding-top:48px}}
 @media(max-width:800px){#home-view>.infrared-story{padding-top:80px}.infrared-story-copy{margin-bottom:28px}.infrared-story .intro-image{height:540px}.universe-entry{flex-direction:column;align-items:flex-start;padding:56px 28px;min-height:560px}.trust-section article{padding:32px 24px}.vela-treatment{font-size:12px;left:18px}.intro-image figcaption{font-size:12px}.intro-image figcaption small{font-size:12px}#infrared-legend-button{bottom:100px;left:18px;right:auto}#infrared-legend{left:18px;right:18px;width:auto;bottom:156px}}
 @media(prefers-reduced-motion:reduce){.model-opening::after{animation:none}.portal-opening{animation:none}}
+
+/* E / Universe chrome. Geometry, optics and real observations remain shared. */
+.universe-active .space-header{background:linear-gradient(#05070ae8,#05070a00);border:0;padding-bottom:18px;pointer-events:none}.space-header>*{pointer-events:auto}
+.universe-active .space-actions{border-radius:999px;background:#0f141acc;border:1px solid #ffffff20;backdrop-filter:blur(24px);padding:6px;gap:2px}
+.universe-active .space-actions :is(button,a){font-size:14px;min-height:44px;border-radius:999px;padding:10px 14px}
+.universe-active .space-actions #observations-button{background:var(--cream);color:#121923;padding-inline:20px}
+.universe-active :is(.space-context,.destinations-drawer,.telescope-story){border-radius:20px;background:linear-gradient(145deg,#ffffff05,transparent 70%),#0b111bea;border:1px solid #ffffff23;border-top-color:#f5a94a66;backdrop-filter:blur(24px);box-shadow:0 18px 80px #0005}
+.universe-active .space-context h2{font-weight:500;letter-spacing:-.04em;font-size:clamp(2rem,3vw,3rem)}
+.universe-active :is(.space-context p,.destination-list button,.destination-panel label,.context-credit,.context-date,.scene-badge,.space-eyebrow,.space-tabs button,.space-hud,.space-hud div,.space-hud strong,.space-object-label,.mission-dock button){font-size:14px;line-height:1.55}
+.universe-active .destination-list button{padding-block:12px;border-radius:12px}.universe-active .destination-list button[aria-pressed=true]{border-color:#ffcf8a70;background:#f5a94a10}
+.universe-active .space-object-label{font:14px var(--mono);background:#0b111be8;border:1px solid #ffffff28;padding:10px 14px;box-shadow:0 0 18px #0004}
+.space-label-leader{position:absolute;height:1px;background:#d4c9b0;transform-origin:left center;pointer-events:none;z-index:-1}.space-label-leader[hidden]{display:none}
+.universe-active .mission-dock{border-radius:999px!important;background:#0f141ade!important;border:1px solid #ffffff26;padding:6px 10px!important;backdrop-filter:blur(24px);gap:6px}
+.universe-active .mission-dock button{border-radius:999px!important;min-height:56px}.universe-active .mission-dock button[aria-pressed=true]{background:#f5a94a16;border-color:#ffcf8a70}.mission-dock .observatory-mark{width:32px;height:32px;stroke:#d4c7ae;fill:none;stroke-width:1.3;flex:none}.mission-dock button b{display:none}
+.universe-active .mission-dock small{font:12px var(--mono);letter-spacing:.05em}.universe-active .mission-dock>span{font:12px var(--mono)}
+.space-hud kbd{display:inline-block;border:1px solid #ffffff25;background:#ffffff06;border-radius:5px;padding:1px 5px;font:12px var(--mono);margin-right:3px}
+.universe-active .space-hud{max-width:calc(100% - 32px)}
+@media(max-width:1100px){.universe-active .space-actions :is(button,a){padding-inline:10px}.universe-active .space-actions #observations-button{padding-inline:12px}.universe-active .space-brand small{display:none}}
+@media(max-width:740px){.universe-active .space-actions{border-radius:16px;flex-wrap:wrap;justify-content:flex-end;max-width:calc(100vw - 115px)}.universe-active .space-actions :is(button,a){padding:8px 10px;font-size:14px}.universe-active .space-actions #observations-button{font-size:14px}.universe-active .space-header{padding:12px}.universe-active .space-brand img{width:44px;height:44px}.universe-active .space-brand>span{display:none}.universe-active .space-context{max-height:54vh}.universe-active .mission-dock{border-radius:16px!important}.mission-dock .observatory-mark{display:none}.universe-active .space-hud .hud-info{font-size:14px}.universe-active .space-hud strong{font-size:12px}}

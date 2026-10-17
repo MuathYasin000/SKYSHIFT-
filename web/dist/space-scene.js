@@ -386,7 +386,8 @@ export function createSpaceScene(
   for (let i = 0; i < (preferences.quality === "low" ? 3500 : 10000); i++) {
     const z = rand() * 2 - 1,
       a = rand() * Math.PI * 2,
-      r = 400;
+      // Two depth layers within the same draw call; decorative, not catalogued.
+      r = i % 5 === 0 ? 210 : 400;
     starPositions.push(
       r * Math.sqrt(1 - z * z) * Math.cos(a),
       r * z,
@@ -581,7 +582,7 @@ export function createSpaceScene(
     const started = performance.now();
     if (animation) {
       const t = Math.min(1, (now - animation.start) / 850),
-        k = 1 - Math.pow(1 - t, 3);
+        k = t < .5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
       camera.position.lerpVectors(animation.from, animation.to, k);
       controls.target.lerpVectors(animation.targetFrom, animation.targetTo, k);
       if (t === 1) animation = null;

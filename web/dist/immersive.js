@@ -144,6 +144,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
       b.setAttribute("aria-pressed", String(item.id === selected));
       b.onclick = () => select(item.id);
       $("space-labels").append(b);
+      const line=element("i");line.className="space-label-leader";line.dataset.leader=item.id;line.setAttribute("aria-hidden","true");$("space-labels").append(line);
     }
     positionLabels();
   }
@@ -184,6 +185,11 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
       const b = document.querySelector('[data-object="' + p.id + '"]');
       if (!b) continue;
       b.hidden = p.hidden;
+      const line=document.querySelector('[data-leader="'+p.id+'"]');
+      if(line){
+        line.hidden=p.hidden;
+        if(!p.hidden){const x=p.left+p.width/2,y=p.top+p.height/2,dx=x-p.x,dy=y-p.y;line.style.left=p.x+'px';line.style.top=p.y+'px';line.style.width=Math.max(0,Math.hypot(dx,dy)-14)+'px';line.style.transform='rotate('+Math.atan2(dy,dx)+'rad)';line.style.opacity=p.opacity*.45;}
+      }
       if (!p.hidden) {
         b.style.left = p.left + "px";
         b.style.top = p.top + "px";
@@ -600,7 +606,9 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     scene?.setEffects(preferences.effects);
     document.body.classList.toggle("effects-disabled", !preferences.effects);
     persist();
+    document.dispatchEvent(new CustomEvent("skyshift:effects",{detail:preferences.effects}));
   };
+  document.addEventListener("skyshift:effects",e=>{preferences.effects=Boolean(e.detail);$("effects-toggle").checked=preferences.effects;scene?.setEffects(preferences.effects);document.body.classList.toggle("effects-disabled",!preferences.effects);});
   $("quality-select").value = preferences.quality;
   $("quality-select").onchange = (e) => {
     preferences.quality = e.target.value;

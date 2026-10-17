@@ -31,10 +31,10 @@
     ><button id="journey-button" title="Take the guided tour">⌁ Tour</button
     ><button
       id="sound-toggle"
-      aria-pressed="true"
-      title="Mute all SKYSHIFT sound"
+      aria-pressed="false"
+      title="Turn SKYSHIFT sound on"
     >
-      Sound on</button
+      Sound off</button
     ><button
       id="settings-button"
       title="Graphics, effects and sound preferences"
@@ -129,14 +129,14 @@
 <nav id="mission-dock" class="mission-dock" aria-label="Featured telescopes">
   <span>EXPLORE THROUGH SPHEREx</span>
   <button data-telescope="spherex" aria-pressed="true">
-    <b>01</b> SPHEREx <small>MAP THE SKY</small>
+    <svg class="observatory-mark" viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="6" rx="12" ry="4"/><path d="M4 6l7 17h10L28 6M11 23v6h10v-6M5 14H1v14h8"/></svg><b>01</b> SPHEREx <small>MAP THE SKY</small>
   </button>
   <button id="hangar-toggle">Other observatories</button>
   <button data-telescope="webb-b" aria-pressed="false">
-    <b>02</b> Webb <small>LOOK DEEPER</small>
+    <svg class="observatory-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2l11 6v12l-11 6-11-6V8zM16 2v24M5 8l22 12M27 8L5 20M16 26v4M1 28h30"/></svg><b>02</b> Webb <small>LOOK DEEPER</small>
   </button>
   <button data-telescope="hubble" aria-pressed="false">
-    <b>03</b> Hubble <small>REVEAL THE VISIBLE</small>
+    <svg class="observatory-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M12 3h8v25h-8zM12 13H1v9h11M20 13h11v9H20M12 7h8M12 24h8"/><ellipse cx="16" cy="3" rx="4" ry="2"/></svg><b>03</b> Hubble <small>REVEAL THE VISIBLE</small>
   </button>
 </nav>
 <section
@@ -239,7 +239,7 @@
     <strong id="scene-type">CONTEXTUAL 3D · ARTISTIC SPACECRAFT MODEL</strong>
     <div id="space-status" role="status">Starting the local renderer…</div>
     <div id="camera-help">
-      Drag to orbit · Scroll / pinch to zoom · Arrows to rotate · Home to reset
+      <kbd>Drag</kbd> orbit · <kbd>Scroll / pinch</kbd> zoom · <kbd>Arrows</kbd> rotate · <kbd>Home</kbd> reset
     </div>
     <div class="space-disclaimer">
       Independent Project Mercury Team application · No NASA endorsement ·
