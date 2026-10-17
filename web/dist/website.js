@@ -16,6 +16,22 @@ let surface = "home",
   modelFailed = false,
   missionVisible = false;
 let sound = null;
+let routeStarted = false;
+// Missing animation support/module keeps the existing immediate navigation.
+let routeTransitions = {
+  async run({ commit, isCurrent }) {
+    if (!isCurrent()) return false;
+    await commit();
+    return true;
+  },
+  cancel() {},
+  diagnostics: () => ({ active: false, available: false }),
+};
+import("./route-transitions.js")
+  .then(({ createRouteTransitions }) => {
+    routeTransitions = createRouteTransitions();
+  })
+  .catch(() => {});
 // Optional sound loads independently; a missing audio module must never gate science.
 import("./application-sound.js")
   .then(({ installApplicationSound }) => {
@@ -105,6 +121,7 @@ async function ensureUniverse() {
 }
 async function routeChanged() {
   const ticket = ++routeSequence,
+    animate = routeStarted,
     raw =
       location.hash.slice(1) ||
       new URLSearchParams(location.search).get("view") ||
@@ -112,27 +129,49 @@ async function routeChanged() {
     parts = raw.split("/"),
     route = parts[0],
     field = parts[1];
+  routeStarted = true;
   error("");
   document.querySelectorAll("[data-route]").forEach((a) => {
     if (a.dataset.route === route) a.setAttribute("aria-current", "page");
     else a.removeAttribute("aria-current");
   });
   if (["observations", "compare", "classic"].includes(route)) {
-    setSurface("science");
-    document.title =
-      "SKYSHIFT — " +
-      (route === "compare" ? "Compare observations" : "SPHEREx observations");
-    await consoleView.open(field, {
-      mode: "classic",
-      comparison: route === "compare",
+    const applied = await routeTransitions.run({
+      outgoing: $(
+        surface === "home"
+          ? "home-view"
+          : surface === "science"
+            ? "space-workspace"
+            : "universe-view",
+      ),
+      incoming: $("space-workspace"),
+      animate: animate && surface !== "universe",
+      isCurrent: () => ticket === routeSequence,
+      commit: () => {
+        setSurface("science");
+        document.title =
+          "SKYSHIFT — " +
+          (route === "compare"
+            ? "Compare observations"
+            : "SPHEREx observations");
+        return consoleView.open(field, {
+          mode: "classic",
+          comparison: route === "compare",
+        });
+      },
     });
-    if (ticket === routeSequence) {
+    if (
+      applied &&
+      ticket === routeSequence &&
+      !$("space-workspace").contains(document.activeElement)
+    ) {
       $("instrument-title").tabIndex = -1;
       $("instrument-title").focus({ preventScroll: true });
     }
     return;
   }
   if (route === "universe") {
+    routeTransitions.cancel();
     setSurface("universe");
     $("universe-loading").hidden = Boolean(universe);
     document.title = "SKYSHIFT — Optional 3D Universe";
@@ -160,8 +199,23 @@ async function routeChanged() {
     }
     return;
   }
-  setSurface("home");
-  document.title = "SKYSHIFT — Explore & compare SPHEREx observations";
+  await routeTransitions.run({
+    outgoing: $(
+      surface === "science"
+        ? "space-workspace"
+        : surface === "home"
+          ? "home-view"
+          : "universe-view",
+    ),
+    incoming: $("home-view"),
+    animate: animate && surface === "science",
+    isCurrent: () => ticket === routeSequence,
+    commit: () => {
+      setSurface("home");
+      document.title = "SKYSHIFT — Explore & compare SPHEREx observations";
+    },
+  });
+  if (ticket !== routeSequence) return;
   if (route === "mission") {
     // The real field cards precede this anchor. Let their first layout settle
     // so direct mission links do not slide offscreen as the catalogue arrives.
@@ -396,6 +450,7 @@ Object.defineProperty(window, "skyshiftWebsite", {
       surface,
       universe_loaded: Boolean(universe),
       model: model?.diagnostics() || null,
+      navigation: routeTransitions.diagnostics(),
       investigation: consoleView.diagnostics(),
     }),
   }),

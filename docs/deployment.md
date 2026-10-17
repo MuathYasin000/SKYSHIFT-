@@ -18,7 +18,7 @@ The user selected **Netlify**, superseding the earlier Cloudflare suggestion. Th
 
 ### CLI alternative for the complete upload
 
-The prepared site has 149 files, approximately 62.9 MB total; its largest file is 8 MB. Netlify recommends CLI uploads for larger sites because drag-and-drop works best below 50 MB. That figure is a reliability recommendation, not a claimed hard rejection limit. Keep all scientific review parts and model assets in the upload.
+The prepared site has 150 files, approximately 62.9 MB total; its largest file is 8 MB. Netlify recommends CLI uploads for larger sites because drag-and-drop works best below 50 MB. That figure is a reliability recommendation, not a claimed hard rejection limit. Keep all scientific review parts and model assets in the upload.
 
 If you prefer CLI, install Node.js with npm, then run in PowerShell:
 
