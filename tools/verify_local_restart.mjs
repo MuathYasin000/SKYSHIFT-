@@ -29,11 +29,11 @@ const result = {
     "Fresh browser after actual project server restart; current and previous-version exports reopen. No claim of automatic private-note persistence across closed tabs.",
 };
 try {
-  await p.goto("http://localhost:3000/?view=classic");
+  await p.goto("http://localhost:3000/#compare");
   await p.waitForFunction(
     () =>
-      window.skyshiftSpace?.investigation().kind === "exposure" &&
-      !skyshiftSpace.investigation().busy,
+      window.skyshiftWebsite?.diagnostics().investigation.kind === "pair" &&
+      !skyshiftWebsite.diagnostics().investigation.busy,
   );
   result.reopened = [];
   for (const [file, kind, field] of [
@@ -41,11 +41,13 @@ try {
     ["tmp/telescope-qa/comparison.zip", "pair", "m101"],
     ["tmp/unified-qa/orion.json", "exposure", "m42"],
     ["tmp/unified-qa/comparison.zip", "pair", "m101"],
+    ["tmp/website07-qa/orion.json", "exposure", "m42"],
+    ["tmp/website07-qa/comparison.zip", "pair", "m101"],
   ]) {
     await p.setInputFiles("#instrument-file", file);
     await p.waitForFunction(
       ([k, f]) => {
-        const v = skyshiftSpace.investigation();
+        const v = skyshiftWebsite.diagnostics().investigation;
         return (
           v.kind === k && v.field === f && !v.busy && v.questions.length === 1
         );
@@ -54,12 +56,12 @@ try {
     );
     result.reopened.push({ file, kind, field, questions: 1 });
   }
-  await fs.mkdir("tmp/unified-restart-qa", { recursive: true });
+  await fs.mkdir("tmp/website07-restart-qa", { recursive: true });
   const event = p.waitForEvent("download");
   await p.click("#instrument-save");
-  await (await event).saveAs("tmp/unified-restart-qa/comparison.zip");
+  await (await event).saveAs("tmp/website07-restart-qa/comparison.zip");
   assert.ok(
-    (await fs.stat("tmp/unified-restart-qa/comparison.zip")).size > 1000,
+    (await fs.stat("tmp/website07-restart-qa/comparison.zip")).size > 1000,
   );
   assert.deepEqual(errors, []);
   result.status = "pass";
@@ -76,7 +78,7 @@ try {
   result.errors = errors;
   await browser.close();
   await fs.writeFile(
-    "docs/evidence/unified_local_restart_tests.json",
+    "docs/evidence/website07_local_restart_tests.json",
     JSON.stringify(result, null, 2),
   );
 }

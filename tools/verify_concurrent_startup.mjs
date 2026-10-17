@@ -41,21 +41,23 @@ async function startup([name, executablePath], trial) {
     await page.goto("http://localhost:3000");
     await page.waitForFunction(
       () =>
-        window.skyshiftSpace
-          ?.diagnostics()
-          .loaded_telescopes?.includes("spherex") &&
-        skyshiftSpace.diagnostics().frames > 2,
+        document.body.dataset.controller === "ready" &&
+        window.skyshiftWebsite?.diagnostics().surface === "home",
       null,
       { timeout: 20000 },
     );
-    await page.locator("#observations-button").click();
+    assert.equal(
+      await page.evaluate(() => Boolean(window.skyshiftSpace)),
+      false,
+    );
+    await page.locator(".site-navigation a[data-route=compare]").click();
     await page.waitForFunction(
       () =>
-        window.skyshiftSpace?.investigation().kind === "exposure" &&
-        !skyshiftSpace.investigation().busy,
+        window.skyshiftWebsite?.diagnostics().investigation.kind === "pair" &&
+        !skyshiftWebsite.diagnostics().investigation.busy,
     );
-    await page.locator("#settings-button").click();
-    await page.locator("#settings-dialog [data-close-dialog]").click();
+    await page.locator("#site-more").click();
+    await page.locator("#site-information-close").click();
     assert.deepEqual(errors, []);
     assert.deepEqual(failed, []);
     return {
@@ -63,7 +65,7 @@ async function startup([name, executablePath], trial) {
       version: browser.version(),
       trial,
       status: "pass",
-      spherex_science_and_input_ready_ms: performance.now() - start,
+      website_science_and_input_ready_ms: performance.now() - start,
       errors,
       failed,
     };
@@ -88,16 +90,16 @@ for (let trial = 0; trial < 3; trial++) {
     console.log(r.status.toUpperCase() + " " + r.name + " trial " + trial);
 }
 await fs.writeFile(
-  "docs/evidence/unified_concurrent_startup_tests.json",
+  "docs/evidence/website07_concurrent_startup_tests.json",
   JSON.stringify(
     {
       date_utc: new Date().toISOString(),
       server: await (await fetch("http://localhost:3000/healthz")).json(),
       results,
       user_session:
-        "Fresh-profile checks of 0.6; no claim of verification in the user session",
+        "Fresh-profile checks of 0.7; no claim of verification in the user session",
       scope:
-        "Two browsers concurrently per trial, three trials; SPHEREx rendered, native science loaded and settings opened, no external requests required",
+        "Two browsers concurrently per trial, three trials; website ready without Universe, comparison loaded and information opened; no external requests required",
     },
     null,
     2,

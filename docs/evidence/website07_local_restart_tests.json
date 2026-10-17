@@ -1,0 +1,54 @@
+{
+  "recorded_at_utc": "2026-10-17T08:27:37.438Z",
+  "server": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.1",
+    "directory_id": "cf30d37f4287c0b3",
+    "content_id": "dd5c954617380cf6c8cf76d6d41d039be7749e36f1534ff81f737d894d01c96e",
+    "release_id": "workspace",
+    "app_version": "0.7-local-workspace"
+  },
+  "scope": "Fresh browser after actual project server restart; current and previous-version exports reopen. No claim of automatic private-note persistence across closed tabs.",
+  "reopened": [
+    {
+      "file": "tmp/telescope-qa/question.json",
+      "kind": "exposure",
+      "field": "m42",
+      "questions": 1
+    },
+    {
+      "file": "tmp/telescope-qa/comparison.zip",
+      "kind": "pair",
+      "field": "m101",
+      "questions": 1
+    },
+    {
+      "file": "tmp/unified-qa/orion.json",
+      "kind": "exposure",
+      "field": "m42",
+      "questions": 1
+    },
+    {
+      "file": "tmp/unified-qa/comparison.zip",
+      "kind": "pair",
+      "field": "m101",
+      "questions": 1
+    },
+    {
+      "file": "tmp/website07-qa/orion.json",
+      "kind": "exposure",
+      "field": "m42",
+      "questions": 1
+    },
+    {
+      "file": "tmp/website07-qa/comparison.zip",
+      "kind": "pair",
+      "field": "m101",
+      "questions": 1
+    }
+  ],
+  "status": "pass",
+  "export_after_restart": "pass",
+  "errors": []
+}

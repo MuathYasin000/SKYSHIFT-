@@ -28,7 +28,7 @@ The browser address is then http://localhost:3001. The server binds only to `127
 After finishing and testing the website source:
 
 ```powershell
-.venv/Scripts/python.exe tools/build_local_release.py --name skyshift-0.6-local-release --app-version 0.6.0
+.venv/Scripts/python.exe tools/build_local_release.py --name skyshift-0.7-local-release --app-version 0.7.0
 ```
 
 This creates a new folder under `output/local-production`. An existing release with that name is never overwritten. The folder contains the complete static website, local server, startup and stop scripts, release metadata, and `SHA256SUMS.json`. Copy the whole folder together; run its own startup script to use that snapshot. A system Python 3.11 or newer is sufficient for static hosting; scientific reconstruction has its own pinned Python dependencies in the exported evidence packet.
@@ -39,7 +39,7 @@ Restore an older version by stopping the current server and starting the older r
 
 ## Security and verification
 
-The host serves GET/HEAD requests, rejects traversal and hidden paths, disables directory listing, checks local Host headers, sets explicit scientific-file MIME types, and adds content security, framing, permissions and content-type headers. Scripts, fonts, images and data should be vendored under `web/dist` to work with the local-only content policy. Display images may use data/blob URLs; network data requests are restricted to the local origin and local blob resources. Same-origin framing supports the shared immersive/Classic scientific workspace; other sites cannot frame the application. Local Draco workers and WASM decode vendored NASA models without an external service.
+The host serves GET/HEAD requests, rejects traversal and hidden paths, disables directory listing, checks local Host headers, sets explicit scientific-file MIME types, and adds content security, framing, permissions and content-type headers. Scripts, fonts, images and data are vendored under `web/dist` for the local-only content policy. Display images may use data/blob URLs; network data requests are restricted to the local origin and local blob resources. The current website and optional Universe share one native scientific workspace without framing. Local Draco workers and WASM decode optional vendored NASA models without an external service.
 
 Run the meaningful HTTP and fault controls:
 

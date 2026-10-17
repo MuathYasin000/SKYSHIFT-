@@ -29,22 +29,23 @@ export function createObservationConsole({
     $ = (id) => root.querySelector("#" + id);
   root.innerHTML = `
     <header class="instrument-header">
-      <div><p class="space-eyebrow">SPHEREx / SCIENCE INSTRUMENT</p><h2 id="instrument-title">Choose a window into the infrared</h2><p id="instrument-subtitle"></p></div>
-      <div class="instrument-actions"><button id="instrument-mode">Classic View</button><button id="instrument-save">Save investigation ↓</button><button id="instrument-open">Reopen ↑</button><button id="instrument-close" aria-label="Return to sky exploration">Back to sky ↗</button><input id="instrument-file" type="file" accept=".json,.zip" hidden></div>
+      <div><p class="space-eyebrow">SPHEREx / SCIENCE INSTRUMENT</p><h1 id="instrument-title">Choose a window into the infrared</h1><p id="instrument-subtitle"></p></div>
+      <div class="instrument-actions"><button id="instrument-mode">Classic View</button><button id="instrument-save">Save investigation ↓</button><button id="instrument-open">Reopen ↑</button><button id="instrument-close" aria-label="Return home without losing this investigation">Home ↗</button><input id="instrument-file" type="file" accept=".json,.zip" hidden></div>
     </header>
-    <nav id="instrument-fields" class="instrument-fields" aria-label="Available SPHEREx regions"></nav>
+    <div class="instrument-selection"><label for="instrument-field-select">Sky region</label><select id="instrument-field-select"></select><p id="instrument-spectral-summary"></p></div>
+    <nav id="instrument-fields" class="instrument-fields" aria-label="Available SPHEREx regions" hidden></nav>
     <div class="instrument-main">
       <section class="instrument-view" aria-label="Observation inspection">
         <div class="instrument-viewbar"><span id="instrument-identity">Real SPHEREx pixels</span><div><button id="instrument-about">Sources & suitability</button><button id="instrument-display">Appearance</button><button id="instrument-notes">Questions <span id="instrument-note-count">0</span></button></div></div>
-        <div id="instrument-dates" class="instrument-dates" role="group" aria-label="Observation timeline"></div>
-        <div id="instrument-comparison" class="instrument-comparison" role="group" aria-label="Comparison presentation" hidden><button data-compare="side_by_side">Side by side</button><button data-compare="wipe">Wipe</button><button data-compare="single">A / B</button><button id="instrument-blink" aria-pressed="false">Blink</button></div>
+        <div class="instrument-epoch-tools"><div id="instrument-dates" class="instrument-dates" role="group" aria-label="Observation timeline"></div>
+        <div id="instrument-comparison" class="instrument-comparison" role="group" aria-label="Comparison presentation" hidden><button data-compare="side_by_side">Side by side</button><button data-compare="wipe">Wipe</button><button data-compare="single">A / B</button><button id="instrument-blink" aria-pressed="false">Blink</button></div></div>
         <div id="instrument-canvases" class="instrument-canvases">
           <figure id="instrument-figure-a"><figcaption id="instrument-label-a"></figcaption><canvas id="instrument-canvas-a" tabindex="0" aria-label="Observation A, pan and zoom; click or Enter to inspect a pixel"></canvas></figure>
           <figure id="instrument-figure-b" hidden><figcaption id="instrument-label-b"></figcaption><canvas id="instrument-canvas-b" tabindex="0" aria-label="Observation B, synchronized pan and zoom; click or Enter to inspect a pixel"></canvas></figure>
           <button id="instrument-wipe-handle" aria-label="Drag to reveal the second observation; use the Reveal observation B slider for keyboard control" hidden>↔</button>
           <div id="instrument-loading" class="instrument-loading" role="status" hidden><span></span><strong>Checking scientific data & source identity…</strong></div>
         </div>
-        <label id="instrument-wipe-row" class="instrument-wipe-row" hidden>Reveal observation B <input id="instrument-wipe" type="range" min="0" max="100" value="50"><output id="instrument-wipe-value">50%</output></label>
+        <label id="instrument-wipe-row" class="instrument-wipe-row" hidden>Divider position <input id="instrument-wipe" type="range" min="0" max="100" value="50"><output id="instrument-wipe-value">50%</output></label>
         <div class="instrument-viewtools"><div><button id="instrument-zoom-out" aria-label="Zoom observation out">−</button><output id="instrument-zoom">1.0×</output><button id="instrument-zoom-in" aria-label="Zoom observation in">+</button><button id="instrument-fit">Fit field</button></div><span>N ↑ · E ← · ICRS · Drag to pan, scroll / pinch to zoom</span></div>
         <div id="instrument-inspection" class="instrument-inspection"><p id="instrument-pixel">Select a measured pixel to inspect its sky position and wavelength.</p><button id="instrument-add" disabled>Add a question +</button></div>
       </section>
@@ -54,6 +55,40 @@ export function createObservationConsole({
     <p id="instrument-status" class="instrument-status" role="status"></p><button id="instrument-retry" hidden>Retry observation</button>
     <dialog id="instrument-question" class="space-dialog"><form method="dialog"><div class="dialog-top"><h2>Your question about this position</h2><button value="cancel" formnovalidate aria-label="Cancel question">×</button></div><p id="instrument-question-position"></p><label for="instrument-question-text">Question or note</label><textarea id="instrument-question-text" maxlength="1500" rows="4" required></textarea><p>User hypothesis only. No measured motion or confirmed variability.</p><div class="instrument-actions"><button value="cancel" formnovalidate>Cancel</button><button id="instrument-question-save" type="button">Save question</button></div><p id="instrument-question-error" role="alert"></p></form></dialog>
     <dialog id="instrument-information" class="space-dialog"><div class="dialog-top"><h2>Source identities & scientific limits</h2><button id="instrument-information-close" aria-label="Close scientific information">×</button></div><div id="instrument-information-body"></div></dialog>`;
+  const toolbar = root.querySelector(".instrument-viewbar > div");
+  toolbar.classList.add("instrument-toolbar");
+  toolbar.id = "instrument-tools";
+  const toolsToggle = node("button", "Tools ▾");
+  toolsToggle.id = "instrument-tools-toggle";
+  toolsToggle.setAttribute("aria-controls", toolbar.id);
+  toolsToggle.setAttribute("aria-expanded", "false");
+  root.querySelector(".instrument-selection").append(toolsToggle);
+  root.querySelector(".instrument-selection").append(toolbar);
+  function closeTools() {
+    root.classList.remove("tools-open");
+    toolsToggle.setAttribute("aria-expanded", "false");
+  }
+  toolsToggle.onclick = () => {
+    const open = !root.classList.contains("tools-open");
+    root.classList.toggle("tools-open", open);
+    toolsToggle.setAttribute("aria-expanded", String(open));
+  };
+  toolbar.addEventListener("click", (e) => {
+    if (e.target.closest("button")) {
+      closeTools();
+      if (matchMedia("(max-width:800px)").matches) toolsToggle.focus();
+    }
+  });
+  document.addEventListener("pointerdown", (e) => {
+    if (!toolbar.contains(e.target) && e.target !== toolsToggle) closeTools();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && root.classList.contains("tools-open")) {
+      e.preventDefault();
+      closeTools();
+      toolsToggle.focus();
+    }
+  });
   function node(tag, text, cls) {
     const e = document.createElement(tag);
     if (text !== undefined) e.textContent = text;
@@ -155,6 +190,15 @@ export function createObservationConsole({
       );
       b.onclick = () => select(f.id);
       $("instrument-fields").append(b);
+      const option = node(
+        "option",
+        f.title +
+          " · " +
+          f.observations.length +
+          (f.observations.length === 1 ? " observation" : " dates"),
+      );
+      option.value = f.id;
+      $("instrument-field-select").append(option);
     }
     return catalog;
   }
@@ -162,6 +206,7 @@ export function createObservationConsole({
     retry = () => select(field, index);
     return run(() => engine.select(field, index));
   }
+  $("instrument-field-select").onchange = (e) => select(e.target.value);
   function compare() {
     const v = engine.active;
     if (!v || v.field.comparison_status !== "provisional_restricted") return;
@@ -185,6 +230,22 @@ export function createObservationConsole({
     if (!v) return;
     const pair = v.kind === "pair",
       s = stories[v.field.id];
+    $("instrument-field-select").value = v.field.id;
+    $("instrument-spectral-summary").textContent = pair
+      ? v.manifest.observations
+          .map(
+            (o, i) =>
+              "AB"[i] +
+              ": centre λ " +
+              o.center_wavelength_um.toFixed(4) +
+              " μm",
+          )
+          .join(" / ")
+      : "Centre λ " +
+        v.product.observation.center_wavelength_um.toFixed(4) +
+        " μm · bandwidth " +
+        v.product.observation.center_bandwidth_um.toFixed(4) +
+        " μm";
     $("instrument-title").textContent = s?.name || v.field.title;
     $("instrument-subtitle").textContent = pair
       ? "Restricted common-grid comparison · 24 × 24 prepared pixels · 6.15 arcsec/pixel"
@@ -210,6 +271,20 @@ export function createObservationConsole({
         node("small", pair ? "AB"[index] + " · UTC" : "EXPOSURE · UTC"),
         time,
       );
+      const wavelength = pair
+        ? o.center_wavelength_um
+        : o.observation_id === v.entry.observation_id
+          ? v.product.observation.center_wavelength_um
+          : null;
+      b.append(
+        node(
+          "small",
+          wavelength === null
+            ? "Select to inspect its wavelength"
+            : "Centre λ " + wavelength.toFixed(4) + " μm",
+          "epoch-wavelength",
+        ),
+      );
       b.dataset.epoch = String(index);
       b.setAttribute(
         "aria-pressed",
@@ -231,7 +306,8 @@ export function createObservationConsole({
       $("instrument-dates").append(b);
     });
     $("instrument-comparison").hidden = !pair;
-    $("instrument-compare").hidden = pair;
+    $("instrument-compare").hidden =
+      pair || v.field.comparison_status !== "provisional_restricted";
     $("instrument-exposure").hidden = !pair;
     $("instrument-compare").disabled =
       v.field.comparison_status !== "provisional_restricted";
@@ -240,8 +316,12 @@ export function createObservationConsole({
         ? "Compare restricted M101 area →"
         : "No suitable second date installed";
     $("instrument-suitability").textContent = pair
-      ? "Scientific approval PENDING · Wavelength-screened small area; PSF/background equivalence not established. Visual differences are not discoveries."
-      : availability(v.field).explanation + " Scientific approval PENDING.";
+      ? "Scientific approval PENDING. Visual differences are not discoveries."
+      : v.field.comparison_status === "provisional_restricted"
+        ? "Wider view: one exposure at a time. Only the small comparison area was screened."
+        : v.field.comparison_status === "incompatible_tested_pairs"
+          ? "Tested pairs failed wavelength checks. Single-observation viewing only."
+          : "One observation installed. No temporal comparison has been screened.";
     $("instrument-note-count").textContent = String(v.questions.length);
     $("instrument-add").disabled = !v.inspection?.valid;
     root
@@ -413,7 +493,7 @@ export function createObservationConsole({
       ctx.arc(x, y, 10, 0, Math.PI * 2);
       ctx.stroke();
       if (label) {
-        ctx.font = "12px Outfit";
+        ctx.font = "13px 'Source Sans 3'";
         ctx.fillStyle = "#f1eee5";
         ctx.fillText(label, x + 13, y - 8);
       }
@@ -979,11 +1059,15 @@ export function createObservationConsole({
     return select("m101");
   }
   return {
-    async open(field, { mode } = {}) {
+    async open(field, { mode, comparison = false } = {}) {
       opened = true;
       root.hidden = false;
       setMode(mode === "classic" || (mode === undefined && classic));
-      if (field && field !== engine.active?.field.id) await select(field);
+      if (comparison) {
+        retry = () => run(() => engine.compare());
+        await run(() => engine.compare());
+      } else if (field && field !== engine.active?.field.id)
+        await select(field);
       else if (!engine.active) {
         if (field) await select(field);
         else
@@ -999,6 +1083,7 @@ export function createObservationConsole({
       }
     },
     close() {
+      closeTools();
       engine.persist();
       opened = false;
       uiSequence++;

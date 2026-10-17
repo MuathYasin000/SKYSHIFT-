@@ -1,0 +1,1770 @@
+@font-face {
+  font-family: Manrope;
+  src: url("./assets/fonts/Manrope.ttf") format("truetype");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("./assets/fonts/SourceSans3.ttf") format("truetype");
+  font-weight: 200 900;
+  font-display: swap;
+}
+:root {
+  --ivory: #f4f1e9;
+  --muted: #adb1b5;
+  --amber: #edbf78;
+  --cyan: #8cd6d8;
+  --border: #ffffff24;
+  --panel: #151a1f;
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+  font-weight: 400;
+  background: #090c0e;
+  color: var(--ivory);
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  overflow: auto;
+  background: #090c0e;
+}
+h1,
+h2,
+h3,
+.site-brand span {
+  font-family: Manrope, "Segoe UI", sans-serif;
+}
+button,
+input,
+select,
+textarea,
+a {
+  font-family: inherit;
+}
+button,
+.primary-link,
+.secondary-link {
+  min-height: 44px;
+  font-size: 15px;
+  font-weight: 550;
+  border-radius: 5px;
+}
+button {
+  padding: 10px 16px;
+  background: #171d22;
+  border: 1px solid #ffffff35;
+  color: var(--ivory);
+}
+button:hover {
+  background: #252d34;
+  border-color: #b0b8be;
+}
+a {
+  color: var(--cyan);
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #b4f0f1;
+  outline-offset: 4px;
+}
+input,
+select,
+textarea {
+  font: inherit;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -70px;
+  z-index: 100;
+  background: #fff;
+  color: #10171b;
+  padding: 12px;
+}
+.skip-link:focus {
+  top: 8px;
+}
+.site-header {
+  height: 92px;
+  padding: 12px max(28px, calc((100vw - 1440px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+  border-bottom: 1px solid var(--border);
+  background: #090c0ef7;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px);
+}
+.site-brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  color: var(--ivory);
+  flex: none;
+}
+.site-brand img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+.site-brand span {
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  font-size: 20px;
+}
+.site-brand small {
+  font-family: "Source Sans 3", sans-serif;
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  color: #a6b0b8;
+  font-weight: 450;
+  margin-top: 3px;
+}
+.site-navigation {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;
+}
+.site-navigation a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #d1d5d6;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 550;
+  border-bottom: 2px solid transparent;
+  padding: 10px 0;
+}
+.site-navigation a:hover,
+.site-navigation a[aria-current] {
+  color: #fff;
+  border-bottom-color: var(--amber);
+}
+.site-navigation .nav-universe {
+  font-weight: 400;
+  color: #aebfc3;
+}
+#site-more {
+  border: 0;
+  background: none;
+  padding: 8px;
+  font-size: 15px;
+}
+.website-content {
+  max-width: 1440px;
+  margin: auto;
+  padding: 30px 36px 0;
+}
+.home-intro {
+  display: grid;
+  grid-template-columns: 1fr 1.02fr;
+  gap: 44px;
+  align-items: center;
+  min-height: 330px;
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  line-height: 1.5;
+  color: #b7c0c6;
+  margin: 0 0 14px;
+}
+.status-dot {
+  display: inline-block;
+  background: var(--cyan);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: 2px;
+}
+.intro-copy h1 {
+  font-size: clamp(36px, 3.7vw, 54px);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 1.13;
+  margin: 0 0 17px;
+}
+.intro-copy h1 span {
+  color: var(--amber);
+}
+.intro-lead {
+  max-width: 550px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #c0c7cb;
+  margin: 0 0 22px;
+}
+.intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+.primary-link,
+.secondary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 13px 20px;
+  background: #f0e6d5;
+  color: #171b1d;
+  text-decoration: none;
+  border: 1px solid #f0e6d5;
+}
+.primary-link:hover {
+  background: #fff6e7;
+  color: #090c0e;
+}
+.text-link {
+  font-size: 15px;
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.text-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.intro-note {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #a9b2b8;
+  margin: 14px 0 0;
+}
+.intro-note strong {
+  color: #e4c593;
+  font-weight: 600;
+}
+.intro-image {
+  margin: 0;
+  min-width: 0;
+  height: 310px;
+  position: relative;
+  border: 1px solid #ffffff2c;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #10191b;
+}
+.intro-image > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 70% 50%;
+}
+.intro-image figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #090e12eb;
+  padding: 12px 16px;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.intro-image figcaption span {
+  font-weight: 600;
+}
+.intro-image figcaption small {
+  display: block;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: 400;
+  color: #c8cdd0;
+  margin-top: 5px;
+}
+.intro-image figcaption a {
+  font-size: 11px;
+  letter-spacing: 0;
+  flex: none;
+}
+.intro-image > button {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 13px;
+  min-height: 38px;
+  background: #0a1116ed;
+  padding: 8px 12px;
+}
+#infrared-legend {
+  position: absolute;
+  inset: 59px 12px auto;
+  padding: 10px 16px;
+  background: #10191bf7;
+  border: 1px solid #ffffff44;
+  border-radius: 4px;
+  max-height: 205px;
+  overflow: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+#infrared-legend p {
+  margin: 5px 0;
+}
+.field-section {
+  padding-top: 34px;
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.section-heading .eyebrow {
+  margin-bottom: 6px;
+}
+.section-heading h2 {
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 550;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+.field-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.field-tools input {
+  padding: 11px 15px;
+  background: #10161a;
+  color: #fff;
+  border: 1px solid #ffffff30;
+  border-radius: 5px;
+  font-size: 15px;
+  max-width: 225px;
+  min-height: 44px;
+}
+.home-fields {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+.field-card {
+  border-top: 1px solid #6c777b;
+  background: #101519;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+  transition:
+    background 0.18s,
+    transform 0.18s;
+}
+.field-card:hover {
+  background: #182027;
+  transform: translateY(-3px);
+}
+.field-card > a:first-child {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+.field-image {
+  height: 130px;
+  background: #060b10;
+  position: relative;
+  overflow: hidden;
+}
+.field-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  display: block;
+}
+.field-image > span {
+  position: absolute;
+  left: 12px;
+  bottom: 9px;
+  background: #071015df;
+  padding: 4px 7px;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: #c9d2d6;
+}
+.field-card-copy {
+  padding: 14px 17px 12px;
+}
+.field-card-copy .eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  margin-bottom: 7px;
+  color: #a5b4bc;
+}
+.field-card-copy h3 {
+  font-size: 19px;
+  letter-spacing: -0.025em;
+  font-weight: 550;
+  line-height: 1.4;
+  margin: 0 0 7px;
+}
+.field-card-copy > p:not(.eyebrow) {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #b4bfc4;
+  margin: 0 0 12px;
+}
+.field-card-copy .field-date {
+  font-size: 12px !important;
+  color: #a7b5bf !important;
+}
+.field-action {
+  font-size: 14px;
+  font-weight: 550;
+  color: #e9d4af;
+}
+.field-compare {
+  display: block;
+  padding: 12px 17px;
+  border-top: 1px solid #ffffff24;
+  background: #211d16;
+  color: #ebd3ac;
+  font-size: 15px;
+  text-decoration: none;
+  font-weight: 600;
+  min-height: 57px;
+}
+.field-compare small {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: #c0b49d;
+  margin-top: 2px;
+}
+.field-availability {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #aeb8bd;
+  margin: 0;
+  border-top: 1px solid var(--border);
+  padding: 12px 17px;
+  min-height: 67px;
+  display: flex;
+  align-items: center;
+}
+.field-status {
+  font-size: 12px;
+  color: #a6b1b8;
+  margin: 12px 0 0;
+}
+.empty-fields {
+  font-size: 17px;
+  grid-column: 1/-1;
+  padding: 30px;
+}
+.mission-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  border-top: 1px solid var(--border);
+  padding: 70px 0;
+  margin-top: 60px;
+  scroll-margin-top: 110px;
+  align-items: center;
+}
+.mission-copy h2 {
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  font-weight: 550;
+  margin: 0 0 24px;
+}
+.mission-copy > p:not(.eyebrow) {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #b9c3c9;
+  max-width: 570px;
+}
+.website-components {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 20px 0;
+}
+.website-components button {
+  font-size: 14px;
+  padding: 9px 13px;
+}
+.mission-copy .component-explanation {
+  font-size: 15px !important;
+  min-height: 80px;
+  color: #c8d7dc !important;
+}
+.mission-model {
+  height: 430px;
+  position: relative;
+  background: #0c1115;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.mission-model canvas {
+  height: 100%;
+  width: 100%;
+  display: block;
+  touch-action: none;
+  outline-offset: -3px;
+}
+.model-start {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  background: #090c0e55;
+}
+.model-start img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  z-index: 0;
+}
+.model-start button,
+.model-start small {
+  position: relative;
+  z-index: 1;
+}
+.model-start button {
+  background: #f0e6d5;
+  color: #15212b;
+  border-color: #f0e6d5;
+  font-weight: 600;
+}
+.model-start small {
+  font-size: 13px;
+  padding: 5px 10px;
+  background: #080e12dc;
+}
+#mission-model-status {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 12px 16px;
+  background: #0a1015ef;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #bac5ca;
+  pointer-events: none;
+}
+#mission-model-tools {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+#mission-model-tools button {
+  font-size: 13px;
+  padding: 7px 11px;
+}
+.trust-section {
+  padding: 44px 0;
+  border-block: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  gap: 38px;
+}
+.trust-section h2 {
+  font-size: 28px;
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+  margin: 0;
+}
+.trust-section h3 {
+  font-size: 17px;
+  line-height: 1.5;
+  margin: 10px 0;
+  font-weight: 550;
+}
+.trust-section article > span {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #c7ae83;
+}
+.trust-section p:not(.eyebrow) {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #b1bbc1;
+  margin: 0;
+}
+.universe-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  padding: 54px 0;
+}
+.universe-entry h2 {
+  font-size: 32px;
+  letter-spacing: -0.04em;
+  margin: 0 0 12px;
+  font-weight: 500;
+}
+.universe-entry p:not(.eyebrow) {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #b5bfc6;
+  max-width: 730px;
+  margin: 0;
+}
+.secondary-link {
+  background: transparent;
+  color: #e2d1b5;
+  border-color: #846e4b;
+  white-space: nowrap;
+}
+.site-footer {
+  padding: 26px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+.site-footer > a {
+  font-size: 10px;
+  color: #c9cecc;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-footer p {
+  font-size: 12px;
+  color: #a2aeb7;
+  line-height: 1.5;
+  margin: 0;
+}
+.site-footer button {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.site-error {
+  margin: 15px 30px;
+  padding: 16px 22px;
+  border: 1px solid #c98157;
+  background: #261c16;
+  font-size: 16px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 30;
+}
+.site-error a {
+  display: inline-block;
+  margin: 8px;
+}
+.site-error button {
+  margin-left: 20px;
+}
+.space-dialog {
+  background: #141b20;
+  border-radius: 9px;
+  border-color: #5c6971;
+  font-family: "Source Sans 3", sans-serif;
+  max-width: min(700px, calc(100vw - 24px));
+  max-height: 85dvh;
+  padding: 26px;
+}
+.space-dialog h2 {
+  font-family: Manrope;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.4;
+}
+.space-dialog p,
+.space-dialog li {
+  font-size: 16px;
+  line-height: 1.7;
+}
+.space-dialog > a {
+  display: block;
+  margin: 16px 0;
+  line-height: 1.5;
+  font-size: 16px;
+}
+.space-dialog::backdrop {
+  background: #000b;
+  backdrop-filter: blur(3px);
+}
+/* Scientific imagery is the visual centre. Website navigation stays in place. */
+.science-page {
+  overflow: hidden;
+  background: #090c0e;
+}
+.science-page .observation-console {
+  inset: 110px 28px 16px;
+  animation: none;
+  background: #090c0e;
+  gap: 12px;
+}
+.science-page .instrument-header :is(h1, h2) {
+  font-size: 30px;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+.science-page .instrument-header p.space-eyebrow {
+  font-size: 10px;
+  color: #a6babf;
+}
+.science-page .instrument-header #instrument-subtitle {
+  font-size: 15px;
+  max-width: 700px;
+  line-height: 1.5;
+  color: #b7c2ca;
+}
+.science-page .instrument-actions {
+  max-width: none;
+}
+.science-page .instrument-actions button {
+  font-size: 14px;
+  min-height: 44px;
+  padding: 9px 16px;
+}
+.science-page #instrument-save {
+  background: #f0e6d5;
+  border-color: #f0e6d5;
+  color: #172128;
+}
+.instrument-selection {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+.instrument-selection label {
+  font-size: 15px;
+  color: #c2ccd1;
+}
+.instrument-selection select {
+  max-width: 440px;
+  min-height: 44px;
+  padding: 9px 14px;
+  background: #172026;
+  border: 1px solid #65747a;
+  color: #f1eee8;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.instrument-selection p {
+  font-size: 13px;
+  color: #b7c4ca;
+  margin: 0 0 0 auto;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+.science-page .instrument-viewbar > span {
+  font-size: 10px;
+  color: #aebec5;
+}
+.science-page .instrument-viewbar button {
+  font-size: 14px;
+  min-height: 44px;
+  padding: 8px 14px;
+}
+.science-page .instrument-canvases {
+  background: #04080c;
+  border: 1px solid #344148;
+  border-radius: 7px;
+  gap: 1px;
+  min-height: 130px;
+}
+.science-page .instrument-canvases figcaption {
+  font-family: "Source Sans 3";
+  font-size: 12px;
+  padding: 7px 9px;
+  border-radius: 3px;
+}
+.science-page .instrument-dates button {
+  font-size: 15px;
+  min-height: 46px;
+  border-radius: 5px;
+  background: #151d23;
+  padding: 9px 15px;
+  min-width: 260px;
+}
+.science-page .instrument-dates small {
+  font-size: 11px;
+}
+.science-page .instrument-dates [aria-pressed="true"] {
+  border-color: #dfbb7d;
+  background: #27251f;
+  color: #f1d09b;
+}
+.science-page .instrument-comparison {
+  gap: 8px;
+}
+.science-page .instrument-comparison button {
+  font-size: 14px;
+  min-height: 44px;
+  padding: 8px 16px;
+}
+.science-page .instrument-comparison [aria-pressed="true"] {
+  background: #e7d7bc;
+  color: #1d2428;
+  border-color: #e7d7bc;
+}
+.science-page .instrument-viewtools button {
+  min-height: 44px;
+  font-size: 14px;
+  padding: 8px 14px;
+}
+.science-page .instrument-viewtools output {
+  font-size: 15px;
+}
+.science-page .instrument-viewtools > span {
+  font-size: 12px;
+}
+.science-page .instrument-inspection {
+  min-height: 56px;
+}
+.science-page .instrument-inspection p {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.science-page .instrument-inspection button {
+  font-size: 14px;
+  min-height: 44px;
+}
+.science-page .instrument-footer p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #b3bfc5;
+}
+.science-page .instrument-footer button {
+  font-size: 14px;
+  min-height: 44px;
+  padding: 10px 16px;
+}
+.science-page #instrument-compare {
+  background: #30291d;
+  border-color: #a18c62;
+}
+.science-page .instrument-panel {
+  width: 315px;
+  border-radius: 7px;
+  padding: 20px;
+  background: #151e24;
+  box-shadow: none;
+}
+.science-page .instrument-panel h3 {
+  font-size: 21px;
+}
+.science-page .instrument-panel p,
+.science-page .instrument-panel label {
+  font-size: 15px;
+  line-height: 1.65;
+}
+.science-page .instrument-note strong {
+  font-size: 16px;
+}
+.science-page .instrument-note small {
+  font-size: 12px;
+}
+.science-page .instrument-note button {
+  min-height: 44px;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+.science-page .instrument-wipe-row {
+  font-size: 14px;
+  gap: 16px;
+}
+.science-page #instrument-wipe {
+  min-height: 35px;
+}
+.science-page .instrument-status {
+  font-size: 15px;
+  max-width: 720px;
+  padding: 16px 22px;
+  bottom: 80px;
+  pointer-events: auto;
+}
+.science-page #instrument-retry {
+  align-self: center;
+}
+/* The optional universe is a separate presentation, never a prerequisite. */
+.universe-active {
+  overflow: hidden;
+  background: #000;
+}
+.universe-active #universe-view {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+}
+.universe-active .site-error {
+  position: fixed;
+  top: 100px;
+  z-index: 40;
+}
+.universe-active .space-header {
+  font-family: "Source Sans 3";
+  background: #060a0eb0;
+}
+.universe-active .space-brand span {
+  font-family: Manrope;
+}
+.universe-active .space-context h2,
+.universe-active .telescope-experience h2 {
+  font-family: Manrope;
+  font-weight: 550;
+}
+.universe-active .context-actions button:not(:first-child) {
+  color: var(--cyan);
+}
+.universe-loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+  background: #0c1319;
+  z-index: 35;
+}
+.universe-loading h2 {
+  font-size: 30px;
+  max-width: 80vw;
+  text-align: center;
+}
+.universe-loading a {
+  font-size: 18px;
+  min-height: 44px;
+}
+.universe-active .mission-dock {
+  max-width: calc(100vw - 24px);
+}
+@media (min-width: 1600px) {
+  .home-intro {
+    min-height: 365px;
+  }
+  .intro-image {
+    height: 340px;
+  }
+  .field-image {
+    height: 150px;
+  }
+}
+@media (max-width: 1100px) {
+  .site-header {
+    padding-inline: 20px;
+    gap: 16px;
+  }
+  .site-navigation {
+    gap: 20px;
+  }
+  .site-brand small {
+    font-size: 10px;
+  }
+  .site-navigation a {
+    font-size: 15px;
+  }
+  .website-content {
+    padding-inline: 24px;
+  }
+  .home-intro {
+    gap: 24px;
+  }
+  .intro-copy h1 {
+    font-size: 38px;
+  }
+  .intro-lead {
+    font-size: 16px;
+  }
+  .intro-actions {
+    gap: 8px;
+  }
+  .home-fields {
+    gap: 12px;
+  }
+  .field-card-copy {
+    padding: 12px;
+  }
+  .field-card-copy h3 {
+    font-size: 17px;
+  }
+  .field-card-copy p {
+    font-size: 13px !important;
+  }
+  .field-availability,
+  .field-compare {
+    padding-inline: 12px;
+  }
+  .trust-section {
+    gap: 20px;
+  }
+  .mission-section {
+    gap: 36px;
+  }
+  .science-page .instrument-header > div:first-child {
+    max-width: 58%;
+  }
+  .science-page .instrument-header :is(h1, h2) {
+    font-size: 26px;
+  }
+  .science-page .instrument-panel {
+    width: 270px;
+  }
+  .instrument-selection p {
+    max-width: 230px;
+  }
+  .science-page .instrument-viewbar > span {
+    display: none;
+  }
+}
+@media (max-width: 800px) {
+  .site-header {
+    height: 112px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px 12px;
+    padding: 9px 18px;
+  }
+  .site-brand img {
+    width: 42px;
+    height: 42px;
+  }
+  .site-brand span {
+    font-size: 17px;
+  }
+  .site-brand small {
+    font-size: 10px;
+  }
+  .site-navigation {
+    grid-row: 2;
+    grid-column: 1/3;
+    justify-content: space-between;
+    margin: 0;
+    gap: 12px;
+  }
+  .site-navigation a {
+    font-size: 14px;
+    min-height: 42px;
+    padding: 7px 0;
+  }
+  .site-header #site-more {
+    grid-row: 1;
+    grid-column: 2;
+  }
+  .website-content {
+    padding: 24px 20px 0;
+  }
+  .home-intro {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .intro-copy h1 {
+    font-size: 43px;
+  }
+  .intro-lead {
+    max-width: none;
+  }
+  .intro-image {
+    height: 260px;
+  }
+  .intro-note {
+    margin-top: 10px;
+  }
+  .field-section {
+    padding-top: 30px;
+  }
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .section-heading h2 {
+    font-size: 25px;
+  }
+  .field-tools {
+    width: 100%;
+  }
+  .field-tools input {
+    max-width: none;
+    flex: 1;
+    min-width: 0;
+  }
+  .home-fields {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .field-image {
+    height: 150px;
+  }
+  .field-card-copy h3 {
+    font-size: 19px;
+  }
+  .field-card-copy p {
+    font-size: 14px !important;
+  }
+  .field-card-copy {
+    padding: 15px;
+  }
+  .field-availability,
+  .field-compare {
+    padding-inline: 15px;
+  }
+  .mission-section {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 38px 0;
+    margin-top: 36px;
+  }
+  .mission-copy h2 {
+    font-size: 33px;
+  }
+  .mission-model {
+    height: 400px;
+  }
+  .mission-copy .component-explanation {
+    min-height: 0;
+  }
+  .trust-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  .trust-section > div {
+    grid-column: 1/-1;
+  }
+  .universe-entry {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 36px 0;
+    gap: 20px;
+  }
+  .site-footer {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .site-footer p {
+    order: 3;
+    width: 100%;
+  }
+  .science-page .observation-console {
+    inset: 126px 14px 12px;
+    gap: 9px;
+  }
+  .science-page .instrument-header {
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .science-page .instrument-header :is(h1, h2) {
+    font-size: 24px;
+  }
+  .science-page .instrument-header #instrument-subtitle {
+    display: none;
+  }
+  .science-page .instrument-actions button {
+    font-size: 13px;
+    padding: 8px 11px;
+  }
+  .science-page .instrument-actions {
+    max-width: 48%;
+    gap: 4px;
+  }
+  .instrument-selection {
+    flex-wrap: wrap;
+    gap: 7px 12px;
+    padding-bottom: 9px;
+  }
+  .instrument-selection label {
+    font-size: 13px;
+  }
+  .instrument-selection select {
+    max-width: calc(100% - 80px);
+    flex: 1;
+    font-size: 14px;
+  }
+  .instrument-selection p {
+    font-size: 12px;
+    margin: 0;
+    max-width: none;
+    flex-basis: 100%;
+  }
+  .science-page .instrument-viewbar button {
+    font-size: 13px;
+    padding: 8px 12px;
+    min-height: 44px;
+  }
+  .science-page .instrument-dates button {
+    min-width: 215px;
+    font-size: 13px;
+    padding: 8px 12px;
+    display: block;
+  }
+  .science-page .instrument-dates small {
+    font-size: 10px;
+  }
+  .science-page .instrument-canvases figcaption {
+    font-size: 10px;
+    padding: 5px 7px;
+  }
+  .science-page .instrument-viewtools > span {
+    display: none;
+  }
+  .science-page .instrument-comparison {
+    gap: 5px;
+  }
+  .science-page .instrument-comparison button {
+    font-size: 13px;
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+  .science-page .instrument-inspection p {
+    font-size: 12px;
+  }
+  .science-page .instrument-inspection button {
+    font-size: 13px;
+    padding: 8px;
+    max-width: 100px;
+  }
+  .science-page .instrument-footer {
+    align-items: center;
+    gap: 10px;
+  }
+  .science-page .instrument-footer p {
+    font-size: 11px;
+  }
+  .science-page .instrument-footer button {
+    max-width: 155px;
+    font-size: 12px;
+    white-space: normal;
+    padding: 8px 12px;
+  }
+  .science-page .instrument-panel {
+    position: absolute;
+    top: 140px;
+    right: 0;
+    bottom: 55px;
+    width: min(315px, calc(100vw - 28px));
+    z-index: 5;
+    box-shadow: -10px 10px 30px #0008;
+  }
+  .science-page .instrument-wipe-row {
+    font-size: 12px;
+    gap: 10px;
+  }
+  .science-page .instrument-status {
+    font-size: 13px;
+    width: 98%;
+    bottom: 65px;
+    max-height: 40vh;
+    overflow: auto;
+  }
+}
+@media (max-width: 480px) {
+  .website-content {
+    padding-inline: 16px;
+  }
+  .site-header {
+    padding-inline: 14px;
+  }
+  .site-navigation {
+    gap: 8px;
+  }
+  .site-navigation a {
+    font-size: 13px;
+  }
+  .intro-copy h1 {
+    font-size: 37px;
+  }
+  .intro-copy .eyebrow {
+    font-size: 9px;
+  }
+  .intro-lead {
+    font-size: 16px;
+  }
+  .intro-actions .primary-link {
+    width: 100%;
+    font-size: 15px;
+    gap: 12px;
+  }
+  .intro-image {
+    height: 235px;
+  }
+  .intro-image figcaption {
+    display: block;
+    padding: 11px 12px;
+  }
+  .intro-image figcaption a {
+    display: inline-block;
+    margin-top: 7px;
+  }
+  .intro-image figcaption small {
+    font-size: 11px;
+  }
+  .intro-image > button {
+    font-size: 12px;
+  }
+  .home-fields {
+    gap: 10px;
+  }
+  .field-image {
+    height: 110px;
+  }
+  .field-card-copy {
+    padding: 12px 10px;
+  }
+  .field-card-copy h3 {
+    font-size: 16px;
+  }
+  .field-card-copy > p:not(.eyebrow) {
+    font-size: 13px !important;
+    line-height: 1.55;
+  }
+  .field-card-copy .eyebrow {
+    font-size: 8px;
+  }
+  .field-date {
+    font-size: 11px !important;
+  }
+  .field-compare {
+    font-size: 13px;
+    padding: 12px 10px;
+  }
+  .field-availability {
+    font-size: 11px;
+    padding: 12px 10px;
+    min-height: 82px;
+  }
+  .field-compare small {
+    font-size: 10px;
+  }
+  .field-action {
+    font-size: 13px;
+  }
+  .field-status {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  .field-tools {
+    flex-wrap: wrap;
+  }
+  .trust-section {
+    grid-template-columns: 1fr;
+  }
+  .trust-section > div {
+    grid-column: auto;
+  }
+  .mission-model {
+    height: 350px;
+  }
+  .mission-copy h2 {
+    font-size: 30px;
+  }
+  .website-components button {
+    font-size: 13px;
+    padding: 9px 11px;
+  }
+  .science-page .instrument-header :is(h1, h2) {
+    font-size: 21px;
+  }
+  .science-page .instrument-header > div:first-child {
+    max-width: 52%;
+  }
+  .science-page .instrument-header p.space-eyebrow {
+    font-size: 9px;
+  }
+  .science-page .instrument-actions {
+    max-width: 48%;
+  }
+  .science-page .instrument-actions button {
+    font-size: 12px;
+    padding: 8px 10px;
+    min-height: 40px;
+  }
+  .science-page #instrument-close {
+    display: none;
+  }
+  .science-page .instrument-viewbar button {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+  .science-page .instrument-viewtools button {
+    padding: 7px 12px;
+  }
+  .science-page .instrument-comparison button {
+    font-size: 12px;
+    padding: 7px 10px;
+  }
+  .science-page .instrument-footer p {
+    font-size: 10px;
+  }
+  .science-page .instrument-canvases figcaption {
+    font-size: 9px;
+  }
+  .space-dialog {
+    padding: 18px;
+  }
+  .space-dialog h2 {
+    font-size: 22px;
+  }
+  .space-dialog p {
+    font-size: 15px;
+  }
+}
+@media (max-height: 720px) {
+  .science-page {
+    overflow: auto;
+  }
+  .science-page .observation-console {
+    position: relative;
+    inset: auto;
+    margin: 18px 20px;
+    min-height: 670px;
+    height: calc(100dvh - 130px);
+  }
+  .science-page .instrument-canvases {
+    min-height: 230px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+  .field-card {
+    transition: none;
+  }
+  .field-card:hover {
+    transform: none;
+  }
+}
+.science-page .instrument-viewbar {
+  display: none;
+}
+.instrument-toolbar {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+.nav-label-short {
+  display: none;
+}
+#instrument-tools-toggle {
+  display: none;
+}
+@media (max-width: 480px) {
+  .science-page .instrument-header > div:first-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+  .science-page .instrument-header .instrument-actions {
+    width: 100%;
+    max-width: none;
+    justify-content: flex-start;
+  }
+  .science-page #instrument-close {
+    display: block;
+  }
+}
+.science-page .instrument-selection {
+  position: relative;
+  flex-wrap: nowrap;
+}
+.science-page #instrument-spectral-summary {
+  display: none;
+}
+.science-page .instrument-dates button {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 10px;
+  flex: 1;
+  min-width: 240px;
+  align-content: center;
+}
+.science-page .instrument-dates .epoch-wavelength {
+  grid-column: 2;
+  font-size: 11px;
+  letter-spacing: 0;
+  color: #bdc8ce;
+}
+.science-page .instrument-epoch-tools .instrument-dates {
+  flex: 1;
+  flex-basis: 450px;
+  min-width: 0;
+}
+.science-page .instrument-footer p {
+  font-size: 13px !important;
+}
+@media (max-width: 1100px) and (min-width: 801px) {
+  .science-page .instrument-header p.space-eyebrow,
+  .science-page .instrument-header #instrument-subtitle {
+    display: none;
+  }
+  .science-page .instrument-header {
+    min-height: 44px;
+    align-items: center;
+  }
+  .science-page .instrument-header h1 {
+    font-size: 25px;
+    margin: 0;
+  }
+  .science-page .instrument-selection select {
+    max-width: 390px;
+    flex: 1;
+    min-width: 0;
+  }
+  .science-page .instrument-toolbar {
+    margin-left: auto;
+  }
+  .science-page .instrument-epoch-tools .instrument-dates {
+    flex-basis: 450px;
+  }
+  .science-page .instrument-comparison button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+@media (max-width: 800px) {
+  .science-page .instrument-header p.space-eyebrow,
+  .science-page .instrument-header #instrument-subtitle {
+    display: none;
+  }
+  .science-page .instrument-header {
+    min-height: 44px;
+    align-items: center;
+  }
+  .science-page .instrument-header h1 {
+    font-size: 21px;
+    margin: 0;
+  }
+  .science-page .instrument-selection label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+  .science-page .instrument-selection select {
+    max-width: calc(100% - 88px);
+    flex: 1;
+    min-width: 0;
+  }
+  .science-page #instrument-tools-toggle {
+    display: block;
+    flex: none;
+    min-height: 44px;
+    font-size: 14px;
+  }
+  .science-page .instrument-toolbar {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% - 5px);
+    z-index: 7;
+    flex-direction: column;
+    width: 210px;
+    background: #1b252d;
+    border: 1px solid #6e808a;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 15px 40px #000b;
+  }
+  .science-page .tools-open .instrument-toolbar {
+    display: flex;
+  }
+  .science-page .instrument-toolbar button {
+    flex: none;
+    font-size: 15px;
+    text-align: left;
+  }
+  .science-page .instrument-epoch-tools .instrument-dates {
+    flex-basis: 100%;
+  }
+  .science-page .instrument-dates button {
+    min-width: 0;
+    flex: 1;
+    display: block;
+    font-size: 13px;
+    padding: 7px 9px;
+  }
+  .science-page .instrument-dates .epoch-wavelength {
+    display: block;
+    font-size: 11px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .science-page .instrument-dates time {
+    display: block;
+    line-height: 1.5;
+  }
+  .science-page .instrument-dates small {
+    font-size: 10px;
+  }
+  .science-page .instrument-footer p {
+    font-size: 12px !important;
+    line-height: 1.55;
+  }
+}
+@media (max-width: 480px) {
+  .nav-label-wide {
+    display: none;
+  }
+  .nav-label-short {
+    display: inline;
+  }
+  .science-page .instrument-header {
+    align-items: center;
+    min-height: 44px;
+  }
+  .science-page .instrument-header > div:first-child {
+    max-width: 52%;
+  }
+  .science-page .instrument-header h1 {
+    font-size: 19px;
+  }
+  .science-page .instrument-header .instrument-actions {
+    max-width: 48%;
+  }
+  .science-page .instrument-actions button {
+    font-size: 12px;
+    min-height: 44px;
+    padding: 8px 10px;
+  }
+  .science-page .instrument-dates button {
+    font-size: 12px;
+  }
+  .science-page .instrument-selection {
+    padding-bottom: 8px;
+  }
+}
+.instrument-toolbar button {
+  font-size: 14px;
+  padding: 8px 12px;
+  min-height: 44px;
+  white-space: nowrap;
+}
+.science-page .instrument-selection p {
+  margin-left: 0;
+  max-width: 250px;
+}
+.instrument-epoch-tools {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: none;
+  flex-wrap: wrap;
+}
+.instrument-epoch-tools .instrument-dates {
+  flex: 1;
+}
+.instrument-epoch-tools .instrument-comparison {
+  flex: none;
+}
+@media (max-width: 1100px) {
+  .instrument-selection {
+    flex-wrap: wrap;
+  }
+  .science-page .instrument-selection p {
+    max-width: none;
+    margin-left: auto;
+  }
+  .instrument-toolbar {
+    margin-left: 0;
+  }
+  .instrument-toolbar button {
+    font-size: 13px;
+  }
+  .instrument-epoch-tools {
+    gap: 8px;
+  }
+  .instrument-epoch-tools .instrument-dates {
+    flex-basis: 100%;
+  }
+}
+@media (max-width: 800px) {
+  .instrument-selection {
+    gap: 8px;
+  }
+  .instrument-selection select {
+    max-width: calc(100% - 80px);
+  }
+  .science-page .instrument-selection p {
+    flex-basis: auto;
+    max-width: 100%;
+    margin-left: 0;
+    font-size: 11px;
+  }
+  .instrument-toolbar {
+    margin-left: auto;
+  }
+  .instrument-toolbar button {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+  .instrument-epoch-tools .instrument-dates {
+    min-height: 46px;
+  }
+}
+@media (max-width: 480px) {
+  .science-page .instrument-selection p {
+    display: none;
+  }
+  .instrument-toolbar {
+    width: 100%;
+    margin-left: 0;
+    justify-content: space-between;
+  }
+  .instrument-toolbar button {
+    flex: 1;
+  }
+  .science-page .instrument-header p.space-eyebrow {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .science-page .instrument-header .instrument-actions {
+    max-width: none;
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+  .science-page .instrument-header > div:first-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+  .science-page #instrument-close {
+    display: block;
+  }
+}

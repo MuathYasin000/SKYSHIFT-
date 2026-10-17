@@ -29,7 +29,13 @@ def test_all_pages_have_unique_ids_and_resolvable_local_links():
             target=path.parent/file
             if target.is_dir():target=target/'index.html'
             assert target.is_file(),(path.name,ref)
-            if anchor and target.suffix=='.html':assert anchor in Page(target.read_text(encoding='utf-8')).ids,(path.name,ref)
+            if anchor and target.suffix=='.html':
+                # The main website uses explicit same-document application routes.
+                # Conventional document anchors elsewhere must still resolve.
+                if path.name=='index.html' and not file and anchor in {'home','observations','compare','mission','universe'}:
+                    assert './website-bootstrap.js' in p.scripts
+                    continue
+                assert anchor in Page(target.read_text(encoding='utf-8')).ids,(path.name,ref)
 
 def test_comparison_and_explorer_controllers_find_every_static_dom_id():
     for controller,page in [('app.js','compare.html'),('explore.js','explore.html')]:

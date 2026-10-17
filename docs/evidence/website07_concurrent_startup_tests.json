@@ -1,0 +1,70 @@
+{
+  "date_utc": "2026-10-17T08:27:44.015Z",
+  "server": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.1",
+    "directory_id": "cf30d37f4287c0b3",
+    "content_id": "dd5c954617380cf6c8cf76d6d41d039be7749e36f1534ff81f737d894d01c96e",
+    "release_id": "workspace",
+    "app_version": "0.7-local-workspace"
+  },
+  "results": [
+    {
+      "name": "Installed Chrome",
+      "version": "155.0.8059.80",
+      "trial": 0,
+      "status": "pass",
+      "website_science_and_input_ready_ms": 1111.8082,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Microsoft Edge",
+      "version": "155.0.4283.45",
+      "trial": 0,
+      "status": "pass",
+      "website_science_and_input_ready_ms": 1308.4839999999997,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Installed Chrome",
+      "version": "155.0.8059.80",
+      "trial": 1,
+      "status": "pass",
+      "website_science_and_input_ready_ms": 1020.2095000000004,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Microsoft Edge",
+      "version": "155.0.4283.45",
+      "trial": 1,
+      "status": "pass",
+      "website_science_and_input_ready_ms": 1104.6571000000004,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Installed Chrome",
+      "version": "155.0.8059.80",
+      "trial": 2,
+      "status": "pass",
+      "website_science_and_input_ready_ms": 1206.0235000000002,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Microsoft Edge",
+      "version": "155.0.4283.45",
+      "trial": 2,
+      "status": "pass",
+      "website_science_and_input_ready_ms": 1364.2151000000003,
+      "errors": [],
+      "failed": []
+    }
+  ],
+  "user_session": "Fresh-profile checks of 0.7; no claim of verification in the user session",
+  "scope": "Two browsers concurrently per trial, three trials; website ready without Universe, comparison loaded and information opened; no external requests required"
+}

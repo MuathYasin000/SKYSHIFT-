@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "retrieved_date_utc": "2026-10-17",
+  "source_repository": "https://github.com/google/fonts",
+  "source_commit": "47d54ca1ebb14fd864695f1d39dc734f39017c33",
+  "license": "SIL Open Font License 1.1",
+  "modifications": "None; original variable TTF bytes retained, with original copyright and license files",
+  "assets": [
+    {
+      "family": "Manrope", "file": "Manrope.ttf", "bytes": 164700,
+      "source_url": "https://raw.githubusercontent.com/google/fonts/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/manrope/Manrope%5Bwght%5D.ttf",
+      "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+      "license_file": "Manrope-OFL.txt", "license_sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
+      "family": "Source Sans 3", "file": "SourceSans3.ttf", "bytes": 646340,
+      "source_url": "https://raw.githubusercontent.com/google/fonts/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/sourcesans3/SourceSans3%5Bwght%5D.ttf",
+      "sha256": "042fe2cc0b933e328410d7acbd0aa6a1873dca5aef81875f4bc214b08825c7b9",
+      "license_file": "SourceSans3-OFL.txt", "license_sha256": "09746787287a289323b0ec3cff4d1a4a801331b82b7207c1e186f5d26619a392"
+    }
+  ]
+}

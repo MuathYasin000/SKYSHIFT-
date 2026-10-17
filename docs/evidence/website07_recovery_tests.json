@@ -1,0 +1,36 @@
+{
+  "recorded_at_utc": "2026-10-17T08:24:38.596Z",
+  "browser": "155.0.8059.80",
+  "profile": "isolated",
+  "failures_are_explicitly_injected": true,
+  "results": [
+    {
+      "name": "Missing website controller exposes independent scientific tools",
+      "status": "pass"
+    },
+    {
+      "name": "Leaving delayed 3D entry never initializes hidden rendering or steals the science view",
+      "status": "pass"
+    },
+    {
+      "name": "A missing optional universe module leaves direct comparison fully usable",
+      "status": "pass"
+    },
+    {
+      "name": "Actual small-model graphics-context loss recovers using a fresh canvas",
+      "status": "pass"
+    },
+    {
+      "name": "Universe context loss and renderer retry preserve the existing scientific canvas and viewport",
+      "status": "pass"
+    },
+    {
+      "name": "Unavailable browser storage does not block science or evidence downloads",
+      "status": "pass"
+    },
+    {
+      "name": "Corrupt local catalogue accepts no data and offers a working comparison retry",
+      "status": "pass"
+    }
+  ]
+}

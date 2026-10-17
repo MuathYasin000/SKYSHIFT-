@@ -1,0 +1,379 @@
+<h1 class="sr-only">SKYSHIFT optional 3D Universe</h1>
+<div class="space-stage">
+  <canvas
+    id="universe"
+    tabindex="0"
+    aria-label="Interactive contextual 3D space scene"
+    aria-describedby="camera-help"
+  ></canvas>
+  <div
+    id="space-labels"
+    class="space-labels"
+    aria-label="Objects in the viewport"
+  ></div>
+</div>
+<header class="space-header">
+  <a class="space-brand" href="./index.html" aria-label="SKYSHIFT home"
+    ><img
+      src="./assets/SKYSHIFT_ICON.PNG"
+      alt="SKYSHIFT — Project Mercury Team"
+      width="94"
+      height="94"
+    /><span>SKYSHIFT<small>THROUGH SPHEREx</small></span></a
+  >
+  <nav class="space-actions" aria-label="Workspace controls">
+    <button id="classic-toggle">← Website</button
+    ><button id="resume-button" hidden>Resume</button
+    ><button id="journey-button">Tour</button
+    ><button id="sound-toggle" aria-pressed="false">Sound off</button
+    ><button id="settings-button">Settings</button
+    ><button id="help-button" aria-label="Help and controls">?</button
+    ><a id="observations-button" href="./explore.html">Explore observations</a>
+  </nav>
+</header>
+<button
+  id="destinations-toggle"
+  class="destinations-toggle"
+  aria-expanded="true"
+  aria-controls="destinations-drawer"
+>
+  ☰ &nbsp; Destinations
+</button>
+<div id="destinations-drawer" class="destinations-drawer">
+  <nav class="space-tabs" aria-label="Exploration environments">
+    <button data-environment="observatory" aria-pressed="true">SPHEREx</button
+    ><button data-environment="solar" aria-pressed="false">Solar system</button
+    ><button data-environment="sky" aria-pressed="false">Infrared sky</button>
+  </nav>
+  <aside
+    class="destination-panel"
+    aria-label="Accessible destination selection"
+  >
+    <p class="space-eyebrow" id="destination-heading">MEET SPHEREx</p>
+    <label for="destination-search">Find a destination</label
+    ><input
+      id="destination-search"
+      type="search"
+      placeholder="Search destinations"
+      maxlength="100"
+    />
+    <div id="destination-list" class="destination-list"></div>
+    <p id="destination-search-status" class="sr-only" role="status"></p>
+  </aside>
+</div>
+<aside id="space-context" class="space-context" aria-labelledby="context-name">
+  <p id="context-kind" class="space-eyebrow">THE INFRARED OBSERVATORY</p>
+  <h2 id="context-name">SPHEREx</h2>
+  <p id="context-summary" class="context-summary"></p>
+  <p id="context-state" class="context-state"></p>
+  <button
+    id="context-toggle"
+    class="context-toggle"
+    aria-expanded="false"
+    aria-controls="context-details"
+  >
+    About this destination +
+  </button>
+  <div id="context-details" hidden>
+    <img id="context-preview" class="context-preview" hidden alt="" />
+    <p id="context-description">Opening the local exploration environment…</p>
+    <div id="context-date" class="context-date"></div>
+    <span id="context-limitation" class="scene-badge"></span>
+    <div
+      id="component-list"
+      class="component-list"
+      role="group"
+      aria-label="Spacecraft components"
+    ></div>
+    <p id="component-description" role="status"></p>
+    <a
+      id="context-source"
+      href="https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/"
+      target="_blank"
+      rel="noreferrer"
+      >Original source & context ↗</a
+    >
+    <p id="context-credit" class="context-credit"></p>
+  </div>
+  <div class="context-actions">
+    <button id="look-through" class="space-primary">
+      Look through SPHEREx →
+    </button>
+    <button id="inspect-observation" class="space-primary" hidden>
+      Open real observation →
+    </button>
+    <button id="from-hardware-to-sky" class="space-primary">
+      Explore SPHEREx observations →
+    </button>
+  </div>
+</aside>
+<nav id="mission-dock" class="mission-dock" aria-label="Featured telescopes">
+  <span>EXPLORE THROUGH SPHEREx</span>
+  <button data-telescope="spherex" aria-pressed="true">
+    <b>01</b> SPHEREx <small>MAP THE SKY</small>
+  </button>
+  <button id="hangar-toggle">Other observatories</button>
+  <button data-telescope="webb-b" aria-pressed="false">
+    <b>02</b> Webb <small>LOOK DEEPER</small>
+  </button>
+  <button data-telescope="hubble" aria-pressed="false">
+    <b>03</b> Hubble <small>REVEAL THE VISIBLE</small>
+  </button>
+</nav>
+<section
+  id="telescope-experience"
+  class="telescope-experience"
+  aria-labelledby="mission-verb"
+  hidden
+>
+  <div class="mission-heading">
+    <div>
+      <p class="space-eyebrow" id="mission-name">SPHEREx</p>
+      <h2 id="mission-verb">Map the infrared sky</h2>
+    </div>
+    <button id="mission-close" aria-label="Close telescope explanation">
+      ×
+    </button>
+  </div>
+  <p id="mission-band" class="mission-band"></p>
+  <div
+    class="mission-stages"
+    role="group"
+    aria-label="How the telescope observes"
+  >
+    <button data-observe-stage="0" aria-pressed="true">01 · Light</button
+    ><button data-observe-stage="1" aria-pressed="false">02 · Instrument</button
+    ><button data-observe-stage="2" aria-pressed="false">03 · Universe</button>
+  </div>
+  <h3 id="mission-step-title"></h3>
+  <p id="mission-step-copy"></p>
+  <details id="mission-hardware">
+    <summary>Inspect SPHEREx hardware</summary>
+    <div
+      id="mission-components"
+      class="component-list"
+      role="group"
+      aria-label="SPHEREx hardware components"
+    ></div>
+  </details>
+  <p
+    id="mission-component-info"
+    class="mission-component-info"
+    role="status"
+    hidden
+  ></p>
+  <div id="mission-spectrum" hidden>
+    <div
+      id="mission-channels"
+      class="mission-channels"
+      role="group"
+      aria-label="Illustrative light groups"
+    ></div>
+    <p id="mission-spectrum-hint"></p>
+  </div>
+  <div
+    id="mission-fields"
+    class="mission-fields"
+    role="group"
+    aria-label="Choose a real SPHEREx field"
+    hidden
+  >
+    <button data-mission-field="m101" aria-pressed="true">M101</button
+    ><button data-mission-field="m42" aria-pressed="false">Orion</button
+    ><button data-mission-field="m67" aria-pressed="false">M67</button
+    ><button data-mission-field="ngc188" aria-pressed="false">NGC 188</button>
+  </div>
+  <button id="mission-field-open" class="space-primary" hidden>
+    Enter SPHEREx observation →
+  </button>
+  <figure id="mission-published" hidden>
+    <div class="mission-image-wrap">
+      <img id="mission-image" alt="" hidden />
+    </div>
+    <figcaption id="mission-image-status" role="status"></figcaption>
+    <a id="mission-image-source" target="_blank" rel="noreferrer"
+      >Published image & original source ↗</a
+    ><button id="mission-image-retry">Reload image</button>
+  </figure>
+  <div class="mission-bottom">
+    <button id="mission-next">Continue →</button
+    ><a id="mission-source" target="_blank" rel="noreferrer">How it works ↗</a>
+  </div>
+  <p class="mission-disclaimer">
+    Illustrative light paths · no live pointing or exact field of view.
+    Published examples are different targets and epochs, not matched
+    observations.
+  </p>
+</section>
+<div class="space-focus-title sr-only" aria-hidden="true">
+  <p id="focus-kicker" class="space-eyebrow">MEET THE OBSERVATORY</p>
+  <h2 id="focus-title">A different way to see.</h2>
+  <p id="focus-caption">
+    Orbit the spacecraft. Discover its instruments. Step into real infrared
+    light.
+  </p>
+</div>
+<footer class="space-hud">
+  <div class="hud-info">
+    <strong id="scene-type">CONTEXTUAL 3D · ARTISTIC SPACECRAFT MODEL</strong>
+    <div id="space-status" role="status">Starting the local renderer…</div>
+    <div id="camera-help">
+      Drag to orbit · Scroll / pinch to zoom · Arrows to rotate · Home to reset
+    </div>
+    <div class="space-disclaimer">
+      Independent Project Mercury Team application · No NASA endorsement ·
+      Scientific approval PENDING
+    </div>
+    <button id="credits-button">Assets & credits</button>
+  </div>
+  <div class="hud-controls" role="group" aria-label="Camera controls">
+    <button id="camera-minus" aria-label="Zoom out" disabled>−</button
+    ><button id="camera-plus" aria-label="Zoom in" disabled>+</button
+    ><button id="focus-object" disabled>Travel to selection</button
+    ><button id="camera-reset" disabled>Overview</button>
+  </div>
+</footer>
+
+<aside id="render-fallback" class="space-fallback" role="alert" hidden>
+  <h2>Science stays within reach.</h2>
+  <p id="render-error"></p>
+  <a href="./index.html">Reload explorer ↻</a>
+  <button id="retry-renderer">Retry 3D</button
+  ><button id="fallback-classic">Open Classic View</button
+  ><a href="./explore.html">Open observations without 3D ↗</a>
+</aside>
+<aside
+  id="journey-strip"
+  class="journey-strip"
+  aria-label="Guided journey"
+  hidden
+>
+  <p id="journey-copy" role="status"></p>
+  <button id="journey-next">Continue</button
+  ><button id="journey-exit">Explore freely</button>
+</aside>
+<dialog
+  id="settings-dialog"
+  class="space-dialog"
+  aria-labelledby="settings-title"
+>
+  <div class="dialog-top">
+    <h2 id="settings-title">Your observatory</h2>
+    <button data-close-dialog aria-label="Close settings">×</button>
+  </div>
+  <label
+    >Interaction effects & starfield<input
+      id="effects-toggle"
+      type="checkbox"
+      checked /></label
+  ><label
+    >Rendering quality<select id="quality-select">
+      <option value="auto">Balanced · up to 1.5× pixel density</option>
+      <option value="low">Low · 1× pixel density</option>
+    </select></label
+  >
+  <p id="quality-feedback" role="status">
+    A quality change applies when you next reload. Scientific pixels are
+    unchanged.
+  </p>
+  <label
+    >Interface effects volume<input
+      id="effects-volume"
+      type="range"
+      min="0"
+      max="1"
+      step="0.05" /></label
+  ><label
+    >Ambient volume<input
+      id="ambience-volume"
+      type="range"
+      min="0"
+      max="1"
+      step="0.01"
+  /></label>
+  <p>
+    Sound always starts muted and requires your click. These are original
+    synthesized interface effects, not sounds recorded in space. Scientific
+    inspection is silent. Reduced-motion preferences disable camera travel
+    animation.
+  </p>
+  <button id="open-science-settings" class="space-primary">
+    Open observations
+  </button>
+</dialog>
+<dialog id="help-dialog" class="space-dialog" aria-labelledby="help-title">
+  <div class="dialog-top">
+    <h2 id="help-title">Follow your curiosity.</h2>
+    <button data-close-dialog aria-label="Close help">×</button>
+  </div>
+  <p>
+    Start with SPHEREx. Other observatories are an optional collection. Select a
+    telescope and follow Light → Instrument → Universe. Published images are
+    sourced examples; SPHEREx also connects to the installed real observations
+    through the same scientific instrument. Drag to orbit, scroll or pinch to
+    zoom. Arrow keys rotate; + / − zoom; Home resets; Escape returns from a
+    focused workspace.
+  </p>
+  <p>
+    <strong>Three distinct environments:</strong> Solar-system positions,
+    orbital circles and object sizes are schematic, without live ephemerides.
+    Infrared-sky markers use actual ICRS directions on a sphere, with no
+    measured 3D distances. Decorative stars are not a catalogue or survey
+    coverage.
+  </p>
+  <p>
+    <strong>Entering an observation:</strong> the scene recedes and a native
+    observation instrument appears. Immersive and Classic View share exactly the
+    same investigation. Its real dates, wavelengths, conservative quality masks,
+    source hashes, questions and evidence exports remain available. Return to
+    the sky and resume without losing questions or the viewport.
+  </p>
+  <p>
+    Only the restricted M101 area currently offers a two-date review comparison.
+    Qualified scientific approval remains PENDING. A visual difference is not a
+    discovery.
+  </p>
+  <a href="./classic-home.html">Project introduction ↗</a> ·
+  <a href="./methodology.html">Data, methods & image credits ↗</a>
+  <details class="runtime-details">
+    <summary>Startup & rendering diagnostics</summary>
+    <p id="runtime-status">
+      Open this panel while SKYSHIFT is running to read local diagnostics.
+    </p>
+    <a href="/healthz" target="_blank" rel="noreferrer"
+      >Local server status ↗</a
+    >
+  </details>
+</dialog>
+<dialog
+  id="credits-dialog"
+  class="space-dialog"
+  aria-labelledby="credits-title"
+>
+  <div class="dialog-top">
+    <h2 id="credits-title">Models with a source.</h2>
+    <button data-close-dialog aria-label="Close asset credits">×</button>
+  </div>
+  <p>
+    Reusable NASA models and textures are educational context. They do not
+    supply SPHEREx science pixels. Models may be simplified historical
+    visualizations. No NASA Eyes application assets were extracted.
+  </p>
+  <div id="model-credits"></div>
+  <p>
+    Three.js r180: MIT · Draco: Apache-2.0 · Manrope, Source Sans 3 and retained
+    Outfit: SIL Open Font License. All runtime assets and licenses are stored
+    locally.
+  </p>
+  <a href="./assets/space/manifest.json" target="_blank"
+    >Complete asset provenance and hashes ↗</a
+  >
+</dialog>
+<noscript
+  ><div class="space-fallback">
+    <p>
+      JavaScript is needed for interactive scientific validation and 3D viewing.
+    </p>
+    <a href="./methodology.html">Read the methods and sources</a>
+  </div></noscript
+>
