@@ -1314,6 +1314,32 @@ body:not([data-surface="home"]) .reading-spectrum {
   max-width: 60%;
   overflow-wrap: anywhere;
 }
+/* Desktop is an edge-aligned observatory, not a centred 1440px landing card.
+   Keep this independent of the approved mobile/tablet composition below. */
+@media (min-width: 1001px) {
+  body[data-surface="home"] .site-header {
+    padding-inline: clamp(24px, 2.25vw, 48px);
+  }
+  #home-view {
+    --home-gutter: clamp(24px, 2.25vw, 48px);
+  }
+  #home-view .orbital-hero {
+    --hero-gutter: var(--home-gutter);
+  }
+  #home-view > :not(.orbital-hero):not(.story-rail) {
+    width: calc(100% - 2 * var(--home-gutter));
+    max-width: none;
+  }
+  #home-view > .story-rail {
+    margin-inline: var(--home-gutter) auto;
+  }
+  #home-view .hero-observatory {
+    height: clamp(460px, 33vw, 650px);
+  }
+  #home-view .intro-lead {
+    max-width: clamp(440px, 32vw, 620px);
+  }
+}
 @media (max-width: 1000px) {
   #home-view .orbital-hero {
     grid-template-columns: minmax(0, 1fr);

@@ -10,7 +10,8 @@ const { chromium } = await import(
 );
 const base = process.env.SKYSHIFT_BASE_URL || "http://localhost:3000";
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "chrome";
-const out = "tmp/layout-repair/" + suffix;
+const recordPrefix = process.env.SKYSHIFT_TEST_NAME || "home_layout";
+const out = "tmp/" + recordPrefix + "/" + suffix;
 await fs.mkdir(out, { recursive: true });
 const browser = await chromium.launch({
   headless: true,
@@ -51,10 +52,18 @@ async function check(name, fn) {
 try {
   for (const width of [
     320, 390, 560, 768, 820, 900, 1000, 1001, 1024, 1101, 1150, 1151, 1280,
-    1440, 1920, 2560,
+    1366, 1440, 1920, 2560,
   ]) {
     await check("Homepage viewport " + width, async () => {
-      await page.setViewportSize({ width, height: 1000 });
+      const height =
+        width === 1366
+          ? 768
+          : width === 1920
+            ? 1080
+            : width === 2560
+              ? 1440
+              : 1000;
+      await page.setViewportSize({ width, height });
       await page.goto(base + "/");
       await page.waitForFunction(
         () =>
@@ -134,6 +143,25 @@ try {
           r.left >= -1 && r.right <= geometry.vw + 1,
           JSON.stringify(r),
         );
+      if (width > 1000) {
+        const brand = geometry.controls.find(
+          (e) => e.selector === "site-brand",
+        );
+        const left = await page.locator(".intro-copy").boundingBox();
+        assert.ok(
+          brand.left >= 20 && brand.left <= 49,
+          "Desktop logo must remain near the left edge, not in a centred narrow container",
+        );
+        assert.ok(
+          Math.abs(brand.left - left.x) < 1,
+          "Desktop logo and hero copy must share the same gutter",
+        );
+        const fields = await page.locator(".field-section").boundingBox();
+        assert.ok(
+          fields.width >= geometry.vw - 98,
+          "Desktop homepage sections must use the available screen width",
+        );
+      }
       const figure = await page.locator(".hero-observatory").boundingBox(),
         copy = await page.locator(".intro-copy").boundingBox();
       assert.ok(
@@ -143,7 +171,7 @@ try {
           copy.y >= figure.y + figure.height - 1,
         "Hero copy and model must not overlap",
       );
-      if ([320, 900, 1920].includes(width)) {
+      if ([320, 390, 900, 1366, 1920, 2560].includes(width)) {
         await page.waitForFunction(
           () => window.skyshiftHero?.diagnostics().model?.frames > 0,
         );
@@ -151,6 +179,7 @@ try {
       }
       return {
         width,
+        height,
         document_scroll_width: geometry.scroll,
         background: geometry.background,
         visible_content_bounds: "pass",
@@ -201,7 +230,7 @@ try {
   await page.screenshot({ path: out + "/failure.png" }).catch(() => {});
 } finally {
   await fs.writeFile(
-    "docs/evidence/home_layout_tests_" + suffix + ".json",
+    "docs/evidence/" + recordPrefix + "_tests_" + suffix + ".json",
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

@@ -1,0 +1,309 @@
+{
+  "recorded_at_utc": "2026-10-17T13:09:17.380Z",
+  "base_url": "http://localhost:3000",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "name": "Homepage viewport 320",
+      "status": "pass",
+      "detail": {
+        "width": 320,
+        "height": 1000,
+        "document_scroll_width": 320,
+        "background": {
+          "left": 0,
+          "right": 320
+        },
+        "visible_content_bounds": "pass",
+        "stacked": true
+      }
+    },
+    {
+      "name": "Homepage viewport 390",
+      "status": "pass",
+      "detail": {
+        "width": 390,
+        "height": 1000,
+        "document_scroll_width": 390,
+        "background": {
+          "left": 0,
+          "right": 390
+        },
+        "visible_content_bounds": "pass",
+        "stacked": true
+      }
+    },
+    {
+      "name": "Homepage viewport 560",
+      "status": "pass",
+      "detail": {
+        "width": 560,
+        "height": 1000,
+        "document_scroll_width": 560,
+        "background": {
+          "left": 0,
+          "right": 560
+        },
+        "visible_content_bounds": "pass",
+        "stacked": true
+      }
+    },
+    {
+      "name": "Homepage viewport 768",
+      "status": "pass",
+      "detail": {
+        "width": 768,
+        "height": 1000,
+        "document_scroll_width": 768,
+        "background": {
+          "left": 0,
+          "right": 768
+        },
+        "visible_content_bounds": "pass",
+        "stacked": true
+      }
+    },
+    {
+      "name": "Homepage viewport 820",
+      "status": "pass",
+      "detail": {
+        "width": 820,
+        "height": 1000,
+        "document_scroll_width": 820,
+        "background": {
+          "left": 0,
+          "right": 820
+        },
+        "visible_content_bounds": "pass",
+        "stacked": true
+      }
+    },
+    {
+      "name": "Homepage viewport 900",
+      "status": "pass",
+      "detail": {
+        "width": 900,
+        "height": 1000,
+        "document_scroll_width": 900,
+        "background": {
+          "left": 0,
+          "right": 900
+        },
+        "visible_content_bounds": "pass",
+        "stacked": true
+      }
+    },
+    {
+      "name": "Homepage viewport 1000",
+      "status": "pass",
+      "detail": {
+        "width": 1000,
+        "height": 1000,
+        "document_scroll_width": 1000,
+        "background": {
+          "left": 0,
+          "right": 1000
+        },
+        "visible_content_bounds": "pass",
+        "stacked": true
+      }
+    },
+    {
+      "name": "Homepage viewport 1001",
+      "status": "pass",
+      "detail": {
+        "width": 1001,
+        "height": 1000,
+        "document_scroll_width": 1001,
+        "background": {
+          "left": 0,
+          "right": 1001
+        },
+        "visible_content_bounds": "pass",
+        "stacked": false
+      }
+    },
+    {
+      "name": "Homepage viewport 1024",
+      "status": "pass",
+      "detail": {
+        "width": 1024,
+        "height": 1000,
+        "document_scroll_width": 1024,
+        "background": {
+          "left": 0,
+          "right": 1024
+        },
+        "visible_content_bounds": "pass",
+        "stacked": false
+      }
+    },
+    {
+      "name": "Homepage viewport 1101",
+      "status": "pass",
+      "detail": {
+        "width": 1101,
+        "height": 1000,
+        "document_scroll_width": 1101,
+        "background": {
+          "left": 0,
+          "right": 1101
+        },
+        "visible_content_bounds": "pass",
+        "stacked": false
+      }
+    },
+    {
+      "name": "Homepage viewport 1150",
+      "status": "pass",
+      "detail": {
+        "width": 1150,
+        "height": 1000,
+        "document_scroll_width": 1150,
+        "background": {
+          "left": 0,
+          "right": 1150
+        },
+        "visible_content_bounds": "pass",
+        "stacked": false
+      }
+    },
+    {
+      "name": "Homepage viewport 1151",
+      "status": "pass",
+      "detail": {
+        "width": 1151,
+        "height": 1000,
+        "document_scroll_width": 1151,
+        "background": {
+          "left": 0,
+          "right": 1151
+        },
+        "visible_content_bounds": "pass",
+        "stacked": false
+      }
+    },
+    {
+      "name": "Homepage viewport 1280",
+      "status": "pass",
+      "detail": {
+        "width": 1280,
+        "height": 1000,
+        "document_scroll_width": 1280,
+        "background": {
+          "left": 0,
+          "right": 1280
+        },
+        "visible_content_bounds": "pass",
+        "stacked": false
+      }
+    },
+    {
+      "name": "Homepage viewport 1366",
+      "status": "pass",
+      "detail": {
+        "width": 1366,
+        "height": 768,
+        "document_scroll_width": 1366,
+        "background": {
+          "left": 0,
+          "right": 1366
+        },
+        "visible_content_bounds": "pass",
+        "stacked": false
+      }
+    },
+    {
+      "name": "Homepage viewport 1440",
+      "status": "pass",
+      "detail": {
+        "width": 1440,
+        "height": 1000,
+        "document_scroll_width": 1440,
+        "background": {
+          "left": 0,
+          "right": 1440
+        },
+        "visible_content_bounds": "pass",
+        "stacked": false
+      }
+    },
+    {
+      "name": "Homepage viewport 1920",
+      "status": "pass",
+      "detail": {
+        "width": 1920,
+        "height": 1080,
+        "document_scroll_width": 1920,
+        "background": {
+          "left": 0,
+          "right": 1920
+        },
+        "visible_content_bounds": "pass",
+        "stacked": false
+      }
+    },
+    {
+      "name": "Homepage viewport 2560",
+      "status": "pass",
+      "detail": {
+        "width": 2560,
+        "height": 1440,
+        "document_scroll_width": 2560,
+        "background": {
+          "left": 0,
+          "right": 2560
+        },
+        "visible_content_bounds": "pass",
+        "stacked": false
+      }
+    },
+    {
+      "name": "Direct hero comparison, evidence export and reopening after layout repair",
+      "status": "pass",
+      "detail": {
+        "restored_zoom": 1.25,
+        "scientific_approval": "PENDING"
+      }
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "limits": [
+    "Fresh browser with reduced motion; viewport sizes are emulated",
+    "No subjective design acceptance or physical-device certification inferred",
+    "Qualified scientific approval/internal review PENDING; independent novice validation NOT CONDUCTED"
+  ],
+  "mobile_baseline": {
+    "commit": "6500432",
+    "method": "Compare all visible header and homepage text/link/button/figure/canvas element bounds with the previous CSS in separate reduced-motion contexts",
+    "results": [
+      {
+        "width": 319,
+        "status": "pass",
+        "visible_elements_identical": 89
+      },
+      {
+        "width": 390,
+        "status": "pass",
+        "visible_elements_identical": 89
+      },
+      {
+        "width": 768,
+        "status": "pass",
+        "visible_elements_identical": 89
+      },
+      {
+        "width": 1000,
+        "status": "pass",
+        "visible_elements_identical": 90
+      }
+    ]
+  },
+  "upload_integrity": {
+    "content_id": "407b6289b07851e674ca5411b8f29e6b12dd01dbfa6223a1d84b344f8772cb85",
+    "source_files_exact": 145,
+    "scientific_files_unchanged": 21,
+    "new_cloud_deployment": false
+  }
+}
