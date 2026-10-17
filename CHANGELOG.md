@@ -4,6 +4,12 @@
 
 The black/white design, CSP, existing routes and scientific restrictions are preserved. All 21 tracked scientific files under `web/dist/data/` remain byte-unchanged from `284b95f`. Qualified scientific approval and internal human review remain **PENDING**; independent novice validation remains **NOT CONDUCTED**.
 
+## Follow-up: readable footer source links
+
+The four JSON destinations reported by the user are now readable, same-tab Methodology panels: `#models`, `#fonts`, `#patterns` and `#libraries`. The original four source records are unchanged and remain available as byte-identical JSON downloads. All seven shared footers and corresponding information-dialog links are updated. Panels are generated statically from the records and remain readable without JavaScript.
+
+Verification for this follow-up: 16 focused Chromium checks pass (all seven footers; all four actual links at 1440×900 and 390×844; four original-record downloads; no-JavaScript rendering). Zero page errors, HTTP errors or failed resource requests. Nine targeted Python frontend contracts pass. All 158 release file hashes and 323 local HTML references pass. Release metadata regenerated with the existing build script. No scientific files or source records changed. The earlier full regression and external-link results below describe the preceding audit; no new external availability claim is made.
+
 ## Numbered audit disposition
 
 1. **FIXED** — Unassigned mission image, mission explanation and object-source anchors are hidden in static HTML; they appear only after assigning a source. Published-image links reset and wait for verified image decoding.

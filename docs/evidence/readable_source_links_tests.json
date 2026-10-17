@@ -1,0 +1,106 @@
+{
+  "recorded_at_utc": "2026-10-17T20:20:55.727Z",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "check": "index footer uses all four readable same-tab destinations",
+      "status": "pass"
+    },
+    {
+      "check": "compare footer uses all four readable same-tab destinations",
+      "status": "pass"
+    },
+    {
+      "check": "explore footer uses all four readable same-tab destinations",
+      "status": "pass"
+    },
+    {
+      "check": "discover footer uses all four readable same-tab destinations",
+      "status": "pass"
+    },
+    {
+      "check": "methodology footer uses all four readable same-tab destinations",
+      "status": "pass"
+    },
+    {
+      "check": "guide footer uses all four readable same-tab destinations",
+      "status": "pass"
+    },
+    {
+      "check": "classic-home footer uses all four readable same-tab destinations",
+      "status": "pass"
+    },
+    {
+      "check": "models 1440px navigation, readable records and byte-identical JSON download",
+      "status": "pass",
+      "metrics": {
+        "top": 373,
+        "overflow": false
+      }
+    },
+    {
+      "check": "fonts 1440px navigation, readable records and byte-identical JSON download",
+      "status": "pass",
+      "metrics": {
+        "top": 372.421875,
+        "overflow": false
+      }
+    },
+    {
+      "check": "patterns 1440px navigation, readable records and byte-identical JSON download",
+      "status": "pass",
+      "metrics": {
+        "top": 372.4375,
+        "overflow": false
+      }
+    },
+    {
+      "check": "libraries 1440px navigation, readable records and byte-identical JSON download",
+      "status": "pass",
+      "metrics": {
+        "top": 372.828125,
+        "overflow": false
+      }
+    },
+    {
+      "check": "models 390px navigation, readable records and responsive layout",
+      "status": "pass",
+      "metrics": {
+        "top": 348.90625,
+        "overflow": false
+      }
+    },
+    {
+      "check": "fonts 390px navigation, readable records and responsive layout",
+      "status": "pass",
+      "metrics": {
+        "top": 348,
+        "overflow": false
+      }
+    },
+    {
+      "check": "patterns 390px navigation, readable records and responsive layout",
+      "status": "pass",
+      "metrics": {
+        "top": 347.890625,
+        "overflow": false
+      }
+    },
+    {
+      "check": "libraries 390px navigation, readable records and responsive layout",
+      "status": "pass",
+      "metrics": {
+        "top": 347.953125,
+        "overflow": false
+      }
+    },
+    {
+      "check": "All four source sections exist and remain readable without JavaScript",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "failed_requests": [],
+  "http_errors": [],
+  "scope": "Local Chromium; mobile sizes emulated. JSON download bytes compared against the original unchanged records."
+}

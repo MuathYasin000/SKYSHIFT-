@@ -1,12 +1,14 @@
 """Render one static, progressive shared header and footer on every entry page."""
 from pathlib import Path
 import re
+from build_source_sections import run as build_source_sections
 from local_server import CONTENT_SECURITY_POLICY
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'web/dist'
 
 def run():
+    build_source_sections()
     header=(ROOT/'web/templates/header.html').read_text(encoding='utf-8')
     footer=(ROOT/'web/templates/footer.html').read_text(encoding='utf-8')
     index=(OUT/'index.html').read_text(encoding='utf-8')

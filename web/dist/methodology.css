@@ -184,3 +184,15 @@
     }
   }
 }
+
+@layer pages {
+ .source-record-section {scroll-margin-top:96px}
+ .source-record-section h2 {font-size:clamp(2rem,4vw,3.5rem);margin-bottom:24px}
+ .source-entry {border-top:1px solid var(--line);padding-block:8px;max-width:100%}
+ .source-entry dl {display:grid;grid-template-columns:160px minmax(0,1fr);gap:12px 24px;margin-block:16px;font-size:14px}
+ .source-entry dt {font:12px/1.65 var(--mono);color:var(--text-3)}
+ .source-entry dd {margin:0;overflow-wrap:anywhere;min-width:0}
+ .source-entry code {font:12px/1.8 var(--mono);overflow-wrap:anywhere;white-space:normal}
+ .source-links {font-size:14px}
+ @media(max-width:600px){.source-entry dl {grid-template-columns:1fr;gap:4px}.source-entry dd{margin-bottom:12px}}
+}
