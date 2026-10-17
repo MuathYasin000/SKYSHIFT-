@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./telescope-experience.css" />
     <link rel="stylesheet" href="./observation-console.css" />
     <link rel="stylesheet" href="./website.css" />
+    <link rel="stylesheet" href="./orbital-design.css" />
   </head>
   <body data-surface="home">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -46,17 +47,17 @@
     <main id="main" tabindex="-1">
       <p id="site-error" class="site-error" role="alert" hidden></p>
       <section id="home-view" class="website-content">
-        <div class="home-intro">
+        <div class="home-intro orbital-hero">
+          <div class="hero-grid" aria-hidden="true"></div>
           <div class="intro-copy">
             <p class="eyebrow">
-              <span class="status-dot"></span> REAL OBSERVATIONS. TRACEABLE
-              EVIDENCE.
+              <span class="status-dot"></span> A NEW PERSPECTIVE ON THE UNIVERSE
             </p>
-            <h1>Explore & compare<br />the <span>infrared sky.</span></h1>
+            <h1>Explore & compare<br />the <span>invisible.</span></h1>
             <p class="intro-lead">
-              A closer look at real observations from NASA’s SPHEREx mission.
-              Choose a sky region, inspect its measured light, and save your
-              questions with the evidence.
+              There’s more to the sky than meets the eye. Explore real infrared
+              observations from NASA’s SPHEREx telescope. Compare available
+              dates. Keep the evidence.
             </p>
             <div class="intro-actions">
               <a href="#compare" class="primary-link"
@@ -71,13 +72,105 @@
               is <strong>PENDING</strong>.
             </p>
           </div>
+          <figure class="hero-observatory">
+            <div class="orbital-lettering" aria-hidden="true">
+              INFRA<br /><span>RED</span>
+            </div>
+            <div class="orbital-rings" aria-hidden="true">
+              <i></i><i></i><i></i><span class="orbit-point"></span>
+            </div>
+            <svg
+              class="hero-spacecraft"
+              viewBox="400 120 1100 850"
+              role="img"
+              aria-labelledby="hero-spacecraft-title"
+            >
+              <title id="hero-spacecraft-title">
+                SPHEREx observatory from an official NASA/JPL-Caltech artist’s
+                concept
+              </title>
+              <defs>
+                <clipPath id="spacecraft-silhouette">
+                  <path
+                    d="M477 235 C469 146 1434 144 1449 232 C1451 247 1419 272 1380 297 L1108 710 L1130 756 L1162 745 L1180 779 L1135 800 L1118 861 L1078 887 L1025 912 L928 919 L862 899 L842 878 L811 895 L787 882 L802 845 L791 817 L589 898 L551 882 L517 629 L685 572 L559 334 C513 296 478 263 477 235 Z"
+                  />
+                </clipPath>
+              </defs>
+              <image
+                href="./assets/spherex-spacecraft-concept.jpg"
+                width="1920"
+                height="1080"
+                clip-path="url(#spacecraft-silhouette)"
+              />
+            </svg>
+            <div class="hero-instrument-tag">
+              <span class="tag-cross" aria-hidden="true">+</span
+              ><span>SPHEREx<small>THE INFRARED OBSERVATORY</small></span>
+            </div>
+            <figcaption>
+              <a
+                href="https://science.nasa.gov/photojournal/spherex-in-orbit-artists-concept/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Original NASA/JPL-Caltech artist's concept of SPHEREx"
+                >NASA/JPL-Caltech · Artist’s concept ↗</a
+              ><br /><span>Illustration, not a live spacecraft view</span>
+            </figcaption>
+            <a class="hero-mission-link animated-link" href="#mission"
+              >Meet the telescope <span aria-hidden="true">↗</span></a
+            >
+          </figure>
+          <div class="hero-index" aria-hidden="true">
+            <span>01 / OBSERVE</span><span>02 / COMPARE</span
+            ><span>03 / INVESTIGATE</span>
+          </div>
+        </div>
+        <section class="field-section" aria-labelledby="fields-heading">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">THE OBSERVATION COLLECTION / 01–04</p>
+              <h2 id="fields-heading">Four windows into the sky.</h2>
+            </div>
+            <div class="field-tools">
+              <label for="home-field-search" class="sr-only"
+                >Find a sky region</label
+              ><input
+                id="home-field-search"
+                type="search"
+                placeholder="Find a sky region"
+                maxlength="100"
+              /><button id="home-resume" hidden>Resume investigation →</button>
+            </div>
+          </div>
+          <div id="home-fields" class="home-fields" aria-live="polite"></div>
+          <p id="home-fields-status" class="field-status" role="status">
+            Loading the verified local catalogue…
+          </p>
+          <button id="home-catalogue-retry" hidden>
+            Retry observation catalogue
+          </button>
+        </section>
+        <section
+          class="infrared-story"
+          aria-labelledby="infrared-story-heading"
+        >
+          <div class="infrared-story-copy">
+            <p class="eyebrow">BEYOND VISIBLE LIGHT</p>
+            <h2 id="infrared-story-heading">
+              Same universe.<br /><span>A different kind of light.</span>
+            </h2>
+            <p>
+              SPHEREx reveals stars, gas and dust in infrared. This published
+              mission composite is a window into that view.
+            </p>
+          </div>
           <figure class="intro-image">
             <img
               src="./assets/spherex-vela.jpg"
               width="2400"
               height="1187"
               alt="SPHEREx published infrared composite of the Vela Molecular Ridge, with stars and bright clouds of gas and dust"
-              fetchpriority="high"
+              loading="lazy"
             />
             <figcaption>
               <span
@@ -116,31 +209,6 @@
               </p>
             </div>
           </figure>
-        </div>
-        <section class="field-section" aria-labelledby="fields-heading">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">START WITH AN OBSERVATION</p>
-              <h2 id="fields-heading">Four windows into the sky.</h2>
-            </div>
-            <div class="field-tools">
-              <label for="home-field-search" class="sr-only"
-                >Find a sky region</label
-              ><input
-                id="home-field-search"
-                type="search"
-                placeholder="Find a sky region"
-                maxlength="100"
-              /><button id="home-resume" hidden>Resume investigation →</button>
-            </div>
-          </div>
-          <div id="home-fields" class="home-fields" aria-live="polite"></div>
-          <p id="home-fields-status" class="field-status" role="status">
-            Loading the verified local catalogue…
-          </p>
-          <button id="home-catalogue-retry" hidden>
-            Retry observation catalogue
-          </button>
         </section>
         <section
           id="mission-section"
@@ -269,6 +337,31 @@
             approval PENDING.
           </p>
           <button id="footer-sources">Sources & acknowledgments</button>
+          <p class="interface-credits">
+            Interaction details adapted from
+            <a
+              class="animated-link"
+              href="https://skiper-ui.com/v1/preview/skiper40"
+              target="_blank"
+              rel="noreferrer"
+              >Skiper UI ↗</a
+            >
+            and
+            <a
+              class="animated-link"
+              href="https://www.vengenceui.com/components/spotlight-navbar"
+              target="_blank"
+              rel="noreferrer"
+              >Vengeance UI ↗</a
+            >. Design studies:
+            <a
+              class="animated-link"
+              href="https://www.dqnamo.com/kitchen"
+              target="_blank"
+              rel="noreferrer"
+              >dqnamo Kitchen ↗</a
+            >.
+          </p>
         </footer>
       </section>
       <section
@@ -313,6 +406,8 @@
         >3D models: sources, hashes & usage terms ↗</a
       ><a href="./assets/fonts/website-fonts.json" target="_blank"
         >Manrope & Source Sans 3: licenses & sources ↗</a
+      ><a href="./vendor/ui-patterns/sources.json" target="_blank"
+        >Interface patterns: sources, adaptations & licenses ↗</a
       >
       <p>
         All supplied viewing assets are local. Opening NASA archive links or

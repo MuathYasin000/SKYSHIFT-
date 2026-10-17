@@ -10,7 +10,8 @@ const { chromium } = await import(
   )
 );
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "",
-  out = "tmp/website07-qa" + (suffix ? "-" + suffix : "");
+  testName = process.env.SKYSHIFT_TEST_NAME || "website07",
+  out = "tmp/" + testName + "-qa" + (suffix ? "-" + suffix : "");
 await fs.mkdir(out, { recursive: true });
 const browser = await chromium.launch({
     headless: true,
@@ -629,7 +630,9 @@ try {
   if (p) await snap(p, "failure").catch(() => {});
 } finally {
   await fs.writeFile(
-    "docs/evidence/website07_product_tests" +
+    "docs/evidence/" +
+      testName +
+      "_product_tests" +
       (suffix ? "_" + suffix : "") +
       ".json",
     JSON.stringify(

@@ -2,6 +2,12 @@ document.body.dataset.controller = "starting";
 try {
   await import("./website.js");
   document.body.dataset.controller = "ready";
+  // Cosmetic enhancements never gate scientific loading or file recovery.
+  import("./orbital-interactions.js")
+    .then(({ installOrbitalInteractions }) => installOrbitalInteractions())
+    .catch((error) =>
+      console.warn("Optional interface details unavailable:", error),
+    );
 } catch (error) {
   document.body.dataset.controller = "failed";
   const box = document.getElementById("site-error");

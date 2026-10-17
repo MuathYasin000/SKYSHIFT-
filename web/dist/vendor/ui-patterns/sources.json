@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "retrieved_date_utc": "2026-10-17",
+  "scope": "Interface interaction patterns; not astronomical data or image evidence",
+  "adaptations": [
+    {
+      "name": "Vengeance UI Spotlight Navbar",
+      "website": "https://www.vengenceui.com/components/spotlight-navbar",
+      "source_url": "https://raw.githubusercontent.com/Ashutoshx7/VengeanceUI/2cf9379129a0167f0210cfd70a4fa4415c09f9e0/src/components/ui/spotlight-navbar.tsx",
+      "upstream_commit": "2cf9379129a0167f0210cfd70a4fa4415c09f9e0",
+      "original_sha256": "ce17272872bb7d90a8636ac41dbe8d52c34287fcbd80013ee527e209cefba3b4",
+      "original_bytes": 7871,
+      "license": "MIT",
+      "license_file": "Vengeance-LICENSE.txt",
+      "downloaded_license_sha256": "b90027fc729c84a7e3b976b046996a685f5b1a2f448f5bc3514ce32314b77c46",
+      "modifications": "Native DOM/CSS port of pointer-following spotlight and selected-link ambience; keyboard equivalent, no React/Motion, no loop",
+      "local_implementation": ["orbital-interactions.js", "orbital-design.css"]
+    },
+    {
+      "name": "Skiper UI Skiper40 CssLink",
+      "website": "https://skiper-ui.com/v1/preview/skiper40",
+      "source_url": "https://skiper-ui.com/r/skiper40.json",
+      "original_sha256": "df4c9c719080a9454f47005a939a0ee408f8067930db0ff83fca52e3e734e28f",
+      "original_bytes": 9487,
+      "license": "Component-specific free-use-and-modification terms with attribution",
+      "license_reference": "https://skiper-ui.com/docs/quick-start",
+      "license_file": "NOTICES.txt",
+      "attribution": "Visible homepage footer and interface source records",
+      "modifications": "Link000/001 converted from React/Tailwind to native CSS; focus-visible and reduced-motion support",
+      "local_implementation": ["orbital-design.css"]
+    }
+  ],
+  "inspiration_only": [
+    {
+      "name": "dqnamo Kitchen",
+      "website": "https://www.dqnamo.com/kitchen",
+      "studies": ["Tactile Button", "Iridescent Foil"],
+      "reuse_status": "No explicit source-code license identified; no source copied",
+      "original_skyshift_work": "Layered press depth on primary action; restrained interface surfaces"
+    }
+  ],
+  "hero_image_treatment": {
+    "asset_manifest": "assets/assets.json",
+    "asset_id": "spherex-spacecraft-concept",
+    "treatment": "SVG silhouette clip, rotation and CSS display brightness 1.3 on the existing NASA/JPL-Caltech artist concept; same JPEG bytes, no generated detail. This treatment applies only to the labeled illustrative asset, never measured observations.",
+    "caption": "Artist's concept; illustration, not live spacecraft view",
+    "scientific_pixels_modified": false
+  },
+  "raw_references": "data/raw/ui-references (local reference copies; not runtime dependencies)"
+}

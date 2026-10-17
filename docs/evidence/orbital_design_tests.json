@@ -1,0 +1,53 @@
+{
+  "recorded_at_utc": "2026-10-17T08:43:07.713Z",
+  "browser": "155.0.8059.80",
+  "profile": "isolated",
+  "results": [
+    {
+      "name": "Visible science navigation, bounded layout and original illustration at 1440x900",
+      "status": "pass"
+    },
+    {
+      "name": "Visible science navigation, bounded layout and original illustration at 1024x768",
+      "status": "pass"
+    },
+    {
+      "name": "Visible science navigation, bounded layout and original illustration at 390x844",
+      "status": "pass"
+    },
+    {
+      "name": "Visible science navigation, bounded layout and original illustration at 320x667",
+      "status": "pass"
+    },
+    {
+      "name": "Visible science navigation, bounded layout and original illustration at 844x390",
+      "status": "pass"
+    },
+    {
+      "name": "Pointer lighting and keyboard focus reach the same real navigation targets",
+      "status": "pass"
+    },
+    {
+      "name": "Spacecraft movement is bounded, demand-driven and stops on pointer exit",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced motion disables decorative movement and leaves the main action usable",
+      "status": "pass"
+    },
+    {
+      "name": "Missing cosmetic module never blocks scientific viewing or export",
+      "status": "pass"
+    },
+    {
+      "name": "Sources expose attribution, original licenses and local interface provenance",
+      "status": "pass"
+    }
+  ],
+  "limitations": [
+    "Automated checks and screenshot inspection do not establish human usability",
+    "Physical mobile device validation NOT CONDUCTED",
+    "Qualified scientific approval PENDING",
+    "Internal human review PENDING"
+  ]
+}
