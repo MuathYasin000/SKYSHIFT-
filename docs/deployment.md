@@ -4,21 +4,47 @@
 
 **Previous public deployment (preserved, no further publishing):** [SKYSHIFT](https://skyshift-project-mercury.surebream11.chatgpt.site), updated on 17 October 2026 following the user's explicit request for public availability. Visitors need no login. Public static hosting does not require the Windows computer to stay on. Local notes remain in each visitor's browser; export before closing a tab or moving devices. This is optional publication of the same application, not a new hosting dependency. It can also be staged for another conventional static provider and the user's future domain.
 
-## Publish the corrected application independently
+## Publish the corrected application on Netlify
 
-The latest user instruction stops ChatGPT Sites development. The layout repair is available on localhost and in the prepared independent upload folder; it has **not** been published to a new provider. The previous public site below remains historical and does not contain this layout repair. No new hosting account or public project was created.
+The user selected **Netlify**, superseding the earlier Cloudflare suggestion. The corrected homepage is available on localhost and in the independent upload folder. No Netlify account, project, deployment or domain has been created here yet. The old ChatGPT-hosted site is preserved as history and does not contain the latest layout repair.
 
-1. Run `D:\Nasa_SKYSHIFT\prepare_web_upload.bat` whenever you want to refresh the upload. It validates and stages the static application at `D:\Nasa_SKYSHIFT\tmp\skyshift-upload\dist`. Python is needed only for this local preparation. The hosted app needs no Python, database or npm build.
-2. Create or sign in to your own [Cloudflare account](https://dash.cloudflare.com/). Open **Workers & Pages → Create application → Get started → Drag and drop your files**. Choose **Pages / Direct Upload** if the dashboard shows a Workers/Pages choice.
-3. Choose an available project name, for example `skyshift-mercury`. Drag the prepared **dist folder** into the upload area. Its `index.html`, `assets`, `data` and `vendor` must be at the deployed site's root. Upload the entire prepared folder; do not upload the full project, virtual environment or old Sites archive.
-4. Select **Deploy site** (or **Save and Deploy**). Cloudflare supplies the actual `https://<available-project-name>.pages.dev` address. The name is not reserved by this project. Share that address; your PC can then be off.
-5. Open the result in a fresh browser: check the full-width homepage, drag the telescope, open Compare, export an investigation and reopen it. In this workspace, `node tools/verify_public_workspace.mjs https://YOUR-ACTUAL-SITE.pages.dev` runs the automated public smoke/integrity/export checks. The new provider's deployment is unverified until those checks are run there.
+### Upload through your browser
 
-The prepared upload has 149 files; its largest file is 8,000,000 bytes. These fit the documented drag-and-drop limits of 1,000 files and 25 MiB per file. It includes static security headers, public runtime metadata, original source identities, all viewing assets and all six hashed review-packet parts. It contains no hosting credentials or ChatGPT runtime integration. Curated views, 3D, sound, notes and evidence reconstruction run in visitors' browsers. Retrieving new observations and following external NASA references require internet. Private notes remain browser-local and should be exported to move between devices; there is no shared user database.
+1. Run `D:\Nasa_SKYSHIFT\prepare_web_upload.bat` to refresh the verified static output at `D:\Nasa_SKYSHIFT\tmp\skyshift-upload\dist`. The folder is already prepared. Python is needed only for local preparation; the published application needs no Python, database, framework build or server runtime.
+2. Sign into your own [Netlify account](https://app.netlify.com/login) and select the team where you want to manage SKYSHIFT. Open [Netlify Drop](https://app.netlify.com/drop), or **Add new project → Deploy manually**.
+3. Drag the entire prepared **dist folder** into the dropzone. `index.html`, `assets`, `data`, `vendor` and `_headers` must be at the deployed root. Upload only this prepared folder, not `D:\Nasa_SKYSHIFT`, the virtual environment, or the old Sites archive.
+4. After deployment, Netlify displays the actual `https://<project-name>.netlify.app` address. Use **Customize** below the preview URL to choose an available name. No name is reserved by this project. Ensure project visibility permits public visitors, then check the URL in a signed-out browser. The public application can run while your PC is off.
+5. For later updates, rerun the preparation script, open the **same Netlify project → Deploys**, and drop the refreshed output folder into that project's deploy dropzone. This updates the existing site without creating another public identity.
 
-For later updates, rerun the preparation script, then choose **Create a new deployment** in that same Pages project and upload the refreshed folder. Direct Upload projects cannot be switched to Git integration in place; automatic Git deployments would require a separate Git-integrated Pages project. To add your own domain later, open the Pages project's **Custom domains → Set up a custom domain** and follow the DNS instructions before sharing it.
+### CLI alternative for the complete upload
 
-Official instructions checked on 17 October 2026: [Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/), [custom domains](https://developers.cloudflare.com/pages/configuration/custom-domains/). No cloud subscription, credentials or domain purchase has been assumed on the user's behalf.
+The prepared site has 149 files, approximately 62.9 MB total; its largest file is 8 MB. Netlify recommends CLI uploads for larger sites because drag-and-drop works best below 50 MB. That figure is a reliability recommendation, not a claimed hard rejection limit. Keep all scientific review parts and model assets in the upload.
+
+If you prefer CLI, install Node.js with npm, then run in PowerShell:
+
+```powershell
+Set-Location D:\Nasa_SKYSHIFT
+.\prepare_web_upload.bat
+npx.cmd netlify-cli login
+npx.cmd netlify-cli deploy --dir=tmp/skyshift-upload/dist --no-build --prod
+```
+
+Complete the account login in your browser. In the deploy prompts, select the correct team and existing Netlify project if one has already been created; otherwise create a new project with your chosen available name. `--no-build` uploads the already prepared files; `--prod` publishes to the live address. CLI project-link state under `.netlify/` is ignored by Git. Never paste account tokens into source or chat. These are user-executed instructions; no CLI installation, login or cloud publishing was performed here.
+
+### Verify and add your domain
+
+Open the result in a fresh signed-out browser: check the full-width homepage, rotate SPHEREx, enter Compare, export an investigation and reopen it. From this workspace, the existing automated verification command is:
+
+```powershell
+$env:SKYSHIFT_TEST_NAME='netlify_public'
+node tools/verify_public_workspace.mjs https://YOUR-ACTUAL-PROJECT.netlify.app
+```
+
+That command checks the actual public build, source hashes, evidence export/reopening, telescopes and sound, preserving previous receipts. Public Netlify verification remains **NOT RUN** until an actual URL is available. To use your own domain later, open your Netlify project's **Domain management** and follow its custom-domain and DNS instructions.
+
+The static upload already includes a Netlify-compatible `_headers` file with the same security policy used locally. SKYSHIFT uses hash routes (`#compare`, `#observations`); no catch-all SPA rewrite or second science engine is needed. All viewing assets and six hashed review-packet parts are included. Notes remain local to each visitor's browser and should be exported to move devices. Retrieving new archive observations and opening external references require internet. Scientific approval and internal human review remain PENDING.
+
+Official references checked on 17 October 2026: [manual publication](https://docs.netlify.com/manage/projects/add-new-project/), [upload troubleshooting](https://docs.netlify.com/resources/troubleshooting/error-reference/), [custom headers](https://docs.netlify.com/manage/routing/headers/), [CLI deploy](https://cli.netlify.com/commands/deploy/). No hosting plan purchase or domain purchase has been assumed.
 
 **Verification of this revision:** 17 homepage/workflow scenarios each in Chrome and Edge, 91 JavaScript unit tests and 24 Python frontend/server checks pass. A separate ordinary Python static server (no SKYSHIFT server routes and no Sites integration) passed four static-host smoke/integrity/export/3D/audio checks. See `evidence/home_layout_tests_chrome.json`, `evidence/home_layout_tests_edge.json` and `evidence/independent_static_tests.json`. Browser widths 320–2560 pixels are emulated; these are not physical-device or subjective design certifications. Scientific approval and human internal review remain PENDING.
 

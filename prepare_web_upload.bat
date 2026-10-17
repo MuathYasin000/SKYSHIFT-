@@ -14,5 +14,5 @@ if errorlevel 1 (
 echo.
 echo Ready: %CD%\tmp\skyshift-upload\dist
 echo Upload this dist folder to your independent static host.
-echo See docs\deployment.md for the Cloudflare Pages instructions.
+echo See docs\deployment.md for the Netlify instructions.
 pause
