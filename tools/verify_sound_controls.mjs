@@ -9,7 +9,8 @@ const { chromium } = await import(
   )
 );
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "",
-  out = "tmp/sound-controls" + (suffix ? "-" + suffix : ""),
+  testName = process.env.SKYSHIFT_TEST_NAME || "sound_controls",
+  out = "tmp/" + testName + (suffix ? "-" + suffix : ""),
   results = [],
   errors = [],
   external = [];
@@ -164,7 +165,8 @@ try {
       await p.click("[data-open-sound]");
       await p.locator("#sound-settings[open]").waitFor();
       assert.deepEqual(await axe(p), []);
-      for (const id of ["sound-fx", "sound-air"]) {
+      assert.equal(await p.locator("#sound-air").count(), 0);
+      for (const id of ["sound-fx"]) {
         await p.locator("#" + id).fill("0.2");
         await p.locator("#" + id).dispatchEvent("input");
       }
@@ -195,7 +197,10 @@ try {
         JSON.parse(localStorage.getItem("skyshift.space.preferences.v1")),
       );
       assert.equal(prefs.effects_volume, 0.2);
-      assert.equal(prefs.ambience_volume, 0.2);
+      assert.equal(
+        (await p.evaluate(() => skyshiftSound.diagnostics())).ambience_allowed,
+        false,
+      );
     },
   );
   await check(
@@ -308,6 +313,40 @@ try {
   );
   await c.close();
   await check(
+    "Orbital hero action has its own dark/spectral surface, readable text and a direct keyboard route to real observations",
+    async () => {
+      const { c, p } = await context();
+      try {
+        await ready(p);
+        await p.waitForFunction(
+          () => window.skyshiftHero?.diagnostics().model?.frames > 0,
+        );
+        await p.evaluate(() => document.fonts.ready);
+        const hero = p.locator(".mission-launch");
+        assert.equal(await hero.getAttribute("href"), "#compare");
+        assert.equal(await hero.locator(".launch-spectrum i").count(), 6);
+        const style = await hero.evaluate((e) => ({
+          fill: getComputedStyle(e).backgroundImage,
+          ink: getComputedStyle(e).color,
+        }));
+        assert.match(style.fill, /radial-gradient/);
+        assert.ok(
+          !style.fill.includes("231, 242, 247"),
+          "Rejected pale-blue generic fill",
+        );
+        assert.equal(style.ink, "rgb(250, 241, 227)");
+        assert.deepEqual(await axe(p), []);
+        await p.screenshot({ path: out + "/hero-desktop.png" });
+        await hero.focus();
+        await p.keyboard.press("Enter");
+        await science(p);
+        return style;
+      } finally {
+        await c.close();
+      }
+    },
+  );
+  await check(
     "320/390/1024 layouts show reachable sound controls and readable button states without horizontal overflow",
     async () => {
       const details = [];
@@ -321,6 +360,7 @@ try {
         try {
           await ready(p);
           await p.evaluate(() => document.fonts.ready);
+          assert.deepEqual(await axe(p), []);
           await p.screenshot({ path: `${out}/home-${width}.png` });
           assert.equal(
             await p.evaluate(
@@ -455,7 +495,7 @@ try {
   process.exitCode = 1;
 } finally {
   await fs.writeFile(
-    `docs/evidence/sound_controls_tests${suffix ? "_" + suffix : ""}.json`,
+    `docs/evidence/${testName}_tests${suffix ? "_" + suffix : ""}.json`,
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

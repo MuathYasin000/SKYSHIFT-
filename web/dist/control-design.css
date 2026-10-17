@@ -358,3 +358,200 @@ body[data-surface] #site-sound[data-audio-state="off"] {
     outline-offset: -4px;
   }
 }
+/* The hero's observation-lab entry is a purpose-built instrument, not a generic CTA. */
+body[data-surface] #home-view .intro-actions .mission-launch {
+  --control-fill:
+    radial-gradient(ellipse at 0% 0%, #73513038, transparent 65%),
+    linear-gradient(125deg, #17171f, #10121e 65%, #23192c);
+  --control-edge: #e9bb755c;
+  --control-ink: #faf1e3;
+  --control-shadow: inset 0 1px 0 #ffdfa51a, 0 8px 26px #0004;
+  --control-radius: 15px;
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) 34px;
+  gap: 16px;
+  padding: 20px 21px 24px;
+  width: min(100%, 440px);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  text-align: left;
+}
+.launch-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.launch-copy small {
+  font:
+    9px Consolas,
+    monospace;
+  letter-spacing: 0.16em;
+  color: #d6bca0;
+}
+.launch-copy strong {
+  font-family: Manrope, sans-serif;
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.5;
+}
+.launch-copy > span {
+  font-size: 11px;
+  font-weight: 400;
+  color: #b9b6c6;
+  line-height: 1.45;
+}
+.launch-orbit {
+  width: 52px;
+  height: 52px;
+  overflow: visible;
+  color: #e7c28b;
+}
+.launch-orbit ellipse {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  opacity: 0.65;
+}
+.launch-orbit path {
+  fill: #f3d8ab;
+}
+.launch-orbit circle {
+  fill: #f2866a;
+  filter: drop-shadow(0 0 4px #e5765170);
+}
+.launch-arrow {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #e6c69840;
+  border-radius: 50%;
+  font-size: 20px;
+  color: #e8cba3;
+  transition:
+    transform 0.25s,
+    background 0.25s;
+}
+.launch-spectrum {
+  display: flex;
+  position: absolute;
+  left: 21px;
+  right: 21px;
+  bottom: 0;
+  height: 3px;
+  gap: 3px;
+}
+.launch-spectrum i {
+  flex: 1;
+  background: var(--band);
+  opacity: 0.75;
+  box-shadow: 0 -3px 14px color-mix(in srgb, var(--band) 35%, transparent);
+}
+.launch-spectrum i:nth-child(1) {
+  --band: #d8b7f4;
+}
+.launch-spectrum i:nth-child(2) {
+  --band: #71c9e6;
+}
+.launch-spectrum i:nth-child(3) {
+  --band: #8ed8c4;
+}
+.launch-spectrum i:nth-child(4) {
+  --band: #efcd85;
+}
+.launch-spectrum i:nth-child(5) {
+  --band: #ed9e6a;
+}
+.launch-spectrum i:nth-child(6) {
+  --band: #dc7196;
+}
+body[data-surface] #home-view .intro-actions .mission-launch:hover {
+  border-color: #ebc68e;
+  box-shadow:
+    inset 0 1px 0 #ffdfa530,
+    0 8px 30px #b6782920;
+}
+.mission-launch:hover .launch-arrow,
+.mission-launch:focus-visible .launch-arrow {
+  transform: rotate(45deg);
+  background: #dcbb7820;
+}
+.mission-launch:hover .launch-orbit,
+.mission-launch:focus-visible .launch-orbit {
+  transform: rotate(12deg);
+}
+.launch-orbit {
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+body[data-surface] .intro-actions:has(.mission-launch) {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 16px;
+}
+body[data-surface] .intro-actions .universe-launch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #b0a6c23b;
+  padding: 8px 0;
+  color: #c1bbc9;
+  font-size: 13px;
+}
+.universe-launch > span:first-child {
+  font-size: 25px;
+  color: #d5c1a3;
+}
+@media (max-width: 560px) {
+  body[data-surface] #home-view .intro-actions .mission-launch {
+    grid-template-columns: 39px minmax(0, 1fr) 29px;
+    gap: 11px;
+    padding: 17px 15px 21px;
+  }
+  .launch-orbit {
+    width: 39px;
+    height: 39px;
+  }
+  .launch-copy strong {
+    font-size: 18px;
+  }
+  .launch-copy small {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+  .launch-copy > span {
+    font-size: 10px;
+  }
+  .launch-arrow {
+    width: 29px;
+    height: 29px;
+    font-size: 18px;
+  }
+  .launch-spectrum {
+    left: 15px;
+    right: 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .launch-orbit,
+  .launch-arrow {
+    transition: none;
+  }
+  .mission-launch:hover .launch-orbit,
+  .mission-launch:hover .launch-arrow {
+    transform: none;
+  }
+}
+@media (forced-colors: active) {
+  body[data-surface] #home-view .intro-actions .mission-launch {
+    border: 2px solid LinkText;
+  }
+  .launch-orbit {
+    color: LinkText;
+  }
+  .launch-orbit path,
+  .launch-orbit circle {
+    fill: LinkText;
+  }
+}

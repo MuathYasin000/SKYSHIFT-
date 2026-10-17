@@ -1,6 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { soundCues, createSpaceAudio } from "../dist/space-audio.js";
+import {
+  soundCues,
+  createSpaceAudio,
+  sineEnvelope,
+} from "../dist/space-audio.js";
 import { soundForControl } from "../dist/application-sound.js";
 class Param {
   value = 0;
@@ -15,6 +19,9 @@ class Param {
     this.values.push(v);
   }
   exponentialRampToValueAtTime(v) {
+    this.values.push(v);
+  }
+  setValueCurveAtTime(v) {
     this.values.push(v);
   }
 }
@@ -72,23 +79,39 @@ class Audio {
     this.state = "closed";
   }
 }
-test("25 original sound recipes use bounded layered envelopes, distinct timbres and short tails", () => {
+test("all UI cues are dry fixed-pitch sine tones with brief envelopes and no noise layers", () => {
   assert.equal(Object.keys(soundCues).length, 25);
   assert.equal(
     new Set(Object.values(soundCues).map((s) => JSON.stringify(s.layers))).size,
     25,
   );
   for (const s of Object.values(soundCues)) {
-    assert.ok(s.wet >= 0 && s.wet <= 0.3);
-    assert.ok(s.layers.length <= 4);
-    assert.ok(s.layers.some((l) => l.kind === "noise"));
+    assert.equal(s.wet, 0);
+    assert.ok(s.layers.length <= 2);
     for (const l of s.layers) {
-      assert.ok(l.hz >= 90 && l.hz <= 3400);
-      assert.ok(l.duration > 0 && l.duration <= 0.8);
+      assert.equal(l.kind, "sine");
+      assert.equal(l.end, l.hz);
+      assert.ok(l.hz >= 300 && l.hz <= 1000);
+      assert.ok(l.duration > 0 && l.duration <= 0.12);
       assert.ok(l.gain > 0 && l.gain <= 0.08);
       assert.ok(l.delay >= 0 && l.delay <= 0.18);
     }
   }
+});
+test("raised-cosine sine envelopes have zero endpoints, bounded amplitudes and a smooth attack/release", () => {
+  for (const cue of Object.values(soundCues))
+    for (const layer of cue.layers) {
+      const env = sineEnvelope(layer.gain, layer.duration);
+      assert.equal(env[0], 0);
+      assert.equal(env.at(-1), 0);
+      assert.ok(
+        [...env].every(
+          (v) => Number.isFinite(v) && v >= 0 && v <= layer.gain + 1e-8,
+        ),
+      );
+      assert.ok(Math.max(...env) > 0.9 * layer.gain);
+      assert.ok(env[1] < layer.gain * 0.01);
+    }
 });
 test("sound defaults on but creates no context before unlock; persistent mute stops voices and cannot be rearmed by resume", async () => {
   const p = { sound_enabled: true, effects_volume: 0.5, ambience_volume: 0.12 };
@@ -148,7 +171,7 @@ test("voice budget, history and burst suppression bound rapid interactions; miss
     stamp += 60;
     a.cue("spherex");
   }
-  assert.ok(a.diagnostics().active_voice_count <= 32);
+  assert.ok(a.diagnostics().active_voice_count <= 12);
   assert.ok(a.diagnostics().recent_cues.length <= 40);
   await a.dispose();
   const absent = createSpaceAudio({ sound_enabled: false }, { Audio });

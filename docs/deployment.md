@@ -1,6 +1,36 @@
-# Historical public deployment (0.2)
+# Local and public execution
 
-**Current default: independent local hosting at http://localhost:3000.** Run `start_skyshift.bat`. See [local hosting](local_hosting.md). The user explicitly superseded public publication with local execution. No 0.3 publication, credential restoration, deletion, replacement hosting project, or hosting-account dependency is authorized or required. The record below preserves the previous release unchanged.
+**Default development and execution:** the independent application at http://localhost:3000, started with `start_skyshift.bat`. See [local hosting](local_hosting.md). No public hosting account is required for localhost or the curated offline application.
+
+**Current public application:** [SKYSHIFT](https://skyshift-project-mercury.surebream11.chatgpt.site), updated on 17 October 2026 following the user's explicit request for public availability. Visitors need no login. Public static hosting does not require the Windows computer to stay on. Local notes remain in each visitor's browser; export before closing a tab or moving devices. This is optional publication of the same application, not a new hosting dependency. It can also be staged for another conventional static provider and the user's future domain.
+
+| Current identity | Value |
+| --- | --- |
+| Existing project, preserved | appgprj_6ad224d35b908191a0566896f57187a7 |
+| Release | skyshift-0.7-sine-orbital |
+| Saved version | 4 |
+| Version ID | appgprj_6ad224d35b908191a0566896f57187a7~appgver_5140e65923588191928d0f45222e8119 |
+| Deployment ID | appgdep_6ad36b34bf28819185c5302f5bea5bb4 |
+| Native result | succeeded, 2026-10-17T12:34:19.163365Z |
+| Published source commit | 2d9881094c2e6bf5d5d363d1153bbd9b2ee031b8 |
+| Content ID | 109f74f560b64594303641fd1155edef3da83b35d343e0412f859adf27c82b42 |
+| Scientific approval / internal human review | PENDING / PENDING |
+
+The 145 frontend assets were copied byte for byte from `web/dist`; the public stage adds only runtime identity JSON and static security/cache headers. Prepared scientific data and telescope assets are unchanged. The package was verified before publication and saved against the exact source commit. The previous version and source history remain available.
+
+**Executed public verification:** four fresh-profile Chrome scenarios passed, without login, publishing credentials or auth bypass. They verified the public hero and 3D model, exact bundle/FITS/all six review-part hashes, comparison ZIP download and changed-viewport reopening, sine playback/mute and all three optional telescope models with the optical explanation. See [the machine-readable receipt](evidence/public_workspace_tests.json). Local verification additionally passed 91 JavaScript tests, 24 Python frontend/server checks, ten targeted scenarios each in Chrome and Edge and 19 full product journeys in Chrome. Public smoke coverage is not a physical-device, subjective listening, scientific or independent novice certification.
+
+## Current publication procedure
+
+Keep local source under `web/dist` independent. Open the existing hosting source into `tmp/publication-source` using the Sites source helper, then run `tools/prepare_public_static.py --destination tmp/publication-source/dist`. Validate the exact staged hashes, use the source helper to push/package, save the exact version and deploy it. On this Windows host, Git Bash must be on PATH and GNU tar needs `TAR_OPTIONS=--force-local` to interpret the drive-letter archive path. Credentials belong only in memory/stdin, never files, logs or command arguments. The hosting metadata is confined to the temporary publication checkout.
+
+Run `node tools/verify_public_workspace.mjs https://skyshift-project-mercury.surebream11.chatgpt.site` against the actual published version. A future scientific change requires its own integrity/reconstruction checks before replacing assets. Version 4 is the current interface rollback target; historical versions retain their original limitations. No rollback redeployment was performed solely to test restoration.
+
+---
+
+## Historical public deployment (0.2)
+
+The record below describes the superseded 0.2 public release. Local execution subsequently became the default; the renewed publication request is implemented above. Historical version identifiers and scientific evidence are retained.
 
 Verified production URL: https://skyshift-project-mercury.surebream11.chatgpt.site
 
@@ -10,7 +40,7 @@ The deployed release is a scientific review workspace. Scientific approval and h
 | --- | --- |
 | Sites project | appgprj_6ad224d35b908191a0566896f57187a7 |
 | Audience | Public, explicitly requested by the user |
-| Current saved version | 3 |
+| Historical saved version | 3 |
 | Version ID | appgprj_6ad224d35b908191a0566896f57187a7~appgver_6ef7133ac99c8191a7de8d024152698f |
 | Deployment ID | appgdep_6ad23708f23c8191be29d3801201751a |
 | Native deployment result | succeeded, 2026-10-16T14:39:36Z |
@@ -29,7 +59,7 @@ The frontend in web/ has its own Sites source Git repository. Preserve .openai/h
 
 On this Windows host, the plugin's Bash packaging wrapper cannot interpret its Windows script path. Source synchronization succeeded. The final archive used the plugin's unchanged prepare-site-build.cjs and native Windows tar to perform the same staging/packaging steps; the exact archive was uploaded with the verified source commit. No plugin code or credentials were changed. The first version used the documented remote-build fallback.
 
-The source/archive manifest, exact commit, saved version and scientific packet are the restoration units. A future revision must preserve scientific status and immutable identities until justified review evidence changes them. Redeploying version 3 restores the verified current source. Version 1 is retained only as superseded audit history because registration context membership was subsequently corrected; do not use it as a scientific rollback target.
+The source/archive manifest, exact commit, saved version and scientific packet are the restoration units. A future revision must preserve scientific status and immutable identities until justified review evidence changes them. Redeploying version 3 restores the historical 0.2 frontend, not the current 0.7 interface. Version 1 is retained only as superseded audit history because registration context membership was subsequently corrected; do not use it as a scientific rollback target.
 
 The site is static, so there are no database migrations to reverse. A deployment failure leaves the previous published version intact. Restoration commands and artifact identity checks were exercised locally; a second production redeployment solely to simulate rollback was not performed. Monitoring/automations and a custom domain have not been configured.
 

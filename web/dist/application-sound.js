@@ -82,7 +82,7 @@ export function installApplicationSound() {
   host.setAttribute("aria-labelledby", "sound-settings-title");
   host.dataset.soundControls = "";
   host.innerHTML =
-    '<div class="dialog-top"><div><p class="space-eyebrow">SKYSHIFT / SOUND DESIGN</p><h2 id="sound-settings-title">A quieter kind of space.</h2></div><button aria-label="Close sound settings" id="sound-settings-close">×</button></div><p>Soft controls. Resonant observatories. Adjust the mix or try a telescope’s signature below.</p><button data-sound-toggle aria-pressed="true">Sound on</button><p id="sound-status" role="status"></p><label class="sound-level">Interaction volume <output id="sound-fx-value"></output><input id="sound-fx" type="range" min="0" max="1" step="0.01" /></label><label class="sound-level">Atmosphere <output id="sound-air-value"></output><input id="sound-air" type="range" min="0" max="1" step="0.01" /></label><p class="sound-fine">Audio begins after your first click or keypress. Mute is remembered; atmosphere pauses in observations. Original synthesis, not space recordings or scientific sonification.</p><h3>Try the sound palette</h3><div class="sound-palette"></div>';
+    '<div class="dialog-top"><div><p class="space-eyebrow">SKYSHIFT / SOUND DESIGN</p><h2 id="sound-settings-title">Small sounds. Clear signals.</h2></div><button aria-label="Close sound settings" id="sound-settings-close">×</button></div><p>Short, clean sine-wave cues for the interface. Preview the sounds and set a comfortable level.</p><button data-sound-toggle aria-pressed="true">Sound on</button><p id="sound-status" role="status"></p><label class="sound-level">Interaction volume <output id="sound-fx-value"></output><input id="sound-fx" type="range" min="0" max="1" step="0.01" /></label><p class="sound-fine">Dry sine tones · no noise layers, reverb or continuous background sound. Mute is remembered. Browser playback starts after a click or keypress.</p><h3>Preview the cues</h3><div class="sound-palette"></div>';
   document.body.append(host);
   for (const [name, label] of [
     ["ui", "Control"],
@@ -133,23 +133,16 @@ export function installApplicationSound() {
         ? "Sound is ready. Interact with the page to start playback."
         : "Sound is on. You can mute it at any time."
       : "All sound is muted.";
-    for (const [id, key] of [
-      ["sound-fx", "effects_volume"],
-      ["sound-air", "ambience_volume"],
-    ]) {
+    for (const [id, key] of [["sound-fx", "effects_volume"]]) {
       document.getElementById(id).value = p[key];
-      document.getElementById(
-        id === "sound-fx" ? "sound-fx-value" : "sound-air-value",
-      ).value = Math.round(p[key] * 100) + "%";
+      document.getElementById("sound-fx-value").value =
+        Math.round(p[key] * 100) + "%";
     }
   }
   audio.subscribe(sync);
   sync();
   document.getElementById("sound-settings-close").onclick = () => host.close();
-  for (const [id, key] of [
-    ["sound-fx", "effects_volume"],
-    ["sound-air", "ambience_volume"],
-  ])
+  for (const [id, key] of [["sound-fx", "effects_volume"]])
     document.getElementById(id).oninput = (e) => {
       p[key] = Number(e.target.value);
       audio.update();

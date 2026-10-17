@@ -547,7 +547,6 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
       openDialog(dialog, $(button));
       if (dialog === "settings-dialog") {
         $("effects-volume").value = preferences.effects_volume;
-        $("ambience-volume").value = preferences.ambience_volume;
       }
       if (dialog === "help-dialog") {
         const d = scene?.diagnostics();
@@ -609,10 +608,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     $("quality-feedback").textContent =
       "Preference saved. Reload to apply the rendering quality; save scientific work first.";
   };
-  for (const [id, key] of [
-    ["effects-volume", "effects_volume"],
-    ["ambience-volume", "ambience_volume"],
-  ]) {
+  for (const [id, key] of [["effects-volume", "effects_volume"]]) {
     $(id).value = preferences[key];
     $(id).oninput = (e) => {
       preferences[key] = Number(e.target.value);
