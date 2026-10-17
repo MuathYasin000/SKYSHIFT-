@@ -1,3 +1,3 @@
 // Stable verification entry point. The former split-mode suite is preserved in Git history;
-// current journeys exercise the unified telescope experience and observation lens.
-import "./verify_telescope_experience.mjs";
+// current journeys exercise native SPHEREx investigations and shared Classic state.
+import "./verify_unified_product.mjs";

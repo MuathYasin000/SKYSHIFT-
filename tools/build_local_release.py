@@ -82,7 +82,7 @@ def sha256(path):
     return h.hexdigest()
 
 
-def build_release(root, name, app_version='0.5.0'):
+def build_release(root, name, app_version='0.6.0'):
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]{0,100}', name) or name.endswith('.'):
         raise ValueError('Use a plain release name containing letters, numbers, dots, hyphens or underscores')
     source = root/'web/dist'
@@ -127,7 +127,7 @@ def build_release(root, name, app_version='0.5.0'):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--name', default='skyshift-0.5-'+datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'))
-    parser.add_argument('--app-version', default='0.5.0')
+    parser.add_argument('--app-version', default='0.6.0')
     args = parser.parse_args()
     print(json.dumps(build_release(ROOT, args.name, args.app_version), indent=2))
 

@@ -6,11 +6,13 @@ import { createExplorationMemory } from "./exploration-memory.js";
 import { createSpaceAudio } from "./space-audio.js";
 import { telescopeStories } from "./telescope-stories.js";
 import { createTelescopeExperience } from "./telescope-experience.js";
+import { createObservationConsole } from "./observation-console.js";
 
 const $ = (id) => document.getElementById(id),
   preferences = readPreferences(),
   audio = createSpaceAudio(preferences);
-// Legacy mode preference must not split the new unified experience.
+// Scientific presentation mode is owned by the native console, not this legacy
+// rendering preference. Both modes use the same investigation state.
 preferences.mode = "immersive";
 let scene = null,
   catalogue = null,
@@ -19,14 +21,12 @@ let scene = null,
   selected = "spherex",
   workspace = false,
   lensOrigin = null,
-  frameLoaded = false,
   sceneStarting = false,
   sceneFailure = false,
-  pendingField = null,
   requestedFocus = false,
-  workspaceTimer = null,
   audioSuspendTimer = null,
-  journey = -1;
+  journey = -1,
+  hangar = false;
 const telescopeExperience = createTelescopeExperience({
   getScene: () => scene,
   audio,
@@ -74,11 +74,13 @@ function renderError(text) {
 }
 function items() {
   if (environment === "observatory")
-    return Object.entries(hardware).map(([id, h]) => ({
-      id,
-      name: h.name,
-      detail: h.kind,
-    }));
+    return Object.entries(hardware)
+      .filter(([id]) => hangar || id === "spherex")
+      .map(([id, h]) => ({
+        id,
+        name: h.name,
+        detail: h.kind,
+      }));
   if (environment === "solar")
     return bodies.map((b) => ({ id: b.id, name: b.name, detail: b.kind }));
   return (catalogue?.fields || []).map((f) => ({
@@ -168,7 +170,9 @@ $("universe").addEventListener("space-frame", positionLabels);
 function sceneCopy() {
   const text = {
     observatory: [
-      "TELESCOPE GALLERY · ILLUSTRATIVE ARRANGEMENT",
+      hangar
+        ? "OTHER OBSERVATORIES · ILLUSTRATIVE COLLECTION"
+        : "SPHEREx · ILLUSTRATIVE SPACECRAFT & EARTH CONTEXT",
       "MEET THE OBSERVATORY",
       "A different way to see.",
       "Orbit the spacecraft. Discover its instruments. Step into real infrared light.",
@@ -192,7 +196,9 @@ function sceneCopy() {
   $("focus-caption").textContent = text[3];
   $("destination-heading").textContent =
     environment === "observatory"
-      ? "CHOOSE YOUR OBSERVATORY"
+      ? hangar
+        ? "OTHER OBSERVATORIES"
+        : "MEET SPHEREx"
       : environment === "solar"
         ? "CHOOSE YOUR WORLD"
         : "CURATED SPHEREx FIELDS";
@@ -217,6 +223,7 @@ function setEnvironment(name) {
       : "Starting the local renderer…",
   );
   scene?.setScene(name);
+  scene?.setCollection(hangar);
   sceneCopy();
   destinationList();
   labels();
@@ -274,7 +281,7 @@ function select(id, focus = true) {
     $("context-summary").textContent = h.description;
     $("context-state").textContent =
       id === "spherex"
-        ? "Illustrative model · source-based proportions"
+        ? "Illustrative spacecraft & orbit context · no live tracking"
         : "Reusable NASA model · educational context";
     $("context-source").href = h.source;
     $("context-credit").textContent = h.credit;
@@ -377,7 +384,8 @@ async function startScene() {
     for (const button of document.querySelectorAll(".hud-controls button"))
       button.disabled = false;
     $("render-fallback").hidden = true;
-    scene.setPaused(false);
+    scene.setPaused(workspace && observationConsole.diagnostics().classic);
+    scene.setCollection(hangar);
     const requestedMission = telescopeExperience.diagnostics(),
       requestedSelection = selected,
       startupFocus = requestedFocus,
@@ -405,89 +413,65 @@ async function startScene() {
     $("retry-renderer").disabled = false;
   }
 }
-function applyFrameMode() {
-  if (!frameLoaded) return;
-  try {
-    const doc = $("science-frame").contentDocument;
-    doc.body.classList.add("immersive-embedded");
-    if (!doc.querySelector("[data-immersive-style]")) {
-      const style = doc.createElement("link");
-      style.rel = "stylesheet";
-      style.href = "./immersive-science.css";
-      style.dataset.immersiveStyle = "true";
-      doc.head.append(style);
-    }
-    const url = new URL($("science-frame").contentWindow.location.href);
-    if (url.origin === location.origin) $("standalone-science").href = url.href;
-  } catch {
-    status(
-      "This workspace can be opened using its standalone scientific link.",
-      true,
-    );
-  }
-}
-function openScience(field) {
-  if (!workspace) lensOrigin = { environment, selected };
+const observationConsole = createObservationConsole({
+  root: $("space-workspace"),
+  onField: (field) => {
+    if (environment !== "sky") setEnvironment("sky");
+    if (selected !== field) select(field, true);
+  },
+  onClose: closeScience,
+  onMode: (classic) => {
+    scene?.setPaused(classic);
+    $("classic-toggle").textContent = classic
+      ? "Immersive Explorer"
+      : "Classic View";
+    audio.suspend();
+  },
+  cue: (kind) => audio.cue(kind),
+});
+async function openScience(field, mode) {
+  if (!workspace)
+    lensOrigin = { environment, selected, camera: scene?.captureView() };
   if (telescopeExperience.open) telescopeExperience.close(true);
-  if (environment !== "observatory") setEnvironment("observatory");
-  if (selected !== "spherex") select("spherex", false);
   workspace = true;
   document.body.classList.add("science-open");
-  $("space-workspace").hidden = false;
   $("render-fallback").hidden = true;
-  scene?.setPresentation("lens");
-  if (environment === "observatory") scene?.focus("spherex");
+  setDestinations(false);
+  scene?.setPresentation("observation");
   transition("lens");
   audio.cue("lens");
   clearTimeout(audioSuspendTimer);
   audioSuspendTimer = setTimeout(() => {
     if (workspace) audio.suspend();
   }, 450);
-  $("sound-toggle").disabled = true;
-  $("sound-toggle").title = "Return to space to use optional sound.";
   $("journey-button").disabled = true;
-  const iframe = $("science-frame");
-  if (field) pendingField = field;
-  if (!iframe.getAttribute("src")) {
-    frameLoaded = false;
-    iframe.src =
-      "./explore.html?" +
-      (field ? "field=" + encodeURIComponent(field) : "resume=1");
-  } else if (field && frameLoaded) {
-    const u = new URL(iframe.contentWindow.location.href);
-    if (u.pathname.endsWith("/explore.html"))
-      iframe.contentWindow.postMessage(
-        { type: "skyshift:select-field", field },
-        location.origin,
-      );
-    else {
-      frameLoaded = false;
-      iframe.src = "./explore.html?field=" + encodeURIComponent(field);
-    }
-  }
-  applyFrameMode();
+  $("resume-button").hidden = false;
+  await observationConsole.open(field, { mode });
 }
 function closeScience() {
+  if (!workspace) return;
+  observationConsole.close();
   workspace = false;
   document.body.classList.remove("science-open");
-  $("space-workspace").hidden = true;
-  $("sound-toggle").disabled = false;
-  $("sound-toggle").title = "Optional synthesized sound";
   $("journey-button").disabled = false;
-  $("science-frame").contentWindow?.postMessage(
-    { type: "skyshift:workspace-visibility", visible: false },
-    location.origin,
-  );
+  $("classic-toggle").textContent = "Classic View";
   scene?.setPaused(false);
   scene?.setPresentation("overview");
-  if (lensOrigin) {
-    const origin = lensOrigin;
-    lensOrigin = null;
-    if (origin.environment !== environment) setEnvironment(origin.environment);
-    if (origin.selected !== selected) select(origin.selected, false);
+  const field = observationConsole.engine.active?.field.id;
+  if (field) {
+    if (environment !== "sky") setEnvironment("sky");
+    select(field, false);
+    if (lensOrigin?.environment === "sky" && lensOrigin.selected === field)
+      scene?.restoreView(lensOrigin.camera);
+    else scene?.focus(field);
+  } else if (lensOrigin) {
+    if (environment !== lensOrigin.environment)
+      setEnvironment(lensOrigin.environment);
+    select(lensOrigin.selected, false);
+    scene?.restoreView(lensOrigin.camera);
   }
+  lensOrigin = null;
   if (sceneFailure) $("render-fallback").hidden = false;
-
   clearTimeout(audioSuspendTimer);
   audio.resume();
   audio.cue("close");
@@ -500,63 +484,30 @@ function closeScience() {
 }
 $("resume-button").hidden = !createExplorationMemory().read().record;
 $("resume-button").onclick = () => openScience();
-$("science-frame").addEventListener("load", () => {
-  frameLoaded = true;
-  $("resume-button").hidden = false;
-  applyFrameMode();
-  clearTimeout(workspaceTimer);
-  $("workspace-error").hidden = true;
-  workspaceTimer = setTimeout(() => {
-    $("workspace-error").textContent =
-      "The scientific controls have not responded. Reload the viewer, or use the standalone scientific link. Saved files remain unchanged.";
-    $("workspace-error").hidden = false;
-  }, 10000);
-  $("science-frame").contentWindow.postMessage(
-    { type: "skyshift:request-controller-status" },
-    location.origin,
-  );
-  if (
-    pendingField &&
-    $("science-frame").contentWindow.location.pathname.endsWith("/explore.html")
-  ) {
-    $("science-frame").contentWindow.postMessage(
-      { type: "skyshift:select-field", field: pendingField },
-      location.origin,
-    );
-    pendingField = null;
-  }
-  const doc = $("science-frame").contentDocument;
-  doc.addEventListener("keydown", (e) => {
-    if (
-      e.key === "Escape" &&
-      !doc.querySelector("dialog[open]") &&
-      !e.defaultPrevented
-    )
-      closeScience();
-  });
-});
-window.addEventListener("message", (e) => {
-  if (
-    e.origin !== location.origin ||
-    e.source !== $("science-frame").contentWindow
-  )
-    return;
-  if (e.data?.type === "skyshift:return-to-space") closeScience();
-  if (e.data?.type === "skyshift:viewer-ready") {
-    clearTimeout(workspaceTimer);
-    $("workspace-error").hidden = true;
-  }
-});
+$("classic-toggle").onclick = () =>
+  workspace
+    ? observationConsole.setMode(!observationConsole.diagnostics().classic)
+    : openScience(undefined, "classic");
+
 document
   .querySelectorAll("button[data-environment]")
   .forEach((b) => (b.onclick = () => setEnvironment(b.dataset.environment)));
 $("destination-search").oninput = destinationList;
-$("from-hardware-to-sky").onclick = () => setEnvironment("sky");
+$("from-hardware-to-sky").onclick = () => {
+  setEnvironment("sky");
+  setDestinations(true);
+};
 document.querySelectorAll("[data-telescope]").forEach(
   (b) =>
     (b.onclick = () => {
       if (workspace) closeScience();
+      hangar = b.dataset.telescope !== "spherex";
+      document.body.classList.toggle("hangar-open", hangar);
+      $("hangar-toggle").textContent = hangar
+        ? "Return to SPHEREx"
+        : "Other observatories";
       if (environment !== "observatory") setEnvironment("observatory");
+      scene?.setCollection(hangar);
       if (telescopeExperience.open) telescopeExperience.close(true);
       select(b.dataset.telescope);
       telescopeExperience.show(b.dataset.telescope);
@@ -564,20 +515,11 @@ document.querySelectorAll("[data-telescope]").forEach(
 );
 $("look-through").onclick = () => telescopeExperience.show(selected);
 $("inspect-observation").onclick = () => openScience(selected);
-$("back-to-universe").onclick = closeScience;
-$("reload-workspace").onclick = () => {
-  const iframe = $("science-frame");
-  try {
-    iframe.contentWindow.location.reload();
-  } catch {
-    iframe.src = "./explore.html?resume=1";
-  }
-};
 $("observations-button").onclick = (event) => {
   event.preventDefault();
   openScience(environment === "sky" ? selected : undefined);
 };
-$("fallback-classic").onclick = () => openScience();
+$("fallback-classic").onclick = () => openScience(undefined, "classic");
 $("retry-renderer").onclick = () => {
   scene?.dispose();
   scene = null;
@@ -703,7 +645,7 @@ for (const [id, key] of [
 }
 $("sound-toggle").onclick = async () => {
   if (workspace) {
-    status("Close the observation lens to use optional sound.");
+    status("Return to exploration to use optional sound.");
     return;
   }
   try {
@@ -719,6 +661,8 @@ document.addEventListener("visibilitychange", () =>
   document.hidden ? audio.suspend() : !workspace && audio.resume(),
 );
 document.addEventListener("keydown", (e) => {
+  if (e.defaultPrevented || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName))
+    return;
   if (e.key === "Escape" && !document.querySelector("dialog[open]")) {
     if (workspace) closeScience();
     else if (telescopeExperience.open) telescopeExperience.close();
@@ -800,12 +744,13 @@ Object.defineProperty(window, "skyshiftSpace", {
     workspace: () => ({
       environment,
       selected,
-      mode: preferences.mode,
+      mode: observationConsole.diagnostics().classic ? "classic" : "immersive",
       workspace,
       audio_enabled: audio.enabled,
     }),
     audio: () => audio.diagnostics(),
     telescope: () => telescopeExperience.diagnostics(),
+    investigation: () => observationConsole.diagnostics(),
   }),
 });
 sceneCopy();
@@ -824,3 +769,16 @@ function contextDetails(open) {
 contextDetails(false);
 setDestinations(false);
 $("context-toggle").onclick = () => contextDetails($("context-details").hidden);
+
+$("hangar-toggle").onclick = () => {
+  if (workspace) closeScience();
+  hangar = !hangar;
+  document.body.classList.toggle("hangar-open", hangar);
+  setEnvironment("observatory");
+  scene?.setCollection(hangar);
+  $("hangar-toggle").textContent = hangar
+    ? "Return to SPHEREx"
+    : "Other observatories";
+};
+if (new URLSearchParams(location.search).get("view") === "classic")
+  openScience(undefined, "classic");

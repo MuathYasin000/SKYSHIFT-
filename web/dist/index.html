@@ -12,11 +12,12 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'self' blob:; frame-src 'self'; object-src 'none'; base-uri 'self'"
     />
-    <title>SKYSHIFT — Immersive Explorer</title>
+    <title>SKYSHIFT — Explore through SPHEREx</title>
     <link rel="icon" type="image/png" href="./assets/SKYSHIFT_ICON.PNG" />
     <link rel="apple-touch-icon" href="./assets/SKYSHIFT_ICON.PNG" />
     <link rel="stylesheet" href="./immersive.css" />
     <link rel="stylesheet" href="./telescope-experience.css" />
+    <link rel="stylesheet" href="./observation-console.css" />
   </head>
   <body>
     <main id="main">
@@ -41,15 +42,18 @@
             alt="SKYSHIFT — Project Mercury Team"
             width="94"
             height="94"
-          /><span>SKYSHIFT<small>SPACE EXPLORER</small></span></a
+          /><span>SKYSHIFT<small>THROUGH SPHEREx</small></span></a
         >
         <nav class="space-actions" aria-label="Workspace controls">
-          <button id="resume-button" hidden>Resume</button
+          <button id="classic-toggle">Classic View</button
+          ><button id="resume-button" hidden>Resume</button
           ><button id="journey-button">Tour</button
           ><button id="sound-toggle" aria-pressed="false">Sound off</button
           ><button id="settings-button">Settings</button
           ><button id="help-button" aria-label="Help and controls">?</button
-          ><a id="observations-button" href="./explore.html">Observations</a>
+          ><a id="observations-button" href="./explore.html"
+            >Explore observations</a
+          >
         </nav>
       </header>
       <button
@@ -63,7 +67,7 @@
       <div id="destinations-drawer" class="destinations-drawer">
         <nav class="space-tabs" aria-label="Exploration environments">
           <button data-environment="observatory" aria-pressed="true">
-            Telescopes</button
+            SPHEREx</button
           ><button data-environment="solar" aria-pressed="false">
             Solar system</button
           ><button data-environment="sky" aria-pressed="false">
@@ -74,9 +78,7 @@
           class="destination-panel"
           aria-label="Accessible destination selection"
         >
-          <p class="space-eyebrow" id="destination-heading">
-            CHOOSE YOUR OBSERVATORY
-          </p>
+          <p class="space-eyebrow" id="destination-heading">MEET SPHEREx</p>
           <label for="destination-search">Find a destination</label
           ><input
             id="destination-search"
@@ -136,7 +138,7 @@
             Open real observation →
           </button>
           <button id="from-hardware-to-sky" class="space-primary">
-            Explore SPHEREx fields →
+            Explore SPHEREx observations →
           </button>
         </div>
       </aside>
@@ -145,10 +147,11 @@
         class="mission-dock"
         aria-label="Featured telescopes"
       >
-        <span>OUR EYES ON THE UNIVERSE</span>
+        <span>EXPLORE THROUGH SPHEREx</span>
         <button data-telescope="spherex" aria-pressed="true">
           <b>01</b> SPHEREx <small>MAP THE SKY</small>
         </button>
+        <button id="hangar-toggle">Other observatories</button>
         <button data-telescope="webb-b" aria-pressed="false">
           <b>02</b> Webb <small>LOOK DEEPER</small>
         </button>
@@ -283,44 +286,16 @@
       </footer>
       <section
         id="space-workspace"
-        class="space-workspace"
-        aria-label="Real scientific observations"
+        class="observation-console"
+        aria-label="SPHEREx investigation"
         hidden
-      >
-        <div class="workspace-bar">
-          <p id="workspace-label">
-            REAL SPHEREx DATA · ORIGINAL MASKS & PROVENANCE · SCIENTIFIC
-            APPROVAL PENDING
-          </p>
-          <button id="back-to-universe">← Close observation lens</button
-          ><button
-            id="reload-workspace"
-            aria-label="Reload scientific viewer"
-            title="Reload scientific viewer"
-          >
-            ↻</button
-          ><a
-            id="standalone-science"
-            href="./explore.html"
-            target="_blank"
-            rel="noreferrer"
-            >Open observations in a new tab ↗</a
-          >
-        </div>
-        <p id="workspace-error" role="alert" hidden></p>
-        <iframe
-          id="science-frame"
-          class="workspace-frame"
-          title="SKYSHIFT scientific viewer — real SPHEREx data"
-          allow="fullscreen"
-        ></iframe>
-      </section>
+      ></section>
       <aside id="render-fallback" class="space-fallback" role="alert" hidden>
         <h2>Science stays within reach.</h2>
         <p id="render-error"></p>
         <a href="./index.html">Reload explorer ↻</a>
         <button id="retry-renderer">Retry 3D</button
-        ><button id="fallback-classic">Open observations</button
+        ><button id="fallback-classic">Open Classic View</button
         ><a href="./explore.html">Open observations without 3D ↗</a>
       </aside>
       <aside
@@ -374,12 +349,12 @@
         /></label>
         <p>
           Sound always starts muted and requires your click. These are original
-          synthesized interface effects, not sounds recorded in space. The
-          observation lens is silent. Reduced-motion preferences disable camera
-          travel animation.
+          synthesized interface effects, not sounds recorded in space.
+          Scientific inspection is silent. Reduced-motion preferences disable
+          camera travel animation.
         </p>
         <button id="open-science-settings" class="space-primary">
-          Open observation lens
+          Open observations
         </button>
       </dialog>
       <dialog
@@ -392,12 +367,12 @@
           <button data-close-dialog aria-label="Close help">×</button>
         </div>
         <p>
-          The telescope dock takes you to SPHEREx, Webb and Hubble. Select a
-          telescope and follow Light → Instrument → Universe. Published images
-          are sourced examples; SPHEREx also connects to the installed real
-          observations through the same exploration lens. Drag to orbit, scroll
-          or pinch to zoom. Arrow keys rotate; + / − zoom; Home resets; Escape
-          returns from a focused workspace.
+          Start with SPHEREx. Other observatories are an optional collection.
+          Select a telescope and follow Light → Instrument → Universe. Published
+          images are sourced examples; SPHEREx also connects to the installed
+          real observations through the same scientific instrument. Drag to orbit,
+          scroll or pinch to zoom. Arrow keys rotate; + / − zoom; Home resets;
+          Escape returns from a focused workspace.
         </p>
         <p>
           <strong>Three distinct environments:</strong> Solar-system positions,
@@ -407,11 +382,12 @@
           catalogue or survey coverage.
         </p>
         <p>
-          <strong>Entering an observation:</strong> the contextual scene pauses
-          and the original scientific viewer opens. Its real dates, wavelengths,
+          <strong>Entering an observation:</strong> the scene recedes and a
+          native observation instrument appears. Immersive and Classic View
+          share exactly the same investigation. Its real dates, wavelengths,
           conservative quality masks, source hashes, questions and evidence
-          exports remain available. Close and reopen the observation lens
-          without reloading that workspace.
+          exports remain available. Return to the sky and resume without losing
+          questions or the viewport.
         </p>
         <p>
           Only the restricted M101 area currently offers a two-date review

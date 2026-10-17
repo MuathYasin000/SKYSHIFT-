@@ -58,6 +58,7 @@ export function createSpaceScene(
     fieldPoints = new Map(),
     cache = new Map();
   let active = "observatory",
+    collection = false,
     currentHardware = "spherex",
     pendingFocus = null,
     modelSequence = 0,
@@ -236,6 +237,7 @@ export function createSpaceScene(
             if (o.isMesh) o.userData.id = id;
           });
           objects.set(id, object);
+          object.visible = collection || id === "spherex";
           modelGroup.add(object);
           invalidate();
           canvas.dispatchEvent(new CustomEvent("space-frame"));
@@ -248,6 +250,7 @@ export function createSpaceScene(
     return hardwareLoads.get(id);
   }
   async function loadObservatories() {
+    if (!collection) return;
     const result = await Promise.allSettled(
       ["webb-b", "hubble"].map(loadHardware),
     );
@@ -266,6 +269,46 @@ export function createSpaceScene(
       onStatus(
         "Three observatories · select a telescope to discover how it sees",
       );
+  }
+  // Official Earth imagery in an explicitly schematic orbital context. No live
+  // ephemerides, orbit scale, attitude or ground track are inferred here.
+  const earthContext = new THREE.Group();
+  modelGroup.add(earthContext);
+  let contextEarthLoading = false;
+  async function loadEarthContext() {
+    if (contextEarthLoading) return;
+    contextEarthLoading = true;
+    try {
+      const earth = await model("earth-natural");
+      if (disposed) return;
+      earth.scale.multiplyScalar(3.3);
+      earth.position.set(-7, -4, -12);
+      earthContext.add(earth);
+      const orbit = new THREE.LineLoop(
+        new THREE.BufferGeometry().setFromPoints(
+          Array.from({ length: 180 }, (_, i) => {
+            const a = (i / 180) * Math.PI * 2;
+            return new THREE.Vector3(
+              -7 + 5.3 * Math.cos(a),
+              -4 + 5.3 * Math.sin(a),
+              -12,
+            );
+          }),
+        ),
+        new THREE.LineBasicMaterial({
+          color: 0xb49b69,
+          transparent: true,
+          opacity: 0.22,
+        }),
+      );
+      earthContext.add(orbit);
+      invalidate();
+    } catch (e) {
+      contextEarthLoading = false;
+      onStatus(
+        "Earth context unavailable. SPHEREx and its scientific observations remain usable.",
+      );
+    }
   }
   // Noncatalogued procedural backdrop: aesthetic navigation context, never a measured star map.
   let seed = 401;
@@ -520,7 +563,12 @@ export function createSpaceScene(
           1,
           (rect.width <= 740 ? 1.25 : 0.8) / (rect.width / rect.height || 1),
         );
-      travel([0, 6.5 * fit, 19 * fit], [0, -0.2, -1.5]);
+      travel(
+        collection
+          ? [0, 6.5 * fit, 19 * fit]
+          : [-4.7 * fit, 3.5 * fit, 8 * fit],
+        [0, -0.2, -1.5],
+      );
     } else if (active === "solar") travel([32, 48, 67], [0, 0, 0]);
     else travel([-45, 31, 60], [0, 0, 0]);
   }
@@ -589,6 +637,14 @@ export function createSpaceScene(
   });
   const raycaster = new THREE.Raycaster(),
     pointers = new Set();
+  function visiblePick(hit) {
+    let object = hit.object;
+    while (object) {
+      if (!object.visible) return false;
+      object = object.parent;
+    }
+    return hit.object.userData.id || hit.object.userData.component;
+  }
   let down = null,
     gesture = false,
     moved = false;
@@ -633,7 +689,7 @@ export function createSpaceScene(
           ).children,
           true,
         )
-        .find((h) => h.object.userData.id || h.object.userData.component);
+        .find(visiblePick);
       hoverId =
         hit?.object.userData.id ||
         (hit?.object.userData.component ? "spherex" : null);
@@ -678,7 +734,7 @@ export function createSpaceScene(
           : modelGroup;
     const hit = raycaster
       .intersectObjects(group.children, true)
-      .find((h) => h.object.userData.id || h.object.userData.component);
+      .find(visiblePick);
     if (hit)
       onSelect(
         hit.object.userData.component
@@ -794,7 +850,11 @@ export function createSpaceScene(
         x: (p.x + 1) / 2,
         y: (1 - p.y) / 2,
         visible:
-          p.z > -1 && p.z < 1 && Math.abs(p.x) < 0.94 && Math.abs(p.y) < 0.88,
+          o.visible &&
+          p.z > -1 &&
+          p.z < 1 &&
+          Math.abs(p.x) < 0.94 &&
+          Math.abs(p.y) < 0.88,
       };
     });
   }
@@ -820,7 +880,34 @@ export function createSpaceScene(
       scene.environmentIntensity = name === "solar" ? 0.3 : 0.55;
       if (name === "solar") loadSolar();
       if (name === "observatory") loadObservatories();
+      if (name === "observatory" && !collection) loadEarthContext();
       reset();
+    },
+    setCollection(value) {
+      collection = Boolean(value);
+      for (const id of ["webb-b", "hubble"])
+        if (objects.has(id)) objects.get(id).visible = collection;
+      for (const [id, ring] of telescopeHalos)
+        ring.visible = collection || id === "spherex";
+      earthContext.visible = !collection;
+      if (collection && active === "observatory") loadObservatories();
+      else if (active === "observatory") loadEarthContext();
+      invalidate();
+    },
+    captureView() {
+      return {
+        scene: active,
+        position: camera.position.toArray(),
+        target: controls.target.toArray(),
+      };
+    },
+    restoreView(view) {
+      if (
+        view?.scene === active &&
+        view.position?.length === 3 &&
+        view.target?.length === 3
+      )
+        travel(view.position, view.target);
     },
     async showHardware(id, move = true) {
       currentHardware = id;

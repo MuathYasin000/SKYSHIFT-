@@ -1,0 +1,56 @@
+{
+  "recorded_at_utc": "2026-10-17T07:29:29.797Z",
+  "browser": "155.0.8059.80",
+  "profile": "isolated",
+  "results": [
+    {
+      "name": "Failed root dependency exposes independent scientific recovery",
+      "status": "pass"
+    },
+    {
+      "name": "Catalogue failure offers retry without displaying unverified data",
+      "status": "pass"
+    },
+    {
+      "name": "Latest native field selection wins during deferred scientific data loading",
+      "status": "pass"
+    },
+    {
+      "name": "Actual graphics-context loss keeps investigation, retry replaces canvas and retains science",
+      "status": "pass"
+    },
+    {
+      "name": "Camera, solar support, repeated mode changes and idle rendering remain bounded",
+      "status": "pass",
+      "detail": {
+        "cycles": 6,
+        "idle_frames": 0,
+        "settings_response_ms": 14.466700000000856,
+        "render_submission_ms": [
+          0.30000000004656613,
+          0.30000000004656613,
+          0.2999999998137355,
+          0.19999999995343387,
+          0.30000000004656613,
+          0.19999999995343387,
+          0.39999999990686774,
+          0.2999999998137355,
+          0.39999999990686774,
+          0.10000000009313226,
+          0.19999999995343387,
+          0.19999999995343387,
+          0.09999999986030161,
+          0.30000000004656613,
+          0.19999999995343387,
+          0.19999999995343387,
+          0.19999999995343387,
+          0.30000000004656613,
+          0.19999999995343387,
+          0.19999999995343387
+        ],
+        "limits": "CPU submission timing; not GPU timing or a frame-rate guarantee"
+      }
+    }
+  ],
+  "failures_are_explicitly_injected": true
+}

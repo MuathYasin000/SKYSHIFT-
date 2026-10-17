@@ -1,0 +1,143 @@
+{
+  "recorded_at_utc": "2026-10-17T07:36:26.8383881Z",
+  "application": "0.6-local-workspace",
+  "baseline": "13683af",
+  "scientific_baseline_unchanged": true,
+  "scientific_assets": {
+    "web/dist/data/review-part-1.bin": "dc521c7f2a92ca6e43c7d0707bb40ea10d6f9df975ac4e2c04e3db66d0e6456b",
+    "web/dist/data/review-part-4.bin": "55e17525ee56e65a4c5d69b947cdea7513fa9b6ec5b70e7f55bc68fdb9494746",
+    "web/dist/data/explore/m101-2025W50_1A_0736_3.json": "3805e172f1fab3f211a634bce269f4c17c401e541b118504108ac508496ee63f",
+    "web/dist/data/explore/m67-2025W44_2B_0657_2.json": "bfc3b5bf23083dbf97c033927aba9ab5df6e8a6f4c1d03f75e948833821ba86b",
+    "web/dist/data/explore-catalog.json": "7197f418f2b09922796494943e97a973a9130f8ef69d27da7272a4a508ec2d39",
+    "web/dist/data/explore/m67-2025W44_2B_0657_2.png": "566f5f1942e41e2a17d74253d1592c98671ec1f85fee2a61b026d3a6c2736e4c",
+    "web/dist/data/review-part-0.bin": "23c44f3918935634bf3081afa2c39b50d50742b4961f959b5189fc58349e534d",
+    "web/dist/data/explore/m101-2025W49_2A_0756_3.json": "d5fe609fc17c1727496eb622b796993ea431138e4d5d2475c5e2dabf5f6b019f",
+    "web/dist/data/review-part-5.bin": "2520ca83bf2b0a41f993f7f3f90b5f14034e6cf365bf9f7965703862a0652e42",
+    "web/dist/data/explore/m101-2025W50_1A_0736_3.png": "c2075c60ab5539f166583dae9f0c1a24702768037881e06f2d11e9d9cfd6a981",
+    "web/dist/data/explore/ngc188-2025W36_1A_0724_2.png": "41f2b089ec81ffc7ca93cf2d3ec536e7403ce7414b39cf609afdbcf2cf79335b",
+    "web/dist/data/review-part-3.bin": "e91f0d3869d9781dd926e295b7b84228fc65c594eabb66618826938da01d162f",
+    "web/dist/data/catalog.json": "17ad6e099632f13b77d1adae1c9f9c62291e3160da435ea02536183461d5c826",
+    "web/dist/data/review-part-2.bin": "2c586275a1d1de3887e4ae9cceb55d3e468c90bf0367a618acf3ea2933550f88",
+    "web/dist/data/pair.fits": "7f0cf23f13e52418b6066e50b173afe1f709c6359ba4259b8ccfb6a0d71f2788",
+    "web/dist/data/explore/m42-2025W37_2A_0010_1.json": "0b27840ae389f3d30f1f4b4e88612e284e747c818a103003257397fafd7418be",
+    "web/dist/data/provenance-audit.json": "83ba2fcff9bab2167203136d1359721b33f3fc52a8656e3a89de68ab5a27c731",
+    "web/dist/data/explore/m42-2025W37_2A_0010_1.png": "df907f141934b2b0303f34ac5e8200d9d1cbbd15e30df0bccf938bd127621e46",
+    "web/dist/data/explore/m101-2025W49_2A_0756_3.png": "56d89cfada9a5f9d1972c9c34e0f0e66a62b40fe83131505b6a894605d7553e2",
+    "web/dist/data/bundle.json": "b36ac03cac9711dbe4aeb0a64ac8cfc898509317d5758d0adb2d2aabacc5effd",
+    "web/dist/data/explore/ngc188-2025W36_1A_0724_2.json": "b3f8720ae20ba4bcfb2adba4d9961aa98cc732dfce6124c26b5a1950ab381e91"
+  },
+  "scientific_code_unchanged": [
+    "src/skyshift",
+    "tools/build_exploration_assets.py"
+  ],
+  "original_spacecraft_model_unchanged": true,
+  "logo_sha256": "5b7eb030b8b6e8c59f9ad7f35a8fcb9be4056efd3916b7c47bc701cacb6e5611",
+  "unit_tests": {
+    "skips": 0,
+    "python_full": 102,
+    "python_final_host_and_html": 24,
+    "javascript_final": 72
+  },
+  "production_static_validation": "pass",
+  "additional_touch_checks": {
+    "browser": "Installed Chrome, fresh mobile-emulation contexts",
+    "widths_px": [390, 320],
+    "passed": ["touch pixel inspection", "add question", "locate question", "edit question", "delete question"],
+    "screenshots_inspected": ["tmp/unified-qa/mobile-question-320.png", "tmp/unified-qa/mobile-question-390.png"],
+    "physical_device_validation": "NOT CONDUCTED"
+  },
+  "scientific_reconstruction": {
+    "status": "pass",
+    "pair_id": "pair-52ad675d929b0740c23b",
+    "scientific_approval": "PENDING",
+    "arrays": {
+      "SCI_A": {
+        "pass": true,
+        "max_absolute_error": 0
+      },
+      "SCI_B": {
+        "pass": true,
+        "max_absolute_error": 0
+      },
+      "VALID_A": {
+        "pass": true,
+        "max_absolute_error": 0
+      },
+      "VALID_B": {
+        "pass": true,
+        "max_absolute_error": 0
+      },
+      "COMMON": {
+        "pass": true,
+        "max_absolute_error": 0
+      },
+      "WAVE_A": {
+        "pass": true,
+        "max_absolute_error": 0
+      },
+      "WAVE_B": {
+        "pass": true,
+        "max_absolute_error": 0
+      },
+      "BAND_A": {
+        "pass": true,
+        "max_absolute_error": 0
+      },
+      "BAND_B": {
+        "pass": true,
+        "max_absolute_error": 0
+      },
+      "SEPARATION": {
+        "pass": true,
+        "max_absolute_error": 0
+      }
+    },
+    "annotations_verified": 1,
+    "display_settings": {
+      "vmin": 0.8790797120332718,
+      "vmax": 8.81986990928652,
+      "stretch": "asinh",
+      "asinh_a": 0.1,
+      "zoom": 1.25,
+      "center_x": 9.861124782860452,
+      "center_y": 12.268000868558193,
+      "view_mode": "single",
+      "selected_epoch": "A",
+      "blink_interval_ms": 1500
+    },
+    "note": "This independently reruns the preparation arithmetic. It is not human scientific approval."
+  },
+  "reconstructed_manifest_sha256": "577d8b18102ab6364039e46d54bf67a6822a3d87a7664689b3195ab4632662ba",
+  "full_review_download": {
+    "bytes": 40697263,
+    "verified": "actual native browser download bytes; all original part hashes checked",
+    "sha256": "2187c38e4e97e8c94999e0ac9794a69e9c357f04ead6298e56b877ed64e30d78"
+  },
+  "receipts": {
+    "unified_concurrent_startup_tests.json": "159b0da320f78b6c3be68bac5b8be2853c5a4ba4b090d0f3082c08b411da98c5",
+    "unified_product_tests_edge.json": "8cf44b7d2fad6a6cc329199637356559ea0423d83855392622c99e909c8ec146",
+    "unified_local_restart_tests.json": "b639736423ccea4db928a88320f7c3827ec3066a017156d616f7c1de74a76079",
+    "unified_product_tests.json": "ea15f7608207a15de50aa3fefb93bf94afaedf41e30c1bd9b0852c6ddb2f4b91",
+    "unified_recovery_tests.json": "e3149ff9d0342ba219b4f8d0c2a1c978b007e04214b01dd159adc62ad8cf30ab"
+  },
+  "server": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.1",
+    "directory_id": "cf30d37f4287c0b3",
+    "content_id": "38ca9d9dc1d6ecf17877458c2d3cb49c2ffac6b92230d7a0b4f362ff5e6c0c1a",
+    "release_id": "workspace",
+    "app_version": "0.6-local-workspace"
+  },
+  "limits": [
+    "Qualified scientific approval PENDING",
+    "Internal human review PENDING",
+    "Independent novice usability validation NOT CONDUCTED",
+    "Browser tests used fresh isolated profiles, not the user session",
+    "Responsive touch checks are emulation, not physical-device tests",
+    "Automated accessibility rules are not manual certification",
+    "Spacecraft/earth context remains illustrative; no current orbital tracking",
+    "Published examples from different missions are not matched observations",
+    "User evaluation of visual and audio quality remains outstanding"
+  ]
+}

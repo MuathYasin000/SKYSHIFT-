@@ -41,10 +41,18 @@ async function startup([name, executablePath], trial) {
     await page.goto("http://localhost:3000");
     await page.waitForFunction(
       () =>
-        window.skyshiftSpace?.diagnostics().loaded_telescopes?.length === 3 &&
+        window.skyshiftSpace
+          ?.diagnostics()
+          .loaded_telescopes?.includes("spherex") &&
         skyshiftSpace.diagnostics().frames > 2,
       null,
       { timeout: 20000 },
+    );
+    await page.locator("#observations-button").click();
+    await page.waitForFunction(
+      () =>
+        window.skyshiftSpace?.investigation().kind === "exposure" &&
+        !skyshiftSpace.investigation().busy,
     );
     await page.locator("#settings-button").click();
     await page.locator("#settings-dialog [data-close-dialog]").click();
@@ -55,7 +63,7 @@ async function startup([name, executablePath], trial) {
       version: browser.version(),
       trial,
       status: "pass",
-      all_telescopes_and_input_ready_ms: performance.now() - start,
+      spherex_science_and_input_ready_ms: performance.now() - start,
       errors,
       failed,
     };
@@ -80,16 +88,16 @@ for (let trial = 0; trial < 3; trial++) {
     console.log(r.status.toUpperCase() + " " + r.name + " trial " + trial);
 }
 await fs.writeFile(
-  "docs/evidence/concurrent_startup_tests.json",
+  "docs/evidence/unified_concurrent_startup_tests.json",
   JSON.stringify(
     {
       date_utc: new Date().toISOString(),
       server: await (await fetch("http://localhost:3000/healthz")).json(),
       results,
       user_session:
-        "User reported refreshed application now responds; these are separate fresh-profile checks",
+        "Fresh-profile checks of 0.6; no claim of verification in the user session",
       scope:
-        "Two browsers concurrently per trial, three trials; all three observatories loaded and settings opened, no external requests required",
+        "Two browsers concurrently per trial, three trials; SPHEREx rendered, native science loaded and settings opened, no external requests required",
     },
     null,
     2,
