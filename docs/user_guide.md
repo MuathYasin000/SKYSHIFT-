@@ -2,6 +2,8 @@
 
 Local workspace 0.7: double-click `start_skyshift.bat` and open http://localhost:3000. Keep the server window open; run the launcher again after restarting Windows. Stop with Ctrl+C or `stop_skyshift.bat`. Supplied viewing needs Python 3.11+ and a modern browser, without an account or internet.
 
+The homepage automatically displays the real interactive SPHEREx model. Drag horizontally to rotate, or focus it and use the arrow keys. The + / − buttons zoom; ↺ or Home resets. Select a model surface to focus that component. Wheel and vertical touch gestures scroll the website. The model is illustrative, with a linked JPL reference, rather than certified engineering geometry. If graphics fail, use **Retry 3D model** or proceed straight to **Compare**; scientific viewing and exports do not need WebGL.
+
 Start with **Explore & Compare Observations**, or **Compare** in the navigation. Both open the existing restricted M101 comparison directly. **Observations** opens single exposures; use **Sky region** to select another field. Four fields are available, with five single-exposure contexts. Only M101 has an installed restricted two-date comparison. Other fields explain their limitations and omit comparison modes. Scientific approval remains PENDING.
 
 Choose a field and a UTC observation date. Select an unmasked pixel to read its position, brightness, wavelength and bandwidth; blue gaps are excluded measurements. **Add a question** attaches your note to a usable ICRS coordinate. The **Questions** panel supports edit, locate and delete. **Appearance** changes display operations only; **Sources & suitability** explains provenance, masks and scientific restrictions.

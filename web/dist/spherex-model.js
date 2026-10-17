@@ -39,20 +39,20 @@ export function createSPHEREx() {
     roughness: 0.29,
     side: THREE.DoubleSide,
     normalMap: foil,
-    normalScale: new THREE.Vector2(0.18, 0.18),
+    normalScale: new THREE.Vector2(0.025, 0.025),
   });
   const white = new THREE.MeshStandardMaterial({
     color: 0xf2eee2,
-    metalness: 0.26,
-    roughness: 0.38,
-    side: THREE.DoubleSide,
-    normalMap: foil,
-    normalScale: new THREE.Vector2(0.09, 0.09),
+    metalness: 0.08,
+    roughness: 0.42,
+    side: THREE.FrontSide,
   });
   const gold = new THREE.MeshStandardMaterial({
     color: 0xb29649,
     metalness: 0.83,
     roughness: 0.38,
+    normalMap: foil,
+    normalScale: new THREE.Vector2(0.045, 0.045),
   });
   const dark = new THREE.MeshStandardMaterial({
     color: 0x111b26,
@@ -88,12 +88,22 @@ export function createSPHEREx() {
       bottom = 0.53 - i * 0.07,
       height = 1.7 - i * 0.13,
       y = 0.15 + i * 0.07;
-    part(
-      new THREE.CylinderGeometry(top, bottom, height, 96, 1, true),
-      i === 0 ? white : metal,
-      [0, y, 0],
-      "shields",
+    const shellGeometry = new THREE.CylinderGeometry(
+      top,
+      bottom,
+      height,
+      96,
+      1,
+      true,
     );
+    part(shellGeometry, i === 0 ? white : metal, [0, y, 0], "shields");
+    if (i === 0) {
+      // JPL: painted-white exterior, reflective aluminum interior. Separate
+      // faces avoid placing a wrinkled foil normal on the painted surface.
+      const inside = metal.clone();
+      inside.side = THREE.BackSide;
+      part(shellGeometry, inside, [0, y, 0], "shields");
+    }
     for (const [r, dy] of [
       [top, height / 2],
       [bottom, -height / 2],
@@ -106,20 +116,24 @@ export function createSPHEREx() {
       );
       rim.rotation.x = Math.PI / 2;
     }
-    const ring = part(
-      new THREE.CylinderGeometry(
-        bottom + 0.28,
-        bottom * 0.8,
-        0.13,
-        48,
-        1,
-        true,
-      ),
-      metal,
-      [0, -0.76 - i * 0.1, 0],
-      "radiators",
-    );
-    ring.rotation.z = Math.PI;
+    // JPL describes three radiator assemblies, each with three nested mirrors.
+    // Wedge shape/proportions remain educational, not engineering geometry.
+    for (let layer = 0; layer < 3; layer++) {
+      const ring = part(
+        new THREE.CylinderGeometry(
+          0.64 + i * 0.07 + layer * 0.028,
+          0.34 + layer * 0.02,
+          0.065,
+          48,
+          1,
+          true,
+        ),
+        metal,
+        [0, -0.59 - i * 0.065 - layer * 0.025, 0],
+        "radiators",
+      );
+      ring.rotation.z = Math.PI;
+    }
   }
   const seam = metal.clone();
   seam.color.set(0xb7b4aa);
@@ -220,6 +234,74 @@ export function createSPHEREx() {
       cellIndex++;
     }
   root.add(cells);
+  // Small fittings are illustrative. Instancing adds edge fasteners and cell
+  // conductors without creating hundreds of extra render calls.
+  const fasteners = new THREE.InstancedMesh(
+    new THREE.SphereGeometry(0.008, 6, 4),
+    metal,
+    96,
+  );
+  fasteners.userData.component = "shields";
+  let fastenerIndex = 0;
+  for (let shield = 0; shield < 3; shield++)
+    for (let bolt = 0; bolt < 32; bolt++) {
+      const angle = (bolt / 32) * Math.PI * 2,
+        radius = 1.6 - shield * 0.21;
+      fasteners.setMatrixAt(
+        fastenerIndex++,
+        new THREE.Matrix4().makeTranslation(
+          Math.cos(angle) * radius,
+          1.0 + shield * 0.005,
+          Math.sin(angle) * radius,
+        ),
+      );
+    }
+  root.add(fasteners);
+  const conductors = new THREE.InstancedMesh(
+    new THREE.BoxGeometry(0.002, 0.132, 0.0015),
+    metal,
+    360,
+  );
+  conductors.userData.component = "panel";
+  let conductorIndex = 0;
+  for (let row = 0; row < 6; row++)
+    for (let col = 0; col < 20; col++)
+      for (let line = 0; line < 3; line++) {
+        conductors.setMatrixAt(
+          conductorIndex++,
+          new THREE.Matrix4().makeTranslation(
+            -0.791,
+            -1.26 + row * 0.168,
+            -1.285 + col * 0.132 + line * 0.035,
+          ),
+        );
+      }
+  root.add(conductors);
+  for (const y of [-1.43, -0.8]) {
+    const deck = part(
+      new THREE.TorusGeometry(0.49, 0.012, 6, 48),
+      metal,
+      [0, y, 0],
+      "bus",
+    );
+    deck.rotation.x = Math.PI / 2;
+    rod([-0.44, y, 0.35], [-0.73, y + 0.07, 0.6], 0.014, gold, "panel");
+    rod([-0.44, y, -0.35], [-0.73, y + 0.07, -0.6], 0.014, gold, "panel");
+  }
+  for (const z of [-0.2, 0, 0.2]) {
+    const cable = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(0.42, -0.85, z),
+      new THREE.Vector3(0.55, -0.99, z),
+      new THREE.Vector3(0.53, -1.3, z),
+      new THREE.Vector3(0.42, -1.43, z),
+    ]);
+    part(
+      new THREE.TubeGeometry(cable, 12, 0.009, 5, false),
+      dark,
+      [0, 0, 0],
+      "bus",
+    );
+  }
   for (const a of [0, (Math.PI * 2) / 3, (Math.PI * 4) / 3]) {
     const strut = part(
       new THREE.CylinderGeometry(0.016, 0.016, 0.68, 8),

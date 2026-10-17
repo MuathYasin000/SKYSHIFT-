@@ -40,10 +40,11 @@
     }
   ],
   "hero_image_treatment": {
-    "asset_manifest": "assets/assets.json",
-    "asset_id": "spherex-spacecraft-concept",
-    "treatment": "SVG silhouette clip, rotation and CSS display brightness 1.3 on the existing NASA/JPL-Caltech artist concept; same JPEG bytes, no generated detail. This treatment applies only to the labeled illustrative asset, never measured observations.",
-    "caption": "Artist's concept; illustration, not live spacecraft view",
+    "type": "interactive_3d_model",
+    "asset_manifest": "assets/space/manifest.json",
+    "asset_id": "spherex",
+    "treatment": "Actual existing SPHEREx geometry rendered through WebGL with studio lighting and interactive camera controls. The rejected SVG-clipped illustration is no longer used in the hero.",
+    "caption": "Interactive 3D; illustrative spacecraft model",
     "scientific_pixels_modified": false
   },
   "raw_references": "data/raw/ui-references (local reference copies; not runtime dependencies)"

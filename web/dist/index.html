@@ -79,42 +79,54 @@
             <div class="orbital-rings" aria-hidden="true">
               <i></i><i></i><i></i><span class="orbit-point"></span>
             </div>
-            <svg
-              class="hero-spacecraft"
-              viewBox="400 120 1100 850"
-              role="img"
-              aria-labelledby="hero-spacecraft-title"
+            <canvas
+              id="hero-model-canvas"
+              class="hero-model-canvas"
+              tabindex="0"
+              aria-label="Interactive 3D SPHEREx telescope. Drag or use arrow keys to rotate; plus and minus zoom; Home resets."
+              aria-describedby="hero-model-description"
+            ></canvas>
+            <div
+              id="hero-model-message"
+              class="hero-model-message"
+              role="status"
             >
-              <title id="hero-spacecraft-title">
-                SPHEREx observatory from an official NASA/JPL-Caltech artist’s
-                concept
-              </title>
-              <defs>
-                <clipPath id="spacecraft-silhouette">
-                  <path
-                    d="M477 235 C469 146 1434 144 1449 232 C1451 247 1419 272 1380 297 L1108 710 L1130 756 L1162 745 L1180 779 L1135 800 L1118 861 L1078 887 L1025 912 L928 919 L862 899 L842 878 L811 895 L787 882 L802 845 L791 817 L589 898 L551 882 L517 629 L685 572 L559 334 C513 296 478 263 477 235 Z"
-                  />
-                </clipPath>
-              </defs>
-              <image
-                href="./assets/spherex-spacecraft-concept.jpg"
-                width="1920"
-                height="1080"
-                clip-path="url(#spacecraft-silhouette)"
-              />
-            </svg>
+              Loading the SPHEREx model…
+            </div>
+            <button id="hero-model-retry" class="hero-model-retry" hidden>
+              Retry 3D model
+            </button>
+            <div
+              class="hero-model-controls"
+              role="group"
+              aria-label="Spacecraft view controls"
+              hidden
+            >
+              <span>Drag to rotate</span
+              ><button id="hero-model-reset" aria-label="Reset spacecraft view">
+                ↺</button
+              ><button
+                id="hero-model-zoom-out"
+                aria-label="Zoom spacecraft out"
+              >
+                −</button
+              ><button id="hero-model-zoom-in" aria-label="Zoom spacecraft in">
+                +
+              </button>
+            </div>
             <div class="hero-instrument-tag">
               <span class="tag-cross" aria-hidden="true">+</span
               ><span>SPHEREx<small>THE INFRARED OBSERVATORY</small></span>
             </div>
             <figcaption>
-              <a
-                href="https://science.nasa.gov/photojournal/spherex-in-orbit-artists-concept/"
+              <span id="hero-model-description"
+                >Interactive 3D · Illustrative spacecraft model</span
+              ><br /><a
+                href="https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/"
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Original NASA/JPL-Caltech artist's concept of SPHEREx"
-                >NASA/JPL-Caltech · Artist’s concept ↗</a
-              ><br /><span>Illustration, not a live spacecraft view</span>
+                >Spacecraft reference: NASA/JPL-Caltech ↗</a
+              >
             </figcaption>
             <a class="hero-mission-link animated-link" href="#mission"
               >Meet the telescope <span aria-hidden="true">↗</span></a

@@ -235,8 +235,9 @@
       "credit": "Project Mercury Team / SKYSHIFT original educational geometry",
       "source_page": "https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/",
       "terms": "Original project code; NASA references credited. No engineering geometry extracted from NASA Eyes.",
-      "sha256": "b1bfa701c372bd7634b24488dc81a6661f24099aa2119a112aa902a582fdbe9a",
-      "modifications": "Original source-informed educational geometry with illustrative foil micro-normals, shield seams and supports; no engineering-twin or measured-surface claim.",
+      "sha256": "e61cdf4adb9e6005f839b81655782cd3e326353d475038c06f2d8c7a5c28f0e4",
+      "previous_source_sha256": "b1bfa701c372bd7634b24488dc81a6661f24099aa2119a112aa902a582fdbe9a",
+      "modifications": "Existing SKYSHIFT model refined: smooth painted-white outer shield with reflective inner face, subtle foil normals, three nested mirrors per radiator assembly, instanced rim fasteners and solar-cell conductors, deck rings, panel braces and representative cable runs. JPL press kit guides major architecture; fitting counts, placement and manufacturing details remain illustrative. No engineering-twin or measured-surface claim.",
       "purpose": "Illustrative educational model, not an engineering digital twin"
     },
     {

@@ -154,7 +154,7 @@ try {
   const requests = [];
   p.on("request", (r) => requests.push(r.url()));
   await check(
-    "Default is a readable website with real observation previews and no 3D downloads",
+    "Homepage shows the requested real 3D SPHEREx model without loading the optional Universe",
     async () => {
       await p.goto("http://localhost:3000/");
       await p.waitForFunction(
@@ -168,12 +168,12 @@ try {
         /Explore & compare/,
       );
       assert.equal(await p.locator("#universe-view canvas").count(), 0);
+      await p.waitForFunction(
+        () => window.skyshiftHero?.diagnostics().model?.frames > 0,
+      );
+      assert.equal(await p.locator(".hero-observatory image").count(), 0);
       assert.deepEqual(
-        requests.filter((x) =>
-          /vendor\/three|\.glb|space-scene\.js|mission-model\.js|immersive\.js/.test(
-            x,
-          ),
-        ),
+        requests.filter((x) => /\.glb|space-scene\.js|immersive\.js/.test(x)),
         [],
       );
       assert.equal(await p.locator("iframe").count(), 0);
@@ -185,7 +185,11 @@ try {
         ),
       );
       await snap(p, "home");
-      return { three_requests: 0, preview_cards: 4 };
+      return {
+        hero_model_rendered: true,
+        universe_downloads: 0,
+        preview_cards: 4,
+      };
     },
   );
   await check(
@@ -203,8 +207,16 @@ try {
         true,
       );
       assert.deepEqual(
-        requests.filter((x) => /vendor\/three|\.glb|space-scene\.js/.test(x)),
+        requests.filter((x) => /\.glb|space-scene\.js/.test(x)),
         [],
+      );
+      const frames = await p.evaluate(
+        () => skyshiftHero.diagnostics().model.frames,
+      );
+      await p.waitForTimeout(150);
+      assert.equal(
+        await p.evaluate(() => skyshiftHero.diagnostics().model.frames),
+        frames,
       );
       await snap(p, "compare");
     },

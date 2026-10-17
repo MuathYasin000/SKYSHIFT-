@@ -6,35 +6,64 @@ import { RoomEnvironment } from "./vendor/three/RoomEnvironment.js";
 import { createSPHEREx } from "./spherex-model.js";
 import { readPreferences } from "./space-preferences.js";
 
-export function createMissionModel(canvas, { onComponent, onError }) {
+export function createMissionModel(
+  canvas,
+  { onComponent = () => {}, onError = () => {}, presentation = "mission" } = {},
+) {
+  const hero = presentation === "hero";
   const lifetime = new AbortController(),
     listen = (target, type, fn) =>
       target.addEventListener(type, fn, { signal: lifetime.signal });
   const preferences = readPreferences();
   const renderer = new THREE.WebGLRenderer({
     canvas,
+    alpha: hero,
     antialias: preferences.quality !== "low",
     powerPreference: "low-power",
   });
   renderer.setPixelRatio(
     Math.min(devicePixelRatio || 1, preferences.quality === "low" ? 1 : 1.5),
   );
-  renderer.setClearColor("#0c1115");
+  renderer.setClearColor(hero ? "#070a12" : "#0c1115", hero ? 0 : 1);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.shadowMap.enabled = preferences.quality !== "low";
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   const scene = new THREE.Scene(),
     camera = new THREE.PerspectiveCamera(38, 1, 0.05, 100),
     controls = new OrbitControls(camera, canvas),
     model = createSPHEREx();
   scene.add(model);
+  model.rotation.z = hero ? -0.22 : 0;
+  model.traverse((o) => {
+    if (o.isMesh) {
+      o.castShadow = true;
+      o.receiveShadow = true;
+    }
+  });
+  const room = new RoomEnvironment();
   const pmrem = new THREE.PMREMGenerator(renderer),
-    env = pmrem.fromScene(new RoomEnvironment(), 0.04);
+    env = pmrem.fromScene(room, 0.04);
+  room.dispose();
   scene.environment = env.texture;
-  scene.environmentIntensity = 0.8;
-  const key = new THREE.DirectionalLight("#fff0d7", 3);
-  key.position.set(4, 6, 8);
-  scene.add(key, new THREE.HemisphereLight("#eef3f7", "#282521", 1));
+  scene.environmentIntensity = 0.65;
+  const key = new THREE.DirectionalLight("#fff4e4", 3.2);
+  key.position.set(-3, 5, 6);
+  key.castShadow = preferences.quality !== "low";
+  key.shadow.mapSize.set(1024, 1024);
+  key.shadow.camera.left = key.shadow.camera.bottom = -3;
+  key.shadow.camera.right = key.shadow.camera.top = 3;
+  key.shadow.camera.near = 0.5;
+  key.shadow.camera.far = 20;
+  key.shadow.normalBias = 0.025;
+  const rim = new THREE.DirectionalLight("#8fb8ed", 2.1);
+  rim.position.set(3, 1, -4);
+  scene.add(key, rim, new THREE.HemisphereLight("#edf3ff", "#292322", 0.75));
   controls.enableDamping = false;
   controls.enablePan = false;
+  // Homepage scrolling takes precedence; explicit zoom buttons remain available.
+  controls.enableZoom = !hero;
+  if (hero) canvas.style.touchAction = "pan-y pinch-zoom";
   controls.minDistance = 2;
   controls.maxDistance = 12;
   let visible = true,
@@ -42,7 +71,8 @@ export function createMissionModel(canvas, { onComponent, onError }) {
     frames = 0,
     disposed = false,
     selected = null,
-    down = null;
+    down = null,
+    userModified = false;
   function draw() {
     if (!visible || disposed || document.hidden || frame) return;
     frame = requestAnimationFrame(() => {
@@ -57,20 +87,47 @@ export function createMissionModel(canvas, { onComponent, onError }) {
     renderer.setSize(r.width, r.height, false);
     camera.aspect = r.width / r.height;
     camera.updateProjectionMatrix();
+    if (hero && !userModified) reset();
     draw();
   }
   function reset() {
-    camera.position.set(-3.4, 2.8, 4.9);
-    controls.target.set(0, -0.1, 0);
+    userModified = false;
+    selected = null;
+    model.traverse((o) => {
+      if (o.isMesh)
+        for (const m of Array.isArray(o.material) ? o.material : [o.material])
+          m.emissive?.set("#000000");
+    });
+    controls.target.set(0, -0.22, 0);
+    const aspect = Math.max(
+      0.1,
+      canvas.clientWidth / Math.max(1, canvas.clientHeight),
+    );
+    const verticalFov = THREE.MathUtils.degToRad(camera.fov);
+    const limitingFov = Math.min(
+      verticalFov,
+      2 * Math.atan(Math.tan(verticalFov / 2) * aspect),
+    );
+    const distance = Math.max(4.8, 2.0 / Math.sin(limitingFov / 2));
+    camera.position
+      .copy(controls.target)
+      .add(
+        new THREE.Vector3(-4.5, 2.9, 4.8).normalize().multiplyScalar(distance),
+      );
     controls.update();
     draw();
   }
   controls.addEventListener("change", draw);
+  controls.addEventListener("start", () => {
+    userModified = true;
+  });
   const observer = new ResizeObserver(resize);
   observer.observe(canvas);
   function focusComponent(id) {
+    userModified = true;
     selected = id;
     const box = new THREE.Box3();
+    model.updateMatrixWorld(true);
     model.traverse((o) => {
       if (o.isMesh) {
         const picked = o.userData.component === id;
@@ -125,6 +182,7 @@ export function createMissionModel(canvas, { onComponent, onError }) {
       e.preventDefault();
       reset();
     } else if (e.key.startsWith("Arrow")) {
+      userModified = true;
       e.preventDefault();
       const offset = camera.position.clone().sub(controls.target),
         s = new THREE.Spherical().setFromVector3(offset);
@@ -146,6 +204,7 @@ export function createMissionModel(canvas, { onComponent, onError }) {
     );
   });
   function zoom(factor) {
+    userModified = true;
     const d = camera.position.clone().sub(controls.target),
       distance = Math.max(2, Math.min(12, d.length() * factor));
     camera.position.copy(controls.target).add(d.setLength(distance));
@@ -174,6 +233,10 @@ export function createMissionModel(canvas, { onComponent, onError }) {
       visible,
       selected,
       kind: "illustrative_spacecraft",
+      presentation,
+      camera: camera.position.toArray(),
+      draw_calls: renderer.info.render.calls,
+      triangles: renderer.info.render.triangles,
     }),
     dispose() {
       disposed = true;
@@ -196,6 +259,7 @@ export function createMissionModel(canvas, { onComponent, onError }) {
       textures.forEach((t) => t.dispose());
       env.dispose();
       pmrem.dispose();
+      key.shadow.dispose();
       renderer.dispose();
       renderer.forceContextLoss();
     },
