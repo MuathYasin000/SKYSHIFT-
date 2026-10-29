@@ -1,0 +1,10 @@
+[
+  {
+    "url": "https://www.spaceappschallenge.org/2026/challenges/planet-x-and-spherex/",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>"
+  },
+  {
+    "url": "https://www.spaceappschallenge.org/2026/local-events/universal-event/",
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>"
+  }
+]

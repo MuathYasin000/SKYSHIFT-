@@ -1,0 +1,24 @@
+{
+  "url": "https://skyshiftt.netlify.app/",
+  "scope": "Fresh anonymous browser, read-only existing deployment. No publication performed.",
+  "cached_sequence_opened": true,
+  "investigation": {
+    "field": "sequence-4a9b44ea9eaa25b72346c529",
+    "kind": "exposure",
+    "sequence": {
+      "id": "sequence-4a9b44ea9eaa25b72346c529",
+      "index": 0,
+      "frames": 2,
+      "playback_eligible": true
+    }
+  },
+  "capabilities_status": 404,
+  "release": {
+    "status": "ok",
+    "server_version": "public-static",
+    "app_version": "0.10-native-preparation",
+    "content_id": "a4b80ed914ca06c11ebadc0c13d47548b05faad0981152ad47961d0a9b286f93",
+    "release_id": "skyshift-native-preparation-20261029"
+  },
+  "page_errors": []
+}

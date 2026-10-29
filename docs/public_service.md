@@ -41,4 +41,4 @@ readiness. Preserve cached examples when the archive is unavailable.
 
 No hosting account, paid service, DNS change, public upload or final competition
 submission has been performed by this engineering milestone. A Python-capable
-deployment destination and the user's publication approval are still needed.
+deployment destination and access to that authorized host are still needed.
