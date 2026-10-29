@@ -2,6 +2,8 @@
 
 Traceable qualitative inspection of real SPHEREx observations, developed by Project Mercury Team.
 
+**0.10.1 reliability milestone:** cancelled preparation work retains capacity until it terminates, new starts are rate-limited, and rejected observations state why playback is unavailable. The coordinate panel includes a real 3I/ATLAS example whose wavelengths differ; it is for independent inspection, not a motion claim. Team-owned source uses Apache-2.0. Native browser APIs replace the retired GSAP runtime; original library records remain outside the distributed site. See the current [issue/evidence update](docs/mission_audit_20261029.md) and [same-origin service handoff](docs/public_service.md). Public backend deployment and qualified scientific approval remain unresolved.
+
 On-demand archive preparation requires the pinned scientific Python dependencies and internet access. Cached examples and exported prepared-data investigations remain usable without archive access or WebGL. A static upload alone does not provide the preparation service.
 
 **29 October native coordinate preparation:** the homepage now sends RA/Dec, requested width and release/group to a bounded same-origin preparation service. Real prepared cutouts open in the existing native viewer, with chronological controls, conditional playback, per-epoch notes and self-contained sequence ZIP export/reopen. Actual QR2/D2 tests prepared 1/2/2/3/2 frames at the five challenge search centres; none establishes target motion, resolved components or calibrated variability. Those examples remain manual because temporal checks are incomplete or fail. The M101 engineering example supports screened playback. Original data and policies remain intact. See [implementation, verification scope and public-service handoff](docs/native_preparation_20261029.md). Scientific approval/internal human review remain PENDING; independent novice validation NOT CONDUCTED. This is pre-event development; competition eligibility and an actual public deployment are not confirmed.
@@ -60,7 +62,7 @@ python -m venv .venv
 node --test web/tests/*.test.mjs
 ```
 
-The buildless frontend needs no npm installation. Vendored fflate 0.8.2 includes its MIT license. Real-data integration tests skip explicitly when the immutable local snapshot is absent. Synthetic scenes are software controls, not astronomical observations.
+The buildless frontend needs no npm installation. Vendored fflate 0.8.2 includes its MIT license. For clean-checkout context integration tests, `python tools/bootstrap_test_inputs.py` retrieves only five published originals, one pinned calibration and the reference catalogue, checking their hashes. Other optional historical-snapshot tests skip explicitly when that snapshot is absent; skips are not scientific validation. Synthetic scenes are software controls, not astronomical observations.
 
 To create a standalone local production snapshot with verified assets, gzip transport compression, startup scripts and checksums:
 

@@ -10,5 +10,5 @@ COPY web/dist ./web/dist
 RUN mkdir -p data/calibration data/cache/cutouts data/investigations && useradd --system skyshift && chown -R skyshift /app
 USER skyshift
 EXPOSE 3000
-HEALTHCHECK --interval=30s --timeout=5s CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:3000/healthz',timeout=3)"
+HEALTHCHECK --interval=30s --timeout=5s CMD python -c "import os,urllib.request; urllib.request.urlopen('http://127.0.0.1:'+os.environ.get('PORT','3000')+'/healthz',timeout=3)"
 CMD ["python", "tools/public_server.py"]

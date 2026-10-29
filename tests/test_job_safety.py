@@ -77,9 +77,10 @@ def test_cancelled_io_retains_storage_reservation(tmp_path,monkeypatch):
         job=store.create(REQUEST);assert entered.wait(3);store.cancel(job['id'])
         # 460 MiB on disk + two reserved 32 MiB slots exceeds 512 MiB.
         real_stat=type(tmp_path).stat
-        saved=tmp_path/'existing'/'sequence.json';saved.parent.mkdir();saved.write_text('{}')
+        saved=tmp_path/'existing'/'failure.json';saved.parent.mkdir();saved.write_text('{}')
         class LargeReceipt:
             st_size=460*1024*1024
+            st_mode=real_stat(saved).st_mode
         monkeypatch.setattr(type(tmp_path),'stat',lambda p,*a,**kw:LargeReceipt() if p==saved else real_stat(p,*a,**kw))
         with pytest.raises(ValueError,match='512 MiB'):store.create(REQUEST)
     finally:

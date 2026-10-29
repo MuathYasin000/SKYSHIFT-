@@ -58,7 +58,12 @@ class JobStore:
             if len(self.starts) >= 12:
                 raise PreparationBusy('Preparation rate limit reached: twelve new jobs per minute for this service. Retry later or reopen an existing investigation.')
             reserved=(1+len(self.inflight))*32*1024*1024
-            if sum(p.stat().st_size for p in self.directory.glob('*/sequence.json'))+reserved>512*1024*1024:
+            if sum(1 for _ in self.directory.iterdir()) >= 512:
+                raise ValueError('Preparation receipt count reached 512. Existing investigations are preserved; no new job was started.')
+            # Failed/partial acquisitions also consume disk. Counting only
+            # successful sequence.json files would let repeated failures evade
+            # the storage bound even with a bounded executor.
+            if sum(p.stat().st_size for p in self.directory.rglob('*') if p.is_file())+reserved>512*1024*1024:
                 raise ValueError('Preparation receipt storage reached 512 MiB. Existing investigations are preserved; no new job was started.')
             while len(self.jobs) >= 16:
                 old = next((k for k,v in self.jobs.items() if k not in self.inflight), None)

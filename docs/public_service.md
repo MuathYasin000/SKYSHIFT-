@@ -16,8 +16,8 @@ Replace the example with the actual host; wildcard hosts are refused. Terminate
 TLS in a trusted reverse proxy which preserves that exact Host header. Serve the
 frontend and API from the same origin; a cross-origin backend requires a separate
 explicit design and is not silently enabled. Keep the ordinary local startup
-loopback-only. Set `PORT` if the host requires it and pass the matching port to
-container health monitoring (the Dockerfile's default is 3000).
+loopback-only. Set `PORT` if the host requires it; container health monitoring
+uses the same value (the default is 3000).
 
 The source Dockerfile builds the same site without relying on ignored local
 research inputs. Calibrations and observations are downloaded from approved
@@ -29,6 +29,8 @@ at most two unfinished jobs, twelve new job starts/minute across the service,
 bounded image transfers and bounded receipt/cache storage. Cancelled I/O retains
 its admission slot until it terminates. Shared research hosting is not an unlimited
 multi-user compute service.
+Run one preparation process per storage volume. Coordinating quotas across
+multiple replicas is not implemented.
 
 Before declaring a host ready, verify anonymously: `/healthz`,
 `/api/capabilities`, a real coordinate request, progress/result identity, cancelled
