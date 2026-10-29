@@ -123,7 +123,7 @@ export function installInfraredExperience() {
           // Actual curated field coordinates, never cursor-generated RA/Dec.
           $("hero-field-coordinates").textContent =
             card.querySelector(".field-coordinates").textContent +
-            " Â· field centre";
+            " · field centre";
           lens.querySelector("span").textContent =
             "IR LENS / CURATED FIELD CENTRE / " +
             card.querySelector(".field-coordinates").textContent +
@@ -330,9 +330,9 @@ export function installInfraredExperience() {
     $("vision-effects").setAttribute("aria-pressed", String(enabled));
     $("vision-effects").textContent = enabled
       ? reduce.matches
-        ? "â—‰ Lens off Â· reduced motion"
-        : "â—‰ Infrared lens on"
-      : "â—‰ Infrared lens off";
+        ? "◉ Lens off · reduced motion"
+        : "◉ Infrared lens on"
+      : "◉ Infrared lens off";
     if (effects()) animateStory(ticket);
     progress();
   }

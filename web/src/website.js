@@ -102,7 +102,7 @@ function setSurface(next) {
   $("universe-loading").hidden = true;
   $("site-information").close();
   if (next === "home") model?.setVisible(missionVisible);
-  // Surface changes must not retain the previous long documentâ€™s footer offset.
+  // Surface changes must not retain the previous long document’s footer offset.
   window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 }
 async function ensureUniverse() {
@@ -155,7 +155,7 @@ async function routeChanged() {
       commit: () => {
         setSurface("science");
         document.title =
-          "SKYSHIFT â€” " +
+          "SKYSHIFT — " +
           (route === "compare"
             ? "Compare observations"
             : "SPHEREx observations");
@@ -190,7 +190,7 @@ async function routeChanged() {
       }else bundle=route==='investigation'?await preparedJob(field):await fetch('./data/sequence-example.json',{signal:AbortSignal.timeout(12000)}).then(r=>{if(!r.ok)throw Error('The verified example is unavailable.');return r.json();});
       if(ticket!==routeSequence)return;
       await consoleView.openSequence(bundle,{type:route==='investigation'?'job':route==='target-example'?'target':'example',id:field,label});
-      document.title='SKYSHIFT â€” Requested SPHEREx observations';
+      document.title='SKYSHIFT — Requested SPHEREx observations';
     }catch(e){if(ticket===routeSequence){consoleView.loadingFailed(e.message);error(e.message+' Open a saved investigation or return to coordinate search.');}}
     return;
   }
@@ -201,7 +201,7 @@ async function routeChanged() {
     routeTransitions.cancel();
     setSurface("universe");
     $("universe-loading").hidden = Boolean(universe);
-    document.title = "SKYSHIFT â€” Optional 3D Universe";
+    document.title = "SKYSHIFT — Optional 3D Universe";
     try {
       const create = await ensureUniverse();
       if (ticket !== routeSequence) return;
@@ -245,7 +245,7 @@ async function routeChanged() {
       if (["home", ""].includes(route)) {
         window.scrollTo({top: 0, left: 0, behavior: "instant"});
       }
-      document.title = "SKYSHIFT â€” Explore & compare SPHEREx observations";
+      document.title = "SKYSHIFT — Explore & compare SPHEREx observations";
     },
   });
   if (ticket !== routeSequence) return;
@@ -276,7 +276,7 @@ async function fields() {
     catalogue = await fetchCatalogue();
     renderFields();
     $("home-fields-status").textContent =
-      `${catalogue.fields.length} curated fields Â· ${catalogue.fields.reduce((n, f) => n + f.observations.length, 0)} individual observations Â· ${catalogue.fields.filter(f => f.comparison_status === 'provisional_restricted').length} restricted comparison Â· scientific approval PENDING`;
+      `${catalogue.fields.length} curated fields · ${catalogue.fields.reduce((n, f) => n + f.observations.length, 0)} individual observations · ${catalogue.fields.filter(f => f.comparison_status === 'provisional_restricted').length} restricted comparison · scientific approval PENDING`;
   } catch (e) {
     $("home-fields-status").textContent = e.message;
     $("home-catalogue-retry").hidden = false;
@@ -322,7 +322,7 @@ function renderFields() {
     );
     const coordinates = node(
       "small",
-      `RA ${field.ra_deg.toFixed(3)}Â° / Dec ${field.dec_deg >= 0 ? "+" : ""}${field.dec_deg.toFixed(3)}Â°`,
+      `RA ${field.ra_deg.toFixed(3)}° / Dec ${field.dec_deg >= 0 ? "+" : ""}${field.dec_deg.toFixed(3)}°`,
       "field-coordinates",
     );
     wrap.append(coordinates);
@@ -347,22 +347,22 @@ function renderFields() {
     );
     link.append(wrap, content);
     card.append(link);
-    const reveal = node("button", "â—‰ Reveal preview", "field-reveal-toggle");
+    const reveal = node("button", "◉ Reveal preview", "field-reveal-toggle");
     reveal.setAttribute("aria-pressed", "false");
     reveal.setAttribute(
       "aria-label",
-      "â—‰ Reveal preview â€” original infrared view of " +
+      "◉ Reveal preview — original infrared view of " +
         (story?.name || field.title),
     );
     reveal.onclick = () => {
       const active = card.classList.toggle("preview-revealed");
       reveal.setAttribute("aria-pressed", String(active));
       reveal.textContent = active
-        ? "â—‰ Original preview Â· on"
-        : "â—‰ Reveal preview";
+        ? "◉ Original preview · on"
+        : "◉ Reveal preview";
       reveal.setAttribute(
         "aria-label",
-        reveal.textContent + " â€” " + (story?.name || field.title),
+        reveal.textContent + " — " + (story?.name || field.title),
       );
     };
     card.append(reveal);
@@ -370,10 +370,10 @@ function renderFields() {
       node(
         "p",
         field.comparison_status === "provisional_restricted"
-          ? "Two dates Â· restricted comparison available"
+          ? "Two dates · restricted comparison available"
           : field.comparison_status === "incompatible_tested_pairs"
-            ? "Single observation Â· tested pairs incompatible"
-            : "Single observation Â· no suitable pair installed",
+            ? "Single observation · tested pairs incompatible"
+            : "Single observation · no suitable pair installed",
         "field-availability",
       ),
     );
@@ -426,7 +426,7 @@ async function activateModel() {
   if (modelStarting) return;
   modelStarting = true;
   $("activate-mission-model").disabled = true;
-  $("activate-mission-model").textContent = "Opening interactive modelâ€¦";
+  $("activate-mission-model").textContent = "Opening interactive model…";
   $("mission-model-start").classList.add("model-opening");
   $("mission-model-start").setAttribute("aria-busy", "true");
   try {
@@ -479,7 +479,7 @@ async function activateModel() {
       .querySelector(".mission-section")
       .classList.add("walkthrough-enabled");
     $("mission-model-status").textContent =
-      "Illustrative SPHEREx model Â· drag to rotate, scroll/pinch to zoom. Arrow keys rotate; + / âˆ’ zoom; Home resets.";
+      "Illustrative SPHEREx model · drag to rotate, scroll/pinch to zoom. Arrow keys rotate; + / − zoom; Home resets.";
     model.setVisible(surface === "home" && missionVisible);
   } catch (e) {
     modelFailed = true;

@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "scope": "Local build integrity; not production deployment or scientific approval",
   "baseline_release": "skyshift-0.9-mission-control",
-  "content_id": "20cbdc15e26f4ed7948361dcb325f065a92669277ad823ff35b8b3dc4b171a7c",
+  "content_id": "a87c21bef997e71c0aad9bd6660183976f3ad3b2a881976e3adb90d5c4434471",
   "deployment_id": null,
   "scientific_approval": "PENDING",
   "historical_audit_at_utc": "2026-10-16T15:21:49.549769+00:00",
@@ -39,5 +39,5 @@
     "data/sequence-wise-0855.json": "3559d57e36c2c55a47cb31cb9a2e7331d7ac927b210302de59a1f3611f4ef98a",
     "data/target-status.json": "6795576d9d6b577430287026cfd138495ade06b5571b291ecc329d7bb22ea5ce"
   },
-  "verified_at_utc": "2026-10-29T22:45:05.418232+00:00"
+  "verified_at_utc": "2026-10-29T22:53:08.180812+00:00"
 }
