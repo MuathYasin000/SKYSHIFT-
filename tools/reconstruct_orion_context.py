@@ -28,9 +28,22 @@ def reconstruct(output):
     rebuilt['comparison_status']='unavailable'
     entry=rebuilt['observations'][0];payload_path=output/Path(entry['url']).name
     payload=json.loads(payload_path.read_text(encoding='utf-8'))
-    payload['observation']['source']['retrieved_at_utc']=json.loads(source.with_suffix('.fits.source.json').read_text(encoding='utf-8')).get('retrieved_at_utc')
-    # No historical retrieval date was recorded for this calibration; keep null honestly.
-    payload['observation']['spectral_calibration']['retrieved_at_utc']=json.loads(calibration.with_suffix('.fits.source.json').read_text(encoding='utf-8')).get('retrieved_at_utc')
+    historical=ROOT/'web/dist'/field['observations'][0]['url'].removeprefix('./')
+    if sha256_file(historical)!=field['observations'][0]['sha256']:
+        raise ValueError('Historical metadata identity differs')
+    recorded=json.loads(historical.read_text(encoding='utf-8'))['observation']
+    # Reconstruct the historical artifact, including its recorded retrieval
+    # metadata. A fresh download's actual event remains in its untouched sidecar
+    # and in this separate report; never backdate that download to match a hash.
+    events={}
+    for name,path in [('source',source),('spectral_calibration',calibration)]:
+        if recorded[name]['sha256']!=sha256_file(path):
+            raise ValueError('Reconstruction input differs from the historical source')
+        payload['observation'][name]['retrieved_at_utc']=recorded[name].get('retrieved_at_utc')
+        events[name]=json.loads(path.with_suffix(path.suffix+'.source.json').read_text(encoding='utf-8'))
+    (output/'reconstruction-input-events.json').write_text(json.dumps({
+        'scope':'Actual input acquisition events, separate from the reproduced historical artifact metadata',
+        'inputs':events},indent=2),encoding='utf-8')
     payload['limitations'].extend(['No temporal screening, independent source registration or photometric variability assessment for this single exposure.','Calibration UUID associations and scientific interpretation still require qualified assessment.'])
     payload_path.write_bytes(json.dumps(payload,separators=(',',':'),allow_nan=False).encode())
     entry['sha256']=sha256_file(payload_path)
