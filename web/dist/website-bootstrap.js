@@ -1,8 +1,12 @@
 import("./site-chrome.js").catch(e=>console.warn("Shared navigation enhancement unavailable:",e));
 document.body.dataset.controller = "starting";
-try {
-  await import("./website.js");
-  document.body.dataset.controller = "ready";
+// Routes own their scroll targets. Browser restoration can otherwise reopen
+// the root homepage midway down before/after the asynchronous controller loads.
+history.scrollRestoration = "manual";
+if (["", "#home"].includes(location.hash) &&
+    !new URLSearchParams(location.search).has("view")) {
+  window.scrollTo({top: 0, left: 0, behavior: "instant"});
+}
   // Automatic hero graphics are independent of scientific startup and recovery.
   import("./hero-model.js")
     .then(({ installHeroModel }) => installHeroModel())
@@ -12,7 +16,12 @@ try {
       const retry = document.getElementById("hero-model-retry");
       retry.hidden = false;
       retry.onclick = () => location.reload();
+      window.dispatchEvent(new Event('skyshift:hero-import-failed'));
     });
+
+try {
+  await import("./website.js");
+  document.body.dataset.controller = "ready";
   // Cosmetic enhancements never gate scientific loading or file recovery.
   import("./infrared-experience.js")
     .then(({ installInfraredExperience }) => installInfraredExperience())

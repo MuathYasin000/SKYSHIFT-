@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -72,10 +73,15 @@ def parse_sia(data: bytes) -> list[dict]:
         if info.get("value") in {"ERROR", "OVERFLOW"}:
             raise ValueError(f"Archive query {info.get('value')}: {info.text}")
     rows = []
-    for table in root.findall(".//v:TABLE", NS):
+    tables = root.findall(".//v:TABLE", NS)
+    if len(tables) != 1:
+        raise ValueError('Expected one archive result table; missing tables are not zero coverage')
+    for table in tables:
         if table.find(".//v:BINARY", NS) is not None or table.find(".//v:BINARY2", NS) is not None:
             raise ValueError("Binary VOTable responses require an explicitly supported decoder")
         fields = [field.get("name") for field in table.findall("v:FIELD", NS)]
+        if not fields or any(not name for name in fields) or len(set(fields)) != len(fields):
+            raise ValueError('Archive result fields must be named and unique')
         for row in table.findall(".//v:TABLEDATA/v:TR", NS):
             values = [cell.text for cell in row.findall("v:TD", NS)]
             if len(values) != len(fields):
@@ -84,16 +90,33 @@ def parse_sia(data: bytes) -> list[dict]:
     return rows
 
 
-def inventory(region: SkyRegion, release: str, output: Path) -> list[dict]:
+def sia_query(region: SkyRegion, release: str, *, deep: bool = False, detector: int | None = None) -> tuple[dict, str]:
     if release not in {"qr2", "qr3"}:
         raise ValueError("Supported releases: qr2 and qr3")
-    params = {"COLLECTION": f"spherex_{release}", "POS": f"circle {region.ra_deg} {region.dec_deg} {region.size_deg / 2}"}
+    # Enclose the square's corners, not only its inscribed circle. Candidate
+    # footprints and per-pixel support still need inspection after this search.
+    params = {"COLLECTION": f"spherex_{release}" + ('_deep' if deep else ''),
+              "POS": f"circle {region.ra_deg} {region.dec_deg} {region.size_deg / math.sqrt(2)}",
+              "MAXREC": "5000", "RESPONSEFORMAT": "VOTABLE"}
+    if detector is not None:
+        # SIA BAND is in metres. Restrict the requested detector's wavelength
+        # regime before retrieving metadata; this is not a local spectral match.
+        bands={1:.9,2:1.35,3:2.,4:3.,5:4.1,6:4.7}
+        if type(detector) is not int or detector not in bands:
+            raise ValueError('Detector must be an integer from 1 to 6')
+        value=bands[detector]*1e-6
+        params['BAND']=f'{value} {value}'
     url = SIA_ENDPOINT + "?" + urlencode(params)
+    return params, url
+
+
+def inventory(region: SkyRegion, release: str, output: Path, *, deep: bool = False, detector: int | None = None, timeout_seconds: int = 60, attempts: int = 3) -> list[dict]:
+    params, url = sia_query(region, release, deep=deep, detector=detector)
     output.mkdir(parents=True, exist_ok=False)
     query = {"url": url, "parameters": params, "attempted_at": utc_now().isoformat(), "status": "pending"}
     (output / "query.json").write_text(json.dumps(query, indent=2), encoding="utf-8")
     try:
-        data = fetch_bytes(url, max_bytes=8_000_000)
+        data = fetch_bytes(url, max_bytes=8_000_000, timeout=timeout_seconds, attempts=attempts)
         (output / "response.xml").write_bytes(data)
         query.update(retrieved_at=utc_now().isoformat(), response_sha256=hashlib.sha256(data).hexdigest())
         rows = parse_sia(data)

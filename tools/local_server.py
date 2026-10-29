@@ -24,7 +24,7 @@ from urllib.parse import unquote, urlsplit
 import webbrowser
 
 ROOT = Path(__file__).resolve().parents[1]
-SERVER_VERSION = '1.1'
+SERVER_VERSION = '1.2'
 CONTENT_SECURITY_POLICY = (
     "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; "
     "img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; "
@@ -38,7 +38,7 @@ def load_release(directory):
     if path.exists():
         raw = json.loads(path.read_text(encoding='utf-8'))
         return {k: raw[k] for k in ('release_id', 'app_version', 'created_at_utc') if k in raw}
-    return {'release_id': 'workspace', 'app_version': '0.9-mission-control-local-workspace'}
+    return {'release_id': 'workspace', 'app_version': '0.10.1-native-preparation-local-workspace'}
 
 
 def content_identity(directory):
@@ -75,24 +75,48 @@ class LocalServer(ThreadingHTTPServer):
     # entire controller from executing, leaving an apparently frozen HUD.
     request_queue_size = 128
 
-    def __init__(self, directory, port=3000):
+    def __init__(self, directory, port=3000, *, bind='127.0.0.1', public_hosts=None):
         self.directory = Path(directory).resolve(strict=True)
         if not (self.directory/'index.html').is_file():
             raise ValueError('Application directory does not contain index.html')
         self.release = load_release(self.directory)
         self.directory_id = hashlib.sha256(str(self.directory).lower().encode()).hexdigest()[:16]
         self.shutdown_token = secrets.token_urlsafe(32)
-        super().__init__(('127.0.0.1', port), LocalHandler)
+        self.public_hosts = set(public_hosts or [])
+        self.preparation = None
+        self.preparation_lock = threading.Lock()
+        self.preparation_enabled = self.directory == (ROOT/'web/dist').resolve() and (ROOT/'src/skyshift/sequence.py').is_file()
+        super().__init__((bind, port), LocalHandler)
+
+    def preparation_store(self):
+        if not self.preparation_enabled:
+            raise ValueError('This static snapshot has no preparation service')
+        with self.preparation_lock:
+            if self.preparation is None:
+                sys.path.insert(0, str(ROOT/'src'))
+                from skyshift.jobs import JobStore
+                self.preparation = JobStore(ROOT/'data/investigations')
+        return self.preparation
+
+    def server_close(self):
+        if self.preparation is not None:
+            self.preparation.close()
+        super().server_close()
 
 
 class LocalHandler(SimpleHTTPRequestHandler):
     server_version = 'SKYSHIFT/' + SERVER_VERSION
     sys_version = ''
     protocol_version = 'HTTP/1.1'
+
+    def setup(self):
+        super().setup()
+        self.connection.settimeout(30)
     extensions_map = {**SimpleHTTPRequestHandler.extensions_map,
         '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json',
         '.fits': 'application/fits', '.fit': 'application/fits', '.bin': 'application/octet-stream',
-        '.svg': 'image/svg+xml', '.csv': 'text/csv', '.zip': 'application/zip', '.wasm': 'application/wasm'}
+        '.svg': 'image/svg+xml', '.csv': 'text/csv', '.zip': 'application/zip', '.wasm': 'application/wasm',
+        '.glb': 'model/gltf-binary'}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(args[2].directory), **kwargs)
@@ -118,7 +142,42 @@ class LocalHandler(SimpleHTTPRequestHandler):
     def valid_host(self):
         host = self.headers.get('Host', '')
         port = self.server.server_address[1]
-        return host.lower() in {f'127.0.0.1:{port}', f'localhost:{port}'}
+        return host.lower() in ({f'127.0.0.1:{port}', f'localhost:{port}'} | self.server.public_hosts)
+
+    def api_request(self, path, payload=None):
+        try:
+            if path == '/api/capabilities' and self.command in ('GET','HEAD'):
+                self.send_json(HTTPStatus.OK, {'preparation': self.server.preparation_enabled,
+                    'preparation_code_sha256':hashlib.sha256(b''.join(p.name.encode()+p.read_bytes() for p in sorted((ROOT/'src/skyshift').glob('*.py')))).hexdigest() if self.server.preparation_enabled else None,
+                    'max_frames':6,'max_field_arcmin':30,'max_active_jobs':2,
+                    'calibrated_temporal_adapters':['qr2/D2'],
+                    'scope':'Other release/detector combinations may provide single-frame visualization only; no automatic fallback.'})
+                return
+            store = self.server.preparation_store()
+            if path == '/api/investigations' and self.command == 'POST':
+                self.send_json(HTTPStatus.ACCEPTED, store.create(payload))
+                return
+            parts = path.strip('/').split('/')
+            if len(parts) in (3,4) and parts[:2] == ['api','investigations'] and len(parts[2]) == 32 and all(c in '0123456789abcdef' for c in parts[2]):
+                key = parts[2]
+                if len(parts) == 3 and self.command in ('GET','HEAD'):
+                    self.send_json(HTTPStatus.OK, store.status(key)); return
+                if len(parts) == 4 and parts[3] == 'cancel' and self.command == 'POST':
+                    self.send_json(HTTPStatus.OK, store.cancel(key)); return
+                if len(parts) == 4 and parts[3] == 'result' and self.command in ('GET','HEAD'):
+                    raw = store.result(key)
+                    self.send_response(HTTPStatus.OK)
+                    self.send_header('Content-Type','application/json; charset=utf-8')
+                    self.send_header('Content-Length',str(len(raw)))
+                    self.end_headers()
+                    if self.command != 'HEAD': self.wfile.write(raw)
+                    return
+            self.send_json(HTTPStatus.NOT_FOUND, {'error':'Unknown investigation endpoint'})
+        except KeyError:
+            self.send_json(HTTPStatus.NOT_FOUND, {'error':'Investigation expired or was not found'})
+        except (ValueError, OSError, ImportError) as exc:
+            status = HTTPStatus.TOO_MANY_REQUESTS if getattr(exc, 'retryable', False) else HTTPStatus.BAD_REQUEST
+            self.send_json(status, {'error':str(exc)})
 
     def send_json(self, status, payload):
         content = json.dumps(payload, separators=(',', ':')).encode()
@@ -154,6 +213,9 @@ class LocalHandler(SimpleHTTPRequestHandler):
             self.send_json(HTTPStatus.MISDIRECTED_REQUEST, {'error': 'Use the local SKYSHIFT address printed by the startup script.'})
             return None
         path = urlsplit(self.path).path
+        if path.startswith('/api/'):
+            self.api_request(path)
+            return None
         if path == '/healthz':
             self.send_json(HTTPStatus.OK, {'status': 'ok', 'application': 'SKYSHIFT',
                 'server_version': SERVER_VERSION, 'directory_id': self.server.directory_id,
@@ -196,7 +258,24 @@ class LocalHandler(SimpleHTTPRequestHandler):
         if not self.valid_host():
             self.send_json(HTTPStatus.MISDIRECTED_REQUEST, {'error': 'Local host header required.'})
             return
-        if self.path != '/__skyshift_shutdown':
+        if self.path.startswith('/api/'):
+            host = self.headers.get('Host','')
+            origin = self.headers.get('Origin')
+            if origin and origin not in {f'http://{host}',f'https://{host}'}:
+                self.close_connection = True
+                self.send_json(HTTPStatus.FORBIDDEN, {'error':'Same-origin preparation requests required'})
+                return
+            try:
+                length = int(self.headers.get('Content-Length','0'))
+                if self.headers.get('Transfer-Encoding') or not 0 < length <= 4096 or self.headers.get('Content-Type','').split(';')[0] != 'application/json':
+                    raise ValueError('Use a JSON observation request no larger than 4096 bytes')
+                payload = json.loads(self.rfile.read(length))
+                self.api_request(urlsplit(self.path).path,payload)
+            except (ValueError, OSError) as exc:
+                self.close_connection = True
+                self.send_json(HTTPStatus.BAD_REQUEST, {'error':str(exc)})
+            return
+        if self.path != '/__skyshift_shutdown' or self.server.public_hosts:
             self.send_json(HTTPStatus.METHOD_NOT_ALLOWED, {'error': 'Static SKYSHIFT hosting does not accept uploads or changes.'})
             return
         expected = 'Bearer '+self.server.shutdown_token

@@ -4,6 +4,8 @@ import { fetchCatalogue } from "./catalogue.js";
 import { stories, friendlyDate } from "./field-guide.js";
 import { components } from "./space-content.js";
 import { createExplorationMemory } from "./exploration-memory.js";
+import {preparedJob} from './preparation-client.js';
+import {verifiedBytes} from './investigation.js';
 
 const $ = (id) => document.getElementById(id),
   memory = createExplorationMemory();
@@ -18,6 +20,8 @@ let surface = "home",
   missionVisible = false;
 let sound = null;
 let routeStarted = false;
+let preparationJob = null;
+let targetExample = null;
 // Missing animation support/module keeps the existing immediate navigation.
 let routeTransitions = {
   async run({ commit, isCurrent }) {
@@ -54,7 +58,8 @@ const consoleView = createObservationConsole({
   onField: () => {
     if (surface !== "science") return;
     const v = consoleView.engine.active,
-      route = v.kind === "pair" ? "compare" : "observations/" + v.field.id;
+      ref=v.sequence?.sourceRef,
+      route = v.sequence ? (ref.type==='target'?'target-example/'+ref.id:ref.type==='job'?'investigation/'+ref.id:ref.type==='example'?'sequence-example':'imported-investigation') : v.kind === "pair" ? "compare" : "observations/" + v.field.id;
     history.replaceState(null, "", "#" + route);
     document.querySelectorAll("[data-route]").forEach((a) => {
       if (a.dataset.route === (v.kind === "pair" ? "compare" : "observations"))
@@ -97,7 +102,7 @@ function setSurface(next) {
   $("universe-loading").hidden = true;
   $("site-information").close();
   if (next === "home") model?.setVisible(missionVisible);
-  // Surface changes must not retain the previous long document’s footer offset.
+  // Surface changes must not retain the previous long documentâ€™s footer offset.
   window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 }
 async function ensureUniverse() {
@@ -150,7 +155,7 @@ async function routeChanged() {
       commit: () => {
         setSurface("science");
         document.title =
-          "SKYSHIFT — " +
+          "SKYSHIFT â€” " +
           (route === "compare"
             ? "Compare observations"
             : "SPHEREx observations");
@@ -170,11 +175,33 @@ async function routeChanged() {
     }
     return;
   }
+  if(['investigation','sequence-example','target-example'].includes(route)) {
+    routeTransitions.cancel();setSurface('science');
+    consoleView.beginLoading();
+    try {
+      preparationJob=route==='investigation'?field:null;
+      targetExample=route==='target-example'?field:null;
+      let bundle,label='';
+      if(targetExample) {
+        const targets=await fetch('./data/target-status.json',{signal:AbortSignal.timeout(12000)}).then(r=>r.json()),entry=[...targets.targets,...(targets.case_studies||[])].find(t=>t.id===field);
+        if(!entry||!/^\.\/data\/sequence-[a-z0-9-]+\.json$/.test(entry.url))throw Error('No verified cached frames for this target.');
+        label=(targets.case_studies||[]).includes(entry)?entry.name:entry.name+' search field';
+        bundle=JSON.parse(new TextDecoder().decode(await verifiedBytes(entry.url,entry.sha256)));
+      }else bundle=route==='investigation'?await preparedJob(field):await fetch('./data/sequence-example.json',{signal:AbortSignal.timeout(12000)}).then(r=>{if(!r.ok)throw Error('The verified example is unavailable.');return r.json();});
+      if(ticket!==routeSequence)return;
+      await consoleView.openSequence(bundle,{type:route==='investigation'?'job':route==='target-example'?'target':'example',id:field,label});
+      document.title='SKYSHIFT â€” Requested SPHEREx observations';
+    }catch(e){if(ticket===routeSequence){consoleView.loadingFailed(e.message);error(e.message+' Open a saved investigation or return to coordinate search.');}}
+    return;
+  }
+  if(route==='imported-investigation') {
+    setSurface('science');consoleView.openPacketPrompt();return;
+  }
   if (route === "universe") {
     routeTransitions.cancel();
     setSurface("universe");
     $("universe-loading").hidden = Boolean(universe);
-    document.title = "SKYSHIFT — Optional 3D Universe";
+    document.title = "SKYSHIFT â€” Optional 3D Universe";
     try {
       const create = await ensureUniverse();
       if (ticket !== routeSequence) return;
@@ -213,22 +240,34 @@ async function routeChanged() {
     isCurrent: () => ticket === routeSequence,
     commit: () => {
       setSurface("home");
-      document.title = "SKYSHIFT — Explore & compare SPHEREx observations";
+      // setSurface intentionally skips work when already home. Navigation to
+      // Home must still reset scroll after visiting an in-page section.
+      if (["home", ""].includes(route)) {
+        window.scrollTo({top: 0, left: 0, behavior: "instant"});
+      }
+      document.title = "SKYSHIFT â€” Explore & compare SPHEREx observations";
     },
   });
   if (ticket !== routeSequence) return;
+  if (route === 'sky-search') {
+    requestAnimationFrame(() => {
+      if (ticket === routeSequence && surface === 'home')
+        $('sky-search').scrollIntoView({behavior: 'instant'});
+    });
+  }
   if (route === "mission") {
     // The real field cards precede this anchor. Let their first layout settle
     // so direct mission links do not slide offscreen as the catalogue arrives.
     await initialCatalogue;
     if (ticket !== routeSequence) return;
-    requestAnimationFrame(() =>
+    requestAnimationFrame(() => {
+      if (ticket !== routeSequence || surface !== 'home') return;
       $("mission-section").scrollIntoView({
         behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
           ? "instant"
           : "smooth",
-      }),
-    );
+      });
+    });
   }
 }
 async function fields() {
@@ -237,7 +276,7 @@ async function fields() {
     catalogue = await fetchCatalogue();
     renderFields();
     $("home-fields-status").textContent =
-      "4 curated fields · 5 individual observations · 1 restricted comparison · scientific approval PENDING";
+      `${catalogue.fields.length} curated fields Â· ${catalogue.fields.reduce((n, f) => n + f.observations.length, 0)} individual observations Â· ${catalogue.fields.filter(f => f.comparison_status === 'provisional_restricted').length} restricted comparison Â· scientific approval PENDING`;
   } catch (e) {
     $("home-fields-status").textContent = e.message;
     $("home-catalogue-retry").hidden = false;
@@ -283,7 +322,7 @@ function renderFields() {
     );
     const coordinates = node(
       "small",
-      `RA ${field.ra_deg.toFixed(3)}° / Dec ${field.dec_deg >= 0 ? "+" : ""}${field.dec_deg.toFixed(3)}°`,
+      `RA ${field.ra_deg.toFixed(3)}Â° / Dec ${field.dec_deg >= 0 ? "+" : ""}${field.dec_deg.toFixed(3)}Â°`,
       "field-coordinates",
     );
     wrap.append(coordinates);
@@ -308,22 +347,22 @@ function renderFields() {
     );
     link.append(wrap, content);
     card.append(link);
-    const reveal = node("button", "◉ Reveal preview", "field-reveal-toggle");
+    const reveal = node("button", "â—‰ Reveal preview", "field-reveal-toggle");
     reveal.setAttribute("aria-pressed", "false");
     reveal.setAttribute(
       "aria-label",
-      "◉ Reveal preview — original infrared view of " +
+      "â—‰ Reveal preview â€” original infrared view of " +
         (story?.name || field.title),
     );
     reveal.onclick = () => {
       const active = card.classList.toggle("preview-revealed");
       reveal.setAttribute("aria-pressed", String(active));
       reveal.textContent = active
-        ? "◉ Original preview · on"
-        : "◉ Reveal preview";
+        ? "â—‰ Original preview Â· on"
+        : "â—‰ Reveal preview";
       reveal.setAttribute(
         "aria-label",
-        reveal.textContent + " — " + (story?.name || field.title),
+        reveal.textContent + " â€” " + (story?.name || field.title),
       );
     };
     card.append(reveal);
@@ -331,10 +370,10 @@ function renderFields() {
       node(
         "p",
         field.comparison_status === "provisional_restricted"
-          ? "Two dates · restricted comparison available"
+          ? "Two dates Â· restricted comparison available"
           : field.comparison_status === "incompatible_tested_pairs"
-            ? "Single observation · tested pairs incompatible"
-            : "Single observation · no suitable pair installed",
+            ? "Single observation Â· tested pairs incompatible"
+            : "Single observation Â· no suitable pair installed",
         "field-availability",
       ),
     );
@@ -387,7 +426,7 @@ async function activateModel() {
   if (modelStarting) return;
   modelStarting = true;
   $("activate-mission-model").disabled = true;
-  $("activate-mission-model").textContent = "Opening interactive model…";
+  $("activate-mission-model").textContent = "Opening interactive modelâ€¦";
   $("mission-model-start").classList.add("model-opening");
   $("mission-model-start").setAttribute("aria-busy", "true");
   try {
@@ -440,7 +479,7 @@ async function activateModel() {
       .querySelector(".mission-section")
       .classList.add("walkthrough-enabled");
     $("mission-model-status").textContent =
-      "Illustrative SPHEREx model · drag to rotate, scroll/pinch to zoom. Arrow keys rotate; + / − zoom; Home resets.";
+      "Illustrative SPHEREx model Â· drag to rotate, scroll/pinch to zoom. Arrow keys rotate; + / âˆ’ zoom; Home resets.";
     model.setVisible(surface === "home" && missionVisible);
   } catch (e) {
     modelFailed = true;
@@ -477,6 +516,10 @@ document.addEventListener("visibilitychange", () => {
 });
 Object.defineProperty(window, "skyshiftWebsite", {
   value: Object.freeze({
+    async openPrepared(bundle,id) {
+      ++routeSequence;routeTransitions.cancel();preparationJob=id||null;targetExample=null;setSurface('science');
+      await consoleView.openSequence(bundle,{type:'job',id});
+    },
     diagnostics: () => ({
       surface,
       universe_loaded: Boolean(universe),

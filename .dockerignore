@@ -1,0 +1,10 @@
+.git
+.venv
+node_modules
+web/node_modules
+tmp
+output
+.skyshift-local
+data/investigations
+data/cache
+docs/evidence

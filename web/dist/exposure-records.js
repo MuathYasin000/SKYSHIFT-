@@ -7,8 +7,8 @@ export const MAX_VIEW_RECORD_BYTES=128*1024;
 const KEYS=['schema_version','record_kind','field','product_url','product_sha256','observation','region','wcs','native_shape','prepared_shape','processing','array_hashes','visualization','display','viewport','scientific_approval','limitations'];
 function exactKeys(value,keys){return value&&typeof value==='object'&&!Array.isArray(value)&&equalEvidence(Object.keys(value).sort(),[...keys].sort());}
 function supportedRecord(record){
-  const extended=record?.schema_version==='1.1';
-  return exactKeys(record,extended?[...KEYS,'questions']:KEYS)&&['1.0','1.1'].includes(record.schema_version)&&record.record_kind==='single_observation_view'&&record.scientific_approval==='PENDING'&&(!extended||(Array.isArray(record.questions)&&record.questions.length<=MAX_EXPOSURE_QUESTIONS));
+  const extended=['1.1','1.2'].includes(record?.schema_version);
+  return exactKeys(record,extended?[...KEYS,'questions']:KEYS)&&['1.0','1.1','1.2'].includes(record.schema_version)&&record.record_kind==='single_observation_view'&&record.scientific_approval==='PENDING'&&(!extended||(Array.isArray(record.questions)&&record.questions.length<=MAX_EXPOSURE_QUESTIONS));
 }
 
 export function createExposureRecord(field,entry,product,view){
@@ -21,7 +21,7 @@ export function createExposureRecord(field,entry,product,view){
     display:{...product.display,vmax:product.display.vmin+(product.display.vmax-product.display.vmin)/view.contrast},
     viewport:{...view.viewport},scientific_approval:'PENDING',limitations:product.limitations
   };
-  if(view.questions?.length){record.schema_version='1.1';record.questions=view.questions.map(q=>({...q}));}
+  if(view.questions?.length){record.schema_version=view.questions.some(q=>q.category)?'1.2':'1.1';record.questions=view.questions.map(q=>({...q}));}
   return record;
 }
 
@@ -57,6 +57,6 @@ export function validateExposureRecord(record,field,entry,product,arrays){
   if(!exactKeys(v,['zoom','center_x','center_y'])||!Number.isFinite(v.zoom)||v.zoom<1||v.zoom>20||!Number.isFinite(v.center_x)||v.center_x<0||v.center_x>w-1||!Number.isFinite(v.center_y)||v.center_y<0||v.center_y>h-1)throw Error('Saved position or zoom is outside this exposure.');
   const visualization=validateVisualization(record.visualization);
   if(visualization.wipe||visualization.wipe_position!==50)throw Error('A single exposure does not support comparison overlay settings.');
-  const questions=record.schema_version==='1.1'?validateExposureQuestions(record.questions,product,entry.sha256,arrays?.VALID):[];
+  const questions=['1.1','1.2'].includes(record.schema_version)?validateExposureQuestions(record.questions,product,entry.sha256,arrays?.VALID):[];
   return {visualization,contrast:Math.max(.5,Math.min(2,contrast)),viewport:{...v},questions};
 }

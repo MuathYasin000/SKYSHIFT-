@@ -1164,6 +1164,7 @@ export function createSpaceScene(
     diagnostics() {
       return {
         ...metrics,
+        memory: {...renderer.info.memory},
         render_ms: [...metrics.render_ms],
         camera: camera.position.toArray(),
         target: controls.target.toArray(),
@@ -1212,6 +1213,7 @@ export function createSpaceScene(
       };
     },
     dispose() {
+      if(disposed)return;
       disposed = true;
       paused = true;
       lifetime.abort();

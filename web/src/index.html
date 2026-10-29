@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Explore real SPHEREx observations, compare the restricted M101 field across two dates, and save reproducible investigations. Independent Project Mercury Team application."
+    />
+    <title>SKYSHIFT — SPHEREx observations & comparison</title>
+    <link rel="icon" href="./assets/skyshift-mark.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./tokens.css">
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./components.css">
+<link rel="stylesheet" href="./shell-app.css">
+<link rel="stylesheet" href="./home.css">
+<link rel="stylesheet" href="./sky-search.css">
+<link rel="stylesheet" href="./observations.css">
+<link rel="stylesheet" href="./compare.css">
+<link rel="stylesheet" href="./discover.css">
+<link rel="stylesheet" href="./universe.css">
+<link rel="preload" href="./assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="./assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><link rel="canonical" href="https://skyshiftt.netlify.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SKYSHIFT — SPHEREx observations &amp; comparison">
+<meta property="og:description" content="Explore real SPHEREx observations, compare the restricted M101 field across two dates, and save reproducible investigations. Independent Project Mercury Team application.">
+<meta property="og:url" content="https://skyshiftt.netlify.app/">
+<meta property="og:image" content="https://skyshiftt.netlify.app/assets/mission-control.webp">
+<meta property="og:image:alt" content="SKYSHIFT mission-control interface with an illustrative SPHEREx model; scientific approval pending">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="./kinetic-loader.css">
+<link rel="stylesheet" href="./arrival.css">
+<script src="./arrival.js"></script>
+<script type="module" src="./kinetic-loader.js"></script>
+</head>
+  <body data-surface="home" data-shell="app" data-page="home">
+    <section id="arrival-screen" role="dialog" aria-modal="true" aria-labelledby="arrival-title" aria-describedby="arrival-status" tabindex="-1" data-kinetic-ignore>
+      <div class="arrival-cosmos" aria-hidden="true">
+        <div id="arrival-stars"></div>
+        <div class="arrival-halo"></div>
+        <div class="arrival-orbit arrival-orbit-one"></div>
+        <div class="arrival-orbit arrival-orbit-two"></div>
+        <div class="arrival-planet arrival-planet-ringed"><i></i></div>
+        <div class="arrival-planet arrival-planet-blue"></div>
+        <span class="arrival-moon"></span>
+      </div>
+      <div class="arrival-wordmark">SKYSHIFT<span>A NEW PERSPECTIVE</span></div>
+      <div class="arrival-copy">
+        <p class="arrival-eyebrow">YOUR JOURNEY BEGINS</p>
+        <h2 id="arrival-title">A little closer<br>to the universe.</h2>
+        <p id="arrival-status" role="status">Bringing SPHEREx into view…</p>
+        <div class="arrival-stages" aria-hidden="true"><i></i><i></i><i></i></div>
+        <button id="arrival-retry" type="button" hidden>Retry arrival ↗</button>
+      </div>
+      <div class="arrival-footer"><button id="arrival-skip" type="button">Skip intro ↗</button><span>SPHEREx · YOUR INFRARED OBSERVATORY</span><a href="./compare.html">Open observations ↗</a></div>
+    </section>
+    <div id="arrival-model-stage" aria-hidden="true" hidden>
+      <div class="arrival-scan"><div class="arrival-scan-ring"></div><i></i><i></i><i></i><i></i><span>INFRARED SCAN <small>ILLUSTRATIVE</small></span></div>
+    </div>
+    <div class="reading-spectrum" aria-hidden="true">
+      <div data-spectrum></div>
+    </div>
+    <div id="infrared-lens" aria-hidden="true">
+      <span>IR LENS / M101 FIELD CENTRE<br>RA 210.802° / DEC +54.349°<br>Not spacecraft pointing</span>
+    </div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" id="site-header">
+ <a class="site-brand" href="./index.html" aria-label="SKYSHIFT home"><img src="./assets/skyshift-mark.svg" width="36" height="42" alt=""><span>SKYSHIFT<small>SPHEREX OBSERVATION EXPLORER</small></span></a>
+ <button class="mobile-menu-toggle" id="site-menu-toggle" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false" title="Navigation">☰</button>
+ <nav class="site-navigation" id="site-nav" aria-label="Main navigation">
+  <a href="./index.html#observations" data-route="observations">Observations</a><a href="./index.html#compare" data-route="compare">Compare</a><a href="./discover.html" data-route="discover">Discover SPHEREx</a><a href="./index.html#universe" data-route="universe">3D Universe</a><a href="./methodology.html" data-route="methodology">Methodology</a>
+ </nav>
+ <div class="chrome-actions"><button id="site-sound" data-sound-toggle aria-pressed="false" aria-label="Sound off — turn SKYSHIFT sound on" title="Turn SKYSHIFT sound on"><svg class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6m0-6-5 6"/></svg><span class="sound-word">Sound off</span></button><button id="site-more" aria-expanded="false" aria-controls="resources-menu">Resources <span aria-hidden="true">+</span></button><a href="./index.html#compare" class="header-launch">Compare dates</a></div>
+ <nav id="resources-menu" class="resources-menu" aria-label="Resources" hidden><button id="resources-information">ⓘ Sources, methods & credits</button><button data-open-sound>♫ Sound & volume</button><a href="./explore.html">Explore the sky atlas →</a><a href="./index.html#mission">Interactive spacecraft →</a><a href="./compare.html">Standalone comparison →</a><a href="./guide.html">Reconstruction guide →</a><a href="./classic-home.html">Project introduction →</a></nav>
+</header>
+
+    <main id="main" tabindex="-1">
+      <p id="site-error" class="site-error" role="alert" hidden></p>
+      <section id="home-view" class="website-content">
+        <div class="home-intro observatory-hero">
+          <div class="hero-grid" aria-hidden="true"></div>
+          <div class="hero-stars stars-near" aria-hidden="true"></div>
+          <div class="hero-stars stars-far" aria-hidden="true"></div>
+          <div class="hero-stars stars-mid" aria-hidden="true"></div>
+          <div class="intro-copy">
+            <p class="eyebrow">
+              <span class="status-dot"></span> A NEW PERSPECTIVE ON THE UNIVERSE
+            </p>
+            <h1 aria-label="Watch the infrared sky change over time.">
+              <span class="headline-line">Watch the </span
+              ><span class="headline-line">infrared sky </span
+              ><span class="headline-line"><em>over time<span class="hero-period">.</span></em></span>
+            </h1>
+            <p class="intro-lead">
+              Compare real SPHEREx images of the same sky position. Inspect
+              available dates, understand their limits and keep your evidence.
+            </p>
+            <div class="intro-actions">
+              <a
+                href="#compare"
+                class="primary-link mission-launch"
+
+              >
+                <svg
+                  class="launch-orbit"
+                  viewBox="0 0 52 52"
+                  aria-hidden="true"
+                >
+                  <ellipse
+                    cx="26"
+                    cy="26"
+                    rx="23"
+                    ry="10"
+                    transform="rotate(-35 26 26)"
+                  />
+                  <ellipse
+                    cx="26"
+                    cy="26"
+                    rx="23"
+                    ry="10"
+                    transform="rotate(55 26 26)"
+                  />
+                  <path
+                    d="M26 14L28.7 23.3L38 26L28.7 28.7L26 38L23.3 28.7L14 26L23.3 23.3Z"
+                  />
+                  <circle cx="43" cy="15" r="3" />
+                </svg>
+                <span class="launch-copy"
+                  ><small>SPHEREx / OBSERVATION LAB</small
+                  ><strong>Explore &amp; Compare</strong
+                  ><span>Two dates. One field. Your evidence.</span></span
+                >
+                <span class="launch-arrow" aria-hidden="true">↗</span>
+                <span class="launch-spectrum" aria-hidden="true"
+                  ><i></i><i></i><i></i><i></i><i></i><i></i
+                ></span> </a
+              ><a href="#universe" class="text-link universe-launch"
+                ><span aria-hidden="true">◌</span> Explore the Universe in 3D
+                <span aria-hidden="true">↗</span></a
+              ><a href="#sky-search" class="text-link">Search sky coordinates ↗</a>
+            </div>
+            <p class="intro-note">
+              M101 offers a restricted two-date comparison.
+              <span
+                class="status-pending"
+                title="Engineering screens are documented. Qualified astronomical review is not complete."
+                >Scientific approval PENDING</span
+              >
+            </p>
+            <div class="vision-controls">
+              <button id="vision-effects" aria-pressed="true">
+                ◉ Infrared lens on</button
+              ><span>Display effect only · real pixels stay unchanged</span>
+            </div>
+          </div>
+          <figure class="hero-observatory">
+            <div class="observatory-lettering" aria-hidden="true">
+              INFRA<br /><span>RED</span>
+            </div>
+            <div class="hero-flare" aria-hidden="true"></div>
+            <div class="hero-hud">
+              <span
+                ><i class="status-dot"></i>
+                <b id="hero-readiness">LOCAL VIEW STANDBY</b></span
+              ><span id="hero-field-coordinates"
+                >M101 · RA 210.802° / Dec +54.349°</span
+              ><small>Curated field centre · not spacecraft pointing</small>
+              <small id="hero-cursor-position"
+                >DISPLAY POSITION / move over the hero</small
+              >
+            </div>
+            <div class="observatory-rings" aria-hidden="true">
+              <i></i><i></i><i></i><span class="orbit-point"></span>
+            </div>
+            <canvas
+              id="hero-model-canvas"
+              class="hero-model-canvas"
+              tabindex="0"
+              aria-label="Interactive 3D SPHEREx telescope. Drag or use arrow keys to rotate; plus and minus zoom; Home resets."
+              aria-describedby="hero-model-description"
+            ></canvas>
+            <div
+              id="hero-model-message"
+              class="hero-model-message"
+              role="status"
+            >
+              3D starts when this section is visible.
+            </div>
+            <button id="hero-model-retry" class="hero-model-retry" hidden>
+              Retry 3D model
+            </button>
+            <div
+              class="hero-model-controls"
+              role="group"
+              aria-label="Spacecraft view controls"
+              hidden
+            >
+              <span>Drag to rotate</span
+              ><button id="hero-model-reset" aria-label="Reset spacecraft view">
+                ↺</button
+              ><button
+                id="hero-model-zoom-out"
+                aria-label="Zoom spacecraft out"
+              >
+                −</button
+              ><button id="hero-model-zoom-in" aria-label="Zoom spacecraft in">
+                +
+              </button>
+            </div>
+            <div class="hero-instrument-tag">
+              <span class="tag-cross" aria-hidden="true">+</span
+              ><span>SPHEREx<small>THE INFRARED OBSERVATORY</small></span>
+            </div>
+            <figcaption>
+              <span id="hero-model-description"
+                >Interactive 3D · Illustrative spacecraft model</span
+              ><br /><a
+                href="https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/"
+
+                 target="_blank" rel="noopener noreferrer">Spacecraft reference: NASA/JPL-Caltech ↗</a
+              >
+            </figcaption>
+            <a class="hero-mission-link animated-link" href="#mission"
+              >Meet the telescope <span aria-hidden="true">↗</span></a
+            >
+          </figure>
+          <div class="hero-index" aria-hidden="true">
+            <span>01 / OBSERVE</span><span>02 / COMPARE</span
+            ><span>03 / INVESTIGATE</span>
+          </div>
+          <div class="hero-spectrum"><div class="spectrum-caption">102 INFRARED CHANNELS · 0.75–5.0 μm<small title="False-color display of short-to-long wavelength order; channel positions are not calibrated.">Representative colors · schematic channel positions</small></div><div data-spectrum aria-hidden="true"></div><div class="wavelength-endpoints" aria-hidden="true"><span>0.75 μm</span><span class="spectrum-readout" data-spectrum-readout>Hover a channel</span><span>5.0 μm</span></div></div>
+        </div>
+        <section id="sky-search" class="sky-search" aria-labelledby="sky-search-heading">
+          <div class="search-panel">
+          <p class="eyebrow">SKY SEARCH</p>
+          <h2 id="sky-search-heading">Find your patch of sky.</h2>
+          <p class="search-intro">Enter coordinates or choose a target.</p>
+          <form id="sky-search-form">
+            <div class="search-grid">
+              <label for="search-ra">Right ascension · RA<input id="search-ra" name="ra" type="text" required maxlength="48" placeholder="133.795129 or 08h55m10.831s" aria-describedby="search-unit-help"></label>
+              <label for="search-dec">Declination · Dec<input id="search-dec" name="dec" type="text" required maxlength="48" placeholder="-7.245147 or -07d14m42.53s" aria-describedby="search-unit-help"></label>
+              <label for="search-fov">Width · arcmin<input id="search-fov" name="fov" type="number" min="1" max="30" step="any" value="12" required aria-describedby="search-unit-help"></label>
+              <button type="submit" id="sky-search-prepare">Load observations →</button>
+            </div>
+            <div class="search-target-row"><span>Try a target</span><div id="sky-search-targets" class="search-targets" role="group" aria-label="Challenge target search presets"></div></div>
+            <div class="search-toolbar">
+              <a class="search-example" href="#sequence-example">Try a cached example ↗</a>
+              <a class="search-example" href="#target-example/comet-december">Inspect 3I/ATLAS · wavelength check ↗</a>
+              <button type="button" id="sky-search-cancel" hidden>Cancel preparation</button>
+              <details id="sky-search-options" class="search-options">
+                <summary>Options &amp; data notes</summary>
+                <div class="search-options-body">
+                  <div class="search-advanced-grid">
+                    <label for="search-release">Data release<select id="search-release" name="release"><option value="qr2">QR2</option><option value="qr3">QR3</option></select></label>
+                    <label for="search-detector">Wavelength group<select id="search-detector"><option value="2">D2 · 1.10–1.62 µm</option><option value="1">D1 · 0.75–1.09 µm</option><option value="3">D3 · 1.63–2.41 µm</option><option value="4">D4 · 2.42–3.82 µm</option><option value="5">D5 · 3.83–4.41 µm</option><option value="6">D6 · 4.42–5.00 µm</option></select></label>
+                  </div>
+                  <p id="search-unit-help">ICRS coordinates: decimal RA/Dec in degrees; hms RA in hours (0–24). Width is the side of a square, 1–30 arcmin. Up to three cutouts per request; larger fields may take longer.</p>
+                  <label class="search-fresh"><input id="search-fresh" type="checkbox">Refresh from the archive instead of using cached originals.</label>
+                  <button type="button" id="sky-search-check">Check installed fields</button>
+                  <p>QR2/D2 supports full calibration checks. Other groups and releases may allow individual images only. Playback requires wavelength and reference checks; scientific approval remains pending. Data are never silently substituted.</p>
+                  <p>Live requests need this host’s preparation service; cached examples work without it. Coordinates and field width go to this host and the public archive. Your notes stay in your browser until exported.</p>
+                  <p id="sky-target-context">Choose a target to see its coordinate source and test notes.</p>
+                  <a id="sky-target-source" target="_blank" rel="noopener noreferrer" hidden>Coordinate source ↗</a>
+                </div>
+              </details>
+            </div>
+          </form>
+          <p id="sky-search-status" role="status" aria-live="polite"></p>
+          <ul id="sky-search-matches" aria-label="Nearby prepared fields"></ul>
+          <div id="sky-search-actions" class="search-actions" hidden>
+            <a id="sky-search-share">Open shareable search link ↗</a>
+            <button type="button" id="sky-search-download">Save observation request</button>
+            <a id="sky-search-archive" target="_blank" rel="noopener noreferrer">Search IRSA online ↗</a>
+          </div>
+          <noscript>Coordinate search needs JavaScript. The independent <a href="./explore.html">observation tool</a> and <a href="./compare.html">comparison tool</a> remain directly accessible.</noscript>
+          </div>
+        </section>
+        <section class="field-section" aria-labelledby="fields-heading">
+          <div class="section-divider" aria-hidden="true"></div>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">THE OBSERVATION COLLECTION</p>
+              <h2 id="fields-heading">Real windows into the sky.</h2>
+            </div>
+            <div class="field-tools">
+              <label for="home-field-search" class="sr-only"
+                >Find a sky region</label
+              ><input
+                id="home-field-search"
+                list="sky-region-suggestions"
+                type="search"
+                placeholder="Find a sky region"
+                maxlength="100"
+              /><datalist id="sky-region-suggestions">
+                <option value="M101"></option>
+                <option value="M67"></option>
+                <option value="NGC 188"></option>
+                <option value="Orion"></option></datalist
+              ><kbd class="search-shortcut">Ctrl K</kbd
+              ><button id="home-resume" hidden>↺ Resume investigation</button>
+            </div>
+          </div>
+          <p class="preview-explanation">
+            Move over a field or use Reveal preview to lift the dimming. Both
+            views use the same infrared exposure; no visible-light image or
+            extra detail is synthesized.
+          </p>
+          <p class="mask-legend"><i class="mask-key" aria-hidden="true"></i>Masked / unsupported · hatched areas contain no usable measurement.</p>
+          <div id="home-fields" class="home-fields" aria-live="polite">
+            <div class="field-skeleton" aria-hidden="true"></div>
+            <div class="field-skeleton" aria-hidden="true"></div>
+            <div class="field-skeleton" aria-hidden="true"></div>
+            <div class="field-skeleton" aria-hidden="true"></div>
+          </div>
+          <p id="home-fields-status" class="field-status" role="status">
+            Loading the verified local catalogue…
+          </p>
+          <button id="home-catalogue-retry" hidden>
+            Retry observation catalogue
+          </button>
+        </section>
+        <section
+          class="infrared-story"
+          aria-labelledby="infrared-story-heading"
+        >
+          <div class="infrared-story-copy">
+            <p class="eyebrow">BEYOND VISIBLE LIGHT</p>
+            <h2 id="infrared-story-heading">
+              Same universe.<br /><span>A different kind of light.</span>
+            </h2>
+            <p>
+              SPHEREx reveals stars, gas and dust in infrared. This published
+              mission composite is a window into that view.
+            </p>
+          </div>
+          <figure class="intro-image">
+            <img
+              src="./assets/spherex-vela.jpg"
+              width="2400"
+              height="1187"
+              alt="SPHEREx published infrared composite of the Vela Molecular Ridge, with stars and bright clouds of gas and dust"
+              loading="lazy"
+            />
+            <div class="vela-dim" aria-hidden="true"><img src="./assets/spherex-vela.jpg" width="2400" height="1187" alt="" loading="lazy"></div>
+            <div class="vela-divider" aria-hidden="true"><span>↔</span></div>
+            <p class="vela-treatment">
+              Dimmed display ← → Published infrared composite
+            </p>
+            <figcaption>
+              <span
+                >VELA MOLECULAR RIDGE
+                <small
+                  >Published infrared composite · contextual mission
+                  image</small
+                ></span
+              ><a
+                href="https://science.nasa.gov/photojournal/spherex-vela-molecular-ridge/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="NASA/JPL-Caltech — source and image credit for Vela Molecular Ridge"
+                >NASA/JPL-Caltech ↗</a
+              >
+            </figcaption>
+            <button
+              id="infrared-legend-button"
+              aria-expanded="false"
+              aria-controls="infrared-legend"
+            >
+              What do these colors mean? +
+            </button>
+            <div
+              id="infrared-legend"
+              role="region"
+              aria-label="Published infrared color legend"
+              tabindex="0"
+              hidden
+            >
+              <div data-spectrum aria-hidden="true"></div>
+              <p>
+                These colors represent infrared wavelengths, not what human eyes
+                would see.
+              </p>
+              <div class="spectral-swatches">
+                <span
+                  ><i aria-hidden="true"></i>Red /
+                  4.54–4.65 μm</span
+                ><span
+                  ><i aria-hidden="true"></i>Green /
+                  2.83–3.20 μm</span
+                ><span
+                  ><i aria-hidden="true"></i>Blue /
+                  0.74–0.88 μm</span
+                >
+              </div>
+              <p>
+                This published composite is not an installed temporal comparison
+                or a calibrated pixel-inspection image.
+              </p>
+            </div>
+          </figure>
+          <label class="vela-control" for="vela-reveal"
+            >Reveal the published infrared composite
+            <input
+              id="vela-reveal"
+              type="range"
+              min="0"
+              max="100"
+              value="55"
+            /><output id="vela-reveal-value">55%</output
+            ><small
+              >Display demonstration using one image; the dimmed side is not a
+              visible-light observation.</small
+            ></label
+          >
+        </section>
+        <section
+          id="mission-section"
+          class="mission-section"
+          aria-labelledby="mission-heading"
+        >
+          <div class="mission-copy">
+            <p class="eyebrow">THE OBSERVATORY BEHIND THE OBSERVATIONS</p>
+            <h2 id="mission-heading">A new way to read<br />the universe.</h2>
+            <p>
+              SPHEREx surveys the sky in infrared light. Its filters measure
+              different wavelengths at different positions, building a view
+              across
+              <strong><span data-count="102">102</span> infrared colors</strong
+              >.
+            </p>
+            <p>
+              Get to know the spacecraft. Select a component to learn why
+              shielding, passive cooling and a stable platform matter.
+            </p>
+            <div
+              id="website-components"
+              class="website-components"
+              role="group"
+              aria-label="SPHEREx spacecraft components"
+            ></div>
+            <p
+              id="website-component-description"
+              class="component-explanation"
+              role="status"
+            >
+              Activate the model to rotate it, zoom, or select its researched
+              components. The scientific tools work independently.
+            </p>
+            <a
+              class="text-link"
+              href="https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Official spacecraft reference ↗</a
+            >
+          </div>
+          <div class="mission-model">
+            <canvas
+              id="mission-model-canvas"
+              tabindex="0"
+              aria-label="Optional interactive illustrative SPHEREx model; drag or arrows to rotate, scroll or plus and minus to zoom"
+            ></canvas>
+            <div id="mission-model-start" class="model-start">
+              <img
+                src="./assets/spherex-spacecraft-concept.jpg"
+                width="1920"
+                height="1080"
+                alt="NASA/JPL-Caltech artist’s concept of SPHEREx above Earth"
+                loading="lazy"
+              /><button id="activate-mission-model">
+                Interact with SPHEREx <span aria-hidden="true">↗</span></button
+              ><small>Optional 3D model · loads on your click</small>
+            </div>
+            <div id="mission-model-tools" hidden>
+              <button id="mission-model-reset">Reset model</button
+              ><button
+                id="mission-model-zoom-in"
+                aria-label="Zoom spacecraft in"
+              >
+                +</button
+              ><button
+                id="mission-model-zoom-out"
+                aria-label="Zoom spacecraft out"
+              >
+                −
+              </button>
+            </div>
+            <p id="mission-model-status">
+              Artist’s concept · NASA/JPL-Caltech. Interactive geometry is
+              illustrative; no live spacecraft tracking.
+            </p>
+          </div>
+        </section>
+        <section class="trust-section" aria-label="Scientific integrity">
+          <div>
+            <p class="eyebrow">LOOK CLOSELY. KEEP THE CONTEXT.</p>
+            <h2>Curiosity, with a clear trail.</h2>
+          </div>
+          <article>
+            <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M5 3h14l6 6v20H5zM19 3v7h6M10 16h10M10 21h7"/></svg>
+            <b class="principle-number" aria-hidden="true">01</b>
+            <span>ORIGINAL DATA</span>
+            <h3>Every image has a source.</h3>
+            <p>
+              Archive identities, calibration references and checksums stay with
+              each investigation.
+            </p>
+          </article>
+          <article>
+            <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="3" y="6" width="26" height="20"/><path d="M16 6v20M12 16h8"/></svg>
+            <b class="principle-number" aria-hidden="true">02</b>
+            <span>HONEST COMPARISONS</span>
+            <h3>Compatibility comes first.</h3>
+            <p>
+              Available dates do not automatically make a suitable pair.
+              Restrictions remain visible.
+            </p>
+          </article>
+          <article>
+            <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M7 3h18v26H7zM11 10h10M11 15h10M11 20h6"/><circle cx="23" cy="24" r="5"/></svg>
+            <b class="principle-number" aria-hidden="true">03</b>
+            <span>REPRODUCIBLE WORK</span>
+            <h3>Your questions. Your evidence.</h3>
+            <p>
+              Save coordinates, settings and notes. Reopen them against the
+              verified local data.
+            </p>
+          </article>
+        </section>
+        <section class="universe-entry">
+          <div>
+            <p class="eyebrow">AN OPTIONAL DIFFERENT PERSPECTIVE</p>
+            <h2>Step outside the visible.</h2>
+            <p>
+              Explore the spacecraft, schematic solar system and real sky
+              directions in the 3D Universe. Your scientific work stays with
+              you.
+            </p>
+          </div>
+          <a href="#universe" class="secondary-link"
+            >Enter the 3D Universe ↗</a
+          >
+        </section>
+
+      </section>
+      <section
+        id="space-workspace"
+        class="observation-console"
+        aria-label="SPHEREx observation and comparison workspace"
+        hidden
+      ></section>
+      <section
+        id="universe-view"
+        aria-label="Optional 3D Universe"
+        hidden
+      ></section>
+      <div id="universe-loading" class="universe-loading" hidden role="status">
+        <h2>Opening the optional 3D Universe</h2>
+        <p>Your observations and questions are preserved.</p>
+        <a href="#observations">Return to observations →</a>
+      </div>
+    </main>
+<footer class="site-footer">
+<div aria-hidden="true" class="footer-wordmark"></div>
+<div class="footer-columns"><div><p class="label">EXPLORE</p><a href="./index.html#observations">Observation collection →</a><a href="./index.html#compare">Compare dates →</a><a href="./index.html#universe">3D Universe →</a><a href="./discover.html">Discover SPHEREx →</a></div><div><p class="label">METHODS &amp; PROVENANCE</p><a href="./methodology.html">Data &amp; methodology →</a><a href="./guide.html">Reconstruct your evidence →</a><a href="./methodology.html#imagery">Image source records ↗</a><a href="./methodology.html#models">Models, terms &amp; hashes ↗</a></div><div><p class="label">CREDITS</p><p>Project Mercury Team</p><p>SPHEREx imagery: NASA/JPL-Caltech.<br/>Original astronomical data: NASA/IPAC IRSA.</p></div></div>
+<p class="footer-notice">Independent educational application. No NASA endorsement. Scientific approval PENDING.</p>
+<details id="footer-credits"><summary>Sources &amp; acknowledgments</summary><p>Original image, model and calibration identities stay with their source records. Interface type: <a href="./methodology.html#fonts">Inter &amp; IBM Plex Mono — licenses and hashes ↗</a>.</p><p>Earlier interaction studies: <a href="https://skiper-ui.com/v1/preview/skiper40" target="_blank" rel="noopener noreferrer">Skiper UI ↗</a>, <a href="https://github.com/Ashutoshx7/VengeanceUI" target="_blank" rel="noopener noreferrer">Vengeance UI ↗</a> and <a href="https://www.dqnamo.com/kitchen" target="_blank" rel="noopener noreferrer">dqnamo Kitchen ↗</a>. <a href="./methodology.html#patterns">Original pattern notices ↗</a>. Optional scroll presentation uses <a href="./methodology.html#libraries">native browser animation and locally supplied Lenis ↗</a>.</p></details>
+</footer>
+
+    <dialog id="site-information" class="space-dialog">
+      <div class="dialog-top">
+        <h2>Sources, methods & SKYSHIFT</h2>
+        <button id="site-information-close" aria-label="Close information">
+          ×
+        </button>
+      </div>
+      <button data-open-sound>Sound design & volume ↗</button>
+      <p>
+        SKYSHIFT is an independent Project Mercury Team application. It uses
+        real SPHEREx observations with original source identities, calibration
+        records and conservative quality masks.
+      </p>
+      <p>
+        The restricted M101 comparison has passed documented engineering
+        screens. Internal human review and qualified scientific approval remain
+        <strong>PENDING</strong>. Questions are user hypotheses, not detections
+        or confirmed changes.
+      </p>
+      <a href="./methodology.html">Scientific methods & provenance audit ↗</a
+      ><a href="./assets/assets.json" target="_blank" rel="noopener noreferrer"
+        >Mission imagery: sources, hashes & usage terms ↗</a
+      ><a
+        href="./methodology.html#models"
+        >3D models: sources, hashes & usage terms ↗</a
+      >
+
+    </dialog>
+    <noscript
+      ><div class="site-error">
+        Interactive viewing needs JavaScript.
+        <a href="./methodology.html">Read methods and sources</a>.
+      </div></noscript
+    >
+    <script type="module" src="./sky-search.js"></script>
+    <script type="module" src="./website-bootstrap.js"></script>
+  </body>
+</html>

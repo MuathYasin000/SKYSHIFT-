@@ -34,12 +34,21 @@ async function page(options = {}) {
   p.setDefaultTimeout(18000);
   return { c, p };
 }
-async function ready(p) {
+async function ready(p, reveal = false) {
   await p.goto("http://localhost:3000/");
+  await p.waitForFunction(() => window.skyshiftHero && document.body.dataset.controller === 'ready');
+  await p.evaluate(() => document.fonts.ready);
+  const initial = {
+    scroll_y: await p.evaluate(() => scrollY),
+    action: await p.locator('.intro-actions .primary-link').boundingBox(),
+  };
+  // On phones the hero follows the introduction. Its renderer deliberately
+  // starts on visibility; do not wait for offscreen GPU work before revealing it.
+  if (reveal) await p.locator('.hero-observatory').scrollIntoViewIfNeeded();
   await p.waitForFunction(
     () => window.skyshiftHero?.diagnostics().model?.frames > 0,
   );
-  await p.evaluate(() => document.fonts.ready);
+  return initial;
 }
 async function science(p) {
   await p.waitForFunction(
@@ -49,6 +58,7 @@ async function science(p) {
   );
 }
 async function check(name, fn) {
+  if (process.env.SKYSHIFT_TEST_FILTER && !new RegExp(process.env.SKYSHIFT_TEST_FILTER).test(name)) return;
   try {
     results.push({ name, status: "pass", detail: await fn() });
     console.log("PASS " + name);
@@ -69,7 +79,7 @@ try {
       async () => {
         const { c, p } = await page({ viewport: { width, height } });
         try {
-          await ready(p);
+          const initial = await ready(p, true);
           assert.equal(
             await p
               .locator(
@@ -84,10 +94,8 @@ try {
             ),
             0,
           );
-          const a = await p
-            .locator(".intro-actions .primary-link")
-            .boundingBox();
-          assert.ok(a.y + a.height <= height);
+          assert.equal(initial.scroll_y, 0);
+          assert.ok(initial.action.y >= 0 && initial.action.y + initial.action.height <= height);
           await p.screenshot({
             path: out + `/home-${width}.png`,
           });
@@ -184,6 +192,13 @@ try {
           );
         await p.mouse.move(r.x + r.width * 0.5, r.y + r.height * 0.5);
         await p.mouse.wheel(0, 700);
+        await p.waitForFunction(() => scrollY > 200);
+        // A fixed wheel delta need not hide the whole responsive hero. Reveal
+        // the offscreen condition explicitly before asserting GPU inactivity.
+        await p.evaluate(() => scrollTo({
+          top: document.querySelector('.hero-observatory').getBoundingClientRect().bottom + scrollY + 1,
+          behavior: 'instant',
+        }));
         await p.waitForFunction(
           () => scrollY > 200 && !skyshiftHero.diagnostics().visible,
         );
@@ -364,7 +379,7 @@ try {
         hasTouch: true,
       });
       try {
-        await ready(p);
+        await ready(p, true);
         const cdp = await c.newCDPSession(p),
           r = await p.locator("#hero-model-canvas").boundingBox();
         const x = r.x + r.width * 0.45,
@@ -392,8 +407,9 @@ try {
           await p.evaluate(() => skyshiftHero.diagnostics().model.camera),
           before,
         );
+        const scrollBefore = await p.evaluate(() => scrollY);
         await gesture(0, -130);
-        await p.waitForFunction(() => scrollY > 20);
+        await p.waitForFunction(before => scrollY > before + 20, scrollBefore);
       } finally {
         await c.close();
       }

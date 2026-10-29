@@ -7,7 +7,7 @@ export function readPreferences(storage) {
       mode: p.mode === "classic" ? "classic" : "immersive",
       effects: p.effects !== false,
       quality: p.quality === "low" ? "low" : "auto",
-      sound_enabled: p.sound_enabled === true,
+      sound_enabled: p.sound_enabled !== false,
       effects_volume: Number.isFinite(p.effects_volume)
         ? Math.min(1, Math.max(0, p.effects_volume))
         : 0.5,
@@ -20,7 +20,7 @@ export function readPreferences(storage) {
       mode: "immersive",
       effects: true,
       quality: "auto",
-      sound_enabled: false,
+      sound_enabled: true,
       effects_volume: 0.5,
       ambience_volume: 0.12,
     };

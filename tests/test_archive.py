@@ -27,6 +27,16 @@ def test_sia_rejects_unknown_binary_decoder():
         parse_sia((PREFIX + '<TABLE><DATA><BINARY/></DATA></TABLE>' + SUFFIX).encode())
 
 
+def test_missing_table_is_not_reported_as_zero_archive_coverage():
+    with pytest.raises(ValueError, match='result table'):
+        parse_sia((PREFIX + '<INFO name="QUERY_STATUS" value="OK"/>' + SUFFIX).encode())
+
+
+def test_duplicate_fields_cannot_silently_replace_source_identity():
+    with pytest.raises(ValueError, match='unique'):
+        parse_sia((PREFIX + '<TABLE><FIELD name="access_url"/><FIELD name="access_url"/><DATA><TABLEDATA/></DATA></TABLE>' + SUFFIX).encode())
+
+
 @pytest.mark.parametrize("url", ["http://irsa.ipac.caltech.edu/SIA", "https://example.org/input.fits", "file:///C:/secret"])
 def test_only_approved_https_services_can_be_fetched(url):
     with pytest.raises(ValueError, match="approved"):

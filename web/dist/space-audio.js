@@ -1,7 +1,7 @@
-// Original dry sine-wave UI cues. No noise, pitch sweeps, reverb or ambient bed.
+// Original tonal UI palette: rounded sine fundamentals and quiet triangle overtones.
 // Semantic IDs remain stable for existing scientific and telescope interactions.
-const tone = (hz, duration = 0.055, gain = 0.075, delay = 0) => ({
-  kind: "sine",
+const tone = (hz, duration = 0.09, gain = 0.04, delay = 0, kind = "sine") => ({
+  kind,
   hz,
   end: hz,
   duration,
@@ -9,48 +9,48 @@ const tone = (hz, duration = 0.055, gain = 0.075, delay = 0) => ({
   delay,
 });
 const recipe = (label, ...layers) => ({ label, layers, wet: 0 });
+const soft = (label,hz,duration=.09,gain=.035) => recipe(label,
+  tone(hz,duration,gain),tone(hz*2,duration*.7,gain*.18,.006,'triangle'));
 export const soundCues = Object.freeze({
-  ui: recipe("Tap", tone(680, 0.032, 0.055)),
-  select: recipe("Select", tone(760, 0.045, 0.065)),
-  navigate: recipe("Navigate", tone(554.37, 0.065, 0.06)),
-  travel: recipe("Move", tone(440, 0.09, 0.06)),
-  component: recipe("Inspect hardware", tone(880, 0.045, 0.055)),
-  spherex: recipe("SPHEREx", tone(659.25, 0.105, 0.065)),
-  "webb-b": recipe("Webb", tone(493.88, 0.115, 0.065)),
-  hubble: recipe("Hubble", tone(783.99, 0.095, 0.055)),
-  observe: recipe("Look through", tone(587.33, 0.075, 0.065)),
-  spectrum: recipe("Spectral step", tone(740, 0.052, 0.055)),
-  lens: recipe("Reveal", tone(622.25, 0.08, 0.06)),
-  close: recipe("Close", tone(480, 0.045, 0.05)),
-  open: recipe("Open", tone(640, 0.055, 0.055)),
-  zoom: recipe("Focus in", tone(820, 0.032, 0.045)),
-  zoom_out: recipe("Focus out", tone(560, 0.034, 0.045)),
-  reset: recipe("Reset", tone(523.25, 0.065, 0.055)),
-  date: recipe("Date", tone(920, 0.026, 0.045)),
-  compare: recipe("Compare", tone(698.46, 0.06, 0.06)),
-  annotate: recipe("Place note", tone(830.61, 0.07, 0.055)),
+  ui: soft("Soft tap",440,.045,.032),
+  select: soft("Select",659.25,.075),
+  navigate: recipe("Navigate",tone(440,.12,.031),tone(659.25,.11,.014,.035)),
+  travel: soft("Glide",293.66,.18,.033),
+  component: soft("Inspect hardware",587.33,.085,.031),
+  spherex: recipe("SPHEREx",tone(329.63,.2,.032),tone(659.25,.16,.013,.04)),
+  "webb-b": soft("Webb",493.88,.19,.031),
+  hubble: soft("Hubble",392,.17,.032),
+  observe: recipe("Look through",tone(392,.16,.03),tone(587.33,.12,.014,.045)),
+  spectrum: soft("Spectral step",698.46,.055,.027),
+  lens: soft("Reveal",523.25,.17,.031),
+  close: soft("Close",349.23,.07,.028),
+  open: recipe("Open",tone(523.25,.09,.029),tone(783.99,.1,.012,.025)),
+  zoom: soft("Focus in",739.99,.045,.024),
+  zoom_out: soft("Focus out",493.88,.05,.024),
+  reset: recipe("Recenter",tone(392,.11,.028),tone(523.25,.12,.013,.05)),
+  date: soft("Date step",783.99,.035,.025),
+  compare: soft("Compare",554.37,.13,.032),
+  annotate: soft("Place note",622.25,.14,.031),
   save: recipe(
     "Saved",
-    tone(659.25, 0.055, 0.06),
-    tone(880, 0.075, 0.055, 0.07),
+    tone(523.25,.16,.032),tone(659.25,.16,.024,.07),tone(783.99,.22,.018,.14),
   ),
   reopen: recipe(
     "Reopen",
-    tone(880, 0.045, 0.05),
-    tone(659.25, 0.065, 0.055, 0.06),
+    tone(783.99,.14,.026),tone(523.25,.18,.03,.08),
   ),
-  delete: recipe("Remove", tone(392, 0.055, 0.055)),
-  toggle: recipe("Switch", tone(720, 0.028, 0.05)),
-  preview: recipe("Preview", tone(554.37, 0.085, 0.055)),
+  delete: soft("Remove",261.63,.11,.028),
+  toggle: soft("Switch",587.33,.04,.026),
+  preview: soft("Preview",493.88,.15,.03),
+  swipe_tick: soft("Reveal detent",880,.019,.026),
   error: recipe(
     "Attention",
-    tone(349.23, 0.065, 0.06),
-    tone(349.23, 0.065, 0.055, 0.085),
+    tone(293.66,.12,.029),tone(261.63,.15,.024,.14),
   ),
 });
 export function sineEnvelope(gain, duration) {
   const values = new Float32Array(256),
-    attack = Math.min(0.008, duration * 0.22),
+    attack = Math.min(0.035, duration * 0.22),
     release = duration - attack;
   for (let i = 0; i < values.length; i++) {
     const t = (i / (values.length - 1)) * duration;
@@ -58,14 +58,14 @@ export function sineEnvelope(gain, duration) {
       gain *
       (t < attack
         ? (1 - Math.cos((Math.PI * t) / attack)) / 2
-        : (1 + Math.cos((Math.PI * (t - attack)) / release)) / 2);
+        : ((1 + Math.cos((Math.PI * (t - attack)) / release)) / 2) ** 2);
   }
   values[0] = values[values.length - 1] = 0;
   return values;
 }
 export function createSpaceAudio(preferences, dependencies = {}) {
   let context = null,
-    enabled = preferences.sound_enabled === true,
+    enabled = preferences.sound_enabled !== false,
     suspended = false,
     disposed = false,
     surface = "home",
@@ -161,7 +161,7 @@ export function createSpaceAudio(preferences, dependencies = {}) {
       const t = context.currentTime + 0.004 + layer.delay,
         g = context.createGain(),
         o = context.createOscillator();
-      o.type = "sine";
+      o.type = layer.kind;
       o.frequency.setValueAtTime(layer.hz * pitch, t);
       g.gain.setValueCurveAtTime(
         sineEnvelope(layer.gain, layer.duration),
@@ -239,7 +239,7 @@ export function createSpaceAudio(preferences, dependencies = {}) {
         ambience_allowed: false,
         recipe_count: Object.keys(soundCues).length,
         synthesis:
-          "dry sine; fixed pitch; smooth zero-ended envelope; no ambience",
+          "layered sine and quiet triangle overtones; rounded decays; no continuous ambience",
       };
     },
     async dispose() {

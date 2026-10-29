@@ -10,30 +10,53 @@
     />
     <title>SKYSHIFT — SPHEREx observations & comparison</title>
     <link rel="icon" href="./assets/skyshift-mark.svg" type="image/svg+xml">
-    <meta property="og:title" content="SKYSHIFT — Explore & Compare" />
-    <meta
-      property="og:description"
-      content="Explore authentic SPHEREx observations. Compare carefully. Keep the evidence."
-    />
-    <meta property="og:image" content="./assets/mission-control.webp" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Black-and-white SKYSHIFT interface: actual illustrative SPHEREx model, wavelength ruler and Explore & Compare headline."
-    />
-
-  <link rel="stylesheet" href="./tokens.css">
+    <link rel="stylesheet" href="./tokens.css">
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./components.css">
 <link rel="stylesheet" href="./shell-app.css">
 <link rel="stylesheet" href="./home.css">
+<link rel="stylesheet" href="./sky-search.css">
 <link rel="stylesheet" href="./observations.css">
 <link rel="stylesheet" href="./compare.css">
 <link rel="stylesheet" href="./discover.css">
 <link rel="stylesheet" href="./universe.css">
-<link rel="preload" href="./assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="./assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"></head>
+<link rel="preload" href="./assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="./assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><link rel="canonical" href="https://skyshiftt.netlify.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SKYSHIFT — SPHEREx observations &amp; comparison">
+<meta property="og:description" content="Explore real SPHEREx observations, compare the restricted M101 field across two dates, and save reproducible investigations. Independent Project Mercury Team application.">
+<meta property="og:url" content="https://skyshiftt.netlify.app/">
+<meta property="og:image" content="https://skyshiftt.netlify.app/assets/mission-control.webp">
+<meta property="og:image:alt" content="SKYSHIFT mission-control interface with an illustrative SPHEREx model; scientific approval pending">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="./kinetic-loader.css">
+<link rel="stylesheet" href="./arrival.css">
+<script src="./arrival.js"></script>
+<script type="module" src="./kinetic-loader.js"></script>
+</head>
   <body data-surface="home" data-shell="app" data-page="home">
+    <section id="arrival-screen" role="dialog" aria-modal="true" aria-labelledby="arrival-title" aria-describedby="arrival-status" tabindex="-1" data-kinetic-ignore>
+      <div class="arrival-cosmos" aria-hidden="true">
+        <div id="arrival-stars"></div>
+        <div class="arrival-halo"></div>
+        <div class="arrival-orbit arrival-orbit-one"></div>
+        <div class="arrival-orbit arrival-orbit-two"></div>
+        <div class="arrival-planet arrival-planet-ringed"><i></i></div>
+        <div class="arrival-planet arrival-planet-blue"></div>
+        <span class="arrival-moon"></span>
+      </div>
+      <div class="arrival-wordmark">SKYSHIFT<span>A NEW PERSPECTIVE</span></div>
+      <div class="arrival-copy">
+        <p class="arrival-eyebrow">YOUR JOURNEY BEGINS</p>
+        <h2 id="arrival-title">A little closer<br>to the universe.</h2>
+        <p id="arrival-status" role="status">Bringing SPHEREx into view…</p>
+        <div class="arrival-stages" aria-hidden="true"><i></i><i></i><i></i></div>
+        <button id="arrival-retry" type="button" hidden>Retry arrival ↗</button>
+      </div>
+      <div class="arrival-footer"><button id="arrival-skip" type="button">Skip intro ↗</button><span>SPHEREx · YOUR INFRARED OBSERVATORY</span><a href="./compare.html">Open observations ↗</a></div>
+    </section>
+    <div id="arrival-model-stage" aria-hidden="true" hidden>
+      <div class="arrival-scan"><div class="arrival-scan-ring"></div><i></i><i></i><i></i><i></i><span>INFRARED SCAN <small>ILLUSTRATIVE</small></span></div>
+    </div>
     <div class="reading-spectrum" aria-hidden="true">
       <div data-spectrum></div>
     </div>
@@ -64,15 +87,14 @@
             <p class="eyebrow">
               <span class="status-dot"></span> A NEW PERSPECTIVE ON THE UNIVERSE
             </p>
-            <h1 aria-label="Explore & compare the invisible.">
-              <span class="headline-line">Explore &amp; </span
-              ><span class="headline-line">compare </span
-              ><span class="headline-line">the <em>invisible<span class="hero-period">.</span></em></span>
+            <h1 aria-label="Watch the infrared sky change over time.">
+              <span class="headline-line">Watch the </span
+              ><span class="headline-line">infrared sky </span
+              ><span class="headline-line"><em>over time<span class="hero-period">.</span></em></span>
             </h1>
             <p class="intro-lead">
-              There’s more to the sky than meets the eye. Explore real infrared
-              observations from NASA’s SPHEREx telescope. Compare available
-              dates. Keep the evidence.
+              Compare real SPHEREx images of the same sky position. Inspect
+              available dates, understand their limits and keep your evidence.
             </p>
             <div class="intro-actions">
               <a
@@ -116,7 +138,7 @@
               ><a href="#universe" class="text-link universe-launch"
                 ><span aria-hidden="true">◌</span> Explore the Universe in 3D
                 <span aria-hidden="true">↗</span></a
-              >
+              ><a href="#sky-search" class="text-link">Search sky coordinates ↗</a>
             </div>
             <p class="intro-note">
               M101 offers a restricted two-date comparison.
@@ -140,7 +162,7 @@
             <div class="hero-hud">
               <span
                 ><i class="status-dot"></i>
-                <b id="hero-readiness">LOCAL VIEW LOADING</b></span
+                <b id="hero-readiness">LOCAL VIEW STANDBY</b></span
               ><span id="hero-field-coordinates"
                 >M101 · RA 210.802° / Dec +54.349°</span
               ><small>Curated field centre · not spacecraft pointing</small>
@@ -163,7 +185,7 @@
               class="hero-model-message"
               role="status"
             >
-              Loading the SPHEREx model…
+              3D starts when this section is visible.
             </div>
             <button id="hero-model-retry" class="hero-model-retry" hidden>
               Retry 3D model
@@ -207,14 +229,59 @@
             <span>01 / OBSERVE</span><span>02 / COMPARE</span
             ><span>03 / INVESTIGATE</span>
           </div>
-          <div class="hero-spectrum"><div class="spectrum-caption">102 INFRARED CHANNELS · 0.75–5.0 μm<small>Schematic scale · not calibrated channel centres</small></div><div data-spectrum aria-hidden="true"></div><div class="wavelength-endpoints" aria-hidden="true"><span>0.75 μm</span><span>5.0 μm</span></div></div>
+          <div class="hero-spectrum"><div class="spectrum-caption">102 INFRARED CHANNELS · 0.75–5.0 μm<small title="False-color display of short-to-long wavelength order; channel positions are not calibrated.">Representative colors · schematic channel positions</small></div><div data-spectrum aria-hidden="true"></div><div class="wavelength-endpoints" aria-hidden="true"><span>0.75 μm</span><span class="spectrum-readout" data-spectrum-readout>Hover a channel</span><span>5.0 μm</span></div></div>
         </div>
+        <section id="sky-search" class="sky-search" aria-labelledby="sky-search-heading">
+          <div class="search-panel">
+          <p class="eyebrow">SKY SEARCH</p>
+          <h2 id="sky-search-heading">Find your patch of sky.</h2>
+          <p class="search-intro">Enter coordinates or choose a target.</p>
+          <form id="sky-search-form">
+            <div class="search-grid">
+              <label for="search-ra">Right ascension · RA<input id="search-ra" name="ra" type="text" required maxlength="48" placeholder="133.795129 or 08h55m10.831s" aria-describedby="search-unit-help"></label>
+              <label for="search-dec">Declination · Dec<input id="search-dec" name="dec" type="text" required maxlength="48" placeholder="-7.245147 or -07d14m42.53s" aria-describedby="search-unit-help"></label>
+              <label for="search-fov">Width · arcmin<input id="search-fov" name="fov" type="number" min="1" max="30" step="any" value="12" required aria-describedby="search-unit-help"></label>
+              <button type="submit" id="sky-search-prepare">Load observations →</button>
+            </div>
+            <div class="search-target-row"><span>Try a target</span><div id="sky-search-targets" class="search-targets" role="group" aria-label="Challenge target search presets"></div></div>
+            <div class="search-toolbar">
+              <a class="search-example" href="#sequence-example">Try a cached example ↗</a>
+              <a class="search-example" href="#target-example/comet-december">Inspect 3I/ATLAS · wavelength check ↗</a>
+              <button type="button" id="sky-search-cancel" hidden>Cancel preparation</button>
+              <details id="sky-search-options" class="search-options">
+                <summary>Options &amp; data notes</summary>
+                <div class="search-options-body">
+                  <div class="search-advanced-grid">
+                    <label for="search-release">Data release<select id="search-release" name="release"><option value="qr2">QR2</option><option value="qr3">QR3</option></select></label>
+                    <label for="search-detector">Wavelength group<select id="search-detector"><option value="2">D2 · 1.10–1.62 µm</option><option value="1">D1 · 0.75–1.09 µm</option><option value="3">D3 · 1.63–2.41 µm</option><option value="4">D4 · 2.42–3.82 µm</option><option value="5">D5 · 3.83–4.41 µm</option><option value="6">D6 · 4.42–5.00 µm</option></select></label>
+                  </div>
+                  <p id="search-unit-help">ICRS coordinates: decimal RA/Dec in degrees; hms RA in hours (0–24). Width is the side of a square, 1–30 arcmin. Up to three cutouts per request; larger fields may take longer.</p>
+                  <label class="search-fresh"><input id="search-fresh" type="checkbox">Refresh from the archive instead of using cached originals.</label>
+                  <button type="button" id="sky-search-check">Check installed fields</button>
+                  <p>QR2/D2 supports full calibration checks. Other groups and releases may allow individual images only. Playback requires wavelength and reference checks; scientific approval remains pending. Data are never silently substituted.</p>
+                  <p>Live requests need this host’s preparation service; cached examples work without it. Coordinates and field width go to this host and the public archive. Your notes stay in your browser until exported.</p>
+                  <p id="sky-target-context">Choose a target to see its coordinate source and test notes.</p>
+                  <a id="sky-target-source" target="_blank" rel="noopener noreferrer" hidden>Coordinate source ↗</a>
+                </div>
+              </details>
+            </div>
+          </form>
+          <p id="sky-search-status" role="status" aria-live="polite"></p>
+          <ul id="sky-search-matches" aria-label="Nearby prepared fields"></ul>
+          <div id="sky-search-actions" class="search-actions" hidden>
+            <a id="sky-search-share">Open shareable search link ↗</a>
+            <button type="button" id="sky-search-download">Save observation request</button>
+            <a id="sky-search-archive" target="_blank" rel="noopener noreferrer">Search IRSA online ↗</a>
+          </div>
+          <noscript>Coordinate search needs JavaScript. The independent <a href="./explore.html">observation tool</a> and <a href="./compare.html">comparison tool</a> remain directly accessible.</noscript>
+          </div>
+        </section>
         <section class="field-section" aria-labelledby="fields-heading">
           <div class="section-divider" aria-hidden="true"></div>
           <div class="section-heading">
             <div>
-              <p class="eyebrow">THE OBSERVATION COLLECTION / 01–04</p>
-              <h2 id="fields-heading">Four windows into the sky.</h2>
+              <p class="eyebrow">THE OBSERVATION COLLECTION</p>
+              <h2 id="fields-heading">Real windows into the sky.</h2>
             </div>
             <div class="field-tools">
               <label for="home-field-search" class="sr-only"
@@ -498,7 +565,7 @@
 <div aria-hidden="true" class="footer-wordmark"></div>
 <div class="footer-columns"><div><p class="label">EXPLORE</p><a href="./index.html#observations">Observation collection →</a><a href="./index.html#compare">Compare dates →</a><a href="./index.html#universe">3D Universe →</a><a href="./discover.html">Discover SPHEREx →</a></div><div><p class="label">METHODS &amp; PROVENANCE</p><a href="./methodology.html">Data &amp; methodology →</a><a href="./guide.html">Reconstruct your evidence →</a><a href="./methodology.html#imagery">Image source records ↗</a><a href="./methodology.html#models">Models, terms &amp; hashes ↗</a></div><div><p class="label">CREDITS</p><p>Project Mercury Team</p><p>SPHEREx imagery: NASA/JPL-Caltech.<br/>Original astronomical data: NASA/IPAC IRSA.</p></div></div>
 <p class="footer-notice">Independent educational application. No NASA endorsement. Scientific approval PENDING.</p>
-<details id="footer-credits"><summary>Sources &amp; acknowledgments</summary><p>Original image, model and calibration identities stay with their source records. Interface type: <a href="./methodology.html#fonts">Inter &amp; IBM Plex Mono — licenses and hashes ↗</a>.</p><p>Earlier interaction studies: <a href="https://skiper-ui.com/v1/preview/skiper40" target="_blank" rel="noopener noreferrer">Skiper UI ↗</a>, <a href="https://github.com/Ashutoshx7/VengeanceUI" target="_blank" rel="noopener noreferrer">Vengeance UI ↗</a> and <a href="https://www.dqnamo.com/kitchen" target="_blank" rel="noopener noreferrer">dqnamo Kitchen ↗</a>. <a href="./methodology.html#patterns">Original pattern notices ↗</a>. Optional scroll presentation uses <a href="./methodology.html#libraries">locally supplied GSAP / ScrollTrigger and Lenis ↗</a>.</p></details>
+<details id="footer-credits"><summary>Sources &amp; acknowledgments</summary><p>Original image, model and calibration identities stay with their source records. Interface type: <a href="./methodology.html#fonts">Inter &amp; IBM Plex Mono — licenses and hashes ↗</a>.</p><p>Earlier interaction studies: <a href="https://skiper-ui.com/v1/preview/skiper40" target="_blank" rel="noopener noreferrer">Skiper UI ↗</a>, <a href="https://github.com/Ashutoshx7/VengeanceUI" target="_blank" rel="noopener noreferrer">Vengeance UI ↗</a> and <a href="https://www.dqnamo.com/kitchen" target="_blank" rel="noopener noreferrer">dqnamo Kitchen ↗</a>. <a href="./methodology.html#patterns">Original pattern notices ↗</a>. Optional scroll presentation uses <a href="./methodology.html#libraries">native browser animation and locally supplied Lenis ↗</a>.</p></details>
 </footer>
 
     <dialog id="site-information" class="space-dialog">
@@ -535,6 +602,7 @@
         <a href="./methodology.html">Read methods and sources</a>.
       </div></noscript
     >
+    <script type="module" src="./sky-search.js"></script>
     <script type="module" src="./website-bootstrap.js"></script>
   </body>
 </html>

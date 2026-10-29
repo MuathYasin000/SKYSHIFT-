@@ -5,12 +5,15 @@ import { OrbitControls } from "./vendor/three/OrbitControls.js";
 import { createHardwareStudio } from "./hardware-studio.js";
 import { createSPHEREx } from "./spherex-model.js";
 import { readPreferences } from "./space-preferences.js";
+import { createObservationEffects } from "./observation-effects.js";
+import { spherexOpticalFrame } from "./telescope-optics.js";
 
 export function createMissionModel(
   canvas,
   {
     onComponent = () => {},
     onError = () => {},
+    onFirstFrame = () => {},
     onAnchors = () => {},
     presentation = "mission",
   } = {},
@@ -20,6 +23,10 @@ export function createMissionModel(
     listen = (target, type, fn) =>
       target.addEventListener(type, fn, { signal: lifetime.signal });
   const preferences = readPreferences();
+  // Retain automatic real-model startup on constrained devices with bounded
+  // antialiasing, shadow and pixel-buffer costs.
+  const constrained=(navigator.deviceMemory>0&&navigator.deviceMemory<=4)||(navigator.hardwareConcurrency>0&&navigator.hardwareConcurrency<=2)||navigator.connection?.saveData;
+  if(constrained)preferences.quality='low';
   const renderer = new THREE.WebGLRenderer({
     canvas,
     alpha: hero,
@@ -81,6 +88,8 @@ export function createMissionModel(
     down = null,
     userModified = false,
     flight = null,
+    arrivalOrbit = null,
+    arrivalLight = null,
     componentCenters = null;
   function draw() {
     if (!visible || disposed || document.hidden || frame) return;
@@ -99,8 +108,20 @@ export function createMissionModel(
         controls.update();
         if (t === 1) flight = null;
       }
-      renderer.render(scene, camera);
+      if (arrivalOrbit) {
+        const t = Math.min(1,(now-arrivalOrbit.started)/arrivalOrbit.duration);
+        const reduced = matchMedia('(prefers-reduced-motion:reduce)').matches;
+        const k = reduced ? 0 : Math.sin(Math.PI*t);
+        const turn = t*t*(3-2*t);
+        model.rotation.y = -.2 + (reduced ? 0 : Math.PI*2*turn);
+        model.rotation.z = -.08 + .06*k;
+        model.position.y = .06*k;
+        arrivalLight?.update(now,camera);
+        if(t===1 || !k && matchMedia('(prefers-reduced-motion:reduce)').matches)endArrivalOrbit();
+      }
+      try {renderer.render(scene, camera);} catch(error){onError(error.message);return;}
       frames++;
+      if(frames===1)onFirstFrame();
       if (!hero) {
         if (!componentCenters) {
           const boxes = new Map();
@@ -133,7 +154,7 @@ export function createMissionModel(
           }),
         );
       }
-      if (flight) draw();
+      if (flight || arrivalOrbit) draw();
     });
   }
   function resize() {
@@ -147,6 +168,7 @@ export function createMissionModel(
   }
   function reset() {
     flight = null;
+    endArrivalOrbit();
     userModified = false;
     selected = null;
     model.traverse((o) => {
@@ -284,15 +306,35 @@ export function createMissionModel(
     controls.update();
     draw();
   }
+  function endArrivalOrbit(){
+    if(!arrivalOrbit)return;
+    arrivalLight?.close();if(arrivalLight)arrivalLight.root.visible=false;
+    arrivalOrbit=null;model.rotation.set(0,-.2,-.08);model.position.y=0;controls.enabled=true;
+  }
+  function playArrivalOrbit(duration=1200){
+    if(!hero||disposed||!visible||matchMedia('(prefers-reduced-motion:reduce)').matches||!readPreferences().effects)return;
+    if(!arrivalLight){
+      // Clip once in model-local coordinates, then rotate the diagram with the
+      // spacecraft. Reuse the existing parallel incoming-light illustration.
+      const rotation=model.rotation.clone();model.rotation.set(0,0,0);model.updateMatrixWorld(true);
+      const optical=spherexOpticalFrame();arrivalLight=createObservationEffects();
+      arrivalLight.configure({origin:new THREE.Vector3(...optical.origin),outward:new THREE.Vector3(...optical.outward),radius:optical.radius,length:1.9,occluder:model},'#fc3d21');
+      model.rotation.copy(rotation);model.add(arrivalLight.root);model.updateMatrixWorld(true);
+    }
+    arrivalLight.root.visible=true;
+    arrivalOrbit={started:performance.now(),duration:Math.max(300,Math.min(3000,duration))};controls.enabled=false;draw();
+  }
   reset();
   resize();
   return {
     reset,
     zoom,
     focusComponent,
+    playArrivalOrbit,
     setVisible(value) {
       visible = Boolean(value);
       if (!visible) flight = null;
+      if (!visible) endArrivalOrbit();
       if (!visible && frame) {
         cancelAnimationFrame(frame);
         frame = 0;
@@ -308,11 +350,17 @@ export function createMissionModel(
       selected,
       kind: "illustrative_spacecraft",
       presentation,
+      arrival_orbit: Boolean(arrivalOrbit),
+      model_rotation: model.rotation.toArray().slice(0,3),
+      arrival_light: arrivalLight?{...arrivalLight.diagnostics(),visible:arrivalLight.root.visible}:null,
       camera: camera.position.toArray(),
       draw_calls: renderer.info.render.calls,
       triangles: renderer.info.render.triangles,
+      quality: preferences.quality,
+      memory: {...renderer.info.memory},
     }),
     dispose() {
+      if(disposed)return;
       disposed = true;
       lifetime.abort();
       observer.disconnect();

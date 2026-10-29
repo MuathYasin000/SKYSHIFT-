@@ -79,26 +79,27 @@ class Audio {
     this.state = "closed";
   }
 }
-test("all UI cues are dry fixed-pitch sine tones with brief envelopes and no noise layers", () => {
-  assert.equal(Object.keys(soundCues).length, 25);
+test("the tonal palette uses bounded sine/triangle layers, quiet harmonics and distinct short cues", () => {
+  assert.equal(Object.keys(soundCues).length, 26);
   assert.equal(
     new Set(Object.values(soundCues).map((s) => JSON.stringify(s.layers))).size,
-    25,
+    26,
   );
   for (const s of Object.values(soundCues)) {
     assert.equal(s.wet, 0);
-    assert.ok(s.layers.length <= 2);
+    assert.ok(s.layers.length <= 3);
+    assert.ok(s.layers.reduce((sum,l)=>sum+l.gain,0)<=.1);
     for (const l of s.layers) {
-      assert.equal(l.kind, "sine");
+      assert.ok(['sine','triangle'].includes(l.kind));
       assert.equal(l.end, l.hz);
-      assert.ok(l.hz >= 300 && l.hz <= 1000);
-      assert.ok(l.duration > 0 && l.duration <= 0.12);
-      assert.ok(l.gain > 0 && l.gain <= 0.08);
+      assert.ok(l.hz >= 120 && l.hz <= 1800);
+      assert.ok(l.duration > 0 && l.duration <= 0.75);
+      assert.ok(l.gain > 0 && l.gain <= 0.045);
       assert.ok(l.delay >= 0 && l.delay <= 0.18);
     }
   }
 });
-test("raised-cosine sine envelopes have zero endpoints, bounded amplitudes and a smooth attack/release", () => {
+test("rounded tonal envelopes have zero endpoints, bounded amplitudes and a smooth attack/release", () => {
   for (const cue of Object.values(soundCues))
     for (const layer of cue.layers) {
       const env = sineEnvelope(layer.gain, layer.duration);
@@ -110,10 +111,19 @@ test("raised-cosine sine envelopes have zero endpoints, bounded amplitudes and a
         ),
       );
       assert.ok(Math.max(...env) > 0.9 * layer.gain);
-      assert.ok(env[1] < layer.gain * 0.01);
+      assert.ok(env[1] < layer.gain * 0.03);
     }
 });
-test("explicit sound opt-in creates no context before unlock; persistent mute stops voices and cannot be rearmed by resume", async () => {
+
+test('the loading screen has no sound recipes or interaction cues',async()=>{
+ let stamp=0;const a=createSpaceAudio({sound_enabled:true},{Audio,now:()=>stamp});await a.unlock();
+ assert.equal(Object.keys(soundCues).some(n=>n.startsWith('arrival_')),false);
+ assert.equal(a.cue('arrival_reveal'),false);assert.equal(a.diagnostics().active_voice_count,0);
+ assert.equal(soundForControl({id:'arrival-skip',closest:s=>s==='#arrival-screen',dataset:{}}),null);
+ stamp+=100;assert.equal(a.cue('swipe_tick'),true);
+ await a.mute();assert.equal(a.diagnostics().active_voice_count,0);await a.dispose();
+});
+test("enabled sound creates no context before unlock; persistent mute stops voices and cannot be rearmed by resume", async () => {
   const p = { sound_enabled: true, effects_volume: 0.5, ambience_volume: 0.12 };
   let stamp = 0,
     ctx;
@@ -235,4 +245,7 @@ test("hidden-document guard suppresses all voices and suspension clears pending 
   }
 });
 
-test("new visitors start muted and cannot sound on an ordinary unlock",async()=>{const a=createSpaceAudio({}, {Audio});assert.equal(a.enabled,false);await a.unlock();assert.equal(a.cue("travel"),false);await a.dispose();});
+test("new visitors start sound-enabled but wait for gesture unlock; explicit mute remains respected",async()=>{
+ const a=createSpaceAudio({}, {Audio});assert.equal(a.enabled,true);assert.equal(a.diagnostics().context_state,'not_created');assert.equal(a.cue('swipe_tick'),false);await a.unlock();assert.equal(a.cue('swipe_tick'),true);await a.dispose();
+ const muted=createSpaceAudio({sound_enabled:false}, {Audio});await muted.unlock();assert.equal(muted.enabled,false);assert.equal(muted.diagnostics().context_state,'not_created');assert.equal(muted.cue('swipe_tick'),false);await muted.dispose();
+});

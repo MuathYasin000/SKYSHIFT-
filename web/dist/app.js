@@ -24,6 +24,7 @@ import {
 } from "./visualization.js";
 
 import { openComparison } from "./packets.js";
+import {attachReviewDownload} from './review-download.js';
 
 const $ = (id) => document.getElementById(id);
 const state = {
@@ -61,7 +62,7 @@ const categoryLabels = {
 };
 
 async function getBytes(url, expected) {
-  const r = await fetch(url, { cache: "no-cache" });
+  const r = await fetch(url, { cache: "no-cache",signal:AbortSignal.timeout(12000) });
   if (!r.ok)
     throw Error(
       `Data request failed (${r.status}). Please reload or try later.`,
@@ -263,7 +264,7 @@ function drawNow() {
   );
   drawCanvas(
     $("canvas-a"),
-    state.display.view_mode === "single" ? state.display.selected_epoch : "A",
+    state.display.view_mode === "single" && !state.visual.wipe ? state.display.selected_epoch : "A",
   );
   drawCanvas($("canvas-b"), "B");
   $("zoom-label").textContent = state.display.zoom.toFixed(1) + "×";
@@ -310,7 +311,6 @@ function setMode(mode, keepWipe = false) {
   requestAnimationFrame(drawAll);
 }
 function setEpoch(epoch) {
-  if (state.visual.wipe) epoch = "A";
   state.display.selected_epoch = epoch;
   for (const e of ["A", "B"]) {
     $("epoch-" + e.toLowerCase()).classList.toggle("selected", epoch === e);
@@ -319,7 +319,7 @@ function setEpoch(epoch) {
       String(epoch === e),
     );
   }
-  populateObservation("a", state.display.view_mode === "single" ? epoch : "A");
+  populateObservation("a", state.display.view_mode === "single" && !state.visual.wipe ? epoch : "A");
   drawAll();
   persist();
 }
@@ -912,6 +912,7 @@ async function importBytes(bytes) {
     bytes,
     state.manifest,
     state.arrays.COMMON,
+    state.bundle,
   );
   stopBlink();
   state.display = saved.display;
@@ -940,34 +941,11 @@ $("import-file").addEventListener("change", async (event) => {
   }
   event.target.value = "";
 });
-$("review-download").addEventListener("click", async () => {
-  const button = $("review-download");
-  button.disabled = true;
-  try {
-    const chunks = [];
-    for (let i = 0; i < state.catalogue.review_packet.parts.length; i++) {
-      button.textContent = `Downloading part ${i + 1} / ${state.catalogue.review_packet.parts.length}…`;
-      const p = state.catalogue.review_packet.parts[i];
-      const data = await getBytes(p.url, p.sha256);
-      if (data.length !== p.size_bytes)
-        throw Error("Review packet part size mismatch");
-      chunks.push(data);
-    }
-    downloadBlob(new Blob(chunks), state.catalogue.review_packet.name);
-    toast(
-      "Self-contained review packet downloaded; part hashes were verified.",
-    );
-  } catch (error) {
-    toast(error.message, true);
-  } finally {
-    button.disabled = false;
-    button.textContent = "↓ Download review packet";
-  }
-});
+attachReviewDownload($("review-download"),()=>state.catalogue.review_packet,file=>downloadBlob(file.bytes,file.name),{onError:message=>toast(message,true)});
 
 async function initialize() {
   try {
-    const r = await fetch("./data/catalog.json", { cache: "no-cache" });
+    const r = await fetch("./data/catalog.json", { cache: "no-cache",signal:AbortSignal.timeout(12000) });
     if (!r.ok) throw Error("The scientific data catalogue is unavailable");
     state.catalogue = await r.json();
     state.bundle = JSON.parse(
@@ -1094,7 +1072,6 @@ $("overlay-mode").addEventListener("click", () => {
   if (!state.manifest) return;
   const enabled = !state.visual.wipe;
   state.visual.wipe = enabled;
-  state.display.selected_epoch = "A";
   setMode(enabled ? "single" : "side_by_side", enabled);
   $("single-controls").hidden = enabled;
   drawAll();

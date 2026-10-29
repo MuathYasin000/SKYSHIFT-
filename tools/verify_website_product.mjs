@@ -178,7 +178,7 @@ try {
       assert.equal(await p.locator("#home-view").isVisible(), true);
       assert.match(
         await p.locator("h1").first().textContent(),
-        /Explore & compare/,
+        /Watch the[\s\S]*infrared sky/,
       );
       assert.equal(await p.locator("#universe-view canvas").count(), 0);
       await p.waitForFunction(
@@ -206,7 +206,7 @@ try {
     },
   );
   await check(
-    "Primary call to action opens the actual restricted comparison in one action",
+    "Cached restricted comparison remains available in one action",
     async () => {
       await p.click(".intro-actions .primary-link");
       await loaded(p);
@@ -443,7 +443,7 @@ try {
       assert.deepEqual(after.display, before.display);
       assert.equal(
         (await p.evaluate(() => skyshiftSpace.audio())).enabled,
-        false,
+        true,
       );
     },
   );
@@ -452,6 +452,7 @@ try {
     async () => {
       await p.click(".site-navigation a[data-route=universe]");
       await p.click("[data-telescope=spherex]");
+      await p.click("#look-through");
       await p.click('[data-observe-stage="1"]');
       await p.locator("[data-channel]").nth(2).click();
       await snap(p, "universe");
@@ -461,6 +462,7 @@ try {
         () => skyshiftSpace.diagnostics().loaded_telescopes.length === 3,
       );
       await p.click("[data-telescope=hubble]");
+      await p.click("#look-through");
       await p.click('[data-observe-stage="2"]');
       await p.waitForFunction(
         () => !document.getElementById("mission-image").hidden,

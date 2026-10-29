@@ -32,7 +32,7 @@ export function inspectZipBounds(bytes){
   return names;
 }
 
-export async function openComparison(bytes,baseline,common){
+export async function openComparison(bytes,baseline,common,evidence={}){
   const entries=inspectZipBounds(bytes);
   const payload=unzipSync(bytes,{filter:file=>{const e=entries.get(file.name);if(!e||e.size!==file.originalSize||e.compressed!==file.size)throw Error('ZIP allocation metadata disagree');return true;}});
   if(Object.keys(payload).length!==entries.size)throw Error('ZIP members disagree with the directory');
@@ -42,9 +42,18 @@ export async function openComparison(bytes,baseline,common){
   for(const name of names)if(payload[name].length!==entries.get(name).size||await sha256(payload[name])!==hashes[name])throw Error('Saved comparison checksum mismatch: '+name);
   const m=JSON.parse(strFromU8(payload['manifest.json']));
   if(m.schema_version!=='1.0'||m.pair_id!==baseline.pair_id||m.dataset_kind!=='real')throw Error('This saved comparison belongs to a different or unsupported dataset');
-  for(const key of ['processing','observations','suitability','region','prepared_files','software_versions'])if(!equalEvidence(m[key],baseline[key]))throw Error('Scientific metadata differ from the curated dataset');
+  // Only the display and annotations are user-editable. Preserve attribution,
+  // restrictions, timestamps and every other manifest field as well as arrays.
+  const immutable=value=>Object.fromEntries(Object.entries(value).filter(([key])=>!['display','annotations'].includes(key)));
+  if(!equalEvidence(immutable(m),immutable(baseline)))throw Error('Scientific metadata differ from the curated dataset');
   if(!Array.isArray(m.annotations)||m.annotations.length>500)throw Error('Invalid annotation list');
   const ids=new Set();for(const note of m.annotations){validateAnnotation(note,baseline,common);if(ids.has(note.annotation_id))throw Error('Duplicate annotation identity');ids.add(note.annotation_id);}
+  if(payload['annotations.json']&&!equalEvidence(JSON.parse(strFromU8(payload['annotations.json'])),m.annotations))throw Error('Annotation records disagree with the manifest');
+  for(const name of ['registration','response']){
+    const path=`diagnostics/${name}.json`;
+    if(payload[path]&&evidence[name]&&!equalEvidence(JSON.parse(strFromU8(payload[path])),evidence[name]))throw Error('Scientific diagnostics differ from the curated dataset: '+name);
+  }
+  if(payload['packet.json']&&JSON.parse(strFromU8(payload['packet.json'])).scientific_approval!=='PENDING')throw Error('Unsupported packet scientific approval claim');
   for(const file of baseline.prepared_files)if(!payload[file.path]||await sha256(payload[file.path])!==file.sha256)throw Error('Prepared scientific product differs from the curated dataset');
   const extension=payload['visualization.json']?{visualization:validateVisualization(JSON.parse(strFromU8(payload['visualization.json'])))}:{};
   return {display:validateDisplay(m.display,baseline),annotations:m.annotations,...extension};

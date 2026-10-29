@@ -37,6 +37,8 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     audio,
     openField: (field) => openScience(field),
     onOpen: () => {
+      journey = -1;
+      $("journey-strip").hidden = true;
       setDestinations(false);
       scene?.setPresentation("explanation");
       transition("observe");
@@ -100,8 +102,9 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
   function destinationList() {
     const query = $("destination-search").value.trim().toLowerCase();
     $("destination-list").replaceChildren();
+    const destinations = items();
     let count = 0;
-    for (const item of items()) {
+    for (const [index, item] of destinations.entries()) {
       const field = catalogue?.fields.find((f) => f.id === item.id),
         story = stories[item.id];
       if (
@@ -122,16 +125,24 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
       button.className = "destination-item";
       button.dataset.destination = item.id;
       button.setAttribute("aria-pressed", String(selected === item.id));
-      button.append(
-        element("strong", item.name),
-        element("small", item.detail),
-      );
+      const marker = element("span", String(index + 1).padStart(2, "0")),
+        copy = element("span"), indicator = element("span");
+      marker.className = "destination-marker";
+      marker.setAttribute("aria-hidden", "true");
+      copy.className = "destination-copy";
+      copy.append(element("strong", item.name), element("small", item.detail));
+      indicator.className = "destination-indicator";
+      indicator.setAttribute("aria-hidden", "true");
+      button.append(marker, copy, indicator);
       button.onclick = () => select(item.id);
       $("destination-list").append(button);
     }
-    $("destination-search-status").textContent = count
-      ? count + " destinations available."
-      : "No available destination matches. Clear search to see this environment.";
+    $("destination-search-status").textContent = query
+      ? count + " of " + destinations.length + " destinations"
+      : count + (count === 1 ? " destination" : " destinations");
+    $("destination-empty").hidden = count > 0;
+    $("destination-list").hidden = count === 0;
+    $("destination-clear").disabled = !$("destination-search").value;
   }
   function labels() {
     $("space-labels").replaceChildren();
@@ -171,10 +182,10 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     }
     const obstacles = [
       ...document.querySelectorAll(
-        ".destinations-drawer:not([hidden]),.space-context,.space-header,.space-hud,.mission-dock>span,.telescope-story:not([hidden]),.mission-dock",
+        ".destinations-toggle,.destinations-drawer:not([hidden]),.space-context,.space-actions,.space-hud,.mission-dock>span,.telescope-story:not([hidden]),.telescope-experience:not([hidden]),.journey-strip:not([hidden]),.mission-dock",
       ),
     ]
-      .filter((el) => !el.hidden)
+      .filter((el) => !el.hidden && el.getClientRects().length)
       .map((el) => {
         const r = el.getBoundingClientRect();
         return {
@@ -273,6 +284,17 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
         : environment === "solar"
           ? "CHOOSE YOUR WORLD"
           : "CURATED SPHEREx FIELDS";
+    $("destination-description").textContent = {
+      observatory: "Start with SPHEREx, or explore the other illustrative telescope models. Select a telescope to open its info menu.",
+      solar: "Explore the Sun, planets and Moon. Positions and sizes are schematic, without live tracking.",
+      sky: "Choose a real SPHEREx field. Markers show sky directions, without measured 3D distances or survey coverage.",
+    }[environment];
+    $("destination-search").placeholder = {
+      observatory: "Search telescopes", solar: "Search worlds", sky: "Search fields or constellations",
+    }[environment];
+    $("destination-collection").hidden = environment !== "observatory";
+    $("destination-collection").setAttribute("aria-pressed", String(hangar));
+    $("destination-collection").textContent = hangar ? "Show SPHEREx only" : "Show Webb & Hubble";
   }
   function setEnvironment(name) {
     if (!["observatory", "solar", "sky"].includes(name)) return;
@@ -304,10 +326,17 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     audio.cue("travel");
     transition("travel");
   }
+  function revealSelectionMenu() {
+    if (telescopeExperience.open) telescopeExperience.close(true);
+    journey = -1;
+    $("journey-strip").hidden = true;
+    setDestinations(false);
+  }
   function select(id, focus = true) {
     if (id?.startsWith("component:")) {
       const key = id.slice(10);
       if (!components[key]) return;
+      if (focus) revealSelectionMenu();
       scene?.highlight(key);
       if ($("context-details").hidden) contextDetails(true);
       $("component-description").textContent = components[key].description;
@@ -328,8 +357,11 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
         b.setAttribute("aria-pressed", String(b.dataset.telescope === id)),
       );
     if (focus && !scene) requestedFocus = true;
-    if (focus && matchMedia("(max-width:740px)").matches)
-      setDestinations(false);
+    if (focus) {
+      revealSelectionMenu();
+      contextDetails(false);
+      $("space-context").scrollTop = 0;
+    }
     document
       .querySelectorAll("[data-destination],[data-object]")
       .forEach((b) =>
@@ -373,7 +405,6 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
       scene?.showHardware(id, focus);
       $("look-through").textContent =
         "Look through " + telescopeStories[id].short + " →";
-      if (focus && telescopeExperience.open) telescopeExperience.show(id);
       if (id === "spherex") {
         for (const [key, component] of Object.entries(components)) {
           const b = element("button", component.name);
@@ -450,14 +481,9 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
         assets: manifest.assets,
         fields: catalogue.fields,
         onSelect: (id) => {
-          if (id?.startsWith("component:")) {
-            if (selected !== "spherex") select("spherex", false);
-            telescopeExperience.inspectComponent(id.slice(10));
-            transition("component");
-            return;
-          }
+          if (id?.startsWith("component:") && selected !== "spherex")
+            select("spherex", false);
           select(id);
-          if (hardware[id]) telescopeExperience.show(id);
         },
         onStatus: status,
         onError: renderError,
@@ -512,6 +538,13 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     .querySelectorAll("button[data-environment]")
     .forEach((b) => (b.onclick = () => setEnvironment(b.dataset.environment)));
   $("destination-search").oninput = destinationList;
+  function clearDestinationSearch() {
+    $("destination-search").value = "";
+    destinationList();
+    $("destination-search").focus({ preventScroll: true });
+  }
+  $("destination-clear").onclick = clearDestinationSearch;
+  $("destination-reset").onclick = clearDestinationSearch;
   $("from-hardware-to-sky").onclick = () => {
     setEnvironment("sky");
     setDestinations(true);
@@ -526,10 +559,13 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
           ? "Return to SPHEREx"
           : "Other observatories";
         if (environment !== "observatory") setEnvironment("observatory");
-        scene?.setCollection(hangar);
-        if (telescopeExperience.open) telescopeExperience.close(true);
+        else {
+          scene?.setCollection(hangar);
+          sceneCopy();
+          destinationList();
+          labels();
+        }
         select(b.dataset.telescope);
-        telescopeExperience.show(b.dataset.telescope);
       }),
   );
   $("look-through").onclick = () => telescopeExperience.show(selected);
@@ -568,9 +604,40 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
   };
   $("destinations-toggle").onclick = () =>
     setDestinations($("destinations-drawer").hidden);
+  $("destinations-close").onclick = () => setDestinations(false);
+  $("destinations-drawer").addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      setDestinations(false);
+      return;
+    }
+    if (!event.target.matches("[data-destination]")) return;
+    const rows = [...$("destination-list").querySelectorAll("button")],
+      index = rows.indexOf(event.target);
+    let next;
+    if (event.key === "ArrowDown") next = rows[(index + 1) % rows.length];
+    if (event.key === "ArrowUp") next = rows[(index + rows.length - 1) % rows.length];
+    if (event.key === "Home") next = rows[0];
+    if (event.key === "End") next = rows.at(-1);
+    if (next) {
+      event.preventDefault();
+      next.focus();
+    }
+  });
   function setDestinations(open) {
-    $("destinations-drawer").hidden = !open;
+    const drawer = $("destinations-drawer"), restoreFocus = drawer.contains(document.activeElement);
+    if (open && telescopeExperience.open) telescopeExperience.close();
+    if (open) {
+      journey = -1;
+      $("journey-strip").hidden = true;
+    }
+    drawer.hidden = !open;
     $("destinations-toggle").setAttribute("aria-expanded", String(open));
+    if (open) {
+      drawer.scrollTop = 0;
+      $("destinations-close").focus({ preventScroll: true });
+    } else if (restoreFocus) $("destinations-toggle").focus({ preventScroll: true });
     positionLabels();
   }
   function openDialog(id, trigger) {
@@ -599,7 +666,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
           " · quality " +
           preferences.quality +
           ". Reading release identity…";
-        fetch("/healthz", { signal: AbortSignal.timeout(3000) })
+        fetch("./version.json", { signal: AbortSignal.timeout(3000) })
           .then((r) => {
             if (!r.ok) throw Error("HTTP " + r.status);
             return r.json();
@@ -674,6 +741,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
     if (e.key === "Escape" && !document.querySelector("dialog[open]")) {
       if (workspace) closeScience();
       else if (telescopeExperience.open) telescopeExperience.close();
+      else if (!$("destinations-drawer").hidden) setDestinations(false);
       else if (journey >= 0) {
         journey = -1;
         $("journey-strip").hidden = true;
@@ -806,6 +874,7 @@ export function createUniverse({ observationConsole, onOpenScience, onExit }) {
       ? "Return to SPHEREx"
       : "Other observatories";
   };
+  $("destination-collection").onclick = () => $("hangar-toggle").click();
 
   return Object.freeze({
     activate() {

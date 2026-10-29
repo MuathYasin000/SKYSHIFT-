@@ -1,0 +1,72 @@
+[
+  {
+    "candidate": "AUG-D2",
+    "epoch": "A",
+    "obs_id": "2025W32_2D_0189_1",
+    "detector": "D2",
+    "datalink_url": "https://irsa.ipac.caltech.edu/datalink/links/spherex?ID=ivo://irsa.ipac/spherex_qr2?2025W32_2D_0189_1/D2",
+    "datalink_sha256": "cf54d4b3ff2171658b3c6bf5790b92ab8994b2219f983742f779fbedb79c9702",
+    "science_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W32_2D/l2b-v20-2025-264/2/level2_2025W32_2D_0189_1D2_spx_l2b-v20-2025-264.fits",
+    "spectral_wcs_urls": [
+      "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+    ],
+    "version_path_label": "l2b-v20-2025-264",
+    "scope": "Metadata links only. Actual FITS headers and contents have not been fetched or verified."
+  },
+  {
+    "candidate": "AUG-D2",
+    "epoch": "B",
+    "obs_id": "2025W32_2D_0201_1",
+    "detector": "D2",
+    "datalink_url": "https://irsa.ipac.caltech.edu/datalink/links/spherex?ID=ivo://irsa.ipac/spherex_qr2?2025W32_2D_0201_1/D2",
+    "datalink_sha256": "46ab750e76f2b78f73aaabd1cd37afc71e99e9c2c77fde4961ef186196bb840a",
+    "science_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W32_2D/l2b-v20-2025-264/2/level2_2025W32_2D_0201_1D2_spx_l2b-v20-2025-264.fits",
+    "spectral_wcs_urls": [
+      "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+    ],
+    "version_path_label": "l2b-v20-2025-264",
+    "scope": "Metadata links only. Actual FITS headers and contents have not been fetched or verified."
+  },
+  {
+    "candidate": "DEC-D2",
+    "epoch": "A",
+    "obs_id": "2025W50_2A_0685_1",
+    "detector": "D2",
+    "datalink_url": "https://irsa.ipac.caltech.edu/datalink/links/spherex?ID=ivo://irsa.ipac/spherex_qr2?2025W50_2A_0685_1/D2",
+    "datalink_sha256": "e86f36ade73e62cfa549a45ff52ae4a8634416d3dab0f7166a5dd277682ec942",
+    "science_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_2A/l2b-v20-2025-349/2/level2_2025W50_2A_0685_1D2_spx_l2b-v20-2025-349.fits",
+    "spectral_wcs_urls": [
+      "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+    ],
+    "version_path_label": "l2b-v20-2025-349",
+    "scope": "Metadata links only. Actual FITS headers and contents have not been fetched or verified."
+  },
+  {
+    "candidate": "DEC-D2",
+    "epoch": "B",
+    "obs_id": "2025W50_2A_0698_1",
+    "detector": "D2",
+    "datalink_url": "https://irsa.ipac.caltech.edu/datalink/links/spherex?ID=ivo://irsa.ipac/spherex_qr2?2025W50_2A_0698_1/D2",
+    "datalink_sha256": "bf38b1fde4474b3428e19fd4f74a25d311cb0903f5269653af19768f0927a513",
+    "science_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_2A/l2b-v20-2025-349/2/level2_2025W50_2A_0698_1D2_spx_l2b-v20-2025-349.fits",
+    "spectral_wcs_urls": [
+      "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+    ],
+    "version_path_label": "l2b-v20-2025-349",
+    "scope": "Metadata links only. Actual FITS headers and contents have not been fetched or verified."
+  },
+  {
+    "candidate": "AUG-D5",
+    "epoch": "A",
+    "obs_id": "2025W32_2D_0189_1",
+    "detector": "D5",
+    "datalink_url": "https://irsa.ipac.caltech.edu/datalink/links/spherex?ID=ivo://irsa.ipac/spherex_qr2?2025W32_2D_0189_1/D5",
+    "datalink_sha256": "6b3b2422c265d7a042c3aff112cd06706fe088b8ee04ea64a54192a85092b48d",
+    "science_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W32_2D/l2b-v20-2025-265/5/level2_2025W32_2D_0189_1D5_spx_l2b-v20-2025-265.fits",
+    "spectral_wcs_urls": [
+      "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/spectral_wcs/cal-wcs-v4-2025-254/5/spectral_wcs_D5_spx_cal-wcs-v4-2025-254.fits"
+    ],
+    "version_path_label": "l2b-v20-2025-265",
+    "scope": "Metadata links only. Actual FITS headers and contents have not been fetched or verified."
+  }
+]

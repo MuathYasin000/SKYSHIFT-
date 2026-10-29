@@ -1,0 +1,455 @@
+{
+  "source_url": "https://irsa.ipac.caltech.edu/data/SPHEREx/docs/comet3iatlas/obscore_3I_Atlas.vot",
+  "retrieved_at_utc": "2026-10-29T21:59:32.332009+00:00",
+  "bytes": 276887,
+  "sha256": "11ff6a524c1b344b3c15c4875429b5b89fd053a18eef4d66328a5632382ef4af",
+  "row_count": 259,
+  "unique_observations": 133,
+  "columns": [
+    {
+      "ID": "dataproduct_subtype",
+      "arraysize": "14",
+      "datatype": "unicodeChar",
+      "name": "dataproduct_subtype"
+    },
+    {
+      "ID": "calib_level",
+      "datatype": "long",
+      "name": "calib_level",
+      "ucd": "meta.code;obs.calib"
+    },
+    {
+      "ID": "obs_id",
+      "arraysize": "17",
+      "datatype": "unicodeChar",
+      "name": "obs_id",
+      "ucd": "meta.id"
+    },
+    {
+      "ID": "obs_title",
+      "arraysize": "38",
+      "datatype": "unicodeChar",
+      "name": "obs_title",
+      "ucd": "meta.title;obs"
+    },
+    {
+      "ID": "spherex_detector",
+      "arraysize": "2",
+      "datatype": "unicodeChar",
+      "name": "spherex_detector"
+    },
+    {
+      "ID": "obs_creator_did",
+      "arraysize": "19",
+      "datatype": "unicodeChar",
+      "name": "obs_creator_did",
+      "ucd": "meta.ref.uri;meta.curation"
+    },
+    {
+      "ID": "s_ra",
+      "datatype": "double",
+      "name": "s_ra",
+      "ucd": "pos.eq.ra",
+      "unit": "deg"
+    },
+    {
+      "ID": "s_dec",
+      "datatype": "double",
+      "name": "s_dec",
+      "ucd": "pos.eq.dec",
+      "unit": "deg"
+    },
+    {
+      "ID": "comet_ra",
+      "datatype": "double",
+      "name": "comet_ra",
+      "ucd": "pos.eq.ra;src",
+      "unit": "deg"
+    },
+    {
+      "ID": "comet_dec",
+      "datatype": "double",
+      "name": "comet_dec",
+      "ucd": "pos.eq.dec;src",
+      "unit": "deg"
+    },
+    {
+      "ID": "t_min",
+      "datatype": "double",
+      "name": "t_min",
+      "ucd": "time.start;obs.exposure",
+      "unit": "d"
+    },
+    {
+      "ID": "t_max",
+      "datatype": "double",
+      "name": "t_max",
+      "ucd": "time.end;obs.exposure",
+      "unit": "d"
+    },
+    {
+      "ID": "t_exptime",
+      "datatype": "double",
+      "name": "t_exptime",
+      "ucd": "time.duration;obs.exposure",
+      "unit": "s"
+    },
+    {
+      "ID": "em_min",
+      "datatype": "double",
+      "name": "em_min",
+      "ucd": "em.wl;stat.min",
+      "unit": "m"
+    },
+    {
+      "ID": "em_max",
+      "datatype": "double",
+      "name": "em_max",
+      "ucd": "em.wl;stat.max",
+      "unit": "m"
+    },
+    {
+      "ID": "s_region",
+      "arraysize": "168",
+      "datatype": "unicodeChar",
+      "name": "s_region",
+      "ucd": "pos.outline;obs.field"
+    },
+    {
+      "ID": "dataproduct_type",
+      "arraysize": "5",
+      "datatype": "unicodeChar",
+      "name": "dataproduct_type",
+      "ucd": "meta.id"
+    },
+    {
+      "ID": "access_format",
+      "arraysize": "42",
+      "datatype": "unicodeChar",
+      "name": "access_format",
+      "ucd": "meta.code.mime"
+    },
+    {
+      "ID": "access_estsize",
+      "datatype": "double",
+      "name": "access_estsize",
+      "ucd": "phys.size;meta.file",
+      "unit": "kbyte"
+    },
+    {
+      "ID": "access_url",
+      "arraysize": "104",
+      "datatype": "unicodeChar",
+      "name": "access_url",
+      "ucd": "meta.ref.url"
+    },
+    {
+      "ID": "spherex_uuid",
+      "arraysize": "*",
+      "datatype": "unicodeChar",
+      "name": "spherex_uuid"
+    },
+    {
+      "ID": "facility_name",
+      "arraysize": "7",
+      "datatype": "unicodeChar",
+      "name": "facility_name",
+      "ucd": "meta.id;instr.tel"
+    },
+    {
+      "ID": "instrument_name",
+      "arraysize": "7",
+      "datatype": "unicodeChar",
+      "name": "instrument_name",
+      "ucd": "meta.id;instr"
+    },
+    {
+      "ID": "obs_collection",
+      "arraysize": "11",
+      "datatype": "unicodeChar",
+      "name": "obs_collection",
+      "ucd": "meta.id"
+    },
+    {
+      "ID": "target_name",
+      "arraysize": "8",
+      "datatype": "unicodeChar",
+      "name": "target_name",
+      "ucd": "meta.id;src"
+    },
+    {
+      "ID": "target_moving",
+      "arraysize": "4",
+      "datatype": "unicodeChar",
+      "name": "target_moving",
+      "ucd": "meta.code"
+    }
+  ],
+  "counts": [
+    {
+      "release": "spherex_qr2",
+      "detector": "D1",
+      "date": "2025-08-08",
+      "rows": 2
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D1",
+      "date": "2025-08-09",
+      "rows": 7
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D1",
+      "date": "2025-08-11",
+      "rows": 5
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D1",
+      "date": "2025-08-12",
+      "rows": 2
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D1",
+      "date": "2025-08-13",
+      "rows": 2
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D1",
+      "date": "2025-08-14",
+      "rows": 9
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D1",
+      "date": "2025-08-15",
+      "rows": 2
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D1",
+      "date": "2025-12-08",
+      "rows": 17
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D2",
+      "date": "2025-08-01",
+      "rows": 3
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D2",
+      "date": "2025-08-08",
+      "rows": 9
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D2",
+      "date": "2025-08-11",
+      "rows": 10
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D2",
+      "date": "2025-08-13",
+      "rows": 4
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D2",
+      "date": "2025-08-14",
+      "rows": 1
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D2",
+      "date": "2025-12-09",
+      "rows": 4
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D2",
+      "date": "2025-12-14",
+      "rows": 13
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D3",
+      "date": "2025-08-01",
+      "rows": 4
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D3",
+      "date": "2025-08-06",
+      "rows": 2
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D3",
+      "date": "2025-08-07",
+      "rows": 15
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D3",
+      "date": "2025-08-09",
+      "rows": 1
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D3",
+      "date": "2025-08-10",
+      "rows": 1
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D3",
+      "date": "2025-08-13",
+      "rows": 1
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D3",
+      "date": "2025-12-14",
+      "rows": 17
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D4",
+      "date": "2025-08-08",
+      "rows": 2
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D4",
+      "date": "2025-08-09",
+      "rows": 7
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D4",
+      "date": "2025-08-11",
+      "rows": 6
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D4",
+      "date": "2025-08-12",
+      "rows": 2
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D4",
+      "date": "2025-08-13",
+      "rows": 2
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D4",
+      "date": "2025-08-14",
+      "rows": 9
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D4",
+      "date": "2025-08-15",
+      "rows": 2
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D4",
+      "date": "2025-12-08",
+      "rows": 18
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D5",
+      "date": "2025-08-01",
+      "rows": 3
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D5",
+      "date": "2025-08-08",
+      "rows": 9
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D5",
+      "date": "2025-08-11",
+      "rows": 10
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D5",
+      "date": "2025-08-13",
+      "rows": 4
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D5",
+      "date": "2025-08-14",
+      "rows": 1
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D5",
+      "date": "2025-12-09",
+      "rows": 4
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D5",
+      "date": "2025-12-14",
+      "rows": 13
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D6",
+      "date": "2025-08-01",
+      "rows": 4
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D6",
+      "date": "2025-08-06",
+      "rows": 2
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D6",
+      "date": "2025-08-07",
+      "rows": 15
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D6",
+      "date": "2025-08-09",
+      "rows": 1
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D6",
+      "date": "2025-08-10",
+      "rows": 1
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D6",
+      "date": "2025-08-13",
+      "rows": 1
+    },
+    {
+      "release": "spherex_qr2",
+      "detector": "D6",
+      "date": "2025-12-14",
+      "rows": 12
+    }
+  ],
+  "scope": "Metadata research only. No FITS downloads, processing or validated detections. Research outputs are not approved Path B carry-forward material."
+}

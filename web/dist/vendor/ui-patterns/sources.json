@@ -36,6 +36,22 @@
         "home.css",
         "components.css"
       ]
+    },
+    {
+      "name": "Vengeance UI Kinetic Text Loader",
+      "website": "https://www.vengenceui.com/components/kinetic-text-loader",
+      "source_url": "https://raw.githubusercontent.com/Ashutoshx7/VengeanceUI/2b6e4e673c950e2075dde853d55688498b9fda6d/public/r/kinetic-text-loader.json",
+      "upstream_commit": "2b6e4e673c950e2075dde853d55688498b9fda6d",
+      "original_sha256": "711fe4e9a45e7b7db1fe3f0b38993ce1d92b93226a82b11794d4f89e6201c656",
+      "original_bytes": 3766,
+      "license": "MIT",
+      "license_file": "Vengeance-LICENSE.txt",
+      "retrieved_date_utc": "2026-10-18",
+      "modifications": "Native DOM/CSS adaptation of the 1800ms moving dot, L bounce and i stretch. Local Inter font, responsive em units, accessible original status text, automatic dynamic status decoration and reduced-motion fallback; no React, Tailwind or remote fonts.",
+      "local_implementation": [
+        "kinetic-loader.js",
+        "kinetic-loader.css"
+      ]
     }
   ],
   "inspiration_only": [

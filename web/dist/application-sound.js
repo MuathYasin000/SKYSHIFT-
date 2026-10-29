@@ -13,6 +13,7 @@ export function soundForControl(e) {
     text = (e.textContent || "").trim().toLowerCase();
   if (
     e.disabled ||
+    e.closest?.("#arrival-screen") ||
     e.closest?.("[data-sound-controls]") ||
     e.matches?.("[data-sound-toggle]")
   )
@@ -88,7 +89,7 @@ export function installApplicationSound() {
   host.setAttribute("aria-labelledby", "sound-settings-title");
   host.dataset.soundControls = "";
   host.innerHTML =
-    '<div class="dialog-top"><div><p class="space-eyebrow">SKYSHIFT / SOUND DESIGN</p><h2 id="sound-settings-title">Small sounds. Clear signals.</h2></div><button aria-label="Close sound settings" id="sound-settings-close">×</button></div><p>Short, clean sine-wave cues for the interface. Preview the sounds and set a comfortable level.</p><button data-sound-toggle aria-pressed="true">Sound on</button><p id="sound-status" role="status"></p><label class="sound-level">Interaction volume <output id="sound-fx-value"></output><input id="sound-fx" type="range" min="0" max="1" step="0.01" /></label><p class="sound-fine">Dry sine tones · no noise layers, reverb or continuous background sound. Mute is remembered. Browser playback starts after a click or keypress.</p><h3>Preview the cues</h3><div class="sound-palette"></div>';
+    '<div class="dialog-top"><div><p class="space-eyebrow">SKYSHIFT / SOUND</p><h2 id="sound-settings-title">Small sounds. Clear signals.</h2></div><button aria-label="Close sound settings" id="sound-settings-close">×</button></div><p>Soft taps and warm tones for your interactions. Preview them at a comfortable level.</p><button data-sound-toggle aria-pressed="true">Sound on</button><p id="sound-status" role="status"></p><label class="sound-level">Sound volume <output id="sound-fx-value"></output><input id="sound-fx" type="range" min="0" max="1" step="0.01" /></label><p class="sound-fine">Mute is remembered. Interaction sounds start after a click or touch. The loading screen stays silent.</p><h3>Preview the cues</h3><div class="sound-palette"></div>';
   document.body.append(host);
   for (const [name, label] of [
     ["ui", "Control"],
@@ -99,6 +100,7 @@ export function installApplicationSound() {
     ["hubble", "Hubble"],
     ["spectrum", "Spectrum"],
     ["save", "Evidence"],
+    ["swipe_tick", "Slider"],
   ]) {
     const b = document.createElement("button");
     b.textContent = label;
@@ -162,7 +164,7 @@ export function installApplicationSound() {
   async function unlock(e) {
     if (
       e.isTrusted &&
-      !e.target.closest?.("[data-sound-toggle],#sound-toggle") &&
+      !e.target.closest?.("[data-sound-toggle],#sound-toggle,#arrival-screen") &&
       !(e.type === "keydown" && e.repeat)
     )
       try {
@@ -175,6 +177,8 @@ export function installApplicationSound() {
     capture: true,
     passive: true,
   });
+  // Some touch browsers grant activation only when the contact is released.
+  document.addEventListener("pointerup", unlock, {capture:true,passive:true});
   document.addEventListener("keydown", unlock, { capture: true });
   document.addEventListener(
     "click",

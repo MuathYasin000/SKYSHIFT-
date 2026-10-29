@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0",
+  "scope": "QR2/D2 only; bounded three-sample availability and preparation tests, not target detections",
+  "targets": [
+    {
+      "id": "barnards-star",
+      "name": "Barnard’s Star",
+      "status": "partially_supported",
+      "prepared_frames": 1,
+      "playback_eligible": false,
+      "error": null,
+      "interpretation": "Prepared field inspection only; source identification, motion and calibrated variability are not established.",
+      "url": "./data/sequence-barnards-star.json",
+      "sha256": "3fc48c5e277d746e4ec3dd4d5cff7e1733957d839dcdbe1d424d353bf7764215",
+      "dates": [
+        "2026-03-22T05:28:36.944000Z"
+      ],
+      "request": {
+        "schema_version": "1.0",
+        "kind": "skyshift-observation-request",
+        "release": "qr2",
+        "region": {
+          "ra_deg": 269.45207695861876,
+          "dec_deg": 4.693364966576667,
+          "size_deg": 0.2,
+          "frame": "icrs"
+        },
+        "detector": 2,
+        "max_frames": 3,
+        "deep": false
+      },
+      "created_at_utc": "2026-10-29T15:23:35.942447+00:00"
+    },
+    {
+      "id": "epsilon-indi-b",
+      "name": "Epsilon Indi B",
+      "status": "partially_supported",
+      "prepared_frames": 2,
+      "playback_eligible": false,
+      "error": null,
+      "interpretation": "Prepared field inspection only; source identification, motion and calibrated variability are not established.",
+      "url": "./data/sequence-epsilon-indi-b.json",
+      "sha256": "c7d62e350d20795246a20bc8a501453d0e85981b90a39ba39742f3a1fc0f2196",
+      "dates": [
+        "2025-04-24T20:31:57.081000Z",
+        "2026-04-30T14:06:47.658000Z"
+      ],
+      "request": {
+        "schema_version": "1.0",
+        "kind": "skyshift-observation-request",
+        "release": "qr2",
+        "region": {
+          "ra_deg": 331.0441465885212,
+          "dec_deg": -56.78284419511611,
+          "size_deg": 0.2,
+          "frame": "icrs"
+        },
+        "detector": 2,
+        "max_frames": 3,
+        "deep": false
+      },
+      "created_at_utc": "2026-10-29T15:24:24.271275+00:00"
+    },
+    {
+      "id": "wise-0855",
+      "name": "WISE 0855",
+      "status": "partially_supported",
+      "prepared_frames": 2,
+      "playback_eligible": false,
+      "error": null,
+      "interpretation": "Prepared field inspection only; source identification, motion and calibrated variability are not established.",
+      "url": "./data/sequence-wise-0855.json",
+      "sha256": "3559d57e36c2c55a47cb31cb9a2e7331d7ac927b210302de59a1f3611f4ef98a",
+      "dates": [
+        "2025-05-06T02:33:29.930000Z",
+        "2026-05-14T06:53:35.614000Z"
+      ],
+      "request": {
+        "schema_version": "1.0",
+        "kind": "skyshift-observation-request",
+        "release": "qr2",
+        "region": {
+          "ra_deg": 133.79512916666664,
+          "dec_deg": -7.245147222222222,
+          "size_deg": 0.2,
+          "frame": "icrs"
+        },
+        "detector": 2,
+        "max_frames": 3,
+        "deep": false
+      },
+      "created_at_utc": "2026-10-29T15:25:27.585422+00:00"
+    },
+    {
+      "id": "rw-aurigae",
+      "name": "RW Aurigae",
+      "status": "partially_supported",
+      "prepared_frames": 3,
+      "playback_eligible": false,
+      "error": null,
+      "interpretation": "Prepared field inspection only; source identification, motion and calibrated variability are not established.",
+      "url": "./data/sequence-rw-aurigae.json",
+      "sha256": "ec950ba29675f8d1fd5460aa0da038e3c54dd9da90f9ba911122d37458e5568c",
+      "dates": [
+        "2025-09-08T06:36:11.721000Z",
+        "2026-03-01T04:55:44.494000Z",
+        "2026-03-09T05:12:29.393000Z"
+      ],
+      "request": {
+        "schema_version": "1.0",
+        "kind": "skyshift-observation-request",
+        "release": "qr2",
+        "region": {
+          "ra_deg": 76.95652603458332,
+          "dec_deg": 30.401438173888888,
+          "size_deg": 0.2,
+          "frame": "icrs"
+        },
+        "detector": 2,
+        "max_frames": 3,
+        "deep": false
+      },
+      "created_at_utc": "2026-10-29T15:20:39.212279+00:00"
+    },
+    {
+      "id": "r-draconis",
+      "name": "R Draconis",
+      "status": "partially_supported",
+      "prepared_frames": 2,
+      "playback_eligible": false,
+      "error": null,
+      "interpretation": "Prepared field inspection only; source identification, motion and calibrated variability are not established.",
+      "url": "./data/sequence-r-draconis.json",
+      "sha256": "61bdb1d12b665a60d741bb459032ce11f2467f902465cbac1b966566d485af2e",
+      "dates": [
+        "2025-06-08T18:54:21.662000Z",
+        "2025-12-01T00:32:32.043000Z"
+      ],
+      "request": {
+        "schema_version": "1.0",
+        "kind": "skyshift-observation-request",
+        "release": "qr2",
+        "region": {
+          "ra_deg": 248.16761083294998,
+          "dec_deg": 66.75497941722,
+          "size_deg": 0.2,
+          "frame": "icrs"
+        },
+        "detector": 2,
+        "max_frames": 3,
+        "deep": false
+      },
+      "created_at_utc": "2026-10-29T15:21:45.189481+00:00"
+    }
+  ],
+  "case_studies": [
+    {
+      "id": "comet-december",
+      "name": "3I/ATLAS field",
+      "url": "./data/sequence-comet-december.json",
+      "sha256": "993e462b6af122b8132c48b9bdae5fb7ccec557e45dfe791b772a7313eaec9b6",
+      "prepared_frames": 2,
+      "playback_eligible": false,
+      "interpretation": "These observations measure different infrared wavelengths. Inspect each independently; this pair cannot establish temporal motion or brightness change."
+    }
+  ]
+}

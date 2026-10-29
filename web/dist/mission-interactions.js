@@ -1,5 +1,4 @@
 import { readPreferences, savePreferences } from "./space-preferences.js";
-import { CHANNEL_COUNT, channelColor } from "./infrared-layout.js";
 
 // Optional chrome only: failure never prevents opening scientific observations.
 export function installMissionInteractions() {
@@ -78,30 +77,6 @@ export function installMissionInteractions() {
     },
     { passive: true },
   );
-  try {
-    if (
-      !sessionStorage.getItem("skyshift.observatory.boot") &&
-      body.dataset.surface === "home" &&
-      !reduce.matches
-    ) {
-      sessionStorage.setItem("skyshift.observatory.boot", "1");
-      const boot = document.createElement("aside");
-      boot.className = "boot-readout";
-      boot.setAttribute("aria-label", "Interface preparation");
-      boot.innerHTML =
-        "<p>PREPARING YOUR INFRARED EXPLORER</p><div data-spectrum></div><button>Skip intro</button>";
-      body.append(boot);
-      for (let i = 0; i < CHANNEL_COUNT; i++) {
-        const bar = document.createElement("i");
-        bar.style.setProperty("--channel-color", channelColor(i));
-        boot.querySelector("[data-spectrum]").append(bar);
-      }
-      boot.querySelector("button").onclick = () => boot.remove();
-      setTimeout(() => boot.remove(), 1100);
-    }
-  } catch {
-    /* Private mode must not prevent exploration. */
-  }
   const chips = [...document.querySelectorAll("[data-website-component]")],
     modelPanel = document.querySelector(".mission-model");
   chips.forEach((chip, i) => {

@@ -42,6 +42,7 @@ async function context(options = {}) {
 async function ready(p, url = "") {
   await p.goto("http://localhost:3000/" + url);
   await p.waitForFunction(() => window.skyshiftSound && window.skyshiftWebsite);
+  await p.waitForFunction(()=>!window.skyshiftArrival?.diagnostics().active);
 }
 async function science(p) {
   await p.waitForFunction(
@@ -73,18 +74,40 @@ async function axe(p) {
   });
 }
 try {
+  await check('Reveal divider and keyboard slider emit bounded click ticks; scripted updates and saved mute stay silent',async()=>{
+    const {c,p}=await context();try{
+      await ready(p,'#sky-search');await p.waitForFunction(()=>window.skyshiftInfrared);
+      let d=await p.evaluate(()=>skyshiftSound.diagnostics());assert.equal(d.enabled,true);assert.equal(d.context_state,'not_created');assert.deepEqual(d.recent_cues,[]);
+      await p.locator('.intro-image').scrollIntoViewIfNeeded();
+      const handle=await p.locator('.vela-divider span').boundingBox(),x=handle.x+handle.width/2,y=handle.y+handle.height/2;
+      await p.mouse.move(x,y);await p.mouse.down();
+      for(let i=1;i<=10;i++){await p.mouse.move(x+i*18,y);await p.waitForTimeout(75);}await p.mouse.up();
+      d=await p.evaluate(()=>skyshiftSound.diagnostics());assert.equal(d.context_state,'running');assert.ok(d.recent_cues.filter(n=>n==='swipe_tick').length>=3);
+      const before=d.recent_cues.filter(n=>n==='swipe_tick').length;
+      await p.locator('#vela-reveal').focus();for(let i=0;i<8;i++){await p.keyboard.press('ArrowRight');await p.waitForTimeout(75);}
+      d=await p.evaluate(()=>skyshiftSound.diagnostics());assert.ok(d.recent_cues.filter(n=>n==='swipe_tick').length>before);
+      const count=d.recent_cues.length;
+      await p.locator('#vela-reveal').evaluate(e=>{e.value='50';e.dispatchEvent(new Event('input',{bubbles:true}));});
+      assert.equal((await p.evaluate(()=>skyshiftSound.diagnostics())).recent_cues.length,count);
+      await p.evaluate(()=>scrollTo({top:0,behavior:'instant'}));await p.waitForTimeout(100);await p.locator('#site-sound').click();
+      assert.equal((await p.evaluate(()=>skyshiftSound.diagnostics())).enabled,false);
+      await p.locator('#vela-reveal').focus();for(let i=0;i<6;i++)await p.keyboard.press('ArrowRight');
+      assert.equal((await p.evaluate(()=>skyshiftSound.diagnostics())).recent_cues.length,count);
+      await p.reload();await p.waitForFunction(()=>window.skyshiftSound);d=await p.evaluate(()=>skyshiftSound.diagnostics());assert.equal(d.enabled,false);assert.equal(d.context_state,'not_created');
+      return {pointer_and_keyboard_ticks:true,no_scripted_ticks:true,mute_persisted:true};
+    }finally{await c.close();}
+  });
   const { c, p } = await context();
   await check(
-    "Default-off stays silent on normal gestures; explicit opt-in starts local audio without WebGL",
+    "Default-on waits for a gesture, then ordinary controls start local audio without loading the Universe",
     async () => {
       await ready(p, "#compare");
       await science(p);
       let d = await p.evaluate(() => skyshiftSound.diagnostics());
-      assert.equal(d.enabled, false);
+      assert.equal(d.enabled, true);
       assert.equal(d.context_state, "not_created");
       await p.click("#instrument-zoom-in");
-      assert.equal((await p.evaluate(()=>skyshiftSound.diagnostics())).enabled,false);
-      await p.click("#site-sound");
+      assert.equal((await p.evaluate(()=>skyshiftSound.diagnostics())).enabled,true);
       await p.waitForTimeout(100);
       await p.locator("#instrument-zoom-in").focus();
       await p.keyboard.press("Enter");
@@ -215,7 +238,7 @@ try {
         () => window.skyshiftSpace?.diagnostics().frames > 0,
       );
       assert.equal(
-        await p.locator("#sound-toggle").getAttribute("aria-pressed"),
+        await p.locator("#site-sound").getAttribute("aria-pressed"),
         "true",
       );
       await p.click("#hangar-toggle");
@@ -233,9 +256,9 @@ try {
         await p.evaluate(() => skyshiftSpace.audio()),
       );
       await p.screenshot({ path: out + "/universe.png" });
-      await p.click("#sound-toggle");
+      await p.click("#site-sound");
       await p.waitForFunction(() => !skyshiftSound.diagnostics().enabled);
-      await p.click("#classic-toggle");
+      await p.click(".site-brand");
       assert.equal(
         await p.locator("#site-sound").getAttribute("aria-pressed"),
         "false",
@@ -247,7 +270,7 @@ try {
     },
   );
   await check(
-    "Actual synthesis has nonzero, unclipped, distinct numerical signals for all 25 cues",
+    "Actual synthesis has nonzero, unclipped, distinct numerical signals for all 26 interaction cues",
     async () => {
       const signal = await p.evaluate(async () => {
         const { createSpaceAudio, soundCues } = await import(
@@ -300,14 +323,14 @@ try {
         }
         return out;
       });
-      assert.equal(signal.length, 25);
+      assert.equal(signal.length, 26);
       for (const s of signal) {
         assert.ok(s.finite);
         assert.ok(s.peak > 0.0001 && s.peak < 0.5, JSON.stringify(s));
         assert.ok(s.rms > 0.00001);
         assert.ok(s.tail_rms < 0.00001, JSON.stringify(s));
       }
-      assert.equal(new Set(signal.map((s) => s.signature)).size, 25);
+      assert.equal(new Set(signal.map((s) => s.signature)).size, 26);
       return {
         signals: signal,
         limits:

@@ -14,6 +14,16 @@ const at=i=>pixelToSky(i%w,Math.floor(i/w),product.wcs);
 const question=()=>({id:'70210922-4215-4d40-b649-d4ef46fc485d',product_sha256:entry.sha256,frame:'icrs',...at(good),question:'SYNTHETIC question: what contributes to this light?',created_at:'2026-10-16T20:00:00.000Z'});
 const view={visualization:defaultVisualization,contrast:1,viewport:{zoom:1,center_x:(w-1)/2,center_y:(h-1)/2}};
 
+test('categorized exposure notes use 1.2 while older notes retain 1.1 compatibility',()=>{
+  const q={...question(),category:'quality_issue'};
+  const record=createExposureRecord(field,entry,product,{...view,questions:[q]});
+  assert.equal(record.schema_version,'1.2');
+  const parsed=parseExposureRecord(new TextEncoder().encode(JSON.stringify(record)));
+  assert.deepEqual(validateExposureRecord(parsed,field,entry,product,{VALID:valid}).questions,[q]);
+  assert.equal(createExposureRecord(field,entry,product,{...view,questions:[question()]}).schema_version,'1.1');
+  assert.throws(()=>validateExposureQuestions([{...q,category:'confirmed_discovery'}],product,entry.sha256,valid));
+});
+
 test('a question belongs to exactly one verified exposure and usable coordinate',()=>{
   const q=question();assert.deepEqual(validateExposureQuestions([q],product,entry.sha256,valid),[q]);
   assert.throws(()=>validateExposureQuestions([{...q,...at(bad)}],product,entry.sha256,valid),/usable pixel/);

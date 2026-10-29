@@ -9,6 +9,7 @@ import { createExplorationMemory } from "./exploration-memory.js";
 import { evidenceTrail } from "./evidence-trail.js";
 import { readPreferences } from "./space-preferences.js";
 import { uiTheme, drawPixelGuide } from "./ui-theme.js";
+import {attachReviewDownload} from './review-download.js';
 
 // Native UI: no iframe, secondary document or second controller. Both presentations
 // operate on one investigation object and the same scientific Canvas2D viewports.
@@ -73,6 +74,38 @@ export function createObservationConsole({
   );
   $("instrument-add").textContent = "Add a note +";
   $("instrument-add").title = "Select a supported pixel, then attach your question to its sky position.";
+  const timeline=node('div',undefined,'sequence-timeline');
+  timeline.id='instrument-sequence';timeline.hidden=true;
+  timeline.innerHTML='<p id="instrument-sequence-quality"></p><div class="sequence-actions"><button id="instrument-sequence-prev" aria-label="Previous observation">← Previous</button><button id="instrument-sequence-play" aria-pressed="false">Play sequence</button><button id="instrument-sequence-next" aria-label="Next observation">Next →</button><label>Frame hold <select id="instrument-sequence-speed"><option value="1500">1.5 seconds</option><option value="2500">2.5 seconds</option><option value="4000">4 seconds</option></select></label></div><p>Frames use actual observation times. Equal display duration does not represent equal time gaps or physical motion.</p>';
+  root.querySelector('.instrument-epoch-tools').after(timeline);
+  let sequenceTimer=null;
+  const overlayButton=node('button','Gaia reference positions');overlayButton.id='instrument-reference-overlay';overlayButton.setAttribute('aria-pressed','false');timeline.querySelector('.sequence-actions').append(overlayButton);
+  overlayButton.onclick=()=>{const s=engine.active?.sequence;if(s){s.overlay=!s.overlay;overlayButton.setAttribute('aria-pressed',String(s.overlay));draw();}};
+  const sequenceCompare=node('div',undefined,'sequence-actions');sequenceCompare.id='instrument-sequence-compare';
+  for(const [mode,label] of [['single','One epoch'],['wipe','Compare with wipe'],['side_by_side','Compare side by side']]) {
+    const b=node('button',label);b.dataset.sequenceMode=mode;
+    b.onclick=()=>{stopBlink();const v=engine.active,s=v?.sequence;if(!s||mode!=='single'&&!s.bundle.playback_eligible)return;
+      s.presentation=mode;s.overlay=false;v.visual.wipe=mode==='wipe';v.display.view_mode=mode==='side_by_side'?'side_by_side':'single';
+      sources.clear();render();remember();};sequenceCompare.append(b);
+  }
+  timeline.querySelector('.sequence-actions').after(sequenceCompare);
+  const questionType=node('label','Interpretation'),questionTypeSelect=node('select');questionTypeSelect.id='instrument-question-category';
+  for(const [value,label] of [['uncertain','Uncertain / question'],['possible_position_difference','Possible position change'],['possible_brightness_difference','Possible brightness change'],['quality_issue','Possible artifact / quality issue']]){const o=node('option',label);o.value=value;questionTypeSelect.append(o);}
+  questionType.append(questionTypeSelect);$('instrument-question-text').before(questionType);
+  function changeSequenceFrame(index) {
+    engine.sequenceFrame(index);sources.clear();render();engine.persist();
+  }
+  $('instrument-sequence-prev').onclick=()=>{stopBlink();const s=engine.active?.sequence;if(s)changeSequenceFrame((s.index+s.loaded.length-1)%s.loaded.length);};
+  $('instrument-sequence-next').onclick=()=>{stopBlink();const s=engine.active?.sequence;if(s)changeSequenceFrame((s.index+1)%s.loaded.length);};
+  $('instrument-sequence-play').onclick=()=>{
+    if(sequenceTimer){stopBlink();return;}
+    const s=engine.active?.sequence;
+    if(!s?.bundle.playback_eligible||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    s.presentation='single';engine.active.visual.wipe=false;engine.active.display.view_mode='single';sources.clear();render();
+    $('instrument-sequence-play').textContent='Pause sequence';$('instrument-sequence-play').setAttribute('aria-pressed','true');
+    sequenceTimer=setInterval(()=>{if(!opened||document.hidden){stopBlink();return;}const s=engine.active?.sequence;if(s)changeSequenceFrame((s.index+1)%s.loaded.length);else stopBlink();},Number($('instrument-sequence-speed').value));
+  };
+  $('instrument-sequence-speed').onchange=()=>stopBlink();
   $("instrument-inspection").prepend(root.querySelector(".instrument-viewtools > span"));
   const maskLegend = node("span", undefined, "mask-legend");
   const maskKey = node("i", undefined, "mask-key");
@@ -105,7 +138,7 @@ export function createObservationConsole({
       ),
     );
     for (const record of evidenceTrail(
-      v.kind === "pair" ? v.manifest.observations : [v.product.observation],
+      v.sequence?v.sequence.bundle.frames.map(f=>f.observation):v.kind === "pair" ? v.manifest.observations : [v.product.observation],
     )) {
       const card = node("section", undefined, "evidence-record");
       card.append(node("h4", record.id), node("p", record.date + " UTC"));
@@ -212,6 +245,8 @@ export function createObservationConsole({
     $("instrument-status").classList.toggle("status-error", error);
   }
   function stopBlink() {
+    clearInterval(sequenceTimer);sequenceTimer=null;
+    $('instrument-sequence-play').textContent='Play sequence';$('instrument-sequence-play').setAttribute('aria-pressed','false');
     clearInterval(blink);
     blink = null;
     $("instrument-blink").textContent = "Blink";
@@ -242,7 +277,7 @@ export function createObservationConsole({
   function remember() {
     const v = engine.active;
     engine.persist();
-    if (v?.kind === "exposure") {
+    if (v?.kind === "exposure" && !v.sequence) {
       const publicView = engine.exposureRecord(v);
       delete publicView.questions;
       publicView.schema_version = "1.0";
@@ -258,7 +293,11 @@ export function createObservationConsole({
     try {
       const v = await action();
       if (ticket !== uiSequence || !v) return;
+      delete root.dataset.fetching;
       await ensureCatalog();
+      if(v.sequence&&!Array.from($('instrument-field-select').options).some(o=>o.value===v.field.id)) {
+        const option=node('option','Requested field · '+v.field.observations.length+' observations');option.value=v.field.id;$('instrument-field-select').append(option);
+      }
       onField(v.field.id);
       sources.clear();
       render();
@@ -358,10 +397,26 @@ export function createObservationConsole({
         " μm · bandwidth " +
         v.product.observation.center_bandwidth_um.toFixed(4) +
         " μm";
-    $("instrument-title").textContent = s?.name || v.field.title;
+    $("instrument-title").textContent = v.sequence ? v.sequence.label||`ICRS ${v.field.ra_deg.toFixed(4)}°, ${v.field.dec_deg.toFixed(4)}°` : s?.name || v.field.title;
     $("instrument-subtitle").textContent = pair
       ? "Restricted common-grid comparison · 24 × 24 prepared pixels · 6.15 arcsec/pixel"
       : s?.short || v.field.description;
+    if(v.sequence)$('instrument-subtitle').textContent=`Requested width ${(v.field.size_deg*60).toFixed(2)}′ · ${v.shape[1]} × ${v.shape[0]} prepared pixels · grid width ${(v.shape[1]*6.15/60).toFixed(2)}′ at 6.15″/pixel · ICRS ${v.field.ra_deg.toFixed(4)}°, ${v.field.dec_deg.toFixed(4)}° · ${v.sequence.bundle.origin==='verified_original_cache'?'verified original cache':'archive-prepared data'}`;
+    timeline.hidden=!v.sequence;
+    approval.hidden=Boolean(v.sequence);
+    if(v.sequence) {
+      const q=v.sequence.bundle,ratio=100*v.arrays.VALID.reduce((a,b)=>a+b,0)/v.arrays.VALID.length;
+      const failed=(q.comparisons||[]).flatMap(c=>c.screen?.suitability?.checks||[]).filter(c=>c.status==='fail');
+      const reason=failed.some(c=>c.code==='local_spectral_screen')?'Wavelengths differ. Inspect each observation separately; temporal playback is unavailable.':failed.some(c=>c.code==='homogeneous_release')?'Processing versions differ. Inspect each observation separately; temporal playback is unavailable.':'Manual inspection only: wavelength or stationary-reference checks are incomplete or failed. Open Sources & suitability for reasons.';
+      $('instrument-sequence-quality').textContent=`${v.sequence.index+1} / ${v.sequence.loaded.length} · ${ratio.toFixed(1)}% usable pixels in this frame · `+(q.playback_eligible?'Engineering wavelength and stationary-reference checks passed; scientific review PENDING.':reason);
+      $('instrument-sequence-play').disabled=!q.playback_eligible||matchMedia('(prefers-reduced-motion: reduce)').matches;
+      $('instrument-sequence-prev').disabled=$('instrument-sequence-next').disabled=v.sequence.loaded.length<2;
+      overlayButton.hidden=!q.reference_overlay?.length;
+      overlayButton.setAttribute('aria-pressed',String(Boolean(v.sequence.overlay)));
+      overlayButton.title='Proper-motion propagated Gaia reference positions; predictions, not SPHEREx detections. No target motion is inferred.';
+      overlayButton.disabled=v.sequence.presentation!=='single';
+      sequenceCompare.querySelectorAll('button').forEach(b=>{b.disabled=b.dataset.sequenceMode!=='single'&&!q.playback_eligible;b.setAttribute('aria-pressed',String(b.dataset.sequenceMode===v.sequence.presentation));});
+    }
     $("instrument-identity").textContent = pair
       ? "REAL SPHEREx DATA / TWO EPOCHS / RESTRICTED AREA"
       : "REAL SPHEREx DATA / SINGLE EXPOSURE";
@@ -407,7 +462,8 @@ export function createObservationConsole({
         node("small", pair ? "AB"[index] + " · UTC" : "EXPOSURE · UTC"),
         time,
       );
-      const wavelength = pair
+      if(v.sequence&&index>0)b.append(node('small','Gap '+((Date.parse(o.time_start_utc)-Date.parse(observations[index-1].time_start_utc))/86400000).toFixed(3)+' days'));
+      const wavelength = v.sequence?v.sequence.bundle.frames[index].observation.center_wavelength_um:pair
         ? o.center_wavelength_um
         : o.observation_id === v.entry.observation_id
           ? v.product.observation.center_wavelength_um
@@ -452,6 +508,7 @@ export function createObservationConsole({
     compatibility.textContent = pair
       ? "RESTRICTED · review pending"
       : "SINGLE EXPOSURE";
+    if(v.sequence)compatibility.textContent=v.sequence.bundle.playback_eligible?'SCREENED SEQUENCE · review pending':'INDEPENDENT FRAMES · no change claim';
     $("instrument-compare").hidden =
       pair || v.field.comparison_status !== "provisional_restricted";
     $("instrument-exposure").hidden = !pair;
@@ -468,6 +525,7 @@ export function createObservationConsole({
         : v.field.comparison_status === "incompatible_tested_pairs"
           ? "Tested pairs failed wavelength checks. Single-observation viewing only."
           : "One observation installed. No temporal comparison has been screened.";
+    if(v.sequence)$('instrument-suitability').textContent='Source identification, measured motion and brightness variability are not established. Each frame retains its quality mask; shared display settings do not calibrate photometry.';
     $("instrument-note-count").textContent = String(v.questions.length);
     $("instrument-add").disabled = !v.inspection?.valid;
     root
@@ -518,6 +576,14 @@ export function createObservationConsole({
     $("instrument-label-b").textContent = pair
       ? "B · " + v.manifest.observations[1].time_start_utc
       : "";
+    if(v.sequence&&sequencePair(v)) {
+      const s=v.sequence,side=s.presentation==='side_by_side';
+      $('instrument-canvases').classList.toggle('is-pair',side);$('instrument-figure-b').hidden=!side;
+      $('instrument-wipe-handle').hidden=s.presentation!=='wipe';
+      $('instrument-label-a').textContent='Reference epoch '+(s.reference+1)+' · '+s.bundle.frames[s.reference].observation.time_start_utc+(side?'':' / current epoch '+(s.index+1)+' · '+v.product.observation.time_start_utc);
+      $('instrument-label-b').textContent='Current epoch '+(s.index+1)+' · '+v.product.observation.time_start_utc;
+      $('instrument-sequence-quality').textContent+=' Reference: epoch '+(s.reference+1)+'; questions belong to the selected current epoch.';
+    }
     if (v.inspection) inspect(v.inspection);
     else
       $("instrument-pixel").textContent =
@@ -527,13 +593,19 @@ export function createObservationConsole({
   }
   function mask() {
     const v = engine.active;
+    if(sequencePair(v)) {
+      const s=v.sequence,key=s.index+':'+s.reference;
+      if(s.maskKey!==key){const other=s.loaded[s.reference].arrays.VALID;s.common=Uint8Array.from(v.arrays.VALID,(a,i)=>a&&other[i]?1:0);s.maskKey=key;}
+      return s.common;
+    }
     return v.kind === "pair" ? v.arrays.COMMON : v.arrays.VALID;
   }
+  function sequencePair(v) {return Boolean(v?.sequence&&v.sequence.presentation!=='single'&&v.sequence.bundle.playback_eligible&&v.sequence.reference!==v.sequence.index);}
   function renderPixels() {
     const v = engine.active,
       [h, w] = v.shape;
-    for (const epoch of v.kind === "pair" ? ["A", "B"] : ["A"]) {
-      const data = v.kind === "pair" ? v.arrays["SCI_" + epoch] : v.arrays.SCI,
+    for (const epoch of v.kind === "pair"||sequencePair(v) ? ["A", "B"] : ["A"]) {
+      const data = v.kind === "pair" ? v.arrays["SCI_" + epoch] : sequencePair(v)&&epoch==='A'?v.sequence.loaded[v.sequence.reference].arrays.SCI:v.arrays.SCI,
         c = document.createElement("canvas");
       c.width = w;
       c.height = h;
@@ -584,7 +656,7 @@ export function createObservationConsole({
         if (!opened || !engine.active) return;
         const v = engine.active,
           side =
-            v.kind === "pair" &&
+            (v.kind === "pair"||sequencePair(v)) &&
             !v.visual.wipe &&
             v.display.view_mode === "side_by_side";
         drawCanvas(
@@ -626,7 +698,7 @@ export function createObservationConsole({
       );
       ctx.restore();
     }
-    if (v.kind === "pair" && v.visual.wipe) {
+    if ((v.kind === "pair"||sequencePair(v)) && v.visual.wipe) {
       const x = (g.width * v.visual.wipe_position) / 100;
       image("A", 0, x);
       image("B", x, g.width);
@@ -657,6 +729,14 @@ export function createObservationConsole({
     v.questions.forEach((q, i) =>
       marker(skyToPixel(q.ra_deg, q.dec_deg, v.wcs), String(i + 1)),
     );
+    if(v.sequence?.overlay) {
+      for(const reference of v.sequence.bundle.reference_overlay||[]) {
+        const sky=reference.positions[v.sequence.index];
+        const p=skyToPixel(sky.ra_deg,sky.dec_deg,v.wcs);
+        if(p.x>=0&&p.x<v.shape[1]&&p.y>=0&&p.y<v.shape[0])marker(p,'Gaia '+reference.source_id);
+      }
+      ctx.font="12px 'IBM Plex Mono'";ctx.fillStyle=theme.white;ctx.fillText('Gaia predicted reference positions · not detections',12,g.height-12);
+    }
     if (v.inspection?.valid) marker(v.inspection, "Selected");
   }
   function inspect(point) {
@@ -941,9 +1021,8 @@ export function createObservationConsole({
       const cl = node("label", "Contrast");
       contrast.oninput = () => {
         v.contrast = Number(contrast.value);
-        v.display.vmax =
-          v.product.display.vmin +
-          (v.product.display.vmax - v.product.display.vmin) / v.contrast;
+        const baseline=v.sequence?.bundle.display||v.product.display;
+        v.display.vmax = baseline.vmin+(baseline.vmax-baseline.vmin)/v.contrast;
         renderPixels();
         draw();
         remember();
@@ -1009,6 +1088,7 @@ export function createObservationConsole({
     $("instrument-question-position").textContent =
       `ICRS ${sky.ra_deg.toFixed(6)}°, ${sky.dec_deg.toFixed(6)}°`;
     $("instrument-question-text").value = q?.question ?? q?.note ?? "";
+    questionTypeSelect.value=q?.category||'uncertain';
     $("instrument-question-error").textContent = "";
     stopBlink();
     $("instrument-question").showModal();
@@ -1046,6 +1126,7 @@ export function createObservationConsole({
                 created_at: new Date().toISOString(),
               };
       q[v.kind === "pair" ? "note" : "question"] = text;
+      q.category=questionTypeSelect.value;
       engine.updateQuestions(
         editing
           ? v.questions.map((n) => (n === editing ? q : n))
@@ -1076,7 +1157,7 @@ export function createObservationConsole({
       node("h3", "Why can these images be compared?"),
       node(
         "p",
-        v.kind === "pair"
+        v.sequence ? (v.sequence.bundle.playback_eligible?'All temporal links passed the existing wavelength and stationary-reference engineering checks. Interpretation and scientific review remain pending.':'These are independent frames. Temporal comparison checks did not establish compatible, reference-checked playback.') : v.kind === "pair"
           ? "Only this small common-grid M101 area passed the engineering wavelength and registration screens. Qualified scientific assessment is still pending. The two wider contexts are not approved for unrestricted temporal comparison."
           : availability(v.field).explanation,
       ),
@@ -1095,7 +1176,7 @@ export function createObservationConsole({
         body.append(node("p", limitation));
     }
     const obs =
-      v.kind === "pair" ? v.manifest.observations : [v.product.observation];
+      v.sequence?v.sequence.bundle.frames.map(f=>f.observation):v.kind === "pair" ? v.manifest.observations : [v.product.observation];
     for (const o of obs) {
       body.append(
         node("h3", o.observation_id),
@@ -1105,6 +1186,7 @@ export function createObservationConsole({
         ["Original archive FITS", o.source],
         ["Spectral calibration", o.spectral_calibration],
       ]) {
+        if(!f){body.append(node('p',name+': no full calibration is associated; temporal comparison is unavailable.'));continue;}
         body.append(node("strong", name), node("code", "SHA-256 " + f.sha256));
         const a = node("a", "Open NASA/IPAC archive source ↗");
         a.href = f.source_url;
@@ -1136,25 +1218,22 @@ export function createObservationConsole({
       ),
     );
     body.append(processing);
+    if(v.sequence) {
+      const b=v.sequence.bundle;
+      body.append(node('h3','Requested area and comparison quality'),node('p',`Requested width ${(b.request.region.size_deg*60).toFixed(2)}′. Actual support is shown by each frame’s mask. Source: ${b.origin}. Prepared ${b.created_at_utc}.`));
+      for(const c of b.comparisons) {
+        const failed=c.screen.suitability.checks.filter(k=>k.status==='fail');
+        body.append(node('p',`Epochs ${c.a+1} / ${c.b+1}: ${failed.length?failed.map(f=>f.code+': '+f.explanation).join(' '):'Wavelength/support engineering screen passed.'} Stationary-reference registration: ${c.registration.status}; ${c.registration.reference_count} references.`));
+      }
+      for(const item of b.rejections)body.append(node('p','Excluded / unavailable: '+item.reason));
+      const details=node('details');details.append(node('summary','Full sequence provenance, decisions and policies'),node('pre',JSON.stringify({...b,frames:b.frames.map(f=>({...f,arrays:Object.fromEntries(Object.entries(f.arrays).map(([k,a])=>[k,{...a,data:'Encoded measured array retained in the saved investigation'}]))}))},null,2)));body.append(details);
+    }
     if (v.kind === "pair") {
       const review = node(
         "button",
         "Download full reproducible review packet (40.7 MB)",
       );
       review.id = "instrument-review-download";
-      review.onclick = async () => {
-        review.disabled = true;
-        review.textContent = "Verifying original-data packet…";
-        try {
-          download(await engine.reviewPacket());
-          review.textContent = "Review packet downloaded; hashes verified.";
-        } catch (e) {
-          review.textContent = "Retry full review packet";
-          tell(e.message, true);
-        } finally {
-          review.disabled = false;
-        }
-      };
       body.append(
         review,
         node(
@@ -1162,6 +1241,7 @@ export function createObservationConsole({
           "Includes original FITS and calibrations. Downloading a review packet does not constitute human scientific approval.",
         ),
       );
+      attachReviewDownload(review,()=>null,download,{load:(_,options)=>engine.reviewPacket(options),onError:message=>tell(message,true)});
     }
     stopBlink();
     $("instrument-information").showModal();
@@ -1257,7 +1337,27 @@ export function createObservationConsole({
     return select("m101");
   }
   return {
+    beginLoading() {
+      engine.persist();engine.cancel();++uiSequence;stopBlink();opened=true;root.hidden=false;setMode(true);
+      if($('instrument-information').open)$('instrument-information').close();
+      root.dataset.fetching='true';setBusy(true);$('instrument-title').textContent='Loading requested images';$('instrument-panel').hidden=true;
+    },
+    loadingFailed(message) {
+      setBusy(false);root.dataset.fetching='true';$('instrument-title').textContent='Requested images unavailable';tell(message,true);
+      for(const id of ['instrument-save','instrument-add','instrument-about','instrument-display','instrument-notes'])$(id).disabled=true;
+    },
+    async openSequence(bundle,sourceRef) {
+      opened=true;root.hidden=false;setMode(true);
+      retry=()=>run(()=>engine.openSequence(bundle,sourceRef));
+      await retry();
+    },
+    openPacketPrompt() {
+      opened=true;root.hidden=false;setMode(true);setBusy(false);
+      $('instrument-title').textContent='Reopen your saved investigation';
+      tell('Imported sequence files remain on your device. Choose Reopen and select the exported ZIP to restore the measured images and your notes.');
+    },
     async open(field, { mode, comparison = false } = {}) {
+      delete root.dataset.fetching;
       opened = true;
       root.hidden = false;
       setMode(mode === "classic" || (mode === undefined && classic));
@@ -1299,6 +1399,7 @@ export function createObservationConsole({
       classic,
       busy,
       blinking: Boolean(blink),
+      sequence_playing: Boolean(sequenceTimer),
     }),
     engine,
   };

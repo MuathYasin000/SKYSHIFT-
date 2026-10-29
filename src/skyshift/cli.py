@@ -25,6 +25,12 @@ def main(argv=None):
     inv = sub.add_parser("inventory", help="Save an IRSA query, raw response, and normalized inventory")
     inv.add_argument("--release", choices=["qr2", "qr3"], default="qr2")
     inv.add_argument("--output", type=Path, required=True)
+    inv.add_argument('--deep', action='store_true', help='Query the separate deep-survey collection')
+    intake_parser = sub.add_parser('intake', help='Plan a saved sky request; optionally retrieve one bounded metadata inventory')
+    intake_parser.add_argument('request', type=Path)
+    intake_parser.add_argument('--output', type=Path, required=True)
+    intake_parser.add_argument('--query', action='store_true', help='Fetch archive metadata; no FITS downloads or pair promotion')
+    intake_parser.add_argument('--deep', action='store_true')
     fetch = sub.add_parser("download", help="Fetch an approved archive URL and provenance sidecar")
     fetch.add_argument("url");fetch.add_argument("--output", type=Path, required=True)
     inspect = sub.add_parser("inspect", help="Inspect one cutout and its quality/spectral context")
@@ -40,6 +46,9 @@ def main(argv=None):
     reconstruct = sub.add_parser('reconstruct',help='Verify hashes and independently rerun common-grid preparation')
     reconstruct.add_argument('packet',type=Path);reconstruct.add_argument('--output',type=Path,required=True)
     reconstruct.add_argument('--source-cache',type=Path,help='Extracted full review packet providing hash-verified original inputs')
+    sequence_review=sub.add_parser('reconstruct-sequence',help='Reconstruct a saved temporal sequence from verified original inputs')
+    sequence_review.add_argument('packet',type=Path);sequence_review.add_argument('--output',type=Path,required=True)
+    sequence_review.add_argument('--source-cache',type=Path)
     review=sub.add_parser('review',help='Reproduce preparation, Gaia registration, and response diagnostics; approval stays pending')
     review.add_argument('packet',type=Path);review.add_argument('--output',type=Path,required=True)
     for command in (inv, inspect, screen):
@@ -48,7 +57,13 @@ def main(argv=None):
         command.add_argument("--size", type=float, default=0.12, help="Square cutout width in degrees")
     args = parser.parse_args(argv)
     try:
-        if args.command == 'review':
+        if args.command == 'reconstruct-sequence':
+            from .sequence_evidence import reconstruct_sequence
+            print(json.dumps(reconstruct_sequence(args.packet,args.output,args.source_cache),indent=2))
+        elif args.command == 'intake':
+            from .intake import intake
+            print(json.dumps(intake(args.request, args.output, query=args.query, deep=args.deep), indent=2))
+        elif args.command == 'review':
             from .evidence import review_packet
             report=review_packet(args.packet,args.output);print(json.dumps(report,indent=2))
             return 0 if report['reconstruction']=='pass' and report['registration']=='pass' and all(report['registration_agreement'].values()) else 2
@@ -67,7 +82,7 @@ def main(argv=None):
         else:
             region = SkyRegion(ra_deg=args.ra, dec_deg=args.dec, size_deg=args.size)
             if args.command == "inventory":
-                rows = inventory(region, args.release, args.output)
+                rows = inventory(region, args.release, args.output, deep=args.deep)
                 print(f"Saved {len(rows)} inventory rows to {args.output}")
             elif args.command == "inspect":
                 p = read_product(args.path, region, calibration=args.calibration)

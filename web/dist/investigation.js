@@ -22,6 +22,8 @@ import {
   validateExposureRecord,
 } from "./exposure-records.js";
 import { openComparison } from "./packets.js";
+import {createReviewDownloader} from './review-download.js';
+import {validateSequence,saveSequence,isSequencePacket,openSequencePacket} from './sequence-records.js';
 import { zipSync, strToU8, strFromU8 } from "./vendor/fflate.js";
 
 export async function verifiedBytes(url, hash, fetcher = globalThis.fetch) {
@@ -43,6 +45,7 @@ export function createInvestigation({
 } = {}) {
   const loadExposure = createExposureLoader(fetcher),
     views = new Map();
+  const downloadReview=createReviewDownloader(fetcher);
   let catalog = null,
     pairPromise = null,
     active = null,
@@ -120,6 +123,7 @@ export function createInvestigation({
     return pairPromise;
   }
   async function select(fieldId, index = 0) {
+    if (active?.sequence && active.field.id===fieldId) return sequenceFrame(index);
     const previous = active;
     const ticket = ++sequence,
       c = await catalogue(),
@@ -242,6 +246,13 @@ export function createInvestigation({
   async function save() {
     const v = active;
     if (!v) throw Error("Open an observation first.");
+    if(v.sequence) {
+      syncSequenceQuestions(v);
+      return saveSequence(v.sequence.bundle,{schema_version:'1.0',frame_index:v.sequence.index,
+        viewport:{zoom:v.display.zoom,center_x:v.display.center_x,center_y:v.display.center_y},
+        display:{...v.display},visual:{...v.visual},questions:v.sequence.questions,reference_overlay:Boolean(v.sequence.overlay),
+        presentation:v.sequence.presentation,reference_index:v.sequence.reference,field_label:v.sequence.label});
+    }
     if (v.kind === "exposure")
       return {
         bytes: strToU8(JSON.stringify(exposureRecord(v), null, 2)),
@@ -292,8 +303,13 @@ export function createInvestigation({
     // Validate everything before committing a saved view. Imported URLs never drive fetches.
     const ticket = ++sequence;
     if (bytes[0] === 0x50 && bytes[1] === 0x4b) {
+      if(isSequencePacket(bytes)) {
+        const value=await openSequencePacket(bytes);
+        if(ticket!==sequence)return null;
+        return installSequence(value,value.session);
+      }
       const v = await pair(),
-        saved = await openComparison(bytes, v.manifest, v.arrays.COMMON);
+        saved = await openComparison(bytes, v.manifest, v.arrays.COMMON,v.bundle);
       if (ticket !== sequence) return null;
       v.display = saved.display;
       v.visual = validateVisualization(
@@ -359,6 +375,15 @@ export function createInvestigation({
                 visual: validateVisualization(v.visual),
                 questions: validateQuestions(v, v.questions),
               };
+      if(v.sequence) {
+        syncSequenceQuestions(v);
+        storage().setItem('skyshift.sequence:'+v.sequence.bundle.sequence_id,JSON.stringify({schema_version:'1.0',frame_index:v.sequence.index,
+          display:{...v.display},visual:{...v.visual},questions:v.sequence.questions,reference_overlay:Boolean(v.sequence.overlay),
+          presentation:v.sequence.presentation,reference_index:v.sequence.reference,field_label:v.sequence.label}));
+        // Only the small private session goes into tab storage. Prepared arrays
+        // remain in the immutable receipt/export, never in public last-view history.
+        return;
+      }
       storage().setItem("skyshift.native:" + v.key, JSON.stringify(payload));
       storage().setItem(
         "skyshift.native.last",
@@ -368,32 +393,66 @@ export function createInvestigation({
       /* Tab storage is optional; explicit export remains authoritative. */
     }
   }
-  async function reviewPacket() {
+  async function reviewPacket(options) {
     const c = JSON.parse(
         strFromU8(await verifiedBytes("./data/catalog.json", null, fetcher)),
       ),
-      chunks = [];
-    for (const part of c.review_packet.parts) {
-      if (
-        !/^\.\/data\/review-part-\d+\.bin$/.test(part.url) ||
-        !/^[a-f0-9]{64}$/.test(part.sha256)
-      )
-        throw Error("Unsupported review packet identity.");
-      const bytes = await verifiedBytes(part.url, part.sha256, fetcher);
-      if (bytes.length !== part.size_bytes)
-        throw Error("Review packet size mismatch.");
-      chunks.push(bytes);
+      result = await downloadReview(c.review_packet,options);
+    return result;
+  }
+  function syncSequenceQuestions(v) {
+    if(v?.sequence)v.sequence.questions[v.sequence.index]=validateQuestions(v,v.questions).map(q=>({...q}));
+  }
+  function sequenceFrame(index) {
+    const v=active,s=v?.sequence;
+    if(!s||!Number.isInteger(index)||index<0||index>=s.loaded.length)throw Error('Unknown sequence frame.');
+    syncSequenceQuestions(v);
+    const {product,arrays}=s.loaded[index],entry=v.field.observations[index];
+    Object.assign(v,{key:entry.sha256,product,arrays,entry,questions:s.questions[index]||[],inspection:null});
+    s.index=index;
+    if(s.reference===index&&s.loaded.length>1)s.reference=index===0?1:0;
+    return v;
+  }
+  function installSequence(value,session={}) {
+    if(session.reference_overlay!==undefined&&typeof session.reference_overlay!=='boolean')throw Error('Invalid saved reference overlay preference.');
+    const s={...value,index:0,questions:{},overlay:session.reference_overlay??false,sourceRef:value.sourceRef||{type:'import'}};
+    s.label=session.field_label??value.sourceRef?.label??'';
+    if(typeof s.label!=='string'||s.label.length>160)throw Error('Invalid saved search-field label.');
+    const entries=s.loaded.map(({product})=>({observation_id:product.observation.observation_id,time_start_utc:product.observation.time_start_utc,
+      sha256:product.observation.source.sha256,shape:product.shape,native_shape:product.native_shape}));
+    for(const [key,questions] of Object.entries(session.questions||{})) {
+      const i=Number(key);
+      if(!Number.isInteger(i)||!s.loaded[i])throw Error('Saved sequence questions reference an unknown epoch.');
+      s.questions[i]=validateExposureQuestions(questions,s.loaded[i].product,entries[i].sha256,s.loaded[i].arrays.VALID);
     }
-    const size = chunks.reduce((n, b) => n + b.length, 0);
-    if (size !== c.review_packet.size_bytes)
-      throw Error("Review packet is incomplete.");
-    const bytes = new Uint8Array(size);
-    let offset = 0;
-    for (const chunk of chunks) {
-      bytes.set(chunk, offset);
-      offset += chunk.length;
+    const index=session.frame_index??0;
+    if(!Number.isInteger(index)||!s.loaded[index])throw Error('Invalid saved sequence epoch.');
+    s.presentation=session.presentation??'single';s.reference=session.reference_index??(index===0&&s.loaded.length>1?1:0);
+    if(!['single','wipe','side_by_side'].includes(s.presentation)||!Number.isInteger(s.reference)||!s.loaded[s.reference]||
+      (s.presentation!=='single'&&(!s.bundle.playback_eligible||s.reference===index)))throw Error('Unsupported saved sequence comparison.');
+    const {product,arrays}=s.loaded[index],[h,w]=product.shape;
+    const field={id:s.bundle.sequence_id,title:'Requested SPHEREx field',description:'Fixed ICRS field; source identification and change claims remain pending.',
+      ...s.bundle.request.region,comparison_status:'unavailable',observations:entries};
+    let display={...s.bundle.display,zoom:1,center_x:(w-1)/2,center_y:(h-1)/2,view_mode:'single',selected_epoch:'A'};
+    if(session.display) {
+      const d=session.display;
+      if(![d.vmin,d.vmax,d.zoom,d.center_x,d.center_y].every(Number.isFinite)||d.vmax<=d.vmin||d.zoom<1||d.zoom>20||d.center_x<0||d.center_x>w-1||d.center_y<0||d.center_y>h-1)throw Error('Invalid saved sequence display or viewport.');
+      display={...display,...d};
     }
-    return { bytes, name: c.review_packet.name, type: "application/zip" };
+    const visual=validateVisualization(session.visual||{...defaultVisualization,interpolation:'nearest'});
+    if(visual.wipe!==(s.presentation==='wipe'))throw Error('Saved sequence presentation differs from its visualization.');
+    s.index=index;
+    const view={kind:'exposure',key:entries[index].sha256,field,entry:entries[index],product,arrays,wcs:product.wcs,shape:product.shape,
+      display,visual,contrast:1,questions:s.questions[index]||[],inspection:null,sequence:s};
+    active=view;
+    return view;
+  }
+  async function openSequence(value,sourceRef) {
+    const ticket=++sequence,validated=await validateSequence(value);
+    let saved={};
+    try{saved=JSON.parse(storage().getItem('skyshift.sequence:'+value.sequence_id))||{};}catch{}
+    if(ticket!==sequence)return null;
+    try{return installSequence({...validated,sourceRef},saved);}catch{return installSequence({...validated,sourceRef});}
   }
   return {
     catalogue,
@@ -406,6 +465,8 @@ export function createInvestigation({
     persist,
     lastSession,
     reviewPacket,
+    openSequence,
+    sequenceFrame,
     get active() {
       return active;
     },
@@ -422,6 +483,8 @@ export function createInvestigation({
             visual: { ...active.visual },
             questions: structuredClone(active.questions),
             inspection: active.inspection ? { ...active.inspection } : null,
+            sequence:active.sequence?{id:active.sequence.bundle.sequence_id,index:active.sequence.index,frames:active.sequence.loaded.length,
+              playback_eligible:active.sequence.bundle.playback_eligible}:null,
           }
         : null;
     },

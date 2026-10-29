@@ -1,5 +1,6 @@
 import {decodeArray,sha256} from './science.js';
 import {equalEvidence} from './evidence-identity.js';
+import {validatePreparedExposure} from './exposure-validation.js';
 
 // Bound the cache to the four curated exposures; rejected loads are never cached.
 export function createExposureLoader(fetcher=globalThis.fetch,maxEntries=4,timeoutMs=12000){
@@ -27,6 +28,7 @@ export function createExposureLoader(fetcher=globalThis.fetch,maxEntries=4,timeo
         if(!equalEvidence(Object.keys(arrays).sort(),['BAND','SCI','VALID','WAVE'])||!Number.isInteger(h)||!Number.isInteger(w)||h<1||w<1||!equalEvidence(entry.shape,product.shape)||!equalEvidence(entry.native_shape,product.native_shape))throw Error('Exposure arrays have inconsistent shapes.');
         for(const value of Object.values(product.arrays))if(!equalEvidence(value.shape,product.shape))throw Error('Exposure arrays have inconsistent shapes.');
         for(const [name,value]of Object.entries(product.arrays))if(value.dtype!==(name==='VALID'?'uint8':'float32'))throw Error('Exposure array encoding does not match its scientific role.');
+        await validatePreparedExposure(product,arrays);
         return {product,arrays};
         }catch(e){if(controller.signal.aborted)throw Error('This local exposure is taking too long to load. Check the server and retry.');throw e;}
         finally{clearTimeout(timer);}

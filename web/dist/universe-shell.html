@@ -15,15 +15,29 @@
 <button aria-controls="destinations-drawer" aria-expanded="true" class="destinations-toggle" id="destinations-toggle">
   ☰   Destinations
 </button>
-<div class="destinations-drawer" id="destinations-drawer">
+<div aria-labelledby="destinations-title" class="destinations-drawer" id="destinations-drawer" role="region">
+<div class="destination-top">
+<div><p class="space-eyebrow">EXPLORE THE SCENE</p><h2 id="destinations-title">Destinations</h2></div>
+<button aria-label="Close destinations" id="destinations-close">×</button>
+</div>
 <nav aria-label="Exploration environments" class="space-tabs">
-<button aria-pressed="true" data-environment="observatory">SPHEREx</button><button aria-pressed="false" data-environment="solar">Solar system</button><button aria-pressed="false" data-environment="sky">Infrared sky</button>
+<button aria-pressed="true" data-environment="observatory">Telescopes</button><button aria-pressed="false" data-environment="solar">Solar system</button><button aria-pressed="false" data-environment="sky">Infrared sky</button>
 </nav>
 <aside aria-label="Accessible destination selection" class="destination-panel">
 <p class="space-eyebrow" id="destination-heading">MEET SPHEREx</p>
-<label for="destination-search">Find a destination</label><input id="destination-search" maxlength="100" placeholder="Search destinations" type="search"/>
+<p class="destination-description" id="destination-description"></p>
+<button aria-pressed="false" id="destination-collection">Show Webb &amp; Hubble</button>
+<label for="destination-search">Search this view</label>
+<div class="destination-search-row">
+<input aria-describedby="destination-search-status" id="destination-search" maxlength="100" placeholder="Search telescopes" type="search"/>
+<button aria-label="Clear destination search" disabled id="destination-clear">×</button>
+</div>
+<p class="destination-count" id="destination-search-status" role="status"></p>
 <div class="destination-list" id="destination-list"></div>
-<p class="sr-only" id="destination-search-status" role="status"></p>
+<div class="destination-empty" hidden id="destination-empty">
+<strong>No destinations found</strong><p>Try another name or clear your search to see this view.</p>
+<button id="destination-reset">Clear search</button>
+</div>
 </aside>
 </div>
 <aside aria-labelledby="context-name" class="space-context" id="space-context">
@@ -108,7 +122,10 @@
 <img alt="" hidden="" id="mission-image"/>
 </div>
 <figcaption id="mission-image-status" role="status"></figcaption>
-<a hidden id="mission-image-source" rel="noopener noreferrer" target="_blank">Published image &amp; original source ↗</a><button id="mission-image-retry">Reload image</button>
+<div class="mission-image-actions">
+<a hidden id="mission-image-source" rel="noopener noreferrer" target="_blank">Published image &amp; original source ↗</a>
+<button id="mission-image-retry">Reload image</button>
+</div>
 </figure>
 <div class="mission-bottom">
 <button id="mission-next">Continue →</button><a hidden id="mission-source" rel="noopener noreferrer" target="_blank">How it works ↗</a>
@@ -170,8 +187,8 @@
   </p>
 <label>Interface effects volume<input id="effects-volume" max="1" min="0" step="0.05" type="range"/></label>
 <p>
-    Sound defaults off. Your explicit sound preference is remembered.
-    Short original sine-wave cues provide interface feedback, with no continuous
+    Sound defaults on. Your mute and volume choices are remembered.
+    Soft original tonal cues provide interface feedback, with no continuous
     ambience. Reduced-motion preferences disable camera travel animation.
   </p>
 <button class="space-primary" id="open-science-settings">

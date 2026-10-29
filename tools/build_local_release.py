@@ -5,6 +5,7 @@ Never edits an older release or publishes to a hosting service.
 from __future__ import annotations
 
 import argparse
+import base64
 from datetime import datetime, timezone
 import gzip
 import hashlib
@@ -29,7 +30,9 @@ class ReferencedAssets(HTMLParser):
             self.references.append(values['src'])
         if tag == 'video' and values.get('poster'):
             self.references.append(values['poster'])
-        if tag == 'link' and values.get('href'):
+        # Canonicals identify a public page; the browser does not fetch them as
+        # runtime assets and they do not create an offline dependency.
+        if tag == 'link' and values.get('href') and 'canonical' not in values.get('rel','').split():
             self.references.append(values['href'])
 
 
@@ -72,6 +75,43 @@ def validate_scientific_assets(source):
         path = checked_asset(source, part['url'], part['sha256'])
         if path.stat().st_size != part['size_bytes']:
             raise ValueError('Scientific evidence packet part size mismatch')
+    if bundle['manifest'].get('dataset_kind') != 'real' and not (source/'data/explore-catalog.json').exists():
+        return  # Explicitly synthetic HTTP/build fixtures have no astronomical catalogue.
+    exposure_catalog = json.loads((source/'data/explore-catalog.json').read_text(encoding='utf-8'))
+    for field in exposure_catalog['fields']:
+        for entry in field['observations']:
+            product_path = checked_asset(source, entry['url'], entry['sha256'])
+            product = json.loads(product_path.read_text(encoding='utf-8'))
+            if (product['observation']['observation_id'] != entry['observation_id']
+                    or product['observation']['time_start_utc'] != entry['time_start_utc']
+                    or product['shape'] != entry['shape']
+                    or product['scientific_approval'] != 'PENDING'):
+                raise ValueError('Single exposure scientific identity mismatch')
+
+
+def validate_sequence_assets(source):
+    candidates=[]
+    example=source/'data/sequence-example.json'
+    if example.exists():candidates.append(example)
+    status=source/'data/target-status.json'
+    if status.exists():
+        record=json.loads(status.read_text(encoding='utf-8'))
+        for entry in [*record['targets'],*record.get('case_studies',[])]:
+            if entry.get('url'):
+                if not re.fullmatch(r'\./data/sequence-[a-z0-9-]+\.json',entry['url']):raise ValueError('Unsupported target sequence asset path')
+                candidates.append(checked_asset(source,entry['url'],entry['sha256']))
+    for path in candidates:
+        b=json.loads(path.read_text(encoding='utf-8'))
+        if b.get('kind')!='spherex_sequence' or b.get('scientific_approval')!='PENDING' or b.get('dataset_kind')!='real' or not 1<=len(b.get('frames',[]))<=6:
+            raise ValueError('Unsupported cached sequence identity')
+        for frame in b['frames']:
+            if frame['scientific_approval']!='PENDING' or frame['region']!=b['request']['region']:raise ValueError('Cached frame request mismatch')
+            shape=frame['shape']
+            if len(shape)!=2 or any(type(n) is not int or n<1 for n in shape) or shape[0]*shape[1]>1000000:raise ValueError('Cached sequence shape exceeds bounds')
+            for name,entry in frame['arrays'].items():
+                raw=base64.b64decode(entry['data'],validate=True)
+                if entry['shape']!=shape or len(raw)!=shape[0]*shape[1]*(1 if name=='VALID' else 4) or hashlib.sha256(raw).hexdigest()!=entry['numeric_sha256']:
+                    raise ValueError('Cached sequence numeric identity mismatch')
 
 
 def sha256(path):
@@ -90,6 +130,7 @@ def build_release(root, name, app_version='0.7.0'):
         raise ValueError('Website index.html and real-data catalog.json must exist before building')
     validate_assets(source)
     validate_scientific_assets(source)
+    validate_sequence_assets(source)
     output = root/'output/local-production'/name
     output.mkdir(parents=True, exist_ok=False)
     # Snapshot only static application files and the dependency-free local host.

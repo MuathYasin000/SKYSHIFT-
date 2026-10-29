@@ -1,0 +1,25 @@
+SKYSHIFT
+Copyright 2026 Project Mercury Team contributors.
+
+Team-owned source code is licensed under Apache License 2.0; see LICENSE.
+Third-party software, fonts, photographs, data and other assets retain their
+original licenses, attribution and applicable terms. This license does not
+relicense those materials or grant rights to NASA names or insignia.
+
+Source records and exact asset hashes are retained under web/dist/assets/,
+web/dist/vendor/, and the original-data provenance records. The former GSAP
+files and terms are retained as historical records in research/licensing/
+retired-gsap-20261030/ and are excluded from the distributed application.
+Native browser APIs replace their runtime use.
+
+SPHEREx data acknowledgement:
+This publication makes use of data products from the Spectro-Photometer for the
+History of the Universe, Epoch of Reionization and Ices Explorer (SPHEREx), which
+is a joint project of the Jet Propulsion Laboratory and the California Institute
+of Technology, and is funded by the National Aeronautics and Space Administration.
+
+Gaia data: ESA Gaia mission, processed by the Gaia Data Processing and Analysis
+Consortium (DPAC). See the investigation's reference catalogue and citations.
+
+AI assistance was used in software development, testing, documentation and
+illustrative assets. This is not independent scientific or human approval.

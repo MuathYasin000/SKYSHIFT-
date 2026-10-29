@@ -1,5 +1,14 @@
 // Presentation helpers. These never transform scientific coordinates or pixels.
 export const CHANNEL_COUNT = 102;
+export function representativeChannelColor(index) {
+  // Chosen display colors for ordinal positions, not measured channel centres
+  // or visible colors of infrared light. No wavelength values are inferred.
+  const t = Math.max(0, Math.min(CHANNEL_COUNT - 1, index)) / (CHANNEL_COUNT - 1);
+  const stops = [[91,155,255], [177,103,236], [252,61,33]];
+  const segment = t < .5 ? 0 : 1, blend = t * 2 - segment;
+  const rgb = stops[segment].map((v,i)=>Math.round(v+(stops[segment+1][i]-v)*blend));
+  return `rgb(${rgb.join(', ')})`;
+}
 export function channelColor(index) {
   // An illustrative linear ruler, NOT the detector's calibrated channel grid.
   const wavelength =

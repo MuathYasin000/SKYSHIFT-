@@ -126,6 +126,7 @@ export function createTelescopeExperience({
   function setStage(value) {
     stage = value;
     render();
+    panel.scrollTop = 0;
     audio.cue(value === 1 ? "spectrum" : value === 2 ? "lens" : "observe");
   }
   const api = {
@@ -143,6 +144,7 @@ export function createTelescopeExperience({
       document.body.classList.add("observing-open");
       onOpen?.();
       render();
+      panel.scrollTop = 0;
       audio.cue("observe");
     },
     close(silent = false) {

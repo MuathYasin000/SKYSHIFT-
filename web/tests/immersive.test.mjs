@@ -63,7 +63,8 @@ test("mode preferences are bounded and storage failures never block scientific a
   assert.equal(p.effects_volume, 1);
   assert.equal(p.ambience_volume, 0);
   assert.equal(p.sound_enabled, true);
-  assert.equal(readPreferences({ getItem: () => null }).sound_enabled, false);
+  assert.equal(readPreferences({ getItem: () => null }).sound_enabled, true);
+  assert.equal(readPreferences(malformed).sound_enabled, true);
   assert.equal(
     readPreferences({ getItem: () => '{"sound_enabled":false}' }).sound_enabled,
     false,

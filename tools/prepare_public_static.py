@@ -12,19 +12,22 @@ from pathlib import Path
 import shutil
 from datetime import datetime, timezone
 
-from build_local_release import validate_assets, validate_scientific_assets
+from build_local_release import validate_assets, validate_scientific_assets,validate_sequence_assets
 from local_server import CONTENT_SECURITY_POLICY, content_identity
+from build_frontend import build as build_frontend
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def stage(destination: Path, release_id='skyshift-0.9-mission-control'):
+def stage(destination: Path, release_id='skyshift-native-preparation-20261029'):
+    build_frontend()
     source = (ROOT / 'web/dist').resolve()
     destination = destination.resolve()
     if destination.name != 'dist' or not destination.is_relative_to(ROOT / 'tmp'):
         raise ValueError('Public staging must be a named dist directory under this workspace tmp folder')
     validate_assets(source)
     validate_scientific_assets(source)
+    validate_sequence_assets(source)
     destination.mkdir(parents=True, exist_ok=True)
     sources = {p.relative_to(source): p for p in source.rglob('*') if p.is_file()}
     # Remove obsolete files only in the checked, explicitly named staging tree.
@@ -44,8 +47,10 @@ def stage(destination: Path, release_id='skyshift-0.9-mission-control'):
             shutil.copyfile(p, target)
         hashes[relative.as_posix()] = digest
     release = dict(schema_version='1.0', release_id=release_id,
-                   app_version='0.9-mission-control', created_at_utc=datetime.now(timezone.utc).isoformat(),
+                   app_version='0.10-native-preparation', created_at_utc=datetime.now(timezone.utc).isoformat(),
                    scientific_approval='PENDING', content_id=content_identity(source),
+                   baseline_release='skyshift-0.9-mission-control', deployment_id=None,
+                   historical_scientific_audit=json.loads((source/'data/provenance-audit.json').read_text(encoding='utf-8'))['created_at_utc'],
                    source_asset_sha256=hashes)
     (destination/'release.json').write_text(json.dumps(release, indent=2)+'\n', encoding='utf-8')
     # Static equivalents for the optional runtime-info UI; never a shutdown route.
@@ -55,12 +60,17 @@ def stage(destination: Path, release_id='skyshift-0.9-mission-control'):
     (destination/'version.json').write_text(json.dumps(health)+'\n', encoding='utf-8')
     (destination/'_headers').write_text(
         '/*\n  Content-Security-Policy: '+CONTENT_SECURITY_POLICY+'\n'
-        '  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n'
+        '  X-Content-Type-Options: nosniff\n  X-Frame-Options: SAMEORIGIN\n  Cross-Origin-Opener-Policy: same-origin\n  Referrer-Policy: strict-origin-when-cross-origin\n'
         '  Permissions-Policy: camera=(), microphone=(), geolocation=()\n'
-        '  Cache-Control: no-cache\n/healthz\n  Content-Type: application/json; charset=utf-8\n',
+        '  Cache-Control: no-cache\n/healthz\n  Content-Type: application/json; charset=utf-8\n'+
+        ''.join('/'+relative.as_posix()+'\n  Content-Type: '+mime+'\n'
+                for relative in sorted(sources)
+                if (mime:={'.glb':'model/gltf-binary','.bin':'application/octet-stream',
+                           '.fits':'application/fits','.zip':'application/zip'}.get(relative.suffix))),
         encoding='utf-8')
     validate_assets(destination)
     validate_scientific_assets(destination)
+    validate_sequence_assets(destination)
     return dict(directory=str(destination), source_files=len(hashes), scientific_approval='PENDING',
                 content_id=release['content_id'], credentials_included=False)
 
@@ -68,6 +78,6 @@ def stage(destination: Path, release_id='skyshift-0.9-mission-control'):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--destination', type=Path, required=True)
-    parser.add_argument('--release-id', default='skyshift-0.9-mission-control')
+    parser.add_argument('--release-id', default='skyshift-native-preparation-20261029')
     args = parser.parse_args()
     print(json.dumps(stage(args.destination, args.release_id), indent=2))

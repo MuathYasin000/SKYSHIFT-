@@ -1,0 +1,22 @@
+{
+  "method": "Independent spherical polygon edge half-spaces versus earlier tangent-plane ray crossing",
+  "all_five_pair_inclusion_checks_agree": true,
+  "fields": [
+    {
+      "candidate": "AUG-D2",
+      "spherical_half_space_vs_tangent_inclusion_agreement": true,
+      "12_arcmin_box_centre_ra_deg": 247.69151087607597,
+      "12_arcmin_box_centre_dec_deg": -16.91468057534263,
+      "12_arcmin_box_corners_inside_both_metadata_polygons": true,
+      "scope": "Metadata geometry only. A proposed field, not a prepared image or usable-mask check."
+    },
+    {
+      "candidate": "DEC-D2",
+      "spherical_half_space_vs_tangent_inclusion_agreement": true,
+      "12_arcmin_box_centre_ra_deg": 167.24287178688297,
+      "12_arcmin_box_centre_dec_deg": 5.134201895882312,
+      "12_arcmin_box_corners_inside_both_metadata_polygons": true,
+      "scope": "Metadata geometry only. A proposed field, not a prepared image or usable-mask check."
+    }
+  ]
+}

@@ -37,6 +37,7 @@
     margin-bottom: 32px;
   }
   .methods-page p {
+    overflow-wrap: anywhere;
     max-width: 70ch;
     margin-bottom: 24px;
   }

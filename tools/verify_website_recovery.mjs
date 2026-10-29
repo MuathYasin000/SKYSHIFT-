@@ -219,7 +219,6 @@ try {
             skyshiftSpace.diagnostics().webgl === "ready" &&
             skyshiftSpace.diagnostics().frames > 0,
         );
-        await p.click("#classic-toggle");
         await p.click(".site-navigation a[data-route=compare]");
         await loaded(p);
         assert.deepEqual(
@@ -294,7 +293,7 @@ try {
   process.exitCode = 1;
 } finally {
   await fs.writeFile(
-    "docs/evidence/website07_recovery_tests.json",
+    "docs/evidence/"+(process.env.SKYSHIFT_TEST_NAME||"website07")+"_recovery_tests.json",
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

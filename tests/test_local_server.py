@@ -32,6 +32,7 @@ def running(tmp_path):
     (directory/'app.js').write_text('export const value = 1;')
     (directory/'style.css').write_text('body { color: white; }')
     (directory/'pair.fits').write_bytes(b'SIMPLE  = synthetic transport fixture only')
+    (directory/'model.glb').write_bytes(b'glTF synthetic transport fixture only')
     (directory/'private').mkdir()
     (directory/'.secret').write_text('never served')
     (tmp_path/'outside.txt').write_text('outside secret')
@@ -61,6 +62,7 @@ def test_loopback_static_html_health_and_version(running):
     assert headers['Content-Type'] == 'text/html'
     assert json.loads(request(server, '/healthz')[2])['status'] == 'ok'
     assert json.loads(request(server, '/version.json')[2])['application'] == 'SKYSHIFT'
+    assert request(server, '/model.glb')[1]['Content-Type'] == 'model/gltf-binary'
 
 
 def test_parallel_module_loading_does_not_refuse_connections(running):

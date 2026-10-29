@@ -35,3 +35,9 @@ original implementations informed by these public interaction studies.
 
 All adaptations run locally. No external runtime scripts, analytics, React,
 Next.js, Motion, or remote fonts were added. Scientific data are unaffected.
+
+Vengeance UI Kinetic Text Loader (Ashutoshx7, MIT)
+https://raw.githubusercontent.com/Ashutoshx7/VengeanceUI/2b6e4e673c950e2075dde853d55688498b9fda6d/public/r/kinetic-text-loader.json
+Adapted to native DOM/CSS in kinetic-loader.js and kinetic-loader.css.
+Original 1800ms dot/letter motion; local fonts, accessible labels and reduced-motion support.
+License: Vengeance-LICENSE.txt. Exact source hash: sources.json.

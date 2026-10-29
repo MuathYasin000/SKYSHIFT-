@@ -1,5 +1,5 @@
 import { readPreferences, savePreferences } from "./space-preferences.js";
-import { CHANNEL_COUNT, channelColor } from "./infrared-layout.js";
+import { CHANNEL_COUNT, channelColor, representativeChannelColor } from "./infrared-layout.js";
 
 // Optional UI presentation; imported only after the scientific controller boots.
 export function installInfraredExperience() {
@@ -24,12 +24,30 @@ export function installInfraredExperience() {
   for (const strip of document.querySelectorAll("[data-spectrum]")) {
     strip.setAttribute("aria-hidden", "true");
     const fragment = document.createDocumentFragment();
+    const readout = strip.closest(".hero-spectrum")?.querySelector("[data-spectrum-readout]");
     for (let i = 0; i < CHANNEL_COUNT; i++) {
       const bar = document.createElement("i");
-      bar.style.setProperty("--channel-color", channelColor(i));
+      bar.style.setProperty("--channel-color", readout ? representativeChannelColor(i) : channelColor(i));
+      if (readout) bar.dataset.spectrumChannel = String(i + 1);
       fragment.append(bar);
     }
     strip.replaceChildren(fragment);
+    if (readout) {
+      const hint = readout.textContent;
+      strip.addEventListener("pointerover", (event) => {
+        if (!fine.matches || event.pointerType === "touch") return;
+        const bar = event.target.closest("i[data-spectrum-channel]");
+        if (!bar || bar.parentElement !== strip) return;
+        readout.textContent = `Channel ${bar.dataset.spectrumChannel} / ${CHANNEL_COUNT}`;
+        readout.style.setProperty('--hover-channel-color',bar.style.getPropertyValue('--channel-color'));
+        readout.dataset.active = "true";
+      });
+      strip.addEventListener("pointerleave", () => {
+        readout.textContent = hint;
+        readout.style.removeProperty('--hover-channel-color');
+        delete readout.dataset.active;
+      });
+    }
   }
   function home() {
     return body.dataset.surface === "home";
@@ -105,7 +123,7 @@ export function installInfraredExperience() {
           // Actual curated field coordinates, never cursor-generated RA/Dec.
           $("hero-field-coordinates").textContent =
             card.querySelector(".field-coordinates").textContent +
-            " · field centre";
+            " Â· field centre";
           lens.querySelector("span").textContent =
             "IR LENS / CURATED FIELD CENTRE / " +
             card.querySelector(".field-coordinates").textContent +
@@ -132,13 +150,20 @@ export function installInfraredExperience() {
   document.addEventListener("pointerleave", hideLens);
   document.addEventListener("focusin", hideLens);
   const vela = document.querySelector(".intro-image");
-  function reveal(value) {
+  let revealStep = null;
+  function reveal(value, interactive = false) {
     const n = Math.max(0, Math.min(100, Number(value)));
     vela.style.setProperty("--vela-reveal", n + "%");
     $("vela-reveal").value = n;
     $("vela-reveal-value").value = Math.round(n) + "%";
+    // One soft detent per 2%; the shared sound service also limits bursts.
+    // Initial rendering and scripted updates never create sound.
+    const step = Math.floor(n / 2);
+    if (interactive && revealStep !== null && step !== revealStep)
+      document.dispatchEvent(new CustomEvent('skyshift-sound', {detail:'swipe_tick'}));
+    revealStep = step;
   }
-  $("vela-reveal").addEventListener("input", (e) => reveal(e.target.value));
+  $("vela-reveal").addEventListener("input", (e) => reveal(e.target.value, e.isTrusted));
   let dragging = false;
   const divider = vela.querySelector(".vela-divider");
   divider.addEventListener("pointerdown", (e) => {
@@ -148,7 +173,7 @@ export function installInfraredExperience() {
   divider.addEventListener("pointermove", (e) => {
     if (!dragging) return;
     const r = vela.getBoundingClientRect();
-    reveal(100 - ((e.clientX - r.left) / r.width) * 100);
+    reveal(100 - ((e.clientX - r.left) / r.width) * 100, e.isTrusted);
   });
   divider.addEventListener("pointerup", () => (dragging = false));
   divider.addEventListener("lostpointercapture", () => (dragging = false));
@@ -213,30 +238,8 @@ export function installInfraredExperience() {
     if (!visibleHero) hideLens();
   }).observe(hero);
 
-  function script(src) {
-    return new Promise((resolve, reject) => {
-      const s = document.createElement("script");
-      s.src = src;
-      s.onload = resolve;
-      s.onerror = () => {
-        s.remove();
-        reject(Error("Optional local animation library unavailable"));
-      };
-      document.head.append(s);
-    });
-  }
   async function libraries() {
-    if (!libs)
-      libs = (async () => {
-        await script("./vendor/scroll/gsap.min.js");
-        await script("./vendor/scroll/ScrollTrigger.min.js");
-        const { default: Lenis } = await import("./vendor/scroll/lenis.mjs");
-        gsap.registerPlugin(ScrollTrigger);
-        return { Lenis };
-      })().catch((e) => {
-        libs = null;
-        throw e;
-      });
+    if (!libs) libs = import("./vendor/scroll/lenis.mjs").then(({default: Lenis})=>({Lenis})).catch(error=>{libs=null;throw error;});
     return libs;
   }
   function cleanup() {
@@ -271,45 +274,33 @@ export function installInfraredExperience() {
           virtualScroll: () =>
             effects() && !document.querySelector("dialog[open]"),
         });
-        lenis.on("scroll", ScrollTrigger.update);
+
       }
-      for (const el of document.querySelectorAll(
-        ".field-section,.infrared-story,.mission-section,.trust-section",
-      )) {
-        triggers.push(
-          ScrollTrigger.create({
-            trigger: el,
-            start: "top 80%",
-            end: "bottom 15%",
-            toggleClass: "chapter-in-view",
-          }),
-        );
-      }
-      for (const el of document.querySelectorAll("[data-count]")) {
-        const value = { n: 0 };
-        triggers.push(
-          ScrollTrigger.create({
-            trigger: el,
-            start: "top 95%",
-            once: true,
-            onEnter: () => {
-              if (!effects()) return;
-              tweens.push(
-                gsap.to(value, {
-                  n: Number(el.dataset.count),
-                  duration: 1.2,
-                  ease: "power2.out",
-                  onUpdate: () => (el.textContent = Math.round(value.n)),
-                  onComplete: () => (el.textContent = el.dataset.count),
-                }),
-              );
-            },
-          }),
-        );
-      }
-      requestAnimationFrame(() => {
-        if (ticket === generation && effects()) ScrollTrigger.refresh();
-      });
+      // Native observers replace the restricted GSAP/ScrollTrigger dependency.
+      const chapters = new IntersectionObserver(entries => {
+        if (ticket !== generation || !effects()) return;
+        for (const entry of entries) entry.target.classList.toggle("chapter-in-view", entry.isIntersecting);
+      }, {rootMargin: "0px 0px -20% 0px"});
+      document.querySelectorAll(".field-section,.infrared-story,.mission-section,.trust-section").forEach(el=>chapters.observe(el));
+      triggers.push({kill:()=>chapters.disconnect()});
+      const counters = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting || ticket !== generation || !effects()) continue;
+          const el=entry.target, target=Number(el.dataset.count), start=performance.now();
+          counters.unobserve(el);
+          let frame=0;
+          const tick=now=>{
+            if(ticket!==generation || !effects()) return;
+            const t=Math.min(1,(now-start)/1200);
+            el.textContent=String(Math.round(target*(1-Math.pow(1-t,3))));
+            if(t<1) frame=requestAnimationFrame(tick); else el.textContent=el.dataset.count;
+          };
+          frame=requestAnimationFrame(tick);
+          tweens.push({kill:()=>cancelAnimationFrame(frame)});
+        }
+      }, {rootMargin:"0px 0px 5% 0px"});
+      document.querySelectorAll("[data-count]").forEach(el=>counters.observe(el));
+      triggers.push({kill:()=>counters.disconnect()});
     } catch (e) {
       console.warn(
         e.message + "; native scrolling and all content remain available.",
@@ -339,9 +330,9 @@ export function installInfraredExperience() {
     $("vision-effects").setAttribute("aria-pressed", String(enabled));
     $("vision-effects").textContent = enabled
       ? reduce.matches
-        ? "◉ Lens off · reduced motion"
-        : "◉ Infrared lens on"
-      : "◉ Infrared lens off";
+        ? "â—‰ Lens off Â· reduced motion"
+        : "â—‰ Infrared lens on"
+      : "â—‰ Infrared lens off";
     if (effects()) animateStory(ticket);
     progress();
   }
