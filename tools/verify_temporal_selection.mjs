@@ -19,10 +19,17 @@ try {
     await page.goto(base+'/#target-example/r-draconis-temporal');await ready(page);
     assert.equal(await page.locator('#instrument-sequence-play').isEnabled(),true);
     assert.match(await page.locator('#instrument-sequence-quality').innerText(),/checks passed; scientific review PENDING/);
+    assert.match(await page.locator('#instrument-target-summary').innerText(),/invalid pixels.*OVERFLOW.*SUR_ERROR/);
+    await page.click('#instrument-target-position');assert.equal(await page.locator('#instrument-target-position').getAttribute('aria-pressed'),'true');
     const first=await page.locator('#instrument-label-a').innerText();
     await page.click('#instrument-sequence-next');assert.notEqual(await page.locator('#instrument-label-a').innerText(),first);
     await page.click('[data-sequence-mode="wipe"]');assert.equal(await page.locator('#instrument-wipe-handle').isVisible(),true);
     await page.click('#instrument-about');assert.match(await page.locator('#instrument-information-body').innerText(),/Observation selection & bounded preflight/);
+    if(width===1440) {
+      const event=page.waitForEvent('download');await page.getByRole('button',{name:'Download target assessment (.json)'}).click();
+      const file=evidenceFile(out,'target-assessment.json');await(await event).saveAs(await claimEvidenceFile(file));
+      const report=JSON.parse(await fs.readFile(file,'utf8'));assert.equal(report.physical_change,'not_established');assert.equal(report.variability_significance,null);
+    }
     await page.click('#instrument-information-close');
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     if(width===1440) {
@@ -32,6 +39,7 @@ try {
       await page.setInputFiles('#instrument-file',file);await ready(page);
       assert.equal(await page.locator('#instrument-sequence-play').isEnabled(),true);
       assert.match(await page.locator('#instrument-title').innerText(),/R Draconis/);
+      assert.match(await page.locator('#instrument-target-summary').innerText(),/variability significance are unavailable/);
     }
     await page.screenshot({path:await claimEvidenceFile(evidenceFile(out,`r-draconis-${width}.png`))});
     results.push({name:`Real compatible epochs, manual dates, wipe, source receipt and no-WebGL recovery at ${width}px`,status:'pass'});

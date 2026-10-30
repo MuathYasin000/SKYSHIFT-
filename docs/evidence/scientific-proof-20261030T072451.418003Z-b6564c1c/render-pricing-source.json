@@ -1,0 +1,11 @@
+{
+  "source_url": "https://render.com/pricing",
+  "recorded_at_utc": "2026-10-30T07:54:40.078638+00:00",
+  "raw_html_sha256": "7cb609fdd6046be745455f7f61d8b8f28d46f6e3b34d7cee160807f24dc5d92a",
+  "raw_retrieval_timestamp": "not separately recorded; this timestamp records extraction only",
+  "scope": "Official web-service compute table; not the Postgres table",
+  "selected_rows": [
+    "1 CPU $25/month 2 GB RAM 1c-2g",
+    "2 CPU $85/month 4 GB RAM 2c-4g"
+  ]
+}

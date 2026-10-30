@@ -1,0 +1,7 @@
+{
+  "path": "D:\\Nasa_SKYSHIFT\\docs\\evidence\\scientific-proof-20261030T072451.418003Z-b6564c1c\\epsilon-indi\\catalogue.csv",
+  "sha256": "3b926773890a700c10713c200756eb89e91d030d378ba77a89e1a2d570462380",
+  "size_bytes": 258,
+  "source_url": "https://irsa.ipac.caltech.edu/TAP/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&QUERY=SELECT+source_id%2Cra%2Cdec%2Cref_epoch%2Cpmra%2Cpmdec%2Cparallax%2Cradial_velocity%2Cra_error%2Cdec_error%2Cpmra_error%2Cpmdec_error%2Cruwe%2Cphot_g_mean_mag+FROM+gaia_dr3_source+WHERE+source_id%3D6412596012146801152",
+  "retrieved_at_utc": "2026-10-30T07:37:02.872550Z"
+}

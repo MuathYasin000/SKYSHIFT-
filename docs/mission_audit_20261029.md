@@ -1,5 +1,66 @@
 # SKYSHIFT: eligibility gate and initial mission audit
 
+## Scientific proof and public-release preparation — October 30, 2026
+
+The user authorized preparation only and deferred hosting/publication for later
+discussion. No service purchase, provisioning, source upload, publication or DNS
+change was performed. See `hosting_options.md` for source-checked costs, prepared
+single-service configurations and the exact later account actions.
+
+The R Draconis identity was cross-checked with the production SIMBAD record and
+an authentic IRSA Gaia DR3 response: source **1648328016354496384**, epoch 2016.0,
+proper motion (-20.643, +6.149) mas/year, parallax 1.2509 mas. The Gaia position was
+propagated in ICRS from its TCB reference epoch using the RA cosine convention.
+Radial velocity is missing and is not invented. Annual parallax is explicitly
+unapplied and bounded at about 1.25 mas; this does not affect the unusable core
+finding at 6.15 arcsec/native pixel. The catalogue's formal diagonal position
+errors are about 0.85/0.91 mas at the observation dates, excluding covariances,
+photocentre motion and image-WCS systematics. An independent SPHEREx target
+centroid is **not established**.
+
+Both propagated positions land on IMAGE/VARIANCE NaNs carrying OVERFLOW and
+SUR_ERROR. The FITS flag comments describe overflow during SUR and onboard
+processing error; these flags alone are not a measured physical saturation model.
+Every source-aperture pixel is invalid (29/29 and 30/30 at a 2.5-pixel radius).
+Source-free local background support is insufficient. A larger context has only
+146/54 accepted source-free pixels, with median backgrounds about 0.15285/0.15063
+MJy/sr, but these do not replace a valid local sky estimate. Pinned newer ePSF
+diagnostics follow official guidance for QR2; effective model areas are about
+3.2820/3.2253 native pixels. No aperture correction, PSF-wing repair, photometric
+color correction or calibration-systematic model was invented.
+
+The sixteen stationary registration references still pass the original
+astrometric gates, but none supports the conservative complete-aperture plus
+source-free-background relative-flux diagnostic. Target flux, flux error and
+variability significance remain null. Predicted catalogue motion over 11.34 days
+is only 0.000669 arcsec; it is not a measured image displacement. Therefore:
+
+- **Field:** provisional visual temporal comparison; scientific review PENDING.
+- **R Draconis photometry:** unsupported comparison; invalid target core.
+- **Verified physical change:** NOT ESTABLISHED.
+
+The native viewer now states this distinction, can mark the propagated catalogue
+position as a prediction, exposes the quality/PSF/background/uncertainty record,
+and preserves the bound assessment through JSON download and ZIP export/reopen.
+Saved assessments cannot enable playback or claim a positive detection. Original
+sequence arrays and original FITS remain unchanged.
+
+One alternative was predeclared: Epsilon Indi B, motivated by its high catalogue
+proper motion and Gaia identity 6412596012146801152. Its propagated position was
+used rather than a narrow J2000-centred field. Twelve bounded header probes among
+68 contained candidates yielded no wavelength-compatible pair; no extra science
+cutouts were acquired. This is a bounded negative result, not a mission-wide
+absence or source nondetection. The prior comet failures remain preserved.
+
+The new science evidence is under
+`docs/evidence/scientific-proof-20261030T072451.418003Z-b6564c1c/`.
+The direct SIMBAD TAP request failed; production-page indexed identity text and
+the independently retrieved Gaia response are distinguished in the source record.
+The public 2026 challenge/guide pages again failed retrieval, so the existing
+requirements matrix remains qualified against the supplied challenge statement.
+No new organizer eligibility ruling, scientific sign-off or external UX approval
+was obtained. The four unrecovered historical screenshots remain disclosed.
+
 ## Next execution milestone — October 30, 2026
 
 Implemented bounded local-wavelength preselection and UTC date/wavelength filters,

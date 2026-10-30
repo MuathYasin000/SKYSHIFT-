@@ -19,11 +19,19 @@ The complete official challenge page again returned HTTP 502 on this pass. Manda
 | Date and local wavelength filters — requested next milestone | Implemented | Validated UTC calendar intervals, optional field-centre wavelength overlap and explicit compatible/chronological selection survive shareable URLs and request exports. At most twelve 64-KiB header prefixes are checked before scientific cutout acquisition. |
 | Quality metadata and astronomy-tool integration — optional | Metadata implemented; external tools linked | Sources, flags, units and calibration identities preserved. No claim that Astropy/Aladin techniques are original inventions. |
 | Evidence export/reconstruction — our enhancement | Implemented; browser round trips passing | Exact original URLs/hashes, prepared arrays and questions. Hash agreement is not scientific approval. |
+| Target identity and uncertainty — scientific proof increment | R Draconis catalogue identity confirmed; target measurements unsupported | Gaia DR3 source 1648328016354496384 is propagated from epoch 2016 TCB. Both predicted positions have invalid OVERFLOW/SUR_ERROR cores. No target flux, independent centroid or significance is reported. The bound assessment travels with exported investigations. |
 | Accessibility / Explore and Research detail — product requirement | Automated journeys passing within tested scope | Desktop/mobile emulation, keyboard, reduced motion and no-WebGL access; human usability and physical-device certification remain absent. |
 
 Five-target outcomes (QR2/D2, bounded sampled observations, not mission-wide nondetections): Barnard's Star has one prepared frame; two selected cutouts excluded the requested centre. Epsilon Indi B has two frames, processing/spectral mismatch and only five accepted registration references. WISE 0855 has two frames, processing/spectral mismatch despite passing registration. RW Aurigae has three frames, processing/spectral mismatch and a reference catalogue row-limit failure. R Draconis has two frames, spectral mismatch despite passing registration; a third acquisition returned 422. Preserve these results and thresholds.
 
 No 2026 award category, media limit, final rubric, independent approval or full challenge compliance is inferred from these engineering states. Current issue progress is maintained in [the mission audit](mission_audit_20261029.md).
+
+30 October scientific-proof update: a single alternative, Epsilon Indi B, was
+predeclared for >=100-day motion feasibility using its propagated Gaia position.
+Among 68 contained candidates, twelve header probes yielded no compatible pair;
+no further science cutouts were acquired. This bounded negative result is not a
+mission-wide absence or a target nondetection. Public release is deferred at the
+user's request; paid same-origin deployment templates are prepared, not deployed.
 
 ## Superseded preparation baseline — 29 October 2026
 

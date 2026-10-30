@@ -1,0 +1,42 @@
+{
+  "scope": "Local WSL2 Linux container verification, not public deployment or scientific approval",
+  "results": [
+    {
+      "name": "Nonroot Linux, dependency integrity, read-only root, resource bounds, exact Host/Origin, request limits and disabled public shutdown",
+      "status": "pass"
+    }
+  ],
+  "container": {
+    "image_id": "sha256:c3e9f72cc4b88ef7fbdf0c2522e8952db77152d0bc00067e16a0854bb39cc59d",
+    "read_only_root": true,
+    "memory_bytes": 2147483648,
+    "nano_cpus": 2000000000,
+    "pids_limit": 128,
+    "mount_destinations": [
+      "/app/data",
+      "/app/tools",
+      "/app/tests",
+      "/app/config",
+      "/app/docs/evidence"
+    ]
+  },
+  "runtime": {
+    "uid": 999,
+    "exec_probe_uid": 0,
+    "python": "3.12.16 (main, Oct 28 2026, 02:01:20) [GCC 14.2.0]"
+  },
+  "pip_check": "No broken requirements found.",
+  "capabilities": {
+    "preparation": true,
+    "preparation_code_sha256": "1c9248964365a69b019dcd5b9ca79eeb16bcc674083f884dfb54f20b9bc16210",
+    "max_frames": 6,
+    "max_field_arcmin": 30,
+    "max_active_jobs": 2,
+    "calibrated_temporal_adapters": [
+      "qr2/D2"
+    ],
+    "scope": "Other release/detector combinations may provide single-frame visualization only; no automatic fallback."
+  },
+  "status": "fail",
+  "error": "{'error': \"[Errno 13] Permission denied: '/root/.astropy/config'\"}"
+}

@@ -1,0 +1,2 @@
+source_id,ra,dec,ref_epoch,pmra,pmdec,parallax,radial_velocity,ra_error,dec_error,pmra_error,pmdec_error,ruwe,phot_g_mean_mag
+6412596012146801152,331.07645259656,-56.79381206688,2016.000,3981.977,-2466.832,270.6580,,0.5048,0.4676,0.602,0.626,4.296,18.030664

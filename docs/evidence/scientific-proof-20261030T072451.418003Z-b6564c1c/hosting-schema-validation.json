@@ -1,0 +1,15 @@
+[
+  {
+    "provider": "railway",
+    "url": "https://railway.com/railway.schema.json",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "provider": "render",
+    "url": "https://render.com/schema/render.yaml.json",
+    "sha256": "8a3fb8da6b4f55fe686fbefa790e011d3dd7895f013f355953c572a21ab6494a",
+    "retrieved_at_utc": "2026-10-30T07:50:29.645280+00:00",
+    "config": "deploy/render.yaml",
+    "validation": "pass"
+  }
+]

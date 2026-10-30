@@ -1,0 +1,21 @@
+# Review-only configuration. Creating this paid service requires user approval.
+services:
+  - type: web
+    name: skyshift
+    runtime: docker
+    plan: 2c-4g
+    branch: codex/scientific-completion
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    autoDeployTrigger: "off"
+    numInstances: 1
+    healthCheckPath: /healthz
+    disk:
+      name: skyshift-data
+      mountPath: /app/data
+      sizeGB: 2
+    envVars:
+      - key: SKYSHIFT_BOOTSTRAP_UID
+        value: root
+      - key: PORT
+        value: "3000"

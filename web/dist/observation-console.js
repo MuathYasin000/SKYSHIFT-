@@ -80,6 +80,11 @@ export function createObservationConsole({
   root.querySelector('.instrument-epoch-tools').after(timeline);
   let sequenceTimer=null;
   const overlayButton=node('button','Gaia reference positions');overlayButton.id='instrument-reference-overlay';overlayButton.setAttribute('aria-pressed','false');timeline.querySelector('.sequence-actions').append(overlayButton);
+  const targetSummary=node('p');targetSummary.id='instrument-target-summary';targetSummary.hidden=true;
+  $('instrument-sequence-quality').after(targetSummary);
+  const targetButton=node('button','R Dra catalogue position');targetButton.id='instrument-target-position';targetButton.hidden=true;targetButton.setAttribute('aria-pressed','false');
+  timeline.querySelector('.sequence-actions').append(targetButton);
+  targetButton.onclick=()=>{const s=engine.active?.sequence;if(s?.bundle.target_assessment){s.targetOverlay=!s.targetOverlay;targetButton.setAttribute('aria-pressed',String(Boolean(s.targetOverlay)));draw();}};
   overlayButton.onclick=()=>{const s=engine.active?.sequence;if(s){s.overlay=!s.overlay;overlayButton.setAttribute('aria-pressed',String(s.overlay));draw();}};
   const sequenceCompare=node('div',undefined,'sequence-actions');sequenceCompare.id='instrument-sequence-compare';
   for(const [mode,label] of [['single','One epoch'],['wipe','Compare with wipe'],['side_by_side','Compare side by side']]) {
@@ -414,6 +419,10 @@ export function createObservationConsole({
       overlayButton.hidden=!q.reference_overlay?.length;
       overlayButton.setAttribute('aria-pressed',String(Boolean(v.sequence.overlay)));
       overlayButton.title='Proper-motion propagated Gaia reference positions; predictions, not SPHEREx detections. No target motion is inferred.';
+      const assessment=q.target_assessment;
+      targetSummary.hidden=!assessment;targetButton.hidden=!assessment;
+      targetButton.setAttribute('aria-pressed',String(Boolean(v.sequence.targetOverlay)));
+      if(assessment)targetSummary.textContent='Visual field comparison · no validated change. R Draconis: the propagated catalogue position falls on invalid pixels in both dates (OVERFLOW / SUR_ERROR). Target flux and variability significance are unavailable.';
       overlayButton.disabled=v.sequence.presentation!=='single';
       sequenceCompare.querySelectorAll('button').forEach(b=>{b.disabled=b.dataset.sequenceMode!=='single'&&!q.playback_eligible;b.setAttribute('aria-pressed',String(b.dataset.sequenceMode===v.sequence.presentation));});
     }
@@ -736,6 +745,10 @@ export function createObservationConsole({
         if(p.x>=0&&p.x<v.shape[1]&&p.y>=0&&p.y<v.shape[0])marker(p,'Gaia '+reference.source_id);
       }
       ctx.font="12px 'IBM Plex Mono'";ctx.fillStyle=theme.white;ctx.fillText('Gaia predicted reference positions · not detections',12,g.height-12);
+    }
+    if(v.sequence?.targetOverlay&&v.sequence.bundle.target_assessment) {
+      const sky=v.sequence.bundle.target_assessment.epochs[v.sequence.index].catalogue_prediction;
+      marker(skyToPixel(sky.ra_deg,sky.dec_deg,v.wcs),'R Dra · predicted / invalid core');
     }
     if (v.inspection?.valid) marker(v.inspection, "Selected");
   }
@@ -1220,6 +1233,13 @@ export function createObservationConsole({
     body.append(processing);
     if(v.sequence) {
       const b=v.sequence.bundle;
+      if(b.target_assessment) {
+        body.append(node('h3','R Draconis: what is established?'),node('p','Catalogue identity and propagated positions are recorded. An independent SPHEREx target centroid and flux cannot be measured from the invalid core. Field playback is visual comparison; no validated physical change is established.'));
+        const science=node('details');science.append(node('summary','Target quality, PSF, background & uncertainty evidence'),node('pre',JSON.stringify(b.target_assessment,null,2)));body.append(science);
+        const button=node('button','Download target assessment (.json)');button.type='button';
+        button.onclick=()=>download({bytes:new TextEncoder().encode(JSON.stringify(b.target_assessment,null,2)),type:'application/json',name:'SKYSHIFT-R-Draconis-assessment.json'});
+        body.append(button);
+      }
       if(b.selection) {
         const selection=node('details');
         selection.append(node('summary','Observation selection & bounded preflight'),node('p',b.selection.outcome),node('pre',JSON.stringify(b.selection,null,2)));

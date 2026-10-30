@@ -187,6 +187,10 @@ async function routeChanged() {
         if(!entry||!/^\.\/data\/sequence-[a-z0-9-]+\.json$/.test(entry.url))throw Error('No verified cached frames for this target.');
         label=(targets.case_studies||[]).includes(entry)?entry.name:entry.name+' search field';
         bundle=JSON.parse(new TextDecoder().decode(await verifiedBytes(entry.url,entry.sha256)));
+        if(entry.assessment_url) {
+          if(!/^\.\/data\/science-[a-z0-9-]+\.json$/.test(entry.assessment_url))throw Error('Unsupported target assessment path.');
+          bundle.target_assessment=JSON.parse(new TextDecoder().decode(await verifiedBytes(entry.assessment_url,entry.assessment_sha256)));
+        }
       }else bundle=route==='investigation'?await preparedJob(field):await fetch('./data/sequence-example.json',{signal:AbortSignal.timeout(12000)}).then(r=>{if(!r.ok)throw Error('The verified example is unavailable.');return r.json();});
       if(ticket!==routeSequence)return;
       await consoleView.openSequence(bundle,{type:route==='investigation'?'job':route==='target-example'?'target':'example',id:field,label});

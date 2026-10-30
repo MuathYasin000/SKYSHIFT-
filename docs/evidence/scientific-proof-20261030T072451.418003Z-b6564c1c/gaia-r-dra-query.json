@@ -1,0 +1,10 @@
+{
+  "url": "https://irsa.ipac.caltech.edu/TAP/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&QUERY=SELECT+TOP+20+source_id%2Cra%2Cdec%2Cref_epoch%2Cpmra%2Cpmdec%2Cparallax%2Cradial_velocity%2Cra_error%2Cdec_error%2Cpmra_error%2Cpmdec_error%2Cruwe%2Cphot_g_mean_mag%2Castrometric_params_solved%2Cphot_variable_flag+FROM+gaia_dr3_source+WHERE+CONTAINS%28POINT%28%27ICRS%27%2Cra%2Cdec%29%2CCIRCLE%28%27ICRS%27%2C248.16761083294998%2C66.75497941722%2C0.003%29%29%3D1+ORDER+BY+phot_g_mean_mag",
+  "query": "SELECT TOP 20 source_id,ra,dec,ref_epoch,pmra,pmdec,parallax,radial_velocity,ra_error,dec_error,pmra_error,pmdec_error,ruwe,phot_g_mean_mag,astrometric_params_solved,phot_variable_flag FROM gaia_dr3_source WHERE CONTAINS(POINT('ICRS',ra,dec),CIRCLE('ICRS',248.16761083294998,66.75497941722,0.003))=1 ORDER BY phot_g_mean_mag",
+  "attempted_at_utc": "2026-10-30T07:25:12.580670+00:00",
+  "status": 200,
+  "content_type": "text/csv",
+  "sha256": "44d3f7eb77e2df73722e4ad68b8393ad3a042365282c451bba42faf2939e19d6",
+  "bytes": 524,
+  "retrieved_at_utc": "2026-10-30T07:25:27.093925+00:00"
+}

@@ -1,0 +1,1575 @@
+{
+  "schema_version": "1.0",
+  "kind": "skyshift-target-assessment",
+  "target": "R Draconis",
+  "catalogue_source_id": "1648328016354496384",
+  "sequence_id": "sequence-5187d2afa722abb63ebe35f7",
+  "source_hashes": [
+    "e48ac3fc5cf16f815b4799b631856e77d64ca46c750ee2339c0abf5b2b869412",
+    "ec6b6f361163ce8adbc23249557aa3ba770f87a6899e408b8d8e3667e244212b"
+  ],
+  "outcome": "valid_temporal_comparison",
+  "scope": "Provisional visual field comparison only; target photometric comparison is unsupported.",
+  "target_identification": {
+    "catalogue_identity": "Gaia DR3 1648328016354496384; SIMBAD V* R Dra cross-identification",
+    "spherex_counterpart": "Catalogue position is inside both images; an independent source centroid/flux cannot be established because its core is invalid.",
+    "measured_target_centroid": null,
+    "source_confusion": "Other catalogue entries near the star do not establish deblended infrared counterparts."
+  },
+  "target_comparison": "unsupported_comparison",
+  "physical_change": "not_established",
+  "variability_significance": null,
+  "reasons": [
+    "insufficient_unflagged_source_free_background",
+    "invalid_source_aperture_pixels"
+  ],
+  "propagation": {
+    "frame": "ICRS",
+    "reference_epoch_jyear": 2016,
+    "reference_timescale": "TCB",
+    "pmra_convention": "mu_alpha*cos(delta)",
+    "radial_velocity_km_s": null,
+    "missing_radial_velocity": "Zero assumed for propagation only; no measured radial velocity is fabricated.",
+    "parallax_mas": 1.2509,
+    "annual_parallax": "Not applied to barycentric ICRS predictions; amplitude bounded by the recorded parallax, far below a native pixel. Spacecraft ephemeris not supplied.",
+    "predicted_angular_separation_arcsec": 0.0006687140717508115
+  },
+  "epochs": [
+    {
+      "observation_id": "2025W49_1A_0009_3",
+      "source_sha256": "e48ac3fc5cf16f815b4799b631856e77d64ca46c750ee2339c0abf5b2b869412",
+      "time_start_utc": "2025-12-01T00:36:49.904000+00:00",
+      "catalogue_prediction": {
+        "ra_deg": 248.16723430675324,
+        "dec_deg": 66.75502368111583,
+        "native_pixel": [
+          87.18225506929225,
+          86.99272327398158
+        ],
+        "diagonal_catalogue_error_mas": {
+          "ra": 0.8454427749747088,
+          "dec": 0.9046935522102617
+        },
+        "error_limit": "Catalogue diagonal terms only; no covariance, stellar photocentre or image-WCS systematic uncertainty included."
+      },
+      "centre": {
+        "usable": false,
+        "image_mjy_sr": null,
+        "variance_mjy_sr_squared": null,
+        "flag_value": 2097158,
+        "flags": [
+          "OVERFLOW",
+          "SUR_ERROR",
+          "SOURCE"
+        ],
+        "wavelength_um": 1.2171027660369873,
+        "bandwidth_um": 0.02933443710207939
+      },
+      "source_extraction": {
+        "status": "unsupported",
+        "reasons": [
+          "invalid_source_aperture_pixels",
+          "insufficient_unflagged_source_free_background"
+        ],
+        "position_native_pixels": [
+          87.18225506929225,
+          86.99272327398158
+        ],
+        "aperture_radius_pixels": 2.5,
+        "aperture_support_pixels": 29,
+        "invalid_aperture_pixels": 29,
+        "core_support_pixels": 7,
+        "invalid_core_pixels": 7,
+        "aperture_flags": {
+          "TRANSIENT": 16,
+          "OVERFLOW": 13,
+          "SUR_ERROR": 24,
+          "PHANTOM": 0,
+          "REFERENCE": 0,
+          "NONFUNC": 0,
+          "DICHROIC": 0,
+          "MISSING_DATA": 0,
+          "HOT": 0,
+          "COLD": 0,
+          "FULLSAMPLE": 0,
+          "PHANMISS": 0,
+          "NONLINEAR": 0,
+          "PERSIST": 0,
+          "OUTLIER": 0,
+          "SOURCE": 29
+        },
+        "flux_mjy_sr_pixel_sum": null,
+        "formal_independent_pixel_error": null,
+        "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+      },
+      "context_background": {
+        "status": "measured",
+        "sample_count": 146,
+        "median_mjy_sr": 0.15285279601812363,
+        "robust_scatter_mjy_sr": 0.01971062911748886,
+        "variance_noise_median_mjy_sr": 0.015015229581317749,
+        "zodiacal_model_median_mjy_sr": 0.11390558257699013,
+        "note": "Native valid pixels without SOURCE flag; background estimates can still contain diffuse astrophysical emission."
+      },
+      "psf": {
+        "calibration": {
+          "path": "epsf_D2_spx_cal-epsf-v1-2026-191.fits",
+          "sha256": "7b94af0250aa7e56a9e78af34ca2c1373985926c0a0f3263218d1b0ddc94a926",
+          "size_bytes": 7943040,
+          "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr3/epsf/cal-epsf-v1-2026-191/2/epsf_D2_spx_cal-epsf-v1-2026-191.fits",
+          "retrieved_at_utc": null
+        },
+        "zone_index": 323,
+        "parent_x": 867.1822550692923,
+        "parent_y": 1481.9927232739815,
+        "oversampling": 5,
+        "effective_area_native_pixels": 3.2820003032684326,
+        "model_wavelength_um": 1.2116252183914185,
+        "positive_weight_rms_radius_native_pixels": 0.862775904917295,
+        "note": "Nearest local ePSF zone. Positive-wing moments are descriptive only; no deconvolution or matching applied."
+      },
+      "calibration_history": {
+        "dichroic": "2ca9ffb7-e6e9-4f8c-b85e-75ef2671614d",
+        "gain_factors": "74478304-abf1-4a9c-9eb2-926090a84446",
+        "initial_distortion_table": "f34a9ef8-e81a-4c7d-8322-e7da6e458ef9",
+        "nonfunc": "14c3b71f-5632-4e40-925e-bfa636e01952",
+        "spectral_wcs": "a9cb438e-e37d-4888-a1a5-5a9db6ad0737",
+        "nonlinear_pars": "81296b79-30e6-44ee-a7c1-5167be3e254a",
+        "readnoise_pars": "f6a0f49d-4bf8-43cb-ab45-46a912f0f98c",
+        "abs_gain_matrix": "17b9dc97-03e7-4e17-9d1c-56abae92edc5",
+        "average_psf": "b50151c0-9248-4ada-ae66-eff2f6879fa3",
+        "dark": "c082adae-af5b-43f2-9130-03ddb1eeec1c"
+      }
+    },
+    {
+      "observation_id": "2025W50_2A_0259_3",
+      "source_sha256": "ec6b6f361163ce8adbc23249557aa3ba770f87a6899e408b8d8e3667e244212b",
+      "time_start_utc": "2025-12-12T08:45:52.049000+00:00",
+      "catalogue_prediction": {
+        "ra_deg": 248.16723385567516,
+        "dec_deg": 66.75502373414399,
+        "native_pixel": [
+          87.43999126944813,
+          87.0871918014922
+        ],
+        "diagonal_catalogue_error_mas": {
+          "ra": 0.8480734489831393,
+          "dec": 0.9075112476708502
+        },
+        "error_limit": "Catalogue diagonal terms only; no covariance, stellar photocentre or image-WCS systematic uncertainty included."
+      },
+      "centre": {
+        "usable": false,
+        "image_mjy_sr": null,
+        "variance_mjy_sr_squared": null,
+        "flag_value": 2097158,
+        "flags": [
+          "OVERFLOW",
+          "SUR_ERROR",
+          "SOURCE"
+        ],
+        "wavelength_um": 1.2131096124649048,
+        "bandwidth_um": 0.02939361147582531
+      },
+      "source_extraction": {
+        "status": "unsupported",
+        "reasons": [
+          "invalid_source_aperture_pixels",
+          "insufficient_unflagged_source_free_background"
+        ],
+        "position_native_pixels": [
+          87.43999126944813,
+          87.0871918014922
+        ],
+        "aperture_radius_pixels": 2.5,
+        "aperture_support_pixels": 30,
+        "invalid_aperture_pixels": 30,
+        "core_support_pixels": 7,
+        "invalid_core_pixels": 7,
+        "aperture_flags": {
+          "TRANSIENT": 15,
+          "OVERFLOW": 17,
+          "SUR_ERROR": 27,
+          "PHANTOM": 0,
+          "REFERENCE": 0,
+          "NONFUNC": 0,
+          "DICHROIC": 0,
+          "MISSING_DATA": 0,
+          "HOT": 0,
+          "COLD": 0,
+          "FULLSAMPLE": 0,
+          "PHANMISS": 0,
+          "NONLINEAR": 0,
+          "PERSIST": 0,
+          "OUTLIER": 0,
+          "SOURCE": 30
+        },
+        "flux_mjy_sr_pixel_sum": null,
+        "formal_independent_pixel_error": null,
+        "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+      },
+      "context_background": {
+        "status": "measured",
+        "sample_count": 54,
+        "median_mjy_sr": 0.15062854439020157,
+        "robust_scatter_mjy_sr": 0.011770510053634643,
+        "variance_noise_median_mjy_sr": 0.014963927034336086,
+        "zodiacal_model_median_mjy_sr": 0.11489775031805038,
+        "note": "Native valid pixels without SOURCE flag; background estimates can still contain diffuse astrophysical emission."
+      },
+      "psf": {
+        "calibration": {
+          "path": "epsf_D2_spx_cal-epsf-v1-2026-191.fits",
+          "sha256": "7b94af0250aa7e56a9e78af34ca2c1373985926c0a0f3263218d1b0ddc94a926",
+          "size_bytes": 7943040,
+          "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr3/epsf/cal-epsf-v1-2026-191/2/epsf_D2_spx_cal-epsf-v1-2026-191.fits",
+          "retrieved_at_utc": null
+        },
+        "zone_index": 356,
+        "parent_x": 1989.4399912694482,
+        "parent_y": 1555.0871918014923,
+        "oversampling": 5,
+        "effective_area_native_pixels": 3.2252516746520996,
+        "model_wavelength_um": 1.2013850212097168,
+        "positive_weight_rms_radius_native_pixels": 0.8622297888716797,
+        "note": "Nearest local ePSF zone. Positive-wing moments are descriptive only; no deconvolution or matching applied."
+      },
+      "calibration_history": {
+        "dichroic": "2ca9ffb7-e6e9-4f8c-b85e-75ef2671614d",
+        "gain_factors": "74478304-abf1-4a9c-9eb2-926090a84446",
+        "initial_distortion_table": "f34a9ef8-e81a-4c7d-8322-e7da6e458ef9",
+        "nonfunc": "14c3b71f-5632-4e40-925e-bfa636e01952",
+        "spectral_wcs": "a9cb438e-e37d-4888-a1a5-5a9db6ad0737",
+        "nonlinear_pars": "81296b79-30e6-44ee-a7c1-5167be3e254a",
+        "readnoise_pars": "f6a0f49d-4bf8-43cb-ab45-46a912f0f98c",
+        "abs_gain_matrix": "17b9dc97-03e7-4e17-9d1c-56abae92edc5",
+        "average_psf": "b50151c0-9248-4ada-ae66-eff2f6879fa3",
+        "dark": "c082adae-af5b-43f2-9130-03ddb1eeec1c"
+      }
+    }
+  ],
+  "stationary_references": [
+    {
+      "source_id": "1648326843826192768",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            57.107742534957865,
+            94.17230613115149
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 31,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 8,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 31
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            56.51385119040038,
+            88.0145700282384
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1648327741475885824",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            82.0448699282162,
+            45.548888865158325
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            91.73757642750068,
+            45.44412047797413
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 32,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 32
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1648327878914843776",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "invalid_source_aperture_pixels",
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            91.19716341831031,
+            60.92930601120534
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 1,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 1,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 1,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            97.32262132674019,
+            62.36638510884586
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 32,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 32
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1648328974130099456",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            112.108263247155,
+            136.326398397248
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            100.79238586669301,
+            140.63019804590334
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 31,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 31
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1648330043578383616",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            132.4199963114281,
+            124.75126210529811
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 32,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 32
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            123.02787909499379,
+            133.10850969590825
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 29,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 8,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 29
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1648330077938124800",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            142.34559249423484,
+            136.3517846713419
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 32,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 32
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            130.00278698168182,
+            146.83328579703758
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 29,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 29
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1648331005651028096",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            107.38274122946115,
+            33.999185236237395
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 29,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 29
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            118.97094878185558,
+            39.34978546960864
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1648331074370509952",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            109.0394391208962,
+            53.072193960584016
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 9,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            116.32328058221132,
+            58.35736025045147
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 32,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 32
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1648332998515882496",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            143.482704459783,
+            122.3086383067894
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 32,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 6,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 32
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            134.00825496013866,
+            133.0974156879489
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 29,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 9,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 29
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1636316397279938944",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            6.781851317520809,
+            61.910132066295105
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            14.966500770665661,
+            46.12777995007815
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 8,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1636316740877348992",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            26.90640717731504,
+            83.08656633202953
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 31,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 8,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 31
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            29.53417233403958,
+            70.90043821151785
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1636317015755277696",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            37.73803186925585,
+            121.07302668753559
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            31.510559529618206,
+            110.28947401396343
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 32,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 6,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 32
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1636317260569843840",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            41.084629202270264,
+            101.99026831568084
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 29,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 9,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 29
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            39.13050635742197,
+            92.22160379744427
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 31,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 8,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 31
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1636317535447754368",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            26.05410351491065,
+            147.37949800735745
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            14.258796776290083,
+            133.72465357809278
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 31,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 8,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 31
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1636317604167905792",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            36.0853680952362,
+            150.22940559497027
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            23.55399508062583,
+            138.54571224170948
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 32,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 4,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 32
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    },
+    {
+      "source_id": "1636319386577286272",
+      "extractions": [
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            85.79959715128174,
+            155.75446264885377
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 31,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 8,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 31
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        },
+        {
+          "status": "unsupported",
+          "reasons": [
+            "insufficient_unflagged_source_free_background"
+          ],
+          "position_native_pixels": [
+            70.55748097423017,
+            153.9545284078622
+          ],
+          "aperture_radius_pixels": 2.5,
+          "aperture_support_pixels": 30,
+          "invalid_aperture_pixels": 0,
+          "core_support_pixels": 7,
+          "invalid_core_pixels": 0,
+          "aperture_flags": {
+            "TRANSIENT": 0,
+            "OVERFLOW": 0,
+            "SUR_ERROR": 0,
+            "PHANTOM": 0,
+            "REFERENCE": 0,
+            "NONFUNC": 0,
+            "DICHROIC": 0,
+            "MISSING_DATA": 0,
+            "HOT": 0,
+            "COLD": 0,
+            "FULLSAMPLE": 0,
+            "PHANMISS": 0,
+            "NONLINEAR": 0,
+            "PERSIST": 0,
+            "OUTLIER": 0,
+            "SOURCE": 30
+          },
+          "flux_mjy_sr_pixel_sum": null,
+          "formal_independent_pixel_error": null,
+          "uncertainty_scope": "Diagonal native variance + estimated background only; excludes pixel covariance, calibration, PSF/aperture, spectral and blend systematics. Not a variability significance."
+        }
+      ],
+      "ratio_b_over_a": null,
+      "status": "unsupported"
+    }
+  ],
+  "reference_summary": {
+    "registration_references": 16,
+    "usable_aperture_ratio_count": 0,
+    "median_diagnostic_ratio_b_over_a": null,
+    "robust_ratio_scatter": null,
+    "interpretation": "Reference ratios are conditional aperture diagnostics, not a target variability calibration or a complete systematic-error model."
+  },
+  "uncertainty": {
+    "target_flux": null,
+    "target_flux_error": null,
+    "systematic_error_model": "not_established",
+    "explanation": "Missing target pixels/variance prohibit a target flux or significance. PSF wings cannot replace the invalid core without validated saturation recovery, response matching, aperture corrections, covariance, blending and calibration uncertainties."
+  },
+  "scientific_approval": "PENDING",
+  "internal_human_review": "PENDING",
+  "created_at_utc": "2026-10-30T07:54:39.129676+00:00",
+  "catalogue": {
+    "query": {
+      "url": "https://irsa.ipac.caltech.edu/TAP/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&QUERY=SELECT+TOP+20+source_id%2Cra%2Cdec%2Cref_epoch%2Cpmra%2Cpmdec%2Cparallax%2Cradial_velocity%2Cra_error%2Cdec_error%2Cpmra_error%2Cpmdec_error%2Cruwe%2Cphot_g_mean_mag%2Castrometric_params_solved%2Cphot_variable_flag+FROM+gaia_dr3_source+WHERE+CONTAINS%28POINT%28%27ICRS%27%2Cra%2Cdec%29%2CCIRCLE%28%27ICRS%27%2C248.16761083294998%2C66.75497941722%2C0.003%29%29%3D1+ORDER+BY+phot_g_mean_mag",
+      "query": "SELECT TOP 20 source_id,ra,dec,ref_epoch,pmra,pmdec,parallax,radial_velocity,ra_error,dec_error,pmra_error,pmdec_error,ruwe,phot_g_mean_mag,astrometric_params_solved,phot_variable_flag FROM gaia_dr3_source WHERE CONTAINS(POINT('ICRS',ra,dec),CIRCLE('ICRS',248.16761083294998,66.75497941722,0.003))=1 ORDER BY phot_g_mean_mag",
+      "attempted_at_utc": "2026-10-30T07:25:12.580670+00:00",
+      "status": 200,
+      "content_type": "text/csv",
+      "sha256": "44d3f7eb77e2df73722e4ad68b8393ad3a042365282c451bba42faf2939e19d6",
+      "bytes": 524,
+      "retrieved_at_utc": "2026-10-30T07:25:27.093925+00:00"
+    },
+    "selected_row": {
+      "source_id": "1648328016354496384",
+      "ra": "248.16737836729",
+      "dec": "66.75500674547",
+      "ref_epoch": "2016.000",
+      "pmra": "-20.643",
+      "pmdec": "6.149",
+      "parallax": "1.2509",
+      "radial_velocity": "",
+      "ra_error": "0.0669",
+      "dec_error": "0.0660",
+      "pmra_error": "0.085",
+      "pmdec_error": "0.091",
+      "ruwe": "1.298",
+      "phot_g_mean_mag": "6.374379",
+      "astrometric_params_solved": "95",
+      "phot_variable_flag": "VARIABLE"
+    },
+    "identity_reference": "https://simbad.u-strasbg.fr/simbad/sim-id?Ident=R+Dra",
+    "identity_reference_access": "SIMBAD production-page indexed text confirmed R Dra / Gaia DR3 identifier; direct TAP access failed and that failure is preserved."
+  },
+  "citations": [
+    "SPHEREx QR2: https://doi.org/10.26131/IRSA652",
+    "This publication makes use of data products from the Spectro-Photometer for the History of the Universe, Epoch of Reionization and Ices Explorer (SPHEREx), which is a joint project of the Jet Propulsion Laboratory and the California Institute of Technology, and is funded by the National Aeronautics and Space Administration.",
+    "Gaia DR3: https://doi.org/10.1051/0004-6361/202243940. ESA Gaia data processed by DPAC."
+  ],
+  "methodology_sources": [
+    "https://caltech-ipac.github.io/spherex-archive-documentation/spherex-data-products/",
+    "https://irsa.ipac.caltech.edu/data/SPHEREx/docs/SPHEREx_Expsupp_QR.pdf"
+  ]
+}

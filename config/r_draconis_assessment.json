@@ -1,0 +1,7 @@
+{
+  "catalogue": "docs/evidence/scientific-proof-20261030T072451.418003Z-b6564c1c/gaia-r-dra.csv",
+  "query": "docs/evidence/scientific-proof-20261030T072451.418003Z-b6564c1c/gaia-r-dra-query.json",
+  "assessment_url": "data/science-r-draconis.json",
+  "assessment_sha256": "7705409ee82540b715aeeb8f3a6eb48d7bc7527d2dc081afa4e5f0ec0637e766",
+  "source_id": "1648328016354496384"
+}

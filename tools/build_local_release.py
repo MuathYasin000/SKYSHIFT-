@@ -99,7 +99,14 @@ def validate_sequence_assets(source):
         for entry in [*record['targets'],*record.get('case_studies',[])]:
             if entry.get('url'):
                 if not re.fullmatch(r'\./data/sequence-[a-z0-9-]+\.json',entry['url']):raise ValueError('Unsupported target sequence asset path')
-                candidates.append(checked_asset(source,entry['url'],entry['sha256']))
+                sequence_path=checked_asset(source,entry['url'],entry['sha256'])
+                candidates.append(sequence_path)
+                if entry.get('assessment_url'):
+                    if not re.fullmatch(r'\./data/science-[a-z0-9-]+\.json',entry['assessment_url']):raise ValueError('Unsupported assessment asset path')
+                    report=json.loads(checked_asset(source,entry['assessment_url'],entry['assessment_sha256']).read_text(encoding='utf-8'))
+                    sequence=json.loads(sequence_path.read_text(encoding='utf-8'))
+                    if report.get('sequence_id')!=sequence['sequence_id'] or report.get('source_hashes')!=sequence['identity']['source_hashes'] or report.get('physical_change')!='not_established' or report.get('variability_significance') is not None:
+                        raise ValueError('Target assessment differs from the source sequence or claims unsupported change')
     for path in candidates:
         b=json.loads(path.read_text(encoding='utf-8'))
         if b.get('kind')!='spherex_sequence' or b.get('scientific_approval')!='PENDING' or b.get('dataset_kind')!='real' or not 1<=len(b.get('frames',[]))<=6:

@@ -4,7 +4,7 @@
   "targets": [
     {
       "id": "barnards-star",
-      "name": "Barnard’s Star",
+      "name": "BarnardÃ¢â‚¬â„¢s Star",
       "status": "partially_supported",
       "prepared_frames": 1,
       "playback_eligible": false,
@@ -170,7 +170,9 @@
       "sha256": "ea4c955aad476910a8f29661c7e9948dd51941b482ffc71fce5fb92245048d20",
       "prepared_frames": 2,
       "playback_eligible": true,
-      "interpretation": "Two genuine observations 11.34 days apart pass the provisional wavelength and stationary-reference engineering screens. Target identification and physical variability are not established."
+      "interpretation": "Provisional visual field comparison. The propagated R Draconis position falls on invalid OVERFLOW/SUR_ERROR pixels in both epochs; target flux and variability significance are unsupported.",
+      "assessment_url": "./data/science-r-draconis.json",
+      "assessment_sha256": "7705409ee82540b715aeeb8f3a6eb48d7bc7527d2dc081afa4e5f0ec0637e766"
     }
   ]
 }

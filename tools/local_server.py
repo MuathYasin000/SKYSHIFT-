@@ -75,7 +75,7 @@ class LocalServer(ThreadingHTTPServer):
     # entire controller from executing, leaving an apparently frozen HUD.
     request_queue_size = 128
 
-    def __init__(self, directory, port=3000, *, bind='127.0.0.1', public_hosts=None):
+    def __init__(self, directory, port=3000, *, bind='127.0.0.1', public_hosts=None, health_hosts=None):
         self.directory = Path(directory).resolve(strict=True)
         if not (self.directory/'index.html').is_file():
             raise ValueError('Application directory does not contain index.html')
@@ -83,6 +83,7 @@ class LocalServer(ThreadingHTTPServer):
         self.directory_id = hashlib.sha256(str(self.directory).lower().encode()).hexdigest()[:16]
         self.shutdown_token = secrets.token_urlsafe(32)
         self.public_hosts = set(public_hosts or [])
+        self.health_hosts=set(health_hosts or [])
         self.preparation = None
         self.preparation_lock = threading.Lock()
         self.preparation_enabled = self.directory == (ROOT/'web/dist').resolve() and (ROOT/'src/skyshift/sequence.py').is_file()
@@ -142,7 +143,8 @@ class LocalHandler(SimpleHTTPRequestHandler):
     def valid_host(self):
         host = self.headers.get('Host', '')
         port = self.server.server_address[1]
-        return host.lower() in ({f'127.0.0.1:{port}', f'localhost:{port}'} | self.server.public_hosts)
+        return host.lower() in ({f'127.0.0.1:{port}', f'localhost:{port}'} | self.server.public_hosts) or (
+            self.command in {'GET','HEAD'} and self.path=='/healthz' and host.lower() in self.server.health_hosts)
 
     def api_request(self, path, payload=None):
         try:

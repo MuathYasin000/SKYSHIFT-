@@ -15,6 +15,15 @@ with `python tools/build_frontend.py`. Run:
 python tools/public_server.py --hosts skyshift.example --port 3000
 ```
 
+Managed-host preparation is now in `hosting_options.md` and `deploy/`. The user
+explicitly deferred publication and spending. Default Docker startup uses
+`container_start.py`: fixed data directories are checked, a single-volume lock
+is held, and the HTTP process runs as the `skyshift` user. Root-owned managed
+mounts may enable the bounded root bootstrap described there; direct root HTTP
+startup is refused. No recursive chown or deletion is performed. Kernel locking
+protects against accidentally starting a second service on the same volume.
+The lock is released by process exit, including forced termination.
+
 Replace the example with the actual host; wildcard hosts are refused. Terminate
 TLS in a trusted reverse proxy which preserves that exact Host header. Serve the
 frontend and API from the same origin; a cross-origin backend requires a separate

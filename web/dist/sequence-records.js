@@ -2,6 +2,7 @@ import {decodeArray,sha256} from './science.js';
 import {validatePreparedExposure} from './exposure-validation.js';
 import {equalEvidence,inspectZipBounds} from './packets.js';
 import {zipSync,unzipSync,strToU8,strFromU8} from './vendor/fflate.js';
+import {validateTargetAssessment} from './target-assessment.js';
 
 const MAX_BYTES=32*1024*1024;
 export async function validateSequence(value) {
@@ -60,6 +61,7 @@ export async function validateSequence(value) {
     for(const r of value.reference_overlay)if(typeof r.source_id!=='string'||!Number.isFinite(r.reference_epoch_jyear)||!Array.isArray(r.positions)||r.positions.length!==value.frames.length||r.positions.some(p=>!Number.isFinite(p.ra_deg)||p.ra_deg<0||p.ra_deg>=360||!Number.isFinite(p.dec_deg)||Math.abs(p.dec_deg)>90))throw Error('Invalid reference prediction geometry.');
   }
   if(!d||![d.vmin,d.vmax,d.asinh_a].every(Number.isFinite)||d.vmax<=d.vmin||d.asinh_a<=0||d.stretch!=='asinh')throw Error('Invalid shared sequence display.');
+  validateTargetAssessment(value.target_assessment,value,loaded);
   return {bundle:value,loaded};
 }
 

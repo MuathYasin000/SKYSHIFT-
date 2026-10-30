@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "scope": "Local build integrity; not production deployment or scientific approval",
   "baseline_release": "skyshift-0.9-mission-control",
-  "content_id": "c31a158e0ba997de798566befae26887212ed2c7151f5f50b2f35066120af811",
+  "content_id": "77f13e0d07a9bc9f4dfa9a19c679626c9207e6257caddd148b63166408b5a9a0",
   "deployment_id": null,
   "scientific_approval": "PENDING",
   "historical_audit_at_utc": "2026-10-16T15:21:49.549769+00:00",
@@ -30,6 +30,7 @@
     "data/review-part-3.bin": "e91f0d3869d9781dd926e295b7b84228fc65c594eabb66618826938da01d162f",
     "data/review-part-4.bin": "55e17525ee56e65a4c5d69b947cdea7513fa9b6ec5b70e7f55bc68fdb9494746",
     "data/review-part-5.bin": "2520ca83bf2b0a41f993f7f3f90b5f14034e6cf365bf9f7965703862a0652e42",
+    "data/science-r-draconis.json": "7705409ee82540b715aeeb8f3a6eb48d7bc7527d2dc081afa4e5f0ec0637e766",
     "data/sequence-barnards-star.json": "3fc48c5e277d746e4ec3dd4d5cff7e1733957d839dcdbe1d424d353bf7764215",
     "data/sequence-comet-december.json": "993e462b6af122b8132c48b9bdae5fb7ccec557e45dfe791b772a7313eaec9b6",
     "data/sequence-epsilon-indi-b.json": "c7d62e350d20795246a20bc8a501453d0e85981b90a39ba39742f3a1fc0f2196",
@@ -38,7 +39,7 @@
     "data/sequence-r-draconis.json": "61bdb1d12b665a60d741bb459032ce11f2467f902465cbac1b966566d485af2e",
     "data/sequence-rw-aurigae.json": "ec950ba29675f8d1fd5460aa0da038e3c54dd9da90f9ba911122d37458e5568c",
     "data/sequence-wise-0855.json": "3559d57e36c2c55a47cb31cb9a2e7331d7ac927b210302de59a1f3611f4ef98a",
-    "data/target-status.json": "52b4a6ea7cef3cadbcf2efa97bd91f73e1d6279a3d7f1b5dd8a6077665eb5d8a"
+    "data/target-status.json": "3e9805d6e14250fd37f1f3126a22e78b5c730779d644330d2b35cbf2f8d2f941"
   },
-  "verified_at_utc": "2026-10-30T06:40:17.943567+00:00"
+  "verified_at_utc": "2026-10-30T07:55:58.875742+00:00"
 }

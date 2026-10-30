@@ -38,7 +38,7 @@ def main():
                              'pids_limit':inspect['HostConfig']['PidsLimit'],'mount_destinations':[m['Destination'] for m in inspect['Mounts']]}
         assert inspect['HostConfig']['ReadonlyRootfs'] and inspect['HostConfig']['Memory']==2147483648
         assert all(v['HostIp']=='127.0.0.1' for ports in inspect['NetworkSettings']['Ports'].values() for v in ports)
-        runtime=json.loads(docker('exec',args.container,'python','-c',"import os,sys,json;print(json.dumps({'uid':os.getuid(),'python':sys.version}))"))
+        runtime=json.loads(docker('exec',args.container,'python','-c',"import os,sys,json,pathlib;uid=int(next(line for line in pathlib.Path('/proc/1/status').read_text().splitlines() if line.startswith('Uid:')).split()[2]);print(json.dumps({'uid':uid,'exec_probe_uid':os.getuid(),'python':sys.version}))"))
         assert runtime['uid']!=0;report['runtime']=runtime
         report['pip_check']=docker('exec',args.container,'pip','check')
         assert report['pip_check']=='No broken requirements found.'

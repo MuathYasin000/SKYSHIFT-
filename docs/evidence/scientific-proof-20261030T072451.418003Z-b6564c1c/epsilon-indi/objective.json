@@ -1,0 +1,10 @@
+{
+  "target": "Epsilon Indi B unresolved brown-dwarf system",
+  "catalogue_id": "6412596012146801152",
+  "identity_reference": "https://simbad.u-strasbg.fr/simbad/sim-id?Ident=%2A+eps+Ind+B",
+  "objective": "Test whether one >=100-day, wavelength-compatible pair exists in a bounded subset. High catalogue proper motion motivates this alternative; no detected motion is assumed.",
+  "maximum_header_probes": 12,
+  "maximum_cutouts": 2,
+  "minimum_cadence_days": 100,
+  "scientific_approval": "PENDING"
+}
