@@ -1,11 +1,13 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_kinetic_loader',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {chromium} from 'file:///C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
 
 const browser = await chromium.launch({headless:true, executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const base = 'http://localhost:3000', results = [], errors = [];
-const out = 'tmp/kinetic-loader-qa';
-await fs.mkdir(out, {recursive:true});
+const out = evidenceRun;
+
 async function context(options = {}) {
   const c = await browser.newContext({viewport:{width:1440,height:900}, ...options});
   c.on('page', p => { p.setDefaultTimeout(15000); p.on('pageerror', e => errors.push(e.message)); });
@@ -34,7 +36,7 @@ try {
       const b=await dot.evaluate(e=>getComputedStyle(e).transform);
       assert.notEqual(a,b);
       assert.equal(await dot.evaluate(e=>getComputedStyle(e).animationName),'ktl-dotMove');
-      await p.screenshot({path:out+'/hero-loading.png'});
+      await p.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+'/hero-loading.png'))});
       release();
       await p.waitForFunction(()=>window.skyshiftHero?.diagnostics().model?.frames>0);
       await p.locator('#hero-model-message').waitFor({state:'hidden'});
@@ -47,7 +49,7 @@ try {
       try {
         await p.goto(base+path);
         await p.locator(selector+' .kinetic-text-loader').waitFor();
-        if(path==='/compare.html') await p.screenshot({path:out+'/comparison-loading.png'});
+        if(path==='/compare.html') await p.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+'/comparison-loading.png'))});
         release();
         if(path==='/#compare') await p.waitForFunction(()=>window.skyshiftWebsite?.diagnostics().investigation?.kind==='pair'&&!skyshiftWebsite.diagnostics().investigation.busy);
         else if(path==='/compare.html') await p.locator('#workspace:not([hidden])').waitFor();
@@ -94,7 +96,7 @@ try {
       assert.equal(await p.locator('#hero-model-message .ktl-stretch').evaluate(e=>getComputedStyle(e,'::before').content),'"i"');
       await p.locator('#hero-model-message').scrollIntoViewIfNeeded();
       assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
-      await p.screenshot({path:out+'/mobile-reduced-motion.png'});
+      await p.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+'/mobile-reduced-motion.png'))});
     } finally { release(); await c.close(); }
   });
   await check('failed WebGL/model import removes loading and preserves direct science',async()=>{
@@ -111,6 +113,6 @@ try {
   assert.deepEqual(errors,[]);
 } finally {
   await browser.close();
-  await fs.writeFile(out+'/results.json',JSON.stringify({results,errors},null,2)+'\n');
+  await writeEvidenceFile(evidenceFile(evidenceRun,out+'/results.json'),JSON.stringify({results,errors},null,2)+'\n');
 }
 if(results.some(r=>r.status!=='pass')||errors.length)process.exitCode=1;

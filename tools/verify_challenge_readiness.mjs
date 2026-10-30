@@ -1,9 +1,11 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_challenge_readiness',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {chromium} from 'file:///C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
 
-const base=process.env.SKYSHIFT_BASE||'http://localhost:3000', out='docs/evidence/coordinate-search-010-20261029';
-await fs.mkdir(out,{recursive:true});
+const base=process.env.SKYSHIFT_BASE||'http://localhost:3000', out=evidenceRun;
+
 const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const results=[], errors=[];
 async function check(name,fn){try{const detail=await fn();results.push({name,status:'pass',detail});console.log('PASS '+name);}catch(e){results.push({name,status:'fail',error:e.stack});console.log('FAIL '+name+': '+e.message);}}
@@ -23,7 +25,7 @@ try{
    assert.equal(await p.locator('#sky-search-matches a').count(),1);
    assert.match(await p.locator('#sky-target-context').textContent(),/not established/);
    const download=p.waitForEvent('download');await p.locator('#sky-search-download').click();
-   const file=await download;await file.saveAs(out+'/'+t.id+'-request.json');
+   const file=await download;await file.saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out+'/'+t.id+'-request.json')));
    const r=JSON.parse(await fs.readFile(out+'/'+t.id+'-request.json','utf8'));
    assert.equal(r.kind,'skyshift-observation-request');assert.equal(r.release,'qr2');assert.equal(r.detector,2);assert.equal(r.region.size_deg,.2);
    assert.equal(new URL(await p.locator('#sky-search-share').getAttribute('href')).searchParams.get('ra'),String(r.region.ra_deg));
@@ -66,7 +68,7 @@ try{
    const bounds=await p.locator('#sky-search-form').boundingBox();assert.ok(bounds.width<=width);}
   await p.evaluate(await fs.readFile('tools/vendor/axe.min.js','utf8'));
   const a=await p.evaluate(async()=>{const r=await axe.run(document.querySelector('#sky-search'),{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}});return r.violations.map(v=>({id:v.id,targets:v.nodes.map(n=>n.target)}));});assert.deepEqual(a,[]);
-  await p.setViewportSize({width:1440,height:1100});await p.locator('#sky-search').screenshot({path:out+'/coordinate-search.png'});await c.close();return {widths,accessibility_violations:a.length};
+  await p.setViewportSize({width:1440,height:1100});await p.locator('#sky-search').screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+'/coordinate-search.png'))});await c.close();return {widths,accessibility_violations:a.length};
  });
-}finally{await browser.close();await fs.writeFile(out+'/browser.json',JSON.stringify({scope:'Automated engineering verification; no independent novice or qualified scientific review',results,page_errors:errors},null,2)+'\n');}
+}finally{await browser.close();await writeEvidenceFile(evidenceFile(evidenceRun,out+'/browser.json'),JSON.stringify({scope:'Automated engineering verification; no independent novice or qualified scientific review',results,page_errors:errors},null,2)+'\n');}
 assert.deepEqual(errors,[]);assert.ok(results.every(r=>r.status==='pass'));

@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run, write_report
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run, write_report
 """Read-only checks of the user's actual Netlify baseline; never publishes."""
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
@@ -45,7 +49,7 @@ def run():
                 deployment_id=release.get('deployment_id'),scope='Published baseline only. Local repairs have not been deployed.',
                 scientific_approval='PENDING',files=results,mime=mime,review_archive_sha256=final,
                 review_archive_match=final==audit['deployed']['review_packet_sha256'])
-    OUT.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
+    write_report(fresh_run('verify-deployed-repair'),OUT.name,json.dumps(result,indent=2)+'\n')
     assert all(r['match'] for r in results) and result['review_archive_match'] and result['version_matches']
     print(json.dumps(dict(status='pass',files=len(results),release_id=result['release_id'],content_id=result['content_id'],mime={r['path']:r['headers'].get('Content-Type') for r in mime})))
 

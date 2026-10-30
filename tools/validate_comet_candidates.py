@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run
 """Validate two predeclared comet pairs; preserve rejections, never fit the comet.
 
 Bounded acquisition: four official cutouts, existing pinned D2 calibration,
@@ -28,7 +32,7 @@ def investigate(ident, output_root):
     output=output_root/ident
     if (output/'outcome.json').exists():
         raise FileExistsError('This investigation already has an outcome; select a new --output directory to preserve it.')
-    output.mkdir(parents=True,exist_ok=True)
+    output.mkdir(parents=True,exist_ok=False)
     calibration=ROOT/'data/calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits'
     if not calibration.exists():
         download(CALIBRATION[('qr2',2)]['url'],calibration,max_bytes=40_000_000)
@@ -74,7 +78,8 @@ def investigate(ident, output_root):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--candidate',choices=['DEC-D2','AUG-D2','both'],default='both')
-    p.add_argument('--output',type=Path,default=ROOT/'research/validation/comet-20261030')
+    p.add_argument('--output',type=Path,default=None)
     args=p.parse_args()
+    run_output=fresh_run('comet-candidates') if args.output is None else args.output
     for ident in (['DEC-D2','AUG-D2'] if args.candidate=='both' else [args.candidate]):
-        investigate(ident,args.output)
+        investigate(ident,args.output or run_output)

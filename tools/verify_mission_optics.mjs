@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_mission_optics',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {pathToFileURL} from 'node:url';
@@ -25,7 +27,7 @@ try{
    assert.ok(appearance.font*appearance.width/appearance.viewbox>=12);
    assert.equal(appearance.fill,'rgb(255, 255, 255)');
    assert.equal(appearance.stroke,'rgb(252, 61, 33)');
-   await p.screenshot({path:`tmp/mission-control/optics-${id}-${width}.png`});
+   await p.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,`tmp/mission-control/optics-${id}-${width}.png`))});
    await p.evaluate(await fs.readFile('tools/vendor/axe.min.js','utf8'));
    const violations=await p.evaluate(async()=> (await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>v.id));
    assert.deepEqual(violations,[]);
@@ -35,4 +37,4 @@ try{
  }
  assert.deepEqual(errors,[]);
 }catch(e){console.error(e.stack);process.exitCode=1;}
-finally{await fs.writeFile('docs/evidence/mission_control_optics_tests.json',JSON.stringify({recorded_at_utc:new Date().toISOString(),results,page_errors:errors,limits:['Original explanatory schematics, not measured optical ray traces.','Local automated browser and emulated widths; no qualified scientific approval inferred.']},null,2)+'\n');await browser.close();}
+finally{await writeEvidenceFile(evidenceFile(evidenceRun,'docs/evidence/mission_control_optics_tests.json'),JSON.stringify({recorded_at_utc:new Date().toISOString(),results,page_errors:errors,limits:['Original explanatory schematics, not measured optical ray traces.','Local automated browser and emulated widths; no qualified scientific approval inferred.']},null,2)+'\n');await browser.close();}

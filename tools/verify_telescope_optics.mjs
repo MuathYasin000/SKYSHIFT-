@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_telescope_optics',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Isolated localhost checks. Geometry agreement is not an optical calibration.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -9,11 +11,11 @@ const { chromium } = await import(
       "C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs",
   )
 );
-const out = "tmp/optics-qa",
+const out = evidenceRun,
   results = [],
   errors = [],
   external = [];
-await fs.mkdir(out, { recursive: true });
+
 const browser = await chromium.launch({
   headless: true,
   executablePath:
@@ -172,8 +174,7 @@ try {
         draco.dispose();
         return result;
       }, raw.toString("base64"));
-      await fs.writeFile(
-        out + "/geometry-audit.json",
+      await writeEvidenceFile(evidenceFile(evidenceRun,out + "/geometry-audit.json"),
         JSON.stringify(audit, null, 2),
       );
       assert.equal(audit.original.triangles, 493785);
@@ -248,7 +249,7 @@ try {
           before,
         );
         detail.push({ id, frame: f, refinement: d.hardware_refinements });
-        await p.screenshot({ path: `${out}/${id}-verified.png` });
+        await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,`${out}/${id}-verified.png` ))});
       }
       return detail;
     },
@@ -289,7 +290,7 @@ try {
           }));
         });
         assert.deepEqual(accessibility, []);
-        await p.screenshot({ path: `${out}/${id}-optics-expanded.png` });
+        await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,`${out}/${id}-optics-expanded.png` ))});
         await p.keyboard.press("Escape");
         assert.equal(
           await p.locator("#optics-dialog").evaluate((e) => e.open),
@@ -444,7 +445,7 @@ try {
             await p.locator("#optics-expanded-description").innerText(),
             /^2 \/ 4/,
           );
-          await p.screenshot({ path: `${out}/hubble-optics-${width}.png` });
+          await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,`${out}/hubble-optics-${width}.png` ))});
           await p.locator("#optics-dialog-close").tap();
           await p.locator("#mission-close").tap();
         } finally {
@@ -459,8 +460,7 @@ try {
   console.error(e.stack);
   process.exitCode = 1;
 } finally {
-  await fs.writeFile(
-    "docs/evidence/telescope_optics_tests.json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/telescope_optics_tests.json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

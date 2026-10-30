@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_website_recovery',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
 import { pathToFileURL } from "node:url";
@@ -155,7 +157,7 @@ try {
               })),
             );
             await p.screenshot({
-              path: "tmp/website07-qa/recovery-model-failure.png",
+              path: await claimEvidenceFile(evidenceFile(evidenceRun,"tmp/website07-qa/recovery-model-failure.png")),
             });
             throw error;
           });
@@ -292,8 +294,7 @@ try {
   console.error(e);
   process.exitCode = 1;
 } finally {
-  await fs.writeFile(
-    "docs/evidence/"+(process.env.SKYSHIFT_TEST_NAME||"website07")+"_recovery_tests.json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/"+(process.env.SKYSHIFT_TEST_NAME||"website07")+"_recovery_tests.json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

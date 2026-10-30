@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_interactions',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
@@ -45,4 +47,4 @@ try{
  await check('No outside runtime requests or uncaught script errors',()=>{assert.deepEqual(external,[]);assert.deepEqual(errors,[]);});
  await c.close();await mobile.close();
 }catch(e){if(!results.some(r=>r.status==='fail'))results.push({name:'Browser setup or readiness',status:'fail',error:e.message});console.error(e);process.exitCode=1;}
-finally{await browser.close();await fs.writeFile(root+'/docs/evidence/interaction_foundation_tests.json',JSON.stringify({date_utc:new Date().toISOString(),results,external,errors,touch_scope:'Chromium emulated touchscreen; not a physical-device or human study',scientific_approval:'PENDING'},null,2));console.log(JSON.stringify({passed:results.filter(r=>r.status==='pass').length,failed:results.filter(r=>r.status==='fail').length}));}
+finally{await browser.close();await writeEvidenceFile(evidenceFile(evidenceRun,root+'/docs/evidence/interaction_foundation_tests.json'),JSON.stringify({date_utc:new Date().toISOString(),results,external,errors,touch_scope:'Chromium emulated touchscreen; not a physical-device or human study',scientific_approval:'PENDING'},null,2));console.log(JSON.stringify({passed:results.filter(r=>r.status==='pass').length,failed:results.filter(r=>r.status==='fail').length}));}

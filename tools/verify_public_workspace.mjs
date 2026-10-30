@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_public_workspace',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Verify static SKYSHIFT on HTTPS or a loopback staging server; no auth bypass.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -17,7 +19,7 @@ if (
   throw Error("Remote verification requires HTTPS");
 const recordName = process.env.SKYSHIFT_TEST_NAME || "public_workspace";
 const origin = new URL(base).origin,
-  out = "tmp/" + recordName + "-qa",
+  out = evidenceRun,
   results = [],
   errors = [],
   requests = [];
@@ -26,7 +28,7 @@ const { chromium } = await import(
     "C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs",
   )
 );
-await fs.mkdir(out, { recursive: true });
+
 const browser = await chromium.launch({
     headless: true,
     executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
@@ -79,7 +81,7 @@ try {
         release.release_id,
         process.env.SKYSHIFT_EXPECTED_RELEASE || "skyshift-0.9-mission-control",
       );
-      await page.screenshot({ path: out + "/public-home.png" });
+      await page.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/public-home.png" ))});
       return {
         release_id: release.release_id,
         content_id: release.content_id,
@@ -141,7 +143,7 @@ try {
       );
       const event = page.waitForEvent("download");
       await page.click("#instrument-save");
-      await (await event).saveAs(out + "/public-comparison.zip");
+      await (await event).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out + "/public-comparison.zip")));
       await page.click("#instrument-fit");
       assert.notEqual(
         await page.evaluate(
@@ -219,10 +221,9 @@ try {
 } catch (e) {
   console.error(e.stack);
   process.exitCode = 1;
-  await page.screenshot({ path: out + "/failure.png" }).catch(() => {});
+  await page.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/failure.png" ))}).catch(() => {});
 } finally {
-  await fs.writeFile(
-    "docs/evidence/" + recordName + "_tests.json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/" + recordName + "_tests.json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

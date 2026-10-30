@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -59,6 +60,31 @@ def fetch_bytes(url: str, *, max_bytes: int, timeout: int = 60, attempts: int = 
                 raise
         time.sleep(2 ** attempt)
     raise RuntimeError("Archive request failed")
+
+
+def fetch_header_prefix(url: str, *, size: int = 65536, timeout: int = 20) -> tuple[bytes, dict]:
+    """A strictly bounded Range probe, never an incomplete 'original FITS'."""
+    parsed=urlsplit(url)
+    if parsed.scheme!='https' or parsed.hostname not in ALLOWED_HOSTS or parsed.username or parsed.fragment:
+        raise ValueError('Header probes require an approved HTTPS archive URL')
+    if not 2880 <= size <= 65536:
+        raise ValueError('Header probe bound must be between 2880 and 65536 bytes')
+    request=Request(url,headers={'Range':f'bytes=0-{size-1}','User-Agent':'SKYSHIFT bounded FITS header preflight'})
+    with urlopen(request,timeout=timeout) as response:
+        final=urlsplit(response.url)
+        if final.scheme!='https' or final.hostname not in ALLOWED_HOSTS:
+            raise ValueError('Header probe redirected to an unapproved service')
+        content_range=response.headers.get('Content-Range','')
+        match=re.fullmatch(r'bytes 0-(\d+)/(\d+)',content_range)
+        if response.status!=206 or not match or int(match[1])!=size-1 or int(match[2])<size:
+            raise ValueError('Archive did not honor the bounded header Range request; full download refused')
+        if int(response.headers.get('Content-Length','0')) not in (0,size):
+            raise ValueError('Unexpected header probe response size')
+        data=response.read(size+1)
+        if len(data)!=size:raise ValueError('Header probe is truncated or exceeds its bound')
+    return data,{'url':url,'range':content_range,'partial_sha256':hashlib.sha256(data).hexdigest(),
+                 'bytes':len(data),'retrieved_at_utc':utc_now().isoformat(),
+                 'scope':'Header prefix only; not the original FITS identity or pixel-quality approval'}
 
 
 def parse_sia(data: bytes) -> list[dict]:
@@ -126,7 +152,10 @@ def inventory(region: SkyRegion, release: str, output: Path, *, deep: bool = Fal
         raise
     query.update(status="complete", row_count=len(rows))
     (output / "query.json").write_text(json.dumps(query, indent=2), encoding="utf-8")
-    (output / "observations.json").write_text(json.dumps(rows, indent=2), encoding="utf-8")
+    catalogue=json.dumps(rows,indent=2).encode('utf-8')
+    if len(catalogue)>16_000_000:
+        raise ValueError('Expanded metadata exceeds its 16 MB evidence bound')
+    (output / "observations.json").write_bytes(catalogue)
     return rows
 
 

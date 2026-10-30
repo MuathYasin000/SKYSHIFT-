@@ -48,7 +48,7 @@ def reconstruct(output):
     payload_path.write_bytes(json.dumps(payload,separators=(',',':'),allow_nan=False).encode())
     entry['sha256']=sha256_file(payload_path)
     if rebuilt!=field:raise ValueError('Reconstructed Orion metadata or byte identity differ from the curated record')
-    (output.parent/'explore-catalog.json').write_text(json.dumps({'schema_version':'1.0','scope':'Offline Orion single-context reconstruction only; no temporal comparison','fields':[rebuilt]},indent=2),encoding='utf-8')
+    (output/'explore-catalog.json').write_text(json.dumps({'schema_version':'1.0','scope':'Offline Orion single-context reconstruction only; no temporal comparison','fields':[rebuilt]},indent=2),encoding='utf-8')
     return rebuilt
 
 

@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_infrared_experience',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Isolated localhost browser verification. No human UX or science approval inferred.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -16,11 +18,11 @@ const browser = await chromium.launch({
     "C:/Program Files/Google/Chrome/Application/chrome.exe",
 });
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "",
-  out = "tmp/infrared-qa" + (suffix ? "-" + suffix : ""),
+  out = evidenceRun,
   results = [],
   errors = [],
   external = [];
-await fs.mkdir(out, { recursive: true });
+
 async function context(options = {}) {
   const c = await browser.newContext({
     viewport: { width: 1440, height: 900 },
@@ -103,7 +105,7 @@ try {
           ),
         true,
       );
-      await p.screenshot({ path: out + "/home-1440.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/home-1440.png" ))});
       return { logo_sha256: createHash("sha256").update(file).digest("hex") };
     },
   );
@@ -131,7 +133,7 @@ try {
         await p.locator("#hero-field-coordinates").textContent(),
         /210\.802.*54\.349.*field centre/,
       );
-      await p.screenshot({ path: out + "/field-lens.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/field-lens.png" ))});
     },
   );
   await check(
@@ -202,7 +204,7 @@ try {
         await p.locator("#infrared-legend").textContent(),
         /4\.54–4\.65/,
       );
-      await p.screenshot({ path: out + "/vela-legend.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/vela-legend.png" ))});
     },
   );
   await check(
@@ -257,7 +259,7 @@ try {
         await p.locator("#instrument-wipe-value").textContent(),
         "70%",
       );
-      await p.screenshot({ path: out + "/compare-wipe.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/compare-wipe.png" ))});
       await p.locator("[data-compare=single]").click();
       await p.evaluate(() => {
         const selected =
@@ -339,7 +341,7 @@ try {
         await p.locator("#scene-type").textContent(),
         /ILLUSTRATIVE BACKDROP/,
       );
-      await p.screenshot({ path: out + "/solar-labels.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/solar-labels.png" ))});
       return { visible_labels: rects.map((r) => r.text) };
     },
   );
@@ -376,7 +378,7 @@ try {
             false,
           );
           await p.evaluate(() => scrollTo(0, 0));
-          await p.screenshot({ path: out + `/home-${width}.png` });
+          await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + `/home-${width}.png` ))});
           await p.locator('.site-navigation [href="#compare"]').click();
           await science(p);
           const selector = await p
@@ -392,7 +394,7 @@ try {
             ),
             0,
           );
-          await p.screenshot({ path: out + `/science-${width}.png` });
+          await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + `/science-${width}.png` ))});
         } finally {
           await c.close();
         }
@@ -485,8 +487,7 @@ try {
   console.error(e.stack);
   process.exitCode = 1;
 } finally {
-  await fs.writeFile(
-    `docs/evidence/infrared_experience_tests${suffix ? "_" + suffix : ""}.json`,
+  await writeEvidenceFile(evidenceFile(evidenceRun,`docs/evidence/infrared_experience_tests${suffix ? "_" + suffix : ""}.json`),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

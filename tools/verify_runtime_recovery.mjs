@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_runtime_recovery',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Failure injection is labelled explicitly. Fresh test profiles never access
 // the user's browser profile or represent verification of their open session.
 import { pathToFileURL } from "node:url";
@@ -246,15 +248,15 @@ try {
       assert.equal(await f.locator("#note-count").innerText(), "1");
       const event = p.waitForEvent("download");
       await f.locator("#export").click();
-      await fs.mkdir("tmp/runtime-qa", { recursive: true });
-      await (await event).saveAs("tmp/runtime-qa/comparison.zip");
+
+      await (await event).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,"tmp/runtime-qa/comparison.zip")));
       await context.close();
       const fresh = await page();
       await fresh.page.goto(base + "/compare.html");
       await fresh.page.locator("#workspace").waitFor();
       await fresh.page
         .locator("#import-file")
-        .setInputFiles("tmp/runtime-qa/comparison.zip");
+        .setInputFiles(evidenceFile(evidenceRun,"comparison.zip"));
       await fresh.page
         .locator("#note-count")
         .filter({ hasText: "1" })
@@ -348,7 +350,7 @@ try {
           drawing_buffer: [gl.drawingBufferWidth, gl.drawingBufferHeight],
         };
       });
-      await p.screenshot({ path: "tmp/runtime-qa/installed-chrome.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,"tmp/runtime-qa/installed-chrome.png" ))});
       await context.close();
       return {
         rounds: 8,
@@ -367,8 +369,7 @@ try {
 } finally {
   const version = browser.version();
   await browser.close();
-  await fs.writeFile(
-    "docs/evidence/runtime_recovery_tests.json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/runtime_recovery_tests.json"),
     JSON.stringify(
       {
         date_utc: new Date().toISOString(),

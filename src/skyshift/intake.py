@@ -45,7 +45,7 @@ def read_request(path: Path) -> tuple[ObservationRequest, bytes]:
             result[key] = value
         return result
     data = json.loads(raw, object_pairs_hook=unique_object)
-    if isinstance(data,dict) and any(k in data for k in ('detector','max_frames','deep','use_cache')):
+    if isinstance(data,dict) and any(k in data for k in ('detector','max_frames','deep','use_cache','selection','wavelength_um','start_date','end_date')):
         from .sequence import SequenceRequest
         return SequenceRequest.model_validate(data), raw
     return ObservationRequest.model_validate(data), raw

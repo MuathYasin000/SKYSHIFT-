@@ -1,5 +1,59 @@
 # SKYSHIFT: eligibility gate and initial mission audit
 
+## Next execution milestone — October 30, 2026
+
+Implemented bounded local-wavelength preselection and UTC date/wavelength filters,
+with unchanged scientific gates. A fresh R Draconis query returned 95 metadata
+rows; 81 contained the requested 2.4-arcminute grid. Twelve 64-KiB original-header
+prefixes were probed and two 18-arcminute context cutouts acquired. Observations
+`2025W49_1A_0009_3` and `2025W50_2A_0259_3` are 11.339608 days apart, both QR2,
+pipeline `6.4+psffix1`, D2. The final common fraction is 0.807292; maximum local
+spectral separation is 0.155418 bandwidths (threshold 0.25). Sixteen stationary
+references span four quadrants: median 0.109091 and p95 0.280378 pixels. The
+geocentric solar elongations are approximately 88.51 and 90.22 degrees. These
+are field/geometry and provisional engineering results, not an identified target
+or detected physical change. Both earlier comet rejections and the broader
+R Draconis failure remain intact.
+
+The cached native route is `#target-example/r-draconis-temporal`; it exposes real
+dates, wavelengths, masks, reference checks, source identities and ZIP export/
+reopen without WebGL or the preparation API. All eight numerical arrays reproduce
+exactly in Windows and Linux. Linux continuous Gaussian-fit diagnostics differ
+from Windows by at most about 1.30e-7 in their recorded units. Reconstruction now
+allows 1e-6 absolute/1e-9 relative error only for continuous registration
+diagnostics; classifications, policies, IDs, all screening results and array
+hashes must remain exact. No scientific threshold was relaxed.
+
+Local WSL2 Docker verification replaces the earlier Docker-unavailable finding.
+The service runs nonroot under a read-only root filesystem and CPU/memory/process
+limits, acquires official observations, enforces Host/Origin/queue bounds and
+reopens the exact completed result after restart. The first stop test exited 137;
+SIGTERM handling was corrected and the rebuilt service exited 0. The portable
+procedure and storage/redeployment limits are in `public_service.md`. External
+publication is still unperformed; a Python-capable host, deployment access and
+same-origin HTTPS routing are required.
+
+Verification/evidence tools now allocate fresh run directories. Browser reports
+use exclusive writes; screenshot/download destinations are exclusively claimed.
+Legacy scientific validators and audit snapshots also refuse historical output
+directories. Storage admission now reserves 80 MiB per physically unfinished job
+for bounded metadata/header/reference evidence plus the final sequence. The four
+unrecovered historical screenshots remain disclosed in the existing preservation
+notice; no recovery is claimed.
+
+The Skiper transition study is retired from the running interface. Current links
+use ordinary color/text-decoration states; the launch arrow uses color only.
+Historical source, custom terms and attribution remain recorded. The publisher's
+free-use terms have not been relabeled as OSI or Apache-2.0. Existing NASA imagery,
+fonts, Three.js/Draco and Lenis retain their own recorded sources and terms.
+Organizer acceptance of prior development and final packaging remains based on
+the user's report, not independently verified correspondence. Qualified science
+and internal human approval remain PENDING; novice validation NOT CONDUCTED.
+
+Exact run scopes, failures, source changes and test receipts accompany the new
+milestone verification record. Earlier counts below describe the accepted prior
+milestone, not the final counts of this increment.
+
 ## Implementation update — October 30, 2026 (Asia/Hebron)
 
 The October 29 findings below remain a historical audit. The user subsequently reported organizer approval and explicitly authorized current implementation in the final-development directive. The user's follow-up summary was: “we can finalize our work as we want, but on november 14 we will have the submitted project as completely new files that are historically dated to the submission date.” This is **user-reported approval**, not independently verified organizer correspondence. Local development has resumed on `codex/scientific-completion`. A future release will retain its authentic creation date and disclose the prior development; no old dates or history were rewritten. No final competition submission is being prepared now.

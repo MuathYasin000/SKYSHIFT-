@@ -1,9 +1,11 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_home_startup',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {chromium} from 'file:///C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
 
-const out='docs/evidence/home-startup-20261029',base='http://localhost:3000';
-await fs.mkdir(out,{recursive:true});
+const out=evidenceRun,base='http://localhost:3000';
+
 const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const results=[],errors=[];
 async function context(options={}) {
@@ -20,7 +22,7 @@ try {
    await p.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));await rendered(p);
    assert.equal(await p.locator('#hero-model-message').isVisible(),false);
    assert.equal(await p.locator('.hero-model-controls').isVisible(),true);
-   await p.screenshot({path:out+'/hero-after-search.png'});
+   await p.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+'/hero-after-search.png'))});
   }finally{await c.close();}
  });
  await check('Homepage reload starts at the top after scrolling down',async()=>{
@@ -88,5 +90,5 @@ try {
    assert.equal(await p.locator('#hero-model-message').isVisible(),false);
   }finally{release();await c.close();}
  });
-}finally{await browser.close();await fs.writeFile(out+'/browser.json',JSON.stringify({results,page_errors:errors},null,2)+'\n');}
+}finally{await browser.close();await writeEvidenceFile(evidenceFile(evidenceRun,out+'/browser.json'),JSON.stringify({results,page_errors:errors},null,2)+'\n');}
 assert.deepEqual(errors,[]);assert.ok(results.every(r=>r.status==='pass'));

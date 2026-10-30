@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_unified_recovery',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
 import { pathToFileURL } from "node:url";
@@ -234,8 +236,7 @@ try {
   console.error(e);
   process.exitCode = 1;
 } finally {
-  await fs.writeFile(
-    "docs/evidence/unified_recovery_tests.json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/unified_recovery_tests.json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

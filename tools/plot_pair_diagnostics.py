@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run
 """Produce a clearly labeled engineering preview, never a validated detection."""
 from pathlib import Path
 import json
@@ -45,7 +49,7 @@ def main():
     fig.colorbar(heat,ax=axes[2],label='Wavelength separation / smaller bandwidth',shrink=.7)
     fig.suptitle('REAL SPHEREx DATA - Engineering preview only\nM101 candidate, 2.4 arcmin field - Scientific review PENDING',fontsize=14,color='#17354d',y=.96)
     fig.supxlabel('Same stretch; gray is invalid support. No PSF matching, background subtraction, or motion measurement.\nData: NASA/IPAC IRSA SPHEREx QR2 | DOI: 10.26131/IRSA652',fontsize=9,y=.04)
-    out=ROOT/'docs/evidence';out.mkdir(parents=True,exist_ok=True)
+    out=fresh_run('pair-diagnostics')
     fig.savefig(out/'candidate_engineering_preview.png',dpi=150);plt.close(fig)
     (out/'candidate_screen.json').write_text(json.dumps(report,indent=2,allow_nan=False),encoding='utf-8')
     print('Saved clearly labeled candidate preview and engineering screen.')

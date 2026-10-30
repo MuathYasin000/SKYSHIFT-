@@ -76,7 +76,7 @@ export function createObservationConsole({
   $("instrument-add").title = "Select a supported pixel, then attach your question to its sky position.";
   const timeline=node('div',undefined,'sequence-timeline');
   timeline.id='instrument-sequence';timeline.hidden=true;
-  timeline.innerHTML='<p id="instrument-sequence-quality"></p><div class="sequence-actions"><button id="instrument-sequence-prev" aria-label="Previous observation">← Previous</button><button id="instrument-sequence-play" aria-pressed="false">Play sequence</button><button id="instrument-sequence-next" aria-label="Next observation">Next →</button><label>Frame hold <select id="instrument-sequence-speed"><option value="1500">1.5 seconds</option><option value="2500">2.5 seconds</option><option value="4000">4 seconds</option></select></label></div><p>Frames use actual observation times. Equal display duration does not represent equal time gaps or physical motion.</p>';
+  timeline.innerHTML='<p id="instrument-sequence-quality"></p><div class="sequence-actions"><button id="instrument-sequence-prev" aria-label="Previous observation">← Previous</button><button id="instrument-sequence-play" aria-pressed="false">Play sequence</button><button id="instrument-sequence-next" aria-label="Next observation">Next →</button><label>Frame hold <select id="instrument-sequence-speed"><option value="1500">1.5 seconds</option><option value="2500">2.5 seconds</option><option value="4000">4 seconds</option></select></label></div><p>Frames use actual observation times. Equal display duration does not represent equal time gaps or physical motion. Brightness differences at unmatched wavelengths do not establish variability.</p>';
   root.querySelector('.instrument-epoch-tools').after(timeline);
   let sequenceTimer=null;
   const overlayButton=node('button','Gaia reference positions');overlayButton.id='instrument-reference-overlay';overlayButton.setAttribute('aria-pressed','false');timeline.querySelector('.sequence-actions').append(overlayButton);
@@ -1220,6 +1220,11 @@ export function createObservationConsole({
     body.append(processing);
     if(v.sequence) {
       const b=v.sequence.bundle;
+      if(b.selection) {
+        const selection=node('details');
+        selection.append(node('summary','Observation selection & bounded preflight'),node('p',b.selection.outcome),node('pre',JSON.stringify(b.selection,null,2)));
+        body.append(selection);
+      }
       body.append(node('h3','Requested area and comparison quality'),node('p',`Requested width ${(b.request.region.size_deg*60).toFixed(2)}′. Actual support is shown by each frame’s mask. Source: ${b.origin}. Prepared ${b.created_at_utc}.`));
       for(const c of b.comparisons) {
         const failed=c.screen.suitability.checks.filter(k=>k.status==='fail');

@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run, write_report
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run, write_report
 """Verify public release bytes without cookies, credentials, or a browser session."""
 from pathlib import Path
 from urllib.request import urlopen,Request
@@ -8,6 +12,7 @@ from datetime import datetime,timezone
 import json,zipfile
 
 root=Path(__file__).resolve().parents[1]
+evidence_run=fresh_run('verify-public-release')
 origin='https://skyshift-project-mercury.surebream11.chatgpt.site/'
 measurements=[]
 def get(name,limit):
@@ -34,12 +39,12 @@ with zipfile.ZipFile(comparison) as z:
     assert len(saved['annotations'])==1 and saved['annotations'][0]['note'].startswith('QA demonstration:')
     # Preserve an explicitly corrupt control for the browser rejection exercise.
     payload['manifest.json']=b'corrupted test manifest'
-    with zipfile.ZipFile(root/'tmp/corrupt-comparison.zip','w',zipfile.ZIP_DEFLATED) as bad:
+    with zipfile.ZipFile(evidence_run/'corrupt-comparison.zip','x',zipfile.ZIP_DEFLATED) as bad:
         for n,b in payload.items():bad.writestr(n,b)
 report={'verified_at_utc':datetime.now(timezone.utc).isoformat(),'url':origin,'credentials_used':False,
     'pair_id':m['pair_id'],'review_packet_sha256':expected,'browser_download_matches_snapshot':True,
     'production_comparison_annotations':len(saved['annotations']),'measurements':measurements,
     'performance_scope':'Unauthenticated HTTP transfer timings only, not browser paint, controlled cache, concurrent load, or user-study measurements.',
     'scientific_approval':'PENDING'}
-(root/'docs/evidence/public_release_verification.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+write_report(evidence_run,'public_release_verification.json',json.dumps(report,indent=2))
 print(json.dumps(report,indent=2))

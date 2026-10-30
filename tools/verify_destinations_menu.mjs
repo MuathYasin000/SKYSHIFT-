@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_destinations_menu',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { pathToFileURL } from "node:url";
@@ -7,9 +9,9 @@ const browser = await chromium.launch({ headless: true, executablePath:
   process.env.SKYSHIFT_CHROMIUM_EXECUTABLE || "C:/Program Files/Google/Chrome/Application/chrome.exe" });
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, reducedMotion: "reduce" });
 page.setDefaultTimeout(18000);
-const results = [], errors = [], out = "tmp/destinations-menu";
+const results = [], errors = [], out = evidenceRun;
 page.on("pageerror", error => errors.push(error.message));
-await fs.mkdir(out, { recursive: true });
+
 async function open() {
   if (await page.locator("#destinations-drawer").isHidden())
     await page.locator("#destinations-toggle").click();
@@ -85,15 +87,15 @@ try {
     await open();
     if(width===1440 || width===390) {
       await page.locator("#destinations-drawer").evaluate(el => {el.scrollTop=0;});
-      await page.screenshot({path:`${out}/${width}.png`});
+      await page.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,`${out}/${width}.png`))});
     }
     await page.locator('button[data-environment="observatory"]').click();
     await page.locator("#destinations-close").click();
     console.log(`PASS ${width}x${height}: search, collections, empty state, selection, keyboard and layout`);
   }
   assert.deepEqual(errors,[]);
-  await fs.writeFile(`${out}/results.json`,JSON.stringify({results,errors},null,2));
+  await writeEvidenceFile(evidenceFile(evidenceRun,`${out}/results.json`),JSON.stringify({results,errors},null,2));
 } catch(error) {
-  await page.screenshot({path:`${out}/failure.png`}).catch(()=>{});
+  await page.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,`${out}/failure.png`))}).catch(()=>{});
   throw error;
 } finally { await browser.close(); }

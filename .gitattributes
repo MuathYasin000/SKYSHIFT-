@@ -1,9 +1,3 @@
-# Preserve the exact bytes used by provenance records and source fingerprints.
-* -text
-# Preserve upstream formatting in vendored libraries and their license text.
-web/dist/vendor/three/** -whitespace
-web/dist/assets/fonts/OFL.txt -whitespace
-web/dist/assets/fonts/Outfit-OFL.txt -whitespace
-web/dist/assets/fonts/Manrope-OFL.txt -whitespace
-web/dist/assets/fonts/SourceSans3-OFL.txt -whitespace
-web/dist/assets/fonts/IBMPlexMono-OFL.txt -whitespace
+# FITS prefixes begin with ASCII cards but contain binary image bytes.
+# Preserve their exact HTTP-range identity across Windows/Linux checkouts.
+docs/evidence/**/selection/header-*.bin binary

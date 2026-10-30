@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_repair',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {chromium} from 'file:///C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
@@ -5,15 +7,15 @@ import {createInvestigation} from '../web/dist/investigation.js';
 import {pixelToSky,sha256} from '../web/dist/science.js';
 import {REVIEW_ARCHIVE_SHA256} from '../web/dist/review-download.js';
 import {unzipSync,strFromU8,zipSync,strToU8} from '../web/dist/vendor/fflate.js';
-const out='docs/evidence/repair-20261018',base=process.env.SKYSHIFT_BASE||'http://localhost:3000',results=[],errors=[];
-await fs.mkdir(out,{recursive:true});
+const out=evidenceRun,base=process.env.SKYSHIFT_BASE||'http://localhost:3000',results=[],errors=[];
+
 const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 async function context(options={}){const c=await browser.newContext({viewport:{width:1440,height:900},acceptDownloads:true,reducedMotion:'reduce',...options});c.on('page',p=>{p.setDefaultTimeout(12000);p.on('pageerror',e=>errors.push({url:p.url(),error:e.message}));});return c;}
 async function check(name,fn){try{const detail=await fn();results.push({name,status:'pass',detail});console.log('PASS '+name);}catch(e){results.push({name,status:'fail',error:e.stack});console.log('FAIL '+name+': '+e.message);}}
 const native=p=>p.waitForFunction(()=>window.skyshiftWebsite?.diagnostics().investigation?.kind&&!skyshiftWebsite.diagnostics().investigation.busy);
 const standalone=p=>p.locator('#workspace:not([hidden])').waitFor();
 const exposure=p=>p.locator('#explorer[aria-busy=false]').waitFor();
-async function save(p,selector,name){const d=p.waitForEvent('download');await p.locator(selector).click();const file=out+'/'+name;await(await d).saveAs(file);return new Uint8Array(await fs.readFile(file));}
+async function save(p,selector,name){const d=p.waitForEvent('download');await p.locator(selector).click();const file=out+'/'+name;await(await d).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,file)));return new Uint8Array(await fs.readFile(file));}
 const unpack=bytes=>Object.fromEntries(Object.entries(unzipSync(bytes)).filter(([k])=>['manifest.json','visualization.json','annotations.json','prepared/pair.fits'].includes(k)).map(([k,v])=>[k,k.endsWith('.json')?JSON.parse(strFromU8(v)):Buffer.from(v).toString('base64')]));
 const local=async url=>new Response(await fs.readFile(new URL(url,new URL('../web/dist/',import.meta.url))));
 const engine=createInvestigation({fetcher:local}),pair=await engine.compare();
@@ -21,11 +23,11 @@ Object.assign(pair.display,{zoom:3,center_x:10.25,center_y:12.75,selected_epoch:
 Object.assign(pair.visual,{palette:'ember',interpolation:'smooth',stretch:'log',wipe:true,wipe_position:67});
 let i=pair.arrays.COMMON.findIndex(Boolean),sky=pixelToSky(i%pair.shape[1],Math.floor(i/pair.shape[1]),pair.wcs);
 engine.updateQuestions([{annotation_id:'repair-test-question',pair_id:pair.key,frame:'icrs',...sky,category:'uncertain',note:'Automated round-trip question. No discovery claimed.',created_at:'2026-10-18T00:00:00.000Z'}]);
-const pairSeed=await engine.save();await fs.writeFile(out+'/pair-seed.zip',pairSeed.bytes);
+const pairSeed=await engine.save();await writeEvidenceFile(evidenceFile(evidenceRun,out+'/pair-seed.zip'),pairSeed.bytes);
 const ex=await engine.select('m101',1);i=ex.arrays.VALID.findIndex(Boolean);sky=pixelToSky(i%ex.shape[1],Math.floor(i/ex.shape[1]),ex.wcs);
 Object.assign(ex.display,{zoom:2.5,center_x:83.25,center_y:97.75});Object.assign(ex.visual,{palette:'ember',interpolation:'smooth',stretch:'log'});ex.contrast=1.3;
 engine.updateQuestions([{id:'22222222-2222-4222-8222-222222222222',product_sha256:ex.key,frame:'icrs',...sky,question:'Automated exposure question. No variability claimed.',created_at:'2026-10-18T00:00:00.000Z'}]);
-const exSeed=await engine.save();await fs.writeFile(out+'/exposure-seed.json',exSeed.bytes);
+const exSeed=await engine.save();await writeEvidenceFile(evidenceFile(evidenceRun,out+'/exposure-seed.json'),exSeed.bytes);
 try{
  await check('ZIP: standalone export → integrated import/reload/export → standalone import, preserving all scientific identities and settings',async()=>{
   const c=await context(),p=await c.newPage();await p.goto(base+'/compare.html');await standalone(p);
@@ -37,7 +39,7 @@ try{
   const b=await save(p,'#instrument-save','integrated-pair.zip');assert.deepEqual(unpack(b),unpack(a));
   await p.goto(base+'/compare.html');await standalone(p);await p.setInputFiles('#import-file',out+'/integrated-pair.zip');await p.waitForFunction(()=>document.querySelector('#note-count').textContent==='1');await p.reload();await standalone(p);
   const d=await save(p,'#export','reloaded-standalone-pair.zip');assert.deepEqual(unpack(d),unpack(b));
-  await p.screenshot({path:out+'/after-standalone-comparison.png'});await c.close();return {directions:2,reloads:2,fields:['FITS/masks','observations/dates','source hashes','WCS/region','display/zoom/pan','visualization/wipe','questions','attribution']};
+  await p.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+'/after-standalone-comparison.png'))});await c.close();return {directions:2,reloads:2,fields:['FITS/masks','observations/dates','source hashes','WCS/region','display/zoom/pan','visualization/wipe','questions','attribution']};
  });
  await check('JSON: integrated ↔ standalone exposure with nondefault visualization, date, viewport, questions and reload',async()=>{
   const c=await context(),p=await c.newPage();await p.goto(base+'/#observations/m101');await native(p);await p.setInputFiles('#instrument-file',out+'/exposure-seed.json');await p.waitForFunction(()=>skyshiftWebsite.diagnostics().investigation.questions.length===1);
@@ -60,7 +62,7 @@ try{
  });
  await check('Methodology renders applicable historical counts and separate current-build identity; missing evidence fails honestly',async()=>{
   const c=await context(),p=await c.newPage();await p.goto(base+'/methodology.html');await p.waitForFunction(()=>document.querySelector('#audit-summary').textContent.includes('10 / 10'));
-  assert.match(await p.locator('#audit-traceability').innerText(),/2026-10-16/);await p.waitForFunction(()=>document.querySelector('#release-traceability').textContent.includes('content'));await p.screenshot({path:out+'/after-methodology.png',fullPage:true});
+  assert.match(await p.locator('#audit-traceability').innerText(),/2026-10-16/);await p.waitForFunction(()=>document.querySelector('#release-traceability').textContent.includes('content'));await p.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+'/after-methodology.png')),fullPage:true});
   await c.route('**/provenance-audit.json',r=>r.fulfill({status:404,body:'missing'}));await p.reload();await p.waitForFunction(()=>document.querySelector('#audit-summary').textContent.includes('UNVERIFIED'));assert.doesNotMatch(await p.locator('#audit-summary').innerText(),/4 \/ 4|10 \/ 10/);await c.close();
  });
  await check('Review download UI: cancel, recover a 503 without re-fetching verified parts, and verify the complete archive',async()=>{
@@ -85,18 +87,18 @@ try{
    await p.evaluate(()=>document.fonts.ready);
    for(const width of [320,360,390,430,768,1024,1440]){await p.setViewportSize({width,height:900});await p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
     const g=await p.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,offenders:[...document.querySelectorAll('body *')].filter(e=>e.getClientRects().length&&e.getBoundingClientRect().right>innerWidth+1).slice(0,8).map(e=>({tag:e.tagName,id:e.id,cls:e.className,right:e.getBoundingClientRect().right}))}));geometry.push({route,...g});
-    if(g.scroll>width+1)await p.screenshot({path:out+'/overflow-'+route.replace(/[^a-z]/gi,'')+'-'+width+'.png'});
-    if([320,390,1440].includes(width))await p.screenshot({path:out+'/layout-'+route.replace(/[^a-z]/gi,'')+'-'+width+'.png'});
+    if(g.scroll>width+1)await p.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+'/overflow-'+route.replace(/[^a-z]/gi,'')+'-'+width+'.png'))});
+    if([320,390,1440].includes(width))await p.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+'/layout-'+route.replace(/[^a-z]/gi,'')+'-'+width+'.png'))});
    }
   }
-  await fs.writeFile(out+'/responsive.json',JSON.stringify(geometry,null,2));await c.close();assert.deepEqual(geometry.filter(g=>g.scroll>g.width+1),[]);return {routes:routes.length,widths:7,checks:geometry.length};
+  await writeEvidenceFile(evidenceFile(evidenceRun,out+'/responsive.json'),JSON.stringify(geometry,null,2));await c.close();assert.deepEqual(geometry.filter(g=>g.scroll>g.width+1),[]);return {routes:routes.length,widths:7,checks:geometry.length};
  });
  await check('Browser accessibility scans on rendered primary routes and keyboard menus/dialogs',async()=>{
   const c=await context(),p=await c.newPage(),reports=[];
   for(const route of routes){await p.goto(base+route);if(route==='/')await p.waitForFunction(()=>document.body.dataset.controller==='ready');if(route.includes('#compare')||route.includes('#observations'))await native(p);if(route.includes('#universe'))await p.waitForFunction(()=>window.skyshiftSpace?.diagnostics().frames>0);
    await p.evaluate(await fs.readFile('tools/vendor/axe.min.js','utf8'));const report=await p.evaluate(async()=>{const r=await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}});return {violations:r.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),incomplete:r.incomplete.length};});reports.push({route,...report});
   }
-  await fs.writeFile(out+'/accessibility.json',JSON.stringify(reports,null,2));
+  await writeEvidenceFile(evidenceFile(evidenceRun,out+'/accessibility.json'),JSON.stringify(reports,null,2));
   await p.goto(base+'/');await p.setViewportSize({width:390,height:844});await p.waitForFunction(()=>document.body.dataset.controller==='ready');await p.locator('#site-menu-toggle').focus();await p.keyboard.press('Enter');assert.equal(await p.locator('#site-menu-toggle').getAttribute('aria-expanded'),'true');await p.keyboard.press('Escape');assert.equal(await p.locator('#site-menu-toggle').evaluate(e=>e===document.activeElement),true);
   await p.goto(base+'/compare.html');await standalone(p);await p.locator('#comparison-source').click();await p.keyboard.press('Escape');assert.equal(await p.locator('#comparison-source').evaluate(e=>e===document.activeElement),true);
   await c.close();assert.deepEqual(reports.filter(r=>r.violations.length),[]);return {scans:reports.length,keyboard:'mobile menu enter/escape and dialog focus return'};
@@ -117,5 +119,5 @@ try{
   assert.deepEqual(memory.at(-1),memory[1]);await c.close();return {visits:5,gpuResources:memory,scope:'Renderer resource counters; not a proof of absence of all browser/GPU leaks'};
  });
  assert.deepEqual(errors,[]);
-}finally{await fs.writeFile(out+'/browser-results.json',JSON.stringify({results,errors,scientific_approval:'PENDING',independent_novice_validation:'NOT CONDUCTED'},null,2));await browser.close();}
+}finally{await writeEvidenceFile(evidenceFile(evidenceRun,out+'/browser-results.json'),JSON.stringify({results,errors,scientific_approval:'PENDING',independent_novice_validation:'NOT CONDUCTED'},null,2));await browser.close();}
 if(results.some(r=>r.status==='fail')||errors.length)process.exitCode=1;

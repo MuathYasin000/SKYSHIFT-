@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run
 """Recompute and plot the declared-context reference validation without correcting images."""
 from pathlib import Path
 import csv,json
@@ -12,7 +16,7 @@ from skyshift.products import read_product
 from skyshift.registration import measure_registration
 from skyshift.response import response_report
 
-root=Path(__file__).resolve().parents[1];out=root/'docs/evidence'
+root=Path(__file__).resolve().parents[1];out=fresh_run('review-diagnostics')
 region=SkyRegion(ra_deg=210.80227,dec_deg=54.34895,size_deg=.04);context=region.model_copy(update={'size_deg':.3})
 cal=root/'data/calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits';epsf=root/'data/calibration/epsf_D2_spx_cal-epsf-v1-2026-191.fits'
 products=[read_product(root/f'data/raw/m101_context/{obs}_D2.fits',region,calibration=cal) for obs in ['2025W49_2A_0756_3','2025W50_1A_0736_3']]

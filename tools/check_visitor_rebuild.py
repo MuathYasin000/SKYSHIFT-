@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run
 """Confirm HTML regeneration preserves bytes and directly maintained JS is unchanged."""
 from pathlib import Path
 import hashlib
@@ -16,7 +20,7 @@ def run():
     after = {name: hashlib.sha256((ROOT/'web/dist'/name).read_bytes()).hexdigest() for name in FILES}
     assert before == after, 'Regeneration changed checked-in outputs; inspect before release'
     result = {'status': 'pass', 'checked_files': after, 'html_regenerated': ['explore.html','compare.html'], 'controllers_maintained_directly': True, 'science_rebuilt': False}
-    (ROOT/'docs/evidence/visitor_rebuild_current.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
+    (fresh_run('visitor-rebuild')/'visitor_rebuild_current.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
     print(json.dumps(result, indent=2))
 
 

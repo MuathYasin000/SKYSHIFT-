@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_universe_disclosure',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Check the label itself, independently of its disclosure indicator, everywhere
 // the shared Universe control is used. No scene/data/rendering changes.
 import fs from "node:fs/promises";
@@ -10,10 +12,10 @@ const { chromium } = await import(
   )
 );
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "chrome",
-  out = "tmp/universe-disclosure/" + suffix,
+  out = evidenceRun,
   results = [],
   errors = [];
-await fs.mkdir(out, { recursive: true });
+
 const browser = await chromium.launch({
   headless: true,
   executablePath:
@@ -160,19 +162,18 @@ try {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page
     .locator("#space-context")
-    .screenshot({ path: out + "/desktop.png" });
+    .screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/desktop.png" ))});
   await page.setViewportSize({ width: 390, height: 900 });
   await page
     .locator("#space-context")
-    .screenshot({ path: out + "/mobile.png" });
+    .screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/mobile.png" ))});
   assert.deepEqual(errors, []);
 } catch (e) {
   console.error(e.stack);
   process.exitCode = 1;
-  await page.screenshot({ path: out + "/failure.png" }).catch(() => {});
+  await page.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/failure.png" ))}).catch(() => {});
 } finally {
-  await fs.writeFile(
-    "docs/evidence/universe_disclosure_tests_" + suffix + ".json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/universe_disclosure_tests_" + suffix + ".json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

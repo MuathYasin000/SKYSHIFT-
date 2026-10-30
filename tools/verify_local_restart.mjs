@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_local_restart',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Run after an actual local_server.py stop/start. Uses fresh test profiles.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -56,12 +58,12 @@ try {
     );
     result.reopened.push({ file, kind, field, questions: 1 });
   }
-  await fs.mkdir("tmp/website07-restart-qa", { recursive: true });
+
   const event = p.waitForEvent("download");
   await p.click("#instrument-save");
-  await (await event).saveAs("tmp/website07-restart-qa/comparison.zip");
+  await (await event).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,"tmp/website07-restart-qa/comparison.zip")));
   assert.ok(
-    (await fs.stat("tmp/website07-restart-qa/comparison.zip")).size > 1000,
+    (await fs.stat(evidenceFile(evidenceRun,"comparison.zip"))).size > 1000,
   );
   assert.deepEqual(errors, []);
   result.status = "pass";
@@ -77,8 +79,7 @@ try {
 } finally {
   result.errors = errors;
   await browser.close();
-  await fs.writeFile(
-    "docs/evidence/website07_local_restart_tests.json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/website07_local_restart_tests.json"),
     JSON.stringify(result, null, 2),
   );
 }

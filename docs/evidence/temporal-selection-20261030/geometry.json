@@ -1,0 +1,22 @@
+[
+  {
+    "observation_id": "2025W49_1A_0009_3",
+    "time_utc": "2025-12-01T00:36:49.904000Z",
+    "source_native_pixel": [
+      87.14671650024927,
+      87.07606898881383
+    ],
+    "solar_elongation_deg": 88.50950498462734,
+    "solar_geometry_method": "Astropy builtin Sun, geocentric apparent direction; engineering context only"
+  },
+  {
+    "observation_id": "2025W50_2A_0259_3",
+    "time_utc": "2025-12-12T08:45:52.049000Z",
+    "source_native_pixel": [
+      87.38655861971044,
+      87.16151643613455
+    ],
+    "solar_elongation_deg": 90.22443906057867,
+    "solar_geometry_method": "Astropy builtin Sun, geocentric apparent direction; engineering context only"
+  }
+]

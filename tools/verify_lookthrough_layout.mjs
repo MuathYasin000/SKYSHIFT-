@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_lookthrough_layout',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { pathToFileURL } from "node:url";
@@ -7,9 +9,9 @@ const browser = await chromium.launch({ headless: true, executablePath:
   process.env.SKYSHIFT_CHROMIUM_EXECUTABLE || "C:/Program Files/Google/Chrome/Application/chrome.exe" });
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, reducedMotion: "reduce" });
 page.setDefaultTimeout(18000);
-const errors = [], results = [], out = "tmp/lookthrough-layout";
+const errors = [], results = [], out = evidenceRun;
 page.on("pageerror", error => errors.push(error.message));
-await fs.mkdir(out, { recursive: true });
+
 async function inspect(id, stage, width) {
   const geometry = await page.locator("#telescope-experience").evaluate(panel => {
     const bounds = el => {
@@ -73,7 +75,7 @@ try {
         if (stage === 2) await page.locator("#mission-image:not([hidden])").waitFor();
         await inspect(id, stage, width);
         if ((width === 1440 || width === 390) && stage === 2)
-          await page.screenshot({ path: `${out}/after-${width}-${id}.png` });
+          await page.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,`${out}/after-${width}-${id}.png` ))});
         await page.locator("#mission-next").click();
         assert.equal(await page.locator("#telescope-experience").getAttribute("data-stage"), String((stage + 1) % 3));
         assert.equal(await page.locator("#telescope-experience").evaluate(el => el.scrollTop), 0, "Continue must begin the next step at the top");
@@ -83,10 +85,10 @@ try {
     console.log(`PASS ${width}x${height}: all telescopes and stages`);
   }
   assert.deepEqual(errors, []);
-  await fs.writeFile(`${out}/results.json`, JSON.stringify({ results, errors }, null, 2));
+  await writeEvidenceFile(evidenceFile(evidenceRun,`${out}/results.json`), JSON.stringify({ results, errors }, null, 2));
   console.log(`PASS: ${results.length} telescope/stage layouts, footer spacing, source links, images, Continue and scroll containment.`);
 } catch (error) {
-  await page.screenshot({ path: `${out}/failure.png` }).catch(() => {});
+  await page.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,`${out}/failure.png` ))}).catch(() => {});
   throw error;
 } finally {
   await browser.close();

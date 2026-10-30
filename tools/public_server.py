@@ -4,6 +4,8 @@ Public hosting is explicitly opt-in; the ordinary startup remains loopback-only.
 """
 import argparse
 import os
+import signal
+import threading
 from local_server import LocalServer, ROOT
 
 
@@ -17,6 +19,9 @@ def main():
     if not hosts or any('/' in h or '*' in h for h in hosts):
         p.error('Configure exact public host names; wildcards are not accepted')
     server = LocalServer(ROOT/'web/dist',args.port,bind=args.bind,public_hosts=hosts)
+    # Container termination follows the same cancellation/close path as a local
+    # shutdown. shutdown() must run outside serve_forever's thread.
+    signal.signal(signal.SIGTERM,lambda *_:threading.Thread(target=server.shutdown,daemon=True).start())
     try:
         server.serve_forever()
     finally:

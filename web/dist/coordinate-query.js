@@ -36,10 +36,28 @@ export function observationRequest({ra, dec, fov, release = 'qr3'}) {
 export function requestFromURL(url) {
   const p = new URL(url).searchParams;
   if (!['ra', 'dec', 'fov', 'release', 'detector'].some(key => p.has(key))) return null;
-  for (const key of ['ra', 'dec', 'fov', 'release', 'detector']) if (p.getAll(key).length > 1) throw Error('Duplicate sky search parameters are ambiguous.');
+  for (const key of ['ra', 'dec', 'fov', 'release', 'detector','selection','wavelength','start','end']) if (p.getAll(key).length > 1) throw Error('Duplicate sky search parameters are ambiguous.');
   const request=observationRequest({ra: p.get('ra') ?? '', dec: p.get('dec') ?? '', fov: p.get('fov') ?? '12', release: p.get('release') ?? 'qr3'});
   if(p.has('detector')){if(!/^[1-6]$/.test(p.get('detector')))throw Error('Invalid wavelength group.');request.detector=Number(p.get('detector'));}
+  Object.assign(request,selectionOptions({selection:p.get('selection')||'compatible',wavelength:p.get('wavelength')||'',start:p.get('start')||'',end:p.get('end')||''}));
   return request;
+}
+
+export function selectionOptions({selection='compatible',wavelength='',start='',end=''}) {
+  if(!['compatible','chronological'].includes(selection))throw Error('Choose matching wavelengths or chronological browsing.');
+  const result={};
+  if(selection!=='compatible')result.selection=selection;
+  if(String(wavelength).trim()) {
+    const number=Number(wavelength);
+    if(!/^(?:\d+(?:\.\d*)?|\.\d+)$/.test(String(wavelength))||!Number.isFinite(number)||number<.75||number>5)throw Error('Wavelength must be between 0.75 and 5 micrometres.');
+    result.wavelength_um=number;
+  }
+  for(const [key,value] of [['start_date',start],['end_date',end]])if(value) {
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(value)||!Number.isFinite(Date.parse(value))||new Date(value).toISOString().slice(0,10)!==value)throw Error('Use a valid UTC calendar date.');
+    result[key]=value;
+  }
+  if(start&&end&&start>end)throw Error('Start date must not follow end date.');
+  return result;
 }
 
 export function requestURL(request, base) {
@@ -48,6 +66,10 @@ export function requestURL(request, base) {
   const r = request.region;
   for (const [key, value] of Object.entries({ra: r.ra_deg, dec: r.dec_deg, fov: r.size_deg * 60, release: request.release})) url.searchParams.set(key, value);
   if(request.detector)url.searchParams.set('detector',request.detector);
+  if(request.selection&&request.selection!=='compatible')url.searchParams.set('selection',request.selection);
+  if(request.wavelength_um!=null)url.searchParams.set('wavelength',request.wavelength_um);
+  if(request.start_date)url.searchParams.set('start',request.start_date);
+  if(request.end_date)url.searchParams.set('end',request.end_date);
   url.hash = 'sky-search';
   return url.href;
 }

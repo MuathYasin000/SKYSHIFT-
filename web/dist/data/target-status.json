@@ -162,6 +162,15 @@
       "prepared_frames": 2,
       "playback_eligible": false,
       "interpretation": "These observations measure different infrared wavelengths. Inspect each independently; this pair cannot establish temporal motion or brightness change."
+    },
+    {
+      "id": "r-draconis-temporal",
+      "name": "R Draconis temporal field",
+      "url": "./data/sequence-r-draconis-temporal.json",
+      "sha256": "ea4c955aad476910a8f29661c7e9948dd51941b482ffc71fce5fb92245048d20",
+      "prepared_frames": 2,
+      "playback_eligible": true,
+      "interpretation": "Two genuine observations 11.34 days apart pass the provisional wavelength and stationary-reference engineering screens. Target identification and physical variability are not established."
     }
   ]
 }

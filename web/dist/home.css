@@ -115,10 +115,9 @@
   }
   .launch-arrow {
     font-size: 24px;
-    transition: transform 0.5s var(--ease);
   }
   .mission-launch:hover .launch-arrow {
-    transform: translate(3px, -3px);
+    color: var(--red);
   }
   .observatory-hero .intro-note {
     font: 12px/1.7 var(--mono);

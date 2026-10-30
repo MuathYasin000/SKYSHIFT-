@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_universe_layout',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
@@ -9,7 +11,7 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, red
 page.setDefaultTimeout(20000);
 const errors = [], results = [];
 page.on('pageerror', error => errors.push(error.message));
-await fs.mkdir('tmp/universe-layout', { recursive: true });
+
 async function inspect(state) {
   const result = await page.evaluate(() => {
     const rect = el => {
@@ -108,7 +110,7 @@ try {
     await page.waitForTimeout(100);
     await inspect(`${width}x${height} scene scroll`);
     if (width === 1440 || width === 390)
-      await page.screenshot({ path: `tmp/universe-layout/${width}.png` });
+      await page.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,`tmp/universe-layout/${width}.png` ))});
     console.log(`Verified ${width}x${height}`);
   }
   await page.setViewportSize({ width: 1280, height: 720 });
@@ -135,7 +137,7 @@ try {
   } finally {
     await fallbackBrowser.close();
   }
-  await fs.writeFile('tmp/universe-layout/results.json', JSON.stringify({ results, errors }, null, 2));
+  await writeEvidenceFile(evidenceFile(evidenceRun,'tmp/universe-layout/results.json'), JSON.stringify({ results, errors }, null, 2));
   console.log(`PASS: ${results.length} layout states; source scrolling, scene scroll lock, science navigation, homepage scrolling and no-WebGL recovery.`);
 } finally {
   await browser.close();

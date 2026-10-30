@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_science_layout',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Desktop route alignment, responsive science controls, and native navigation.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -9,8 +11,8 @@ const { chromium } = await import(
   )
 );
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "chrome",
-  out = "tmp/science-width/" + suffix;
-await fs.mkdir(out, { recursive: true });
+  out = evidenceRun;
+
 const browser = await chromium.launch({
   headless: true,
   executablePath:
@@ -136,7 +138,7 @@ try {
         }
         if (width >= 1280)
           await page.screenshot({
-            path: out + "/" + r.field + "-" + width + "x" + height + ".png",
+            path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/" + r.field + "-" + width + "x" + height + ".png")),
           });
         return {
           width,
@@ -215,10 +217,9 @@ try {
 } catch (e) {
   console.error(e.stack);
   process.exitCode = 1;
-  await page.screenshot({ path: out + "/failure.png" }).catch(() => {});
+  await page.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/failure.png" ))}).catch(() => {});
 } finally {
-  await fs.writeFile(
-    "docs/evidence/science_width_tests_" + suffix + ".json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/science_width_tests_" + suffix + ".json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

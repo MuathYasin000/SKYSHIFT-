@@ -30,7 +30,7 @@ class JobStore:
         self.inflight = set()
         self.closed = False
         self.clock, self.starts = clock, deque()
-        self.revision=hashlib.sha256(b''.join(Path(__file__).with_name(n).read_bytes() for n in ('sequence.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py'))).hexdigest()
+        self.revision=hashlib.sha256(b''.join(Path(__file__).with_name(n).read_bytes() for n in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py'))).hexdigest()
 
     def create(self, payload):
         request = SequenceRequest.model_validate(payload)
@@ -57,7 +57,9 @@ class JobStore:
                 self.starts.popleft()
             if len(self.starts) >= 12:
                 raise PreparationBusy('Preparation rate limit reached: twelve new jobs per minute for this service. Retry later or reopen an existing investigation.')
-            reserved=(1+len(self.inflight))*32*1024*1024
+            # Include bounded metadata XML/JSON, header prefixes, preflight and
+            # Gaia evidence in addition to the 32-MiB final sequence.
+            reserved=(1+len(self.inflight))*80*1024*1024
             if sum(1 for _ in self.directory.iterdir()) >= 512:
                 raise ValueError('Preparation receipt count reached 512. Existing investigations are preserved; no new job was started.')
             # Failed/partial acquisitions also consume disk. Counting only

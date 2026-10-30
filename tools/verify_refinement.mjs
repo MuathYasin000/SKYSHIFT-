@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_refinement',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Browser acceptance for the defect-fix brief; no human or hardware certification.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -8,7 +10,7 @@ const { chromium } = await import(
       "C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs",
   )
 );
-const out = "tmp/refinement/after",
+const out = evidenceRun,
   results = [],
   errors = [],
   consoleErrors = [],
@@ -17,7 +19,7 @@ const out = "tmp/refinement/after",
   httpErrors = [],
   requests = [],
   selectors = new Map();
-await fs.mkdir(out, { recursive: true });
+
 const browser = await chromium.launch({
   headless: true,
   executablePath:
@@ -441,11 +443,10 @@ try {
   console.error(e.stack);
   process.exitCode = 1;
   await page
-    ?.screenshot({ path: out + "/acceptance-failure.png" })
+    ?.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/acceptance-failure.png" ))})
     .catch(() => {});
 } finally {
-  await fs.writeFile(
-    out + "/acceptance.json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,out + "/acceptance.json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),
@@ -465,8 +466,7 @@ try {
       2,
     ) + "\n",
   );
-  await fs.writeFile(
-    out + "/selector-coverage.json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,out + "/selector-coverage.json"),
     JSON.stringify(
       {
         scope:

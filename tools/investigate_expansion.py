@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run
 """Bounded new crop experiment using existing real originals and unchanged policy.
 
 A screen result never enables a browser pair or implies reference registration.
@@ -12,7 +16,7 @@ from skyshift.models import SkyRegion
 from skyshift.suitability import screen_pair
 
 def run():
-    output=ROOT/'research/expansion-0.4';output.mkdir(parents=True,exist_ok=False)
+    output=fresh_run('expansion')
     cal=ROOT/'data/calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits'
     result={'scope':'Existing real archive sample, smaller crop; no threshold change','scientific_approval':'PENDING','registration_performed':False,'new_pairs_enabled':False,'fields':[]}
     for name,ra,dec in [('m67_outskirts',132.925,11.8),('ngc188',11.9,85.25)]:
@@ -27,5 +31,5 @@ def run():
         candidates=[r for r in reports if r['suitability']['status']=='pending']
         result['fields'].append({'field':name,'readable_products':len(products),'input_failures':failures,'pairs_screened':len(reports),'engineering_candidates':len(candidates),'candidates':candidates,'limitations':['No independent reference-source registration or qualified science approval for any new candidate.','The 0.12-degree prior rejections remain valid at that region size.','No new comparison was added to the application.']})
         print(name,len(reports),'screens;',len(candidates),'candidates, no registration/approval',flush=True)
-    (ROOT/'docs/evidence/expansion_0.4.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
+    (output/'expansion_0.4.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
 if __name__=='__main__':run()

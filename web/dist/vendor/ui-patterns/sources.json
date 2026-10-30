@@ -30,12 +30,9 @@
       "license_reference": "https://skiper-ui.com/docs/quick-start",
       "license_file": "NOTICES.txt",
       "attribution": "Visible homepage footer and interface source records",
-      "modifications": "Historical link transition study; current home.css and components.css retain native link hover/focus treatments with reduced-motion support, without React or Tailwind.",
-      "local_implementation": [
-        "mission-interactions.js",
-        "home.css",
-        "components.css"
-      ]
+      "modifications": "Retired link-transition study. Current navigation changes text color, footer links use ordinary text-decoration, and the launch arrow changes color. No Skiper Link000/Link001 transform-origin/scale underline or SVG arrow implementation remains in the distributed interface. Historical source, authorship and custom terms remain recorded; those terms are not relabeled as OSI or Apache-2.0.",
+      "local_implementation": [],
+      "runtime_status": "retired; historical acknowledgment retained"
     },
     {
       "name": "Vengeance UI Kinetic Text Loader",

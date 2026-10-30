@@ -1,0 +1,2732 @@
+{
+  "status": "pass",
+  "scope": "Exact-input numerical reconstruction, not independent scientific approval or physical-change detection",
+  "numeric_arrays": [
+    {
+      "observation_id": "2025W49_1A_0009_3",
+      "array": "SCI",
+      "numeric_sha256": "d43525cb3e824cf5931da15d60377a6af31c577f3cc9f76e97b5407b2fec7ec7"
+    },
+    {
+      "observation_id": "2025W49_1A_0009_3",
+      "array": "WAVE",
+      "numeric_sha256": "4d8cf0ec02600def89af1435f1d29d55ed53c8378745b82d7d8b1d5b04027e3d"
+    },
+    {
+      "observation_id": "2025W49_1A_0009_3",
+      "array": "BAND",
+      "numeric_sha256": "f316a1a72e433e4e3051bddc7e2fe26e3efd4b8dc81c0d1a1db54e98d9a87611"
+    },
+    {
+      "observation_id": "2025W49_1A_0009_3",
+      "array": "VALID",
+      "numeric_sha256": "0d722613bb0c35f20f712f9bd8d42c0e5794e391a195bff9a68f0ada7d2f614b"
+    },
+    {
+      "observation_id": "2025W50_2A_0259_3",
+      "array": "SCI",
+      "numeric_sha256": "1fc6d163432ac62f541b5de20a3bac8ca828660159e327c31f275176529afa2b"
+    },
+    {
+      "observation_id": "2025W50_2A_0259_3",
+      "array": "WAVE",
+      "numeric_sha256": "9c4be44b45e67ada5fbcd1678378a9ca076057966e8f66d0fe3c911d7852154d"
+    },
+    {
+      "observation_id": "2025W50_2A_0259_3",
+      "array": "BAND",
+      "numeric_sha256": "6feaf832f9955440e5459405a8c0d1f2775c16d9abf927ea4fd0ed8265901ade"
+    },
+    {
+      "observation_id": "2025W50_2A_0259_3",
+      "array": "VALID",
+      "numeric_sha256": "43ac67e71b21175287fd1d8bb1c1c659372df11c07d2699db9abd0e3997805fd"
+    }
+  ],
+  "scientific_decisions_identical": true,
+  "diagnostics_exact": false,
+  "diagnostic_tolerance": {
+    "absolute": 1e-06,
+    "relative": 1e-09,
+    "scope": "Continuous registration fit diagnostics only; all policies, masks, screens and decisions exact"
+  },
+  "diagnostic_differences": [
+    {
+      "path": "/0/registration/median_residual_pixels",
+      "absolute_difference": 1.8806353696554368e-10
+    },
+    {
+      "path": "/0/registration/p95_residual_pixels",
+      "absolute_difference": 5.6820886329411735e-09
+    },
+    {
+      "path": "/0/registration/median_residual_arcsec",
+      "absolute_difference": 1.156590712092509e-09
+    },
+    {
+      "path": "/0/registration/p95_residual_arcsec",
+      "absolute_difference": 3.494484523969277e-08
+    },
+    {
+      "path": "/0/registration/references/2/b/x",
+      "absolute_difference": 8.239382509600546e-10
+    },
+    {
+      "path": "/0/registration/references/2/b/y",
+      "absolute_difference": 5.266969083095319e-10
+    },
+    {
+      "path": "/0/registration/references/2/b/sigma_x_pixels",
+      "absolute_difference": 4.240256701315559e-09
+    },
+    {
+      "path": "/0/registration/references/2/b/sigma_y_pixels",
+      "absolute_difference": 1.4285824745385867e-09
+    },
+    {
+      "path": "/0/registration/references/2/b/profile_fwhm_pixels",
+      "absolute_difference": 6.105673078238283e-09
+    },
+    {
+      "path": "/0/registration/references/2/b/background_mjy_sr",
+      "absolute_difference": 4.7696457894375044e-11
+    },
+    {
+      "path": "/0/registration/references/2/b/fit_residual_rms_sigma",
+      "absolute_difference": 2.824518396948861e-10
+    },
+    {
+      "path": "/0/registration/references/16/b/x",
+      "absolute_difference": 2.460467385390075e-10
+    },
+    {
+      "path": "/0/registration/references/16/b/y",
+      "absolute_difference": 6.791971429720434e-10
+    },
+    {
+      "path": "/0/registration/references/16/b/sigma_x_pixels",
+      "absolute_difference": 2.1936661376287248e-09
+    },
+    {
+      "path": "/0/registration/references/16/b/sigma_y_pixels",
+      "absolute_difference": 1.800667726037375e-09
+    },
+    {
+      "path": "/0/registration/references/16/b/profile_fwhm_pixels",
+      "absolute_difference": 4.685765331302605e-09
+    },
+    {
+      "path": "/0/registration/references/16/b/background_mjy_sr",
+      "absolute_difference": 2.5147994797691808e-11
+    },
+    {
+      "path": "/0/registration/references/16/b/fit_residual_rms_sigma",
+      "absolute_difference": 1.6066259433955565e-11
+    },
+    {
+      "path": "/0/registration/references/18/a/x",
+      "absolute_difference": 4.318536639402737e-10
+    },
+    {
+      "path": "/0/registration/references/18/a/y",
+      "absolute_difference": 1.8156729453266962e-09
+    },
+    {
+      "path": "/0/registration/references/18/a/sigma_x_pixels",
+      "absolute_difference": 1.7371630800511184e-09
+    },
+    {
+      "path": "/0/registration/references/18/a/sigma_y_pixels",
+      "absolute_difference": 1.412774452980159e-09
+    },
+    {
+      "path": "/0/registration/references/18/a/profile_fwhm_pixels",
+      "absolute_difference": 3.744980769937456e-09
+    },
+    {
+      "path": "/0/registration/references/18/a/background_mjy_sr",
+      "absolute_difference": 1.2849943331616487e-11
+    },
+    {
+      "path": "/0/registration/references/18/a/fit_residual_rms_sigma",
+      "absolute_difference": 5.146105763742526e-12
+    },
+    {
+      "path": "/0/registration/references/32/a/x",
+      "absolute_difference": 5.7553961596568115e-11
+    },
+    {
+      "path": "/0/registration/references/32/a/y",
+      "absolute_difference": 8.731788625482295e-10
+    },
+    {
+      "path": "/0/registration/references/32/a/sigma_x_pixels",
+      "absolute_difference": 2.067880866540861e-10
+    },
+    {
+      "path": "/0/registration/references/32/a/sigma_y_pixels",
+      "absolute_difference": 3.941244552940759e-10
+    },
+    {
+      "path": "/0/registration/references/32/a/profile_fwhm_pixels",
+      "absolute_difference": 3.077078591928739e-10
+    },
+    {
+      "path": "/0/registration/references/32/a/background_mjy_sr",
+      "absolute_difference": 5.655753643196704e-13
+    },
+    {
+      "path": "/0/registration/references/32/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.9275248064332118e-11
+    },
+    {
+      "path": "/0/registration/references/39/b/x",
+      "absolute_difference": 3.837641315840301e-09
+    },
+    {
+      "path": "/0/registration/references/39/b/y",
+      "absolute_difference": 1.155378015482711e-09
+    },
+    {
+      "path": "/0/registration/references/39/b/sigma_x_pixels",
+      "absolute_difference": 2.9062001138946414e-09
+    },
+    {
+      "path": "/0/registration/references/39/b/sigma_y_pixels",
+      "absolute_difference": 5.913656231371078e-08
+    },
+    {
+      "path": "/0/registration/references/39/b/profile_fwhm_pixels",
+      "absolute_difference": 7.420334069418999e-08
+    },
+    {
+      "path": "/0/registration/references/39/b/background_mjy_sr",
+      "absolute_difference": 6.499281668403967e-11
+    },
+    {
+      "path": "/0/registration/references/39/b/fit_residual_rms_sigma",
+      "absolute_difference": 1.778597269463944e-10
+    },
+    {
+      "path": "/0/registration/references/54/a/x",
+      "absolute_difference": 1.883663003354741e-09
+    },
+    {
+      "path": "/0/registration/references/54/a/y",
+      "absolute_difference": 3.804871084867045e-09
+    },
+    {
+      "path": "/0/registration/references/54/a/sigma_x_pixels",
+      "absolute_difference": 1.3612330151957508e-09
+    },
+    {
+      "path": "/0/registration/references/54/a/sigma_y_pixels",
+      "absolute_difference": 6.959153253660588e-10
+    },
+    {
+      "path": "/0/registration/references/54/a/profile_fwhm_pixels",
+      "absolute_difference": 8.656242389548652e-10
+    },
+    {
+      "path": "/0/registration/references/54/a/background_mjy_sr",
+      "absolute_difference": 9.129225153614584e-12
+    },
+    {
+      "path": "/0/registration/references/54/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.1012923906150718e-10
+    },
+    {
+      "path": "/0/registration/references/56/a/x",
+      "absolute_difference": 8.361666914424859e-11
+    },
+    {
+      "path": "/0/registration/references/56/a/y",
+      "absolute_difference": 6.348344072648615e-11
+    },
+    {
+      "path": "/0/registration/references/56/a/sigma_x_pixels",
+      "absolute_difference": 1.709015151618587e-10
+    },
+    {
+      "path": "/0/registration/references/56/a/sigma_y_pixels",
+      "absolute_difference": 6.707240318704066e-11
+    },
+    {
+      "path": "/0/registration/references/56/a/profile_fwhm_pixels",
+      "absolute_difference": 2.822497791044043e-10
+    },
+    {
+      "path": "/0/registration/references/56/a/background_mjy_sr",
+      "absolute_difference": 4.85614326528605e-12
+    },
+    {
+      "path": "/0/registration/references/56/a/fit_residual_rms_sigma",
+      "absolute_difference": 8.01758659463303e-12
+    },
+    {
+      "path": "/0/registration/references/57/b/x",
+      "absolute_difference": 1.5837997580092633e-11
+    },
+    {
+      "path": "/0/registration/references/57/b/y",
+      "absolute_difference": 1.197975052491529e-09
+    },
+    {
+      "path": "/0/registration/references/57/b/sigma_x_pixels",
+      "absolute_difference": 3.161580164334765e-09
+    },
+    {
+      "path": "/0/registration/references/57/b/sigma_y_pixels",
+      "absolute_difference": 2.3140440674751517e-09
+    },
+    {
+      "path": "/0/registration/references/57/b/profile_fwhm_pixels",
+      "absolute_difference": 6.5318656039536904e-09
+    },
+    {
+      "path": "/0/registration/references/57/b/background_mjy_sr",
+      "absolute_difference": 2.8950647434911048e-11
+    },
+    {
+      "path": "/0/registration/references/57/b/fit_residual_rms_sigma",
+      "absolute_difference": 1.0564682462188557e-10
+    },
+    {
+      "path": "/0/registration/references/62/a/x",
+      "absolute_difference": 7.533174084528582e-11
+    },
+    {
+      "path": "/0/registration/references/62/a/y",
+      "absolute_difference": 8.068639090197394e-10
+    },
+    {
+      "path": "/0/registration/references/62/a/sigma_x_pixels",
+      "absolute_difference": 2.101676610521963e-10
+    },
+    {
+      "path": "/0/registration/references/62/a/sigma_y_pixels",
+      "absolute_difference": 5.003017888860484e-09
+    },
+    {
+      "path": "/0/registration/references/62/a/profile_fwhm_pixels",
+      "absolute_difference": 6.043906264352472e-09
+    },
+    {
+      "path": "/0/registration/references/62/a/background_mjy_sr",
+      "absolute_difference": 2.260755471716891e-11
+    },
+    {
+      "path": "/0/registration/references/62/a/fit_residual_rms_sigma",
+      "absolute_difference": 8.786860128395801e-11
+    },
+    {
+      "path": "/0/registration/references/68/a/x",
+      "absolute_difference": 3.107203383478918e-11
+    },
+    {
+      "path": "/0/registration/references/68/a/y",
+      "absolute_difference": 6.457270274040638e-10
+    },
+    {
+      "path": "/0/registration/references/68/a/sigma_x_pixels",
+      "absolute_difference": 1.3841966461924926e-10
+    },
+    {
+      "path": "/0/registration/references/68/a/sigma_y_pixels",
+      "absolute_difference": 6.222591331095373e-10
+    },
+    {
+      "path": "/0/registration/references/68/a/profile_fwhm_pixels",
+      "absolute_difference": 9.411769141820514e-10
+    },
+    {
+      "path": "/0/registration/references/68/a/background_mjy_sr",
+      "absolute_difference": 5.664080315881392e-12
+    },
+    {
+      "path": "/0/registration/references/68/a/fit_residual_rms_sigma",
+      "absolute_difference": 9.941825140913352e-12
+    },
+    {
+      "path": "/0/registration/references/72/a/x",
+      "absolute_difference": 3.702638196045882e-11
+    },
+    {
+      "path": "/0/registration/references/72/a/y",
+      "absolute_difference": 1.2221335055073723e-11
+    },
+    {
+      "path": "/0/registration/references/72/a/sigma_x_pixels",
+      "absolute_difference": 7.02810032393586e-12
+    },
+    {
+      "path": "/0/registration/references/72/a/sigma_y_pixels",
+      "absolute_difference": 6.688832820955781e-11
+    },
+    {
+      "path": "/0/registration/references/72/a/profile_fwhm_pixels",
+      "absolute_difference": 8.791678496322675e-11
+    },
+    {
+      "path": "/0/registration/references/72/a/background_mjy_sr",
+      "absolute_difference": 7.867206885947553e-12
+    },
+    {
+      "path": "/0/registration/references/72/a/fit_residual_rms_sigma",
+      "absolute_difference": 3.943387838489798e-10
+    },
+    {
+      "path": "/0/registration/references/72/b/x",
+      "absolute_difference": 8.773071158429957e-11
+    },
+    {
+      "path": "/0/registration/references/72/b/y",
+      "absolute_difference": 1.6044054973463062e-11
+    },
+    {
+      "path": "/0/registration/references/72/b/sigma_x_pixels",
+      "absolute_difference": 2.204038063169378e-10
+    },
+    {
+      "path": "/0/registration/references/72/b/sigma_y_pixels",
+      "absolute_difference": 5.253764090440427e-11
+    },
+    {
+      "path": "/0/registration/references/72/b/profile_fwhm_pixels",
+      "absolute_difference": 1.663761350911841e-10
+    },
+    {
+      "path": "/0/registration/references/72/b/background_mjy_sr",
+      "absolute_difference": 1.5559220578609256e-12
+    },
+    {
+      "path": "/0/registration/references/72/b/fit_residual_rms_sigma",
+      "absolute_difference": 4.0631364939258674e-10
+    },
+    {
+      "path": "/0/registration/references/72/dx_output_pixels",
+      "absolute_difference": 5.0661697059695143e-11
+    },
+    {
+      "path": "/0/registration/references/72/dy_output_pixels",
+      "absolute_difference": 1.0043521569969016e-10
+    },
+    {
+      "path": "/0/registration/references/72/residual_pixels",
+      "absolute_difference": 3.5611007198621536e-11
+    },
+    {
+      "path": "/0/registration/references/72/absolute_offset_a_pixels/0",
+      "absolute_difference": 1.1681322575896047e-11
+    },
+    {
+      "path": "/0/registration/references/72/absolute_offset_a_pixels/1",
+      "absolute_difference": 2.744826588241267e-11
+    },
+    {
+      "path": "/0/registration/references/72/absolute_offset_b_pixels/0",
+      "absolute_difference": 3.8980374483799096e-11
+    },
+    {
+      "path": "/0/registration/references/72/absolute_offset_b_pixels/1",
+      "absolute_difference": 7.298694981727749e-11
+    },
+    {
+      "path": "/0/registration/references/73/b/x",
+      "absolute_difference": 2.4200019765885372e-09
+    },
+    {
+      "path": "/0/registration/references/73/b/y",
+      "absolute_difference": 1.6935643998294836e-09
+    },
+    {
+      "path": "/0/registration/references/73/b/sigma_x_pixels",
+      "absolute_difference": 9.832275660315304e-09
+    },
+    {
+      "path": "/0/registration/references/73/b/sigma_y_pixels",
+      "absolute_difference": 2.09619188673571e-09
+    },
+    {
+      "path": "/0/registration/references/73/b/profile_fwhm_pixels",
+      "absolute_difference": 1.2459356102390018e-08
+    },
+    {
+      "path": "/0/registration/references/73/b/background_mjy_sr",
+      "absolute_difference": 5.678002512610192e-11
+    },
+    {
+      "path": "/0/registration/references/73/b/fit_residual_rms_sigma",
+      "absolute_difference": 9.408740453409337e-11
+    },
+    {
+      "path": "/0/registration/references/88/a/x",
+      "absolute_difference": 2.262652287754463e-10
+    },
+    {
+      "path": "/0/registration/references/88/a/y",
+      "absolute_difference": 2.6138025077671045e-10
+    },
+    {
+      "path": "/0/registration/references/88/a/sigma_x_pixels",
+      "absolute_difference": 5.068510056105424e-10
+    },
+    {
+      "path": "/0/registration/references/88/a/sigma_y_pixels",
+      "absolute_difference": 1.552283857009229e-10
+    },
+    {
+      "path": "/0/registration/references/88/a/profile_fwhm_pixels",
+      "absolute_difference": 5.679703374283918e-10
+    },
+    {
+      "path": "/0/registration/references/88/a/background_mjy_sr",
+      "absolute_difference": 1.6035200944841677e-11
+    },
+    {
+      "path": "/0/registration/references/88/a/fit_residual_rms_sigma",
+      "absolute_difference": 6.515898931525044e-12
+    },
+    {
+      "path": "/0/registration/references/88/b/x",
+      "absolute_difference": 1.0567760000412818e-09
+    },
+    {
+      "path": "/0/registration/references/88/b/y",
+      "absolute_difference": 1.0231815394945443e-12
+    },
+    {
+      "path": "/0/registration/references/88/b/sigma_x_pixels",
+      "absolute_difference": 1.7022929732490866e-09
+    },
+    {
+      "path": "/0/registration/references/88/b/sigma_y_pixels",
+      "absolute_difference": 1.2025299644946585e-09
+    },
+    {
+      "path": "/0/registration/references/88/b/profile_fwhm_pixels",
+      "absolute_difference": 3.552589555866348e-09
+    },
+    {
+      "path": "/0/registration/references/88/b/background_mjy_sr",
+      "absolute_difference": 3.398703540824499e-11
+    },
+    {
+      "path": "/0/registration/references/88/b/fit_residual_rms_sigma",
+      "absolute_difference": 6.536882146690459e-11
+    },
+    {
+      "path": "/0/registration/references/88/dx_output_pixels",
+      "absolute_difference": 6.153300091682468e-10
+    },
+    {
+      "path": "/0/registration/references/88/dy_output_pixels",
+      "absolute_difference": 1.1631300367298536e-09
+    },
+    {
+      "path": "/0/registration/references/88/residual_pixels",
+      "absolute_difference": 2.0653903587408706e-10
+    },
+    {
+      "path": "/0/registration/references/88/absolute_offset_a_pixels/0",
+      "absolute_difference": 2.801527898554923e-10
+    },
+    {
+      "path": "/0/registration/references/88/absolute_offset_a_pixels/1",
+      "absolute_difference": 1.7921308881341247e-10
+    },
+    {
+      "path": "/0/registration/references/88/absolute_offset_b_pixels/0",
+      "absolute_difference": 3.3517721931275446e-10
+    },
+    {
+      "path": "/0/registration/references/88/absolute_offset_b_pixels/1",
+      "absolute_difference": 9.839169479164411e-10
+    },
+    {
+      "path": "/0/registration/references/93/a/x",
+      "absolute_difference": 5.976943384666811e-10
+    },
+    {
+      "path": "/0/registration/references/93/a/y",
+      "absolute_difference": 3.0259172945079627e-10
+    },
+    {
+      "path": "/0/registration/references/93/a/sigma_x_pixels",
+      "absolute_difference": 8.353824298978907e-10
+    },
+    {
+      "path": "/0/registration/references/93/a/sigma_y_pixels",
+      "absolute_difference": 1.954529871284194e-10
+    },
+    {
+      "path": "/0/registration/references/93/a/profile_fwhm_pixels",
+      "absolute_difference": 1.2678371685836964e-09
+    },
+    {
+      "path": "/0/registration/references/93/a/background_mjy_sr",
+      "absolute_difference": 2.0717316751017734e-12
+    },
+    {
+      "path": "/0/registration/references/93/a/fit_residual_rms_sigma",
+      "absolute_difference": 9.194200956130771e-12
+    },
+    {
+      "path": "/0/registration/references/93/b/x",
+      "absolute_difference": 3.828120043181116e-09
+    },
+    {
+      "path": "/0/registration/references/93/b/y",
+      "absolute_difference": 1.500623625361186e-09
+    },
+    {
+      "path": "/0/registration/references/93/b/sigma_x_pixels",
+      "absolute_difference": 7.422961134651018e-09
+    },
+    {
+      "path": "/0/registration/references/93/b/sigma_y_pixels",
+      "absolute_difference": 3.811214344118241e-09
+    },
+    {
+      "path": "/0/registration/references/93/b/profile_fwhm_pixels",
+      "absolute_difference": 1.3420149436171869e-08
+    },
+    {
+      "path": "/0/registration/references/93/b/background_mjy_sr",
+      "absolute_difference": 4.954370247389761e-11
+    },
+    {
+      "path": "/0/registration/references/93/b/fit_residual_rms_sigma",
+      "absolute_difference": 2.8732971557587916e-10
+    },
+    {
+      "path": "/0/registration/references/93/dx_output_pixels",
+      "absolute_difference": 2.2556321255251532e-09
+    },
+    {
+      "path": "/0/registration/references/93/dy_output_pixels",
+      "absolute_difference": 2.573088409008051e-09
+    },
+    {
+      "path": "/0/registration/references/93/residual_pixels",
+      "absolute_difference": 3.4143212562787184e-09
+    },
+    {
+      "path": "/0/registration/references/93/absolute_offset_a_pixels/0",
+      "absolute_difference": 3.796145620071911e-10
+    },
+    {
+      "path": "/0/registration/references/93/absolute_offset_a_pixels/1",
+      "absolute_difference": 5.587992291111732e-10
+    },
+    {
+      "path": "/0/registration/references/93/absolute_offset_b_pixels/0",
+      "absolute_difference": 2.6352466875323444e-09
+    },
+    {
+      "path": "/0/registration/references/93/absolute_offset_b_pixels/1",
+      "absolute_difference": 3.131887638119224e-09
+    },
+    {
+      "path": "/0/registration/references/96/a/x",
+      "absolute_difference": 5.633182809106074e-11
+    },
+    {
+      "path": "/0/registration/references/96/a/y",
+      "absolute_difference": 8.193978828785475e-11
+    },
+    {
+      "path": "/0/registration/references/96/a/sigma_x_pixels",
+      "absolute_difference": 3.929784275769066e-11
+    },
+    {
+      "path": "/0/registration/references/96/a/sigma_y_pixels",
+      "absolute_difference": 4.150990662310505e-11
+    },
+    {
+      "path": "/0/registration/references/96/a/profile_fwhm_pixels",
+      "absolute_difference": 1.4283019211802639e-12
+    },
+    {
+      "path": "/0/registration/references/96/a/background_mjy_sr",
+      "absolute_difference": 1.3608003612830544e-12
+    },
+    {
+      "path": "/0/registration/references/96/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.1179057679555626e-11
+    },
+    {
+      "path": "/0/registration/references/109/a/x",
+      "absolute_difference": 4.659028718378977e-10
+    },
+    {
+      "path": "/0/registration/references/109/a/y",
+      "absolute_difference": 2.2892834294907516e-09
+    },
+    {
+      "path": "/0/registration/references/109/a/sigma_x_pixels",
+      "absolute_difference": 1.815246564174089e-09
+    },
+    {
+      "path": "/0/registration/references/109/a/sigma_y_pixels",
+      "absolute_difference": 6.993992329729082e-09
+    },
+    {
+      "path": "/0/registration/references/109/a/profile_fwhm_pixels",
+      "absolute_difference": 5.628640664667728e-09
+    },
+    {
+      "path": "/0/registration/references/109/a/background_mjy_sr",
+      "absolute_difference": 1.5689088916914784e-11
+    },
+    {
+      "path": "/0/registration/references/109/a/fit_residual_rms_sigma",
+      "absolute_difference": 4.267386444212207e-11
+    },
+    {
+      "path": "/0/registration/references/112/a/x",
+      "absolute_difference": 2.559801259849337e-10
+    },
+    {
+      "path": "/0/registration/references/112/a/y",
+      "absolute_difference": 2.041332436419907e-09
+    },
+    {
+      "path": "/0/registration/references/112/a/sigma_x_pixels",
+      "absolute_difference": 4.007019771545828e-09
+    },
+    {
+      "path": "/0/registration/references/112/a/sigma_y_pixels",
+      "absolute_difference": 6.088724302522053e-09
+    },
+    {
+      "path": "/0/registration/references/112/a/profile_fwhm_pixels",
+      "absolute_difference": 1.1651559272962686e-08
+    },
+    {
+      "path": "/0/registration/references/112/a/background_mjy_sr",
+      "absolute_difference": 4.0494357866904807e-11
+    },
+    {
+      "path": "/0/registration/references/112/a/fit_residual_rms_sigma",
+      "absolute_difference": 2.035038804137912e-12
+    },
+    {
+      "path": "/0/registration/references/114/a/x",
+      "absolute_difference": 1.3922374364483403e-10
+    },
+    {
+      "path": "/0/registration/references/114/a/y",
+      "absolute_difference": 1.3065459825156722e-10
+    },
+    {
+      "path": "/0/registration/references/114/a/sigma_x_pixels",
+      "absolute_difference": 1.3255518904742303e-10
+    },
+    {
+      "path": "/0/registration/references/114/a/sigma_y_pixels",
+      "absolute_difference": 3.1738878192300035e-10
+    },
+    {
+      "path": "/0/registration/references/114/a/profile_fwhm_pixels",
+      "absolute_difference": 5.288715021478652e-10
+    },
+    {
+      "path": "/0/registration/references/114/a/background_mjy_sr",
+      "absolute_difference": 1.1925238574406194e-11
+    },
+    {
+      "path": "/0/registration/references/114/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.3927525799317664e-11
+    },
+    {
+      "path": "/0/registration/references/117/a/x",
+      "absolute_difference": 5.193498964217724e-10
+    },
+    {
+      "path": "/0/registration/references/117/a/y",
+      "absolute_difference": 2.437047896819422e-09
+    },
+    {
+      "path": "/0/registration/references/117/a/sigma_x_pixels",
+      "absolute_difference": 8.538212914466214e-10
+    },
+    {
+      "path": "/0/registration/references/117/a/sigma_y_pixels",
+      "absolute_difference": 1.4787820967754328e-09
+    },
+    {
+      "path": "/0/registration/references/117/a/profile_fwhm_pixels",
+      "absolute_difference": 4.370281914134466e-12
+    },
+    {
+      "path": "/0/registration/references/117/a/background_mjy_sr",
+      "absolute_difference": 1.836308882730009e-13
+    },
+    {
+      "path": "/0/registration/references/117/a/fit_residual_rms_sigma",
+      "absolute_difference": 2.0282220347667135e-11
+    },
+    {
+      "path": "/0/registration/references/117/b/x",
+      "absolute_difference": 1.5538006437054719e-09
+    },
+    {
+      "path": "/0/registration/references/117/b/y",
+      "absolute_difference": 7.421078862535069e-09
+    },
+    {
+      "path": "/0/registration/references/117/b/sigma_x_pixels",
+      "absolute_difference": 5.096985167263313e-09
+    },
+    {
+      "path": "/0/registration/references/117/b/sigma_y_pixels",
+      "absolute_difference": 2.1584054876733205e-08
+    },
+    {
+      "path": "/0/registration/references/117/b/profile_fwhm_pixels",
+      "absolute_difference": 3.5738165538035105e-08
+    },
+    {
+      "path": "/0/registration/references/117/b/background_mjy_sr",
+      "absolute_difference": 8.000369811078656e-11
+    },
+    {
+      "path": "/0/registration/references/117/b/fit_residual_rms_sigma",
+      "absolute_difference": 2.2849278025205422e-11
+    },
+    {
+      "path": "/0/registration/references/117/dx_output_pixels",
+      "absolute_difference": 9.018549462780356e-09
+    },
+    {
+      "path": "/0/registration/references/117/dy_output_pixels",
+      "absolute_difference": 3.7014871168139507e-09
+    },
+    {
+      "path": "/0/registration/references/117/residual_pixels",
+      "absolute_difference": 7.751755071172539e-09
+    },
+    {
+      "path": "/0/registration/references/117/absolute_offset_a_pixels/0",
+      "absolute_difference": 2.4873685333659523e-09
+    },
+    {
+      "path": "/0/registration/references/117/absolute_offset_a_pixels/1",
+      "absolute_difference": 2.467714921294828e-10
+    },
+    {
+      "path": "/0/registration/references/117/absolute_offset_b_pixels/0",
+      "absolute_difference": 6.531180929414404e-09
+    },
+    {
+      "path": "/0/registration/references/117/absolute_offset_b_pixels/1",
+      "absolute_difference": 3.9482586089434335e-09
+    },
+    {
+      "path": "/0/registration/references/118/a/x",
+      "absolute_difference": 8.668905593367526e-10
+    },
+    {
+      "path": "/0/registration/references/118/a/y",
+      "absolute_difference": 2.9115199140505865e-10
+    },
+    {
+      "path": "/0/registration/references/118/a/sigma_x_pixels",
+      "absolute_difference": 2.088211326078948e-09
+    },
+    {
+      "path": "/0/registration/references/118/a/sigma_y_pixels",
+      "absolute_difference": 5.0581027144502855e-09
+    },
+    {
+      "path": "/0/registration/references/118/a/profile_fwhm_pixels",
+      "absolute_difference": 7.833046655747467e-09
+    },
+    {
+      "path": "/0/registration/references/118/a/background_mjy_sr",
+      "absolute_difference": 2.8744756574994312e-11
+    },
+    {
+      "path": "/0/registration/references/118/a/fit_residual_rms_sigma",
+      "absolute_difference": 7.833855786287813e-11
+    },
+    {
+      "path": "/0/registration/references/119/b/x",
+      "absolute_difference": 7.045457550702849e-10
+    },
+    {
+      "path": "/0/registration/references/119/b/y",
+      "absolute_difference": 4.2734882299555466e-10
+    },
+    {
+      "path": "/0/registration/references/119/b/sigma_x_pixels",
+      "absolute_difference": 5.703820193936338e-10
+    },
+    {
+      "path": "/0/registration/references/119/b/sigma_y_pixels",
+      "absolute_difference": 3.225619216173925e-10
+    },
+    {
+      "path": "/0/registration/references/119/b/profile_fwhm_pixels",
+      "absolute_difference": 1.0364951119612442e-09
+    },
+    {
+      "path": "/0/registration/references/119/b/background_mjy_sr",
+      "absolute_difference": 1.3888279415397164e-11
+    },
+    {
+      "path": "/0/registration/references/119/b/fit_residual_rms_sigma",
+      "absolute_difference": 6.168177080212445e-12
+    },
+    {
+      "path": "/0/registration/references/127/a/x",
+      "absolute_difference": 9.78843672783114e-11
+    },
+    {
+      "path": "/0/registration/references/127/a/y",
+      "absolute_difference": 5.269384928396903e-11
+    },
+    {
+      "path": "/0/registration/references/127/a/sigma_x_pixels",
+      "absolute_difference": 9.323081195944383e-11
+    },
+    {
+      "path": "/0/registration/references/127/a/sigma_y_pixels",
+      "absolute_difference": 6.987366241162363e-11
+    },
+    {
+      "path": "/0/registration/references/127/a/profile_fwhm_pixels",
+      "absolute_difference": 1.9289092545449193e-10
+    },
+    {
+      "path": "/0/registration/references/127/a/background_mjy_sr",
+      "absolute_difference": 4.015038301830032e-12
+    },
+    {
+      "path": "/0/registration/references/127/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.0023537555525763e-11
+    },
+    {
+      "path": "/0/registration/references/129/a/x",
+      "absolute_difference": 1.2568079910124652e-10
+    },
+    {
+      "path": "/0/registration/references/129/a/y",
+      "absolute_difference": 4.5429260353557765e-10
+    },
+    {
+      "path": "/0/registration/references/129/a/sigma_x_pixels",
+      "absolute_difference": 3.2854680087623933e-10
+    },
+    {
+      "path": "/0/registration/references/129/a/sigma_y_pixels",
+      "absolute_difference": 9.033677694780806e-10
+    },
+    {
+      "path": "/0/registration/references/129/a/profile_fwhm_pixels",
+      "absolute_difference": 1.475939592765485e-09
+    },
+    {
+      "path": "/0/registration/references/129/a/background_mjy_sr",
+      "absolute_difference": 1.9318380228838805e-11
+    },
+    {
+      "path": "/0/registration/references/129/a/fit_residual_rms_sigma",
+      "absolute_difference": 7.076783603565673e-12
+    },
+    {
+      "path": "/0/registration/references/129/b/x",
+      "absolute_difference": 1.999467258428922e-11
+    },
+    {
+      "path": "/0/registration/references/129/b/y",
+      "absolute_difference": 3.694822225952521e-13
+    },
+    {
+      "path": "/0/registration/references/129/b/sigma_x_pixels",
+      "absolute_difference": 4.2867154270709307e-11
+    },
+    {
+      "path": "/0/registration/references/129/b/sigma_y_pixels",
+      "absolute_difference": 4.781514073570747e-11
+    },
+    {
+      "path": "/0/registration/references/129/b/profile_fwhm_pixels",
+      "absolute_difference": 1.0683076645534584e-10
+    },
+    {
+      "path": "/0/registration/references/129/b/background_mjy_sr",
+      "absolute_difference": 2.262773302064147e-12
+    },
+    {
+      "path": "/0/registration/references/129/b/fit_residual_rms_sigma",
+      "absolute_difference": 6.409539565765954e-12
+    },
+    {
+      "path": "/0/registration/references/129/dx_output_pixels",
+      "absolute_difference": 4.775344564222905e-10
+    },
+    {
+      "path": "/0/registration/references/129/dy_output_pixels",
+      "absolute_difference": 9.112000043387525e-11
+    },
+    {
+      "path": "/0/registration/references/129/residual_pixels",
+      "absolute_difference": 4.4786926944873073e-10
+    },
+    {
+      "path": "/0/registration/references/129/absolute_offset_a_pixels/0",
+      "absolute_difference": 4.65256277948356e-10
+    },
+    {
+      "path": "/0/registration/references/129/absolute_offset_a_pixels/1",
+      "absolute_difference": 8.307665666507091e-11
+    },
+    {
+      "path": "/0/registration/references/129/absolute_offset_b_pixels/0",
+      "absolute_difference": 1.2278178473934531e-11
+    },
+    {
+      "path": "/0/registration/references/129/absolute_offset_b_pixels/1",
+      "absolute_difference": 8.043343768804334e-12
+    },
+    {
+      "path": "/0/registration/references/130/a/x",
+      "absolute_difference": 3.030038442375371e-10
+    },
+    {
+      "path": "/0/registration/references/130/a/y",
+      "absolute_difference": 2.428947709631757e-09
+    },
+    {
+      "path": "/0/registration/references/130/a/sigma_x_pixels",
+      "absolute_difference": 1.1034955726962892e-09
+    },
+    {
+      "path": "/0/registration/references/130/a/sigma_y_pixels",
+      "absolute_difference": 5.4497204526882115e-09
+    },
+    {
+      "path": "/0/registration/references/130/a/profile_fwhm_pixels",
+      "absolute_difference": 5.2285062945856e-09
+    },
+    {
+      "path": "/0/registration/references/130/a/background_mjy_sr",
+      "absolute_difference": 1.1647377506918133e-11
+    },
+    {
+      "path": "/0/registration/references/130/a/fit_residual_rms_sigma",
+      "absolute_difference": 4.505285033928885e-12
+    },
+    {
+      "path": "/0/registration/references/130/b/x",
+      "absolute_difference": 8.668621376273222e-12
+    },
+    {
+      "path": "/0/registration/references/130/b/y",
+      "absolute_difference": 4.071694092999678e-10
+    },
+    {
+      "path": "/0/registration/references/130/b/sigma_x_pixels",
+      "absolute_difference": 2.228089379663345e-10
+    },
+    {
+      "path": "/0/registration/references/130/b/sigma_y_pixels",
+      "absolute_difference": 6.501409410830661e-10
+    },
+    {
+      "path": "/0/registration/references/130/b/profile_fwhm_pixels",
+      "absolute_difference": 1.0090962510034274e-09
+    },
+    {
+      "path": "/0/registration/references/130/b/background_mjy_sr",
+      "absolute_difference": 1.0150547069542881e-11
+    },
+    {
+      "path": "/0/registration/references/130/b/fit_residual_rms_sigma",
+      "absolute_difference": 1.0325740262828731e-11
+    },
+    {
+      "path": "/0/registration/references/130/dx_output_pixels",
+      "absolute_difference": 2.8131807994213887e-09
+    },
+    {
+      "path": "/0/registration/references/130/dy_output_pixels",
+      "absolute_difference": 1.1456791071395855e-10
+    },
+    {
+      "path": "/0/registration/references/130/residual_pixels",
+      "absolute_difference": 2.8152445097351375e-09
+    },
+    {
+      "path": "/0/registration/references/130/absolute_offset_a_pixels/0",
+      "absolute_difference": 2.435946555578994e-09
+    },
+    {
+      "path": "/0/registration/references/130/absolute_offset_a_pixels/1",
+      "absolute_difference": 1.91562321560923e-11
+    },
+    {
+      "path": "/0/registration/references/130/absolute_offset_b_pixels/0",
+      "absolute_difference": 3.772342438423948e-10
+    },
+    {
+      "path": "/0/registration/references/130/absolute_offset_b_pixels/1",
+      "absolute_difference": 1.3372414287005085e-10
+    },
+    {
+      "path": "/0/registration/references/141/a/x",
+      "absolute_difference": 6.266986929404084e-11
+    },
+    {
+      "path": "/0/registration/references/141/a/y",
+      "absolute_difference": 1.44638079291326e-10
+    },
+    {
+      "path": "/0/registration/references/141/a/sigma_x_pixels",
+      "absolute_difference": 1.525606030394755e-09
+    },
+    {
+      "path": "/0/registration/references/141/a/sigma_y_pixels",
+      "absolute_difference": 1.17975629265743e-09
+    },
+    {
+      "path": "/0/registration/references/141/a/profile_fwhm_pixels",
+      "absolute_difference": 3.1594090676989595e-09
+    },
+    {
+      "path": "/0/registration/references/141/a/background_mjy_sr",
+      "absolute_difference": 2.1120077908776125e-11
+    },
+    {
+      "path": "/0/registration/references/141/a/fit_residual_rms_sigma",
+      "absolute_difference": 4.241051954068098e-12
+    },
+    {
+      "path": "/0/registration/references/142/a/x",
+      "absolute_difference": 3.4860647701862035e-10
+    },
+    {
+      "path": "/0/registration/references/142/a/y",
+      "absolute_difference": 7.490449149827327e-09
+    },
+    {
+      "path": "/0/registration/references/142/a/sigma_x_pixels",
+      "absolute_difference": 1.3879270843730751e-08
+    },
+    {
+      "path": "/0/registration/references/142/a/sigma_y_pixels",
+      "absolute_difference": 1.5933976194038024e-08
+    },
+    {
+      "path": "/0/registration/references/142/a/profile_fwhm_pixels",
+      "absolute_difference": 3.525355740663372e-08
+    },
+    {
+      "path": "/0/registration/references/142/a/background_mjy_sr",
+      "absolute_difference": 1.201757859892183e-10
+    },
+    {
+      "path": "/0/registration/references/142/a/fit_residual_rms_sigma",
+      "absolute_difference": 2.0465851235940136e-12
+    },
+    {
+      "path": "/0/registration/references/145/b/x",
+      "absolute_difference": 4.485016802391328e-09
+    },
+    {
+      "path": "/0/registration/references/145/b/y",
+      "absolute_difference": 8.311602073263202e-09
+    },
+    {
+      "path": "/0/registration/references/145/b/sigma_x_pixels",
+      "absolute_difference": 1.2245002400934624e-08
+    },
+    {
+      "path": "/0/registration/references/145/b/sigma_y_pixels",
+      "absolute_difference": 1.3015320099452055e-08
+    },
+    {
+      "path": "/0/registration/references/145/b/profile_fwhm_pixels",
+      "absolute_difference": 2.980901014915105e-08
+    },
+    {
+      "path": "/0/registration/references/145/b/background_mjy_sr",
+      "absolute_difference": 3.6153652294146355e-10
+    },
+    {
+      "path": "/0/registration/references/145/b/fit_residual_rms_sigma",
+      "absolute_difference": 1.2709833185908792e-11
+    },
+    {
+      "path": "/0/registration/references/148/a/x",
+      "absolute_difference": 3.0278073381850845e-09
+    },
+    {
+      "path": "/0/registration/references/148/a/y",
+      "absolute_difference": 9.0821572484856e-11
+    },
+    {
+      "path": "/0/registration/references/148/a/sigma_x_pixels",
+      "absolute_difference": 8.819427410600156e-09
+    },
+    {
+      "path": "/0/registration/references/148/a/sigma_y_pixels",
+      "absolute_difference": 2.3521323777586645e-10
+    },
+    {
+      "path": "/0/registration/references/148/a/profile_fwhm_pixels",
+      "absolute_difference": 1.0709940045927624e-08
+    },
+    {
+      "path": "/0/registration/references/148/a/background_mjy_sr",
+      "absolute_difference": 2.2596396975771427e-11
+    },
+    {
+      "path": "/0/registration/references/148/a/fit_residual_rms_sigma",
+      "absolute_difference": 5.398659297384256e-11
+    },
+    {
+      "path": "/0/registration/references/148/b/x",
+      "absolute_difference": 6.8098415795248e-11
+    },
+    {
+      "path": "/0/registration/references/148/b/y",
+      "absolute_difference": 3.0061499955991167e-09
+    },
+    {
+      "path": "/0/registration/references/148/b/sigma_x_pixels",
+      "absolute_difference": 5.692318283401221e-10
+    },
+    {
+      "path": "/0/registration/references/148/b/sigma_y_pixels",
+      "absolute_difference": 6.844857847188024e-09
+    },
+    {
+      "path": "/0/registration/references/148/b/profile_fwhm_pixels",
+      "absolute_difference": 8.647931037941703e-09
+    },
+    {
+      "path": "/0/registration/references/148/b/background_mjy_sr",
+      "absolute_difference": 3.1183139403978544e-11
+    },
+    {
+      "path": "/0/registration/references/148/b/fit_residual_rms_sigma",
+      "absolute_difference": 1.9141799256772174e-11
+    },
+    {
+      "path": "/0/registration/references/148/dx_output_pixels",
+      "absolute_difference": 3.143071580780088e-09
+    },
+    {
+      "path": "/0/registration/references/148/dy_output_pixels",
+      "absolute_difference": 2.0962289681847324e-09
+    },
+    {
+      "path": "/0/registration/references/148/residual_pixels",
+      "absolute_difference": 1.261943757824291e-09
+    },
+    {
+      "path": "/0/registration/references/148/absolute_offset_a_pixels/0",
+      "absolute_difference": 2.7324631446390413e-10
+    },
+    {
+      "path": "/0/registration/references/148/absolute_offset_a_pixels/1",
+      "absolute_difference": 3.0145628215905163e-09
+    },
+    {
+      "path": "/0/registration/references/148/absolute_offset_b_pixels/0",
+      "absolute_difference": 2.869825266316184e-09
+    },
+    {
+      "path": "/0/registration/references/148/absolute_offset_b_pixels/1",
+      "absolute_difference": 9.183338534057839e-10
+    },
+    {
+      "path": "/0/registration/references/149/a/x",
+      "absolute_difference": 7.65680852055084e-11
+    },
+    {
+      "path": "/0/registration/references/149/a/y",
+      "absolute_difference": 1.0467715583217796e-09
+    },
+    {
+      "path": "/0/registration/references/149/a/sigma_x_pixels",
+      "absolute_difference": 5.658493673621479e-10
+    },
+    {
+      "path": "/0/registration/references/149/a/sigma_y_pixels",
+      "absolute_difference": 1.749657807526006e-09
+    },
+    {
+      "path": "/0/registration/references/149/a/profile_fwhm_pixels",
+      "absolute_difference": 3.0720390675753606e-09
+    },
+    {
+      "path": "/0/registration/references/149/a/background_mjy_sr",
+      "absolute_difference": 2.4300450540692964e-11
+    },
+    {
+      "path": "/0/registration/references/149/a/fit_residual_rms_sigma",
+      "absolute_difference": 5.4652282699407806e-11
+    },
+    {
+      "path": "/0/registration/references/150/a/x",
+      "absolute_difference": 8.640199666842818e-12
+    },
+    {
+      "path": "/0/registration/references/150/a/y",
+      "absolute_difference": 1.6335377495124703e-11
+    },
+    {
+      "path": "/0/registration/references/150/a/sigma_x_pixels",
+      "absolute_difference": 2.1731505484012814e-11
+    },
+    {
+      "path": "/0/registration/references/150/a/sigma_y_pixels",
+      "absolute_difference": 6.442041344811855e-11
+    },
+    {
+      "path": "/0/registration/references/150/a/profile_fwhm_pixels",
+      "absolute_difference": 1.0248535353696298e-10
+    },
+    {
+      "path": "/0/registration/references/150/a/background_mjy_sr",
+      "absolute_difference": 4.778955009498986e-12
+    },
+    {
+      "path": "/0/registration/references/150/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.9274870588503745e-10
+    },
+    {
+      "path": "/0/registration/references/150/b/x",
+      "absolute_difference": 1.5056400570756523e-10
+    },
+    {
+      "path": "/0/registration/references/150/b/y",
+      "absolute_difference": 5.7049476254178444e-11
+    },
+    {
+      "path": "/0/registration/references/150/b/sigma_x_pixels",
+      "absolute_difference": 3.6885378085216303e-10
+    },
+    {
+      "path": "/0/registration/references/150/b/sigma_y_pixels",
+      "absolute_difference": 3.699986428351565e-10
+    },
+    {
+      "path": "/0/registration/references/150/b/profile_fwhm_pixels",
+      "absolute_difference": 8.699695408509456e-10
+    },
+    {
+      "path": "/0/registration/references/150/b/background_mjy_sr",
+      "absolute_difference": 2.4401536347085084e-11
+    },
+    {
+      "path": "/0/registration/references/150/b/fit_residual_rms_sigma",
+      "absolute_difference": 4.0270786705320916e-10
+    },
+    {
+      "path": "/0/registration/references/150/dx_output_pixels",
+      "absolute_difference": 4.547473508864641e-12
+    },
+    {
+      "path": "/0/registration/references/150/dy_output_pixels",
+      "absolute_difference": 1.6129320101754274e-10
+    },
+    {
+      "path": "/0/registration/references/150/residual_pixels",
+      "absolute_difference": 1.5551603754770937e-10
+    },
+    {
+      "path": "/0/registration/references/150/absolute_offset_a_pixels/0",
+      "absolute_difference": 2.842170943040401e-14
+    },
+    {
+      "path": "/0/registration/references/150/absolute_offset_a_pixels/1",
+      "absolute_difference": 1.6783019418653566e-11
+    },
+    {
+      "path": "/0/registration/references/150/absolute_offset_b_pixels/0",
+      "absolute_difference": 4.519051799434237e-12
+    },
+    {
+      "path": "/0/registration/references/150/absolute_offset_b_pixels/1",
+      "absolute_difference": 1.780762204361963e-10
+    },
+    {
+      "path": "/0/registration/references/151/a/x",
+      "absolute_difference": 1.3631051842821762e-10
+    },
+    {
+      "path": "/0/registration/references/151/a/y",
+      "absolute_difference": 1.620776401978219e-09
+    },
+    {
+      "path": "/0/registration/references/151/a/sigma_x_pixels",
+      "absolute_difference": 4.826433142035569e-10
+    },
+    {
+      "path": "/0/registration/references/151/a/sigma_y_pixels",
+      "absolute_difference": 2.7729847862367762e-09
+    },
+    {
+      "path": "/0/registration/references/151/a/profile_fwhm_pixels",
+      "absolute_difference": 3.873427467659951e-09
+    },
+    {
+      "path": "/0/registration/references/151/a/background_mjy_sr",
+      "absolute_difference": 1.6865453478231984e-11
+    },
+    {
+      "path": "/0/registration/references/151/a/fit_residual_rms_sigma",
+      "absolute_difference": 4.625322347351357e-11
+    },
+    {
+      "path": "/0/registration/references/154/b/x",
+      "absolute_difference": 6.441638333853916e-10
+    },
+    {
+      "path": "/0/registration/references/154/b/y",
+      "absolute_difference": 3.170654849782295e-09
+    },
+    {
+      "path": "/0/registration/references/154/b/sigma_x_pixels",
+      "absolute_difference": 1.3427355338713198e-09
+    },
+    {
+      "path": "/0/registration/references/154/b/sigma_y_pixels",
+      "absolute_difference": 2.8047656974727886e-09
+    },
+    {
+      "path": "/0/registration/references/154/b/profile_fwhm_pixels",
+      "absolute_difference": 5.101758904224596e-09
+    },
+    {
+      "path": "/0/registration/references/154/b/background_mjy_sr",
+      "absolute_difference": 2.9092395159580065e-11
+    },
+    {
+      "path": "/0/registration/references/154/b/fit_residual_rms_sigma",
+      "absolute_difference": 2.6586066681488774e-11
+    },
+    {
+      "path": "/0/registration/references/161/a/x",
+      "absolute_difference": 3.382183422218077e-12
+    },
+    {
+      "path": "/0/registration/references/161/a/y",
+      "absolute_difference": 3.2230218494078144e-11
+    },
+    {
+      "path": "/0/registration/references/161/a/sigma_x_pixels",
+      "absolute_difference": 1.2429557383342171e-11
+    },
+    {
+      "path": "/0/registration/references/161/a/sigma_y_pixels",
+      "absolute_difference": 6.375733274666118e-12
+    },
+    {
+      "path": "/0/registration/references/161/a/profile_fwhm_pixels",
+      "absolute_difference": 7.002620705520712e-12
+    },
+    {
+      "path": "/0/registration/references/161/a/background_mjy_sr",
+      "absolute_difference": 1.4447609775203318e-12
+    },
+    {
+      "path": "/0/registration/references/161/a/fit_residual_rms_sigma",
+      "absolute_difference": 4.535860576027062e-11
+    },
+    {
+      "path": "/0/registration/references/162/b/x",
+      "absolute_difference": 4.587263902067207e-11
+    },
+    {
+      "path": "/0/registration/references/162/b/y",
+      "absolute_difference": 1.0468426125953556e-10
+    },
+    {
+      "path": "/0/registration/references/162/b/sigma_x_pixels",
+      "absolute_difference": 3.114175584073564e-14
+    },
+    {
+      "path": "/0/registration/references/162/b/sigma_y_pixels",
+      "absolute_difference": 2.017423450517697e-10
+    },
+    {
+      "path": "/0/registration/references/162/b/profile_fwhm_pixels",
+      "absolute_difference": 2.2939006250055627e-10
+    },
+    {
+      "path": "/0/registration/references/162/b/background_mjy_sr",
+      "absolute_difference": 6.755679349268462e-12
+    },
+    {
+      "path": "/0/registration/references/162/b/fit_residual_rms_sigma",
+      "absolute_difference": 6.906608618351129e-11
+    },
+    {
+      "path": "/0/registration/references/164/a/x",
+      "absolute_difference": 1.4651959645561874e-09
+    },
+    {
+      "path": "/0/registration/references/164/a/y",
+      "absolute_difference": 3.1889229035186872e-09
+    },
+    {
+      "path": "/0/registration/references/164/a/sigma_x_pixels",
+      "absolute_difference": 2.7822731896165465e-09
+    },
+    {
+      "path": "/0/registration/references/164/a/sigma_y_pixels",
+      "absolute_difference": 2.1869581701139396e-09
+    },
+    {
+      "path": "/0/registration/references/164/a/profile_fwhm_pixels",
+      "absolute_difference": 5.942698333427643e-09
+    },
+    {
+      "path": "/0/registration/references/164/a/background_mjy_sr",
+      "absolute_difference": 2.4688417976648225e-11
+    },
+    {
+      "path": "/0/registration/references/164/a/fit_residual_rms_sigma",
+      "absolute_difference": 5.866995778092132e-11
+    },
+    {
+      "path": "/0/registration/references/165/a/x",
+      "absolute_difference": 1.63140612130519e-11
+    },
+    {
+      "path": "/0/registration/references/165/a/y",
+      "absolute_difference": 4.902744876744691e-13
+    },
+    {
+      "path": "/0/registration/references/165/a/sigma_x_pixels",
+      "absolute_difference": 1.6465762087136682e-10
+    },
+    {
+      "path": "/0/registration/references/165/a/sigma_y_pixels",
+      "absolute_difference": 6.423639398178693e-12
+    },
+    {
+      "path": "/0/registration/references/165/a/profile_fwhm_pixels",
+      "absolute_difference": 1.9285673058533348e-10
+    },
+    {
+      "path": "/0/registration/references/165/a/background_mjy_sr",
+      "absolute_difference": 6.3023752883140105e-12
+    },
+    {
+      "path": "/0/registration/references/165/a/fit_residual_rms_sigma",
+      "absolute_difference": 3.667954828756592e-10
+    },
+    {
+      "path": "/0/registration/references/170/a/x",
+      "absolute_difference": 6.175184807943879e-10
+    },
+    {
+      "path": "/0/registration/references/170/a/y",
+      "absolute_difference": 2.7555770998333173e-09
+    },
+    {
+      "path": "/0/registration/references/170/a/sigma_x_pixels",
+      "absolute_difference": 4.963269684132854e-09
+    },
+    {
+      "path": "/0/registration/references/170/a/sigma_y_pixels",
+      "absolute_difference": 2.586031222495677e-09
+    },
+    {
+      "path": "/0/registration/references/170/a/profile_fwhm_pixels",
+      "absolute_difference": 8.45534753324273e-09
+    },
+    {
+      "path": "/0/registration/references/170/a/background_mjy_sr",
+      "absolute_difference": 2.777503227413547e-11
+    },
+    {
+      "path": "/0/registration/references/170/a/fit_residual_rms_sigma",
+      "absolute_difference": 9.192646643896296e-12
+    },
+    {
+      "path": "/0/registration/references/178/a/x",
+      "absolute_difference": 2.2072299543651752e-10
+    },
+    {
+      "path": "/0/registration/references/178/a/y",
+      "absolute_difference": 1.340083599643549e-11
+    },
+    {
+      "path": "/0/registration/references/178/a/sigma_x_pixels",
+      "absolute_difference": 1.2970097218456544e-10
+    },
+    {
+      "path": "/0/registration/references/178/a/sigma_y_pixels",
+      "absolute_difference": 6.747741254642392e-11
+    },
+    {
+      "path": "/0/registration/references/178/a/profile_fwhm_pixels",
+      "absolute_difference": 7.628386811120436e-11
+    },
+    {
+      "path": "/0/registration/references/178/a/background_mjy_sr",
+      "absolute_difference": 1.886629741321144e-12
+    },
+    {
+      "path": "/0/registration/references/178/a/fit_residual_rms_sigma",
+      "absolute_difference": 5.249023438125278e-12
+    },
+    {
+      "path": "/0/registration/references/187/a/x",
+      "absolute_difference": 1.0369376468588598e-09
+    },
+    {
+      "path": "/0/registration/references/187/a/y",
+      "absolute_difference": 4.106368578504771e-10
+    },
+    {
+      "path": "/0/registration/references/187/a/sigma_x_pixels",
+      "absolute_difference": 2.4850123070407903e-09
+    },
+    {
+      "path": "/0/registration/references/187/a/sigma_y_pixels",
+      "absolute_difference": 9.331313499671978e-11
+    },
+    {
+      "path": "/0/registration/references/187/a/profile_fwhm_pixels",
+      "absolute_difference": 2.7469899688270516e-09
+    },
+    {
+      "path": "/0/registration/references/187/a/background_mjy_sr",
+      "absolute_difference": 2.060684956006753e-12
+    },
+    {
+      "path": "/0/registration/references/187/a/fit_residual_rms_sigma",
+      "absolute_difference": 2.0778956333344922e-09
+    },
+    {
+      "path": "/0/registration/references/187/b/x",
+      "absolute_difference": 4.596927283273544e-10
+    },
+    {
+      "path": "/0/registration/references/187/b/y",
+      "absolute_difference": 1.4696865946461912e-10
+    },
+    {
+      "path": "/0/registration/references/187/b/sigma_x_pixels",
+      "absolute_difference": 1.9428736397486546e-10
+    },
+    {
+      "path": "/0/registration/references/187/b/sigma_y_pixels",
+      "absolute_difference": 6.424590859310797e-10
+    },
+    {
+      "path": "/0/registration/references/187/b/profile_fwhm_pixels",
+      "absolute_difference": 6.60479448910678e-10
+    },
+    {
+      "path": "/0/registration/references/187/b/background_mjy_sr",
+      "absolute_difference": 2.0144996781823465e-13
+    },
+    {
+      "path": "/0/registration/references/187/b/fit_residual_rms_sigma",
+      "absolute_difference": 3.2871483313101635e-12
+    },
+    {
+      "path": "/0/registration/references/187/dx_output_pixels",
+      "absolute_difference": 2.8691005127257085e-10
+    },
+    {
+      "path": "/0/registration/references/187/dy_output_pixels",
+      "absolute_difference": 5.885567588848062e-10
+    },
+    {
+      "path": "/0/registration/references/187/residual_pixels",
+      "absolute_difference": 5.269107927752259e-10
+    },
+    {
+      "path": "/0/registration/references/187/absolute_offset_a_pixels/0",
+      "absolute_difference": 2.7976199135082425e-10
+    },
+    {
+      "path": "/0/registration/references/187/absolute_offset_a_pixels/1",
+      "absolute_difference": 1.0714700238168007e-09
+    },
+    {
+      "path": "/0/registration/references/187/absolute_offset_b_pixels/0",
+      "absolute_difference": 7.148059921746608e-12
+    },
+    {
+      "path": "/0/registration/references/187/absolute_offset_b_pixels/1",
+      "absolute_difference": 4.829132649319945e-10
+    },
+    {
+      "path": "/0/registration/references/192/a/x",
+      "absolute_difference": 3.4489744393795263e-10
+    },
+    {
+      "path": "/0/registration/references/192/a/y",
+      "absolute_difference": 3.666826842163573e-10
+    },
+    {
+      "path": "/0/registration/references/192/a/sigma_x_pixels",
+      "absolute_difference": 5.467831187822014e-10
+    },
+    {
+      "path": "/0/registration/references/192/a/sigma_y_pixels",
+      "absolute_difference": 1.0274139872201715e-09
+    },
+    {
+      "path": "/0/registration/references/192/a/profile_fwhm_pixels",
+      "absolute_difference": 8.048499644530693e-10
+    },
+    {
+      "path": "/0/registration/references/192/a/background_mjy_sr",
+      "absolute_difference": 6.823680509526753e-12
+    },
+    {
+      "path": "/0/registration/references/192/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.594602228038866e-11
+    },
+    {
+      "path": "/0/registration/references/194/a/x",
+      "absolute_difference": 6.761524673493113e-11
+    },
+    {
+      "path": "/0/registration/references/194/a/y",
+      "absolute_difference": 3.717559593496844e-11
+    },
+    {
+      "path": "/0/registration/references/194/a/sigma_x_pixels",
+      "absolute_difference": 7.258488254890949e-11
+    },
+    {
+      "path": "/0/registration/references/194/a/sigma_y_pixels",
+      "absolute_difference": 4.141176290772819e-11
+    },
+    {
+      "path": "/0/registration/references/194/a/profile_fwhm_pixels",
+      "absolute_difference": 1.3430179190976332e-10
+    },
+    {
+      "path": "/0/registration/references/194/a/background_mjy_sr",
+      "absolute_difference": 2.7636504196237865e-12
+    },
+    {
+      "path": "/0/registration/references/194/a/fit_residual_rms_sigma",
+      "absolute_difference": 4.68247662865906e-12
+    },
+    {
+      "path": "/0/registration/references/223/a/x",
+      "absolute_difference": 1.5284626897482667e-09
+    },
+    {
+      "path": "/0/registration/references/223/a/y",
+      "absolute_difference": 8.311857868648076e-10
+    },
+    {
+      "path": "/0/registration/references/223/a/sigma_x_pixels",
+      "absolute_difference": 2.6045590684198316e-09
+    },
+    {
+      "path": "/0/registration/references/223/a/sigma_y_pixels",
+      "absolute_difference": 8.095734083113371e-10
+    },
+    {
+      "path": "/0/registration/references/223/a/profile_fwhm_pixels",
+      "absolute_difference": 2.5901694122865138e-09
+    },
+    {
+      "path": "/0/registration/references/223/a/background_mjy_sr",
+      "absolute_difference": 1.6114443113224297e-11
+    },
+    {
+      "path": "/0/registration/references/223/a/fit_residual_rms_sigma",
+      "absolute_difference": 3.507705237382197e-11
+    },
+    {
+      "path": "/0/registration/references/241/a/x",
+      "absolute_difference": 8.666802386869676e-09
+    },
+    {
+      "path": "/0/registration/references/241/a/y",
+      "absolute_difference": 6.011191544530448e-11
+    },
+    {
+      "path": "/0/registration/references/241/a/sigma_x_pixels",
+      "absolute_difference": 9.087852137490415e-09
+    },
+    {
+      "path": "/0/registration/references/241/a/sigma_y_pixels",
+      "absolute_difference": 2.80957768161727e-09
+    },
+    {
+      "path": "/0/registration/references/241/a/profile_fwhm_pixels",
+      "absolute_difference": 1.5578171197461188e-08
+    },
+    {
+      "path": "/0/registration/references/241/a/background_mjy_sr",
+      "absolute_difference": 4.5552117633462785e-11
+    },
+    {
+      "path": "/0/registration/references/241/a/fit_residual_rms_sigma",
+      "absolute_difference": 2.468247828346648e-12
+    },
+    {
+      "path": "/0/registration/references/248/a/x",
+      "absolute_difference": 9.709992809803225e-10
+    },
+    {
+      "path": "/0/registration/references/248/a/y",
+      "absolute_difference": 1.3606893389805919e-10
+    },
+    {
+      "path": "/0/registration/references/248/a/sigma_x_pixels",
+      "absolute_difference": 6.679774511297865e-10
+    },
+    {
+      "path": "/0/registration/references/248/a/sigma_y_pixels",
+      "absolute_difference": 1.531288984502055e-10
+    },
+    {
+      "path": "/0/registration/references/248/a/profile_fwhm_pixels",
+      "absolute_difference": 6.154017295756375e-10
+    },
+    {
+      "path": "/0/registration/references/248/a/background_mjy_sr",
+      "absolute_difference": 2.1213863998781335e-11
+    },
+    {
+      "path": "/0/registration/references/248/a/fit_residual_rms_sigma",
+      "absolute_difference": 2.900435447372729e-11
+    },
+    {
+      "path": "/0/registration/references/307/a/x",
+      "absolute_difference": 4.998135239020485e-11
+    },
+    {
+      "path": "/0/registration/references/307/a/y",
+      "absolute_difference": 4.629896466212813e-11
+    },
+    {
+      "path": "/0/registration/references/307/a/sigma_x_pixels",
+      "absolute_difference": 4.614425508364661e-11
+    },
+    {
+      "path": "/0/registration/references/307/a/sigma_y_pixels",
+      "absolute_difference": 2.7499336141545427e-11
+    },
+    {
+      "path": "/0/registration/references/307/a/profile_fwhm_pixels",
+      "absolute_difference": 2.027356060807506e-11
+    },
+    {
+      "path": "/0/registration/references/307/a/background_mjy_sr",
+      "absolute_difference": 2.0198009931249317e-12
+    },
+    {
+      "path": "/0/registration/references/307/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.2654322034677534e-12
+    },
+    {
+      "path": "/0/registration/references/308/a/x",
+      "absolute_difference": 3.5491609651217004e-12
+    },
+    {
+      "path": "/0/registration/references/308/a/y",
+      "absolute_difference": 1.3011458577238955e-10
+    },
+    {
+      "path": "/0/registration/references/308/a/sigma_x_pixels",
+      "absolute_difference": 5.0971560305868024e-11
+    },
+    {
+      "path": "/0/registration/references/308/a/sigma_y_pixels",
+      "absolute_difference": 3.8184372330718475e-10
+    },
+    {
+      "path": "/0/registration/references/308/a/profile_fwhm_pixels",
+      "absolute_difference": 4.955361676550751e-10
+    },
+    {
+      "path": "/0/registration/references/308/a/background_mjy_sr",
+      "absolute_difference": 1.0122291893566171e-11
+    },
+    {
+      "path": "/0/registration/references/308/a/fit_residual_rms_sigma",
+      "absolute_difference": 7.713696348332633e-11
+    },
+    {
+      "path": "/0/registration/references/309/a/x",
+      "absolute_difference": 1.2496919055138278e-09
+    },
+    {
+      "path": "/0/registration/references/309/a/y",
+      "absolute_difference": 6.084235337766586e-10
+    },
+    {
+      "path": "/0/registration/references/309/a/sigma_x_pixels",
+      "absolute_difference": 1.9353790237097712e-09
+    },
+    {
+      "path": "/0/registration/references/309/a/sigma_y_pixels",
+      "absolute_difference": 1.872504817868048e-09
+    },
+    {
+      "path": "/0/registration/references/309/a/profile_fwhm_pixels",
+      "absolute_difference": 4.493002636607457e-09
+    },
+    {
+      "path": "/0/registration/references/309/a/background_mjy_sr",
+      "absolute_difference": 3.874084386623622e-11
+    },
+    {
+      "path": "/0/registration/references/309/a/fit_residual_rms_sigma",
+      "absolute_difference": 3.90087961932295e-12
+    },
+    {
+      "path": "/0/registration/references/311/b/x",
+      "absolute_difference": 5.020250881671018e-11
+    },
+    {
+      "path": "/0/registration/references/311/b/y",
+      "absolute_difference": 4.712603640655288e-10
+    },
+    {
+      "path": "/0/registration/references/311/b/sigma_x_pixels",
+      "absolute_difference": 4.270850340049037e-11
+    },
+    {
+      "path": "/0/registration/references/311/b/sigma_y_pixels",
+      "absolute_difference": 7.26994076050147e-10
+    },
+    {
+      "path": "/0/registration/references/311/b/profile_fwhm_pixels",
+      "absolute_difference": 8.166757270444691e-10
+    },
+    {
+      "path": "/0/registration/references/311/b/background_mjy_sr",
+      "absolute_difference": 1.2409739902352612e-11
+    },
+    {
+      "path": "/0/registration/references/311/b/fit_residual_rms_sigma",
+      "absolute_difference": 1.4348966459465373e-10
+    },
+    {
+      "path": "/0/registration/references/321/a/x",
+      "absolute_difference": 1.0969429808938003e-09
+    },
+    {
+      "path": "/0/registration/references/321/a/y",
+      "absolute_difference": 9.697487257653847e-11
+    },
+    {
+      "path": "/0/registration/references/321/a/sigma_x_pixels",
+      "absolute_difference": 3.250815006072827e-09
+    },
+    {
+      "path": "/0/registration/references/321/a/sigma_y_pixels",
+      "absolute_difference": 1.884554512443515e-09
+    },
+    {
+      "path": "/0/registration/references/321/a/profile_fwhm_pixels",
+      "absolute_difference": 6.070226321597261e-09
+    },
+    {
+      "path": "/0/registration/references/321/a/background_mjy_sr",
+      "absolute_difference": 3.770941892078383e-11
+    },
+    {
+      "path": "/0/registration/references/321/a/fit_residual_rms_sigma",
+      "absolute_difference": 3.9462655365696264e-11
+    },
+    {
+      "path": "/0/registration/references/342/a/x",
+      "absolute_difference": 1.1500134178277222e-10
+    },
+    {
+      "path": "/0/registration/references/342/a/y",
+      "absolute_difference": 1.0601297617540695e-11
+    },
+    {
+      "path": "/0/registration/references/342/a/sigma_x_pixels",
+      "absolute_difference": 8.458617695161763e-10
+    },
+    {
+      "path": "/0/registration/references/342/a/sigma_y_pixels",
+      "absolute_difference": 8.994133215978195e-11
+    },
+    {
+      "path": "/0/registration/references/342/a/profile_fwhm_pixels",
+      "absolute_difference": 8.284087860133127e-10
+    },
+    {
+      "path": "/0/registration/references/342/a/background_mjy_sr",
+      "absolute_difference": 3.9662717554733717e-13
+    },
+    {
+      "path": "/0/registration/references/342/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.3644196883433324e-11
+    },
+    {
+      "path": "/0/registration/references/348/a/x",
+      "absolute_difference": 5.223963484013439e-10
+    },
+    {
+      "path": "/0/registration/references/348/a/y",
+      "absolute_difference": 2.3096902168617817e-10
+    },
+    {
+      "path": "/0/registration/references/348/a/sigma_x_pixels",
+      "absolute_difference": 1.4830808803267814e-10
+    },
+    {
+      "path": "/0/registration/references/348/a/sigma_y_pixels",
+      "absolute_difference": 1.588498221849477e-10
+    },
+    {
+      "path": "/0/registration/references/348/a/profile_fwhm_pixels",
+      "absolute_difference": 1.410083161346165e-11
+    },
+    {
+      "path": "/0/registration/references/348/a/background_mjy_sr",
+      "absolute_difference": 4.528738495324092e-12
+    },
+    {
+      "path": "/0/registration/references/348/a/fit_residual_rms_sigma",
+      "absolute_difference": 6.27831120425526e-12
+    },
+    {
+      "path": "/0/registration/references/348/b/x",
+      "absolute_difference": 2.1493278268280847e-09
+    },
+    {
+      "path": "/0/registration/references/348/b/y",
+      "absolute_difference": 4.445546153419855e-09
+    },
+    {
+      "path": "/0/registration/references/348/b/sigma_x_pixels",
+      "absolute_difference": 9.34559873932983e-10
+    },
+    {
+      "path": "/0/registration/references/348/b/sigma_y_pixels",
+      "absolute_difference": 4.02987115899478e-09
+    },
+    {
+      "path": "/0/registration/references/348/b/profile_fwhm_pixels",
+      "absolute_difference": 5.8477981346172214e-09
+    },
+    {
+      "path": "/0/registration/references/348/b/background_mjy_sr",
+      "absolute_difference": 1.0382361637084614e-11
+    },
+    {
+      "path": "/0/registration/references/348/b/fit_residual_rms_sigma",
+      "absolute_difference": 2.538380616812219e-11
+    },
+    {
+      "path": "/0/registration/references/348/dx_output_pixels",
+      "absolute_difference": 5.039012762608763e-09
+    },
+    {
+      "path": "/0/registration/references/348/dy_output_pixels",
+      "absolute_difference": 3.0681235330121126e-11
+    },
+    {
+      "path": "/0/registration/references/348/residual_pixels",
+      "absolute_difference": 1.4646896195902315e-09
+    },
+    {
+      "path": "/0/registration/references/348/absolute_offset_a_pixels/0",
+      "absolute_difference": 1.595026333234273e-10
+    },
+    {
+      "path": "/0/registration/references/348/absolute_offset_a_pixels/1",
+      "absolute_difference": 5.457394536279025e-10
+    },
+    {
+      "path": "/0/registration/references/348/absolute_offset_b_pixels/0",
+      "absolute_difference": 4.879510129285336e-09
+    },
+    {
+      "path": "/0/registration/references/348/absolute_offset_b_pixels/1",
+      "absolute_difference": 5.764206889580237e-10
+    },
+    {
+      "path": "/0/registration/references/351/a/x",
+      "absolute_difference": 1.6759962306878151e-09
+    },
+    {
+      "path": "/0/registration/references/351/a/y",
+      "absolute_difference": 7.591012263219454e-10
+    },
+    {
+      "path": "/0/registration/references/351/a/sigma_x_pixels",
+      "absolute_difference": 1.871594323965553e-09
+    },
+    {
+      "path": "/0/registration/references/351/a/sigma_y_pixels",
+      "absolute_difference": 2.14298417899883e-09
+    },
+    {
+      "path": "/0/registration/references/351/a/profile_fwhm_pixels",
+      "absolute_difference": 4.769576400498465e-09
+    },
+    {
+      "path": "/0/registration/references/351/a/background_mjy_sr",
+      "absolute_difference": 3.2064600974379687e-11
+    },
+    {
+      "path": "/0/registration/references/351/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.7638734917113652e-10
+    },
+    {
+      "path": "/0/registration/references/353/a/x",
+      "absolute_difference": 1.4841816664556973e-10
+    },
+    {
+      "path": "/0/registration/references/353/a/y",
+      "absolute_difference": 2.8202862267789897e-10
+    },
+    {
+      "path": "/0/registration/references/353/a/sigma_x_pixels",
+      "absolute_difference": 4.3431752638767307e-10
+    },
+    {
+      "path": "/0/registration/references/353/a/sigma_y_pixels",
+      "absolute_difference": 6.224012416566893e-10
+    },
+    {
+      "path": "/0/registration/references/353/a/profile_fwhm_pixels",
+      "absolute_difference": 1.2918875968992438e-09
+    },
+    {
+      "path": "/0/registration/references/353/a/background_mjy_sr",
+      "absolute_difference": 1.5330375857658396e-11
+    },
+    {
+      "path": "/0/registration/references/353/a/fit_residual_rms_sigma",
+      "absolute_difference": 2.419087152816246e-11
+    },
+    {
+      "path": "/0/registration/references/353/b/x",
+      "absolute_difference": 2.8335733759377035e-10
+    },
+    {
+      "path": "/0/registration/references/353/b/y",
+      "absolute_difference": 4.3779380121122813e-10
+    },
+    {
+      "path": "/0/registration/references/353/b/sigma_x_pixels",
+      "absolute_difference": 9.138116374707295e-10
+    },
+    {
+      "path": "/0/registration/references/353/b/sigma_y_pixels",
+      "absolute_difference": 4.60651350397967e-10
+    },
+    {
+      "path": "/0/registration/references/353/b/profile_fwhm_pixels",
+      "absolute_difference": 3.7781966444327963e-10
+    },
+    {
+      "path": "/0/registration/references/353/b/background_mjy_sr",
+      "absolute_difference": 2.3699098239404748e-12
+    },
+    {
+      "path": "/0/registration/references/353/b/fit_residual_rms_sigma",
+      "absolute_difference": 3.4565683648679624e-12
+    },
+    {
+      "path": "/0/registration/references/353/dx_output_pixels",
+      "absolute_difference": 1.9777246507146629e-10
+    },
+    {
+      "path": "/0/registration/references/353/dy_output_pixels",
+      "absolute_difference": 2.0037305148434825e-12
+    },
+    {
+      "path": "/0/registration/references/353/residual_pixels",
+      "absolute_difference": 5.844782990926944e-11
+    },
+    {
+      "path": "/0/registration/references/353/absolute_offset_a_pixels/0",
+      "absolute_difference": 3.0328806133184116e-10
+    },
+    {
+      "path": "/0/registration/references/353/absolute_offset_a_pixels/1",
+      "absolute_difference": 1.1939249588976963e-10
+    },
+    {
+      "path": "/0/registration/references/353/absolute_offset_b_pixels/0",
+      "absolute_difference": 5.010605264033074e-10
+    },
+    {
+      "path": "/0/registration/references/353/absolute_offset_b_pixels/1",
+      "absolute_difference": 1.1738876537492615e-10
+    },
+    {
+      "path": "/0/registration/references/353/output_x",
+      "absolute_difference": 5.684341886080802e-14
+    },
+    {
+      "path": "/0/registration/references/360/a/x",
+      "absolute_difference": 2.793143494272954e-10
+    },
+    {
+      "path": "/0/registration/references/360/a/y",
+      "absolute_difference": 1.318767317570746e-10
+    },
+    {
+      "path": "/0/registration/references/360/a/sigma_x_pixels",
+      "absolute_difference": 5.011480119776479e-10
+    },
+    {
+      "path": "/0/registration/references/360/a/sigma_y_pixels",
+      "absolute_difference": 2.810854882184799e-10
+    },
+    {
+      "path": "/0/registration/references/360/a/profile_fwhm_pixels",
+      "absolute_difference": 1.7429890863951414e-10
+    },
+    {
+      "path": "/0/registration/references/360/a/background_mjy_sr",
+      "absolute_difference": 1.8138823776325808e-12
+    },
+    {
+      "path": "/0/registration/references/360/a/fit_residual_rms_sigma",
+      "absolute_difference": 3.75788289375123e-12
+    },
+    {
+      "path": "/0/registration/references/360/b/x",
+      "absolute_difference": 8.690648201081785e-11
+    },
+    {
+      "path": "/0/registration/references/360/b/y",
+      "absolute_difference": 1.2394707482599188e-10
+    },
+    {
+      "path": "/0/registration/references/360/b/sigma_x_pixels",
+      "absolute_difference": 4.7386943258231895e-09
+    },
+    {
+      "path": "/0/registration/references/360/b/sigma_y_pixels",
+      "absolute_difference": 2.7491681153790637e-10
+    },
+    {
+      "path": "/0/registration/references/360/b/profile_fwhm_pixels",
+      "absolute_difference": 5.381759926592622e-09
+    },
+    {
+      "path": "/0/registration/references/360/b/background_mjy_sr",
+      "absolute_difference": 4.2548270462461346e-11
+    },
+    {
+      "path": "/0/registration/references/360/b/fit_residual_rms_sigma",
+      "absolute_difference": 4.221012428473614e-11
+    },
+    {
+      "path": "/0/registration/references/360/dx_output_pixels",
+      "absolute_difference": 1.787512360351684e-10
+    },
+    {
+      "path": "/0/registration/references/360/dy_output_pixels",
+      "absolute_difference": 4.426894406606152e-10
+    },
+    {
+      "path": "/0/registration/references/360/residual_pixels",
+      "absolute_difference": 3.88954909946726e-10
+    },
+    {
+      "path": "/0/registration/references/360/absolute_offset_a_pixels/0",
+      "absolute_difference": 1.0188472288064077e-10
+    },
+    {
+      "path": "/0/registration/references/360/absolute_offset_a_pixels/1",
+      "absolute_difference": 3.064997144974768e-10
+    },
+    {
+      "path": "/0/registration/references/360/absolute_offset_b_pixels/0",
+      "absolute_difference": 7.686651315452764e-11
+    },
+    {
+      "path": "/0/registration/references/360/absolute_offset_b_pixels/1",
+      "absolute_difference": 1.361897261631384e-10
+    },
+    {
+      "path": "/0/registration/references/361/a/x",
+      "absolute_difference": 8.715872468201269e-10
+    },
+    {
+      "path": "/0/registration/references/361/a/y",
+      "absolute_difference": 6.091909199312795e-10
+    },
+    {
+      "path": "/0/registration/references/361/a/sigma_x_pixels",
+      "absolute_difference": 6.306731248351127e-10
+    },
+    {
+      "path": "/0/registration/references/361/a/sigma_y_pixels",
+      "absolute_difference": 4.280914511767264e-11
+    },
+    {
+      "path": "/0/registration/references/361/a/profile_fwhm_pixels",
+      "absolute_difference": 6.37449759643971e-10
+    },
+    {
+      "path": "/0/registration/references/361/a/background_mjy_sr",
+      "absolute_difference": 4.910905015975686e-12
+    },
+    {
+      "path": "/0/registration/references/361/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.3353540495586458e-11
+    },
+    {
+      "path": "/0/registration/references/363/a/x",
+      "absolute_difference": 1.0082601420435822e-11
+    },
+    {
+      "path": "/0/registration/references/363/a/y",
+      "absolute_difference": 6.529887741635321e-11
+    },
+    {
+      "path": "/0/registration/references/363/a/sigma_x_pixels",
+      "absolute_difference": 1.3164191958736637e-11
+    },
+    {
+      "path": "/0/registration/references/363/a/sigma_y_pixels",
+      "absolute_difference": 6.071659841566657e-11
+    },
+    {
+      "path": "/0/registration/references/363/a/profile_fwhm_pixels",
+      "absolute_difference": 5.671296765541456e-11
+    },
+    {
+      "path": "/0/registration/references/363/a/background_mjy_sr",
+      "absolute_difference": 1.387223669269133e-13
+    },
+    {
+      "path": "/0/registration/references/363/a/fit_residual_rms_sigma",
+      "absolute_difference": 2.510880392492254e-12
+    },
+    {
+      "path": "/0/registration/references/363/b/x",
+      "absolute_difference": 2.4279245280922623e-11
+    },
+    {
+      "path": "/0/registration/references/363/b/y",
+      "absolute_difference": 6.346567715809215e-11
+    },
+    {
+      "path": "/0/registration/references/363/b/sigma_x_pixels",
+      "absolute_difference": 7.761791209759394e-12
+    },
+    {
+      "path": "/0/registration/references/363/b/sigma_y_pixels",
+      "absolute_difference": 1.1367112806581758e-10
+    },
+    {
+      "path": "/0/registration/references/363/b/profile_fwhm_pixels",
+      "absolute_difference": 1.2315304331877996e-10
+    },
+    {
+      "path": "/0/registration/references/363/b/background_mjy_sr",
+      "absolute_difference": 1.4572509865473648e-12
+    },
+    {
+      "path": "/0/registration/references/363/b/fit_residual_rms_sigma",
+      "absolute_difference": 8.837375276016246e-13
+    },
+    {
+      "path": "/0/registration/references/363/dx_output_pixels",
+      "absolute_difference": 1.19101173368108e-10
+    },
+    {
+      "path": "/0/registration/references/363/dy_output_pixels",
+      "absolute_difference": 1.333688715021708e-11
+    },
+    {
+      "path": "/0/registration/references/363/residual_pixels",
+      "absolute_difference": 1.0787393200928364e-10
+    },
+    {
+      "path": "/0/registration/references/363/absolute_offset_a_pixels/0",
+      "absolute_difference": 5.775291356258094e-11
+    },
+    {
+      "path": "/0/registration/references/363/absolute_offset_a_pixels/1",
+      "absolute_difference": 1.8196999462816166e-11
+    },
+    {
+      "path": "/0/registration/references/363/absolute_offset_b_pixels/0",
+      "absolute_difference": 6.134825980552705e-11
+    },
+    {
+      "path": "/0/registration/references/363/absolute_offset_b_pixels/1",
+      "absolute_difference": 4.860112312599085e-12
+    },
+    {
+      "path": "/0/registration/references/371/a/x",
+      "absolute_difference": 2.915356844823691e-11
+    },
+    {
+      "path": "/0/registration/references/371/a/y",
+      "absolute_difference": 4.544631337921601e-11
+    },
+    {
+      "path": "/0/registration/references/371/a/sigma_x_pixels",
+      "absolute_difference": 2.076616656410124e-12
+    },
+    {
+      "path": "/0/registration/references/371/a/sigma_y_pixels",
+      "absolute_difference": 6.857031609186492e-11
+    },
+    {
+      "path": "/0/registration/references/371/a/profile_fwhm_pixels",
+      "absolute_difference": 7.859424222544931e-11
+    },
+    {
+      "path": "/0/registration/references/371/a/background_mjy_sr",
+      "absolute_difference": 1.2669310045509974e-12
+    },
+    {
+      "path": "/0/registration/references/371/a/fit_residual_rms_sigma",
+      "absolute_difference": 4.991540514254211e-11
+    },
+    {
+      "path": "/0/registration/references/371/b/x",
+      "absolute_difference": 5.041300710217911e-11
+    },
+    {
+      "path": "/0/registration/references/371/b/y",
+      "absolute_difference": 1.198543486680137e-10
+    },
+    {
+      "path": "/0/registration/references/371/b/sigma_x_pixels",
+      "absolute_difference": 1.9863910516448868e-10
+    },
+    {
+      "path": "/0/registration/references/371/b/sigma_y_pixels",
+      "absolute_difference": 2.448792835174629e-10
+    },
+    {
+      "path": "/0/registration/references/371/b/profile_fwhm_pixels",
+      "absolute_difference": 6.316314138388179e-11
+    },
+    {
+      "path": "/0/registration/references/371/b/background_mjy_sr",
+      "absolute_difference": 3.1276925493983754e-12
+    },
+    {
+      "path": "/0/registration/references/371/b/fit_residual_rms_sigma",
+      "absolute_difference": 2.4764856831893667e-10
+    },
+    {
+      "path": "/0/registration/references/371/dx_output_pixels",
+      "absolute_difference": 1.3842793578078272e-10
+    },
+    {
+      "path": "/0/registration/references/371/dy_output_pixels",
+      "absolute_difference": 5.3503868002735544e-11
+    },
+    {
+      "path": "/0/registration/references/371/residual_pixels",
+      "absolute_difference": 1.3783817143231403e-10
+    },
+    {
+      "path": "/0/registration/references/371/absolute_offset_a_pixels/0",
+      "absolute_difference": 4.604316927725449e-11
+    },
+    {
+      "path": "/0/registration/references/371/absolute_offset_a_pixels/1",
+      "absolute_difference": 2.5906388145813253e-11
+    },
+    {
+      "path": "/0/registration/references/371/absolute_offset_b_pixels/0",
+      "absolute_difference": 9.238476650352823e-11
+    },
+    {
+      "path": "/0/registration/references/371/absolute_offset_b_pixels/1",
+      "absolute_difference": 7.94102561485488e-11
+    },
+    {
+      "path": "/0/registration/references/373/a/x",
+      "absolute_difference": 1.4415491023100913e-10
+    },
+    {
+      "path": "/0/registration/references/373/a/y",
+      "absolute_difference": 1.3993712855153717e-09
+    },
+    {
+      "path": "/0/registration/references/373/a/sigma_x_pixels",
+      "absolute_difference": 7.644602173506598e-10
+    },
+    {
+      "path": "/0/registration/references/373/a/sigma_y_pixels",
+      "absolute_difference": 2.3313271868552476e-09
+    },
+    {
+      "path": "/0/registration/references/373/a/profile_fwhm_pixels",
+      "absolute_difference": 3.6373484224583308e-09
+    },
+    {
+      "path": "/0/registration/references/373/a/background_mjy_sr",
+      "absolute_difference": 1.8411938640383596e-11
+    },
+    {
+      "path": "/0/registration/references/373/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.268170013446479e-10
+    },
+    {
+      "path": "/0/registration/references/373/b/x",
+      "absolute_difference": 1.4963685401880866e-08
+    },
+    {
+      "path": "/0/registration/references/373/b/y",
+      "absolute_difference": 1.6297008187393658e-10
+    },
+    {
+      "path": "/0/registration/references/373/b/sigma_x_pixels",
+      "absolute_difference": 9.174389542510042e-08
+    },
+    {
+      "path": "/0/registration/references/373/b/sigma_y_pixels",
+      "absolute_difference": 3.495703726485999e-11
+    },
+    {
+      "path": "/0/registration/references/373/b/profile_fwhm_pixels",
+      "absolute_difference": 1.2995561582407333e-07
+    },
+    {
+      "path": "/0/registration/references/373/b/background_mjy_sr",
+      "absolute_difference": 7.947542624009429e-11
+    },
+    {
+      "path": "/0/registration/references/373/b/fit_residual_rms_sigma",
+      "absolute_difference": 3.623057409640751e-10
+    },
+    {
+      "path": "/0/registration/references/373/dx_output_pixels",
+      "absolute_difference": 6.277133479670738e-09
+    },
+    {
+      "path": "/0/registration/references/373/dy_output_pixels",
+      "absolute_difference": 1.3850289803940541e-08
+    },
+    {
+      "path": "/0/registration/references/373/residual_pixels",
+      "absolute_difference": 1.1969554569724039e-08
+    },
+    {
+      "path": "/0/registration/references/373/absolute_offset_a_pixels/0",
+      "absolute_difference": 1.3913989960201434e-09
+    },
+    {
+      "path": "/0/registration/references/373/absolute_offset_a_pixels/1",
+      "absolute_difference": 2.884732452912431e-10
+    },
+    {
+      "path": "/0/registration/references/373/absolute_offset_b_pixels/0",
+      "absolute_difference": 4.8857344836505945e-09
+    },
+    {
+      "path": "/0/registration/references/373/absolute_offset_b_pixels/1",
+      "absolute_difference": 1.4138763049231784e-08
+    },
+    {
+      "path": "/0/registration/references/378/b/x",
+      "absolute_difference": 2.6068036618198676e-09
+    },
+    {
+      "path": "/0/registration/references/378/b/y",
+      "absolute_difference": 2.089791450998746e-09
+    },
+    {
+      "path": "/0/registration/references/378/b/sigma_x_pixels",
+      "absolute_difference": 9.498035136168426e-10
+    },
+    {
+      "path": "/0/registration/references/378/b/sigma_y_pixels",
+      "absolute_difference": 4.535051334464413e-09
+    },
+    {
+      "path": "/0/registration/references/378/b/profile_fwhm_pixels",
+      "absolute_difference": 6.0285005876181685e-09
+    },
+    {
+      "path": "/0/registration/references/378/b/background_mjy_sr",
+      "absolute_difference": 2.0545093404322756e-11
+    },
+    {
+      "path": "/0/registration/references/378/b/fit_residual_rms_sigma",
+      "absolute_difference": 1.0210277068267715e-11
+    },
+    {
+      "path": "/0/registration/references/400/b/x",
+      "absolute_difference": 1.518074554951454e-10
+    },
+    {
+      "path": "/0/registration/references/400/b/y",
+      "absolute_difference": 1.9251444882684154e-10
+    },
+    {
+      "path": "/0/registration/references/400/b/sigma_x_pixels",
+      "absolute_difference": 2.0158108515744289e-10
+    },
+    {
+      "path": "/0/registration/references/400/b/sigma_y_pixels",
+      "absolute_difference": 1.075460276389606e-10
+    },
+    {
+      "path": "/0/registration/references/400/b/profile_fwhm_pixels",
+      "absolute_difference": 3.647165902620486e-10
+    },
+    {
+      "path": "/0/registration/references/400/b/background_mjy_sr",
+      "absolute_difference": 5.046241202677493e-12
+    },
+    {
+      "path": "/0/registration/references/400/b/fit_residual_rms_sigma",
+      "absolute_difference": 1.0361489444221661e-11
+    },
+    {
+      "path": "/0/registration/references/408/b/x",
+      "absolute_difference": 1.1369678531991667e-09
+    },
+    {
+      "path": "/0/registration/references/408/b/y",
+      "absolute_difference": 1.074454303306993e-09
+    },
+    {
+      "path": "/0/registration/references/408/b/sigma_x_pixels",
+      "absolute_difference": 1.178146802338631e-09
+    },
+    {
+      "path": "/0/registration/references/408/b/sigma_y_pixels",
+      "absolute_difference": 4.505839423796232e-09
+    },
+    {
+      "path": "/0/registration/references/408/b/profile_fwhm_pixels",
+      "absolute_difference": 3.846432505838493e-09
+    },
+    {
+      "path": "/0/registration/references/408/b/background_mjy_sr",
+      "absolute_difference": 5.203892872174265e-12
+    },
+    {
+      "path": "/0/registration/references/408/b/fit_residual_rms_sigma",
+      "absolute_difference": 7.12900849464404e-11
+    },
+    {
+      "path": "/0/registration/references/411/a/x",
+      "absolute_difference": 2.6489033189136535e-10
+    },
+    {
+      "path": "/0/registration/references/411/a/y",
+      "absolute_difference": 3.2369484870287124e-10
+    },
+    {
+      "path": "/0/registration/references/411/a/sigma_x_pixels",
+      "absolute_difference": 1.4089918121129585e-10
+    },
+    {
+      "path": "/0/registration/references/411/a/sigma_y_pixels",
+      "absolute_difference": 6.484214831736779e-10
+    },
+    {
+      "path": "/0/registration/references/411/a/profile_fwhm_pixels",
+      "absolute_difference": 6.486323700372054e-10
+    },
+    {
+      "path": "/0/registration/references/411/a/background_mjy_sr",
+      "absolute_difference": 7.095685150559916e-12
+    },
+    {
+      "path": "/0/registration/references/411/a/fit_residual_rms_sigma",
+      "absolute_difference": 1.1968426250064113e-11
+    },
+    {
+      "path": "/0/registration/references/411/b/x",
+      "absolute_difference": 7.6047967922932e-10
+    },
+    {
+      "path": "/0/registration/references/411/b/y",
+      "absolute_difference": 1.5916157281026244e-11
+    },
+    {
+      "path": "/0/registration/references/411/b/sigma_x_pixels",
+      "absolute_difference": 8.012380758870563e-10
+    },
+    {
+      "path": "/0/registration/references/411/b/sigma_y_pixels",
+      "absolute_difference": 5.540582992402676e-10
+    },
+    {
+      "path": "/0/registration/references/411/b/profile_fwhm_pixels",
+      "absolute_difference": 1.950271055761732e-10
+    },
+    {
+      "path": "/0/registration/references/411/b/background_mjy_sr",
+      "absolute_difference": 9.450662474819183e-12
+    },
+    {
+      "path": "/0/registration/references/411/b/fit_residual_rms_sigma",
+      "absolute_difference": 6.596456714191845e-11
+    },
+    {
+      "path": "/0/registration/references/411/dx_output_pixels",
+      "absolute_difference": 1.1827694379462628e-10
+    },
+    {
+      "path": "/0/registration/references/411/dy_output_pixels",
+      "absolute_difference": 5.073133024779963e-10
+    },
+    {
+      "path": "/0/registration/references/411/residual_pixels",
+      "absolute_difference": 4.840009920625832e-10
+    },
+    {
+      "path": "/0/registration/references/411/absolute_offset_a_pixels/0",
+      "absolute_difference": 3.497575562505517e-10
+    },
+    {
+      "path": "/0/registration/references/411/absolute_offset_a_pixels/1",
+      "absolute_difference": 2.2208723748917691e-10
+    },
+    {
+      "path": "/0/registration/references/411/absolute_offset_b_pixels/0",
+      "absolute_difference": 2.3148061245592544e-10
+    },
+    {
+      "path": "/0/registration/references/411/absolute_offset_b_pixels/1",
+      "absolute_difference": 7.294005399671732e-10
+    }
+  ],
+  "acquisition_events": [
+    {
+      "path": "/app/data/cache/cutouts/9cdaa8e790fc618eec7b3b1cf4d112d3c9dad13affaaf5b356e90e46cbed9e5a.fits",
+      "sha256": "e48ac3fc5cf16f815b4799b631856e77d64ca46c750ee2339c0abf5b2b869412",
+      "size_bytes": 5555520,
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W49_1A/l2b-v20-2025-339/2/level2_2025W49_1A_0009_3D2_spx_l2b-v20-2025-339.fits?center=248.16761083294998%2C66.75497941722&size=0.3",
+      "retrieved_at_utc": "2026-10-30T06:36:31.105089Z"
+    },
+    {
+      "path": "/app/data/cache/cutouts/209600227f8b1d0278663a20a3e3ecf7f7fd631ea405353de0d8aed927f87716.fits",
+      "sha256": "ec6b6f361163ce8adbc23249557aa3ba770f87a6899e408b8d8e3667e244212b",
+      "size_bytes": 5440320,
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_2A/l2b-v20-2025-349/2/level2_2025W50_2A_0259_3D2_spx_l2b-v20-2025-349.fits?center=248.16761083294998%2C66.75497941722&size=0.3",
+      "retrieved_at_utc": "2026-10-30T06:36:33.735791Z"
+    },
+    {
+      "path": "/app/data/calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+      "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+      "size_bytes": 33312960,
+      "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+      "retrieved_at_utc": "2026-10-30T06:36:15.083402Z"
+    }
+  ],
+  "historical_example_sha256": "ea4c955aad476910a8f29661c7e9948dd51941b482ffc71fce5fb92245048d20",
+  "scientific_approval": "PENDING"
+}

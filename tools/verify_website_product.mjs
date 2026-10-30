@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_website_product',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // The science-first 0.7 journeys use isolated installed-browser profiles.
 // They are software/visual checks, not a human usability study.
 import fs from "node:fs/promises";
@@ -11,8 +13,8 @@ const { chromium } = await import(
 );
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "",
   testName = process.env.SKYSHIFT_TEST_NAME || "website07",
-  out = "tmp/" + testName + "-qa" + (suffix ? "-" + suffix : "");
-await fs.mkdir(out, { recursive: true });
+  out = evidenceRun;
+
 const browser = await chromium.launch({
     headless: true,
     executablePath:
@@ -58,7 +60,7 @@ async function loaded(page, field = "m101", kind = "pair") {
 async function snap(page, name) {
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(180);
-  await page.screenshot({ path: out + "/" + name + ".png", fullPage: false });
+  await page.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/" + name + ".png")), fullPage: false });
 }
 async function check(name, action) {
   current = name;
@@ -74,7 +76,7 @@ async function check(name, action) {
 async function save(page, name) {
   const event = page.waitForEvent("download");
   await page.click("#instrument-save");
-  await (await event).saveAs(out + "/" + name);
+  await (await event).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out + "/" + name)));
 }
 async function point(page, kind = "pair") {
   return page.evaluate(async (kind) => {
@@ -663,12 +665,11 @@ try {
   process.exitCode = 1;
   if (p) await snap(p, "failure").catch(() => {});
 } finally {
-  await fs.writeFile(
-    "docs/evidence/" +
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/" +
       testName +
       "_product_tests" +
       (suffix ? "_" + suffix : "") +
-      ".json",
+      ".json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

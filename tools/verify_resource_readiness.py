@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run, write_report
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run, write_report
 """Verify browser-request/Python interoperability without fetching or rendering.
 
 Run verify_challenge_readiness.mjs first to create the five browser downloads.
@@ -47,7 +51,7 @@ def verify():
               'recorded_wise_0855_qr3_inventory_rows': len(rows),
               'scientific_approval': 'PENDING', 'internal_human_review': 'PENDING',
               'independent_novice_validation': 'NOT_CONDUCTED'}
-    (evidence/'resource-contract.json').write_text(json.dumps(result, indent=2)+'\n', encoding='utf-8')
+    write_report(fresh_run('verify-resource-readiness'),'resource-contract.json',json.dumps(result, indent=2)+'\n')
     print(json.dumps(result, indent=2))
 
 

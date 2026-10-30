@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_unified_product',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Fresh installed-browser profiles; never claim this represents the user's session.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -9,8 +11,8 @@ const { chromium } = await import(
   )
 );
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "",
-  out = "tmp/unified-qa" + (suffix ? "-" + suffix : "");
-await fs.mkdir(out, { recursive: true });
+  out = evidenceRun;
+
 const browser = await chromium.launch({
   headless: true,
   executablePath:
@@ -68,12 +70,12 @@ async function check(name, action) {
 async function snap(p, name) {
   await p.evaluate(() => document.fonts.ready);
   await p.waitForTimeout(250);
-  await p.screenshot({ path: out + "/" + name + ".png" });
+  await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/" + name + ".png" ))});
 }
 async function save(p, name) {
   const download = p.waitForEvent("download");
   await p.click("#instrument-save");
-  await (await download).saveAs(out + "/" + name);
+  await (await download).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out + "/" + name)));
 }
 async function point(p, kind = "exposure") {
   return p.evaluate(async (kind) => {
@@ -637,10 +639,9 @@ try {
   if (p) await snap(p, "failure").catch(() => {});
   process.exitCode = 1;
 } finally {
-  await fs.writeFile(
-    "docs/evidence/unified_product_tests" +
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/unified_product_tests" +
       (suffix ? "_" + suffix : "") +
-      ".json",
+      ".json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

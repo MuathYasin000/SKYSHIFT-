@@ -1,8 +1,10 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_completion',process.env.SKYSHIFT_COMPLETION_OUTPUT);
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {chromium} from 'file:///C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
-const out=process.env.SKYSHIFT_COMPLETION_OUTPUT||'docs/evidence/completion-20261030/browser';
-await fs.mkdir(out); // Refuse to overwrite earlier evidence.
+const out=evidenceRun;
+ // Refuse to overwrite earlier evidence.
 const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const results=[],errors=[];
 const ready=p=>p.waitForFunction(()=>window.skyshiftWebsite?.diagnostics().investigation?.sequence&&!skyshiftWebsite.diagnostics().investigation.busy,{timeout:45000});
@@ -20,13 +22,13 @@ try {
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   if(width===1440) {
    const download=page.waitForEvent('download');await page.click('#instrument-save');
-   await (await download).saveAs(out+'/comet-investigation.zip');
+   await (await download).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out+'/comet-investigation.zip')));
    await page.goto('http://localhost:3000/#observations/m101');
    await page.waitForFunction(()=>window.skyshiftWebsite?.diagnostics().investigation?.field==='m101'&&!skyshiftWebsite.diagnostics().investigation.busy);
    await page.setInputFiles('#instrument-file',out+'/comet-investigation.zip');await ready(page);
    assert.equal(await page.locator('#instrument-sequence-play').isDisabled(),true);
   }
-  await page.screenshot({path:out+`/comet-${width}.png`});
+  await page.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+`/comet-${width}.png`))});
   results.push({name:`Real comet independent inspection and spectral rejection at ${width}px with API unavailable`,status:'pass'});
   await context.close();
  }
@@ -51,6 +53,6 @@ try {
  assert.deepEqual(errors,[]);
 } finally {
  await browser.close();
- await fs.writeFile(out+'/results.json',JSON.stringify({results,page_errors:errors,scientific_approval:'PENDING',known_comet_motion:'NOT ESTABLISHED'},null,2));
+ await writeEvidenceFile(evidenceFile(evidenceRun,out+'/results.json'),JSON.stringify({results,page_errors:errors,scientific_approval:'PENDING',known_comet_motion:'NOT ESTABLISHED'},null,2));
 }
 console.log(JSON.stringify(results));

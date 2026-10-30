@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run
 """Issue a documentation-only packet revision without reprocessing scientific bytes."""
 from pathlib import Path
 import shutil,json
@@ -21,7 +25,7 @@ assert payload['manifest.json']==current_payload['manifest.json']
 assert payload['prepared/pair.fits']==current_payload['prepared/pair.fits']
 assert current_payload['diagnostics/reviewer_guide.md']==(root/'docs/reviewer_guide.md').read_bytes()
 result={'path':str(archive),'size_bytes':archive.stat().st_size,'sha256':sha256_file(archive),'files':len(current_payload)}
-(root/'docs/evidence/review_packet_documentation_revision.json').write_text(json.dumps({'old_packet':'m101-review-v4.zip','current_packet':'m101-review-v6.zip',
+(fresh_run('review-packet-documentation')/'review_packet_documentation_revision.json').write_text(json.dumps({'old_packet':'m101-review-v4.zip','current_packet':'m101-review-v6.zip',
  'reason':'Remove a superseded rounded residual from one specialist question; authoritative registration-v2 measurements were already correct.',
  'scientific_manifest_and_prepared_bytes_unchanged':True,'scientific_approval':'PENDING','intermediate_v5':'Unpublished packaging artifact included source-install build caches; retained but superseded by the clean canonical-ZIP derivation.', 'packet':result},indent=2),encoding='utf-8')
 print(json.dumps(result,indent=2))

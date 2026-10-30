@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run, write_report
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run, write_report
 """Read-only integrity checks for the 0.4 visitor release against the 0.3 snapshot."""
 from pathlib import Path
 from datetime import datetime, timezone
@@ -62,7 +66,7 @@ def run():
               'scientific_source_unchanged_since': 'cf6de76', 'scientific_approval': 'PENDING',
               'independent_novice_validation': 'NOT CONDUCTED', 'tests': tests,
               'all_hashes_match': True, 'no_publication': True}
-    (ROOT/'docs/evidence/release_0.4_integrity.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
+    write_report(fresh_run('verify-visitor-release'),'release_0.4_integrity.json',json.dumps(result, indent=2))
     print(json.dumps({'all_hashes_match': True, 'production_files_verified': len(inventory),
                       'preserved_science_and_imagery_files': len(preserved), 'tests': tests}, indent=2))
 

@@ -1,8 +1,10 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_arrival_sound',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // The arrival is intentionally silent; verify normal interface audio separately.
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {chromium} from 'file:///C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
-const out='docs/evidence/silent-arrival-20261029';await fs.mkdir(out,{recursive:true});
+const out=evidenceRun;
 const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--autoplay-policy=no-user-gesture-required']});
 const results=[],errors=[];
 async function page(options={}){const c=await browser.newContext({viewport:{width:1440,height:1000},...options}),p=await c.newPage();p.setDefaultTimeout(15000);p.on('pageerror',e=>errors.push(e.message));return {c,p};}
@@ -37,5 +39,5 @@ try{
    assert.ok(await m.p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.equal(await m.p.locator('.hero-observatory canvas').count(),1);
   }finally{await m.c.close();}
  });
-}finally{await browser.close();await fs.writeFile(out+'/browser.json',JSON.stringify({scope:'Silent intro verified under an explicitly allowed autoplay policy; ordinary interface audio remains enabled',results,page_errors:errors},null,2)+'\n');}
+}finally{await browser.close();await writeEvidenceFile(evidenceFile(evidenceRun,out+'/browser.json'),JSON.stringify({scope:'Silent intro verified under an explicitly allowed autoplay policy; ordinary interface audio remains enabled',results,page_errors:errors},null,2)+'\n');}
 assert.deepEqual(errors,[]);assert.ok(results.every(r=>r.status==='pass'));

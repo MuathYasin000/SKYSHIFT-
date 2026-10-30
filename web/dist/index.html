@@ -246,6 +246,7 @@
             <div class="search-target-row"><span>Try a target</span><div id="sky-search-targets" class="search-targets" role="group" aria-label="Challenge target search presets"></div></div>
             <div class="search-toolbar">
               <a class="search-example" href="#sequence-example">Try a cached example ↗</a>
+              <a class="search-example" href="#target-example/r-draconis-temporal">R Draconis field · two dates ↗</a>
               <a class="search-example" href="#target-example/comet-december">Inspect 3I/ATLAS · wavelength check ↗</a>
               <button type="button" id="sky-search-cancel" hidden>Cancel preparation</button>
               <details id="sky-search-options" class="search-options">
@@ -254,11 +255,15 @@
                   <div class="search-advanced-grid">
                     <label for="search-release">Data release<select id="search-release" name="release"><option value="qr2">QR2</option><option value="qr3">QR3</option></select></label>
                     <label for="search-detector">Wavelength group<select id="search-detector"><option value="2">D2 · 1.10–1.62 µm</option><option value="1">D1 · 0.75–1.09 µm</option><option value="3">D3 · 1.63–2.41 µm</option><option value="4">D4 · 2.42–3.82 µm</option><option value="5">D5 · 3.83–4.41 µm</option><option value="6">D6 · 4.42–5.00 µm</option></select></label>
+                    <label for="search-selection">Observation selection<select id="search-selection"><option value="compatible">Prefer matching wavelengths</option><option value="chronological">Browse observation dates</option></select></label>
+                    <label for="search-wavelength">Local wavelength · µm, optional<input id="search-wavelength" type="number" min="0.75" max="5" step="any" placeholder="Any wavelength"></label>
+                    <label for="search-start">From · UTC<input id="search-start" type="date"></label>
+                    <label for="search-end">Through · UTC<input id="search-end" type="date"></label>
                   </div>
                   <p id="search-unit-help">ICRS coordinates: decimal RA/Dec in degrees; hms RA in hours (0–24). Width is the side of a square, 1–30 arcmin. Up to three cutouts per request; larger fields may take longer.</p>
                   <label class="search-fresh"><input id="search-fresh" type="checkbox">Refresh from the archive instead of using cached originals.</label>
                   <button type="button" id="sky-search-check">Check installed fields</button>
-                  <p>QR2/D2 supports full calibration checks. Other groups and releases may allow individual images only. Playback requires wavelength and reference checks; scientific approval remains pending. Data are never silently substituted.</p>
+                  <p>Matching wavelengths are checked before cutout downloads where supported. Browsing dates is independent inspection: brightness differences between wavelength bands do not establish variability. QR2/D2 has pinned calibration; other groups may allow individual images only. Comparisons still require full wavelength and reference checks.</p>
                   <p>Live requests need this host’s preparation service; cached examples work without it. Coordinates and field width go to this host and the public archive. Your notes stay in your browser until exported.</p>
                   <p id="sky-target-context">Choose a target to see its coordinate source and test notes.</p>
                   <a id="sky-target-source" target="_blank" rel="noopener noreferrer" hidden>Coordinate source ↗</a>

@@ -1,10 +1,12 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_link_audit',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Installed Chromium, actual static package and its unchanged production CSP.
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {pathToFileURL} from 'node:url';
 const {chromium}=await import(pathToFileURL('C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs'));
-const origin='http://localhost:3001',out='tmp/link-audit',results=[],errors=[],failed=[],csp=[],consoleErrors=[],httpErrors=[];
-await fs.mkdir(out,{recursive:true});
+const origin='http://localhost:3001',out=evidenceRun,results=[],errors=[],failed=[],csp=[],consoleErrors=[],httpErrors=[];
+
 const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 const context=await browser.newContext({viewport:{width:1440,height:900},reducedMotion:'reduce',acceptDownloads:true});
 let p=await context.newPage();
@@ -100,5 +102,5 @@ try{
   await p.click('#site-more');const before=await p.locator('body').evaluate(e=>e.classList.contains('reduced-effects'));await p.click('#reduce-effects');assert.notEqual(await p.locator('body').evaluate(e=>e.classList.contains('reduced-effects')),before);
  });
  assert.deepEqual(errors,[]);assert.deepEqual(consoleErrors,[]);assert.deepEqual(failed,[]);assert.deepEqual(httpErrors,[]);assert.deepEqual(csp,[]);
-}catch(e){console.error(e.stack);process.exitCode=1;await p.screenshot({path:out+'/browser-failure.png'}).catch(()=>{});}
-finally{await fs.writeFile(out+'/browser-verification.json',JSON.stringify({recorded_at_utc:new Date().toISOString(),browser:browser.version(),results,page_errors:errors,console_errors:consoleErrors,failed_requests:failed,http_errors:httpErrors,csp_violations:csp,scope:'Built static package served with production _headers CSP. External-click intent uses isolated response fixtures; real external HEAD availability is reported separately. Pretty-URL test supplies explicit fixture rewrites.'},null,2)+'\n');await browser.close();}
+}catch(e){console.error(e.stack);process.exitCode=1;await p.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+'/browser-failure.png'))}).catch(()=>{});}
+finally{await writeEvidenceFile(evidenceFile(evidenceRun,out+'/browser-verification.json'),JSON.stringify({recorded_at_utc:new Date().toISOString(),browser:browser.version(),results,page_errors:errors,console_errors:consoleErrors,failed_requests:failed,http_errors:httpErrors,csp_violations:csp,scope:'Built static package served with production _headers CSP. External-click intent uses isolated response fixtures; real external HEAD availability is reported separately. Pretty-URL test supplies explicit fixture rewrites.'},null,2)+'\n');await browser.close();}

@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_observatory_design',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Read-only scientific checks plus actual browser interactions. No human review inferred.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -9,11 +11,11 @@ const { chromium } = await import(
   )
 );
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "chrome";
-const out = "tmp/observatory-design/" + suffix,
+const out = evidenceRun,
   results = [],
   errors = [],
   external = [];
-await fs.mkdir(out, { recursive: true });
+
 const browser = await chromium.launch({
   headless: true,
   executablePath:
@@ -145,7 +147,7 @@ try {
     await p.click("#infrared-legend-button");
     assert.equal(await p.locator("#infrared-legend").isVisible(), true);
     assert.equal(await p.locator(".spectral-swatches>span").count(), 3);
-    await p.screenshot({ path: out + "/vela.png" });
+    await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/vela.png" ))});
     await axe();
   });
   await test("Lazy model exposes actual projected component hotspots", async () => {
@@ -192,7 +194,7 @@ try {
       (previous) => skyshiftWebsite.diagnostics().model.selected !== previous,
       await chip.getAttribute("data-website-component"),
     );
-    await p.screenshot({ path: out + "/spacecraft.png" });
+    await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/spacecraft.png" ))});
   });
   await test("Exact evidence checksum copy and keyboard comparison wipe", async () => {
     await p.goto("http://localhost:3000/#compare");
@@ -204,7 +206,7 @@ try {
     await p.locator(".evidence-record button").first().click();
     assert.equal(await p.evaluate(() => navigator.clipboard.readText()), hash);
     await axe();
-    await p.screenshot({ path: out + "/evidence.png" });
+    await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/evidence.png" ))});
     await p.click("#instrument-panel-close");
     await p.click('[data-compare="wipe"]');
     await p.locator("#instrument-wipe").focus();
@@ -247,7 +249,7 @@ try {
         await p.waitForFunction(
           () => skyshiftHero.diagnostics().model?.frames > 0,
         );
-        await p.screenshot({ path: out + "/home-" + width + ".png" });
+        await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/home-" + width + ".png" ))});
       }
     }
   });
@@ -256,10 +258,9 @@ try {
 } catch (e) {
   console.error(e.stack);
   process.exitCode = 1;
-  await p.screenshot({ path: out + "/failure.png" }).catch(() => {});
+  await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/failure.png" ))}).catch(() => {});
 } finally {
-  await fs.writeFile(
-    "docs/evidence/observatory_design_tests_" + suffix + ".json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/observatory_design_tests_" + suffix + ".json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

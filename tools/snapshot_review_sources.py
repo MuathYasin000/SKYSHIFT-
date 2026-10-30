@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run
 """Preserve the primary interpretation source actually read for this review."""
 from pathlib import Path
 from urllib.request import urlopen
@@ -5,7 +9,7 @@ from datetime import datetime,timezone
 from hashlib import sha256
 import json
 
-root=Path(__file__).resolve().parents[1]/'research/validation'
+root=fresh_run('review-sources')
 url='https://caltech-ipac.github.io/spherex-archive-documentation/spherex-data-products/'
 with urlopen(url,timeout=60) as response:data=response.read(2_000_001)
 if len(data)>2_000_000:raise ValueError('Documentation exceeds snapshot bound')

@@ -1,3 +1,7 @@
+try:
+    from evidence_output import fresh_run
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run
 """One targeted QR2/D2 single-exposure addition, with preserved discovery and independent interpolation checks.
 
 Never runs temporal-pair screening or regenerates existing observation payloads.
@@ -98,7 +102,7 @@ def main():
         shutil.copyfile(private/name,target/name)
     catalog['fields'].append(field);catalog['scope']='Four curated real fields; single-exposure exploration plus one restricted M101 comparison candidate; no all-sky availability claim'
     catalog_path.write_text(json.dumps(catalog,indent=2),encoding='utf-8')
-    (ROOT/'docs/evidence/m42_single_context.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+    (fresh_run('orion-context')/'m42_single_context.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
     print(json.dumps({'field':'m42','observation':row['obs_id'],'prepared_valid_fraction':float(valid.mean()),'arrays':comparisons,'scientific_approval':'PENDING','temporal_comparison_enabled':False},indent=2))
 
 

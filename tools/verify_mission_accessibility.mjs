@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_mission_accessibility',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Lighthouse is a development dependency, never shipped to the visitor.
 // Supply the installed Lighthouse package directory as the first argument.
 import fs from "node:fs/promises";
@@ -48,16 +50,14 @@ try {
       unresolved_automated_audits: failures,
       lighthouse_version: lhr.lighthouseVersion,
     });
-    await fs.writeFile(
-      `tmp/mission-control/lighthouse-${name}.json`,
+    await writeEvidenceFile(evidenceFile(evidenceRun,`tmp/mission-control/lighthouse-${name}.json`),
       JSON.stringify(lhr) + "\n",
     );
     console.log(
       `${name}: ${score}/100; ${failures.length} failing automated audits`,
     );
   }
-  await fs.writeFile(
-    "docs/evidence/mission_control_lighthouse.json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/mission_control_lighthouse.json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

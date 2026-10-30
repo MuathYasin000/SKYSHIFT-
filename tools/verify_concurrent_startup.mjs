@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_concurrent_startup',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import { pathToFileURL } from "node:url";
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -89,8 +91,7 @@ for (let trial = 0; trial < 3; trial++) {
   for (const r of round)
     console.log(r.status.toUpperCase() + " " + r.name + " trial " + trial);
 }
-await fs.writeFile(
-  "docs/evidence/website07_concurrent_startup_tests.json",
+await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/website07_concurrent_startup_tests.json"),
   JSON.stringify(
     {
       date_utc: new Date().toISOString(),

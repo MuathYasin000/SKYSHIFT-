@@ -5,6 +5,10 @@ Network responses are retained without overwriting earlier evidence. This audit
 verifies provenance; it does not confer scientific suitability or approval.
 """
 from __future__ import annotations
+try:
+    from evidence_output import fresh_run
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run
 
 import argparse
 import base64
@@ -304,8 +308,7 @@ def main():
     if release.parent != ROOT/'data/prepared' or args.release in ('.', '..'):
         parser.error('Release must be a plain directory name')
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
-    evidence = ROOT/'research/audit_0.3'/stamp
-    evidence.mkdir(parents=True, exist_ok=False)
+    evidence = fresh_run('provenance-audit')
     bundle_path = ROOT/'web/dist/data/bundle.json'
     # Preserve the exact locally audited payload in case the redesign changes later.
     (evidence/'local-bundle.json').write_bytes(bundle_path.read_bytes())
@@ -373,8 +376,8 @@ def main():
                         report['deployed']['review_packet_manifest_matches_immutable_release'] = json.loads(packet.read('manifest.json')) == manifest
     text = json.dumps(report, indent=2, allow_nan=False)
     (evidence/'audit.json').write_text(text, encoding='utf-8')
-    (ROOT/'docs/evidence/provenance_audit_0.3.json').write_text(text, encoding='utf-8')
-    write_report(report, ROOT/'docs/provenance_audit_0.3.md')
+    # audit.json above is the sole fresh-run report; historical reports stay intact.
+    write_report(report, evidence/'provenance_audit_0.3.md')
     print(json.dumps({'evidence': evidence.relative_to(ROOT).as_posix(), 'local_arrays': len(report['local']['arrays']),
         'network': [{'name': r['name'], 'status': r['status'], 'hash_match': r.get('hash_match')} for r in report['network']],
         'scientific_approval': 'PENDING'}, indent=2))

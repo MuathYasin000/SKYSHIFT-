@@ -1,7 +1,9 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_native_sequence',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {chromium} from 'file:///C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
-const out='docs/evidence/native-sequence-20261029';await fs.mkdir(out,{recursive:true});
+const out=evidenceRun;
 const base='http://localhost:3000',results=[],errors=[];
 const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
 async function page(options={}){const c=await browser.newContext({viewport:{width:1440,height:1000},acceptDownloads:true,...options});const p=await c.newPage();p.on('pageerror',e=>errors.push(e.message));p.setDefaultTimeout(25000);return {c,p};}
@@ -22,7 +24,7 @@ try {
    const url=p.url();await p.reload();await ready(p);assert.equal(p.url(),url);
    await p.locator('#instrument-sequence-play').click();await p.waitForFunction(()=>skyshiftWebsite.diagnostics().investigation.sequence_playing);await p.waitForTimeout(1700);await p.locator('#instrument-sequence-play').click();
    await p.locator('#instrument-about').click();assert.match(await p.locator('#instrument-information-body').innerText(),/Stationary-reference registration: pass/);await p.locator('#instrument-information-close').click();
-   await p.screenshot({path:out+'/sequence.png'});return {url,frames:2,requested_width_arcmin:2.4,observed_load_ms:elapsed,conditions:'Isolated installed Chrome on this Windows machine; verified-original cache or a recent receipt; not an internet performance guarantee',prepared_response_bytes:await p.evaluate(()=>performance.getEntriesByType('resource').filter(e=>/\/api\/investigations\/.*\/result/.test(e.name)).map(e=>e.decodedBodySize))};
+   await p.screenshot({path:await claimEvidenceFile(evidenceFile(evidenceRun,out+'/sequence.png'))});return {url,frames:2,requested_width_arcmin:2.4,observed_load_ms:elapsed,conditions:'Isolated installed Chrome on this Windows machine; verified-original cache or a recent receipt; not an internet performance guarantee',prepared_response_bytes:await p.evaluate(()=>performance.getEntriesByType('resource').filter(e=>/\/api\/investigations\/.*\/result/.test(e.name)).map(e=>e.decodedBodySize))};
   }finally{await c.close();}
  });
  await check('Sequence note, viewport, epoch and display survive self-contained ZIP export/reopen',async()=>{
@@ -33,7 +35,7 @@ try {
    await p.locator('#instrument-add').click();await p.locator('#instrument-question-text').fill('Possible positional change? Automated engineering note; not a discovery.');await p.locator('#instrument-question-save').click();
    const before=await p.evaluate(()=>skyshiftWebsite.diagnostics().investigation);
    await p.reload();await ready(p);const restored=await p.evaluate(()=>skyshiftWebsite.diagnostics().investigation);assert.deepEqual(restored.questions,before.questions);assert.deepEqual(restored.display,before.display);
-   const d=p.waitForEvent('download');await p.locator('#instrument-save').click();await (await d).saveAs(out+'/investigation.zip');
+   const d=p.waitForEvent('download');await p.locator('#instrument-save').click();await (await d).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out+'/investigation.zip')));
    await p.goto(base+'/#observations/m101');await p.waitForFunction(()=>window.skyshiftWebsite?.diagnostics().investigation?.field==='m101'&&!skyshiftWebsite.diagnostics().investigation.busy);
    await p.setInputFiles('#instrument-file',out+'/investigation.zip');await ready(p);
    const after=await p.evaluate(()=>skyshiftWebsite.diagnostics().investigation);
@@ -85,5 +87,5 @@ try {
    const button=p.locator('#instrument-reference-overlay');assert.equal(await button.isVisible(),true);await button.click();assert.equal(await button.getAttribute('aria-pressed'),'true');assert.match(await button.getAttribute('title'),/predictions, not SPHEREx detections/);
   }finally{await c.close();}
  });
-}finally{await browser.close();await fs.writeFile(out+'/browser.json',JSON.stringify({results,page_errors:errors,scientific_approval:'PENDING'},null,2)+'\n');}
+}finally{await browser.close();await writeEvidenceFile(evidenceFile(evidenceRun,out+'/browser.json'),JSON.stringify({results,page_errors:errors,scientific_approval:'PENDING'},null,2)+'\n');}
 assert.deepEqual(errors,[]);assert.ok(results.every(r=>r.status==='pass'));

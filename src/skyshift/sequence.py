@@ -14,10 +14,12 @@ import math
 from importlib.metadata import version
 from pathlib import Path
 from threading import Event
+from datetime import date
+from typing import Literal
 from urllib.parse import urlencode, urlsplit, parse_qs
 
 import numpy as np
-from pydantic import Field
+from pydantic import Field, model_validator
 from reproject import reproject_interp
 
 from .archive import inventory, download, cutout_url, sha256_file, fetch_bytes, utc_now
@@ -50,6 +52,18 @@ class SequenceRequest(ObservationRequest):
     max_frames: int = Field(default=3, ge=1, le=6, strict=True)
     deep: bool = Field(default=False,strict=True)
     use_cache: bool = Field(default=True,strict=True)
+    selection: Literal['compatible','chronological'] = 'compatible'
+    wavelength_um: float | None = Field(default=None,ge=.75,le=5,strict=True)
+    start_date: str | None = Field(default=None,pattern=r'^\d{4}-\d{2}-\d{2}$')
+    end_date: str | None = Field(default=None,pattern=r'^\d{4}-\d{2}-\d{2}$')
+
+    @model_validator(mode='after')
+    def valid_dates(self):
+        for value in (self.start_date,self.end_date):
+            if value:date.fromisoformat(value)
+        if self.start_date and self.end_date and self.start_date>self.end_date:
+            raise ValueError('Start date must not follow end date')
+        return self
 
 
 class Cancelled(ValueError):
@@ -132,7 +146,7 @@ def selected_rows(rows, detector, count):
 
 def verified_local_inputs(request):
     """Reuse authenticated originals only when their actual WCS contains the centre."""
-    if request.release != 'qr2' or request.detector != 2 or request.deep:
+    if request.release != 'qr2' or request.detector != 2 or request.deep or request.selection!='compatible' or request.start_date or request.end_date or request.wavelength_um is not None:
         return []
     catalog = json.loads((ROOT/'web/dist/data/explore-catalog.json').read_text(encoding='utf-8'))
     result = []
@@ -156,10 +170,21 @@ def verified_local_inputs(request):
     return result[:request.max_frames]
 
 
-def reference_catalogue(region, output, cancel):
+def reference_catalogue(region, output, cancel, reference_inputs=None):
     # Same catalogue selection as the established native-reference validation.
     # A larger context does not relax the reference residual/coverage policies.
-    if (abs(region.ra_deg-210.80227) < .02 and abs(region.dec_deg-54.34895) < .02
+    if reference_inputs is not None:
+        # Trusted CLI reconstruction only. HTTP requests cannot supply paths.
+        csv_path,query_path=map(Path,reference_inputs)
+        raw=csv_path.read_bytes();source=json.loads(query_path.read_text(encoding='utf-8'))
+        if len(raw)>2_000_000 or hashlib.sha256(raw).hexdigest()!=source['sha256']:
+            raise ValueError('Reference snapshot identity differs')
+        parsed=urlsplit(source['url'])
+        expected=f"CIRCLE('ICRS',{region.ra_deg},{region.dec_deg},{region.size_deg/math.sqrt(2)}))=1"
+        if parsed.scheme!='https' or parsed.hostname!='irsa.ipac.caltech.edu' or parsed.path!='/TAP/sync' or expected not in source['query'] or parse_qs(parsed.query).get('QUERY')!=[source['query']]:
+            raise ValueError('Reference snapshot query differs from the requested context')
+        source={**source,'input_mode':'verified_recorded_snapshot'}
+    elif (abs(region.ra_deg-210.80227) < .02 and abs(region.dec_deg-54.34895) < .02
             and (ROOT/'research/validation/m101_context_gaia_dr3.csv').is_file()
             and (ROOT/'research/validation/m101_context_gaia_query.json').is_file()):
         raw = (ROOT/'research/validation/m101_context_gaia_dr3.csv').read_bytes()
@@ -185,7 +210,7 @@ def reference_catalogue(region, output, cancel):
     return rows, source
 
 
-def build_sequence(request, output, *, progress=lambda message: None, cancel=None, use_local=True, input_paths=None):
+def build_sequence(request, output, *, progress=lambda message: None, cancel=None, use_local=True, input_paths=None, reference_inputs=None):
     check_cancel(cancel)
     request = SequenceRequest.model_validate(request)
     if input_paths is not None and not 1 <= len(input_paths) <= request.max_frames:
@@ -195,6 +220,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
     raw_request = request.model_dump(mode='json')
     (output/'request.json').write_text(json.dumps(raw_request, indent=2), encoding='utf-8')
     products, frames, rejections = [], [], []
+    selection_report=None
     pin = CALIBRATION.get((request.release, request.detector))
     calibration = None
     if pin:
@@ -213,7 +239,12 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
     if not paths and input_paths is None:
         progress('Searching official archive metadata for the requested position')
         rows = inventory(request.region, request.release, output/'inventory', deep=request.deep, detector=request.detector,timeout_seconds=30,attempts=2)
-        chosen, candidate_count = selected_rows(rows, request.detector, request.max_frames)
+        from .selection import preselect
+        chosen, selection_report = preselect(rows,request,calibration,output/'selection',cancel=cancel,progress=progress)
+        candidate_count = selection_report['contained_candidates']
+        acquisition_region=request.region.model_copy(update={'size_deg':max(.3,request.region.size_deg)}) if calibration and len(chosen)>1 else request.region
+        selection_report['acquisition_context_deg']=acquisition_region.size_deg
+        (output/'selection/selection.json').write_text(json.dumps(selection_report,indent=2),encoding='utf-8')
         paths = []
         for i, row in enumerate(chosen):
             check_cancel(cancel)
@@ -223,7 +254,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
                 rejections.append({'observation_id': row['obs_id'], 'reason': 'Archive release mismatch'})
                 continue
             # Content-addressed source URL cache; never overwrite source bytes.
-            url = cutout_url(source, request.region)
+            url = cutout_url(source, acquisition_region)
             path = ROOT/'data/cache/cutouts'/(hashlib.sha256(url.encode()).hexdigest()+'.fits')
             try:
                 if not path.exists() and path.parent.exists() and sum(p.stat().st_size for p in path.parent.glob('*.fits'))+20_000_000>512*1024*1024:
@@ -256,7 +287,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
     if len(products) > 1 and calibration:
         try:
             progress('Checking stationary Gaia references without fitting a target alignment')
-            references, reference_source = reference_catalogue(context, output, cancel)
+            references, reference_source = reference_catalogue(context, output, cancel, reference_inputs)
         except (ValueError, OSError) as exc:
             rejections.append({'stage': 'reference_catalogue', 'reason': str(exc)})
         for i in range(len(products)):
@@ -281,7 +312,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
         display.update(vmin=lo, vmax=max(hi, lo+1e-6))
     identity = {'request':raw_request, 'source_hashes':[f['observation']['source']['sha256'] for f in frames],
                 'calibration_sha256': pin['sha256'] if pin else None, 'code_sha256': sha256_file(Path(__file__)),
-                'code_hashes':{name:sha256_file(Path(__file__).with_name(name)) for name in ('sequence.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py')},
+                'code_hashes':{name:sha256_file(Path(__file__).with_name(name)) for name in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py')},
                 'software_versions':{name:version(name) for name in ('numpy','astropy','scipy','reproject')}}
     overlay=[]
     if references and comparisons:
@@ -299,12 +330,13 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
               'created_at_utc': utc_now().isoformat(), 'request': raw_request,
               'origin': origin, 'candidate_rows_for_detector': candidate_count,
               'status': 'prepared' if frames else 'unavailable_in_tested_request',
+              'selection':selection_report,
               'frames': frames, 'display': display, 'comparisons': comparisons,
               'playback_eligible': eligible, 'reference_catalogue': reference_source,
               'reference_overlay':overlay,
               'rejections': rejections, 'scientific_approval': 'PENDING', 'internal_human_review': 'PENDING',
               'interpretation': 'No measured motion or calibrated variability is established.',
-              'selection_strategy': 'Explicit original identities; no archive substitution.' if input_paths is not None else 'Verified original cache when applicable; otherwise fixed chronological quantiles, at most six cutouts.',
+              'selection_strategy': 'Explicit original identities; no archive substitution.' if input_paths is not None else 'Verified original cache when applicable; otherwise bounded metadata/header wavelength preselection, followed by unchanged scientific checks.',
               'citations':[
                   'SPHEREx '+request.release.upper()+': https://doi.org/10.26131/'+('IRSA652' if request.release=='qr2' else 'IRSA662'),
                   'This publication makes use of data products from the Spectro-Photometer for the History of the Universe, Epoch of Reionization and Ices Explorer (SPHEREx), which is a joint project of the Jet Propulsion Laboratory and the California Institute of Technology, and is funded by the National Aeronautics and Space Administration.',

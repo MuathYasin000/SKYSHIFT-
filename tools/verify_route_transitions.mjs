@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_route_transitions',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Exercise actual composited opacity frames and navigation failure recovery.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -9,10 +11,10 @@ const { chromium } = await import(
   )
 );
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "chrome",
-  out = "tmp/route-transitions/" + suffix,
+  out = evidenceRun,
   results = [],
   errors = [];
-await fs.mkdir(out, { recursive: true });
+
 const browser = await chromium.launch({
   headless: true,
   executablePath:
@@ -123,7 +125,7 @@ try {
         frames.every((f) => f.samples.some((o) => o > 0.02 && o < 0.98)),
         JSON.stringify(frames),
       );
-      await p.screenshot({ path: out + "/comparison-after.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/comparison-after.png" ))});
       return { frames, initial_route_animated: false };
     },
   );
@@ -151,7 +153,7 @@ try {
       );
       const download = p.waitForEvent("download");
       await p.click("#instrument-save");
-      await (await download).saveAs(out + "/comparison.zip");
+      await (await download).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out + "/comparison.zip")));
       await p.click("#instrument-fit");
       await p.setInputFiles("#instrument-file", out + "/comparison.zip");
       await ready(p);
@@ -285,10 +287,9 @@ try {
 } catch (e) {
   console.error(e.stack);
   process.exitCode = 1;
-  await p?.screenshot({ path: out + "/failure.png" }).catch(() => {});
+  await p?.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/failure.png" ))}).catch(() => {});
 } finally {
-  await fs.writeFile(
-    "docs/evidence/route_transitions_tests_" + suffix + ".json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/route_transitions_tests_" + suffix + ".json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

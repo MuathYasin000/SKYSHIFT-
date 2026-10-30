@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_telescope_experience',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
 import { pathToFileURL } from "node:url";
@@ -8,8 +10,8 @@ const { chromium } = await import(
   ).href
 );
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "",
-  out = "tmp/telescope-qa" + (suffix ? "-" + suffix : "");
-await fs.mkdir(out, { recursive: true });
+  out = evidenceRun;
+
 const browser = await chromium.launch({
   headless: true,
   executablePath:
@@ -71,7 +73,7 @@ async function science(p) {
 async function save(p, f, name) {
   const download = p.waitForEvent("download");
   await f.locator("#export-context").click();
-  await (await download).saveAs(out + "/" + name);
+  await (await download).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out + "/" + name)));
   return JSON.parse(await fs.readFile(out + "/" + name, "utf8"));
 }
 try {
@@ -96,7 +98,7 @@ try {
         await p.locator("#sound-toggle").getAttribute("aria-pressed"),
         "false",
       );
-      await p.screenshot({ path: out + "/entry.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/entry.png" ))});
     },
   );
   await check(
@@ -160,7 +162,7 @@ try {
         assert.ok(
           (await p.evaluate(() => skyshiftSpace.diagnostics().frames)) > frames,
         );
-        await p.screenshot({ path: out + "/" + id + "-light.png" });
+        await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/" + id + "-light.png" ))});
         await p.locator('[data-observe-stage="1"]').click();
         await p.locator('[data-channel="4"]').click();
         assert.equal(
@@ -172,7 +174,7 @@ try {
           await p.locator(".mission-disclaimer").innerText(),
           /no live pointing/,
         );
-        await p.screenshot({ path: out + "/" + id + "-instrument.png" });
+        await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/" + id + "-instrument.png" ))});
         await p.locator('[data-observe-stage="2"]').click();
         await p.locator("#mission-image:not([hidden])").waitFor();
         await p.waitForFunction(
@@ -185,7 +187,7 @@ try {
           await p.locator("#mission-fields").isVisible(),
           id === "spherex",
         );
-        await p.screenshot({ path: out + "/" + id + "-image.png" });
+        await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/" + id + "-image.png" ))});
         await p.locator("#mission-close").click();
       }
     },
@@ -273,7 +275,7 @@ try {
       );
       assert.equal(record.scientific_approval, "PENDING");
       assert.ok(await p.locator("#universe").isVisible());
-      await p.screenshot({ path: out + "/observation-lens.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/observation-lens.png" ))});
       await f.locator("#context-source").click();
       assert.match(
         await f.locator("dialog[open]").innerText(),
@@ -358,7 +360,7 @@ try {
       await f.getByRole("button", { name: "Save note", exact: true }).click();
       const event = p.waitForEvent("download");
       await f.locator("#export").click();
-      await (await event).saveAs(out + "/comparison.zip");
+      await (await event).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out + "/comparison.zip")));
       await p.locator("#back-to-universe").click();
       await p.locator("#resume-button").click();
       assert.equal(await f.locator("#note-count").innerText(), "1");
@@ -449,7 +451,7 @@ try {
             () => document.documentElement.scrollWidth <= innerWidth + 1,
           ),
         );
-        await q.screenshot({ path: out + "/entry-" + width + ".png" });
+        await q.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/entry-" + width + ".png" ))});
         if (width < 740) {
           const before = await q.evaluate(
               () => skyshiftSpace.diagnostics().camera,
@@ -481,13 +483,13 @@ try {
         }
         if (width < 740) await q.locator("[data-telescope=spherex]").tap();
         else await q.locator("[data-telescope=spherex]").click();
-        await q.screenshot({ path: out + "/light-" + width + ".png" });
+        await q.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/light-" + width + ".png" ))});
         await q.locator('[data-observe-stage="2"]').click();
         await q.locator("[data-mission-field=m42]").click();
         await q.locator("#mission-field-open").click();
         const frame = await science(q);
         assert.equal(await frame.locator("#export-context").isEnabled(), true);
-        await q.screenshot({ path: out + "/data-" + width + ".png" });
+        await q.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/data-" + width + ".png" ))});
         await q.locator("#back-to-universe").click();
         await mc.close();
       },
@@ -663,10 +665,9 @@ try {
 } finally {
   const version = browser.version();
   await browser.close();
-  await fs.writeFile(
-    "docs/evidence/telescope_experience_tests" +
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/telescope_experience_tests" +
       (suffix ? "_" + suffix : "") +
-      ".json",
+      ".json"),
     JSON.stringify(
       {
         date_utc: new Date().toISOString(),

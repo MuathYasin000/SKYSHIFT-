@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_mission_control',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Real browser checks; neither independent human review nor public publication.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -9,8 +11,8 @@ const { chromium } = await import(
   )
 );
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "chrome",
-  out = "tmp/mission-control/" + suffix;
-await fs.mkdir(out, { recursive: true });
+  out = evidenceRun;
+
 const browser = await chromium.launch({
   headless: true,
   executablePath:
@@ -172,7 +174,7 @@ try {
             background: getComputedStyle(document.body).backgroundColor,
           };
         });
-        await p.screenshot({ path: `${out}/${name}-${width}.png` });
+        await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,`${out}/${name}-${width}.png` ))});
         assert.equal(
           audit.overflow,
           false,
@@ -237,7 +239,7 @@ try {
       const pending = p.waitForEvent("download");
       await p.click("#instrument-save");
       const file = await pending;
-      await file.saveAs(out + "/comparison.zip");
+      await file.saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out + "/comparison.zip")));
       await p.click("#instrument-fit");
       await p
         .locator("#instrument-file")
@@ -302,8 +304,7 @@ try {
   failed.push("suite");
   console.error(e.stack);
 } finally {
-  await fs.writeFile(
-    "docs/evidence/mission_control_tests_" + suffix + ".json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/mission_control_tests_" + suffix + ".json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

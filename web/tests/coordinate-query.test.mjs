@@ -1,7 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {parseCoordinate, observationRequest, requestFromURL, requestURL, archiveURL, nearbyFields} from '../src/coordinate-query.js';
+import {parseCoordinate, observationRequest, requestFromURL, requestURL, archiveURL, nearbyFields, selectionOptions} from '../src/coordinate-query.js';
+
+test('Temporal selection filters validate dates and survive shareable URLs',()=>{
+  const filters=selectionOptions({selection:'chronological',wavelength:'1.32',start:'2025-12-01',end:'2025-12-31'});
+  const request={...observationRequest({ra:248.1676,dec:66.75498,fov:2.4,release:'qr2'}),detector:2,...filters};
+  assert.deepEqual(requestFromURL(requestURL(request,'http://localhost:3000')),request);
+  assert.deepEqual(selectionOptions({}),{});
+  for(const input of [{start:'2026-02-30'},{start:'2026-03-01',end:'2026-01-01'},{wavelength:'0.7'},{wavelength:'true'},{selection:'anything'}])assert.throws(()=>selectionOptions(input));
+  assert.throws(()=>requestFromURL('http://localhost:3000/?ra=1&dec=2&start=2025-01-01&start=2026-01-01'));
+});
 
 test('Challenge WISE 0855 coordinates convert with explicit RA hours and negative declination', () => {
   assert.ok(Math.abs(parseCoordinate('08h55m10.831s','ra') - 133.79512916666668) < 1e-10);

@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_hero_model',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Real browser/model checks in isolated profiles. No human evaluation inferred.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -16,8 +18,8 @@ const browser = await chromium.launch({
   }),
   results = [];
 const testName = process.env.SKYSHIFT_TEST_NAME || "hero3d",
-  out = "tmp/" + testName + "-details-qa";
-await fs.mkdir(out, { recursive: true });
+  out = evidenceRun;
+
 async function page(options = {}) {
   const c = await browser.newContext({
     viewport: { width: 1440, height: 900 },
@@ -97,7 +99,7 @@ try {
           assert.equal(initial.scroll_y, 0);
           assert.ok(initial.action.y >= 0 && initial.action.y + initial.action.height <= height);
           await p.screenshot({
-            path: out + `/home-${width}.png`,
+            path: await claimEvidenceFile(evidenceFile(evidenceRun,out + `/home-${width}.png`)),
           });
           const d = await p.evaluate(() => skyshiftHero.diagnostics());
           assert.equal(d.model.presentation, "hero");
@@ -444,8 +446,7 @@ try {
   console.error(e);
   process.exitCode = 1;
 } finally {
-  await fs.writeFile(
-    "docs/evidence/" + testName + "_model_tests.json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/" + testName + "_model_tests.json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

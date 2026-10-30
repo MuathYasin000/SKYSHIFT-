@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_home_layout',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Regression for the reported cropped homepage. Uses a fresh installed browser.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -11,8 +13,8 @@ const { chromium } = await import(
 const base = process.env.SKYSHIFT_BASE_URL || "http://localhost:3000";
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "chrome";
 const recordPrefix = process.env.SKYSHIFT_TEST_NAME || "home_layout";
-const out = "tmp/" + recordPrefix + "/" + suffix;
-await fs.mkdir(out, { recursive: true });
+const out = evidenceRun;
+
 const browser = await chromium.launch({
   headless: true,
   executablePath:
@@ -175,7 +177,7 @@ try {
         await page.waitForFunction(
           () => window.skyshiftHero?.diagnostics().model?.frames > 0,
         );
-        await page.screenshot({ path: out + "/home-" + width + ".png" });
+        await page.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/home-" + width + ".png" ))});
       }
       return {
         width,
@@ -210,7 +212,7 @@ try {
       );
       const download = page.waitForEvent("download");
       await page.click("#instrument-save");
-      await (await download).saveAs(out + "/comparison.zip");
+      await (await download).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out + "/comparison.zip")));
       await page.click("#instrument-fit");
       await page.setInputFiles("#instrument-file", out + "/comparison.zip");
       await page.waitForFunction(
@@ -227,10 +229,9 @@ try {
 } catch (e) {
   console.error(e.stack);
   process.exitCode = 1;
-  await page.screenshot({ path: out + "/failure.png" }).catch(() => {});
+  await page.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/failure.png" ))}).catch(() => {});
 } finally {
-  await fs.writeFile(
-    "docs/evidence/" + recordPrefix + "_tests_" + suffix + ".json",
+  await writeEvidenceFile(evidenceFile(evidenceRun,"docs/evidence/" + recordPrefix + "_tests_" + suffix + ".json"),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

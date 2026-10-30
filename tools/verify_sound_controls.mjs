@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile,claimEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_sound_controls',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // Real isolated browser controls + numeric Web Audio checks; no media output.
 import fs from "node:fs/promises";
 import assert from "node:assert/strict";
@@ -10,11 +12,11 @@ const { chromium } = await import(
 );
 const suffix = process.env.SKYSHIFT_TEST_SUFFIX || "",
   testName = process.env.SKYSHIFT_TEST_NAME || "sound_controls",
-  out = "tmp/" + testName + (suffix ? "-" + suffix : ""),
+  out = evidenceRun,
   results = [],
   errors = [],
   external = [];
-await fs.mkdir(out, { recursive: true });
+
 const browser = await chromium.launch({
   headless: true,
   executablePath:
@@ -142,7 +144,7 @@ try {
       await p.waitForTimeout(100);
       const download = p.waitForEvent("download");
       await p.click("#instrument-save");
-      await (await download).saveAs(out + "/comparison.zip");
+      await (await download).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out + "/comparison.zip")));
       assert.equal(
         (await p.evaluate(() => skyshiftSound.diagnostics())).last_cue,
         "save",
@@ -151,7 +153,7 @@ try {
         .locator("#instrument-file")
         .setInputFiles(out + "/comparison.zip");
       await science(p);
-      await p.screenshot({ path: out + "/comparison.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/comparison.png" ))});
     },
   );
   await check(
@@ -214,7 +216,7 @@ try {
           name,
         );
       }
-      await p.screenshot({ path: out + "/sound-palette.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/sound-palette.png" ))});
       await p.keyboard.press("Escape");
       assert.equal(
         await p.locator("#sound-settings").evaluate((e) => e.open),
@@ -255,7 +257,7 @@ try {
         await p.evaluate(() => skyshiftSound.diagnostics()),
         await p.evaluate(() => skyshiftSpace.audio()),
       );
-      await p.screenshot({ path: out + "/universe.png" });
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/universe.png" ))});
       await p.click("#site-sound");
       await p.waitForFunction(() => !skyshiftSound.diagnostics().enabled);
       await p.click(".site-brand");
@@ -363,7 +365,7 @@ try {
         );
         assert.equal(style.ink, "rgb(0, 0, 0)");
         assert.deepEqual(await axe(p), []);
-        await p.screenshot({ path: out + "/hero-desktop.png" });
+        await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/hero-desktop.png" ))});
         await hero.focus();
         await p.keyboard.press("Enter");
         await science(p);
@@ -388,7 +390,7 @@ try {
           await ready(p);
           await p.evaluate(() => document.fonts.ready);
           assert.deepEqual(await axe(p), []);
-          await p.screenshot({ path: `${out}/home-${width}.png` });
+          await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,`${out}/home-${width}.png` ))});
           assert.equal(
             await p.evaluate(
               () => document.documentElement.scrollWidth <= innerWidth,
@@ -415,7 +417,7 @@ try {
           await p.click("#site-more");
           await p.click("[data-open-sound]:visible");
           assert.deepEqual(await axe(p), []);
-          await p.screenshot({ path: `${out}/palette-${width}.png` });
+          await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,`${out}/palette-${width}.png` ))});
           await p.locator("#sound-settings-close").click();
           await p.goto("http://localhost:3000/#compare");
           await science(p);
@@ -434,7 +436,7 @@ try {
             actions.y >= header.y + header.height - 1,
             "Scientific actions must clear the sticky header",
           );
-          await p.screenshot({ path: `${out}/compare-${width}.png` });
+          await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,`${out}/compare-${width}.png` ))});
           details.push({
             width,
             layout: "pass",
@@ -477,7 +479,7 @@ try {
         await p.click("#sound-settings-close");
         const download = p.waitForEvent("download");
         await p.click("#instrument-save");
-        await (await download).saveAs(out + "/audio-unavailable.zip");
+        await (await download).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out + "/audio-unavailable.zip")));
         assert.equal(
           (await p.evaluate(() => skyshiftWebsite.diagnostics())).investigation
             .kind,
@@ -504,7 +506,7 @@ try {
         await p.click("#instrument-zoom-in");
         const download = p.waitForEvent("download");
         await p.click("#instrument-save");
-        await (await download).saveAs(out + "/sound-module-unavailable.zip");
+        await (await download).saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out + "/sound-module-unavailable.zip")));
         assert.equal(
           (await p.evaluate(() => skyshiftWebsite.diagnostics())).investigation
             .kind,
@@ -521,8 +523,7 @@ try {
   console.error(e.stack);
   process.exitCode = 1;
 } finally {
-  await fs.writeFile(
-    `docs/evidence/${testName}_tests${suffix ? "_" + suffix : ""}.json`,
+  await writeEvidenceFile(evidenceFile(evidenceRun,`docs/evidence/${testName}_tests${suffix ? "_" + suffix : ""}.json`),
     JSON.stringify(
       {
         recorded_at_utc: new Date().toISOString(),

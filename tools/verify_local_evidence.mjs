@@ -1,3 +1,5 @@
+import {createEvidenceDirectory,evidenceFile,writeEvidenceFile} from './evidence-output.mjs';
+const evidenceRun=await createEvidenceDirectory('verify_local_evidence',process.env.SKYSHIFT_EVIDENCE_OUTPUT);
 // HTTP + real-data evidence integration control. Does not claim a browser test.
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -6,7 +8,7 @@ import {openComparison} from '../web/dist/packets.js';
 import {defaultVisualization} from '../web/dist/visualization.js';
 import {zipSync,strToU8} from '../web/dist/vendor/fflate.js';
 const base=process.argv[2]||'http://localhost:3000/';
-const output=process.argv[3]||'tmp/local-evidence-control.zip';
+const output=process.argv[3]||evidenceFile(evidenceRun,'local-evidence-control.zip');
 async function get(url,hash){const r=await fetch(new URL(url,base));if(!r.ok)throw Error('HTTP '+r.status+' '+url);const b=new Uint8Array(await r.arrayBuffer());if(hash&&await sha256(b)!==hash)throw Error('HTTP scientific hash mismatch '+url);return b;}
 const catalog=JSON.parse(new TextDecoder().decode(await get('./data/catalog.json')));
 const bundle=JSON.parse(new TextDecoder().decode(await get(catalog.bundle_url,catalog.bundle_sha256)));
@@ -20,5 +22,5 @@ const payload={'manifest.json':strToU8(JSON.stringify(m)),'prepared/pair.fits':a
 payload['hashes.json']=strToU8(JSON.stringify(Object.fromEntries(await Promise.all(Object.entries(payload).map(async([name,data])=>[name,await sha256(data)])))));
 const bytes=zipSync(payload,{level:6}),saved=await openComparison(bytes,m,common);
 if(saved.annotations[0].note!==m.annotations[0].note||saved.visualization.palette!=='ice'||saved.display.zoom!==2)throw Error('Evidence roundtrip failed');
-await fs.mkdir(path.dirname(output),{recursive:true});await fs.writeFile(output,bytes);
+await writeEvidenceFile(output,bytes);
 console.log(JSON.stringify({http_base:base,pair_id:m.pair_id,dataset_kind:m.dataset_kind,original_science_unchanged:true,annotation_control:'QA only',saved_visualization:saved.visualization,export_sha256:await sha256(bytes),export_bytes:bytes.length,output,scientific_approval:'PENDING',browser_test:false},null,2));

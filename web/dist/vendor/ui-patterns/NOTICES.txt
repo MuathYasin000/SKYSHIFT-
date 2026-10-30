@@ -18,8 +18,11 @@ Upstream source's license and usage notice:
 - No attribution required with Skiper UI Pro.
 Source comments identify the work as inspired by https://cursor.com/?from=home,
 an independent recreation, not associated with cursor.com.
-Current native CSS lives in home.css and components.css: link hover/focus
-treatments and reduced-motion behavior. Earlier transition studies are historical.
+RUNTIME STATUS: retired as of 30 October 2026. Current links use ordinary text
+color/text-decoration states; the launch arrow changes color. The Skiper
+scale/origin underline transition and SVG arrow implementation are absent.
+This historical notice and the original source are preserved; no relicensing
+of the historical component is claimed.
 Visible Skiper UI attribution is retained in the website footer; source and
 license records are linked through Sources & acknowledgments.
 Only the explicitly free Skiper40 was retrieved. No Pro components used.

@@ -1,4 +1,4 @@
-import {observationRequest, requestFromURL, requestURL, archiveURL, nearbyFields} from './coordinate-query.js';
+import {observationRequest, requestFromURL, requestURL, archiveURL, nearbyFields,selectionOptions} from './coordinate-query.js';
 import {fetchCatalogue} from './catalogue.js';
 import {prepareRequest} from './preparation-client.js';
 
@@ -24,7 +24,8 @@ async function prepare() {
     const {bundle,id}=await prepareRequest(request,{signal:preparation.signal,onProgress:message=>{if(ticket===sequence&&$('sky-search-status').textContent!==message)$('sky-search-status').textContent=message;}});
     if(ticket!==sequence)return;
     if(!bundle.frames.length) {
-      $('sky-search-status').textContent='No supported image could be prepared for this release, wavelength group and field. This is not a target nondetection. '+bundle.rejections.map(r=>r.reason).join(' ');
+      const reasons=[...new Set([...(bundle.rejections||[]),...(bundle.selection?.rejections||[])].map(r=>r.reason))];
+      $('sky-search-status').textContent='No supported image could be prepared for this release, wavelength group, dates and field. This is not a target nondetection. '+(bundle.selection?.outcome||'')+' '+reasons.slice(0,3).join(' ');
       return;
     }
     if(!window.skyshiftWebsite)throw Error('The main viewer is unavailable. Reload or use the independent observation tools.');
@@ -35,7 +36,7 @@ async function prepare() {
 $('sky-search-check').onclick=()=>search();
 $('sky-search-cancel').onclick=()=>{clearResult();$('sky-search-cancel').hidden=true;$('sky-search-prepare').disabled=false;$('sky-search-status').textContent='Preparation cancelled. No late result will replace your view.';};
 function read() {
-  return {...observationRequest({ra: $('search-ra').value, dec: $('search-dec').value, fov: $('search-fov').value, release: $('search-release').value}),detector:Number($('search-detector').value)};
+  return {...observationRequest({ra: $('search-ra').value, dec: $('search-dec').value, fov: $('search-fov').value, release: $('search-release').value}),detector:Number($('search-detector').value),...selectionOptions({selection:$('search-selection').value,wavelength:$('search-wavelength').value,start:$('search-start').value,end:$('search-end').value})};
 }
 function fill(request) {
   const r = request.region;
@@ -44,6 +45,9 @@ function fill(request) {
   $('search-fov').value = String(r.size_deg * 60);
   $('search-release').value = request.release;
   $('search-detector').value=String(request.detector??2);
+  $('search-selection').value=request.selection||'compatible';
+  $('search-wavelength').value=request.wavelength_um??'';
+  $('search-start').value=request.start_date||'';$('search-end').value=request.end_date||'';
 }
 async function search(updateURL = true) {
   clearResult();

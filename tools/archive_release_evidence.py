@@ -1,7 +1,11 @@
+try:
+    from evidence_output import fresh_run
+except ModuleNotFoundError:
+    from tools.evidence_output import fresh_run
 from pathlib import Path
 import json,shutil,hashlib
 from datetime import datetime,timezone
-root=Path(__file__).resolve().parents[1];out=root/'docs/evidence'
+root=Path(__file__).resolve().parents[1];out=fresh_run('archive-release-evidence')
 for source,target in [
  ('data/reconstruction/m101-v4-clean-environment/reconstruction_result.json','clean_v4_reconstruction.json'),
  ('data/reconstruction/m101-v4-clean-environment/independent_reproduction.json','clean_v4_independent_reproduction.json'),
