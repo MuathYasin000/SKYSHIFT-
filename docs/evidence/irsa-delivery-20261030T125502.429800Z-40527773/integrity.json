@@ -1,0 +1,271 @@
+{
+  "application_source_head": "08350c24391e604b00749592d41b478b66da2962",
+  "content_id": "f74662e4c3f33dce4c56963bd89b3b0117762c5f8db3708f8586384f3edc43be",
+  "baseline_science": {
+    "revision": "f679221",
+    "files": [
+      {
+        "path": "web/dist/data/bundle.json",
+        "baseline_git_blob": "2e35744def2eb16484f4d1daf6f957151197d284",
+        "actual_git_blob": "2e35744def2eb16484f4d1daf6f957151197d284",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/catalog.json",
+        "baseline_git_blob": "1d4c9d5322a0bb13ebe20935f00648d21e8f9924",
+        "actual_git_blob": "1d4c9d5322a0bb13ebe20935f00648d21e8f9924",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/explore-catalog.json",
+        "baseline_git_blob": "9bf5c68d15faea11d04a7cd1c18f0595fef01981",
+        "actual_git_blob": "9bf5c68d15faea11d04a7cd1c18f0595fef01981",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/explore/m101-2025W49_2A_0756_3.json",
+        "baseline_git_blob": "8e2b4568e9e088d475b93f562b6e6dc0e30b5f60",
+        "actual_git_blob": "8e2b4568e9e088d475b93f562b6e6dc0e30b5f60",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/explore/m101-2025W49_2A_0756_3.png",
+        "baseline_git_blob": "b1c4123889aa5720203733418a7faa72c76b380a",
+        "actual_git_blob": "b1c4123889aa5720203733418a7faa72c76b380a",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/explore/m101-2025W50_1A_0736_3.json",
+        "baseline_git_blob": "db595c7834f57c59ce473d887b3427648ebdf6cb",
+        "actual_git_blob": "db595c7834f57c59ce473d887b3427648ebdf6cb",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/explore/m101-2025W50_1A_0736_3.png",
+        "baseline_git_blob": "28fc638ab8b7582cdabed1ddcf4302d178c06200",
+        "actual_git_blob": "28fc638ab8b7582cdabed1ddcf4302d178c06200",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/explore/m42-2025W37_2A_0010_1.json",
+        "baseline_git_blob": "b7f0703349ee207c904a9c5c3cc56b3e47c03700",
+        "actual_git_blob": "b7f0703349ee207c904a9c5c3cc56b3e47c03700",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/explore/m42-2025W37_2A_0010_1.png",
+        "baseline_git_blob": "87196f1798353906781c539b54a3bc729dfae592",
+        "actual_git_blob": "87196f1798353906781c539b54a3bc729dfae592",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/explore/m67-2025W44_2B_0657_2.json",
+        "baseline_git_blob": "b18faf11b9ec54e7c49449c39c70b86a19a7d15b",
+        "actual_git_blob": "b18faf11b9ec54e7c49449c39c70b86a19a7d15b",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/explore/m67-2025W44_2B_0657_2.png",
+        "baseline_git_blob": "889014af89fc7abe8af4e4bb9462c72b7af44ca3",
+        "actual_git_blob": "889014af89fc7abe8af4e4bb9462c72b7af44ca3",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/explore/ngc188-2025W36_1A_0724_2.json",
+        "baseline_git_blob": "700cf463884eccb34f274174de4c16ce65ade283",
+        "actual_git_blob": "700cf463884eccb34f274174de4c16ce65ade283",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/explore/ngc188-2025W36_1A_0724_2.png",
+        "baseline_git_blob": "ca843d472b82517dc9a4098dfc8a2b35ed914daa",
+        "actual_git_blob": "ca843d472b82517dc9a4098dfc8a2b35ed914daa",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/pair.fits",
+        "baseline_git_blob": "793f9c289510fcd2e57e2b7cb14f5eeb6f56b524",
+        "actual_git_blob": "793f9c289510fcd2e57e2b7cb14f5eeb6f56b524",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/provenance-audit.json",
+        "baseline_git_blob": "c8a38dcf1646993bf41d3cc95e343ef554e77055",
+        "actual_git_blob": "c8a38dcf1646993bf41d3cc95e343ef554e77055",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/review-part-0.bin",
+        "baseline_git_blob": "7a2eea19ba730567bd53932b524975c3ae333d9c",
+        "actual_git_blob": "7a2eea19ba730567bd53932b524975c3ae333d9c",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/review-part-1.bin",
+        "baseline_git_blob": "dd994c22fc9ef3d229995a79a96cb7846d2ccd24",
+        "actual_git_blob": "dd994c22fc9ef3d229995a79a96cb7846d2ccd24",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/review-part-2.bin",
+        "baseline_git_blob": "0ee5f989bbc97b1592ff2b546c7f22c800bde04d",
+        "actual_git_blob": "0ee5f989bbc97b1592ff2b546c7f22c800bde04d",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/review-part-3.bin",
+        "baseline_git_blob": "22c93c0c8689d53f0d207b72b1c0f99a54f4568e",
+        "actual_git_blob": "22c93c0c8689d53f0d207b72b1c0f99a54f4568e",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/review-part-4.bin",
+        "baseline_git_blob": "6c6b97a61a5b3f3d3ef27176fee6fbe5631d0a6e",
+        "actual_git_blob": "6c6b97a61a5b3f3d3ef27176fee6fbe5631d0a6e",
+        "unchanged": true
+      },
+      {
+        "path": "web/dist/data/review-part-5.bin",
+        "baseline_git_blob": "08f8f253d220a15e10230063ddcff5037f7bcc2d",
+        "actual_git_blob": "08f8f253d220a15e10230063ddcff5037f7bcc2d",
+        "unchanged": true
+      }
+    ]
+  },
+  "m101": {
+    "source_bytes": 87295680,
+    "source_sha256": "44e89f460c55f46f7e384ba7dfe8927fa8e56163875aba3766499a5646813447",
+    "manifest_bytes": 75706,
+    "manifest_sha256": "67bf2770a825d533d2e63a9ada648d28e429d1f8c721bf93e9121580cb7efd22",
+    "planes": 102,
+    "plane_total_bytes": 33718422,
+    "largest_plane_bytes": 338887,
+    "static_mosaic_bytes": 33794128,
+    "decoded_typed_array_cache_max_bytes": 5560542
+  },
+  "gallery": {
+    "schema_version": "1.0",
+    "entries": [
+      {
+        "id": "m101",
+        "name": "M101 \u00b7 102 infrared wavelengths",
+        "kind": "mosaic_cube",
+        "manifest_url": "./data/mosaics/m101-v1/manifest.json",
+        "manifest_sha256": "67bf2770a825d533d2e63a9ada648d28e429d1f8c721bf93e9121580cb7efd22",
+        "source_url": "https://irsa.ipac.caltech.edu/data/demos/notebooks/spherex/M101_irsa.fits",
+        "centre": {
+          "ra_deg": 210.8022671,
+          "dec_deg": 54.34895
+        },
+        "description": "The Pinwheel Galaxy in the official IRSA 102-plane SPHEREx mosaic. Move through wavelength, inspect real samples and coverage, then search observations at the same sky position. This combined map is not a time sequence.",
+        "credit": "NASA/JPL-Caltech/IPAC \u00b7 IRSA Mosaic Tool tutorial cube. Infrared light mapped to visible display shades; no NASA endorsement."
+      },
+      {
+        "id": "cygnus",
+        "kind": "published_image",
+        "name": "Cygnus \u00b7 stars & dust",
+        "centre": {
+          "ra_deg": 307.6333333333333,
+          "dec_deg": 40.29727777777778
+        },
+        "published_date": "2026-04-15",
+        "mapping": "Published false-color mapping: blue 0.8 \u03bcm, green 1.63 \u03bcm, red 2.6 \u03bcm.",
+        "description": "An official SPHEREx view into the dusty disk of the Milky Way. This published composite is a visual reference, with no calibrated pixel WCS or temporal measurements in SKYSHIFT.",
+        "credit": "NASA/JPL-Caltech/IPAC/Hora et al.",
+        "source_page": "https://spherex.caltech.edu/image/spherex20260415b-nasas-spherex-observatory-maps-stars-and-dust-in-cygnus",
+        "source_url": "https://spherex.caltech.edu/system/avm_images/binaries/44/largest/SPHEREx_Cygnus_Broadband.jpg?1776744276=",
+        "image_url": "./assets/irsa-gallery/cygnus.jpg",
+        "sha256": "7a1ac18bba1b411271933078ed5d873d1ee869db68abe0de2f331e2bc005162f",
+        "size_bytes": 1046122,
+        "retrieved_at_utc": "2026-10-30T12:03:12.792631+00:00",
+        "dimensions": [
+          1280,
+          1280
+        ],
+        "pixel_astrometry": "NOT_VALIDATED",
+        "temporal_comparison_allowed": false,
+        "usage_policy": "https://spherex.caltech.edu/page/image-use-policy",
+        "centre_context": "Published target centre, not a per-pixel WCS or propagated source position."
+      },
+      {
+        "id": "ngc1760",
+        "kind": "published_image",
+        "name": "NGC 1760 \u00b7 star-forming nebula",
+        "centre": {
+          "ra_deg": 74.43166666666667,
+          "dec_deg": -66.35144444444444
+        },
+        "published_date": "2025-05-01",
+        "mapping": "Published single-wavelength map at 3.29 \u03bcm, assembled from four preparatory pointings; not four time frames.",
+        "description": "A genuine SPHEREx view of a star-forming nebula in the Large Magellanic Cloud. The published image highlights dust emission near 3.29 \u03bcm. Its pixels are not treated as calibrated astrometry or photometry in SKYSHIFT.",
+        "credit": "NASA/JPL-Caltech",
+        "source_page": "https://spherex.caltech.edu/image/spherex20250501c-early-spherex-observations-ngc-1760-at-3-29-microns",
+        "source_url": "https://spherex.caltech.edu/system/avm_images/binaries/37/largest/SPHEREx_D4_3p29.jpg?1746231953=",
+        "image_url": "./assets/irsa-gallery/ngc1760.jpg",
+        "sha256": "aa60ba4211227c4d607f4379d16acf122f50b282502c323dfff14a1448d5dd91",
+        "size_bytes": 363450,
+        "retrieved_at_utc": "2026-10-30T12:03:14.565964+00:00",
+        "dimensions": [
+          1280,
+          720
+        ],
+        "pixel_astrometry": "NOT_VALIDATED",
+        "temporal_comparison_allowed": false,
+        "usage_policy": "https://spherex.caltech.edu/page/image-use-policy",
+        "centre_context": "Published target centre, not a per-pixel WCS or propagated source position."
+      }
+    ],
+    "attribution_policy": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+  },
+  "metadata_index_bytes": 1675264,
+  "verification": {
+    "windows_python": {
+      "passed": 202,
+      "skipped": 1
+    },
+    "javascript": {
+      "passed": 166
+    },
+    "scientific_approval": "PENDING",
+    "human_ux_review": "NOT CLAIMED",
+    "linux_original_backed_tests": {
+      "passed": 13
+    },
+    "clean_python": {
+      "passed": 193,
+      "skipped": 10
+    },
+    "existing_product_journeys": {
+      "chrome": 19,
+      "edge": 19,
+      "recovery": 7
+    }
+  },
+  "scope": "Recorded local engineering evidence; no deployment, target detection or human approval",
+  "prior_integrity_snapshot": "../irsa-final-integrity-20261030T124534.238512Z-595679b2/integrity.json",
+  "local_health": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.2",
+    "directory_id": "cf30d37f4287c0b3",
+    "content_id": "f74662e4c3f33dce4c56963bd89b3b0117762c5f8db3708f8586384f3edc43be",
+    "release_id": "workspace",
+    "app_version": "0.11.0-time-explorer-local-workspace"
+  },
+  "archive_discovery_capabilities": {
+    "collections": [
+      "spherex_qr2",
+      "spherex_qr2_deep",
+      "spherex_qr3",
+      "spherex_qr3_deep"
+    ],
+    "providers": [
+      "sia2",
+      "tap"
+    ],
+    "max_requests": 8,
+    "max_transfer_bytes": 16000000,
+    "index_version": "spherex-metadata-index-v1",
+    "scope": "Region-scoped incremental ingestion; no all-sky mirror or complete archive claim"
+  }
+}

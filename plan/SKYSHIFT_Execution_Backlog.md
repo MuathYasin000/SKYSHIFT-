@@ -2,6 +2,8 @@
 
 Companion to the master plan | Version 1.0 | Baseline: 16 October 2026
 
+**30 October 2026 / latest official-IRSA request:** implemented the real 102-plane M101 explorer, two additional genuine SPHEREx gallery regions, same-coordinate navigation, bounded indexed SIA2/TAP/DataLink access, exact-source checks and browser/Linux verification. [Upgrade delivery and remaining limits](../docs/irsa_upgrade_20261030.md) records the completed engineering scope and explicit future-product ingestion gates. Qualified scientific approval remains PENDING, subjective human visual acceptance is unclaimed, and hosting remains preparation-only. Historical requirements and evidence below are retained.
+
 **30 October 2026 / latest authorized implementation:** the supplied master directive authorizes engineering on the existing application and supersedes the earlier planning hold. [Current implementation and evidence](../docs/completion_20261030.md) owns the following acceptance checklist; historical rows below remain intact.
 
 | Priority / requirement | Current evidence | Disposition |

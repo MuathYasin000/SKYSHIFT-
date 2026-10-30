@@ -1,0 +1,2526 @@
+{
+  "schema_version": "1.0",
+  "kind": "spherex_mosaic_cube",
+  "adapter_version": "irsa-mosaic-cube-v1",
+  "id": "m101",
+  "name": "M101 / Pinwheel Galaxy",
+  "usage": "multi_epoch_wavelength_context_only",
+  "temporal_comparison_allowed": false,
+  "science_unit": "MJy/sr",
+  "source": {
+    "source_url": "https://irsa.ipac.caltech.edu/data/demos/notebooks/spherex/M101_irsa.fits",
+    "sha256": "44e89f460c55f46f7e384ba7dfe8927fa8e56163875aba3766499a5646813447",
+    "size_bytes": 87295680,
+    "retrieved_at_utc": "2026-10-30T11:58:41.945746+00:00"
+  },
+  "shape": [
+    102,
+    267,
+    267
+  ],
+  "wcs": {
+    "WCSAXES": 2,
+    "CRPIX1": 134.0,
+    "CRPIX2": 134.0,
+    "CDELT1": -0.0025,
+    "CDELT2": 0.0025,
+    "CUNIT1": "deg",
+    "CUNIT2": "deg",
+    "CTYPE1": "RA---TAN",
+    "CTYPE2": "DEC--TAN",
+    "CRVAL1": 210.8022671,
+    "CRVAL2": 54.34895,
+    "LONPOLE": 180.0,
+    "LATPOLE": 54.34895,
+    "MJDREF": 0.0,
+    "RADESYS": "ICRS"
+  },
+  "channels": [
+    {
+      "plane": 1,
+      "wavelength_um": 0.753000020980835,
+      "bandwidth_um": 0.017999999225139618,
+      "detector": 1,
+      "subchannel": 1,
+      "url": "./data/mosaics/m101-v1/plane-001.json.gz",
+      "sha256": "5a4ea7c1228c2125cf2c190fe38c0c59096e2e8036d4403f78f610dc624ccaf4",
+      "bytes": 331525,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.020016311220824718,
+          "vmax": 1.688950933456393
+        },
+        "zscale": {
+          "vmin": 0.015301184728741646,
+          "vmax": 0.13668145689446837
+        }
+      },
+      "valid_fraction": 0.8921292204968508,
+      "coverage_fraction": 0.9999438903617669,
+      "available": true
+    },
+    {
+      "plane": 2,
+      "wavelength_um": 0.7710000276565552,
+      "bandwidth_um": 0.01899999938905239,
+      "detector": 1,
+      "subchannel": 2,
+      "url": "./data/mosaics/m101-v1/plane-002.json.gz",
+      "sha256": "87192cfcbdcb4adcf3fe308f5ca62504d5f1f33072912b72d60edfc4902afef3",
+      "bytes": 331086,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.019831603821367026,
+          "vmax": 1.7025511445999162
+        },
+        "zscale": {
+          "vmin": 0.014294316992163658,
+          "vmax": 0.1362429256315486
+        }
+      },
+      "valid_fraction": 0.8931532213946051,
+      "coverage_fraction": 0.9999158355426503,
+      "available": true
+    },
+    {
+      "plane": 3,
+      "wavelength_um": 0.7900000214576721,
+      "bandwidth_um": 0.01899999938905239,
+      "detector": 1,
+      "subchannel": 3,
+      "url": "./data/mosaics/m101-v1/plane-003.json.gz",
+      "sha256": "4bd978de58ac9494e3353f7f44f1fbde43f814cec3168de1ea645ff1a56f6c21",
+      "bytes": 330384,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.019839498214423656,
+          "vmax": 1.6484354263544434
+        },
+        "zscale": {
+          "vmin": 0.014269528910517693,
+          "vmax": 0.13608133324304972
+        }
+      },
+      "valid_fraction": 0.8989605689517317,
+      "coverage_fraction": 0.999901808133092,
+      "available": true
+    },
+    {
+      "plane": 4,
+      "wavelength_um": 0.8090000152587891,
+      "bandwidth_um": 0.019999999552965164,
+      "detector": 1,
+      "subchannel": 4,
+      "url": "./data/mosaics/m101-v1/plane-004.json.gz",
+      "sha256": "10c1ea94297b9f9119a45d19788ece818b738d319661cd74b8aa7e0c79e0a6aa",
+      "bytes": 330436,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.019209976494312286,
+          "vmax": 1.7768557773828444
+        },
+        "zscale": {
+          "vmin": -0.015093514695763588,
+          "vmax": 0.1281981326236583
+        }
+      },
+      "valid_fraction": 0.898876404494382,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 5,
+      "wavelength_um": 0.828000009059906,
+      "bandwidth_um": 0.019999999552965164,
+      "detector": 1,
+      "subchannel": 5,
+      "url": "./data/mosaics/m101-v1/plane-005.json.gz",
+      "sha256": "25966020c2253af9da49e19b545dc3d5e2d1efcfd24ec19d0acba491890c9529",
+      "bytes": 331190,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.020426847636699677,
+          "vmax": 1.8408414430618776
+        },
+        "zscale": {
+          "vmin": 0.014981172978878021,
+          "vmax": 0.14358674209988703
+        }
+      },
+      "valid_fraction": 0.8999004053921362,
+      "coverage_fraction": 0.999901808133092,
+      "available": true
+    },
+    {
+      "plane": 6,
+      "wavelength_um": 0.8479999899864197,
+      "bandwidth_um": 0.020999999716877937,
+      "detector": 1,
+      "subchannel": 6,
+      "url": "./data/mosaics/m101-v1/plane-006.json.gz",
+      "sha256": "b92cbd1938d4fa1cfc52cc8d281a4970f10d29604afc528dfa42cd95303a4dac",
+      "bytes": 331323,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.02248208276927471,
+          "vmax": 1.768947052001961
+        },
+        "zscale": {
+          "vmin": 0.01307449396699667,
+          "vmax": 0.13992075880966026
+        }
+      },
+      "valid_fraction": 0.8970388138422477,
+      "coverage_fraction": 0.999901808133092,
+      "available": true
+    },
+    {
+      "plane": 7,
+      "wavelength_um": 0.8679999709129333,
+      "bandwidth_um": 0.02199999988079071,
+      "detector": 1,
+      "subchannel": 7,
+      "url": "./data/mosaics/m101-v1/plane-007.json.gz",
+      "sha256": "7382f848fe8febdc0ad2a994d87ca4b2ff3f8b70d4f17b759b12387e5088ba61",
+      "bytes": 329922,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.018558230623602866,
+          "vmax": 1.7614642324447376
+        },
+        "zscale": {
+          "vmin": 0.012478824704885483,
+          "vmax": 0.1352949682888091
+        }
+      },
+      "valid_fraction": 0.9018081330920619,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 8,
+      "wavelength_um": 0.8889999985694885,
+      "bandwidth_um": 0.023000000044703484,
+      "detector": 1,
+      "subchannel": 8,
+      "url": "./data/mosaics/m101-v1/plane-008.json.gz",
+      "sha256": "a134b1d997e8f7e2c6b71d45d262bb862be0112949083fa2431e66be1a68aeb8",
+      "bytes": 328609,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.019893787801265717,
+          "vmax": 1.8124082527160734
+        },
+        "zscale": {
+          "vmin": 0.010419733822345734,
+          "vmax": 0.14776905331415707
+        }
+      },
+      "valid_fraction": 0.9032669836861227,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 9,
+      "wavelength_um": 0.9100000262260437,
+      "bandwidth_um": 0.023000000044703484,
+      "detector": 1,
+      "subchannel": 9,
+      "url": "./data/mosaics/m101-v1/plane-009.json.gz",
+      "sha256": "4ed6130198af98ecebb9ac50f35217028cb7aa26dd4cf4c76685b01360d3720b",
+      "bytes": 328756,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.022831066250801085,
+          "vmax": 1.948421198844922
+        },
+        "zscale": {
+          "vmin": 0.015162834897637367,
+          "vmax": 0.15847312397759417
+        }
+      },
+      "valid_fraction": 0.9025936680273254,
+      "coverage_fraction": 0.9999158355426503,
+      "available": true
+    },
+    {
+      "plane": 10,
+      "wavelength_um": 0.9319999814033508,
+      "bandwidth_um": 0.024000000208616257,
+      "detector": 1,
+      "subchannel": 10,
+      "url": "./data/mosaics/m101-v1/plane-010.json.gz",
+      "sha256": "1865a08551cd7e6de614b1b94f30eb438a30eebcdc1dbdbe2336d296d03ca133",
+      "bytes": 328781,
+      "decoded_bytes": 1236484,
+      "display": {
+        "percentile": {
+          "vmin": 0.02496319143101573,
+          "vmax": 1.9713030493259494
+        },
+        "zscale": {
+          "vmin": 0.02013341151177883,
+          "vmax": 0.14633148877321078
+        }
+      },
+      "valid_fraction": 0.9042909845838769,
+      "coverage_fraction": 0.9998737533139755,
+      "available": true
+    },
+    {
+      "plane": 11,
+      "wavelength_um": 0.9549999833106995,
+      "bandwidth_um": 0.02500000037252903,
+      "detector": 1,
+      "subchannel": 11,
+      "url": "./data/mosaics/m101-v1/plane-011.json.gz",
+      "sha256": "4ea86fbaeff7893abf084d7e206ff233189090f40a76807fcd521f4a8c16b83d",
+      "bytes": 329532,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.02532546915113926,
+          "vmax": 1.998677273988752
+        },
+        "zscale": {
+          "vmin": 0.016913704574108124,
+          "vmax": 0.15411295598445335
+        }
+      },
+      "valid_fraction": 0.899128897866431,
+      "coverage_fraction": 0.9998737533139755,
+      "available": true
+    },
+    {
+      "plane": 12,
+      "wavelength_um": 0.9779999852180481,
+      "bandwidth_um": 0.026000000536441803,
+      "detector": 1,
+      "subchannel": 12,
+      "url": "./data/mosaics/m101-v1/plane-012.json.gz",
+      "sha256": "5de804fae7c4abc9a030593798d250ad0d11246971cbba04b75d3807035bd39f",
+      "bytes": 329627,
+      "decoded_bytes": 1236484,
+      "display": {
+        "percentile": {
+          "vmin": 0.02521101811900735,
+          "vmax": 2.1075718536376886
+        },
+        "zscale": {
+          "vmin": 0.01794036291539669,
+          "vmax": 0.1559673837539628
+        }
+      },
+      "valid_fraction": 0.9008963514707738,
+      "coverage_fraction": 0.999901808133092,
+      "available": true
+    },
+    {
+      "plane": 13,
+      "wavelength_um": 1.0010000467300415,
+      "bandwidth_um": 0.026000000536441803,
+      "detector": 1,
+      "subchannel": 13,
+      "url": "./data/mosaics/m101-v1/plane-013.json.gz",
+      "sha256": "4564a7df58b59ab1cf5424ed74d6db91b6400ffff743d016f1b21042688e3de4",
+      "bytes": 329061,
+      "decoded_bytes": 1236484,
+      "display": {
+        "percentile": {
+          "vmin": 0.02462690070271492,
+          "vmax": 2.0730925464630126
+        },
+        "zscale": {
+          "vmin": 0.0012216772884130478,
+          "vmax": 0.15149244062032657
+        }
+      },
+      "valid_fraction": 0.9014995300817797,
+      "coverage_fraction": 0.9998737533139755,
+      "available": true
+    },
+    {
+      "plane": 14,
+      "wavelength_um": 1.024999976158142,
+      "bandwidth_um": 0.027000000700354576,
+      "detector": 1,
+      "subchannel": 14,
+      "url": "./data/mosaics/m101-v1/plane-014.json.gz",
+      "sha256": "ec80f0b442e4bb3470a4b124896bb2d4f657b66540581533dd9a36d11d85fe4e",
+      "bytes": 328236,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.023696377091109753,
+          "vmax": 2.1389180202484166
+        },
+        "zscale": {
+          "vmin": 0.013337776064872742,
+          "vmax": 0.15719333879813746
+        }
+      },
+      "valid_fraction": 0.8997601312965534,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 15,
+      "wavelength_um": 1.0499999523162842,
+      "bandwidth_um": 0.02800000086426735,
+      "detector": 1,
+      "subchannel": 15,
+      "url": "./data/mosaics/m101-v1/plane-015.json.gz",
+      "sha256": "edd3fdcbfcbe6bd1cea301b2a96b8631679e413a8906be320def1494fd6f1996",
+      "bytes": 327120,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.025169662982225418,
+          "vmax": 2.163012998580918
+        },
+        "zscale": {
+          "vmin": -0.02189646288752556,
+          "vmax": 0.1787474253369909
+        }
+      },
+      "valid_fraction": 0.8978243487775113,
+      "coverage_fraction": 0.9998737533139755,
+      "available": true
+    },
+    {
+      "plane": 16,
+      "wavelength_um": 1.0750000476837158,
+      "bandwidth_um": 0.028999999165534973,
+      "detector": 1,
+      "subchannel": 16,
+      "url": "./data/mosaics/m101-v1/plane-016.json.gz",
+      "sha256": "ccba54fd70a931689ae9c1f0625e9ba8ac25c9afb48d7d56773a35d25c2d71b9",
+      "bytes": 326007,
+      "decoded_bytes": 1236484,
+      "display": {
+        "percentile": {
+          "vmin": 0.13711991518735886,
+          "vmax": 2.525976731300358
+        },
+        "zscale": {
+          "vmin": 0.117930568754673,
+          "vmax": 1.3536763166902093
+        }
+      },
+      "valid_fraction": 0.8919047819439184,
+      "coverage_fraction": 0.9999158355426503,
+      "available": true
+    },
+    {
+      "plane": 17,
+      "wavelength_um": 1.1019999980926514,
+      "bandwidth_um": 0.029999999329447746,
+      "detector": 1,
+      "subchannel": 17,
+      "url": "./data/mosaics/m101-v1/plane-017.json.gz",
+      "sha256": "08cbe6e415e2af3dd4122a816e2edcf1850c08c86af3fd5e16527b09e8c13764",
+      "bytes": 328784,
+      "decoded_bytes": 1236484,
+      "display": {
+        "percentile": {
+          "vmin": 0.03752047624439001,
+          "vmax": 2.436558002233435
+        },
+        "zscale": {
+          "vmin": 0.023302938789129257,
+          "vmax": 0.9379165287085174
+        }
+      },
+      "valid_fraction": 0.8964356352312418,
+      "coverage_fraction": 0.9999158355426503,
+      "available": true
+    },
+    {
+      "plane": 18,
+      "wavelength_um": 1.1130000352859497,
+      "bandwidth_um": 0.026000000536441803,
+      "detector": 2,
+      "subchannel": 1,
+      "url": "./data/mosaics/m101-v1/plane-018.json.gz",
+      "sha256": "441671515b39e2a0e6e5a79100fc584431c2d2dc986b6fa47a5f83baebfbcbc1",
+      "bytes": 335568,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.021454882472753525,
+          "vmax": 2.132618571281445
+        },
+        "zscale": {
+          "vmin": 0.013552740216255188,
+          "vmax": 0.1471855420882679
+        }
+      },
+      "valid_fraction": 0.8614933580215741,
+      "coverage_fraction": 0.9999158355426503,
+      "available": true
+    },
+    {
+      "plane": 19,
+      "wavelength_um": 1.1390000581741333,
+      "bandwidth_um": 0.027000000700354576,
+      "detector": 2,
+      "subchannel": 2,
+      "url": "./data/mosaics/m101-v1/plane-019.json.gz",
+      "sha256": "c7b823e06f90cece19ca6ddd4b38503b79ad4d9723aa0c469d3e7ca06eb50fdb",
+      "bytes": 337937,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.019571783505380153,
+          "vmax": 2.2696364989280657
+        },
+        "zscale": {
+          "vmin": 0.016329675912857056,
+          "vmax": 0.13482045442596563
+        }
+      },
+      "valid_fraction": 0.8550407496247668,
+      "coverage_fraction": 0.9999438903617669,
+      "available": true
+    },
+    {
+      "plane": 20,
+      "wavelength_um": 1.1670000553131104,
+      "bandwidth_um": 0.02800000086426735,
+      "detector": 2,
+      "subchannel": 3,
+      "url": "./data/mosaics/m101-v1/plane-020.json.gz",
+      "sha256": "a0fd25e38c4154da6d147141a6e617334a013ae476a56eaa4c935f22b33deada",
+      "bytes": 338887,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.01801878832280636,
+          "vmax": 2.313631727218626
+        },
+        "zscale": {
+          "vmin": 0.014916983433067799,
+          "vmax": 0.13502799563127216
+        }
+      },
+      "valid_fraction": 0.8490650731529409,
+      "coverage_fraction": 0.9998737533139755,
+      "available": true
+    },
+    {
+      "plane": 21,
+      "wavelength_um": 1.1950000524520874,
+      "bandwidth_um": 0.028999999165534973,
+      "detector": 2,
+      "subchannel": 4,
+      "url": "./data/mosaics/m101-v1/plane-021.json.gz",
+      "sha256": "63047719957af44c88b853f12f09fc5476bfa739b3026a2cc12718ecb0547959",
+      "bytes": 337745,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.018264392353594304,
+          "vmax": 2.3342906980514537
+        },
+        "zscale": {
+          "vmin": 0.01127296406775713,
+          "vmax": 0.14246255089218748
+        }
+      },
+      "valid_fraction": 0.8530628848770497,
+      "coverage_fraction": 0.9999438903617669,
+      "available": true
+    },
+    {
+      "plane": 22,
+      "wavelength_um": 1.2239999771118164,
+      "bandwidth_um": 0.029999999329447746,
+      "detector": 2,
+      "subchannel": 5,
+      "url": "./data/mosaics/m101-v1/plane-022.json.gz",
+      "sha256": "ec80d2da4d40358d4735bb8b4c81227adc7e125d3691a60416f6736a1e3317e3",
+      "bytes": 336879,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.0199115202575922,
+          "vmax": 2.3462946736812516
+        },
+        "zscale": {
+          "vmin": 0.014554902911186218,
+          "vmax": 0.13939588679815973
+        }
+      },
+      "valid_fraction": 0.8542972969181781,
+      "coverage_fraction": 0.9998597259044172,
+      "available": true
+    },
+    {
+      "plane": 23,
+      "wavelength_um": 1.253999948501587,
+      "bandwidth_um": 0.029999999329447746,
+      "detector": 2,
+      "subchannel": 6,
+      "url": "./data/mosaics/m101-v1/plane-023.json.gz",
+      "sha256": "eb099e02b379a54bdaca5a48df4ad731d9a102258184c2130b0cb67ca87f91a1",
+      "bytes": 336974,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.02239770894870162,
+          "vmax": 2.348997079610827
+        },
+        "zscale": {
+          "vmin": 0.01747194677591324,
+          "vmax": 0.1494762895947325
+        }
+      },
+      "valid_fraction": 0.855559763778423,
+      "coverage_fraction": 0.9999158355426503,
+      "available": true
+    },
+    {
+      "plane": 24,
+      "wavelength_um": 1.284000039100647,
+      "bandwidth_um": 0.03099999949336052,
+      "detector": 2,
+      "subchannel": 7,
+      "url": "./data/mosaics/m101-v1/plane-024.json.gz",
+      "sha256": "60eebd9dfa2e132e31e4946d829669857dd8bc9c152fa7aac5a1259391ea069f",
+      "bytes": 335536,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.02275815637782216,
+          "vmax": 2.431709850311275
+        },
+        "zscale": {
+          "vmin": 0.014280151575803757,
+          "vmax": 0.14939025691573732
+        }
+      },
+      "valid_fraction": 0.8623209751855125,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 25,
+      "wavelength_um": 1.315000057220459,
+      "bandwidth_um": 0.03200000151991844,
+      "detector": 2,
+      "subchannel": 8,
+      "url": "./data/mosaics/m101-v1/plane-025.json.gz",
+      "sha256": "4ceb994a1c55ebca2a1ba639943d9de643d88483d2405fd84e57161e2ff0a47b",
+      "bytes": 330362,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.022679765596985816,
+          "vmax": 2.4249266395568814
+        },
+        "zscale": {
+          "vmin": 0.015483219176530838,
+          "vmax": 0.1610265320274356
+        }
+      },
+      "valid_fraction": 0.8818050470619591,
+      "coverage_fraction": 0.999901808133092,
+      "available": true
+    },
+    {
+      "plane": 26,
+      "wavelength_um": 1.3459999561309814,
+      "bandwidth_um": 0.03200000151991844,
+      "detector": 2,
+      "subchannel": 9,
+      "url": "./data/mosaics/m101-v1/plane-026.json.gz",
+      "sha256": "c4eb83be8eca292d0f30ab0a465528aa2b1f6369752b417060ed3ce5f03b4b60",
+      "bytes": 326599,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.022447976004332303,
+          "vmax": 2.3416112208366484
+        },
+        "zscale": {
+          "vmin": 0.017141982913017273,
+          "vmax": 0.15389406533464703
+        }
+      },
+      "valid_fraction": 0.8907966165888146,
+      "coverage_fraction": 0.9998597259044172,
+      "available": true
+    },
+    {
+      "plane": 27,
+      "wavelength_um": 1.378000020980835,
+      "bandwidth_um": 0.032999999821186066,
+      "detector": 2,
+      "subchannel": 10,
+      "url": "./data/mosaics/m101-v1/plane-027.json.gz",
+      "sha256": "9b426cae31482ee715b47f83f912b592daef4de9bf3e043f7ea83cb70c7d4781",
+      "bytes": 328393,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.02246959924697876,
+          "vmax": 2.3656719141006493
+        },
+        "zscale": {
+          "vmin": 0.01482992060482502,
+          "vmax": 0.17771792750234264
+        }
+      },
+      "valid_fraction": 0.8836847199427682,
+      "coverage_fraction": 0.9997755614470676,
+      "available": true
+    },
+    {
+      "plane": 28,
+      "wavelength_um": 1.4119999408721924,
+      "bandwidth_um": 0.03400000184774399,
+      "detector": 2,
+      "subchannel": 11,
+      "url": "./data/mosaics/m101-v1/plane-028.json.gz",
+      "sha256": "c723d1c76e333f5ecffe01f9ae0adb11f35ce6a6776f9a999eaf4488d79ae71c",
+      "bytes": 331594,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.021624618582427504,
+          "vmax": 2.38578043460846
+        },
+        "zscale": {
+          "vmin": 0.012652605772018433,
+          "vmax": 0.15985849759831766
+        }
+      },
+      "valid_fraction": 0.873290409460085,
+      "coverage_fraction": 0.999901808133092,
+      "available": true
+    },
+    {
+      "plane": 29,
+      "wavelength_um": 1.4459999799728394,
+      "bandwidth_um": 0.03500000014901161,
+      "detector": 2,
+      "subchannel": 12,
+      "url": "./data/mosaics/m101-v1/plane-029.json.gz",
+      "sha256": "e8ba004b69f434cf7779e4478b2c61ff9cd27cf9607adb5d2d02fb82950b6808",
+      "bytes": 333611,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.02064987478777766,
+          "vmax": 2.351199191570282
+        },
+        "zscale": {
+          "vmin": 0.012743736617267132,
+          "vmax": 0.13515514270597084
+        }
+      },
+      "valid_fraction": 0.8602729733900041,
+      "coverage_fraction": 0.9998456984948589,
+      "available": true
+    },
+    {
+      "plane": 30,
+      "wavelength_um": 1.4809999465942383,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 2,
+      "subchannel": 13,
+      "url": "./data/mosaics/m101-v1/plane-030.json.gz",
+      "sha256": "a263d4fc295a53b5f32f74f8a2f8981bca6c6b647d4ffd3a63368eea82b88b0d",
+      "bytes": 334835,
+      "decoded_bytes": 1236484,
+      "display": {
+        "percentile": {
+          "vmin": 0.021697831377387046,
+          "vmax": 2.4761490845680294
+        },
+        "zscale": {
+          "vmin": 0.015129553154110909,
+          "vmax": 0.14032638993970523
+        }
+      },
+      "valid_fraction": 0.8544796532424357,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 31,
+      "wavelength_um": 1.5169999599456787,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 2,
+      "subchannel": 14,
+      "url": "./data/mosaics/m101-v1/plane-031.json.gz",
+      "sha256": "ab0a347548266614ab75047348817d9cc7a54cce1c41c40de6c7e03f33b37cdc",
+      "bytes": 336177,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.01935964673757553,
+          "vmax": 2.5166453609466504
+        },
+        "zscale": {
+          "vmin": 0.014021514914929867,
+          "vmax": 0.1472920402400228
+        }
+      },
+      "valid_fraction": 0.8508605815764003,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 32,
+      "wavelength_um": 1.5540000200271606,
+      "bandwidth_um": 0.03799999877810478,
+      "detector": 2,
+      "subchannel": 15,
+      "url": "./data/mosaics/m101-v1/plane-032.json.gz",
+      "sha256": "57436d432c5c7e7f7ca5e21cd7742748e1eb5c8cce7e71aba7a69154fd838769",
+      "bytes": 338295,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.015156749989837407,
+          "vmax": 2.633616180419931
+        },
+        "zscale": {
+          "vmin": 0.008351897820830345,
+          "vmax": 0.14651253361340788
+        }
+      },
+      "valid_fraction": 0.8464559749751014,
+      "coverage_fraction": 0.9998737533139755,
+      "available": true
+    },
+    {
+      "plane": 33,
+      "wavelength_um": 1.5920000076293945,
+      "bandwidth_um": 0.039000000804662704,
+      "detector": 2,
+      "subchannel": 16,
+      "url": "./data/mosaics/m101-v1/plane-033.json.gz",
+      "sha256": "712df9b8641b046afdcfcc7b8aba2d03448f466b98b932de160cf5113a8bd2dc",
+      "bytes": 338461,
+      "decoded_bytes": 1236484,
+      "display": {
+        "percentile": {
+          "vmin": 0.010735191516578197,
+          "vmax": 2.5762733316421436
+        },
+        "zscale": {
+          "vmin": 0.0010151490569114685,
+          "vmax": 0.15582316829869786
+        }
+      },
+      "valid_fraction": 0.8427246840325997,
+      "coverage_fraction": 0.9999298629522086,
+      "available": true
+    },
+    {
+      "plane": 34,
+      "wavelength_um": 1.63100004196167,
+      "bandwidth_um": 0.039000000804662704,
+      "detector": 2,
+      "subchannel": 17,
+      "url": "./data/mosaics/m101-v1/plane-034.json.gz",
+      "sha256": "e72114c72d7c7f2d5915f684730fba74936e3f079eb8141c5b439031a64a0240",
+      "bytes": 338817,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.012120957672595977,
+          "vmax": 2.613515954971313
+        },
+        "zscale": {
+          "vmin": 0.007810598239302635,
+          "vmax": 0.14376523415340764
+        }
+      },
+      "valid_fraction": 0.8419952587355694,
+      "coverage_fraction": 0.9998737533139755,
+      "available": true
+    },
+    {
+      "plane": 35,
+      "wavelength_um": 1.656000018119812,
+      "bandwidth_um": 0.039000000804662704,
+      "detector": 3,
+      "subchannel": 1,
+      "url": "./data/mosaics/m101-v1/plane-035.json.gz",
+      "sha256": "c6005a351ad542ab450e87998f1a8b1ffee6283614659b36454e96c43b43f156",
+      "bytes": 327798,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.0003964200615882873,
+          "vmax": 2.559822571754463
+        },
+        "zscale": {
+          "vmin": -0.014687657356262207,
+          "vmax": 0.1480855366055139
+        }
+      },
+      "valid_fraction": 0.9126793754997264,
+      "coverage_fraction": 0.9972085454979029,
+      "available": true
+    },
+    {
+      "plane": 36,
+      "wavelength_um": 1.6950000524520874,
+      "bandwidth_um": 0.04100000113248825,
+      "detector": 3,
+      "subchannel": 2,
+      "url": "./data/mosaics/m101-v1/plane-036.json.gz",
+      "sha256": "be20fbe3c9f3b598c7a5f44887b55b95818170e678e659e2ece1cc0d541d8191",
+      "bytes": 326160,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.0026660890132188795,
+          "vmax": 2.41269051671031
+        },
+        "zscale": {
+          "vmin": -0.009289763867855072,
+          "vmax": 0.14959152634098866
+        }
+      },
+      "valid_fraction": 0.9183464489612703,
+      "coverage_fraction": 0.9973347921839274,
+      "available": true
+    },
+    {
+      "plane": 37,
+      "wavelength_um": 1.7350000143051147,
+      "bandwidth_um": 0.041999999433755875,
+      "detector": 3,
+      "subchannel": 3,
+      "url": "./data/mosaics/m101-v1/plane-037.json.gz",
+      "sha256": "60af1b50dd695a818f684ab2c400862b898669789bc3b4bbaf8843b5aaee3e97",
+      "bytes": 326947,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.0043753375299274925,
+          "vmax": 2.3681275162695945
+        },
+        "zscale": {
+          "vmin": -0.005949956830590963,
+          "vmax": 0.153405394900737
+        }
+      },
+      "valid_fraction": 0.9162703923466453,
+      "coverage_fraction": 0.9976013129655347,
+      "available": true
+    },
+    {
+      "plane": 38,
+      "wavelength_um": 1.774999976158142,
+      "bandwidth_um": 0.0430000014603138,
+      "detector": 3,
+      "subchannel": 4,
+      "url": "./data/mosaics/m101-v1/plane-038.json.gz",
+      "sha256": "a4504f3046604123248d91433330ad0cbe9943722d27b1748f71265e12bffb29",
+      "bytes": 329310,
+      "decoded_bytes": 1236480,
+      "display": {
+        "percentile": {
+          "vmin": 0.005087789557874203,
+          "vmax": 2.1890449886322125
+        },
+        "zscale": {
+          "vmin": -0.00604885071516037,
+          "vmax": 0.1349957678552061
+        }
+      },
+      "valid_fraction": 0.9065073152940847,
+      "coverage_fraction": 0.9983728204912399,
+      "available": true
+    },
+    {
+      "plane": 39,
+      "wavelength_um": 1.8179999589920044,
+      "bandwidth_um": 0.04500000178813934,
+      "detector": 3,
+      "subchannel": 5,
+      "url": "./data/mosaics/m101-v1/plane-039.json.gz",
+      "sha256": "9911e9cf78b4859e6eb236a31385a2a5ebdd83b83e7786fee81e1d0d09fb03d1",
+      "bytes": 332702,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.007225126288831234,
+          "vmax": 2.252352697372434
+        },
+        "zscale": {
+          "vmin": -0.00404423289000988,
+          "vmax": 0.13661462964563306
+        }
+      },
+      "valid_fraction": 0.8975297731767874,
+      "coverage_fraction": 0.9998456984948589,
+      "available": true
+    },
+    {
+      "plane": 40,
+      "wavelength_um": 1.8609999418258667,
+      "bandwidth_um": 0.04600000008940697,
+      "detector": 3,
+      "subchannel": 6,
+      "url": "./data/mosaics/m101-v1/plane-040.json.gz",
+      "sha256": "0b86857fd9ce96271ae1d09c9a1361f4a16034f105013a70e164b9a35d354379",
+      "bytes": 335740,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.011353909745812416,
+          "vmax": 2.2967103595733067
+        },
+        "zscale": {
+          "vmin": 0.0012035127729177475,
+          "vmax": 0.15501939403723353
+        }
+      },
+      "valid_fraction": 0.8889590259366803,
+      "coverage_fraction": 0.999747506627951,
+      "available": true
+    },
+    {
+      "plane": 41,
+      "wavelength_um": 1.9049999713897705,
+      "bandwidth_um": 0.04699999839067459,
+      "detector": 3,
+      "subchannel": 7,
+      "url": "./data/mosaics/m101-v1/plane-041.json.gz",
+      "sha256": "6269a71c4e51879ef165b60b454d446dd60d61e85027432a363cd980add9fb7d",
+      "bytes": 336186,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.013885959228500723,
+          "vmax": 2.308906690359112
+        },
+        "zscale": {
+          "vmin": 0.01079406775534153,
+          "vmax": 0.14625528311777491
+        }
+      },
+      "valid_fraction": 0.8843440081920072,
+      "coverage_fraction": 0.9997895888566258,
+      "available": true
+    },
+    {
+      "plane": 42,
+      "wavelength_um": 1.9490000009536743,
+      "bandwidth_um": 0.04800000041723251,
+      "detector": 3,
+      "subchannel": 8,
+      "url": "./data/mosaics/m101-v1/plane-042.json.gz",
+      "sha256": "33e8665eec89225b4a084464bbeb6d623652ea753205f086da11ce497c2766a9",
+      "bytes": 334446,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.009624116569757462,
+          "vmax": 2.165538643360124
+        },
+        "zscale": {
+          "vmin": -0.007908716797828674,
+          "vmax": 0.13265598622807337
+        }
+      },
+      "valid_fraction": 0.886363955168399,
+      "coverage_fraction": 0.9999158355426503,
+      "available": true
+    },
+    {
+      "plane": 43,
+      "wavelength_um": 1.9950000047683716,
+      "bandwidth_um": 0.04899999871850014,
+      "detector": 3,
+      "subchannel": 9,
+      "url": "./data/mosaics/m101-v1/plane-043.json.gz",
+      "sha256": "b937aa4a38c154eca73206877d80bd15b1d8afef65e5fd3de4c70f664bf8c8be",
+      "bytes": 333700,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.011520629562437535,
+          "vmax": 2.0217947626113886
+        },
+        "zscale": {
+          "vmin": -0.01032679621130228,
+          "vmax": 0.14711485107424283
+        }
+      },
+      "valid_fraction": 0.886967133779405,
+      "coverage_fraction": 0.9998316710853007,
+      "available": true
+    },
+    {
+      "plane": 44,
+      "wavelength_um": 2.0409998893737793,
+      "bandwidth_um": 0.050999999046325684,
+      "detector": 3,
+      "subchannel": 10,
+      "url": "./data/mosaics/m101-v1/plane-044.json.gz",
+      "sha256": "e2f5f042c2ddb89bc086b284fa97150c878f40b61c7b109a64cfaecb238fbc71",
+      "bytes": 333804,
+      "decoded_bytes": 1236484,
+      "display": {
+        "percentile": {
+          "vmin": 0.014105017287656665,
+          "vmax": 2.0815484619140396
+        },
+        "zscale": {
+          "vmin": 0.004131246358156204,
+          "vmax": 0.13323746274127424
+        }
+      },
+      "valid_fraction": 0.886560338902215,
+      "coverage_fraction": 0.9998176436757424,
+      "available": true
+    },
+    {
+      "plane": 45,
+      "wavelength_um": 2.0889999866485596,
+      "bandwidth_um": 0.052000001072883606,
+      "detector": 3,
+      "subchannel": 11,
+      "url": "./data/mosaics/m101-v1/plane-045.json.gz",
+      "sha256": "775d4f159e76d5d184e60ff0e2338968447d26af1c20480355cf1d9657dc3dcd",
+      "bytes": 332661,
+      "decoded_bytes": 1236484,
+      "display": {
+        "percentile": {
+          "vmin": 0.012877379395067692,
+          "vmax": 2.0209261078834264
+        },
+        "zscale": {
+          "vmin": 0.008150617592036724,
+          "vmax": 0.13508897123724914
+        }
+      },
+      "valid_fraction": 0.8910070277321887,
+      "coverage_fraction": 0.9997755614470676,
+      "available": true
+    },
+    {
+      "plane": 46,
+      "wavelength_um": 2.1389999389648438,
+      "bandwidth_um": 0.05400000140070915,
+      "detector": 3,
+      "subchannel": 12,
+      "url": "./data/mosaics/m101-v1/plane-046.json.gz",
+      "sha256": "faab0e211857a7d4a5ceeab288a2c29a70d38692b9604587bd47272cce315564",
+      "bytes": 331496,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.011607287041842936,
+          "vmax": 1.9903655540943102
+        },
+        "zscale": {
+          "vmin": 0.00750541128218174,
+          "vmax": 0.1429734212842313
+        }
+      },
+      "valid_fraction": 0.8969546493848981,
+      "coverage_fraction": 0.9992986295220861,
+      "available": true
+    },
+    {
+      "plane": 47,
+      "wavelength_um": 2.188999891281128,
+      "bandwidth_um": 0.054999999701976776,
+      "detector": 3,
+      "subchannel": 13,
+      "url": "./data/mosaics/m101-v1/plane-047.json.gz",
+      "sha256": "130d50aca64a95a2d9359b3ccfc48256d8a8546ab95334532fd3930c211d4df5",
+      "bytes": 332629,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.012646126560866833,
+          "vmax": 1.9401373624801908
+        },
+        "zscale": {
+          "vmin": 0.007071338593959808,
+          "vmax": 0.13970622027390148
+        }
+      },
+      "valid_fraction": 0.8963654981834505,
+      "coverage_fraction": 0.9994669584367855,
+      "available": true
+    },
+    {
+      "plane": 48,
+      "wavelength_um": 2.240000009536743,
+      "bandwidth_um": 0.0560000017285347,
+      "detector": 3,
+      "subchannel": 14,
+      "url": "./data/mosaics/m101-v1/plane-048.json.gz",
+      "sha256": "adff00e8d9391fa2b166cf3c73de885d9e5fce265c537b6f131449d92ca72cda",
+      "bytes": 333712,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.013786397874355316,
+          "vmax": 1.8823465194702074
+        },
+        "zscale": {
+          "vmin": -0.01063072495162487,
+          "vmax": 0.13900488445119058
+        }
+      },
+      "valid_fraction": 0.8891273548513796,
+      "coverage_fraction": 0.9981624093478657,
+      "available": true
+    },
+    {
+      "plane": 49,
+      "wavelength_um": 2.2920000553131104,
+      "bandwidth_um": 0.05700000002980232,
+      "detector": 3,
+      "subchannel": 15,
+      "url": "./data/mosaics/m101-v1/plane-049.json.gz",
+      "sha256": "6f52b7e70681b22df50082f5dd4563c3b1aefb0e54736add7948601feb8f7d3c",
+      "bytes": 335666,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.01467681884765625,
+          "vmax": 1.8566595420837353
+        },
+        "zscale": {
+          "vmin": 0.011026717722415924,
+          "vmax": 0.12514831546447924
+        }
+      },
+      "valid_fraction": 0.8797570452664506,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 50,
+      "wavelength_um": 2.3450000286102295,
+      "bandwidth_um": 0.057999998331069946,
+      "detector": 3,
+      "subchannel": 16,
+      "url": "./data/mosaics/m101-v1/plane-050.json.gz",
+      "sha256": "131e13d520d9faa1dceade8fdf91be80be5555bffde195b78851594adad83295",
+      "bytes": 335774,
+      "decoded_bytes": 1236484,
+      "display": {
+        "percentile": {
+          "vmin": 0.014005934679880738,
+          "vmax": 1.6586976732015744
+        },
+        "zscale": {
+          "vmin": 0.009022962301969528,
+          "vmax": 0.12134896944562674
+        }
+      },
+      "valid_fraction": 0.8784524961775309,
+      "coverage_fraction": 0.9999158355426503,
+      "available": true
+    },
+    {
+      "plane": 51,
+      "wavelength_um": 2.3989999294281006,
+      "bandwidth_um": 0.05900000035762787,
+      "detector": 3,
+      "subchannel": 17,
+      "url": "./data/mosaics/m101-v1/plane-051.json.gz",
+      "sha256": "6c2650a002e243da2bc42155e1d0f4a2e747ecebc1a9ffdb9cead501e5de5c51",
+      "bytes": 303736,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.007928980886936188,
+          "vmax": 1.5844187717437759
+        },
+        "zscale": {
+          "vmin": -0.003555741161108017,
+          "vmax": 0.13562987290493192
+        }
+      },
+      "valid_fraction": 0.8294266997713532,
+      "coverage_fraction": 0.9047398616897417,
+      "available": true
+    },
+    {
+      "plane": 52,
+      "wavelength_um": 2.444999933242798,
+      "bandwidth_um": 0.057999998331069946,
+      "detector": 4,
+      "subchannel": 1,
+      "url": "./data/mosaics/m101-v1/plane-052.json.gz",
+      "sha256": "89a34cbc629554c4d59fe90a18c232ac93ce5bd47d335605d2a1e904bd30a605",
+      "bytes": 330389,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.013548079524189233,
+          "vmax": 1.4764349777698516
+        },
+        "zscale": {
+          "vmin": -0.0014427360147237778,
+          "vmax": 0.1306113659539702
+        }
+      },
+      "valid_fraction": 0.887373928656595,
+      "coverage_fraction": 0.9825779573286201,
+      "available": true
+    },
+    {
+      "plane": 53,
+      "wavelength_um": 2.50600004196167,
+      "bandwidth_um": 0.0729999989271164,
+      "detector": 4,
+      "subchannel": 2,
+      "url": "./data/mosaics/m101-v1/plane-053.json.gz",
+      "sha256": "e60c7a8251956bac7f7cf30adfbc3e08d7bb53bad7cef8e0a2a43e1ea4cc14cc",
+      "bytes": 335865,
+      "decoded_bytes": 1236479,
+      "display": {
+        "percentile": {
+          "vmin": 0.015247588856145739,
+          "vmax": 1.392639047980307
+        },
+        "zscale": {
+          "vmin": 0.005317376926541328,
+          "vmax": 0.11855796892487741
+        }
+      },
+      "valid_fraction": 0.8815385262803518,
+      "coverage_fraction": 0.999901808133092,
+      "available": true
+    },
+    {
+      "plane": 54,
+      "wavelength_um": 2.575000047683716,
+      "bandwidth_um": 0.07400000095367432,
+      "detector": 4,
+      "subchannel": 3,
+      "url": "./data/mosaics/m101-v1/plane-054.json.gz",
+      "sha256": "f34b74650b5ac341fcee2dc509269c5b5d8c67defcfefd1dcba63af643240e43",
+      "bytes": 336263,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.014128537103533744,
+          "vmax": 1.381996527552604
+        },
+        "zscale": {
+          "vmin": 0.007386619225144386,
+          "vmax": 0.12847291599634786
+        }
+      },
+      "valid_fraction": 0.8799955112289414,
+      "coverage_fraction": 0.9999298629522086,
+      "available": true
+    },
+    {
+      "plane": 55,
+      "wavelength_um": 2.6459999084472656,
+      "bandwidth_um": 0.07599999755620956,
+      "detector": 4,
+      "subchannel": 4,
+      "url": "./data/mosaics/m101-v1/plane-055.json.gz",
+      "sha256": "8709fae5983acb92788e3c3fc75d028adceb253ba59f6bc1312c6d20ef617b74",
+      "bytes": 335892,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.014581569060683251,
+          "vmax": 1.3688567681312749
+        },
+        "zscale": {
+          "vmin": 0.0077850958332419395,
+          "vmax": 0.11768025660551608
+        }
+      },
+      "valid_fraction": 0.8833480621133695,
+      "coverage_fraction": 0.9999298629522086,
+      "available": true
+    },
+    {
+      "plane": 56,
+      "wavelength_um": 2.7190001010894775,
+      "bandwidth_um": 0.07800000160932541,
+      "detector": 4,
+      "subchannel": 5,
+      "url": "./data/mosaics/m101-v1/plane-056.json.gz",
+      "sha256": "d80995308eec4d1cc2bb18ed2c536099605030e8a67040e5a974215fbec3f5cd",
+      "bytes": 336152,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.015330048836767673,
+          "vmax": 1.3187016773223847
+        },
+        "zscale": {
+          "vmin": 0.0029182478319853544,
+          "vmax": 0.11899836561883227
+        }
+      },
+      "valid_fraction": 0.8815665810994684,
+      "coverage_fraction": 0.999901808133092,
+      "available": true
+    },
+    {
+      "plane": 57,
+      "wavelength_um": 2.7939999103546143,
+      "bandwidth_um": 0.07900000363588333,
+      "detector": 4,
+      "subchannel": 6,
+      "url": "./data/mosaics/m101-v1/plane-057.json.gz",
+      "sha256": "b1cb07a8aaa97d7686e90103068063ef3df5ca86649be582a6e2ab80f2179ce3",
+      "bytes": 335921,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.015365565605461597,
+          "vmax": 1.2463624458312987
+        },
+        "zscale": {
+          "vmin": 0.009020650759339333,
+          "vmax": 0.1241007394387058
+        }
+      },
+      "valid_fraction": 0.8841897066868661,
+      "coverage_fraction": 0.999901808133092,
+      "available": true
+    },
+    {
+      "plane": 58,
+      "wavelength_um": 2.871000051498413,
+      "bandwidth_um": 0.08399999886751175,
+      "detector": 4,
+      "subchannel": 7,
+      "url": "./data/mosaics/m101-v1/plane-058.json.gz",
+      "sha256": "42d62ed3974608a45ab7401b3b7e1cdf0e06c14a42bfa1720e0638e09c2a697e",
+      "bytes": 335264,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.01564829209819436,
+          "vmax": 1.231324367523194
+        },
+        "zscale": {
+          "vmin": 0.006278904154896736,
+          "vmax": 0.11162521387757462
+        }
+      },
+      "valid_fraction": 0.88529787204197,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 59,
+      "wavelength_um": 2.9509999752044678,
+      "bandwidth_um": 0.0860000029206276,
+      "detector": 4,
+      "subchannel": 8,
+      "url": "./data/mosaics/m101-v1/plane-059.json.gz",
+      "sha256": "c030752ecdbd99ebcc3c3420569343236420d11d1b640d68afb8bbb27158eb76",
+      "bytes": 333648,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.014584337156265973,
+          "vmax": 1.2376287937163997
+        },
+        "zscale": {
+          "vmin": 0.008483869954943657,
+          "vmax": 0.1081033027431437
+        }
+      },
+      "valid_fraction": 0.8891554096704961,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 60,
+      "wavelength_um": 3.0329999923706055,
+      "bandwidth_um": 0.08900000154972076,
+      "detector": 4,
+      "subchannel": 9,
+      "url": "./data/mosaics/m101-v1/plane-060.json.gz",
+      "sha256": "de12efb5edd3feb87ab6043a02b66dde332d5521fe6b293973af93c5d229f6ed",
+      "bytes": 332828,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.015402456633746625,
+          "vmax": 1.2060244263410658
+        },
+        "zscale": {
+          "vmin": -0.023918069899082184,
+          "vmax": 0.11324664698644801
+        }
+      },
+      "valid_fraction": 0.8907966165888146,
+      "coverage_fraction": 0.9999579177713251,
+      "available": true
+    },
+    {
+      "plane": 61,
+      "wavelength_um": 3.118000030517578,
+      "bandwidth_um": 0.09099999815225601,
+      "detector": 4,
+      "subchannel": 10,
+      "url": "./data/mosaics/m101-v1/plane-061.json.gz",
+      "sha256": "2930af727d4585c864bf6e2c682f9d434bd0a52504f23a3f963e6a3f1cf5cc46",
+      "bytes": 332997,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.01613139659166336,
+          "vmax": 1.1534376174211451
+        },
+        "zscale": {
+          "vmin": 0.000451662577688694,
+          "vmax": 0.09914747819153198
+        }
+      },
+      "valid_fraction": 0.8880191894962757,
+      "coverage_fraction": 0.9998737533139755,
+      "available": true
+    },
+    {
+      "plane": 62,
+      "wavelength_um": 3.2039999961853027,
+      "bandwidth_um": 0.09300000220537186,
+      "detector": 4,
+      "subchannel": 11,
+      "url": "./data/mosaics/m101-v1/plane-062.json.gz",
+      "sha256": "41339676308d5b2276fe750ba995e029e11f1de946a98944fc494c2bc8848b2a",
+      "bytes": 333197,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.016276765670627354,
+          "vmax": 1.1580696922540665
+        },
+        "zscale": {
+          "vmin": 0.011114053428173065,
+          "vmax": 0.10637050177747488
+        }
+      },
+      "valid_fraction": 0.8883277925065578,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 63,
+      "wavelength_um": 3.2929999828338623,
+      "bandwidth_um": 0.09399999678134918,
+      "detector": 4,
+      "subchannel": 12,
+      "url": "./data/mosaics/m101-v1/plane-063.json.gz",
+      "sha256": "71c0088fbfbc11a1c0556be33c0784efce127c77700229f570b34eedc3b2819e",
+      "bytes": 334082,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.016201776266098023,
+          "vmax": 1.235511050224303
+        },
+        "zscale": {
+          "vmin": -0.009384077042341232,
+          "vmax": 0.11372696852582694
+        }
+      },
+      "valid_fraction": 0.8862657633014911,
+      "coverage_fraction": 0.9999298629522086,
+      "available": true
+    },
+    {
+      "plane": 64,
+      "wavelength_um": 3.382999897003174,
+      "bandwidth_um": 0.09600000083446503,
+      "detector": 4,
+      "subchannel": 13,
+      "url": "./data/mosaics/m101-v1/plane-064.json.gz",
+      "sha256": "e4234d6591895d33c28f3e73f570bd2e5f8e644adfd02fed970bb11e1e5b30f1",
+      "bytes": 333920,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.015358243938535451,
+          "vmax": 1.0937178567648134
+        },
+        "zscale": {
+          "vmin": 0.005095119122415781,
+          "vmax": 0.10628917601728838
+        }
+      },
+      "valid_fraction": 0.8869531063698467,
+      "coverage_fraction": 0.9999158355426503,
+      "available": true
+    },
+    {
+      "plane": 65,
+      "wavelength_um": 3.4760000705718994,
+      "bandwidth_um": 0.09799999743700027,
+      "detector": 4,
+      "subchannel": 14,
+      "url": "./data/mosaics/m101-v1/plane-065.json.gz",
+      "sha256": "02399de5492a8880c7578f59f1ab0fb9e96e19123fd257ac6c05249f383b70fa",
+      "bytes": 332222,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.016537726297974585,
+          "vmax": 1.0500885887145972
+        },
+        "zscale": {
+          "vmin": 0.007759265601634979,
+          "vmax": 0.11380021875580068
+        }
+      },
+      "valid_fraction": 0.8931672488041633,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 66,
+      "wavelength_um": 3.569999933242798,
+      "bandwidth_um": 0.0989999994635582,
+      "detector": 4,
+      "subchannel": 15,
+      "url": "./data/mosaics/m101-v1/plane-066.json.gz",
+      "sha256": "533ad492b79ccc94b153f0a8b6523b8405dae79888c979d8cf76bf870cf7bdac",
+      "bytes": 329681,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.0179677102714777,
+          "vmax": 1.0227530002593994
+        },
+        "zscale": {
+          "vmin": -0.0316481842849651,
+          "vmax": 0.09995903447893839
+        }
+      },
+      "valid_fraction": 0.8942613867497089,
+      "coverage_fraction": 0.9999579177713251,
+      "available": true
+    },
+    {
+      "plane": 67,
+      "wavelength_um": 3.6670000553131104,
+      "bandwidth_um": 0.10199999809265137,
+      "detector": 4,
+      "subchannel": 16,
+      "url": "./data/mosaics/m101-v1/plane-067.json.gz",
+      "sha256": "c76cbbddff022cc80b9229739121ff42e40ffe8b9e683f8c626774f3d620ddd6",
+      "bytes": 328612,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.01756250474601984,
+          "vmax": 0.9968020516633842
+        },
+        "zscale": {
+          "vmin": 0.011557051911950111,
+          "vmax": 0.10650952334675767
+        }
+      },
+      "valid_fraction": 0.9016678589964792,
+      "coverage_fraction": 0.9999859725904418,
+      "available": true
+    },
+    {
+      "plane": 68,
+      "wavelength_um": 3.7679998874664307,
+      "bandwidth_um": 0.10300000011920929,
+      "detector": 4,
+      "subchannel": 17,
+      "url": "./data/mosaics/m101-v1/plane-068.json.gz",
+      "sha256": "3f705fbb2580c75a9e066a6f3ec06240a21e51ecc3a56c5bcd7cabecb948b375",
+      "bytes": 326706,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.018802173621952533,
+          "vmax": 0.963765302658084
+        },
+        "zscale": {
+          "vmin": -0.031610334240813956,
+          "vmax": 0.10311600965824666
+        }
+      },
+      "valid_fraction": 0.9044873683176927,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 69,
+      "wavelength_um": 3.8269999027252197,
+      "bandwidth_um": 0.03500000014901161,
+      "detector": 5,
+      "subchannel": 1,
+      "url": "./data/mosaics/m101-v1/plane-069.json.gz",
+      "sha256": "8e0923131960a2131689e74094551310e5a81d90a93509db9be8f095b0f95db6",
+      "bytes": 330208,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.018416470550000667,
+          "vmax": 0.897996403157711
+        },
+        "zscale": {
+          "vmin": 0.0011131403734907508,
+          "vmax": 0.15214169977617648
+        }
+      },
+      "valid_fraction": 0.9314199946695844,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 70,
+      "wavelength_um": 3.8610000610351562,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 5,
+      "subchannel": 2,
+      "url": "./data/mosaics/m101-v1/plane-070.json.gz",
+      "sha256": "69795b8c94afe5f4558c2164d241dd0d2aaa62c07701bdce01baf5e260d17793",
+      "bytes": 331998,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.015490969447419048,
+          "vmax": 0.9030353631377185
+        },
+        "zscale": {
+          "vmin": -0.052876956573972275,
+          "vmax": 0.14313503228264887
+        }
+      },
+      "valid_fraction": 0.9243221254330962,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 71,
+      "wavelength_um": 3.8949999809265137,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 5,
+      "subchannel": 3,
+      "url": "./data/mosaics/m101-v1/plane-071.json.gz",
+      "sha256": "e7a0b78779baae23c3c6c3a7db23cb548ed623219373cac449c0e1b38b8bc8c2",
+      "bytes": 332940,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.01590907573699951,
+          "vmax": 0.8713596498966226
+        },
+        "zscale": {
+          "vmin": -0.010798659175634384,
+          "vmax": 0.14611398397397646
+        }
+      },
+      "valid_fraction": 0.9217551094839316,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 72,
+      "wavelength_um": 3.928999900817871,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 5,
+      "subchannel": 4,
+      "url": "./data/mosaics/m101-v1/plane-072.json.gz",
+      "sha256": "aa017bebafdf9451fa27937d1f261f07cb7f43e84049ce82d684ff2c6bff81c4",
+      "bytes": 332133,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.017057935036718846,
+          "vmax": 0.8791928572058678
+        },
+        "zscale": {
+          "vmin": -0.0034418590366840363,
+          "vmax": 0.1495924288476313
+        }
+      },
+      "valid_fraction": 0.9203944507567787,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 73,
+      "wavelength_um": 3.9639999866485596,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 5,
+      "subchannel": 5,
+      "url": "./data/mosaics/m101-v1/plane-073.json.gz",
+      "sha256": "7de85859a3b02c410e518ac0ae75de5909ec5427ce8a2fb80fd817f91ce25d8f",
+      "bytes": 332180,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.017882256396114828,
+          "vmax": 0.9114371008872979
+        },
+        "zscale": {
+          "vmin": 0.003482688218355179,
+          "vmax": 0.15235842669636723
+        }
+      },
+      "valid_fraction": 0.9179957637223134,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 74,
+      "wavelength_um": 3.999000072479248,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 5,
+      "subchannel": 6,
+      "url": "./data/mosaics/m101-v1/plane-074.json.gz",
+      "sha256": "9cdfcf53d6198f260b38a1b9e55941b82e255fb793f355f7474558a8f31b2aad",
+      "bytes": 332788,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.016779338028281927,
+          "vmax": 0.8518335456848156
+        },
+        "zscale": {
+          "vmin": -0.0023304112255573273,
+          "vmax": 0.1638109664828353
+        }
+      },
+      "valid_fraction": 0.9213763694258581,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 75,
+      "wavelength_um": 4.033999919891357,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 5,
+      "subchannel": 7,
+      "url": "./data/mosaics/m101-v1/plane-075.json.gz",
+      "sha256": "525f2074e3b4b086eacbff4d4cfebe81c72e1bdd470020ed58d70902ad91c449",
+      "bytes": 330438,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.016067495103925467,
+          "vmax": 0.9403211066126536
+        },
+        "zscale": {
+          "vmin": 0.007575063034892082,
+          "vmax": 0.15623582175881215
+        }
+      },
+      "valid_fraction": 0.9302416922666891,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 76,
+      "wavelength_um": 4.070000171661377,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 5,
+      "subchannel": 8,
+      "url": "./data/mosaics/m101-v1/plane-076.json.gz",
+      "sha256": "16fd08131813549d0232a27d3802225103b8f12cfafcc0b62ae5c0049b7de7f9",
+      "bytes": 326634,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.014241047129034996,
+          "vmax": 0.8902112984657266
+        },
+        "zscale": {
+          "vmin": 0.004304694011807442,
+          "vmax": 0.16775745358201571
+        }
+      },
+      "valid_fraction": 0.9408604413023047,
+      "coverage_fraction": 0.9999859725904418,
+      "available": true
+    },
+    {
+      "plane": 77,
+      "wavelength_um": 4.105999946594238,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 5,
+      "subchannel": 9,
+      "url": "./data/mosaics/m101-v1/plane-077.json.gz",
+      "sha256": "7eb7e9fd53de47b23abddb9bc8d3f06f077cb59406abb9fa6df5b75bf904cfd5",
+      "bytes": 323790,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.011775950752198696,
+          "vmax": 0.8109924097061376
+        },
+        "zscale": {
+          "vmin": -0.009065104648470879,
+          "vmax": 0.17879927653067826
+        }
+      },
+      "valid_fraction": 0.94781803644321,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 78,
+      "wavelength_um": 4.142000198364258,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 5,
+      "subchannel": 10,
+      "url": "./data/mosaics/m101-v1/plane-078.json.gz",
+      "sha256": "9f9dac19482d089f4b790dc704650fd21f29efe455af9134c155b69dc7a00625",
+      "bytes": 324298,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.012896947516128422,
+          "vmax": 0.7892588766217252
+        },
+        "zscale": {
+          "vmin": -0.003839544951915741,
+          "vmax": 0.1781353099515668
+        }
+      },
+      "valid_fraction": 0.9457279524190267,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 79,
+      "wavelength_um": 4.177999973297119,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 5,
+      "subchannel": 11,
+      "url": "./data/mosaics/m101-v1/plane-079.json.gz",
+      "sha256": "d39852ab2456e284e4a809ad1e54b59f9c4b2bf225f00b3a327ec79b5440ba46",
+      "bytes": 326237,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.013742283452302217,
+          "vmax": 0.7979392096400222
+        },
+        "zscale": {
+          "vmin": 0.0013871658593416214,
+          "vmax": 0.17314398860210384
+        }
+      },
+      "valid_fraction": 0.9427260867735555,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 80,
+      "wavelength_um": 4.214000225067139,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 5,
+      "subchannel": 12,
+      "url": "./data/mosaics/m101-v1/plane-080.json.gz",
+      "sha256": "50f61ccbc4a9005616cc799ee092e21a61f87e4a0d5431a353c813e42a9527f8",
+      "bytes": 328681,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.016892310157418253,
+          "vmax": 0.7793560991287287
+        },
+        "zscale": {
+          "vmin": -0.003248389810323715,
+          "vmax": 0.17285235567471985
+        }
+      },
+      "valid_fraction": 0.9372974792745024,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 81,
+      "wavelength_um": 4.250999927520752,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 5,
+      "subchannel": 13,
+      "url": "./data/mosaics/m101-v1/plane-081.json.gz",
+      "sha256": "c4e62b5739f901856253b11d62a756a7a66b912e1de8150633a36fda3c80e4c8",
+      "bytes": 330022,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.020140935480594636,
+          "vmax": 0.7723628258705093
+        },
+        "zscale": {
+          "vmin": 0.011732146143913269,
+          "vmax": 0.17376953409554768
+        }
+      },
+      "valid_fraction": 0.9303118293144805,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 82,
+      "wavelength_um": 4.288000106811523,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 5,
+      "subchannel": 14,
+      "url": "./data/mosaics/m101-v1/plane-082.json.gz",
+      "sha256": "03ff2c9946569c564667fb3a6e137e762352c37ef27b3064df7bf327cb90463c",
+      "bytes": 329988,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.0194342877715826,
+          "vmax": 0.7600620281696447
+        },
+        "zscale": {
+          "vmin": -0.04447545111179352,
+          "vmax": 0.17807710624867912
+        }
+      },
+      "valid_fraction": 0.9333978594173014,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 83,
+      "wavelength_um": 4.324999809265137,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 5,
+      "subchannel": 15,
+      "url": "./data/mosaics/m101-v1/plane-083.json.gz",
+      "sha256": "57ee8a8f1fe1555bb9239e27ed711a729475b997632cc12ae3543471f023099e",
+      "bytes": 329596,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.017258610837161542,
+          "vmax": 0.7274902222752487
+        },
+        "zscale": {
+          "vmin": -0.016278639435768127,
+          "vmax": 0.1853878537735185
+        }
+      },
+      "valid_fraction": 0.9328788452636452,
+      "coverage_fraction": 1.0,
+      "available": true
+    },
+    {
+      "plane": 84,
+      "wavelength_um": 4.361999988555908,
+      "bandwidth_um": 0.03799999877810478,
+      "detector": 5,
+      "subchannel": 16,
+      "url": "./data/mosaics/m101-v1/plane-084.json.gz",
+      "sha256": "cfbe3cdbb04089de97fd20ad0ab9caee5d0c0a8963b25354700dc806caa988bc",
+      "bytes": 329932,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.018124307822436094,
+          "vmax": 0.736288046777249
+        },
+        "zscale": {
+          "vmin": -0.025709224864840508,
+          "vmax": 0.18752660120641834
+        }
+      },
+      "valid_fraction": 0.9307466790107871,
+      "coverage_fraction": 0.9999859725904418,
+      "available": true
+    },
+    {
+      "plane": 85,
+      "wavelength_um": 4.39900016784668,
+      "bandwidth_um": 0.03799999877810478,
+      "detector": 5,
+      "subchannel": 17,
+      "url": "./data/mosaics/m101-v1/plane-085.json.gz",
+      "sha256": "d40c7714bcb33fafbace718ed0625c251954e33bf38fe8ff454d79306b86197e",
+      "bytes": 329320,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.018423559516668322,
+          "vmax": 0.7073719558119758
+        },
+        "zscale": {
+          "vmin": -0.0029570385813713074,
+          "vmax": 0.2024505474376203
+        }
+      },
+      "valid_fraction": 0.9361332042811654,
+      "coverage_fraction": 0.999747506627951,
+      "available": true
+    },
+    {
+      "plane": 86,
+      "wavelength_um": 4.428999900817871,
+      "bandwidth_um": 0.03500000014901161,
+      "detector": 6,
+      "subchannel": 1,
+      "url": "./data/mosaics/m101-v1/plane-086.json.gz",
+      "sha256": "0639d2b091fe8d5578c77fd770c72464ba5b4402425d554b4479482511569622",
+      "bytes": 326064,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.017469237744808196,
+          "vmax": 0.771451922178262
+        },
+        "zscale": {
+          "vmin": -0.028562992811203003,
+          "vmax": 0.2506594143281614
+        }
+      },
+      "valid_fraction": 0.9274782925837086,
+      "coverage_fraction": 0.9960582979141241,
+      "available": true
+    },
+    {
+      "plane": 87,
+      "wavelength_um": 4.460999965667725,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 6,
+      "subchannel": 2,
+      "url": "./data/mosaics/m101-v1/plane-087.json.gz",
+      "sha256": "3e66bb32c044ccc36423db6a8b856761ded49e3e6130cc372b173cea82da01c2",
+      "bytes": 323656,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.017176366448402404,
+          "vmax": 0.7773246521949759
+        },
+        "zscale": {
+          "vmin": -0.021053805947303772,
+          "vmax": 0.2716055089064269
+        }
+      },
+      "valid_fraction": 0.9370169310833368,
+      "coverage_fraction": 0.9965773120677804,
+      "available": true
+    },
+    {
+      "plane": 88,
+      "wavelength_um": 4.49399995803833,
+      "bandwidth_um": 0.03500000014901161,
+      "detector": 6,
+      "subchannel": 3,
+      "url": "./data/mosaics/m101-v1/plane-088.json.gz",
+      "sha256": "13857555c45084dd1e0cb0a46517e9f0bdded01547a7e318548456f43181c82c",
+      "bytes": 323842,
+      "decoded_bytes": 1236480,
+      "display": {
+        "percentile": {
+          "vmin": 0.01151532456278801,
+          "vmax": 0.7210099363327009
+        },
+        "zscale": {
+          "vmin": -0.009636461734771729,
+          "vmax": 0.2501315390797905
+        }
+      },
+      "valid_fraction": 0.9355019708510429,
+      "coverage_fraction": 0.9976153403750929,
+      "available": true
+    },
+    {
+      "plane": 89,
+      "wavelength_um": 4.5269999504089355,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 6,
+      "subchannel": 4,
+      "url": "./data/mosaics/m101-v1/plane-089.json.gz",
+      "sha256": "2b510fec750a9b5219c6de4d7a1f5768840cf749ce059f814bca56865811a14f",
+      "bytes": 325100,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.008223727941513062,
+          "vmax": 0.6867423191070618
+        },
+        "zscale": {
+          "vmin": -0.09046521088418952,
+          "vmax": 0.22632404382428598
+        }
+      },
+      "valid_fraction": 0.9300873907615481,
+      "coverage_fraction": 0.9978958885662584,
+      "available": true
+    },
+    {
+      "plane": 90,
+      "wavelength_um": 4.559999942779541,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 6,
+      "subchannel": 5,
+      "url": "./data/mosaics/m101-v1/plane-090.json.gz",
+      "sha256": "6348594e5bd7c970fe385791c8e1e6578ea5235d5c708cdedc63ed959ebb3623",
+      "bytes": 330100,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.004572850591503083,
+          "vmax": 0.6698051997423193
+        },
+        "zscale": {
+          "vmin": -0.03264860063791275,
+          "vmax": 0.21325885908038159
+        }
+      },
+      "valid_fraction": 0.9221899591802382,
+      "coverage_fraction": 0.9996633421706014,
+      "available": true
+    },
+    {
+      "plane": 91,
+      "wavelength_um": 4.593999862670898,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 6,
+      "subchannel": 6,
+      "url": "./data/mosaics/m101-v1/plane-091.json.gz",
+      "sha256": "47e6ac9c1afd5d34f8f57824672598349a041d09eaf14892ac16f666df8d19c0",
+      "bytes": 332081,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": -0.006352377980947494,
+          "vmax": 0.6563405610322939
+        },
+        "zscale": {
+          "vmin": -0.05053296685218811,
+          "vmax": 0.22040018870604178
+        }
+      },
+      "valid_fraction": 0.9161301182510626,
+      "coverage_fraction": 0.9983026834434485,
+      "available": true
+    },
+    {
+      "plane": 92,
+      "wavelength_um": 4.629000186920166,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 6,
+      "subchannel": 7,
+      "url": "./data/mosaics/m101-v1/plane-092.json.gz",
+      "sha256": "129e43e9133c5a705bb28f5f0a7111b053efa7a750cd854b746d0b6aa036a890",
+      "bytes": 331013,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": -0.0030473366379737857,
+          "vmax": 0.675812916755675
+        },
+        "zscale": {
+          "vmin": -0.06358782202005386,
+          "vmax": 0.22947550455170213
+        }
+      },
+      "valid_fraction": 0.915190281810658,
+      "coverage_fraction": 0.9973207647743692,
+      "available": true
+    },
+    {
+      "plane": 93,
+      "wavelength_um": 4.663000106811523,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 6,
+      "subchannel": 8,
+      "url": "./data/mosaics/m101-v1/plane-093.json.gz",
+      "sha256": "82b411ddb7c778ea064823df9fc3e669c39969a61708ba6ed356102c5623afcf",
+      "bytes": 329592,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.005259275436401367,
+          "vmax": 0.7066666489839561
+        },
+        "zscale": {
+          "vmin": -0.0225553996860981,
+          "vmax": 0.26775508037092377
+        }
+      },
+      "valid_fraction": 0.9162142827084122,
+      "coverage_fraction": 0.9988216975971047,
+      "available": true
+    },
+    {
+      "plane": 94,
+      "wavelength_um": 4.697999954223633,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 6,
+      "subchannel": 9,
+      "url": "./data/mosaics/m101-v1/plane-094.json.gz",
+      "sha256": "6785ee75c0d66c997b88ef778e16ca65b506f04fb1c31cfbd13ca1ae30878733",
+      "bytes": 328938,
+      "decoded_bytes": 1236481,
+      "display": {
+        "percentile": {
+          "vmin": 0.0170590515434742,
+          "vmax": 0.7180524911880538
+        },
+        "zscale": {
+          "vmin": -0.009673699736595154,
+          "vmax": 0.24800117138490071
+        }
+      },
+      "valid_fraction": 0.9150780625341918,
+      "coverage_fraction": 0.9997334792183927,
+      "available": true
+    },
+    {
+      "plane": 95,
+      "wavelength_um": 4.732999801635742,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 6,
+      "subchannel": 10,
+      "url": "./data/mosaics/m101-v1/plane-095.json.gz",
+      "sha256": "60308e2a3257e4563c38835a05e1f7dfb2be5d0b6f102ee96252e9e8af653575",
+      "bytes": 329410,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.02612575862556696,
+          "vmax": 0.7065476348996118
+        },
+        "zscale": {
+          "vmin": 0.008359823375940323,
+          "vmax": 0.2608780940351345
+        }
+      },
+      "valid_fraction": 0.909565290577789,
+      "coverage_fraction": 0.997769641880234,
+      "available": true
+    },
+    {
+      "plane": 96,
+      "wavelength_um": 4.767000198364258,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 6,
+      "subchannel": 11,
+      "url": "./data/mosaics/m101-v1/plane-096.json.gz",
+      "sha256": "12aa8e8abb610e633c7dc407e374a4a5593de83f4fb2de64213c027cadbf3312",
+      "bytes": 328739,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.023038822039961816,
+          "vmax": 0.6890947335958485
+        },
+        "zscale": {
+          "vmin": -0.09725142098071585,
+          "vmax": 0.2795232396343986
+        }
+      },
+      "valid_fraction": 0.9178414622171723,
+      "coverage_fraction": 0.9998877807235338,
+      "available": true
+    },
+    {
+      "plane": 97,
+      "wavelength_um": 4.802000045776367,
+      "bandwidth_um": 0.035999998450279236,
+      "detector": 6,
+      "subchannel": 12,
+      "url": "./data/mosaics/m101-v1/plane-097.json.gz",
+      "sha256": "524152a9a6d6dcd0c1017d6262a2635f13de8380e66b3557c45e815b98e6c863",
+      "bytes": 327625,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.023140015453100203,
+          "vmax": 0.694770726203914
+        },
+        "zscale": {
+          "vmin": -0.0005884816055186093,
+          "vmax": 0.28608913304460204
+        }
+      },
+      "valid_fraction": 0.9223021784567044,
+      "coverage_fraction": 0.999242519883853,
+      "available": true
+    },
+    {
+      "plane": 98,
+      "wavelength_um": 4.836999893188477,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 6,
+      "subchannel": 13,
+      "url": "./data/mosaics/m101-v1/plane-098.json.gz",
+      "sha256": "88301b30112988277aeccdf33e5a2b27884b4818449732b0fc176067dcff221b",
+      "bytes": 328662,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.019643254280090332,
+          "vmax": 0.693288738369942
+        },
+        "zscale": {
+          "vmin": -0.04021066427230835,
+          "vmax": 0.29546608712293965
+        }
+      },
+      "valid_fraction": 0.9218112191221647,
+      "coverage_fraction": 0.999242519883853,
+      "available": true
+    },
+    {
+      "plane": 99,
+      "wavelength_um": 4.873000144958496,
+      "bandwidth_um": 0.03799999877810478,
+      "detector": 6,
+      "subchannel": 14,
+      "url": "./data/mosaics/m101-v1/plane-099.json.gz",
+      "sha256": "f6bafdfb153c34a70959b9d9a95120801ed2c9f2e1d6604bd67c82b623fb6ba3",
+      "bytes": 324484,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.02078041553497315,
+          "vmax": 0.6747471219300949
+        },
+        "zscale": {
+          "vmin": -0.09809126049255237,
+          "vmax": 0.2916034983419157
+        }
+      },
+      "valid_fraction": 0.8976840746819285,
+      "coverage_fraction": 0.9767004727237021,
+      "available": true
+    },
+    {
+      "plane": 100,
+      "wavelength_um": 4.908999919891357,
+      "bandwidth_um": 0.03799999877810478,
+      "detector": 6,
+      "subchannel": 15,
+      "url": "./data/mosaics/m101-v1/plane-100.json.gz",
+      "sha256": "d5ddaffc2937aff93e97028b1f97ac4a3bf9061401015011a1839818626e668d",
+      "bytes": 328032,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.01707304082810879,
+          "vmax": 0.6999404457211046
+        },
+        "zscale": {
+          "vmin": -0.008781686425209045,
+          "vmax": 0.3246988073129442
+        }
+      },
+      "valid_fraction": 0.9250515507301267,
+      "coverage_fraction": 0.9991022457882702,
+      "available": true
+    },
+    {
+      "plane": 101,
+      "wavelength_um": 4.945000171661377,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 6,
+      "subchannel": 16,
+      "url": "./data/mosaics/m101-v1/plane-101.json.gz",
+      "sha256": "565f1a2367baf8c1e2eb18d254c3c304a95c0c0d9ad0403bf53f8831dcae68e9",
+      "bytes": 293524,
+      "decoded_bytes": 1236483,
+      "display": {
+        "percentile": {
+          "vmin": 0.036215102300047874,
+          "vmax": 0.7275458949208257
+        },
+        "zscale": {
+          "vmin": -0.013018369674682617,
+          "vmax": 0.34872139412568626
+        }
+      },
+      "valid_fraction": 0.825765545876643,
+      "coverage_fraction": 0.8871494901036625,
+      "available": true
+    },
+    {
+      "plane": 102,
+      "wavelength_um": 4.98199987411499,
+      "bandwidth_um": 0.03700000047683716,
+      "detector": 6,
+      "subchannel": 17,
+      "url": "./data/mosaics/m101-v1/plane-102.json.gz",
+      "sha256": "90f1f71c61c481b6719418f442df052283295921366d96410d20bf58e67eb7ba",
+      "bytes": 323222,
+      "decoded_bytes": 1236482,
+      "display": {
+        "percentile": {
+          "vmin": 0.033211531862616536,
+          "vmax": 0.7091187358498534
+        },
+        "zscale": {
+          "vmin": -0.11770265646980452,
+          "vmax": 0.38076781305864893
+        }
+      },
+      "valid_fraction": 0.93666624584438,
+      "coverage_fraction": 0.9955953933987011,
+      "available": true
+    }
+  ],
+  "default_plane": 63,
+  "flag_definitions": {
+    "OVERFLOW": 1,
+    "OUTLIER": 19,
+    "SOURCE": 21
+  },
+  "mask_policy": "Finite IMAGE and positive NHITS; OVERFLOW, OUTLIER and unknown bits excluded; SOURCE alone retained.",
+  "release": "Not identified in the distributed cube; do not assume QR2/QR3 equivalence.",
+  "dates": {},
+  "time_composition": "Multiple input observations; their individual IDs and acquisition dates are not supplied by this tutorial cube. Not a temporal frame.",
+  "limitations": [
+    "No variance extension is supplied; NHITS is coverage, not uncertainty.",
+    "Wavelength changes reveal different infrared emission; they do not show change over time.",
+    "Plane-dependent gaps and residual stripes/artifacts remain visible."
+  ],
+  "processing": "Original spatial samples, units and flags retained. No interpolation, background subtraction, smoothing or inpainting. Per-plane display limits cannot measure spectral or temporal variability.",
+  "documentation": [
+    "https://caltech-ipac.github.io/irsa-tutorials/spherex-mosaic/",
+    "https://irsa.ipac.caltech.edu/onlinehelp/spherex/spherex/mosaic.html"
+  ],
+  "credit": "NASA/JPL-Caltech/IPAC; official IRSA SPHEREx Mosaic Tool tutorial product.",
+  "storage": {
+    "source_fits_bytes": 87295680,
+    "prepared_transfer_bytes": 33718422,
+    "per_plane_max_bytes": 338887,
+    "browser_cache_planes": 6
+  },
+  "processing_source_sha256": "256c048df3ce572e9e5c3b7559c4aceda6b0fc9151f4f97434ba84d9f94b4fc6",
+  "original_image_header": "XTENSION= 'IMAGE   '           / Image extension                                BITPIX  =                  -32 / array data type                                NAXIS   =                    3 / number of array dimensions                     NAXIS1  =                  267                                                  NAXIS2  =                  267                                                  NAXIS3  =                  102                                                  PCOUNT  =                    0 / number of parameters                           GCOUNT  =                    1 / number of groups                               EXTNAME = 'IMAGE   '           / extension name                                 WCSAXES =                    4 / Number of coordinate axes                      CRPIX1  =                134.0 / Pixel coordinate of reference point            CRPIX2  =                134.0 / Pixel coordinate of reference point            CDELT1  =              -0.0025 / [deg] Coordinate increment at reference point  CDELT2  =               0.0025 / [deg] Coordinate increment at reference point  CUNIT1  = 'deg'                / Units of coordinate increment and value        CUNIT2  = 'deg'                / Units of coordinate increment and value        CTYPE1  = 'RA---TAN'           / Right ascension, gnomonic projection           CTYPE2  = 'DEC--TAN'           / Declination, gnomonic projection               CRVAL1  =          210.8022671 / [deg] Coordinate value at reference point      CRVAL2  =             54.34895 / [deg] Coordinate value at reference point      LONPOLE =                180.0 / [deg] Native longitude of celestial pole       LATPOLE =             54.34895 / [deg] Native latitude of celestial pole        MJDREF  =                  0.0 / [d] MJD of fiducial time                       RADESYS = 'ICRS'               / Equatorial coordinate system                   CTYPE3  = 'WAVE-TAB'           / Coordinate via lookup table                    CNAME3  = 'WAVELENGTH'         / Spectral axis: wavelength                      CUNIT3  = 'um      '           / Microns                                        CRPIX3  =                    1 / TAB reference pixel (convention)               CDELT3  =                    1 / TAB increment (convention)                     CRVAL3  =                    1 / TAB reference value (convention)               PS3_0   = 'WCS-WAVE'           / Extension with lookup table                    PS3_1   = 'WAVELENGTHS'        / Column with wavelength values                  PS3_2   = 'PLANE   '           / Column with plane indices                      PV3_3   =                    1 / Index of wavelength in the WAVELENGTHS array   CTYPE4  = 'WAVE-TAB'           / Coordinate via lookup table                    CNAME4  = 'BANDWIDTH'          / Spectral axis: bandwidth                       CUNIT4  = 'um      '           / Microns                                        CRPIX4  =                    1 / TAB reference pixel (convention)               CDELT4  =                    1 / TAB increment (convention)                     CRVAL4  =                    1 / TAB reference value (convention)               PS4_0   = 'WCS-WAVE'           / Extension with lookup table                    PS4_1   = 'BANDWIDTHS'         / Column with bandwidth values                   PS4_2   = 'PLANE   '           / Column with plane indices                      PV4_3   =                    1 / Index of bandwidth in BANDWIDTHS array         PC3_3   =                  1.0 / Wavelength depends on image axis 3             PC4_3   =                  1.0 / Bandwidth depends on image axis 3              PC4_4   =                  0.0 / No independent 4th pixel axis                  NCHAN   =                  102 / Number of spectral channels                    WLMIN   =                0.753 / Minimum wavelength [micron]                    WLMAX   =                4.982 / Maximum wavelength [micron]                    BUNIT   = 'MJy/sr  '           / Data units                                     END                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ",
+  "hdus": [
+    "PRIMARY",
+    "IMAGE",
+    "NHITS",
+    "FLAGS",
+    "SPECTRAL_CHANNELS",
+    "WCS-WAVE"
+  ],
+  "manifest_sha256": "67bf2770a825d533d2e63a9ada648d28e429d1f8c721bf93e9121580cb7efd22"
+}

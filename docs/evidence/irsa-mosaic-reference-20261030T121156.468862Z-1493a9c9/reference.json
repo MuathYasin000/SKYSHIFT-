@@ -1,0 +1,47 @@
+{
+  "source_sha256": "44e89f460c55f46f7e384ba7dfe8927fa8e56163875aba3766499a5646813447",
+  "plane": 63,
+  "wavelength_um": 3.2929999828338623,
+  "display": {
+    "vmin": 0.016201776266098023,
+    "vmax": 1.235511050224303
+  },
+  "rgba_sha256": "27023589ba52c304536deb07ec8cf80d342c02566f9b7311bc7cdfadf06044dc",
+  "shape": [
+    267,
+    267
+  ],
+  "wcs_samples": [
+    {
+      "x": 0,
+      "y": 0,
+      "ra_deg": 211.36814566102353,
+      "dec_deg": 54.01512511674852
+    },
+    {
+      "x": 133,
+      "y": 133,
+      "ra_deg": 210.8022671,
+      "dec_deg": 54.34895
+    },
+    {
+      "x": 266,
+      "y": 266,
+      "ra_deg": 210.22715785943126,
+      "dec_deg": 54.68008469064659
+    },
+    {
+      "x": 20,
+      "y": 240,
+      "ra_deg": 211.29012045603955,
+      "dec_deg": 54.61546752389615
+    },
+    {
+      "x": 200,
+      "y": 60,
+      "ra_deg": 210.51615766688386,
+      "dec_deg": 54.166111568000254
+    }
+  ],
+  "method": "Independent NumPy asinh/ember normalization and Astropy full-FITS celestial WCS; no source array modifications."
+}

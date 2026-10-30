@@ -1,0 +1,27 @@
+{
+  "source_sha256": "44e89f460c55f46f7e384ba7dfe8927fa8e56163875aba3766499a5646813447",
+  "viewer": "https://irsa.ipac.caltech.edu/irsaviewer/",
+  "input": "Exact public IRSA M101 tutorial cube; no private observations uploaded",
+  "body": "ABOUT\n|\nHOLDINGS\n|\nDATA ACCESS\n|\nHELP\nLogin\nResults\nImages\nCatalogs\nUpload\nJob Monitor\n10/28/2026: Some object lookup services are unavailable\n\n2\n\nPlane:\n\n0.753 μm\n\n/ 102\n\nM101_irsa\nFOV:1.1°\nEQ-J2000:\n\nValue:\n\nClick Lock: off",
+  "inputs": [
+    {
+      "type": "number",
+      "value": "1",
+      "label": null,
+      "title": ""
+    },
+    {
+      "type": "checkbox",
+      "value": "on",
+      "label": null,
+      "title": ""
+    },
+    {
+      "type": "text",
+      "value": "system",
+      "label": null,
+      "title": ""
+    }
+  ],
+  "status": "rendered_initial_plane"
+}
