@@ -1,0 +1,167 @@
+{
+  "application_code_head": "ddb9759b14ad6275c3e95d0e848f68786d4c33db",
+  "app_version": "0.11.0",
+  "content_id": "f23779040caf5438a81e85d925dfe636306a0c4c62d197fbff2d1314398cd725",
+  "full_windows_python": {
+    "passed": 189,
+    "skipped": 1,
+    "scope": "Complete existing authenticated workspace caches; observed full pytest run at this implementation HEAD"
+  },
+  "clean_checkout_receipt": "docs/evidence/master-clean-checkout-20261030T111849.148132Z-15d7d284/verification.json",
+  "linux_receipt": "docs/evidence/master-linux-ddb9759-20261030T1120/verification.json",
+  "historical_science_preservation": [
+    {
+      "path": "web/dist/data/bundle.json",
+      "baseline_git_blob": "2e35744def2eb16484f4d1daf6f957151197d284",
+      "actual_git_blob": "2e35744def2eb16484f4d1daf6f957151197d284",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/catalog.json",
+      "baseline_git_blob": "1d4c9d5322a0bb13ebe20935f00648d21e8f9924",
+      "actual_git_blob": "1d4c9d5322a0bb13ebe20935f00648d21e8f9924",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/explore-catalog.json",
+      "baseline_git_blob": "9bf5c68d15faea11d04a7cd1c18f0595fef01981",
+      "actual_git_blob": "9bf5c68d15faea11d04a7cd1c18f0595fef01981",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/explore/m101-2025W49_2A_0756_3.json",
+      "baseline_git_blob": "8e2b4568e9e088d475b93f562b6e6dc0e30b5f60",
+      "actual_git_blob": "8e2b4568e9e088d475b93f562b6e6dc0e30b5f60",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/explore/m101-2025W49_2A_0756_3.png",
+      "baseline_git_blob": "b1c4123889aa5720203733418a7faa72c76b380a",
+      "actual_git_blob": "b1c4123889aa5720203733418a7faa72c76b380a",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/explore/m101-2025W50_1A_0736_3.json",
+      "baseline_git_blob": "db595c7834f57c59ce473d887b3427648ebdf6cb",
+      "actual_git_blob": "db595c7834f57c59ce473d887b3427648ebdf6cb",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/explore/m101-2025W50_1A_0736_3.png",
+      "baseline_git_blob": "28fc638ab8b7582cdabed1ddcf4302d178c06200",
+      "actual_git_blob": "28fc638ab8b7582cdabed1ddcf4302d178c06200",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/explore/m42-2025W37_2A_0010_1.json",
+      "baseline_git_blob": "b7f0703349ee207c904a9c5c3cc56b3e47c03700",
+      "actual_git_blob": "b7f0703349ee207c904a9c5c3cc56b3e47c03700",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/explore/m42-2025W37_2A_0010_1.png",
+      "baseline_git_blob": "87196f1798353906781c539b54a3bc729dfae592",
+      "actual_git_blob": "87196f1798353906781c539b54a3bc729dfae592",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/explore/m67-2025W44_2B_0657_2.json",
+      "baseline_git_blob": "b18faf11b9ec54e7c49449c39c70b86a19a7d15b",
+      "actual_git_blob": "b18faf11b9ec54e7c49449c39c70b86a19a7d15b",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/explore/m67-2025W44_2B_0657_2.png",
+      "baseline_git_blob": "889014af89fc7abe8af4e4bb9462c72b7af44ca3",
+      "actual_git_blob": "889014af89fc7abe8af4e4bb9462c72b7af44ca3",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/explore/ngc188-2025W36_1A_0724_2.json",
+      "baseline_git_blob": "700cf463884eccb34f274174de4c16ce65ade283",
+      "actual_git_blob": "700cf463884eccb34f274174de4c16ce65ade283",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/explore/ngc188-2025W36_1A_0724_2.png",
+      "baseline_git_blob": "ca843d472b82517dc9a4098dfc8a2b35ed914daa",
+      "actual_git_blob": "ca843d472b82517dc9a4098dfc8a2b35ed914daa",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/pair.fits",
+      "baseline_git_blob": "793f9c289510fcd2e57e2b7cb14f5eeb6f56b524",
+      "actual_git_blob": "793f9c289510fcd2e57e2b7cb14f5eeb6f56b524",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/provenance-audit.json",
+      "baseline_git_blob": "c8a38dcf1646993bf41d3cc95e343ef554e77055",
+      "actual_git_blob": "c8a38dcf1646993bf41d3cc95e343ef554e77055",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/review-part-0.bin",
+      "baseline_git_blob": "7a2eea19ba730567bd53932b524975c3ae333d9c",
+      "actual_git_blob": "7a2eea19ba730567bd53932b524975c3ae333d9c",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/review-part-1.bin",
+      "baseline_git_blob": "dd994c22fc9ef3d229995a79a96cb7846d2ccd24",
+      "actual_git_blob": "dd994c22fc9ef3d229995a79a96cb7846d2ccd24",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/review-part-2.bin",
+      "baseline_git_blob": "0ee5f989bbc97b1592ff2b546c7f22c800bde04d",
+      "actual_git_blob": "0ee5f989bbc97b1592ff2b546c7f22c800bde04d",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/review-part-3.bin",
+      "baseline_git_blob": "22c93c0c8689d53f0d207b72b1c0f99a54f4568e",
+      "actual_git_blob": "22c93c0c8689d53f0d207b72b1c0f99a54f4568e",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/review-part-4.bin",
+      "baseline_git_blob": "6c6b97a61a5b3f3d3ef27176fee6fbe5631d0a6e",
+      "actual_git_blob": "6c6b97a61a5b3f3d3ef27176fee6fbe5631d0a6e",
+      "identical": true
+    },
+    {
+      "path": "web/dist/data/review-part-5.bin",
+      "baseline_git_blob": "08f8f253d220a15e10230063ddcff5037f7bcc2d",
+      "actual_git_blob": "08f8f253d220a15e10230063ddcff5037f7bcc2d",
+      "identical": true
+    }
+  ],
+  "scientific_approval": "PENDING",
+  "internal_human_review": "PENDING",
+  "independent_novice_evaluation": "NOT_CONDUCTED",
+  "published": false,
+  "organizer_approval_scope": "User reports approval; exact organizer ruling not supplied",
+  "source_hashes": {
+    "src\\skyshift\\__init__.py": "fd1badabf9bae1f3f08487ddd938c7a713b0dc2926d690992b63acf1fcfa3fee",
+    "src\\skyshift\\archive.py": "68040c9e0882b4ff94cdb9a8b764a0bea3d06bc2a8ee7b61535802a3eef45be4",
+    "src\\skyshift\\cli.py": "523f059d3906fa0a12701d3b4f041a0a88895dc50953f55f6ea87777451e50ef",
+    "src\\skyshift\\coordinates.py": "e2110afd7dc56f35dbc9a8a63ba8f5592ae8f5308881465af9adcb2eade45755",
+    "src\\skyshift\\evidence.py": "c50e93fef7efeaa4179bb05ec0c5976d1ff9e6163988c1f486849d828e99718a",
+    "src\\skyshift\\intake.py": "11659e9cc11cf8db6c6cdd5e63360e21c7cd4da250507ecaaa3bba4f997527f4",
+    "src\\skyshift\\jobs.py": "2735229374083afa8529f67b63025f089c570ebff68dd6b675a6529363fbcee5",
+    "src\\skyshift\\messages.py": "58b28b18c97fc8594aafa5b9d61f800061677dcd9327794e38a65f413b3ca1af",
+    "src\\skyshift\\models.py": "250cb99f4211c0e0facd98b07315fc2b8d36e15973d06dd033bd9e66a5af8987",
+    "src\\skyshift\\native_display.py": "a3b69ef5c94fb061ab895a82546f9edce55a7947113ee30d9b1e45a0ec91d1f8",
+    "src\\skyshift\\preparation.py": "830c0bbde576d2f3e43933c89af4c794493ce10e9593de19db6f42d04ec34e5b",
+    "src\\skyshift\\products.py": "39e4bbb97172248cfaf7da2355269f7433eb81cea968d9137edb6abefc77daeb",
+    "src\\skyshift\\registration.py": "fbf68c1edc2924a4e5c00ad50cc74b2d829d6eb58fb5e9de76213d9644fabe76",
+    "src\\skyshift\\releases.py": "2e024bd7d94ba1cd7da9827bd0f30ee227bce5e824cef8cc32725586ece4c161",
+    "src\\skyshift\\response.py": "c9c87d00ad1d0632202ffe46d65535f14a5926c24c09a4158323c29b8421a276",
+    "src\\skyshift\\selection.py": "7485d53934a2ceb11f2545e67fb4482ca9aaec41c2a763fbf76109340bc6dcda",
+    "src\\skyshift\\sequence.py": "e8efc6acafcd9d9ea11f124d0a9953aef1ad2b1e83301a4c1836183999b4fad3",
+    "src\\skyshift\\sequence_evidence.py": "03398b6c3587a10148e8d7a4eacf394540b2d21971729fb4b4c902964e2beb9f",
+    "src\\skyshift\\suitability.py": "d9e4dd0a864dc15fc68daaa73d4027fe4b1095cb60a533497e99d3465a7775f9",
+    "src\\skyshift\\target_assessment.py": "8a046a5ef57dae568dce22324494c28ef93a3c89a110691ee925c08b14bda529"
+  }
+}

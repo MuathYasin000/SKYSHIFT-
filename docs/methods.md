@@ -1,5 +1,7 @@
 # Current methods and limits
 
+**0.11 update:** the [current implementation and evidence](completion_20261030.md) adds bounded all-pairs observation-group selection, distinct Survey/Matched modes, native-only inspection and an explicit release registry. QR2 flags use MP_ bit indices; QR3 mask-name/mask-value pairs must agree. Science screening still uses the same provisional thresholds and pinned QR2/D2 calibration associations. QR3 WCS-WAVE remains visualization-only. Survey playback does not establish physical change; native detector axes never substitute for the common celestial grid. The initial method history below is retained.
+
 Release 0.2.0 adds the engineering diagnostics below. Scientific approval and human internal review remain PENDING.
 
 ## Supported input

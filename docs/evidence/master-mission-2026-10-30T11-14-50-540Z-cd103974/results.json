@@ -1,0 +1,206 @@
+{
+  "baseline": false,
+  "results": [
+    {
+      "width": 1440,
+      "diagnostics": {
+        "surface": "science",
+        "universe_loaded": false,
+        "model": null,
+        "navigation": {
+          "active": false,
+          "phase": "idle",
+          "reduced_motion": false,
+          "completed": 0,
+          "interrupted": 0
+        },
+        "investigation": {
+          "kind": "exposure",
+          "field": "sequence-976dd07ece6531c06430d2b7",
+          "key": "cca894f8e3cef10650a9d86c331384801b35148db52b8db5fd3ea494783d8ccd",
+          "display": {
+            "vmin": 0.21982795745134354,
+            "vmax": 2.730131536722199,
+            "stretch": "asinh",
+            "asinh_a": 0.06,
+            "zoom": 1,
+            "center_x": 58.5,
+            "center_y": 58.5,
+            "view_mode": "single",
+            "selected_epoch": "A"
+          },
+          "visual": {
+            "schema_version": "1.0",
+            "stretch": "asinh",
+            "palette": "grayscale",
+            "interpolation": "nearest",
+            "wipe": false,
+            "wipe_position": 50
+          },
+          "questions": [],
+          "inspection": null,
+          "sequence": {
+            "id": "sequence-976dd07ece6531c06430d2b7",
+            "index": 0,
+            "frames": 2,
+            "playback_eligible": false
+          },
+          "opened": true,
+          "classic": true,
+          "busy": false,
+          "blinking": false,
+          "sequence_playing": false,
+          "native": {
+            "visible": false,
+            "loaded": false,
+            "scale": 1,
+            "settings": {
+              "limits": "percentile",
+              "stretch": "asinh",
+              "asinh_a": 0.1,
+              "contrast": 1,
+              "palette": "grayscale",
+              "mask": "overlay"
+            },
+            "temporal_comparison_allowed": false
+          }
+        }
+      }
+    },
+    {
+      "width": 1440,
+      "case": "M101 live-discovered cached example",
+      "native": {
+        "visible": true,
+        "loaded": true,
+        "source_sha256": "20f79a7a4a21e90e85c35cb889fa984f5cc483a18b7a09f936fa475f43fd3386",
+        "shape": [
+          176,
+          129
+        ],
+        "scale": 3.2386363636363638,
+        "settings": {
+          "limits": "percentile",
+          "stretch": "asinh",
+          "asinh_a": 0.1,
+          "contrast": 1,
+          "palette": "grayscale",
+          "mask": "overlay"
+        },
+        "temporal_comparison_allowed": false
+      },
+      "cached_step_roundtrip_ms": [
+        23,
+        41,
+        20,
+        22,
+        21,
+        20,
+        20,
+        22
+      ],
+      "conditions": "Local isolated installed browser; includes Playwright click scheduling, no FPS or internet performance claim."
+    },
+    {
+      "width": 390,
+      "diagnostics": {
+        "surface": "science",
+        "universe_loaded": false,
+        "model": null,
+        "navigation": {
+          "active": false,
+          "phase": "idle",
+          "reduced_motion": false,
+          "completed": 0,
+          "interrupted": 0
+        },
+        "investigation": {
+          "kind": "exposure",
+          "field": "sequence-976dd07ece6531c06430d2b7",
+          "key": "cca894f8e3cef10650a9d86c331384801b35148db52b8db5fd3ea494783d8ccd",
+          "display": {
+            "vmin": 0.21982795745134354,
+            "vmax": 2.730131536722199,
+            "stretch": "asinh",
+            "asinh_a": 0.06,
+            "zoom": 1,
+            "center_x": 58.5,
+            "center_y": 58.5,
+            "view_mode": "single",
+            "selected_epoch": "A"
+          },
+          "visual": {
+            "schema_version": "1.0",
+            "stretch": "asinh",
+            "palette": "grayscale",
+            "interpolation": "nearest",
+            "wipe": false,
+            "wipe_position": 50
+          },
+          "questions": [],
+          "inspection": null,
+          "sequence": {
+            "id": "sequence-976dd07ece6531c06430d2b7",
+            "index": 0,
+            "frames": 2,
+            "playback_eligible": false
+          },
+          "opened": true,
+          "classic": true,
+          "busy": false,
+          "blinking": false,
+          "sequence_playing": false,
+          "native": {
+            "visible": false,
+            "loaded": false,
+            "scale": 1,
+            "settings": {
+              "limits": "percentile",
+              "stretch": "asinh",
+              "asinh_a": 0.1,
+              "contrast": 1,
+              "palette": "grayscale",
+              "mask": "overlay"
+            },
+            "temporal_comparison_allowed": false
+          }
+        }
+      }
+    },
+    {
+      "width": 390,
+      "case": "M101 live-discovered cached example",
+      "native": {
+        "visible": true,
+        "loaded": true,
+        "source_sha256": "20f79a7a4a21e90e85c35cb889fa984f5cc483a18b7a09f936fa475f43fd3386",
+        "shape": [
+          176,
+          129
+        ],
+        "scale": 2.159090909090909,
+        "settings": {
+          "limits": "percentile",
+          "stretch": "asinh",
+          "asinh_a": 0.1,
+          "contrast": 1,
+          "palette": "grayscale",
+          "mask": "overlay"
+        },
+        "temporal_comparison_allowed": false
+      },
+      "cached_step_roundtrip_ms": [
+        23,
+        25,
+        22,
+        21,
+        20,
+        21,
+        21,
+        19
+      ],
+      "conditions": "Local isolated installed browser; includes Playwright click scheduling, no FPS or internet performance claim."
+    }
+  ],
+  "errors": []
+}

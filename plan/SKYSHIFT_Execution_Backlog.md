@@ -2,6 +2,19 @@
 
 Companion to the master plan | Version 1.0 | Baseline: 16 October 2026
 
+**30 October 2026 / latest authorized implementation:** the supplied master directive authorizes engineering on the existing application and supersedes the earlier planning hold. [Current implementation and evidence](../docs/completion_20261030.md) owns the following acceptance checklist; historical rows below remain intact.
+
+| Priority / requirement | Current evidence | Disposition |
+|---|---|---|
+| P0 Coordinate discovery and bounded all-pairs selection | Live M101 query, native sequence, candidate/rejection receipts | Implemented and tested locally |
+| P0 Survey vs Matched playback, native imagery, export/reopen | Chrome/Edge, offline/no-WebGL and mobile-emulation journeys | Implemented and tested |
+| P1 Five named fields, moving-object case, QR2/QR3 | Exact-original re-evaluation and real QR3 sample | Tested with limitations; no confirmed target change |
+| P1 Future release integration | Explicit versioned capabilities, calibration pins and rejection tests | Unknown conventions remain disabled |
+| P2 Unified UI, error recovery and resource controls | 189 Python / 162 JS, clean source, Linux nonroot/restart checks | Reported engineering gates pass |
+| P2 Human/qualified scientific review | No new human evaluator or organizer ruling supplied | PENDING; never fabricated |
+| P3 Difference/coadd/fitted spectra and wider catalogues | No validated new scientific method or compatible calibrated inputs established | Optional unsupported capabilities remain disabled |
+| Deployment and final challenge rules | Prepared Docker/service configuration; official-page fetch failures retained | Publication on explicit hold; final guidance unresolved |
+
 **Latest user override:** media/presentation/PDF progress deliverables (including T28/T29's artifact generation) and routine duplicate backups are suspended unless explicitly requested again. Existing artifacts remain intact. Prioritize application implementation, targeted verification and small necessary technical updates; do not repeat candidate screening without a justified new objective/strategy. Root `AGENTS.md` records these permanent working rules.
 
 **Subsequent user direction, 16 October 2026:** independent localhost is the default runtime. The user is the sole human UX evaluator and explicitly declined external novice recruitment/studies. Original T22/E11 sessions remain NOT CONDUCTED, not a blocker for software development; they must not be marked complete or replaced with automated test outcomes. Scientific human-review gates remain PENDING. Current executed evidence is in `docs/feature_status.md` and `docs/visitor_experience_0.4.md`; original rows below are retained for traceability.

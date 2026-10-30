@@ -1,0 +1,124 @@
+{
+  "id": "wise-0855",
+  "status": "pass",
+  "original_receipt_sha256": "3559d57e36c2c55a47cb31cb9a2e7331d7ac927b210302de59a1f3611f4ef98a",
+  "frames": 2,
+  "native_shapes": [
+    [
+      117,
+      117
+    ],
+    [
+      117,
+      117
+    ]
+  ],
+  "same_original_prepared_arrays": true,
+  "playback_modes": {
+    "survey_timeline": {
+      "eligible": true,
+      "frame_indices": [
+        0,
+        1
+      ],
+      "physical_comparison": false,
+      "alignment": "Common requested ICRS grid; registration is not assumed verified.",
+      "display_policy": "Shared sequence limits; wavelength-dependent differences must not be interpreted as variability.",
+      "reason": "Genuine observations on the same requested ICRS grid. Dates and wavelengths can differ; brightness or positional differences are visual evidence only, with no physical-change claim."
+    },
+    "matched_wavelength": {
+      "eligible": false,
+      "frame_indices": [],
+      "physical_comparison": false,
+      "comparison_scope": "Qualitative matched-wavelength inspection; no established physical change.",
+      "alignment": "Not verified for a usable matched subset.",
+      "display_policy": "Shared sequence limits; no PSF matching or calibrated photometry.",
+      "reason": "No two prepared epochs passed all required wavelength, support and stationary-reference checks. Inspect the Survey Timeline or individual observations; rejected comparisons remain in the receipt."
+    }
+  },
+  "observations": [
+    {
+      "observation_id": "2025W19_1B_0181_1",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.4+psffix1",
+      "time_start_utc": "2025-05-06T02:33:29.930000Z",
+      "time_end_utc": "2025-05-06T02:35:25.048000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "fb0cb9c1643ad8efc56e03a60a0454f282385918640c9af30cd66bdf1e554c1f.fits",
+        "sha256": "cca894f8e3cef10650a9d86c331384801b35148db52b8db5fd3ea494783d8ccd",
+        "size_bytes": 5279040,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W19_1B/l2b-v20-2025-241/2/level2_2025W19_1B_0181_1D2_spx_l2b-v20-2025-241.fits?center=133.79512916666664%2C-7.245147222222222&size=0.2",
+        "retrieved_at_utc": "2026-10-29T15:24:42.833756Z"
+      },
+      "spectral_calibration": {
+        "path": "spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "retrieved_at_utc": null
+      },
+      "center_wavelength_um": 1.5161430835723877,
+      "center_bandwidth_um": 0.03729016333818436,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    {
+      "observation_id": "2026W20_1A_1166_1",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.5.6",
+      "time_start_utc": "2026-05-14T06:53:35.614000Z",
+      "time_end_utc": "2026-05-14T06:55:30.731000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "62ed8b4e10c05a1d620b4d938eb420aaacb44d023e8b5c735ddad9d649f54c96.fits",
+        "sha256": "a86fd9b41d9650d6277b4f6215ede0d9ad15afd3b38c4af65f24ef50876114ad",
+        "size_bytes": 5281920,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2026W20_1A/l2b-v24-2026-135/2/level2_2026W20_1A_1166_1D2_spx_l2b-v24-2026-135.fits?center=133.79512916666664%2C-7.245147222222222&size=0.2",
+        "retrieved_at_utc": "2026-10-29T15:25:13.849746Z"
+      },
+      "spectral_calibration": {
+        "path": "spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "retrieved_at_utc": null
+      },
+      "center_wavelength_um": 1.5909556150436401,
+      "center_bandwidth_um": 0.03864375874400139,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    }
+  ],
+  "failed_checks": [
+    {
+      "a": 0,
+      "b": 1,
+      "checks": [
+        "homogeneous_release",
+        "local_spectral_screen"
+      ],
+      "registration": "pass"
+    }
+  ],
+  "limitations": "Fixed historical search centre, not a target detection. No target position is silently propagated; catalogue predictions and measurements remain distinct.",
+  "receipt": "docs\\evidence\\master-scientific-validation-20261030T105955.226440Z-691cc28b\\wise-0855\\sequence.json"
+}

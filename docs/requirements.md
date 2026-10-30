@@ -1,5 +1,7 @@
 # Challenge readiness — current engineering matrix, 30 October 2026
 
+**0.11 implementation update:** [Acceptance gates A–L, current tests and remaining dependencies](completion_20261030.md) supersede the implementation statuses below. Survey chronological browsing and Matched-Wavelength subsets are now distinct, native originals are in the main workspace, QR3 mask headers are supported for visualization, and the exact five-target/comet inputs have been re-evaluated. Final organizer guidance, public deployment and scientific/human approval are not inferred from local engineering checks.
+
 The complete official challenge page again returned HTTP 502 on this pass. Mandatory/optional classifications below therefore refer to the **full statement supplied by the user**, not independently verified final-page compliance. Indexed [2026 Participant Terms](https://www.spaceappschallenge.org/legal/) were retrieved; the complete final judging/resources guidance was not verified. Historical judging dimensions remain provisional. The initial tables farther below are preserved as superseded records.
 
 | Requirement / source classification | Current status | Evidence / practical limit |
