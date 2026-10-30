@@ -58,3 +58,15 @@ def test_unknown_collections_and_mismatched_source_identity_fail_closed(tmp_path
  with pytest.raises(ValueError):normalize_row(row('spherex_qr3'),'spherex_qr2')
  _,result=discover(REGION,[COLLECTIONS[0]],tmp_path/'html',index_path=tmp_path/'h.sqlite3',fetcher=lambda *a,**k:b'<html>outage</html>')
  assert result['status']=='partial_or_unavailable'
+
+
+def test_partial_network_reads_consume_the_shared_transfer_budget(tmp_path):
+ calls=[]
+ def fetch(url,**kwargs):
+  calls.append(kwargs['max_bytes'])
+  raise TimeoutError('Partial transfer could not be measured')
+ _,report=discover(REGION,COLLECTIONS,tmp_path/'failed',index_path=tmp_path/'index.sqlite3',fetcher=fetch)
+ assert len(calls)==2 and report['network_requests']==2
+ assert report['network_bytes']==0 and report['transfer_budget_used_bytes']==16_000_000
+ assert report['unmeasured_failed_transfer_upper_bound_bytes']==16_000_000
+ assert report['status']=='partial_or_unavailable'

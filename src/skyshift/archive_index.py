@@ -172,7 +172,20 @@ def discover(region,collections,output,*,detector=None,start_date=None,end_date=
     if provider not in {'sia2','tap'}:raise ValueError('Unsupported metadata provider')
     if not 1<=len(collections)<=4 or len(set(collections))!=len(collections) or not 1<=max_requests<=8:raise ValueError('Discovery request exceeds bounded collections/request count')
     output=Path(output);output.mkdir(parents=True,exist_ok=False)
-    index=ObservationIndex(index_path);rows_out=[];normalized_out=[];receipts=[];queries=0;transferred=0
+    index=ObservationIndex(index_path);rows_out=[];normalized_out=[];receipts=[];queries=0;transferred=0;budget_used=0;failed_transfer_bound=0
+    def transfer(url,response_limit):
+        nonlocal transferred,budget_used,failed_transfer_bound
+        # fetch_bytes may consume up to max_bytes+1 before rejecting a body.
+        # Failed/partial reads cannot be measured exactly by that API, so reserve
+        # their entire upper bound rather than allowing another full allowance.
+        cap=min(response_limit,16_000_000-budget_used)-1
+        if cap<1:raise ValueError('Archive metadata transfer budget exhausted')
+        try:raw=fetcher(url,max_bytes=cap,timeout=25,attempts=1)
+        except (OSError,ValueError):
+            budget_used+=cap+1;failed_transfer_bound+=cap+1;raise
+        budget_used+=len(raw);transferred+=len(raw)
+        if len(raw)>cap:raise ValueError('Metadata fetcher exceeded its response bound')
+        return raw
     try:
         for collection in collections:
             if collection not in {'spherex_qr2','spherex_qr2_deep','spherex_qr3','spherex_qr3_deep'}:raise ValueError('Unsupported indexed collection')
@@ -184,7 +197,7 @@ def discover(region,collections,output,*,detector=None,start_date=None,end_date=
             start=float(Time(start_date or '2025-03-11',scale='utc').mjd)
             end=float(Time(end_date,scale='utc').mjd+1) if end_date else float(Time((utc_now()+timedelta(days=1)).date().isoformat(),scale='utc').mjd)
             pending=deque([(start,end)]);records={};parts=[];failed=False
-            while pending and queries<max_requests and transferred<16_000_000:
+            while pending and queries<max_requests and budget_used<15_999_999:
                 if cancel and cancel.is_set():raise ValueError('Archive metadata discovery cancelled')
                 lo,hi=pending.popleft();release=collection.split('_')[1]
                 params,_=sia_query(region,release,deep=collection.endswith('_deep'),detector=detector)
@@ -193,8 +206,8 @@ def discover(region,collections,output,*,detector=None,start_date=None,end_date=
                 progress(f'Discovering {collection}: bounded metadata request {queries}/{max_requests}')
                 part={'collection':collection,'url':url,'time_mjd':[lo,hi]};parts.append(part)
                 try:
-                    raw=fetcher(url,max_bytes=min(8_000_000,16_000_000-transferred),timeout=25,attempts=1)
-                    transferred+=len(raw);name=f'response-{queries:02d}.xml';(output/name).write_bytes(raw)
+                    raw=transfer(url,8_000_000)
+                    name=f'response-{queries:02d}.xml';(output/name).write_bytes(raw)
                     part.update(response_file=name,sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw),retrieved_at_utc=utc_now().isoformat())
                     tree=ET.fromstring(raw)
                     if tree.tag!='{http://www.ivoa.net/xml/VOTable/v1.3}VOTABLE':raise ValueError('Expected a supported VOTable archive response')
@@ -214,12 +227,12 @@ def discover(region,collections,output,*,detector=None,start_date=None,end_date=
             rows=list(records.values())
             # One representative association lookup per nonempty collection,
             # sharing the SAME total request/byte budget. Never fetch its FITS.
-            if provider=='tap' and rows and queries<max_requests and transferred<16_000_000:
+            if provider=='tap' and rows and queries<max_requests and budget_used<15_999_999:
                 sample=rows[0];queries+=1;part={'collection':collection,'kind':'DataLink','url':datalink_url(sample,collection)};parts.append(part)
                 try:
                     if cancel and cancel.is_set():raise ValueError('Archive metadata discovery cancelled')
-                    raw=fetcher(part['url'],max_bytes=min(1_000_000,16_000_000-transferred),timeout=25,attempts=1)
-                    transferred+=len(raw);name=f'response-{queries:02d}.xml';(output/name).write_bytes(raw)
+                    raw=transfer(part['url'],1_000_000)
+                    name=f'response-{queries:02d}.xml';(output/name).write_bytes(raw)
                     part.update(response_file=name,bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest(),retrieved_at_utc=utc_now().isoformat())
                     sample['calibration_links']=calibration_links(raw,sample,collection)
                     sample['calibration_link_receipt']={k:part[k] for k in ['url','sha256','retrieved_at_utc']}
@@ -239,6 +252,7 @@ def discover(region,collections,output,*,detector=None,start_date=None,end_date=
                 'detector_filter':detector,
                 'collections':receipts,'observations':normalized_out,
                 'metadata_rows':len(rows_out),'network_requests':queries,'network_bytes':transferred,'index_bytes':index.path.stat().st_size,
+                'transfer_budget_used_bytes':budget_used,'unmeasured_failed_transfer_upper_bound_bytes':failed_transfer_bound,
                 'limits':{'requests':max_requests,'transfer_bytes':16000000,'index_records':200000,'index_bytes':128*1024*1024},
                 'limitations':['SIA2 ingestion may lag browsable directories, the archive GUI and some TAP results; zero rows do not establish mission-wide absence.','TAP samples at most one authoritative DataLink association list per nonempty collection within the shared request budget; unqueried or failed associations remain unknown.','Pipeline versions, calibration associations and pixel quality remain unknown where the metadata service does not supply them.','A complete requested query scope is not a complete all-sky archive index.'],
                 'scientific_approval':'PENDING','interpretation':'Metadata only. No image acquisition, detection or temporal comparison is established.'}
