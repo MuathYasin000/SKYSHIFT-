@@ -17,15 +17,18 @@ from skyshift.products import read_product
 from skyshift.models import SkyRegion
 from skyshift.native_display import native_diagnostics,encode_native,distribution
 from skyshift.archive import sha256_file
+from evidence_output import fresh_run
 
 OUT=ROOT/'web/dist/data/native'
-EVIDENCE=ROOT/'docs/evidence/scientific-visualization-20261030'
+EVIDENCE=None
 
 def write_changed(path, data):
     path.parent.mkdir(parents=True,exist_ok=True)
     if not path.exists() or path.read_bytes()!=data:path.write_bytes(data)
 
 def build():
+    global EVIDENCE
+    EVIDENCE=fresh_run('native-observation-assets')
     cal=ROOT/'data/calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits'
     temporal=json.loads((ROOT/'config/temporal_example.json').read_text())
     pair=json.loads((ROOT/'web/dist/data/bundle.json').read_text())

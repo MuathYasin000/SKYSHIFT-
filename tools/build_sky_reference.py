@@ -27,7 +27,10 @@ def fetch(url):
 def build():
     properties=fetch(BASE+'/properties').decode()
     OUT.mkdir(parents=True,exist_ok=True)
-    (OUT/'dss-properties.txt').write_text(properties,encoding='utf-8')
+    properties_path=OUT/'dss-properties.txt'
+    properties_bytes=properties.encode('utf-8')
+    if not properties_path.exists() or properties_path.read_bytes()!=properties_bytes:
+        properties_path.write_bytes(properties_bytes)
     for field,ra,dec in [('m101',210.80227,54.34895),('r-draconis',248.16761083294998,66.75497941722)]:
         output=OUT/(field+'-reference.json')
         if output.exists() and json.loads(output.read_text()).get('mapping_version')=='hips-jpeg-xy-v2':continue
