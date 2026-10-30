@@ -24,6 +24,7 @@ import {
 import { openComparison } from "./packets.js";
 import {createReviewDownloader} from './review-download.js';
 import {validateSequence,saveSequence,isSequencePacket,openSequencePacket} from './sequence-records.js';
+import {pairIsScreened} from './timeline-policy.js';
 import { zipSync, strToU8, strFromU8 } from "./vendor/fflate.js";
 
 export async function verifiedBytes(url, hash, fetcher = globalThis.fetch) {
@@ -251,7 +252,7 @@ export function createInvestigation({
       return saveSequence(v.sequence.bundle,{schema_version:'1.0',frame_index:v.sequence.index,
         viewport:{zoom:v.display.zoom,center_x:v.display.center_x,center_y:v.display.center_y},
         display:{...v.display},visual:{...v.visual},questions:v.sequence.questions,reference_overlay:Boolean(v.sequence.overlay),
-        presentation:v.sequence.presentation,reference_index:v.sequence.reference,field_label:v.sequence.label});
+        presentation:v.sequence.presentation,reference_index:v.sequence.reference,field_label:v.sequence.label,timeline_mode:v.sequence.timelineMode,loop:v.sequence.loop});
     }
     if (v.kind === "exposure")
       return {
@@ -379,7 +380,7 @@ export function createInvestigation({
         syncSequenceQuestions(v);
         storage().setItem('skyshift.sequence:'+v.sequence.bundle.sequence_id,JSON.stringify({schema_version:'1.0',frame_index:v.sequence.index,
           display:{...v.display},visual:{...v.visual},questions:v.sequence.questions,reference_overlay:Boolean(v.sequence.overlay),
-          presentation:v.sequence.presentation,reference_index:v.sequence.reference,field_label:v.sequence.label}));
+          presentation:v.sequence.presentation,reference_index:v.sequence.reference,field_label:v.sequence.label,timeline_mode:v.sequence.timelineMode,loop:v.sequence.loop}));
         // Only the small private session goes into tab storage. Prepared arrays
         // remain in the immutable receipt/export, never in public last-view history.
         return;
@@ -416,6 +417,9 @@ export function createInvestigation({
   function installSequence(value,session={}) {
     if(session.reference_overlay!==undefined&&typeof session.reference_overlay!=='boolean')throw Error('Invalid saved reference overlay preference.');
     const s={...value,index:0,questions:{},overlay:session.reference_overlay??false,sourceRef:value.sourceRef||{type:'import'}};
+    s.timelineMode=session.timeline_mode??(s.bundle.playback_eligible?'matched':'survey');
+    s.loop=session.loop??true;
+    if(!['survey','matched'].includes(s.timelineMode)||typeof s.loop!=='boolean')throw Error('Invalid saved timeline mode or loop preference.');
     s.label=session.field_label??value.sourceRef?.label??'';
     if(typeof s.label!=='string'||s.label.length>160)throw Error('Invalid saved search-field label.');
     const entries=s.loaded.map(({product})=>({observation_id:product.observation.observation_id,time_start_utc:product.observation.time_start_utc,
@@ -429,7 +433,7 @@ export function createInvestigation({
     if(!Number.isInteger(index)||!s.loaded[index])throw Error('Invalid saved sequence epoch.');
     s.presentation=session.presentation??'single';s.reference=session.reference_index??(index===0&&s.loaded.length>1?1:0);
     if(!['single','wipe','side_by_side'].includes(s.presentation)||!Number.isInteger(s.reference)||!s.loaded[s.reference]||
-      (s.presentation!=='single'&&(!s.bundle.playback_eligible||s.reference===index)))throw Error('Unsupported saved sequence comparison.');
+      (s.presentation!=='single'&&(s.timelineMode!=='matched'||!pairIsScreened(s.bundle,index,s.reference))))throw Error('Unsupported saved sequence comparison.');
     const {product,arrays}=s.loaded[index],[h,w]=product.shape;
     const field={id:s.bundle.sequence_id,title:'Requested SPHEREx field',description:'Fixed ICRS field; source identification and change claims remain pending.',
       ...s.bundle.request.region,comparison_status:'unavailable',observations:entries};

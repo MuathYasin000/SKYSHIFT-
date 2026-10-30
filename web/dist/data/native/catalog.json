@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "usage": "Native observation inspection only; no temporal gate changes",
+  "entries": [
+    {
+      "id": "m101-2025W49_2A_0756_3",
+      "field": "m101",
+      "observation_id": "2025W49_2A_0756_3",
+      "source_sha256": "48acaf60861e1ca7eac5cc0119c63f3c5ecf5714fd7f9eaefa59aa1e69a5cd03",
+      "url": "./data/native/m101-2025W49_2A_0756_3.json",
+      "sha256": "d3529aaabc29e069383703eef49e10a9e6860c111f862a22b938fff58b44e0d5"
+    },
+    {
+      "id": "m101-2025W50_1A_0736_3",
+      "field": "m101",
+      "observation_id": "2025W50_1A_0736_3",
+      "source_sha256": "27943f13c77d7b1b6927fcbba15341d2589f79a923322732ab8608fbb4940dbb",
+      "url": "./data/native/m101-2025W50_1A_0736_3.json",
+      "sha256": "e00246e0dba94a5e3beedb31c01497696b4c19bcc658380f0db33b166635c51a"
+    },
+    {
+      "id": "r-draconis-2025W49_1A_0009_3",
+      "field": "r-draconis",
+      "observation_id": "2025W49_1A_0009_3",
+      "source_sha256": "e48ac3fc5cf16f815b4799b631856e77d64ca46c750ee2339c0abf5b2b869412",
+      "url": "./data/native/r-draconis-2025W49_1A_0009_3.json",
+      "sha256": "2148fe81c0d63f737a930a234492bcdf1e82593c457e003eb7c3bc3581119b26"
+    },
+    {
+      "id": "r-draconis-2025W50_2A_0259_3",
+      "field": "r-draconis",
+      "observation_id": "2025W50_2A_0259_3",
+      "source_sha256": "ec6b6f361163ce8adbc23249557aa3ba770f87a6899e408b8d8e3667e244212b",
+      "url": "./data/native/r-draconis-2025W50_2A_0259_3.json",
+      "sha256": "417c6d90606d5486395c3583d310815d61ec4d981985204af185932c07bfedda"
+    }
+  ]
+}

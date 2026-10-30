@@ -53,7 +53,7 @@ def build():
     previous=json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
     if {k:v for k,v in previous.items() if k!='verified_at_utc'} != receipt:
         receipt['verified_at_utc']=datetime.now(timezone.utc).isoformat()
-        path.write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8')
+        path.write_text(json.dumps(receipt,indent=2)+'\n',encoding='utf-8',newline='\n')
     print(json.dumps(dict(changed=changed,content_id=receipt['content_id'],scientific_approval='PENDING')))
 
 

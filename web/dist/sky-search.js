@@ -16,7 +16,7 @@ function clearResult() {
 async function prepare() {
   clearResult();const ticket=sequence;
   try {
-    const request={...read(),detector:Number($('search-detector').value),max_frames:3,use_cache:!$('search-fresh').checked};
+    const request={...read(),use_cache:!$('search-fresh').checked};
     active=request;preparation=new AbortController();
     history.pushState(null,'',requestURL(request,location.href));
     $('sky-search-cancel').hidden=false;$('sky-search-prepare').disabled=true;
@@ -36,7 +36,7 @@ async function prepare() {
 $('sky-search-check').onclick=()=>search();
 $('sky-search-cancel').onclick=()=>{clearResult();$('sky-search-cancel').hidden=true;$('sky-search-prepare').disabled=false;$('sky-search-status').textContent='Preparation cancelled. No late result will replace your view.';};
 function read() {
-  return {...observationRequest({ra: $('search-ra').value, dec: $('search-dec').value, fov: $('search-fov').value, release: $('search-release').value}),detector:Number($('search-detector').value),...selectionOptions({selection:$('search-selection').value,wavelength:$('search-wavelength').value,start:$('search-start').value,end:$('search-end').value})};
+  return {...observationRequest({ra: $('search-ra').value, dec: $('search-dec').value, fov: $('search-fov').value, release: $('search-release').value}),detector:Number($('search-detector').value),max_frames:Number($('search-frames').value),...selectionOptions({selection:$('search-selection').value,wavelength:$('search-wavelength').value,start:$('search-start').value,end:$('search-end').value})};
 }
 function fill(request) {
   const r = request.region;
@@ -45,6 +45,7 @@ function fill(request) {
   $('search-fov').value = String(r.size_deg * 60);
   $('search-release').value = request.release;
   $('search-detector').value=String(request.detector??2);
+  $('search-frames').value=String(request.max_frames??3);
   $('search-selection').value=request.selection||'compatible';
   $('search-wavelength').value=request.wavelength_um??'';
   $('search-start').value=request.start_date||'';$('search-end').value=request.end_date||'';
@@ -117,6 +118,7 @@ async function targets() {
     const tested=await fetch('./data/target-status.json',{signal:AbortSignal.timeout(10000)}).then(r=>r.ok?r.json():null).catch(()=>null);
     for (const target of catalog.targets) {
       const button = document.createElement('button'); button.type = 'button'; button.textContent = target.name;button.setAttribute('aria-pressed','false');
+      const status=tested?.targets?.find(t=>t.id===target.id);if(status)button.title=`${status.prepared_frames} genuine cached observation(s); no verified target motion or variability`;
       button.addEventListener('click', () => {
         clearResult();
         $('sky-search-targets').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));

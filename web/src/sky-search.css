@@ -25,6 +25,12 @@
   .sequence-timeline {padding:16px;border:1px solid var(--line);margin-block:12px;}
   .sequence-timeline .sequence-actions {display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
   .sequence-timeline label {display:flex;gap:10px;align-items:center;}
+  .sequence-timeline .sequence-actions {margin-block:8px;min-width:0;}
+  .sequence-timeline label {max-width:100%;flex-wrap:wrap;}
+  .sequence-timeline select {max-width:100%;}
+  .sequence-timeline .sequence-scrub {flex:1 1 300px;}
+  .sequence-scrub input {flex:1 1 120px;min-width:80px;accent-color:var(--blue-text);}
+  .sequence-scrub output {width:100%;font:11px/1.6 var(--mono);overflow-wrap:anywhere;}
   .sequence-timeline p {font-size:14px;line-height:1.6;}
   .sequence-timeline[hidden] {display:none;}
   .observation-console[data-fetching=true] canvas {visibility:hidden;}

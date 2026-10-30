@@ -3,6 +3,7 @@ import {validatePreparedExposure} from './exposure-validation.js';
 import {equalEvidence,inspectZipBounds} from './packets.js';
 import {zipSync,unzipSync,strToU8,strFromU8} from './vendor/fflate.js';
 import {validateTargetAssessment} from './target-assessment.js';
+import {decodeNative} from './native-data.js';
 
 const MAX_BYTES=32*1024*1024;
 export async function validateSequence(value) {
@@ -39,9 +40,11 @@ export async function validateSequence(value) {
   }
   // Recompute eligibility from every link. A boolean flag alone cannot enable play.
   let eligible=value.frames.length>1;
+  const approvedLinks=new Set();
   for(let i=0;i<value.frames.length;i++)for(let j=i+1;j<value.frames.length;j++) {
     const links=value.comparisons.filter(c=>c.a===i&&c.b===j),c=links[0];
-    if(links.length!==1||!c.playback_eligible||c.screen?.suitability?.status!=='pending'||c.screen.suitability.checks.some(k=>k.status==='fail')||c.registration?.status!=='pass')eligible=false;
+    let linkEligible=true;
+    if(links.length!==1||!c.playback_eligible||c.screen?.suitability?.status!=='pending'||!Array.isArray(c.screen.suitability.checks)||c.screen.suitability.checks.some(k=>k.status==='fail')||c.registration?.status!=='pass')linkEligible=false;
     else {
       const r=c.registration,p=c.screen.policy,checks=c.screen.suitability.checks;
       const spectral=checks.find(k=>k.code==='local_spectral_screen'),coverage=checks.find(k=>k.code==='common_coverage');
@@ -51,10 +54,26 @@ export async function validateSequence(value) {
          r.reference_count!==r.references?.filter(x=>x.status==='measured').length||
          value.frames[i].observation.pipeline_version!==value.frames[j].observation.pipeline_version||
          !value.frames[i].observation.spectral_calibration||!value.frames[j].observation.spectral_calibration||
-         (Date.parse(value.frames[j].observation.time_start_utc)-Date.parse(value.frames[i].observation.time_start_utc))/86400000<.01)eligible=false;
+         (Date.parse(value.frames[j].observation.time_start_utc)-Date.parse(value.frames[i].observation.time_start_utc))/86400000<.01)linkEligible=false;
     }
+    if(c?.playback_eligible&&!linkEligible)throw Error('Matched timeline contains an unscreened temporal link.');
+    if(linkEligible)approvedLinks.add(i+':'+j);else eligible=false;
   }
   if(value.playback_eligible!==eligible)throw Error('Sequence playback eligibility disagrees with its scientific checks.');
+  if(value.matched_frame_indices!==undefined) {
+    const indices=value.matched_frame_indices;
+    if(!Array.isArray(indices)||indices.length>value.frames.length||indices.some((n,i)=>!Number.isInteger(n)||n<0||n>=value.frames.length||i>0&&n<=indices[i-1]))throw Error('Invalid matched timeline indices.');
+    for(let i=0;i<indices.length;i++)for(let j=i+1;j<indices.length;j++)if(!approvedLinks.has(indices[i]+':'+indices[j]))throw Error('Matched timeline contains an unscreened temporal link.');
+  }
+  if(value.native_frames!==undefined) {
+    if(!Array.isArray(value.native_frames)||value.native_frames.length!==value.frames.length)throw Error('Native observation list differs from the timeline.');
+    let pixels=0;
+    for(const [i,p] of value.native_frames.entries())if(p!==null) {
+      if(p?.observation?.source?.sha256!==value.frames[i].observation.source.sha256||['observation_id','release','detector','time_start_utc'].some(k=>p.observation[k]!==value.frames[i].observation[k]))throw Error('Native observation identity differs from the active epoch.');
+      await decodeNative(p);pixels+=p.shape[0]*p.shape[1];
+      if(pixels>400000)throw Error('Native observations exceed the bounded display allocation.');
+    }
+  }
   const d=value.display;
   if(value.reference_overlay) {
     if(!Array.isArray(value.reference_overlay)||value.reference_overlay.length>100)throw Error('Invalid reference overlay.');

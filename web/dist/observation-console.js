@@ -10,6 +10,8 @@ import { evidenceTrail } from "./evidence-trail.js";
 import { readPreferences } from "./space-preferences.js";
 import { uiTheme, drawPixelGuide } from "./ui-theme.js";
 import {attachReviewDownload} from './review-download.js';
+import {timelineFrames,nextTimelineFrame,pairIsScreened} from './timeline-policy.js';
+import {createInlineNative} from './inline-native.js';
 
 // Native UI: no iframe, secondary document or second controller. Both presentations
 // operate on one investigation object and the same scientific Canvas2D viewports.
@@ -77,6 +79,9 @@ export function createObservationConsole({
   const timeline=node('div',undefined,'sequence-timeline');
   timeline.id='instrument-sequence';timeline.hidden=true;
   timeline.innerHTML='<p id="instrument-sequence-quality"></p><div class="sequence-actions"><button id="instrument-sequence-prev" aria-label="Previous observation">← Previous</button><button id="instrument-sequence-play" aria-pressed="false">Play sequence</button><button id="instrument-sequence-next" aria-label="Next observation">Next →</button><label>Frame hold <select id="instrument-sequence-speed"><option value="1500">1.5 seconds</option><option value="2500">2.5 seconds</option><option value="4000">4 seconds</option></select></label></div><p>Frames use actual observation times. Equal display duration does not represent equal time gaps or physical motion. Brightness differences at unmatched wavelengths do not establish variability.</p>';
+  const timelineOptions=node('div',undefined,'sequence-actions');
+  timelineOptions.innerHTML='<label>Playback mode <select id="instrument-sequence-mode"><option value="survey">Survey Timeline</option><option value="matched">Matched-Wavelength Time Series</option></select></label><label><input id="instrument-sequence-loop" type="checkbox" checked> Loop</label><label class="sequence-scrub">Observation <input id="instrument-sequence-scrub" type="range" min="0" max="1" value="0" step="1" aria-label="Scrub observation dates"><output id="instrument-sequence-position"></output></label>';
+  timeline.prepend(timelineOptions);
   root.querySelector('.instrument-epoch-tools').after(timeline);
   let sequenceTimer=null;
   const overlayButton=node('button','Gaia reference positions');overlayButton.id='instrument-reference-overlay';overlayButton.setAttribute('aria-pressed','false');timeline.querySelector('.sequence-actions').append(overlayButton);
@@ -89,8 +94,9 @@ export function createObservationConsole({
   const sequenceCompare=node('div',undefined,'sequence-actions');sequenceCompare.id='instrument-sequence-compare';
   for(const [mode,label] of [['single','One epoch'],['wipe','Compare with wipe'],['side_by_side','Compare side by side']]) {
     const b=node('button',label);b.dataset.sequenceMode=mode;
-    b.onclick=()=>{stopBlink();const v=engine.active,s=v?.sequence;if(!s||mode!=='single'&&!s.bundle.playback_eligible)return;
+    b.onclick=()=>{stopBlink();const v=engine.active,s=v?.sequence;if(!s||mode!=='single'&&(s.timelineMode!=='matched'||!pairIsScreened(s.bundle,s.index,s.reference)))return;
       s.presentation=mode;s.overlay=false;v.visual.wipe=mode==='wipe';v.display.view_mode=mode==='side_by_side'?'side_by_side':'single';
+      setNative(false);
       sources.clear();render();remember();};sequenceCompare.append(b);
   }
   timeline.querySelector('.sequence-actions').after(sequenceCompare);
@@ -98,17 +104,24 @@ export function createObservationConsole({
   for(const [value,label] of [['uncertain','Uncertain / question'],['possible_position_difference','Possible position change'],['possible_brightness_difference','Possible brightness change'],['quality_issue','Possible artifact / quality issue']]){const o=node('option',label);o.value=value;questionTypeSelect.append(o);}
   questionType.append(questionTypeSelect);$('instrument-question-text').before(questionType);
   function changeSequenceFrame(index) {
-    engine.sequenceFrame(index);sources.clear();render();engine.persist();
+    if(index===null)return;
+    engine.sequenceFrame(index);const s=engine.active.sequence;
+    if(s.timelineMode==='matched'&&!pairIsScreened(s.bundle,s.index,s.reference))s.reference=timelineFrames(s.bundle,'matched').find(i=>i!==s.index)??s.index;
+    sources.clear();render();engine.persist();
   }
-  $('instrument-sequence-prev').onclick=()=>{stopBlink();const s=engine.active?.sequence;if(s)changeSequenceFrame((s.index+s.loaded.length-1)%s.loaded.length);};
-  $('instrument-sequence-next').onclick=()=>{stopBlink();const s=engine.active?.sequence;if(s)changeSequenceFrame((s.index+1)%s.loaded.length);};
+  $('instrument-sequence-mode').onchange=()=>{stopBlink();const s=engine.active?.sequence;if(!s)return;s.timelineMode=$('instrument-sequence-mode').value;s.presentation='single';engine.active.visual.wipe=false;engine.active.display.view_mode='single';const indices=timelineFrames(s.bundle,s.timelineMode);if(indices.length&&!indices.includes(s.index))engine.sequenceFrame(indices[0]);if(indices.length>1&&!indices.includes(s.reference))s.reference=indices.find(i=>i!==s.index);sources.clear();render();engine.persist();};
+  $('instrument-sequence-loop').onchange=()=>{const s=engine.active?.sequence;if(s){s.loop=$('instrument-sequence-loop').checked;engine.persist();}};
+  $('instrument-sequence-scrub').oninput=()=>{stopBlink();const s=engine.active?.sequence;if(s)changeSequenceFrame(timelineFrames(s.bundle,s.timelineMode)[Number($('instrument-sequence-scrub').value)]??null);};
+  $('instrument-sequence-prev').onclick=()=>{stopBlink();const s=engine.active?.sequence;if(s)changeSequenceFrame(nextTimelineFrame(timelineFrames(s.bundle,s.timelineMode),s.index,-1,s.loop));};
+  $('instrument-sequence-next').onclick=()=>{stopBlink();const s=engine.active?.sequence;if(s)changeSequenceFrame(nextTimelineFrame(timelineFrames(s.bundle,s.timelineMode),s.index,1,s.loop));};
   $('instrument-sequence-play').onclick=()=>{
     if(sequenceTimer){stopBlink();return;}
     const s=engine.active?.sequence;
-    if(!s?.bundle.playback_eligible||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    if(!s||timelineFrames(s.bundle,s.timelineMode).length<2||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    setNative(false);
     s.presentation='single';engine.active.visual.wipe=false;engine.active.display.view_mode='single';sources.clear();render();
     $('instrument-sequence-play').textContent='Pause sequence';$('instrument-sequence-play').setAttribute('aria-pressed','true');
-    sequenceTimer=setInterval(()=>{if(!opened||document.hidden){stopBlink();return;}const s=engine.active?.sequence;if(s)changeSequenceFrame((s.index+1)%s.loaded.length);else stopBlink();},Number($('instrument-sequence-speed').value));
+    sequenceTimer=setInterval(()=>{if(!opened||document.hidden){stopBlink();return;}const s=engine.active?.sequence;if(s){const next=nextTimelineFrame(timelineFrames(s.bundle,s.timelineMode),s.index,1,s.loop);if(next===null)stopBlink();else changeSequenceFrame(next);}else stopBlink();},Number($('instrument-sequence-speed').value));
   };
   $('instrument-sequence-speed').onchange=()=>stopBlink();
   $("instrument-inspection").prepend(root.querySelector(".instrument-viewtools > span"));
@@ -129,6 +142,22 @@ export function createObservationConsole({
   metrics.id = "instrument-metrics";
   $("instrument-canvases").after(metrics);
   const toolbar = root.querySelector(".instrument-viewbar > div");
+  const nativeLink=node('a','Native pixels & sky context ↗');
+  nativeLink.id='instrument-native';nativeLink.href='./native.html';
+  nativeLink.title='Inspect the exact original at native detector resolution; separate from temporal comparison.';
+  toolbar.prepend(nativeLink);
+  const nativeToggle=node('button','Native observation');nativeToggle.id='instrument-native-toggle';nativeToggle.setAttribute('aria-pressed','false');toolbar.prepend(nativeToggle);
+  const nativeRoot=node('section');nativeRoot.id='instrument-native-inline';nativeRoot.hidden=true;$('instrument-canvases').before(nativeRoot);
+  const nativeViewer=createInlineNative({root:nativeRoot});let nativeShown=false;
+  function setNative(show) {
+    nativeShown=show;nativeToggle.setAttribute('aria-pressed',String(show));nativeToggle.textContent=show?'Fixed sky / time view':'Native observation';
+    $('instrument-canvases').hidden=show;
+    $('instrument-inspection').hidden=show;
+    comparisonToolbar.hidden=show;
+    if(!show)nativeViewer.hide();
+    else {stopBlink();const v=engine.active;if(v){const o=v.kind==='pair'?v.manifest.observations[v.display.selected_epoch==='B'?1:0]:v.product.observation;void nativeViewer.show(o,v.sequence?.bundle.native_frames?.[v.sequence.index]);}}
+  }
+  nativeToggle.onclick=()=>{setNative(!nativeShown);if(nativeShown)nativeRoot.scrollIntoView({block:'start',behavior:'instant'});};
   const evidenceButton = node("button", "Evidence trail ↗");
   evidenceButton.id = "instrument-evidence";
   toolbar.append(evidenceButton);
@@ -384,6 +413,8 @@ export function createObservationConsole({
   function render() {
     const v = engine.active;
     if (!v) return;
+    const nativeObservation=v.kind==='pair'?v.manifest.observations[v.display.selected_epoch==='B'?1:0]:v.product.observation;
+    nativeLink.href='./native.html?'+new URLSearchParams({source:nativeObservation.source.sha256});
     const pair = v.kind === "pair",
       s = stories[v.field.id];
     $("instrument-field-select").value = v.field.id;
@@ -412,10 +443,17 @@ export function createObservationConsole({
     if(v.sequence) {
       const q=v.sequence.bundle,ratio=100*v.arrays.VALID.reduce((a,b)=>a+b,0)/v.arrays.VALID.length;
       const failed=(q.comparisons||[]).flatMap(c=>c.screen?.suitability?.checks||[]).filter(c=>c.status==='fail');
-      const reason=failed.some(c=>c.code==='local_spectral_screen')?'Wavelengths differ. Inspect each observation separately; temporal playback is unavailable.':failed.some(c=>c.code==='homogeneous_release')?'Processing versions differ. Inspect each observation separately; temporal playback is unavailable.':'Manual inspection only: wavelength or stationary-reference checks are incomplete or failed. Open Sources & suitability for reasons.';
-      $('instrument-sequence-quality').textContent=`${v.sequence.index+1} / ${v.sequence.loaded.length} · ${ratio.toFixed(1)}% usable pixels in this frame · `+(q.playback_eligible?'Engineering wavelength and stationary-reference checks passed; scientific review PENDING.':reason);
-      $('instrument-sequence-play').disabled=!q.playback_eligible||matchMedia('(prefers-reduced-motion: reduce)').matches;
-      $('instrument-sequence-prev').disabled=$('instrument-sequence-next').disabled=v.sequence.loaded.length<2;
+      const reason=failed.some(c=>c.code==='local_spectral_screen')?'Wavelengths differ. Brightness differences cannot establish physical variability.':failed.some(c=>c.code==='homogeneous_release')?'Processing versions differ. Physical comparison is unsupported.':'Wavelength or stationary-reference checks are incomplete or failed. Open Sources & suitability for reasons.';
+      const indices=timelineFrames(q,v.sequence.timelineMode),matched=v.sequence.timelineMode==='matched';
+      $('instrument-sequence-mode').value=v.sequence.timelineMode;
+      $('instrument-sequence-loop').checked=v.sequence.loop;
+      $('instrument-sequence-quality').textContent=`${v.sequence.index+1} / ${v.sequence.loaded.length} · ${ratio.toFixed(1)}% usable pixels in this frame · `+(matched?(indices.length>1?'Matched-Wavelength Time Series · Engineering wavelength and stationary-reference checks passed; scientific review PENDING.':'No matched time series is available. '+reason+' Choose Survey Timeline to browse genuine observations.'):'Survey Timeline · real observations on a fixed ICRS grid; no measured motion or brightness change is established. '+(q.playback_eligible?'Engineering wavelength and stationary-reference checks passed; scientific review PENDING.':reason));
+      $('instrument-sequence-play').disabled=indices.length<2||matchMedia('(prefers-reduced-motion: reduce)').matches;
+      $('instrument-sequence-prev').disabled=$('instrument-sequence-next').disabled=indices.length<2;
+      const scrub=$('instrument-sequence-scrub');scrub.max=String(Math.max(0,indices.length-1));scrub.value=String(Math.max(0,indices.indexOf(v.sequence.index)));scrub.disabled=indices.length<2;
+      const o=v.product.observation;
+      $('instrument-sequence-position').textContent=`${o.time_start_utc} · ${o.release.toUpperCase()} / D${o.detector} · λ ${o.center_wavelength_um.toFixed(4)} μm`;
+      scrub.setAttribute('aria-valuetext',$('instrument-sequence-position').textContent);
       overlayButton.hidden=!q.reference_overlay?.length;
       overlayButton.setAttribute('aria-pressed',String(Boolean(v.sequence.overlay)));
       overlayButton.title='Proper-motion propagated Gaia reference positions; predictions, not SPHEREx detections. No target motion is inferred.';
@@ -424,7 +462,7 @@ export function createObservationConsole({
       targetButton.setAttribute('aria-pressed',String(Boolean(v.sequence.targetOverlay)));
       if(assessment)targetSummary.textContent='Visual field comparison · no validated change. R Draconis: the propagated catalogue position falls on invalid pixels in both dates (OVERFLOW / SUR_ERROR). Target flux and variability significance are unavailable.';
       overlayButton.disabled=v.sequence.presentation!=='single';
-      sequenceCompare.querySelectorAll('button').forEach(b=>{b.disabled=b.dataset.sequenceMode!=='single'&&!q.playback_eligible;b.setAttribute('aria-pressed',String(b.dataset.sequenceMode===v.sequence.presentation));});
+      sequenceCompare.querySelectorAll('button').forEach(b=>{b.disabled=b.dataset.sequenceMode!=='single'&&(!matched||!pairIsScreened(q,v.sequence.index,v.sequence.reference));b.setAttribute('aria-pressed',String(b.dataset.sequenceMode===v.sequence.presentation));});
     }
     $("instrument-identity").textContent = pair
       ? "REAL SPHEREx DATA / TWO EPOCHS / RESTRICTED AREA"
@@ -508,6 +546,10 @@ export function createObservationConsole({
           v.display.view_mode = "single";
           v.visual.wipe = false;
           render();
+        } else if(v.sequence) {
+          stopBlink();
+          if(!timelineFrames(v.sequence.bundle,v.sequence.timelineMode).includes(index))v.sequence.timelineMode='survey';
+          changeSequenceFrame(index);
         } else select(v.field.id, index);
       };
       $("instrument-dates").append(b);
@@ -593,6 +635,7 @@ export function createObservationConsole({
       $('instrument-label-b').textContent='Current epoch '+(s.index+1)+' · '+v.product.observation.time_start_utc;
       $('instrument-sequence-quality').textContent+=' Reference: epoch '+(s.reference+1)+'; questions belong to the selected current epoch.';
     }
+    if(nativeShown)setNative(true);
     if (v.inspection) inspect(v.inspection);
     else
       $("instrument-pixel").textContent =
@@ -609,7 +652,7 @@ export function createObservationConsole({
     }
     return v.kind === "pair" ? v.arrays.COMMON : v.arrays.VALID;
   }
-  function sequencePair(v) {return Boolean(v?.sequence&&v.sequence.presentation!=='single'&&v.sequence.bundle.playback_eligible&&v.sequence.reference!==v.sequence.index);}
+  function sequencePair(v) {return Boolean(v?.sequence&&v.sequence.timelineMode==='matched'&&v.sequence.presentation!=='single'&&pairIsScreened(v.sequence.bundle,v.sequence.index,v.sequence.reference));}
   function renderPixels() {
     const v = engine.active,
       [h, w] = v.shape;
@@ -1425,6 +1468,7 @@ export function createObservationConsole({
       busy,
       blinking: Boolean(blink),
       sequence_playing: Boolean(sequenceTimer),
+      native: nativeViewer.diagnostics(),
     }),
     engine,
   };

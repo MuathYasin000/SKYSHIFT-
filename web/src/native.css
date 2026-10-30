@@ -1,0 +1,25 @@
+@layer pages {
+.native-lab{max-width:1600px;margin:auto;padding:30px var(--gutter);font:15px/1.6 var(--sans)}
+.native-lab .lab-heading{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;margin:15px 0 24px;color:var(--text-2)}
+.native-lab h1{font-size:clamp(27px,3vw,45px);letter-spacing:-.04em;line-height:1.15;max-width:1000px;margin:12px 0}
+.native-lab h2{font-size:23px;letter-spacing:-.02em;margin:12px 0}.native-lab p{margin:12px 0}
+.native-lab .eyebrow{font:12px var(--mono);letter-spacing:.15em;color:var(--text-2)}
+.native-lab a{color:var(--blue-text);text-underline-offset:4px}
+.native-lab nav,.native-lab .controls,.native-lab .view-footer{display:flex;align-items:end;gap:14px;flex-wrap:wrap}
+.native-lab nav{margin:25px 0}.native-lab label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--text-2)}
+.native-lab select,.native-lab button{font:inherit;color:var(--white);background:var(--surface-2);border:1px solid var(--line-strong);border-radius:var(--radius);padding:8px 11px;max-width:100%;min-height:40px}
+.native-lab button{cursor:pointer}.native-lab input{accent-color:var(--blue-text);width:110px}
+.native-lab select:focus,.native-lab button:focus,.native-lab canvas:focus{outline:2px solid var(--blue-text);outline-offset:3px}
+.native-lab .viewer{border:1px solid var(--line-strong);border-radius:var(--radius);overflow:hidden;background:var(--surface-1)}
+.native-lab .view-heading{display:flex;gap:20px;justify-content:space-between;flex-wrap:wrap;padding:15px 20px;background:var(--surface-2)}
+.native-lab .controls{padding:15px 20px;border-bottom:1px solid var(--line)}.native-lab .canvas-wrap{height:clamp(350px,58vh,780px);background:var(--black)}
+#native-canvas{width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
+.native-lab .view-footer{padding:12px 20px;justify-content:space-between}.native-lab .view-footer button{margin:3px}#native-scale{font:12px var(--mono)}
+#native-pixel,#native-parameters,.native-lab .muted{margin:10px 20px;font:12px/1.7 var(--mono);overflow-wrap:anywhere}.native-lab .muted{color:var(--text-2);padding-bottom:10px}
+.native-lab .audit,.native-lab .reference{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin:40px 0;padding-top:20px;border-top:1px solid var(--line)}
+.native-lab .audit>div,.native-lab .reference>div{min-width:0}.native-lab dl{display:grid;grid-template-columns:1fr 1fr;gap:9px}.native-lab dt{color:var(--text-2)}
+.native-lab dd{margin:0;font-family:var(--mono);overflow-wrap:anywhere}.native-lab pre{font:12px/1.7 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;max-height:350px;overflow:auto;background:var(--surface-2);padding:16px}
+#native-provenance{overflow-wrap:anywhere}#native-histogram{width:100%;height:auto}.native-lab figure{margin:0}#native-reference{width:100%;height:auto;border:1px solid var(--line-strong)}
+.native-lab figcaption{font-size:12px;color:var(--text-2)}#native-status{font-size:13px;color:var(--text-2)}.native-lab button:disabled{opacity:.4;cursor:wait}
+@media(max-width:700px){.native-lab .audit,.native-lab .reference{grid-template-columns:1fr;gap:15px}.native-lab .controls{gap:10px}.native-lab .controls label{max-width:48%}.native-lab .view-heading{font-size:12px}.native-lab .canvas-wrap{height:430px}.native-lab dl{font-size:13px}.native-lab nav{align-items:start;flex-direction:column}.native-lab{padding-top:20px}.native-lab .view-footer{padding:8px}.native-lab .view-footer button{font-size:12px}.native-lab input{width:100px}}
+}
