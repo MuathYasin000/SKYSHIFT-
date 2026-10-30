@@ -30,7 +30,7 @@ class JobStore:
         self.inflight = set()
         self.closed = False
         self.clock, self.starts = clock, deque()
-        self.revision=hashlib.sha256(b''.join(Path(__file__).with_name(n).read_bytes() for n in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py'))).hexdigest()
+        self.revision=hashlib.sha256(b''.join(Path(__file__).with_name(n).read_bytes() for n in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py','native_display.py','releases.py'))).hexdigest()
 
     def create(self, payload):
         request = SequenceRequest.model_validate(payload)

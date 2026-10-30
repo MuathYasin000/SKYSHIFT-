@@ -6,6 +6,7 @@ then prefer a mutually compatible set. Full pixel/mask/reference screening is
 still mandatory after acquiring the selected cutouts.
 """
 import io
+from itertools import combinations
 import json
 import math
 from pathlib import Path
@@ -127,27 +128,51 @@ def evaluate_header(raw,row,request,ra,dec,layers,orientation):
 
 
 def choose_compatible(probes,count):
+    """Find the strongest all-pairs-compatible group in the bounded probe set.
+
+    Cardinality precedes temporal span, then maximum field-wide wavelength
+    separation and stable observation identities break ties. Pair approval is
+    still deferred to full arrays, masks and independent references. Testing
+    every subset is cheap at the hard twelve-probe/six-frame acquisition bounds;
+    it avoids assuming that compatibility with a neighbour is transitive.
+    """
+    if not 1 <= count <= 6 or len(probes)>MAX_PROBES:
+        raise ValueError('Compatible selection exceeds the bounded search')
     policy=ScreeningPolicy()
-    pairs=[]
+    ordered=sorted(probes,key=lambda p:(p['t_min'],p['observation_id']))
+    if len({p['observation_id'] for p in ordered})!=len(ordered):
+        raise ValueError('Duplicate header probe observation identity')
+    pairs=[];edges={}
     def separation(a,b):
         return max(abs(x-y)/min(dx,dy) for x,y,dx,dy in zip(a['sample_wavelengths_um'],b['sample_wavelengths_um'],a['sample_bandwidths_um'],b['sample_bandwidths_um']))
-    def compatible(a,b):
-        return a['pipeline_version']==b['pipeline_version'] and abs(a['t_min']-b['t_min'])>=policy.minimum_time_separation_days and separation(a,b)<=policy.max_wavelength_separation_in_bandwidths
-    for i,a in enumerate(probes):
-        for b in probes[i+1:]:
-            if compatible(a,b):pairs.append((separation(a,b),-abs(a['t_min']-b['t_min']),a['observation_id'],b['observation_id']))
-    if count<2 or not pairs:return [],pairs
-    best=min(pairs);selected=[next(p for p in probes if p['observation_id']==key) for key in best[2:]]
-    for p in sorted(probes,key=lambda p:(p['t_min'],p['observation_id'])):
-        if len(selected)>=count:break
-        if p not in selected and all(compatible(p,q) for q in selected):selected.append(p)
-    return selected,pairs
+    for i,a in enumerate(ordered):
+        for j in range(i+1,len(ordered)):
+            b=ordered[j];distance=separation(a,b);days=abs(a['t_min']-b['t_min'])
+            if (a['pipeline_version']==b['pipeline_version'] and
+                days>=policy.minimum_time_separation_days and
+                distance<=policy.max_wavelength_separation_in_bandwidths):
+                edges[i,j]=distance
+                pairs.append((distance,-days,a['observation_id'],b['observation_id']))
+    for size in range(min(count,len(ordered)),1,-1):
+        groups=[]
+        for group in combinations(range(len(ordered)),size):
+            links=list(combinations(group,2))
+            if all(link in edges for link in links):
+                score=(-(ordered[group[-1]]['t_min']-ordered[group[0]]['t_min']),
+                       max(edges[link] for link in links),
+                       tuple(ordered[i]['observation_id'] for i in group))
+                groups.append((score,group))
+        if groups:
+            chosen=min(groups)[1]
+            return [ordered[i] for i in chosen],pairs
+    return [],pairs
 
 
 def preselect(rows,request,calibration,output,*,cancel=None,progress=lambda _:None):
     ra,dec=samples(request.region);pool,rejections=metadata_pool(rows,request,ra,dec)
     output=Path(output);output.mkdir(parents=True,exist_ok=False)
-    report={'version':'header-preselection-v1','mode':request.selection,'metadata_rows':len(rows),'contained_candidates':len(pool),
+    report={'version':'header-preselection-v2','mode':request.selection,'metadata_rows':len(rows),'contained_candidates':len(pool),
+            'ranking_policy':'Hard metadata/header eligibility, then maximum all-pairs-compatible group cardinality, widest UTC span, smallest worst field-wide spectral separation, stable observation identities. At most twelve temporal-quantile header probes; not an exhaustive archive search.',
             'probe_limit':MAX_PROBES,'probe_bytes_limit':MAX_PROBES*65536,'header_attempts':[],'probes':[],'rejections':rejections,
             'limitations':['A 5x5 wavelength preflight ranks candidates; it is not full response-function equivalence or pair approval.',
                            'Pixel masks, PSF, background, variance and stationary registration remain unverified until full preparation.']}

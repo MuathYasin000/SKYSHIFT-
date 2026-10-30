@@ -11,6 +11,7 @@ import hashlib
 import io
 import json
 import math
+from itertools import combinations
 from importlib.metadata import version
 from pathlib import Path
 from threading import Event
@@ -27,17 +28,11 @@ from .coordinates import common_grid
 from .intake import ObservationRequest
 from .preparation import numeric_hash
 from .products import read_product
+from .releases import CALIBRATION
 from .registration import measure_registration, reference_position
 from .suitability import screen_pair
 
 ROOT = Path(__file__).resolve().parents[2]
-CALIBRATION = {
-    ('qr2', 2): {
-        'path': 'data/calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits',
-        'sha256': '40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7',
-        'url': 'https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits',
-    },
-}
 LIMITATIONS = [
     'Qualitative inspection only; no confirmed motion, photometric variability or discovery.',
     'No PSF matching, background subtraction or significance map; blending and unflagged artifacts remain possible.',
@@ -210,6 +205,47 @@ def reference_catalogue(region, output, cancel, reference_inputs=None):
     return rows, source
 
 
+def playback_modes(frames, comparisons):
+    """Keep chronological browsing separate from scientifically screened links.
+
+    Even a valid matched group supports qualitative inspection only. No mode
+    establishes source detection, measured displacement or calibrated photometry.
+    Every pair in a matched subset must pass; pairwise links are not transitive.
+    """
+    count=len(frames)
+    edges={tuple(sorted((c['a'],c['b']))) for c in comparisons if c['playback_eligible'] is True}
+    matched=[]
+    for size in range(count,1,-1):
+        groups=[g for g in combinations(range(count),size) if all(pair in edges for pair in combinations(g,2))]
+        if groups:
+            # Frames are chronologically ordered; ISO UTC values retain explicit
+            # dates. Actual elapsed seconds, rather than frame count, rank spans.
+            from astropy.time import Time
+            def rank(group):
+                span=(Time(frames[group[-1]]['observation']['time_start_utc'])-
+                      Time(frames[group[0]]['observation']['time_start_utc'])).sec
+                return (-float(span),tuple(frames[i]['observation']['observation_id'] for i in group))
+            matched=list(min(groups,key=rank));break
+    survey_reason=('Genuine observations on the same requested ICRS grid. Dates and wavelengths can differ; '
+                   'brightness or positional differences are visual evidence only, with no physical-change claim.' if count>1 else
+                   'At least two prepared observations are required for chronological playback.' if count else
+                   'No supported observation could be prepared for this bounded request.')
+    matched_reason=('Every pair in this subset passes the unchanged wavelength, support and stationary-reference checks; '
+                    'qualitative inspection only, with scientific review pending.' if matched else
+                    'No two prepared epochs passed all required wavelength, support and stationary-reference checks. '
+                    'Inspect the Survey Timeline or individual observations; rejected comparisons remain in the receipt.')
+    return {
+        'survey_timeline':{'eligible':count>1,'frame_indices':list(range(count)),
+            'physical_comparison':False,'alignment':'Common requested ICRS grid; registration is not assumed verified.',
+            'display_policy':'Shared sequence limits; wavelength-dependent differences must not be interpreted as variability.',
+            'reason':survey_reason},
+        'matched_wavelength':{'eligible':bool(matched),'frame_indices':matched,
+            'physical_comparison':False,'comparison_scope':'Qualitative matched-wavelength inspection; no established physical change.',
+            'alignment':'Independent stationary-reference checks passed for every included pair.' if matched else 'Not verified for a usable matched subset.',
+            'display_policy':'Shared sequence limits; no PSF matching or calibrated photometry.',
+            'reason':matched_reason}}
+
+
 def build_sequence(request, output, *, progress=lambda message: None, cancel=None, use_local=True, input_paths=None, reference_inputs=None):
     check_cancel(cancel)
     request = SequenceRequest.model_validate(request)
@@ -301,9 +337,22 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
                     rejections.append({'stage':'registration','a':i,'b':j,'reason':str(exc)})
                 comparisons.append({'a': i, 'b': j, 'screen': report, 'registration': registration,
                                     'playback_eligible': report['suitability']['status'] != 'rejected' and registration['status'] == 'pass'})
-    # Playback never crosses an unverified temporal link. Independent frames
-    # remain manually inspectable even when no comparison passes.
+    # Legacy eligibility remains the all-frame science gate. Survey browsing
+    # is separately labeled and never upgrades rejected scientific comparisons.
     eligible = len(frames) > 1 and len(comparisons) == len(frames)*(len(frames)-1)//2 and all(c['playback_eligible'] for c in comparisons)
+    modes=playback_modes(frames,comparisons)
+    native_frames=[];native_rejections=[];native_pixels=0
+    from .native_display import native_payload
+    for product in products:
+        try:
+            if native_pixels+product.image.size>400_000:
+                raise ValueError('Native display reached the bounded 400,000-pixel sequence budget; common-grid imagery remains available')
+            payload=native_payload(product,request.region)
+            native_pixels+=product.image.size
+            native_frames.append(payload)
+        except (ValueError,ArithmeticError) as exc:
+            native_frames.append(None)
+            native_rejections.append({'observation_id':product.observation.observation_id,'reason':str(exc)})
     finite = [np.frombuffer(base64.b64decode(f['arrays']['SCI']['data']), dtype='<f4') for f in frames]
     values = np.concatenate([a[np.isfinite(a)] for a in finite]) if finite else np.array([])
     display = {'vmin': 0., 'vmax': 1., 'stretch': 'asinh', 'asinh_a': .06}
@@ -312,7 +361,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
         display.update(vmin=lo, vmax=max(hi, lo+1e-6))
     identity = {'request':raw_request, 'source_hashes':[f['observation']['source']['sha256'] for f in frames],
                 'calibration_sha256': pin['sha256'] if pin else None, 'code_sha256': sha256_file(Path(__file__)),
-                'code_hashes':{name:sha256_file(Path(__file__).with_name(name)) for name in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py')},
+                'code_hashes':{name:sha256_file(Path(__file__).with_name(name)) for name in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py','native_display.py','releases.py')},
                 'software_versions':{name:version(name) for name in ('numpy','astropy','scipy','reproject')}}
     overlay=[]
     if references and comparisons:
@@ -331,7 +380,9 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
               'origin': origin, 'candidate_rows_for_detector': candidate_count,
               'status': 'prepared' if frames else 'unavailable_in_tested_request',
               'selection':selection_report,
-              'frames': frames, 'display': display, 'comparisons': comparisons,
+              'frames': frames, 'native_frames':native_frames, 'native_display_rejections':native_rejections,
+              'display': display, 'comparisons': comparisons, 'playback_modes':modes,
+              'matched_frame_indices':modes['matched_wavelength']['frame_indices'],
               'playback_eligible': eligible, 'reference_catalogue': reference_source,
               'reference_overlay':overlay,
               'rejections': rejections, 'scientific_approval': 'PENDING', 'internal_human_review': 'PENDING',

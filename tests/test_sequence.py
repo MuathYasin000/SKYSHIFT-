@@ -4,7 +4,7 @@ import threading
 import time
 import pytest
 
-from skyshift.sequence import SequenceRequest,selected_rows,build_sequence,verified_local_inputs,Cancelled
+from skyshift.sequence import SequenceRequest,selected_rows,build_sequence,verified_local_inputs,Cancelled,playback_modes
 from skyshift.jobs import JobStore
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -60,3 +60,28 @@ def test_real_cached_example_honors_field_width_and_retains_checks(tmp_path):
     assert len(value['frames'])==2 and value['playback_eligible']
     assert all(f['region']['size_deg']==.04 and f['shape']==[24,24] for f in value['frames'])
     assert value['scientific_approval']=='PENDING'
+
+
+def test_survey_playback_is_explicitly_distinct_from_rejected_physical_comparison():
+    frames=[{'observation':{'observation_id':str(i),'time_start_utc':f'2025-12-{i+1:02d}T00:00:00Z'}} for i in range(3)]
+    checks=[{'a':0,'b':1,'playback_eligible':False},{'a':1,'b':2,'playback_eligible':False}]
+    modes=playback_modes(frames,checks)
+    assert modes['survey_timeline']['eligible'] is True
+    assert modes['survey_timeline']['frame_indices']==[0,1,2]
+    assert modes['survey_timeline']['physical_comparison'] is False
+    assert modes['matched_wavelength']['eligible'] is False
+    assert modes['matched_wavelength']['frame_indices']==[]
+    assert 'No two prepared epochs passed' in modes['matched_wavelength']['reason']
+
+
+def test_matched_playback_finds_a_mutually_valid_subset_and_preserves_failed_links():
+    frames=[{'observation':{'observation_id':str(i),'time_start_utc':f'2025-12-{i+1:02d}T00:00:00Z'}} for i in range(4)]
+    comparisons=[{'a':0,'b':1,'playback_eligible':True},{'a':1,'b':2,'playback_eligible':True},
+                 {'a':0,'b':2,'playback_eligible':False},{'a':2,'b':3,'playback_eligible':True}]
+    modes=playback_modes(frames,comparisons)
+    assert len(modes['matched_wavelength']['frame_indices'])==2
+    assert modes['matched_wavelength']['frame_indices']==[0,1]
+    assert modes['matched_wavelength']['physical_comparison'] is False
+    assert comparisons[2]['playback_eligible'] is False
+    assert playback_modes(frames[:1],[])['survey_timeline']['eligible'] is False
+    assert playback_modes([],[])['survey_timeline']['eligible'] is False

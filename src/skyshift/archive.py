@@ -14,6 +14,7 @@ from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 
 from .models import FileRecord, SkyRegion
+from .releases import collection_for
 
 SIA_ENDPOINT = "https://irsa.ipac.caltech.edu/SIA"
 ALLOWED_HOSTS = {"irsa.ipac.caltech.edu", "nasa-irsa-spherex.s3.us-east-1.amazonaws.com"}
@@ -117,11 +118,9 @@ def parse_sia(data: bytes) -> list[dict]:
 
 
 def sia_query(region: SkyRegion, release: str, *, deep: bool = False, detector: int | None = None) -> tuple[dict, str]:
-    if release not in {"qr2", "qr3"}:
-        raise ValueError("Supported releases: qr2 and qr3")
     # Enclose the square's corners, not only its inscribed circle. Candidate
     # footprints and per-pixel support still need inspection after this search.
-    params = {"COLLECTION": f"spherex_{release}" + ('_deep' if deep else ''),
+    params = {"COLLECTION": collection_for(release, deep),
               "POS": f"circle {region.ra_deg} {region.dec_deg} {region.size_deg / math.sqrt(2)}",
               "MAXREC": "5000", "RESPONSEFORMAT": "VOTABLE"}
     if detector is not None:

@@ -117,3 +117,24 @@ def test_empty_metadata_result_explains_filters_without_loading_calibration(tmp_
         chosen,report=preselect([],SequenceRequest.model_validate(REQUEST),Path('unused'),tmp_path/'empty')
     assert chosen==[] and 'No observations in the bounded archive response' in report['outcome']
     load.assert_not_called()
+
+
+def test_group_selection_maximizes_epochs_before_a_tighter_isolated_pair():
+    rows=[probe('tight-a',1.1,1),probe('tight-b',1.1001,2),
+          probe('group-a',1.3,20),probe('group-b',1.303,50),probe('group-c',1.306,100)]
+    selected,_=choose_compatible(rows,3)
+    assert [p['observation_id'] for p in selected]==['group-a','group-b','group-c']
+    # Input order never affects the selected science candidates.
+    assert choose_compatible(list(reversed(rows)),3)[0]==selected
+
+
+def test_group_selection_never_treats_adjacent_spectral_links_as_transitive():
+    rows=[probe('a',1.3,1),probe('b',1.307,20),probe('c',1.314,100)]
+    selected,pairs=choose_compatible(rows,3)
+    assert len(pairs)==2
+    assert [p['observation_id'] for p in selected]==['b','c']
+
+
+def test_group_selection_refuses_unbounded_or_duplicate_probe_inputs():
+    with pytest.raises(ValueError,match='bounded'):choose_compatible([probe(str(i),1.3,i) for i in range(13)],3)
+    with pytest.raises(ValueError,match='Duplicate'):choose_compatible([probe('a',1.3,1),probe('a',1.3,2)],3)

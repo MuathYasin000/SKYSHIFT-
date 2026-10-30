@@ -38,7 +38,7 @@ def load_release(directory):
     if path.exists():
         raw = json.loads(path.read_text(encoding='utf-8'))
         return {k: raw[k] for k in ('release_id', 'app_version', 'created_at_utc') if k in raw}
-    return {'release_id': 'workspace', 'app_version': '0.10.1-native-preparation-local-workspace'}
+    return {'release_id': 'workspace', 'app_version': '0.11.0-time-explorer-local-workspace'}
 
 
 def content_identity(directory):
@@ -149,10 +149,12 @@ class LocalHandler(SimpleHTTPRequestHandler):
     def api_request(self, path, payload=None):
         try:
             if path == '/api/capabilities' and self.command in ('GET','HEAD'):
+                from skyshift.releases import release_capabilities
                 self.send_json(HTTPStatus.OK, {'preparation': self.server.preparation_enabled,
                     'preparation_code_sha256':hashlib.sha256(b''.join(p.name.encode()+p.read_bytes() for p in sorted((ROOT/'src/skyshift').glob('*.py')))).hexdigest() if self.server.preparation_enabled else None,
                     'max_frames':6,'max_field_arcmin':30,'max_active_jobs':2,
                     'calibrated_temporal_adapters':['qr2/D2'],
+                    'release_registry':release_capabilities(),
                     'scope':'Other release/detector combinations may provide single-frame visualization only; no automatic fallback.'})
                 return
             store = self.server.preparation_store()

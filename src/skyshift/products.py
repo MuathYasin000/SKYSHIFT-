@@ -16,6 +16,7 @@ from scipy.ndimage import map_coordinates
 
 from .archive import record_file, sha256_file
 from .models import FileRecord, Observation, SkyRegion
+from .releases import product_adapter
 
 
 @dataclass
@@ -33,6 +34,40 @@ class Product:
     unknown_flag_pixels: int
     fatal_flag_names: list[str]
     spectral_basis: str
+
+
+def flag_definitions(header, release):
+    """Read each release's explicit bitmap schema; never guess flag meanings.
+
+    QR2 MP_NAME cards give bit indices. QR3 MSKNnnnn gives the name of
+    bit nnnn and MSKMnnnn repeats its integer mask. Both identities must agree.
+    """
+    definitions = {}
+    if release == 'qr2':
+        cards = [(key[3:], value) for key, value in header.items() if key.startswith('MP_')]
+    elif release == 'qr3':
+        cards = []
+        names = {key[4:] for key in header if re.fullmatch(r'MSKN\d{4}', key)}
+        masks = {key[4:] for key in header if re.fullmatch(r'MSKM\d{4}', key)}
+        if names != masks:
+            raise ValueError('QR3 mask names and bitmask definitions differ')
+        for suffix in sorted(names):
+            bit = int(suffix)
+            if not 0 <= bit <= 31 or type(header['MSKM'+suffix]) is not int or header['MSKM'+suffix] != 1 << bit:
+                raise ValueError('QR3 mask integer disagrees with its bit index')
+            cards.append((header['MSKN'+suffix], bit))
+    else:
+        raise ValueError('Unknown quality flag release')
+    for name, bit in cards:
+        if not isinstance(name, str) or not name.strip() or type(bit) is not int or not 0 <= bit <= 31:
+            raise ValueError('Invalid quality flag definition')
+        name = name.strip()
+        if name in definitions or bit in definitions.values():
+            raise ValueError('Ambiguous duplicate quality flag definitions')
+        definitions[name] = bit
+    if not definitions or 'SOURCE' not in definitions:
+        raise ValueError('Release-aware flag definitions are missing')
+    return definitions
 
 
 def quality_mask(image, flags, variance, definitions):
@@ -121,8 +156,8 @@ def read_product(path: Path, region: SkyRegion, *, calibration: Path | None = No
                 raise ValueError(f"Missing required HDU: {name}")
         header = hdul["IMAGE"].header.copy()
         version = hdul[0].header.get("VERSION")
-        if not version or not re.match(r"^(6\.|7\.)", str(version)):
-            raise ValueError("Unsupported pipeline version: inspect its product documentation first")
+        adapter = product_adapter(version, header.get('DETECTOR'), source_url,
+            calibration_sha256=sha256_file(calibration) if calibration is not None else None)
         if header.get("RADESYS") != "ICRS":
             raise ValueError("Only ICRS calibrated inputs are currently supported")
         if not u.Unit(header.get("BUNIT", "")).is_equivalent(u.MJy / u.sr):
@@ -139,9 +174,7 @@ def read_product(path: Path, region: SkyRegion, *, calibration: Path | None = No
         variance = np.asarray(hdul["VARIANCE"].data, dtype=float).copy()
         if image.ndim != 2 or flags.shape != image.shape or variance.shape != image.shape:
             raise ValueError("Science, flags, and variance must have matching two-dimensional shapes")
-        definitions = {key[3:]: int(value) for key, value in hdul["FLAGS"].header.items() if key.startswith("MP_")}
-        if not definitions or "SOURCE" not in definitions:
-            raise ValueError("Release-aware flag definitions are missing")
+        definitions = flag_definitions(hdul['FLAGS'].header, adapter['release'])
         valid, unknown_count, fatal_names = quality_mask(image, flags, variance, definitions)
         factor = u.Unit(header["BUNIT"]).to(u.MJy / u.sr)
         image *= factor
@@ -167,13 +200,8 @@ def read_product(path: Path, region: SkyRegion, *, calibration: Path | None = No
         cx, cy = int(np.rint(x)), int(np.rint(y))
         if not (0 <= cy < image.shape[0] and 0 <= cx < image.shape[1]):
             raise ValueError("Requested center is outside this cutout")
-        is_qr2 = str(version).startswith("6.")
-        if source_url is not None:
-            expected_release = "qr2" if is_qr2 else "qr3"
-            if f"/{expected_release}/" not in source_url:
-                raise ValueError("Archive release and supported pipeline version disagree")
         observation = Observation(
-            observation_id=header["OBSID"], release="qr2" if is_qr2 else "qr3",
+            observation_id=header["OBSID"], release=adapter['release'],
             detector=int(header["DETECTOR"]), pipeline_version=str(version),
             time_start_utc=begin.utc.to_datetime(timezone=timezone.utc),
             time_end_utc=end.utc.to_datetime(timezone=timezone.utc), original_timescale=scale,
