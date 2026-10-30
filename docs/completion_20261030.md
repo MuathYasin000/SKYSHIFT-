@@ -64,6 +64,8 @@ Individual reports and source identities are in [the six-case summary](evidence/
 
 The final Docker image is `skyshift:time-explorer-ddb9759`; deployment templates continue to prepare one same-origin Python service with persistent storage. The verification containers expose loopback ports only. The normal local application remains [localhost:3000](http://localhost:3000/), version 0.11.0, UI content identity `f23779040caf5438a81e85d925dfe636306a0c4c62d197fbff2d1314398cd725`. No account, DNS, spending, public deployment or submission was performed.
 
+The [final cross-platform identity receipt](evidence/master-final-service-identity-20261030T113011.710770Z-97e04a98/verification.json) confirms identical preparation-code fingerprints and identical M101 sequence bytes on the Windows application and final Linux container. Verification containers were then stopped; their persistent scientific receipts remain intact. The normal Windows application stays running.
+
 Before/after UI screenshots use unique directories. [Before, 1440 px](evidence/master-mission-2026-10-30T10-39-12-758Z-460d4e62/before-1440.png), [after, 1440 px](evidence/master-mission-2026-10-30T11-14-38-926Z-0bd497da/after-1440.png), [native M101 desktop](evidence/master-mission-2026-10-30T11-14-38-926Z-0bd497da/m101-native-1440.png), [native M101 mobile](evidence/master-mission-2026-10-30T11-14-38-926Z-0bd497da/m101-native-390.png). These illustrate interface changes, not astrophysical change. Historical evidence was not overwritten; the earlier incident involving four unrecovered historical screenshots remains documented and unresolved.
 
 ## Acceptance disposition and remaining dependencies

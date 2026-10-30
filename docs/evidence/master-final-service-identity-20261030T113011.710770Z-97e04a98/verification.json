@@ -1,0 +1,35 @@
+{
+  "status": "pass",
+  "records": {
+    "windows": {
+      "health": {
+        "status": "ok",
+        "application": "SKYSHIFT",
+        "server_version": "1.2",
+        "directory_id": "cf30d37f4287c0b3",
+        "content_id": "f23779040caf5438a81e85d925dfe636306a0c4c62d197fbff2d1314398cd725",
+        "release_id": "workspace",
+        "app_version": "0.11.0-time-explorer-local-workspace"
+      },
+      "preparation_code_sha256": "55fd6acddaeda9fbaec056579d175bc3ec9e4a47637a12be46c651312fbbe664",
+      "m101_sequence_sha256": "7c16107be35a6dcde9ca7fbb7310ef4f82acfd02aee4ad24e17efa7850ed3a60",
+      "release_registry_version": "spherex-release-registry-v1"
+    },
+    "linux": {
+      "health": {
+        "status": "ok",
+        "application": "SKYSHIFT",
+        "server_version": "1.2",
+        "directory_id": "3298578fc4ed0f0d",
+        "content_id": "f23779040caf5438a81e85d925dfe636306a0c4c62d197fbff2d1314398cd725",
+        "release_id": "workspace",
+        "app_version": "0.11.0-time-explorer-local-workspace"
+      },
+      "preparation_code_sha256": "55fd6acddaeda9fbaec056579d175bc3ec9e4a47637a12be46c651312fbbe664",
+      "m101_sequence_sha256": "7c16107be35a6dcde9ca7fbb7310ef4f82acfd02aee4ad24e17efa7850ed3a60",
+      "release_registry_version": "spherex-release-registry-v1"
+    }
+  },
+  "application_head": "ddb9759b14ad6275c3e95d0e848f68786d4c33db",
+  "scope": "Loopback-only final Windows/Linux application identity and cached-sequence byte equality"
+}
