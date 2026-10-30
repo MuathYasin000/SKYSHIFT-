@@ -14,7 +14,7 @@ import argparse
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'))
 from evidence_output import fresh_run,write_report
-from skyshift.archive import sha256_file
+from skyshift.archive import sha256_file,download
 from skyshift.sequence import build_sequence,SequenceRequest
 from skyshift.releases import release_capabilities
 
@@ -35,7 +35,7 @@ def main():
         path=Path(str(sidecar).removesuffix('.source.json'))
         if path.exists():inputs.setdefault(record['sha256'],path)
     references={}
-    for p in [p for parent in ['docs/evidence','data/investigations','research'] for p in (ROOT/parent).rglob('gaia-query.json')]:
+    for p in [p for parent in ['config/reference-fixtures','docs/evidence','data/investigations','research'] for p in (ROOT/parent).rglob('gaia-query.json')]:
         try:
             record=json.loads(p.read_text(encoding='utf-8'))
             csv=p.with_name('gaia.csv')
@@ -53,7 +53,14 @@ def main():
         if sha256_file(path)!=case['sha256']:raise ValueError('Historical case hash differs')
         expected=json.loads(path.read_text(encoding='utf-8'))
         try:
-            paths=[inputs[f['observation']['source']['sha256']] for f in expected['frames']]
+            paths=[]
+            for frame in expected['frames']:
+                record=frame['observation']['source'];path=inputs.get(record['sha256'])
+                if path is None:
+                    path=ROOT/'data/cache/cutouts'/(hashlib.sha256(record['source_url'].encode()).hexdigest()+'.fits')
+                    acquired=download(record['source_url'],path,max_bytes=20_000_000)
+                    if acquired.sha256!=record['sha256']:raise ValueError('The exact original archive bytes have changed; no substitute was used')
+                paths.append(path)
             ref=expected.get('reference_catalogue')
             ref_inputs=references.get(ref['sha256']) if ref else None
             if len(paths)>1 and ref and ref_inputs is None:raise ValueError('Exact reference snapshot unavailable')
@@ -72,11 +79,14 @@ def main():
         summary['targets'].append(item)
         write_report(out,case['id']+'-result.json',json.dumps(item,indent=2))
     # A genuine QR3 pipeline 7.0.5 input, discovered through official SIA.
-    smoke=ROOT/'docs/evidence/release-target-validation-20261030T103831.482613Z-d9f72e96'
-    row=json.loads((smoke/'qr3-product-sample.json').read_text(encoding='utf-8'))['rows'][0]
+    smoke=json.loads((ROOT/'config/qr3_reference.json').read_text(encoding='utf-8'))
     request=SequenceRequest.model_validate({'schema_version':'1.0','kind':'skyshift-observation-request','release':'qr3',
-        'region':{'ra_deg':float(row['s_ra']),'dec_deg':float(row['s_dec']),'size_deg':.04,'frame':'icrs'},'max_frames':1,'detector':2})
-    qr3=build_sequence(request,out/'qr3',input_paths=[smoke/'qr3-sample.fits']) if not previous else None
+        'region':smoke['region'],'max_frames':1,'detector':2})
+    if not previous:
+        path=ROOT/'data/cache/cutouts'/(hashlib.sha256(smoke['source_url'].encode()).hexdigest()+'.fits')
+        acquired=download(smoke['source_url'],path,max_bytes=smoke['size_bytes'])
+        if acquired.sha256!=smoke['sha256']:raise ValueError('QR3 reference bytes changed; adapter review required')
+    qr3=build_sequence(request,out/'qr3',input_paths=[path]) if not previous else None
     summary['qr3']=previous['qr3'] if previous else {'frames':len(qr3['frames']),'native_shapes':[p['shape'] if p else None for p in qr3['native_frames']],
                     'spectral_basis':[f['processing']['spectral_basis'] for f in qr3['frames']],
                     'rejections':qr3['rejections'],'physical_comparison':False}
