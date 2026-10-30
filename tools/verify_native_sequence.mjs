@@ -53,9 +53,13 @@ try {
   const {c,p}=await page({reducedMotion:'reduce'});try {
    for(const width of [320,390,768,1440]) {
     await p.setViewportSize({width,height:900});await p.goto(base+'/');await p.waitForFunction(()=>document.body.dataset.controller==='ready');
+    // The homepage is inert while the optional arrival owns its layout. Measure
+    // the actual visible home; verify_arrival separately checks the gated intro.
+    await p.waitForFunction(()=>window.skyshiftArrival&&!skyshiftArrival.diagnostics().active);
+    await p.evaluate(async()=>{await document.fonts.ready;});
     assert.equal(await p.locator('#hero-sky-form').count(),0);
     const b=await p.locator('.intro-actions .primary-link').boundingBox();assert.ok(b.y>=0&&b.y+b.height<=900,'Primary exploration action offscreen at '+width);
-    assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+    assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Visible homepage overflow at '+width);
     await p.goto(base+'/#sequence-example');await ready(p);assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Sequence overflow at '+width);
    }
    await p.evaluate(await fs.readFile('tools/vendor/axe.min.js','utf8'));

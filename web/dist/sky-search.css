@@ -53,12 +53,13 @@
   .sky-search .search-targets button:hover,.sky-search .search-targets button[aria-pressed=true] {color:var(--blue-text);border-color:var(--blue-text);background:var(--surface-2);}
   .sky-search .search-toolbar {display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 24px;margin-top:24px;padding-top:18px;border-top:1px solid var(--line);}
   .sky-search .search-example {font-size:13px;min-height:36px;display:inline-flex;align-items:center;}
-  .sky-search .search-options {flex:1;min-width:0;font-size:13px;}
+  .sky-search .search-options {flex:1 1 180px;min-width:0;font-size:13px;}
   .sky-search .search-options summary {width:fit-content;margin-left:auto;padding-block:8px;cursor:pointer;color:var(--text-2);}
   .sky-search .search-options summary:hover {color:var(--white);}
   .sky-search .search-toolbar:has(.search-options[open]) .search-options {flex-basis:100%;}
   .sky-search .search-options[open] summary {margin-left:0;}
   .sky-search .search-options-body {padding:20px 0 0;max-width:80ch;}
+  .sky-search .search-options:not([open]) .search-options-body {display:none;}
   .sky-search .search-options-body p {font-size:13px;margin-top:16px;}
   .sky-search .search-advanced-grid {display:grid;grid-template-columns:1fr 1fr;gap:16px;}
   .sky-search a {text-decoration: underline; text-underline-offset: 4px;}

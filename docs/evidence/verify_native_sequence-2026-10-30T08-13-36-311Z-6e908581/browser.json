@@ -1,0 +1,70 @@
+{
+  "results": [
+    {
+      "name": "Coordinate request prepares real images at requested width in the existing native viewer",
+      "status": "pass",
+      "detail": {
+        "url": "http://localhost:3000/?ra=210.80227&dec=54.34895&fov=2.4&release=qr2&detector=2#investigation/4acc988ac725e2b9e3edd542a93fcc54",
+        "frames": 2,
+        "requested_width_arcmin": 2.4,
+        "observed_load_ms": 8735,
+        "conditions": "Isolated installed Chrome on this Windows machine; verified-original cache or a recent receipt; not an internet performance guarantee",
+        "prepared_response_bytes": [
+          122141
+        ]
+      }
+    },
+    {
+      "name": "Sequence note, viewport, epoch and display survive self-contained ZIP export/reopen",
+      "status": "pass"
+    },
+    {
+      "name": "Verified cached sequence works without the preparation API or WebGL and respects reduced motion",
+      "status": "pass"
+    },
+    {
+      "name": "Sequence and homepage exploration action remain usable at narrow widths",
+      "status": "fail",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))\n\n    at file:///D:/Nasa_SKYSHIFT/tools/verify_native_sequence.mjs:58:12\n    at async check (file:///D:/Nasa_SKYSHIFT/tools/verify_native_sequence.mjs:11:48)\n    at async file:///D:/Nasa_SKYSHIFT/tools/verify_native_sequence.mjs:52:2"
+    },
+    {
+      "name": "All five required target fields open real cached frames and retain disabled playback",
+      "status": "pass",
+      "detail": {
+        "prepared_frame_counts": [
+          {
+            "id": "barnards-star",
+            "count": 1
+          },
+          {
+            "id": "epsilon-indi-b",
+            "count": 2
+          },
+          {
+            "id": "wise-0855",
+            "count": 2
+          },
+          {
+            "id": "rw-aurigae",
+            "count": 3
+          },
+          {
+            "id": "r-draconis",
+            "count": 2
+          }
+        ],
+        "target_detection": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "name": "Cancelled preparation cannot replace the current view with a late response",
+      "status": "pass"
+    },
+    {
+      "name": "Changing the requested width prepares a different real grid and exposes predicted Gaia references",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "scientific_approval": "PENDING"
+}
