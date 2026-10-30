@@ -184,6 +184,12 @@ class LocalHandler(SimpleHTTPRequestHandler):
             self.send_json(status, {'error':str(exc)})
 
     def send_json(self, status, payload):
+        if isinstance(payload,dict) and ('error' in payload or 'message' in payload):
+            try:
+                from skyshift.messages import public_error_message
+                payload={k:public_error_message(v) if k in {'error','message'} else v for k,v in payload.items()}
+            except ImportError:
+                payload={k:'Scientific preparation is unavailable on this host.' if k=='error' else v for k,v in payload.items()}
         content = json.dumps(payload, separators=(',', ':')).encode()
         self.send_response(status)
         self.send_header('Content-Type', 'application/json; charset=utf-8')

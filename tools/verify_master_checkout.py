@@ -25,7 +25,7 @@ commands=[('dependency-check',[sys.executable,'-m','pip','check']),
 if args.acquire_fixtures:commands.insert(2,('authenticated-fixtures',[sys.executable,'tools/bootstrap_test_inputs.py']))
 results=[]
 for name,command in commands:
-    result=subprocess.run(command,cwd=checkout,env=environment,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+    result=subprocess.run(command,cwd=checkout,env=environment,text=True,encoding='utf-8',errors='replace',stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
     write_report(out,name+'.txt',result.stdout)
     results.append({'name':name,'exit_code':result.returncode})
     print(name,result.returncode,flush=True)

@@ -23,6 +23,7 @@ from scipy.ndimage import map_coordinates
 from .archive import fetch_header_prefix, sha256_file
 from .coordinates import common_grid
 from .suitability import ScreeningPolicy
+from .messages import public_error_message
 
 MAX_PROBES=12
 
@@ -85,7 +86,7 @@ def metadata_pool(rows,request,ra,dec):
             old=chosen.get(row['obs_id'])
             if old is None or (row.get('obs_release_date') or '',row['access_url'])>(old.get('obs_release_date') or '',old['access_url']):chosen[row['obs_id']]=row
         except (ValueError,KeyError,TypeError) as exc:
-            rejected.append({'observation_id':row.get('obs_id'),'stage':'metadata','reason':str(exc)})
+            rejected.append({'observation_id':row.get('obs_id'),'stage':'metadata','reason':public_error_message(exc)})
     return list(chosen.values()),rejected
 
 
@@ -198,8 +199,8 @@ def preselect(rows,request,calibration,output,*,cancel=None,progress=lambda _:No
                 p=evaluate_header(raw,row,request,ra,dec,layers,orientation);p['header_evidence']=evidence;probes.append(p)
                 attempt['status']='passed_preflight'
             except (ValueError,OSError,KeyError) as exc:
-                attempt.update({'status':'rejected','reason':str(exc)})
-                report['rejections'].append({'observation_id':row['obs_id'],'stage':'header_preflight','reason':str(exc)})
+                attempt.update({'status':'rejected','reason':public_error_message(exc)})
+                report['rejections'].append({'observation_id':row['obs_id'],'stage':'header_preflight','reason':public_error_message(exc)})
         report['probes']=probes
         compatible,pairs=choose_compatible(probes,request.max_frames)
         report['compatible_pairs_in_probed_subset']=[{'a':a,'b':b,'max_sample_separation_bandwidths':s,'time_separation_days':-days} for s,days,a,b in sorted(pairs)]

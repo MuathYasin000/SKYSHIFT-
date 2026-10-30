@@ -31,6 +31,7 @@ from .products import read_product
 from .releases import CALIBRATION
 from .registration import measure_registration, reference_position
 from .suitability import screen_pair
+from .messages import public_error_message
 
 ROOT = Path(__file__).resolve().parents[2]
 LIMITATIONS = [
@@ -298,7 +299,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
                 download(url, path, max_bytes=20_000_000)
                 paths.append(path)
             except (OSError, ValueError) as exc:
-                rejections.append({'observation_id': row['obs_id'], 'source_url': url, 'reason': str(exc)})
+                rejections.append({'observation_id': row['obs_id'], 'source_url': url, 'reason': public_error_message(exc)})
     for i, path in enumerate(paths):
         check_cancel(cancel)
         progress(f'Preparing measured pixels and conservative masks {i+1} of {len(paths)}')
@@ -315,7 +316,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
             frames.append(prepare_exposure(product, request.region))
             products.append(product)
         except (ValueError, OSError, KeyError) as exc:
-            rejections.append({'input_sha256': sha256_file(path), 'reason': str(exc)})
+            rejections.append({'input_sha256': sha256_file(path), 'reason': public_error_message(exc)})
     order = sorted(range(len(frames)), key=lambda i: frames[i]['observation']['time_start_utc'])
     products, frames = [products[i] for i in order], [frames[i] for i in order]
     comparisons, references, reference_source = [], None, None
@@ -325,7 +326,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
             progress('Checking stationary Gaia references without fitting a target alignment')
             references, reference_source = reference_catalogue(context, output, cancel, reference_inputs)
         except (ValueError, OSError) as exc:
-            rejections.append({'stage': 'reference_catalogue', 'reason': str(exc)})
+            rejections.append({'stage': 'reference_catalogue', 'reason': public_error_message(exc)})
         for i in range(len(products)):
             for j in range(i+1, len(products)):
                 check_cancel(cancel)
@@ -333,8 +334,8 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
                 try:
                     registration = measure_registration(products[i], products[j], references, context) if references else {'status': 'pending', 'reference_count': 0}
                 except (ValueError,KeyError,ArithmeticError) as exc:
-                    registration={'status':'fail','reference_count':0,'reason':str(exc)}
-                    rejections.append({'stage':'registration','a':i,'b':j,'reason':str(exc)})
+                    registration={'status':'fail','reference_count':0,'reason':public_error_message(exc)}
+                    rejections.append({'stage':'registration','a':i,'b':j,'reason':public_error_message(exc)})
                 comparisons.append({'a': i, 'b': j, 'screen': report, 'registration': registration,
                                     'playback_eligible': report['suitability']['status'] != 'rejected' and registration['status'] == 'pass'})
     # Legacy eligibility remains the all-frame science gate. Survey browsing
@@ -352,7 +353,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
             native_frames.append(payload)
         except (ValueError,ArithmeticError) as exc:
             native_frames.append(None)
-            native_rejections.append({'observation_id':product.observation.observation_id,'reason':str(exc)})
+            native_rejections.append({'observation_id':product.observation.observation_id,'reason':public_error_message(exc)})
     finite = [np.frombuffer(base64.b64decode(f['arrays']['SCI']['data']), dtype='<f4') for f in frames]
     values = np.concatenate([a[np.isfinite(a)] for a in finite]) if finite else np.array([])
     display = {'vmin': 0., 'vmax': 1., 'stretch': 'asinh', 'asinh_a': .06}
@@ -361,7 +362,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
         display.update(vmin=lo, vmax=max(hi, lo+1e-6))
     identity = {'request':raw_request, 'source_hashes':[f['observation']['source']['sha256'] for f in frames],
                 'calibration_sha256': pin['sha256'] if pin else None, 'code_sha256': sha256_file(Path(__file__)),
-                'code_hashes':{name:sha256_file(Path(__file__).with_name(name)) for name in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py','native_display.py','releases.py')},
+                'code_hashes':{name:sha256_file(Path(__file__).with_name(name)) for name in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py','native_display.py','releases.py','messages.py')},
                 'software_versions':{name:version(name) for name in ('numpy','astropy','scipy','reproject')}}
     overlay=[]
     if references and comparisons:

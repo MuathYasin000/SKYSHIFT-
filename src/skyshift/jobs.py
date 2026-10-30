@@ -9,6 +9,7 @@ import threading
 import time
 
 from .archive import sha256_file
+from .messages import public_error_message
 from .sequence import SequenceRequest, build_sequence, Cancelled
 
 
@@ -30,7 +31,7 @@ class JobStore:
         self.inflight = set()
         self.closed = False
         self.clock, self.starts = clock, deque()
-        self.revision=hashlib.sha256(b''.join(Path(__file__).with_name(n).read_bytes() for n in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py','native_display.py','releases.py'))).hexdigest()
+        self.revision=hashlib.sha256(b''.join(Path(__file__).with_name(n).read_bytes() for n in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py','native_display.py','releases.py','messages.py'))).hexdigest()
 
     def create(self, payload):
         request = SequenceRequest.model_validate(payload)
@@ -114,7 +115,7 @@ class JobStore:
                 (output/'job.json').write_text(json.dumps({'request_key':job['request_key'],'revision':self.revision,'created':job['created']}),encoding='utf-8')
         except Exception as exc:
             with self.lock:
-                job.update(state='cancelled' if job['cancel'].is_set() or isinstance(exc,Cancelled) else 'failed', message=str(exc))
+                job.update(state='cancelled' if job['cancel'].is_set() or isinstance(exc,Cancelled) else 'failed', message=public_error_message(exc))
             output.mkdir(parents=True, exist_ok=True)
             (output/'failure.json').write_text(json.dumps({'state':job['state'],'reason':str(exc),'request':job['request'].model_dump(mode='json')},indent=2),encoding='utf-8')
 

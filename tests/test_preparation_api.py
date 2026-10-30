@@ -41,6 +41,11 @@ def test_same_origin_bounded_job_api_works_and_reopens_receipts(tmp_path,monkeyp
         with monkeypatch.context() as m:
             m.setattr(store,'create',busy)
             assert request('/api/investigations','POST',payload)[0]==429
+        def unavailable(payload):raise OSError('Cannot write '+str(tmp_path/'private-science-cache'))
+        with monkeypatch.context() as m:
+            m.setattr(store,'create',unavailable)
+            code,error=request('/api/investigations','POST',payload)
+            assert code==400 and str(tmp_path) not in error['error'] and '[private path]' in error['error']
         store.jobs.clear()
         assert request(path)[1]['state']=='complete'
         assert request(path+'/result')[1]=={'frames':[]}
