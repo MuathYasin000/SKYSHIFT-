@@ -264,12 +264,13 @@
                     <label for="search-end">Through · UTC<input id="search-end" type="date"></label>
                     <label for="search-frames">Maximum observations<select id="search-frames"><option value="2">2 observations</option><option value="3" selected>3 observations</option><option value="4">4 observations</option><option value="5">5 observations</option><option value="6">6 observations</option><option value="1">1 observation</option></select></label>
                     <label for="search-deep"><input id="search-deep" type="checkbox">Deep survey collection</label>
+                    <label for="search-metadata-provider">Metadata search service<select id="search-metadata-provider"><option value="sia2">IRSA image search · SIA2</option><option value="tap">IRSA catalogue · TAP/ObsCore</option></select></label>
                   </div>
                   <p id="search-unit-help">ICRS coordinates: decimal RA/Dec in degrees; hms RA in hours (0–24). Width is the side of a square, 1–30 arcmin. One to six cutouts per request; larger fields may take longer. Conservative quality masks exclude unsupported pixels in every mode.</p>
                   <label class="search-fresh"><input id="search-fresh" type="checkbox">Refresh from the archive instead of using cached originals.</label>
                   <button type="button" id="sky-search-check">Check installed fields</button>
                   <button type="button" id="sky-search-discover">Discover QR2/QR3 wide &amp; deep metadata</button>
-                  <p>Discovery indexes metadata across the four supported collections with up to eight bounded requests. It downloads no observation FITS and does not approve temporal comparisons.</p>
+                  <p>Discovery indexes metadata across the four supported collections with up to eight bounded requests. TAP also samples authoritative calibration links within that limit. It downloads no observation FITS and does not approve temporal comparisons. Service ingestion times can differ.</p>
                   <p>Matching wavelengths are checked before cutout downloads where supported. Browsing dates is independent inspection: brightness differences between wavelength bands do not establish variability. QR2/D2 has pinned calibration; other groups may allow individual images only. Comparisons still require full wavelength and reference checks.</p>
                   <p>Live requests need this host’s preparation service; cached examples work without it. Coordinates and field width go to this host and the public archive. Your notes stay in your browser until exported.</p>
                   <p id="sky-target-context">Choose a target to see its coordinate source and test notes.</p>

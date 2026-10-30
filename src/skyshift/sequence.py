@@ -51,6 +51,7 @@ class SequenceRequest(ObservationRequest):
     use_cache: bool = Field(default=True,strict=True)
     discovery_only: bool = Field(default=False,strict=True)
     discovery_scope: Literal['selected','all_supported'] = 'selected'
+    metadata_provider: Literal['sia2','tap'] = 'sia2'
     selection: Literal['compatible','chronological'] = 'compatible'
     wavelength_um: float | None = Field(default=None,ge=.75,le=5,strict=True)
     start_date: str | None = Field(default=None,pattern=r'^\d{4}-\d{2}-\d{2}$')
@@ -262,7 +263,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
     if request.discovery_only:
         from .archive_index import discover
         collections=['spherex_qr2','spherex_qr2_deep','spherex_qr3','spherex_qr3_deep'] if request.discovery_scope=='all_supported' else ['spherex_'+request.release+('_deep' if request.deep else '')]
-        _,report=discover(request.region,collections,output/'metadata',detector=None if request.discovery_scope=='all_supported' else request.detector,start_date=request.start_date,end_date=request.end_date,use_cache=request.use_cache,cancel=cancel,progress=progress)
+        _,report=discover(request.region,collections,output/'metadata',detector=None if request.discovery_scope=='all_supported' else request.detector,start_date=request.start_date,end_date=request.end_date,use_cache=request.use_cache,cancel=cancel,progress=progress,provider=request.metadata_provider)
         report['request']=raw_request
         raw=json.dumps(report,separators=(',',':'),allow_nan=False).encode()
         if len(raw)>32*1024*1024:raise ValueError('Metadata result exceeds 32 MiB')

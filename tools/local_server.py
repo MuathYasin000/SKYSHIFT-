@@ -155,7 +155,7 @@ class LocalHandler(SimpleHTTPRequestHandler):
                     'max_frames':6,'max_field_arcmin':30,'max_active_jobs':2,
                     'calibrated_temporal_adapters':['qr2/D2'],
                     'release_registry':release_capabilities(),
-                    'archive_discovery':{'collections':['spherex_qr2','spherex_qr2_deep','spherex_qr3','spherex_qr3_deep'],'max_requests':8,'max_transfer_bytes':16000000,'index_version':'spherex-metadata-index-v1','scope':'Region-scoped incremental ingestion; no all-sky mirror or complete archive claim'},
+                    'archive_discovery':{'collections':['spherex_qr2','spherex_qr2_deep','spherex_qr3','spherex_qr3_deep'],'providers':['sia2','tap'],'max_requests':8,'max_transfer_bytes':16000000,'index_version':'spherex-metadata-index-v1','scope':'Region-scoped incremental ingestion; no all-sky mirror or complete archive claim'},
                     'scope':'Other release/detector combinations may provide single-frame visualization only; no automatic fallback.'})
                 return
             store = self.server.preparation_store()

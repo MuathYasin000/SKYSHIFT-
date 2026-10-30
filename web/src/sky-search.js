@@ -37,7 +37,7 @@ async function prepare() {
 async function discoverArchive() {
   clearResult();const ticket=sequence;
   try {
-    const request={...read(),discovery_only:true,discovery_scope:'all_supported',use_cache:!$('search-fresh').checked};
+    const request={...read(),discovery_only:true,discovery_scope:'all_supported',metadata_provider:$('search-metadata-provider').value,use_cache:!$('search-fresh').checked};
     active=request;preparation=new AbortController();$('sky-search-cancel').hidden=false;$('sky-search-prepare').disabled=true;$('sky-search-discover').disabled=true;
     $('sky-search-status').textContent='Discovering archive metadata; no observation FITS will be downloaded…';
     const {bundle}=await prepareRequest(request,{signal:preparation.signal,onProgress:message=>{if(ticket===sequence)$('sky-search-status').textContent=message;}});
