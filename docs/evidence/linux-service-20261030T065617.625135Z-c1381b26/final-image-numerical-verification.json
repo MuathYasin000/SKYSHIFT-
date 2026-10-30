@@ -1,0 +1,53 @@
+{
+  "scope": "Independent decode/hash comparison of the final Linux image API result with the frozen exact-input example; not scientific approval",
+  "numeric_arrays": [
+    {
+      "observation_id": "2025W49_1A_0009_3",
+      "array": "SCI",
+      "numeric_sha256": "d43525cb3e824cf5931da15d60377a6af31c577f3cc9f76e97b5407b2fec7ec7"
+    },
+    {
+      "observation_id": "2025W49_1A_0009_3",
+      "array": "WAVE",
+      "numeric_sha256": "4d8cf0ec02600def89af1435f1d29d55ed53c8378745b82d7d8b1d5b04027e3d"
+    },
+    {
+      "observation_id": "2025W49_1A_0009_3",
+      "array": "BAND",
+      "numeric_sha256": "f316a1a72e433e4e3051bddc7e2fe26e3efd4b8dc81c0d1a1db54e98d9a87611"
+    },
+    {
+      "observation_id": "2025W49_1A_0009_3",
+      "array": "VALID",
+      "numeric_sha256": "0d722613bb0c35f20f712f9bd8d42c0e5794e391a195bff9a68f0ada7d2f614b"
+    },
+    {
+      "observation_id": "2025W50_2A_0259_3",
+      "array": "SCI",
+      "numeric_sha256": "1fc6d163432ac62f541b5de20a3bac8ca828660159e327c31f275176529afa2b"
+    },
+    {
+      "observation_id": "2025W50_2A_0259_3",
+      "array": "WAVE",
+      "numeric_sha256": "9c4be44b45e67ada5fbcd1678378a9ca076057966e8f66d0fe3c911d7852154d"
+    },
+    {
+      "observation_id": "2025W50_2A_0259_3",
+      "array": "BAND",
+      "numeric_sha256": "6feaf832f9955440e5459405a8c0d1f2775c16d9abf927ea4fd0ed8265901ade"
+    },
+    {
+      "observation_id": "2025W50_2A_0259_3",
+      "array": "VALID",
+      "numeric_sha256": "43ac67e71b21175287fd1d8bb1c1c659372df11c07d2699db9abd0e3997805fd"
+    }
+  ],
+  "scientific_decisions_identical": true,
+  "registration_numeric_tolerance": {
+    "absolute": 1e-06,
+    "relative": 1e-09
+  },
+  "diagnostic_difference_count": 663,
+  "maximum_diagnostic_difference": 1.2995561582407333e-07,
+  "reference_csv_sha256_matches": true
+}

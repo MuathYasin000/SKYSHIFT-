@@ -1,0 +1,557 @@
+{
+  "code_commit": "d0ad760a0e4d8bccabf5cb59aa6a04de5656f777",
+  "changes": [
+    {
+      "status": "M",
+      "path": ".dockerignore"
+    },
+    {
+      "status": "M",
+      "path": ".gitattributes"
+    },
+    {
+      "status": "M",
+      "path": "Dockerfile"
+    },
+    {
+      "status": "A",
+      "path": "config/temporal_example.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/linux-service-20261030T063605.275381Z-01f0a38e/reconstruction.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/linux-service-20261030T063605.275381Z-01f0a38e/verification.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-2026-10-30T06-52-50-124Z-329a7fed/r-draconis-1440.png"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-2026-10-30T06-52-50-124Z-329a7fed/r-draconis-390.png"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-2026-10-30T06-52-50-124Z-329a7fed/results.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/gaia-query.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/gaia.csv"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/geometry.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/inventory/observations.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/inventory/query.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/inventory/response.xml"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/request.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-00.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-01.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-02.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-03.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-04.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-05.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-06.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-07.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-08.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-09.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-10.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/header-11.bin"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/temporal-selection-20261030/selection/selection.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/verify_challenge_readiness-2026-10-30T06-52-06-845Z-3c3d4628/barnards-star-request.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/verify_challenge_readiness-2026-10-30T06-52-06-845Z-3c3d4628/browser.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/verify_challenge_readiness-2026-10-30T06-52-06-845Z-3c3d4628/epsilon-indi-b-request.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/verify_challenge_readiness-2026-10-30T06-52-06-845Z-3c3d4628/r-draconis-request.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/verify_challenge_readiness-2026-10-30T06-52-06-845Z-3c3d4628/rw-aurigae-request.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/verify_challenge_readiness-2026-10-30T06-52-06-845Z-3c3d4628/wise-0855-request.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/verify_native_sequence-2026-10-30T06-52-16-130Z-4e83d166/browser.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/verify_website_product-2026-10-30T06-51-02-298Z-adab6fed/orion.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/verify_website_product-2026-10-30T06-51-02-298Z-adab6fed/website07_product_tests.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/evidence/verify_website_recovery-2026-10-30T06-51-46-628Z-8149bed5/website07_recovery_tests.json"
+    },
+    {
+      "status": "M",
+      "path": "docs/mission_audit_20261029.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/public_service.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/requirements.md"
+    },
+    {
+      "status": "M",
+      "path": "src/skyshift/archive.py"
+    },
+    {
+      "status": "M",
+      "path": "src/skyshift/intake.py"
+    },
+    {
+      "status": "M",
+      "path": "src/skyshift/jobs.py"
+    },
+    {
+      "status": "A",
+      "path": "src/skyshift/selection.py"
+    },
+    {
+      "status": "M",
+      "path": "src/skyshift/sequence.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/test_evidence_output.py"
+    },
+    {
+      "status": "M",
+      "path": "tests/test_job_safety.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/test_selection.py"
+    },
+    {
+      "status": "A",
+      "path": "tests/test_temporal_reconstruction.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/add_orion_context.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/archive_release_evidence.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/audit_provenance_redesign.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/check_visitor_rebuild.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/correct_review_packet_documentation.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/evidence-output.mjs"
+    },
+    {
+      "status": "A",
+      "path": "tools/evidence_output.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/investigate_expansion.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/measure_refinement.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/measure_repair_baseline.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/plot_pair_diagnostics.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/public_server.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/reconstruct_orion_context.py"
+    },
+    {
+      "status": "A",
+      "path": "tools/reconstruct_temporal_example.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/render_review_diagnostics.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/snapshot_review_sources.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/validate_challenge_targets.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/validate_comet_candidates.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/validate_m101.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_arrival.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_arrival_sound.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_browser.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_challenge_readiness.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_completion.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_concurrent_startup.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_deployed_repair_baseline.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_destinations_menu.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_exposure_questions.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_exposure_workflow.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_hero_model.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_home_layout.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_home_startup.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_infrared_experience.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_interactions.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_kinetic_loader.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_link_audit.mjs"
+    },
+    {
+      "status": "A",
+      "path": "tools/verify_linux_service.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_local_evidence.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_local_restart.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_lookthrough_layout.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_mission_accessibility.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_mission_control.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_mission_optics.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_native_sequence.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_observatory_design.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_public_release.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_public_workspace.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_refinement.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_repair.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_repair_stage.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_resource_readiness.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_route_transitions.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_runtime_recovery.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_science_layout.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_sound_controls.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_source_links.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_spatial_exploration.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_telescope_experience.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_telescope_optics.mjs"
+    },
+    {
+      "status": "A",
+      "path": "tools/verify_temporal_selection.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_unified_product.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_unified_recovery.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_universe_disclosure.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_universe_layout.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_visitor_release.py"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_visitors.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_website_product.mjs"
+    },
+    {
+      "status": "M",
+      "path": "tools/verify_website_recovery.mjs"
+    },
+    {
+      "status": "M",
+      "path": "web/dist/coordinate-query.js"
+    },
+    {
+      "status": "M",
+      "path": "web/dist/data/release-integrity.json"
+    },
+    {
+      "status": "A",
+      "path": "web/dist/data/sequence-r-draconis-temporal.json"
+    },
+    {
+      "status": "M",
+      "path": "web/dist/data/target-status.json"
+    },
+    {
+      "status": "M",
+      "path": "web/dist/home.css"
+    },
+    {
+      "status": "M",
+      "path": "web/dist/index.html"
+    },
+    {
+      "status": "M",
+      "path": "web/dist/methodology.html"
+    },
+    {
+      "status": "M",
+      "path": "web/dist/observation-console.js"
+    },
+    {
+      "status": "M",
+      "path": "web/dist/sky-search.js"
+    },
+    {
+      "status": "M",
+      "path": "web/dist/vendor/ui-patterns/NOTICES.txt"
+    },
+    {
+      "status": "M",
+      "path": "web/dist/vendor/ui-patterns/sources.json"
+    },
+    {
+      "status": "M",
+      "path": "web/src/coordinate-query.js"
+    },
+    {
+      "status": "A",
+      "path": "web/src/home.css"
+    },
+    {
+      "status": "M",
+      "path": "web/src/index.html"
+    },
+    {
+      "status": "M",
+      "path": "web/src/methodology.html"
+    },
+    {
+      "status": "M",
+      "path": "web/src/observation-console.js"
+    },
+    {
+      "status": "M",
+      "path": "web/src/sky-search.js"
+    },
+    {
+      "status": "M",
+      "path": "web/tests/coordinate-query.test.mjs"
+    },
+    {
+      "status": "A",
+      "path": "web/tests/evidence-output.test.mjs"
+    }
+  ]
+}

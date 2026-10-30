@@ -51,7 +51,9 @@ the user's report, not independently verified correspondence. Qualified science
 and internal human approval remain PENDING; novice validation NOT CONDUCTED.
 
 Exact run scopes, failures, source changes and test receipts accompany the new
-milestone verification record. Earlier counts below describe the accepted prior
+milestone verification record at
+`docs/evidence/next-milestone-20261030/verification.json`; the complete changed-file
+list is `changes.json` beside it. Earlier counts below describe the accepted prior
 milestone, not the final counts of this increment.
 
 ## Implementation update — October 30, 2026 (Asia/Hebron)

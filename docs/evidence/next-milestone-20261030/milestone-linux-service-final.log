@@ -1,0 +1,12 @@
+WARNING: The directory '/home/skyshift/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+SKYSHIFT_EVIDENCE_DIR=/mnt/d/Nasa_SKYSHIFT/docs/evidence/linux-service-20261030T065617.625135Z-c1381b26
+Waiting for the bounded preparation worker
+Searching official archive metadata for the requested position
+Checking local wavelengths from bounded header 2/12
+Checking local wavelengths from bounded header 5/12
+Checking local wavelengths from bounded header 7/12
+Checking local wavelengths from bounded header 10/12
+Checking local wavelengths from bounded header 12/12
+Checking stationary Gaia references without fitting a target alignment
+Prepared images ready
+{"status": "pass", "checks": 4, "output": "/mnt/d/Nasa_SKYSHIFT/docs/evidence/linux-service-20261030T065617.625135Z-c1381b26"}
