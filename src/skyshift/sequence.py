@@ -32,6 +32,7 @@ from .releases import CALIBRATION
 from .registration import measure_registration, reference_position
 from .suitability import screen_pair
 from .messages import public_error_message
+from .archive_index import indexed_inventory
 
 ROOT = Path(__file__).resolve().parents[2]
 LIMITATIONS = [
@@ -48,6 +49,8 @@ class SequenceRequest(ObservationRequest):
     max_frames: int = Field(default=3, ge=1, le=6, strict=True)
     deep: bool = Field(default=False,strict=True)
     use_cache: bool = Field(default=True,strict=True)
+    discovery_only: bool = Field(default=False,strict=True)
+    discovery_scope: Literal['selected','all_supported'] = 'selected'
     selection: Literal['compatible','chronological'] = 'compatible'
     wavelength_um: float | None = Field(default=None,ge=.75,le=5,strict=True)
     start_date: str | None = Field(default=None,pattern=r'^\d{4}-\d{2}-\d{2}$')
@@ -256,6 +259,16 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
     output.mkdir(parents=True, exist_ok=False)
     raw_request = request.model_dump(mode='json')
     (output/'request.json').write_text(json.dumps(raw_request, indent=2), encoding='utf-8')
+    if request.discovery_only:
+        from .archive_index import discover
+        collections=['spherex_qr2','spherex_qr2_deep','spherex_qr3','spherex_qr3_deep'] if request.discovery_scope=='all_supported' else ['spherex_'+request.release+('_deep' if request.deep else '')]
+        _,report=discover(request.region,collections,output/'metadata',detector=None if request.discovery_scope=='all_supported' else request.detector,start_date=request.start_date,end_date=request.end_date,use_cache=request.use_cache,cancel=cancel,progress=progress)
+        report['request']=raw_request
+        raw=json.dumps(report,separators=(',',':'),allow_nan=False).encode()
+        if len(raw)>32*1024*1024:raise ValueError('Metadata result exceeds 32 MiB')
+        (output/'sequence.json').write_bytes(raw)
+        (output/'sequence.sha256').write_text(hashlib.sha256(raw).hexdigest())
+        return report
     products, frames, rejections = [], [], []
     selection_report=None
     pin = CALIBRATION.get((request.release, request.detector))
@@ -275,7 +288,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
     candidate_count = len(paths)
     if not paths and input_paths is None:
         progress('Searching official archive metadata for the requested position')
-        rows = inventory(request.region, request.release, output/'inventory', deep=request.deep, detector=request.detector,timeout_seconds=30,attempts=2)
+        rows = indexed_inventory(request.region, request.release, output/'inventory', deep=request.deep, detector=request.detector,start_date=request.start_date,end_date=request.end_date,use_cache=request.use_cache,cancel=cancel,progress=progress)
         from .selection import preselect
         chosen, selection_report = preselect(rows,request,calibration,output/'selection',cancel=cancel,progress=progress)
         candidate_count = selection_report['contained_candidates']
@@ -362,7 +375,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
         display.update(vmin=lo, vmax=max(hi, lo+1e-6))
     identity = {'request':raw_request, 'source_hashes':[f['observation']['source']['sha256'] for f in frames],
                 'calibration_sha256': pin['sha256'] if pin else None, 'code_sha256': sha256_file(Path(__file__)),
-                'code_hashes':{name:sha256_file(Path(__file__).with_name(name)) for name in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py','native_display.py','releases.py','messages.py')},
+                'code_hashes':{name:sha256_file(Path(__file__).with_name(name)) for name in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py','native_display.py','releases.py','messages.py','archive_index.py')},
                 'software_versions':{name:version(name) for name in ('numpy','astropy','scipy','reproject')}}
     overlay=[]
     if references and comparisons:

@@ -31,7 +31,7 @@ class JobStore:
         self.inflight = set()
         self.closed = False
         self.clock, self.starts = clock, deque()
-        self.revision=hashlib.sha256(b''.join(Path(__file__).with_name(n).read_bytes() for n in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py','native_display.py','releases.py','messages.py'))).hexdigest()
+        self.revision=hashlib.sha256(b''.join(Path(__file__).with_name(n).read_bytes() for n in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py','native_display.py','releases.py','messages.py','archive_index.py'))).hexdigest()
 
     def create(self, payload):
         request = SequenceRequest.model_validate(payload)
@@ -39,13 +39,16 @@ class JobStore:
         with self.lock:
             if self.closed:
                 raise PreparationBusy('Preparation service is shutting down; retry after restart.')
+            cache_seconds=300 if request.discovery_only else 900
             for j in self.jobs.values():
-                if request.use_cache and j['state']=='complete' and time.time()-j['created']<900 and j['request']==request:
+                if request.discovery_only and j.get('result_status')!='complete':continue
+                if request.use_cache and j['state']=='complete' and time.time()-j['created']<cache_seconds and j['request']==request:
                     return {**self.status(j['id']),'cached_receipt':True}
             for path in sorted(self.directory.glob('*/job.json'),key=lambda p:p.stat().st_mtime,reverse=True)[:32]:
                 try:
                     info=json.loads(path.read_text())
-                    if request.use_cache and info.get('request_key')==request_key and info.get('revision')==self.revision and 0<=time.time()-info['created']<900:
+                    if request.discovery_only and info.get('result_status')!='complete':continue
+                    if request.use_cache and info.get('request_key')==request_key and info.get('revision')==self.revision and 0<=time.time()-info['created']<cache_seconds:
                         return {**self.status(path.parent.name),'cached_receipt':True}
                 except (ValueError, OSError, KeyError, TypeError):
                     # Preserve corrupt receipts for diagnosis, but do not let one
@@ -111,8 +114,8 @@ class JobStore:
                     raise Cancelled('Investigation cancelled')
                 path = output/'sequence.json'
                 job.update(state='complete', result_path=path, result_sha256=sha256_file(path),
-                           frame_count=len(result['frames']), message='Prepared images ready' if result['frames'] else 'No supported images for this request')
-                (output/'job.json').write_text(json.dumps({'request_key':job['request_key'],'revision':self.revision,'created':job['created']}),encoding='utf-8')
+                           frame_count=len(result['frames']), result_status=result.get('status'), message='Archive metadata ready; observations are not yet acquired' if result.get('kind')=='spherex_archive_discovery' else 'Prepared images ready' if result['frames'] else 'No supported images for this request')
+                (output/'job.json').write_text(json.dumps({'request_key':job['request_key'],'revision':self.revision,'created':job['created'],'result_status':result.get('status')}),encoding='utf-8')
         except Exception as exc:
             with self.lock:
                 job.update(state='cancelled' if job['cancel'].is_set() or isinstance(exc,Cancelled) else 'failed', message=public_error_message(exc))
