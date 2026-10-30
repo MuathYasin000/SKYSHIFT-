@@ -8,6 +8,7 @@ let preparation = null;
 function clearResult() {
   preparation?.abort();preparation=null;
   $('sky-search-cancel').hidden=true;$('sky-search-prepare').disabled=false;
+  $('sky-search-discover').disabled=false;
   ++sequence;
   active = null;
   $('sky-search-actions').hidden = true;
@@ -33,10 +34,28 @@ async function prepare() {
   }catch(e){if(ticket===sequence)$('sky-search-status').textContent=preparation?.signal.aborted?'Preparation cancelled. No late result will replace your view.':e.message;}
   finally{if(ticket===sequence){$('sky-search-cancel').hidden=true;$('sky-search-prepare').disabled=false;preparation=null;}}
 }
+async function discoverArchive() {
+  clearResult();const ticket=sequence;
+  try {
+    const request={...read(),discovery_only:true,discovery_scope:'all_supported',use_cache:!$('search-fresh').checked};
+    active=request;preparation=new AbortController();$('sky-search-cancel').hidden=false;$('sky-search-prepare').disabled=true;$('sky-search-discover').disabled=true;
+    $('sky-search-status').textContent='Discovering archive metadata; no observation FITS will be downloaded…';
+    const {bundle}=await prepareRequest(request,{signal:preparation.signal,onProgress:message=>{if(ticket===sequence)$('sky-search-status').textContent=message;}});
+    if(ticket!==sequence)return;
+    if(bundle.kind!=='spherex_archive_discovery'||!Array.isArray(bundle.collections)||!Array.isArray(bundle.observations))throw Error('Unsupported metadata discovery response');
+    $('sky-search-status').textContent=`${bundle.metadata_rows} metadata rows across supported collections · ${bundle.network_requests} network requests · ${(bundle.network_bytes/1024).toFixed(1)} KiB received. `+(bundle.status==='complete'?'Requested scope completed.':'Search is partial or temporarily unavailable; no absence or complete coverage is inferred.')+' Candidates still need exact wavelength, mask and registration checks.';
+    for(const collection of bundle.collections){const li=document.createElement('li');li.textContent=`${collection.collection}: ${collection.rows} candidates · ${collection.status} · ${collection.origin}`;$('sky-search-matches').append(li);}
+    const save=document.createElement('button');save.textContent='Save archive metadata receipt ↓';save.type='button';save.onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(bundle,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='skyshift-archive-metadata.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};const receiptItem=document.createElement('li');receiptItem.append(save);$('sky-search-matches').append(receiptItem);
+    const list=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Observation dates, footprints and source identities';list.append(summary);
+    const pre=document.createElement('pre');pre.style.cssText='white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto;font-size:12px';pre.textContent=JSON.stringify(bundle.observations.slice(0,80),null,2);list.append(pre);$('sky-search-matches').append(Object.assign(document.createElement('li'),{}));$('sky-search-matches').lastChild.append(list);
+  }catch(e){if(ticket===sequence)$('sky-search-status').textContent=preparation?.signal.aborted?'Metadata discovery cancelled.':e.message;}
+  finally{if(ticket===sequence){$('sky-search-cancel').hidden=true;$('sky-search-prepare').disabled=false;$('sky-search-discover').disabled=false;preparation=null;}}
+}
+$('sky-search-discover').onclick=discoverArchive;
 $('sky-search-check').onclick=()=>search();
 $('sky-search-cancel').onclick=()=>{clearResult();$('sky-search-cancel').hidden=true;$('sky-search-prepare').disabled=false;$('sky-search-status').textContent='Preparation cancelled. No late result will replace your view.';};
 function read() {
-  return {...observationRequest({ra: $('search-ra').value, dec: $('search-dec').value, fov: $('search-fov').value, release: $('search-release').value}),detector:Number($('search-detector').value),max_frames:Number($('search-frames').value),...selectionOptions({selection:$('search-selection').value,wavelength:$('search-wavelength').value,start:$('search-start').value,end:$('search-end').value})};
+  return {...observationRequest({ra: $('search-ra').value, dec: $('search-dec').value, fov: $('search-fov').value, release: $('search-release').value}),detector:Number($('search-detector').value),max_frames:Number($('search-frames').value),deep:$('search-deep').checked,...selectionOptions({selection:$('search-selection').value,wavelength:$('search-wavelength').value,start:$('search-start').value,end:$('search-end').value})};
 }
 function fill(request) {
   const r = request.region;
@@ -46,6 +65,7 @@ function fill(request) {
   $('search-release').value = request.release;
   $('search-detector').value=String(request.detector??2);
   $('search-frames').value=String(request.max_frames??3);
+  $('search-deep').checked=request.deep??false;
   $('search-selection').value=request.selection||'compatible';
   $('search-wavelength').value=request.wavelength_um??'';
   $('search-start').value=request.start_date||'';$('search-end').value=request.end_date||'';

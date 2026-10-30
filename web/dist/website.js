@@ -22,6 +22,8 @@ let sound = null;
 let routeStarted = false;
 let preparationJob = null;
 let targetExample = null;
+let skyMaps;
+const skyMapRoot=document.createElement('section');skyMapRoot.id='sky-map-workspace';skyMapRoot.hidden=true;$('space-workspace').before(skyMapRoot);
 // Missing animation support/module keeps the existing immediate navigation.
 let routeTransitions = {
   async run({ commit, isCurrent }) {
@@ -87,6 +89,7 @@ function error(text) {
 function setSurface(next) {
   if (surface === next) return;
   if (surface === "science") consoleView.close();
+  if(surface==='maps')skyMaps?.close();
   universe?.deactivate();
   model?.setVisible(false);
   surface = next;
@@ -97,6 +100,7 @@ function setSurface(next) {
   document.body.classList.toggle("universe-active", next === "universe");
   $("home-view").hidden = next !== "home";
   $("space-workspace").hidden = next !== "science";
+  skyMapRoot.hidden=next!=='maps';
   $("universe-view").hidden = next !== "universe";
   $("site-header").hidden = false;
   $("universe-loading").hidden = true;
@@ -199,6 +203,12 @@ async function routeChanged() {
       document.title='SKYSHIFT — Requested SPHEREx observations';
     }catch(e){if(ticket===routeSequence){consoleView.loadingFailed(e.message);error(e.message+' Open a saved investigation or return to coordinate search.');}}
     return;
+  }
+  if(route==='sky-map') {
+    routeTransitions.cancel();setSurface('maps');
+    skyMaps??=(await import('./sky-maps.js')).createSkyMaps({root:skyMapRoot});
+    if(ticket!==routeSequence)return;
+    await skyMaps.open(field||'m101');document.title='SKYSHIFT — Infrared sky maps';return;
   }
   if(route==='imported-investigation') {
     setSurface('science');consoleView.openPacketPrompt();return;
@@ -532,7 +542,10 @@ Object.defineProperty(window, "skyshiftWebsite", {
       model: model?.diagnostics() || null,
       navigation: routeTransitions.diagnostics(),
       investigation: consoleView.diagnostics(),
+      sky_map:skyMaps?.diagnostics()||null,
+      sky_map_pixels:undefined,
     }),
+    skyMapPixels:()=>skyMaps?.pixels(),
   }),
 });
 const initialCatalogue = fields();

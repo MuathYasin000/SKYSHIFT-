@@ -146,6 +146,8 @@ export function createObservationConsole({
   nativeLink.id='instrument-native';nativeLink.href='./native.html';
   nativeLink.title='Inspect the exact original at native detector resolution; separate from temporal comparison.';
   toolbar.prepend(nativeLink);
+  const mosaicLink=node('a','M101 wavelength map ↗');mosaicLink.id='instrument-mosaic';mosaicLink.hidden=true;toolbar.prepend(mosaicLink);
+  mosaicLink.onclick=e=>{if(!window.skyshiftWebsite)return;e.preventDefault();history.pushState(null,'',mosaicLink.href);window.dispatchEvent(new HashChangeEvent('hashchange'));};
   const nativeToggle=node('button','Native observation');nativeToggle.id='instrument-native-toggle';nativeToggle.setAttribute('aria-pressed','false');toolbar.prepend(nativeToggle);
   const nativeRoot=node('section');nativeRoot.id='instrument-native-inline';nativeRoot.hidden=true;$('instrument-canvases').before(nativeRoot);
   const nativeViewer=createInlineNative({root:nativeRoot});let nativeShown=false;
@@ -413,6 +415,8 @@ export function createObservationConsole({
   function render() {
     const v = engine.active;
     if (!v) return;
+    mosaicLink.hidden=Math.abs(v.field.ra_deg-210.8022671)>.5||Math.abs(v.field.dec_deg-54.34895)>.35;
+    mosaicLink.href='./?'+new URLSearchParams({ra:v.field.ra_deg,dec:v.field.dec_deg,fov:Math.min(30,v.field.size_deg*60),release:'qr2'})+'#sky-map/m101';
     const nativeObservation=v.kind==='pair'?v.manifest.observations[v.display.selected_epoch==='B'?1:0]:v.product.observation;
     nativeLink.href='./native.html?'+new URLSearchParams({source:nativeObservation.source.sha256});
     const pair = v.kind === "pair",

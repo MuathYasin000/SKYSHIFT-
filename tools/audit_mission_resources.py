@@ -22,6 +22,12 @@ SOURCES=[
  ('gaia','https://gea.esac.esa.int/archive/','HTML; catalogue reference context'),
  ('aladin','https://aladin.cds.unistra.fr/AladinLite/doc/','HTML; optional sky context, not a temporal substitute'),
  ('normalization','https://docs.astropy.org/en/stable/visualization/normalization.html','HTML; display transformations preserve source arrays'),
+ ('mosaic_tutorial','https://caltech-ipac.github.io/irsa-tutorials/spherex-mosaic/','HTML; published 102-plane M101 cube; no Mosaic Tool API'),
+ ('gallery','https://spherex.caltech.edu/images','HTML; public images require source-specific credits'),
+ ('cloud','https://registry.opendata.aws/spherex-qr/','HTML; public cloud products, not an authorization for bulk mirroring'),
+ ('nasa_media','https://www.nasa.gov/nasa-brand-center/images-and-media/','HTML; educational use with credit and no implied endorsement; respect third-party rights'),
+ ('image_policy','https://spherex.caltech.edu/page/image-use-policy','HTML; image credits, third-party exceptions and protected logos'),
+ ('irsa_terms','https://irsa.ipac.caltech.edu/data_use_terms.html','HTML; public data terms and attribution; other datasets can have separate terms'),
 ]
 
 

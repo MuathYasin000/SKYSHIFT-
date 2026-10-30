@@ -39,6 +39,15 @@ def build():
         if not target.exists() or target.read_bytes()!=data:
             target.write_bytes(data)
             changed.append('data/time-explorer-examples.json')
+    products=ROOT/'config/sky_products.json'
+    if products.exists():
+        data=products.read_bytes();target=dist/'data/sky-products.json'
+        if not target.exists() or target.read_bytes()!=data:target.write_bytes(data);changed.append('data/sky-products.json')
+        for entry in json.loads(data)['entries']:
+            relative=entry.get('manifest_url') or entry['image_url']
+            path=(dist/relative.removeprefix('./')).resolve()
+            if not path.is_relative_to(dist.resolve()) or hashlib.sha256(path.read_bytes()).hexdigest()!=entry.get('manifest_sha256',entry.get('sha256')):
+                raise ValueError('Sky product manifest or published source identity differs')
     validate_assets(dist)
     validate_scientific_assets(dist)
     validate_sequence_assets(dist)

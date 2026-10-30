@@ -36,10 +36,11 @@ export function observationRequest({ra, dec, fov, release = 'qr3'}) {
 export function requestFromURL(url) {
   const p = new URL(url).searchParams;
   if (!['ra', 'dec', 'fov', 'release', 'detector'].some(key => p.has(key))) return null;
-  for (const key of ['ra', 'dec', 'fov', 'release', 'detector','selection','wavelength','start','end','frames']) if (p.getAll(key).length > 1) throw Error('Duplicate sky search parameters are ambiguous.');
+  for (const key of ['ra', 'dec', 'fov', 'release', 'detector','selection','wavelength','start','end','frames','deep']) if (p.getAll(key).length > 1) throw Error('Duplicate sky search parameters are ambiguous.');
   const request=observationRequest({ra: p.get('ra') ?? '', dec: p.get('dec') ?? '', fov: p.get('fov') ?? '12', release: p.get('release') ?? 'qr3'});
   if(p.has('detector')){if(!/^[1-6]$/.test(p.get('detector')))throw Error('Invalid wavelength group.');request.detector=Number(p.get('detector'));}
   if(p.has('frames')){if(!/^[1-6]$/.test(p.get('frames')))throw Error('Choose between one and six observations.');request.max_frames=Number(p.get('frames'));}
+  if(p.has('deep')){if(p.get('deep')!=='1')throw Error('Deep collection must be explicitly selected.');request.deep=true;}
   Object.assign(request,selectionOptions({selection:p.get('selection')||'compatible',wavelength:p.get('wavelength')||'',start:p.get('start')||'',end:p.get('end')||''}));
   return request;
 }
@@ -67,6 +68,7 @@ export function requestURL(request, base) {
   const r = request.region;
   for (const [key, value] of Object.entries({ra: r.ra_deg, dec: r.dec_deg, fov: r.size_deg * 60, release: request.release})) url.searchParams.set(key, value);
   if(request.detector)url.searchParams.set('detector',request.detector);
+  if(request.deep===true)url.searchParams.set('deep','1');
   if(request.max_frames!==undefined){if(!Number.isInteger(request.max_frames)||request.max_frames<1||request.max_frames>6)throw Error('Choose between one and six observations.');url.searchParams.set('frames',request.max_frames);}
   if(request.selection&&request.selection!=='compatible')url.searchParams.set('selection',request.selection);
   if(request.wavelength_um!=null)url.searchParams.set('wavelength',request.wavelength_um);
