@@ -31,11 +31,12 @@ def test_installed_native_arrays_match_exact_fits_science_flags_and_variance():
     catalog=json.loads((ROOT/'web/dist/data/native/catalog.json').read_text())
     temporal=json.loads((ROOT/'config/temporal_example.json').read_text())
     r_bundle=json.loads((ROOT/'web/dist/data/sequence-r-draconis-temporal.json').read_text())
+    originals={hashlib.sha256(path.read_bytes()).hexdigest():path for path in (ROOT/'data/raw').glob('*/*.fits')}
     for index,e in enumerate(catalog['entries']):
         path=ROOT/'web/dist'/e['url'].removeprefix('./');raw=path.read_bytes()
         assert hashlib.sha256(raw).hexdigest()==e['sha256']
         p=json.loads(raw)
-        source=(ROOT/'data/prepared/m101-review-v6/sources'/('AB'[index]+'.fits') if index<2 else ROOT/'data/cache/cutouts'/temporal['sources'][index-2]['path'])
+        source=(originals.get(e['source_sha256'],ROOT/'data/prepared/m101-review-v6/sources'/('AB'[index]+'.fits')) if index<2 else ROOT/'data/cache/cutouts'/temporal['sources'][index-2]['path'])
         assert hashlib.sha256(source.read_bytes()).hexdigest()==e['source_sha256']
         with fits.open(source) as hdul:
             for name,hdu in [('SCI','IMAGE'),('FLAGS','FLAGS'),('VARIANCE','VARIANCE')]:

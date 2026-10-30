@@ -1,4 +1,4 @@
-"""Fetch only the five published context originals and their pinned D2 calibration.
+"""Fetch seven exact context/native originals and their pinned D2 calibration.
 
 Used for clean-checkout numerical integration tests. No candidate search, data
 selection, image generation or scientific approval. Refuse changed identities.
@@ -27,6 +27,17 @@ def main():
                 inputs[path]=record
     if len(inputs)!=6 or sum(r['size_bytes'] for r in inputs.values())>100_000_000:
         raise ValueError('Fixture set differs from the bounded five-original/one-calibration plan')
+    # The native M101 views use two of those same originals. Only the two
+    # pinned R Draconis originals need additional acquisition, never a search.
+    known={record['sha256'] for record in inputs.values()}
+    temporal=json.loads((ROOT/'config/temporal_example.json').read_text(encoding='utf-8'))
+    for record in temporal['sources']:
+        if record['sha256'] in known:continue
+        path=ROOT/'data/cache/cutouts'/Path(record['path']).name
+        inputs[path]=record
+        known.add(record['sha256'])
+    if len(inputs)!=8 or sum(r['size_bytes'] for r in inputs.values())>120_000_000:
+        raise ValueError('Native fixture identities exceed the bounded seven-original/one-calibration plan')
     for path,record in inputs.items():
         downloaded=download(record['source_url'],path,max_bytes=record['size_bytes'])
         if downloaded.sha256!=record['sha256']:raise ValueError('Official input changed; preserve failure and investigate')
@@ -38,7 +49,7 @@ def main():
     if downloaded.sha256!=reference['sha256']:raise ValueError('Reference catalogue differs from pinned fixture')
     query=path.with_name('m101_context_gaia_query.json')
     if not query.exists():query.write_text(json.dumps(reference,indent=2),encoding='utf-8')
-    print(json.dumps({'originals':5,'calibrations':1,'reference_catalogues':1,
+    print(json.dumps({'originals':7,'calibrations':1,'reference_catalogues':1,
                       'verified_bytes':sum(r['size_bytes'] for r in inputs.values()),'scope':'Exact fixtures, not new astronomical results'}))
 
 
