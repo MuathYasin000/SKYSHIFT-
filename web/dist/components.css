@@ -37,7 +37,6 @@
     align-items: center;
     gap: 24px;
     padding-inline: var(--gutter);
-    transition: transform 0.6s var(--ease);
   }
   .site-brand {
     display: flex;
@@ -196,9 +195,6 @@
   }
   .mobile-menu-toggle {
     display: none;
-  }
-  .site-header.nav-away {
-    transform: translateY(-100%);
   }
   .site-footer {
     position: relative;
@@ -640,9 +636,6 @@
     }
     #site-more {
       font-size: 12px;
-    }
-    .site-header.nav-away {
-      transform: none;
     }
     .footer-columns {
       gap: 24px;

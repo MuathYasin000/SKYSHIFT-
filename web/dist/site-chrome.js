@@ -52,7 +52,6 @@ export function installSiteChrome() {
     });
     document.body.dataset.route = route;
     header.querySelector(".header-launch").hidden = route === "compare";
-    header.classList.remove("nav-away");
     closeMenus();
   }
   toggle.onclick = () => {
@@ -116,29 +115,6 @@ export function installSiteChrome() {
       }
     }
   });
-  let previous = scrollY,
-    frame = 0;
-  addEventListener(
-    "scroll",
-    () => {
-      if (frame) return;
-      frame = requestAnimationFrame(() => {
-        frame = 0;
-        const fullScene = document.body.classList.contains("universe-active");
-        header.classList.toggle(
-          "nav-away",
-          !fullScene &&
-            scrollY > 200 &&
-            scrollY > previous + 2 &&
-            !header.contains(document.activeElement) &&
-            !nav.classList.contains("open") &&
-            menu.hidden,
-        );
-        previous = scrollY;
-      });
-    },
-    { passive: true },
-  );
   addEventListener("hashchange", active);
   new MutationObserver(active).observe(document.body, {
     attributes: true,
