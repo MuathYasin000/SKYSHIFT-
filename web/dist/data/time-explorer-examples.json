@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "examples": [
+    {
+      "id": "m101-time-explorer",
+      "name": "M101 / matched-wavelength time explorer",
+      "url": "./data/sequence-m101-time-explorer.json",
+      "sha256": "7c16107be35a6dcde9ca7fbb7310ef4f82acfd02aee4ad24e17efa7850ed3a60",
+      "prepared_at_utc": "2026-10-30T10:58:58.846040+00:00",
+      "usage": "Qualitative matched-wavelength inspection; no measured physical change",
+      "observation_ids": [
+        "2026W20_2A_0464_3",
+        "2026W26_1A_0500_1"
+      ]
+    }
+  ]
+}

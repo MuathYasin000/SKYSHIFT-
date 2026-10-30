@@ -183,9 +183,11 @@ async function routeChanged() {
       targetExample=route==='target-example'?field:null;
       let bundle,label='';
       if(targetExample) {
-        const targets=await fetch('./data/target-status.json',{signal:AbortSignal.timeout(12000)}).then(r=>r.json()),entry=[...targets.targets,...(targets.case_studies||[])].find(t=>t.id===field);
+        const targets=await fetch('./data/target-status.json',{signal:AbortSignal.timeout(12000)}).then(r=>r.json());
+        const examples=field==='m101-time-explorer'?await fetch('./data/time-explorer-examples.json',{signal:AbortSignal.timeout(12000)}).then(r=>{if(!r.ok)throw Error('Time explorer example manifest unavailable.');return r.json();}):{examples:[]};
+        const entry=[...targets.targets,...(targets.case_studies||[]),...examples.examples].find(t=>t.id===field);
         if(!entry||!/^\.\/data\/sequence-[a-z0-9-]+\.json$/.test(entry.url))throw Error('No verified cached frames for this target.');
-        label=(targets.case_studies||[]).includes(entry)?entry.name:entry.name+' search field';
+        label=[...(targets.case_studies||[]),...examples.examples].includes(entry)?entry.name:entry.name+' search field';
         bundle=JSON.parse(new TextDecoder().decode(await verifiedBytes(entry.url,entry.sha256)));
         if(entry.assessment_url) {
           if(!/^\.\/data\/science-[a-z0-9-]+\.json$/.test(entry.assessment_url))throw Error('Unsupported target assessment path.');

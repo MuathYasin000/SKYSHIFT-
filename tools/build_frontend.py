@@ -32,6 +32,13 @@ def build():
     if not target.exists() or target.read_bytes() != data:
         target.write_bytes(data)
         changed.append(target.name)
+    examples=ROOT/'config/time_explorer_examples.json'
+    if examples.exists():
+        target=dist/'data/time-explorer-examples.json'
+        data=examples.read_bytes()
+        if not target.exists() or target.read_bytes()!=data:
+            target.write_bytes(data)
+            changed.append('data/time-explorer-examples.json')
     validate_assets(dist)
     validate_scientific_assets(dist)
     validate_sequence_assets(dist)

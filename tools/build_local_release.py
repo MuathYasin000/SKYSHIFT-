@@ -93,6 +93,11 @@ def validate_sequence_assets(source):
     candidates=[]
     example=source/'data/sequence-example.json'
     if example.exists():candidates.append(example)
+    examples=source/'data/time-explorer-examples.json'
+    if examples.exists():
+        for entry in json.loads(examples.read_text(encoding='utf-8'))['examples']:
+            if not re.fullmatch(r'\./data/sequence-[a-z0-9-]+\.json',entry['url']):raise ValueError('Unsupported time explorer asset path')
+            candidates.append(checked_asset(source,entry['url'],entry['sha256']))
     status=source/'data/target-status.json'
     if status.exists():
         record=json.loads(status.read_text(encoding='utf-8'))

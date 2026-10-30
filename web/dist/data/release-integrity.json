@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "scope": "Local build integrity; not production deployment or scientific approval",
   "baseline_release": "skyshift-0.9-mission-control",
-  "content_id": "e315bd4c3cf371fa2dce8e77ba5dce5fbdd0189300b4bc9acfeccbe518ec6e4a",
+  "content_id": "f23779040caf5438a81e85d925dfe636306a0c4c62d197fbff2d1314398cd725",
   "deployment_id": null,
   "scientific_approval": "PENDING",
   "historical_audit_at_utc": "2026-10-16T15:21:49.549769+00:00",
@@ -45,11 +45,13 @@
     "data/sequence-comet-december.json": "993e462b6af122b8132c48b9bdae5fb7ccec557e45dfe791b772a7313eaec9b6",
     "data/sequence-epsilon-indi-b.json": "c7d62e350d20795246a20bc8a501453d0e85981b90a39ba39742f3a1fc0f2196",
     "data/sequence-example.json": "845eba8ec3c510f212406e7b74cd801700aad9ed49de071ef533df4536020fc1",
+    "data/sequence-m101-time-explorer.json": "7c16107be35a6dcde9ca7fbb7310ef4f82acfd02aee4ad24e17efa7850ed3a60",
     "data/sequence-r-draconis-temporal.json": "ea4c955aad476910a8f29661c7e9948dd51941b482ffc71fce5fb92245048d20",
     "data/sequence-r-draconis.json": "61bdb1d12b665a60d741bb459032ce11f2467f902465cbac1b966566d485af2e",
     "data/sequence-rw-aurigae.json": "ec950ba29675f8d1fd5460aa0da038e3c54dd9da90f9ba911122d37458e5568c",
     "data/sequence-wise-0855.json": "3559d57e36c2c55a47cb31cb9a2e7331d7ac927b210302de59a1f3611f4ef98a",
-    "data/target-status.json": "3e9805d6e14250fd37f1f3126a22e78b5c730779d644330d2b35cbf2f8d2f941"
+    "data/target-status.json": "3e9805d6e14250fd37f1f3126a22e78b5c730779d644330d2b35cbf2f8d2f941",
+    "data/time-explorer-examples.json": "fc1f988483e0d7b1511b4ef2f2bb45a3e97b4bdd164f8e18ba393d19ddd11489"
   },
-  "verified_at_utc": "2026-10-30T11:03:05.486313+00:00"
+  "verified_at_utc": "2026-10-30T11:12:02.575394+00:00"
 }

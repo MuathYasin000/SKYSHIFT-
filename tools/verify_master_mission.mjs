@@ -10,6 +10,7 @@ const results=[],errors=[];
 try {
  for(const width of [1440,390]) {
   const context=await browser.newContext({viewport:{width,height:1000},acceptDownloads:true});
+  if(!baseline)await context.addInitScript(()=>{const get=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return /webgl/i.test(type)?null:get.call(this,type,...args);};});
   const page=await context.newPage();page.setDefaultTimeout(30000);page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://localhost:3000/#target-example/wise-0855');
   await page.waitForFunction(()=>window.skyshiftWebsite?.diagnostics().investigation?.sequence&&!skyshiftWebsite.diagnostics().investigation.busy);
@@ -46,6 +47,22 @@ try {
    await page.locator('#instrument-sequence-mode').selectOption('matched');
    assert.equal(await page.locator('#instrument-sequence-play').isEnabled(),true);
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   await context.route('**/api/**',r=>r.fulfill({status:503,body:'Injected API outage'}));
+   await context.route('**/data/native/catalog.json',r=>r.fulfill({status:503,body:'No installed native catalog; the live-sequence payload must supply its own original'}));
+   await page.goto('http://localhost:3000/#target-example/m101-time-explorer');
+   await page.waitForFunction(()=>window.skyshiftWebsite?.diagnostics().investigation?.sequence&&!skyshiftWebsite.diagnostics().investigation.busy);
+   assert.equal(await page.locator('#instrument-sequence-mode').inputValue(),'matched');
+   await page.locator('#instrument-native-toggle').click();await page.waitForFunction(()=>skyshiftWebsite.diagnostics().investigation.native?.loaded);
+   const original=await page.evaluate(()=>skyshiftWebsite.diagnostics().investigation.native);
+   assert.ok(original.shape[0]*original.shape[1]>20000);
+   await page.locator('.inline-native canvas').focus();await page.keyboard.press('Home');await page.keyboard.press('Enter');
+   await page.evaluate(await fs.readFile('tools/vendor/axe.min.js','utf8'));
+   const violations=await page.evaluate(async()=>{const r=await axe.run(document.querySelector('#space-workspace'),{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}});return r.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}));});assert.deepEqual(violations,[]);
+   await page.screenshot({path:await claimEvidenceFile(path.join(out,`m101-native-${width}.png`)),fullPage:true});
+   await page.locator('#instrument-native-toggle').click();
+   const timings=[];
+   for(let i=0;i<8;i++){const began=Date.now();await page.locator('#instrument-sequence-next').click();timings.push(Date.now()-began);}
+   results.push({width,case:'M101 live-discovered cached example',native:original,cached_step_roundtrip_ms:timings,conditions:'Local isolated installed browser; includes Playwright click scheduling, no FPS or internet performance claim.'});
    await page.emulateMedia({reducedMotion:'reduce'});
    await page.reload();await page.waitForFunction(()=>window.skyshiftWebsite?.diagnostics().investigation?.sequence&&!skyshiftWebsite.diagnostics().investigation.busy);
    assert.equal(await page.locator('#instrument-sequence-play').isEnabled(),false);
