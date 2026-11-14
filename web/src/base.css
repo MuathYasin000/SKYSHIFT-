@@ -1,0 +1,306 @@
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-padding-top: 96px;
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    background: var(--black);
+    color: var(--white);
+    font: 400 18px/1.65 var(--sans);
+    overflow-x: clip;
+  }
+  [hidden] {
+    display: none;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure {
+    margin: 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--sans);
+    font-weight: 650;
+    letter-spacing: -0.025em;
+    color: var(--white);
+    line-height: 1.08;
+  }
+  h1 {
+    font-size: clamp(3.5rem, 8vw, 8rem);
+    max-width: 20ch;
+  }
+  h2 {
+    font-size: clamp(2.25rem, 4.5vw, 4.5rem);
+  }
+  h3 {
+    font-size: clamp(1.35rem, 2vw, 2rem);
+  }
+  h4 {
+    font-size: 1.1rem;
+  }
+  p {
+    color: var(--text-2);
+    font-size: 18px;
+    line-height: 1.65;
+  }
+  p + p {
+    margin-top: 20px;
+  }
+  a {
+    color: var(--blue-text);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    display: inline;
+    min-height: auto;
+  }
+  :where(
+    nav a,
+    a.primary,
+    a.primary-link,
+    a.outline,
+    a.secondary-link,
+    a.header-launch,
+    .standalone-link
+  ) {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  p a {
+    display: inline;
+    min-height: auto;
+    padding-block: 3px;
+  }
+  a:hover {
+    color: var(--white);
+  }
+  img,
+  svg {
+    max-width: 100%;
+  }
+  img {
+    height: auto;
+  }
+  button,
+  input,
+  select,
+  textarea,
+  summary {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  button,
+  a,
+  input,
+  textarea,
+  select,
+  summary {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--surface-1);
+    color: var(--white);
+  }
+  button {
+    padding: 12px 18px;
+    min-width: 44px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  button:hover {
+    background: var(--surface-2);
+    border-color: var(--white);
+  }
+  button:disabled {
+    color: var(--text-3);
+    cursor: not-allowed;
+  }
+  input,
+  select,
+  textarea {
+    padding: 12px 14px;
+    background: var(--surface-3);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  input[type="range"] {
+    accent-color: var(--white);
+    padding: 0;
+    background: transparent;
+    cursor: ew-resize;
+  }
+  summary {
+    min-height: 44px;
+    cursor: pointer;
+    padding-block: 12px;
+    color: var(--white);
+  }
+  :is(
+    button,
+    a,
+    input,
+    select,
+    textarea,
+    summary,
+    canvas,
+    [tabindex]
+  ):focus-visible {
+    outline: 2px solid var(--blue-text);
+    outline-offset: 3px;
+  }
+  small,
+  code,
+  kbd,
+  pre,
+  output,
+  dt,
+  dd,
+  label,
+  figcaption,
+  .caption,
+  .eyebrow,
+  .space-eyebrow {
+    font-size: 12px;
+  }
+  code,
+  kbd,
+  pre,
+  output,
+  dt,
+  dd,
+  figcaption,
+  .eyebrow,
+  .space-eyebrow,
+  .caption {
+    font-family: var(--mono);
+    line-height: 1.6;
+    color: var(--text-3);
+  }
+  code,
+  pre {
+    overflow-wrap: anywhere;
+  }
+  pre {
+    white-space: pre-wrap;
+    padding: 24px;
+    background: var(--surface-1);
+    border-left: 2px solid var(--blue);
+    overflow: auto;
+  }
+  label {
+    display: block;
+    color: var(--text-2);
+    font-size: 14px;
+  }
+  strong,
+  b {
+    font-weight: 650;
+  }
+  .eyebrow,
+  .space-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    min-height: 20px;
+    margin-bottom: 24px;
+    color: var(--text-3);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  td,
+  th {
+    padding: 16px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th {
+    font-family: var(--mono);
+    font-weight: 400;
+    color: var(--white);
+  }
+  dialog {
+    background: var(--black);
+    color: var(--white);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    max-width: calc(100% - 32px);
+    max-height: 90dvh;
+    padding: 32px;
+    overflow: auto;
+  }
+  dialog::backdrop {
+    background: var(--black);
+    opacity: 0.8;
+  }
+  dialog p {
+    margin-block: 20px;
+    font-size: 16px;
+  }
+  dialog h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  ::selection {
+    background: var(--blue);
+    color: var(--white);
+  }
+  @media (max-width: 800px) {
+    body,
+    p {
+      font-size: 16px;
+    }
+    h1 {
+      font-size: clamp(3.5rem, 10vw, 6rem);
+    }
+    dialog {
+      padding: 24px;
+    }
+    td,
+    th {
+      padding: 12px 8px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+/* This final layer preserves native visibility through cascade order. */
+@layer accessibility {
+  [hidden],
+  dialog:not([open]) {
+    display: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .headline-line,
+    .hero-model-canvas {
+      animation: none;
+    }
+  }
+}
