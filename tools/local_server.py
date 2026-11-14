@@ -85,6 +85,7 @@ class LocalServer(ThreadingHTTPServer):
         self.public_hosts = set(public_hosts or [])
         self.health_hosts=set(health_hosts or [])
         self.preparation = None
+        self.core_searches = None
         self.preparation_lock = threading.Lock()
         self.preparation_enabled = self.directory == (ROOT/'web/dist').resolve() and (ROOT/'src/skyshift/sequence.py').is_file()
         super().__init__((bind, port), LocalHandler)
@@ -99,9 +100,21 @@ class LocalServer(ThreadingHTTPServer):
                 self.preparation = JobStore(ROOT/'data/investigations')
         return self.preparation
 
+    def core_search_store(self):
+        if not self.preparation_enabled:
+            raise ValueError('This static snapshot has no live archive service')
+        with self.preparation_lock:
+            if self.core_searches is None:
+                sys.path.insert(0, str(ROOT/'src'))
+                from skyshift.core import CoreSearchStore
+                self.core_searches = CoreSearchStore(ROOT/'data/cache/core')
+        return self.core_searches
+
     def server_close(self):
         if self.preparation is not None:
             self.preparation.close()
+        if self.core_searches is not None:
+            self.core_searches.close()
         super().server_close()
 
 
@@ -152,11 +165,25 @@ class LocalHandler(SimpleHTTPRequestHandler):
                 from skyshift.releases import CURRENT_COLLECTIONS, release_capabilities
                 self.send_json(HTTPStatus.OK, {'preparation': self.server.preparation_enabled,
                     'preparation_code_sha256':hashlib.sha256(b''.join(p.name.encode()+p.read_bytes() for p in sorted((ROOT/'src/skyshift').glob('*.py')))).hexdigest() if self.server.preparation_enabled else None,
-                    'max_frames':6,'max_field_arcmin':30,'max_active_jobs':2,
-                    'calibrated_temporal_adapters':['qr2/D2'],
+                    'max_field_arcmin':30,'max_active_searches':2,
+                    'default_detectors':[1,2,3,4,5,6],
                     'release_registry':release_capabilities(),
-                    'archive_discovery':{'collections':list(CURRENT_COLLECTIONS),'providers':['sia2','tap'],'max_requests':8,'max_transfer_bytes':16000000,'index_version':'spherex-metadata-index-v1','scope':'Region-scoped incremental ingestion; no all-sky mirror or complete archive claim'},
-                    'scope':'DR1 and QR3 support independent dated observations. Prepared QR2/D2 retains the provisional matched-wavelength checks.'})
+                    'archive_discovery':{'collections':list(CURRENT_COLLECTIONS),'providers':['sia2'],'scope':'Every returned DR1/QR3 observation covering the requested field; date pages are followed until complete or a visible failure is returned'},
+                    'scope':'DR1 and QR3 real Level 2 observations only. Visual comparison is never gated by wavelength matching.'})
+                return
+            if path == '/api/searches' and self.command == 'POST':
+                self.send_json(HTTPStatus.ACCEPTED, self.server.core_search_store().create(payload))
+                return
+            core_parts = path.strip('/').split('/')
+            if len(core_parts) >= 3 and core_parts[:2] == ['api','searches'] and len(core_parts[2]) == 32 and all(c in '0123456789abcdef' for c in core_parts[2]):
+                store = self.server.core_search_store()
+                key = core_parts[2]
+                if len(core_parts) == 3 and self.command in ('GET','HEAD'):
+                    self.send_json(HTTPStatus.OK, store.status(key)); return
+                if len(core_parts) == 5 and core_parts[3] == 'frames' and core_parts[4].isdigit() and self.command in ('GET','HEAD'):
+                    self.send_json(HTTPStatus.OK, store.frame(key, int(core_parts[4]))); return
+            if path.startswith('/api/investigations'):
+                self.send_json(HTTPStatus.GONE, {'error':'The retired QR2 investigation API is no longer available. Search DR1 and QR3 from the main page.'})
                 return
             store = self.server.preparation_store()
             if path == '/api/investigations' and self.command == 'POST':

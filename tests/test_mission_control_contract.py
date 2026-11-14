@@ -1,4 +1,4 @@
-"""The shared visual system must not alter the measured scientific snapshot."""
+"""The public entry point stays focused on the SPHEREx search workflow."""
 from pathlib import Path
 from html.parser import HTMLParser
 import hashlib
@@ -13,36 +13,24 @@ RETIRED = ('immersive', 'telescope-experience', 'observation-console', 'website'
 FORBIDDEN = re.compile(r'#(?:f4f1e9|edbf78|ffcf8a|f0e6d5|8cd9db|8adbc9|92ddc9|090c0e|060b15|08131d|070a12|05070a)\b', re.I)
 
 
-def test_one_token_authority_and_no_retired_presentation_layers():
-    css = list(WEB.glob('*.css'))
-    assert sum(p.read_text(encoding='utf-8').count(':root') for p in css) == 1
-    for p in css:
-        text = p.read_text(encoding='utf-8')
-        assert '!important' not in text, p.name
-        assert not FORBIDDEN.search(text), p.name
-        if p.name != 'tokens.css':
-            assert not re.search(r'#[0-9a-f]{3,8}\b', text, re.I), p.name
-        assert not re.search(r'font-size\s*:\s*(?:[0-9](?:\.\d+)?|1[01](?:\.\d+)?)px\b', text), p.name
-    for name in RETIRED:
-        assert not (WEB / (name + '.css')).exists()
-    for p in [*WEB.glob('*.html'), *WEB.glob('*.js')]:
-        assert not FORBIDDEN.search(p.read_text(encoding='utf-8')), p.name
+def test_public_entry_point_uses_only_the_core_visual_layer():
+    page = (WEB / 'index.html').read_text(encoding='utf-8')
+    assert page.count('<link rel="stylesheet"') == 1
+    assert './core.css' in page and './core-app.js' in page
+    assert 'universe' not in page.lower()
+    assert 'sound' not in page.lower()
+    assert 'qr2' not in page.lower()
 
 
-def test_all_entry_pages_embed_identical_progressive_chrome():
-    for p in WEB.glob('*.html'):
-        if p.name == 'universe-shell.html':
-            continue
-        s = p.read_text(encoding='utf-8')
-        for name, tag in [('header', 'header'), ('footer', 'footer')]:
-            canonical = (ROOT / 'web/templates' / (name + '.html')).read_text(encoding='utf-8')
-            actual = re.findall(fr'<{tag}\b[^>]*class="site-{name}"[\s\S]*?</{tag}>', s)
-            assert len(actual) == 1, p.name
-            assert actual[0].strip() == canonical[canonical.index('<' + tag):].strip(), p.name
-        assert 'tokens.css' in s and 'base.css' in s and 'components.css' in s
-        assert s.count('as="font"') == 2, p.name
-        assert "default-src 'self'" in s or p.name == 'index.html'
-        assert 'start_skyshift.bat' not in s
+def test_public_entry_point_exposes_the_complete_core_flow():
+    s = (WEB / 'index.html').read_text(encoding='utf-8')
+    ids = set(re.findall(r'\bid="([^"]+)"', s))
+    required = {'search-form', 'target-buttons', 'download-progress', 'observation-rows',
+                'frame-a', 'frame-b', 'prev', 'play', 'next', 'scrubber', 'speed',
+                'single', 'side', 'wipe', 'canvas-a', 'canvas-b', 'control-reason'}
+    assert not required - ids
+    assert 'all six detectors' in s.lower()
+    assert 'brightness may differ because of wavelength, not change.' in s
 
 
 def test_fonts_keep_exact_local_woff2_bytes_and_licenses():

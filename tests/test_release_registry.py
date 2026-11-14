@@ -12,11 +12,11 @@ def test_discovery_and_science_capabilities_are_explicit_and_independent():
     value = release_capabilities()
     assert value['releases']['qr3']['discovery']
     assert value['releases']['qr3']['calibrated_detectors'] == []
-    assert value['releases']['qr2']['calibrated_detectors'] == [2]
+    assert set(value['releases']) == {'dr1', 'qr3'}
     assert collection_for('qr3', True) == 'spherex_qr3_deep'
-    assert 'path' not in str(value['releases']['qr2']['calibration_dependencies'])
-    value['releases']['qr2']['calibrated_detectors'].append(6)
-    assert release_capabilities()['releases']['qr2']['calibrated_detectors'] == [2]
+    assert 'path' not in str(value['releases']['qr3']['calibration_dependencies'])
+    value['releases']['qr3']['calibrated_detectors'].append(6)
+    assert release_capabilities()['releases']['qr3']['calibrated_detectors'] == []
 
 
 @pytest.mark.parametrize('release', ['qr1', 'qr4', '', 'QR2'])
@@ -57,7 +57,7 @@ def test_dr1_and_qr3_share_pipeline_family_without_sharing_archive_identity_or_a
         product_adapter('7.0.5', 2, f'{base}dr1/level2/a.fits', calibration_sha256=CALIBRATION['qr2', 2]['sha256'])
     capabilities = release_capabilities()
     assert capabilities['current_collections'] == ['spherex_dr1', 'spherex_dr1_deep', 'spherex_qr3', 'spherex_qr3_deep']
-    assert not capabilities['releases']['qr2']['discovery']
+    assert 'qr2' not in capabilities['releases']
 
 
 def test_qr3_mask_schema_retains_source_but_rejects_bad_and_unknown_bits():

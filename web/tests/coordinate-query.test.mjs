@@ -56,14 +56,17 @@ test('Nearby centres handle RA wrap and poles without asserting coverage', () =>
   assert.deepEqual(nearbyFields(req,{fields}).map(x=>x.field.id),['across-zero']);
   assert.ok(nearbyFields(observationRequest({ra:180,dec:90,fov:12}),{fields:[{id:'pole',ra_deg:0,dec_deg:90,size_deg:.1}]})[0].separation_deg < 1e-10);
 });
-test('All five challenge presets are valid sourced search centres and stay unvalidated', () => {
+test('All five challenge presets have sourced J2000 astrometry for epoch propagation', () => {
   const catalog = JSON.parse(fs.readFileSync(new URL('../../config/challenge_targets.json',import.meta.url)));
   assert.equal(catalog.targets.length,5);
   assert.equal(new Set(catalog.targets.map(t=>t.id)).size,5);
   for (const t of catalog.targets) {
-    observationRequest({ra:t.ra,dec:t.dec,fov:t.fov_arcmin});
-    assert.equal(t.validation_status,'NOT_TESTED');
-    assert.match(t.source_url,/^https:\/\//);
+    observationRequest({ra:t.ra_deg,dec:t.dec_deg,fov:t.fov_arcmin});
+    assert.equal(t.reference_epoch_jyear,2000);
+    assert.ok(Number.isFinite(t.pm_ra_cosdec_mas_per_year));
+    assert.ok(Number.isFinite(t.pm_dec_mas_per_year));
+    assert.match(t.astrometry_source_url,/^https:\/\//);
+    assert.ok(t.astrometry_bibcode.length > 10);
     assert.ok(t.coordinate_context.length > 30);
   }
   const epsilon=catalog.targets.find(t=>t.id==='epsilon-indi-b');

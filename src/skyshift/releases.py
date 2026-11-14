@@ -106,7 +106,8 @@ def product_adapter(version, detector, source_url=None, *, calibration_sha256=No
 
 def release_capabilities() -> dict:
     result = {}
-    for release, entry in RELEASES.items():
+    for release in CURRENT_RELEASES:
+        entry = RELEASES[release]
         result[release] = {**deepcopy(entry),
             'adapter_version': REGISTRY_VERSION, 'collections': [collection_for(release), collection_for(release, True)],
             'discovery': release in CURRENT_RELEASES, 'visualization_detectors': list(range(1, 7)),

@@ -26,25 +26,18 @@ def test_native_statistics_distinguish_missing_flags_nonfinite_and_quality_witho
     for a,b in zip((image,flags,variance,valid),before):np.testing.assert_array_equal(a,b)
 
 
-def test_installed_native_arrays_match_exact_fits_science_flags_and_variance():
-    from astropy.io import fits
-    catalog=json.loads((ROOT/'web/dist/data/native/catalog.json').read_text())
-    temporal=json.loads((ROOT/'config/temporal_example.json').read_text())
-    r_bundle=json.loads((ROOT/'web/dist/data/sequence-r-draconis-temporal.json').read_text())
-    originals={hashlib.sha256(path.read_bytes()).hexdigest():path for path in (ROOT/'data/raw').glob('*/*.fits')}
-    for index,e in enumerate(catalog['entries']):
-        path=ROOT/'web/dist'/e['url'].removeprefix('./');raw=path.read_bytes()
-        assert hashlib.sha256(raw).hexdigest()==e['sha256']
-        p=json.loads(raw)
-        source=(originals.get(e['source_sha256'],ROOT/'data/prepared/m101-review-v6/sources'/('AB'[index]+'.fits')) if index<2 else ROOT/'data/cache/cutouts'/temporal['sources'][index-2]['path'])
-        assert hashlib.sha256(source.read_bytes()).hexdigest()==e['source_sha256']
-        with fits.open(source) as hdul:
-            for name,hdu in [('SCI','IMAGE'),('FLAGS','FLAGS'),('VARIANCE','VARIANCE')]:
-                a=p['arrays'][name];decoded=np.frombuffer(base64.b64decode(a['data']),dtype=a['dtype']).reshape(p['shape'])
-                np.testing.assert_array_equal(decoded,hdul[hdu].data)
-        assert p['temporal_comparison_allowed'] is False
-        if index>=2:assert p['observation']['source']['retrieved_at_utc']==r_bundle['frames'][index-2]['observation']['source']['retrieved_at_utc']
-        assert sum(p['diagnostics']['categories'].values())==np.prod(p['shape'])
+def test_target_cache_manifests_use_only_current_releases_and_report_failures_honestly():
+    targets = ROOT / 'web/dist/data/targets'
+    manifests = list(targets.glob('*/manifest.json'))
+    assert len(manifests) == 5
+    for path in manifests:
+        manifest = json.loads(path.read_text(encoding='utf-8'))
+        assert manifest['allowed_releases'] == ['dr1', 'qr3']
+        assert manifest['detectors_requested'] == [1, 2, 3, 4, 5, 6]
+        assert all(row.get('release') in ('dr1', 'qr3') for row in manifest['observations'])
+        if not manifest['observations']:
+            assert manifest['status'] == 'unavailable'
+            assert manifest['failure_reason']
 
 
 def test_native_encoding_retains_32_bit_flags_and_histograms_count_only_finite_values():

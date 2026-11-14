@@ -1,46 +1,35 @@
 # SKYSHIFT
 
-**Project Mercury Team · Planet X and SPHEREx · November 14, 2026 release**
+SKYSHIFT is a WiseView-style browser for real NASA SPHEREx observations. Enter ICRS coordinates—or choose Barnard's Star, Epsilon Indi B, WISE 0855-0714, RW Aurigae, or R Draconis—to retrieve DR1 and QR3 observations from NASA/IPAC IRSA across all six detectors.
 
-SKYSHIFT is a browser tool for inspecting how the infrared sky looks in real SPHEREx observations taken on different dates. Search by right ascension and declination, step through the dated images, and check wavelengths and masked pixels before interpreting a shift. Save a sky-coordinate question and export the investigation with observation IDs, source URLs, and checksums.
+Observations are ordered by date and downloaded progressively. The viewer provides a fast flipbook, previous/next controls, a scrubber, keyboard playback, shared pan and zoom, target-position markers, and unrestricted side-by-side or wipe comparison. A wavelength difference produces a visible warning; it never disables comparison. Invalid or masked target pixels remain visible and labeled.
 
-## Open the application
-
-Run [start_skyshift.bat](start_skyshift.bat) in the project folder and open [SKYSHIFT](http://localhost:3000/). Python 3.11+ and a modern browser are enough for the prepared examples. Use [stop_skyshift.bat](stop_skyshift.bat) to shut down the local server.
-
-- [Challenge guide](http://localhost:3000/challenge.html) opens the five challenge fields, current data sources and credits.
-- [M101 DR1 timeline](http://localhost:3000/#target-example/m101-dr1) opens two observation dates acquired from IRSA for this release. Step between frames and inspect each native detector image. Their wavelengths differ, so the timeline is for independent inspection.
-- [M101 matched-wavelength viewer](http://localhost:3000/#target-example/m101-time-explorer) shows the earlier provisionally screened QR2/D2 example. The [direct comparison](http://localhost:3000/#compare) also offers a checked M101 pair, side-by-side, wipe and blink.
-- [Coordinates](http://localhost:3000/#sky-search) accepts decimal or sexagesimal coordinates and a square field from 1 to 30 arcminutes. Live archive preparation uses DR1 or QR3, an internet connection and the Python dependencies below.
-- [M101 wavelength map](http://localhost:3000/#sky-map/m101) displays 102 planes from a published IRSA tutorial cube. Each plane loads on demand and a selected position can be sent to coordinate search.
-
-Prepared examples, scientific viewports and exports work without WebGL or live archive access. The visible homepage loads an interactive photo-informed SPHEREx model independently. The 3D Universe is optional and uses the same investigation state.
-
-## Install, build and test
-
-Use Python 3.12 for the pinned scientific environment. The checked-in browser build runs without npm installation.
+## Run locally
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt
-.\.venv\Scripts\python.exe -m pip install --no-deps -e .
-.\.venv\Scripts\python.exe tools/build_frontend.py
-.\.venv\Scripts\python.exe -m pytest -q
-node --test web/tests/*.test.mjs
+py -3 -m venv .venv
+.venv\Scripts\python -m pip install -r requirements-lock.txt
+.venv\Scripts\python tools\build_frontend.py
+.venv\Scripts\python tools\local_server.py --port 3000
 ```
 
-`tools/bootstrap_test_inputs.py` can retrieve a small set of pinned original FITS and Gaia inputs for optional integration tests. See [local operation](docs/local_hosting.md), [same-origin hosting](docs/public_service.md), and [reconstruction](docs/reproducibility.md). A static host can serve the prepared examples. New archive requests need the Python service on the same origin.
+Open <http://localhost:3000>. Live searches require internet access to IRSA. The Python service is required because it performs archive queries, bounded FITS downloads, quality masking, reprojection, and caching.
 
-## Science and provenance
+## Data and astrometry
 
-DR1 and QR3 expose dates, conservative masks, and approximate wavelength coordinates. Matched-wavelength tools require the separately screened QR2/D2 calibration and Gaia DR3 reference checks. Mixed wavelengths, contamination, blending and registration uncertainty can all imitate a change. The five field tests show bounded preparation and usability of the frames. Qualified scientific approval and internal human review remain **PENDING**. Independent novice validation was **NOT CONDUCTED**.
+- SPHEREx images and metadata: [NASA/IPAC IRSA](https://irsa.ipac.caltech.edu/Missions/spherex.html), DR1 and QR3 only.
+- Challenge-target reference positions and proper motions: SIMBAD mirror records, with the source and reference epoch displayed in the app.
+- Gaia DR3 via [MAST](https://archive.stsci.edu/missions-and-data/gaia) is an optional reference source; it is not required to view SPHEREx frames.
+- Target positions use linear ICRS proper-motion propagation from J2000.0 to each observation epoch. Parallax and radial-velocity perspective corrections are not applied.
 
-The [November 14 handoff](docs/submission_2026-11-14.md) records the audit, changes, validation and submission fields. The source ZIP manifest gives each packaged file a SHA-256 and describes its relationship to the earlier repository baseline. The [October archive integration](docs/irsa_upgrade_20261030.md), [earlier field tests](docs/completion_20261030.md), and [review protocol](docs/reviewer_guide.md) retain their original dates and scope.
+On November 14, 2026, live IRSA cache-building attempts for all five targets returned HTTP 502 responses or timed out for every DR1/QR3 wide/deep collection. SKYSHIFT records those failures and offers retry; it does not substitute QR2 or generated images.
 
-## Attribution
+## What existed before and what was built during the event
 
-This publication makes use of data products from the Spectro-Photometer for the History of the Universe, Epoch of Reionization and Ices Explorer (SPHEREx), which is a joint project of the Jet Propulsion Laboratory and the California Institute of Technology, and is funded by the National Aeronautics and Space Administration. [IRSA archive and terms](https://irsa.ipac.caltech.edu/Missions/spherex.html) · [DR1 spectral images](https://doi.org/10.26131/IRSA678) · [QR3 spectral images](https://doi.org/10.26131/IRSA662) · [QR2 spectral images](https://doi.org/10.26131/IRSA652)
+The Git history begins on October 16, 2026. Before November 14 it already contained a standalone SPHEREx viewer, curated M101/M67/NGC 188/M42 material, QR2 comparison and evidence workflows, 3D and sound presentation work, and bounded DR1/QR3 archive experiments. On November 14 the complete prior state was preserved on `pre-cleanup-2026-11-14`, and the challenge-centered DR1/QR3 coordinate search, six-detector retrieval, proper-motion handling, progressive cache, observation list, flipbook, and general comparison workspace were built on `codex/challenge-core`.
 
-This work has made use of data from the European Space Agency (ESA) mission Gaia, processed by the Gaia Data Processing and Analysis Consortium (DPAC). [Gaia DR3](https://doi.org/10.1051/0004-6361/202243940)
+## AI assistance
 
-SKYSHIFT is an independent student project. Team-owned source is Apache-2.0. Third-party assets and data retain their own terms. See [NOTICE](NOTICE) and the [challenge resource credits](http://localhost:3000/challenge.html#challenge-sources).
+OpenAI Codex assisted with repository analysis, implementation, tests, documentation, and browser verification. Scientific data are retrieved from the cited archives; AI-generated astronomical observations or test results are not used.
+
+SKYSHIFT is an independent educational project. NASA does not endorse this application.

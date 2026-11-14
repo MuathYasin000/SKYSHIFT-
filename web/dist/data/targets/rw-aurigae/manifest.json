@@ -1,0 +1,51 @@
+{
+  "schema_version": "2.0",
+  "kind": "skyshift-target-cache",
+  "target_id": "rw-aurigae",
+  "target_name": "RW Aurigae",
+  "created_at_utc": "2026-11-14T17:45:15.671942+00:00",
+  "source": "NASA/IPAC IRSA SPHEREx SIA2",
+  "allowed_releases": [
+    "dr1",
+    "qr3"
+  ],
+  "detectors_requested": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "reference_epoch": "J2000.0",
+  "astrometry_source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+  "collections": [
+    {
+      "collection": "spherex_dr1",
+      "status": "unavailable",
+      "rows": 0,
+      "reason": "HTTP Error 502: Proxy Error"
+    },
+    {
+      "collection": "spherex_dr1_deep",
+      "status": "unavailable",
+      "rows": 0,
+      "reason": "HTTP Error 502: Proxy Error"
+    },
+    {
+      "collection": "spherex_qr3",
+      "status": "unavailable",
+      "rows": 0,
+      "reason": "HTTP Error 502: Proxy Error"
+    },
+    {
+      "collection": "spherex_qr3_deep",
+      "status": "unavailable",
+      "rows": 0,
+      "reason": "HTTP Error 502: Proxy Error"
+    }
+  ],
+  "observations": [],
+  "status": "unavailable",
+  "failure_reason": "spherex_dr1: HTTP Error 502: Proxy Error spherex_dr1_deep: HTTP Error 502: Proxy Error spherex_qr3: HTTP Error 502: Proxy Error spherex_qr3_deep: HTTP Error 502: Proxy Error"
+}

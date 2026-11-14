@@ -1,57 +1,83 @@
 {
-  "schema_version": "1.0",
-  "checked_on": "2026-10-29",
-  "scope": "Search centres for the five challenge targets; no detection, propagated position or SPHEREx validation is asserted.",
+  "schema_version": "2.0",
+  "checked_on": "2026-11-14",
+  "scope": "Five challenge targets with ICRS reference positions and proper motions for observation-epoch propagation.",
+  "astrometry_note": "SIMBAD pmra is mu_alpha*cos(dec). Propagation is linear from J2000.0 and omits parallax and radial-velocity perspective effects.",
   "targets": [
     {
       "id": "barnards-star",
-      "name": "Barnard’s Star",
+      "name": "Barnard's Star",
       "ra": "17h57m48.4984700685s",
       "dec": "+04d41m36.113879676s",
+      "ra_deg": 269.4520769586187,
+      "dec_deg": 4.693364966576667,
+      "reference_epoch_jyear": 2000.0,
+      "pm_ra_cosdec_mas_per_year": -801.551,
+      "pm_dec_mas_per_year": 10362.394,
       "fov_arcmin": 12,
-      "coordinate_context": "SIMBAD ICRS, epoch J2000. High proper motion; search centre is not a predicted observation-epoch position.",
-      "source_url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=Barnard%27s+Star",
-      "validation_status": "NOT_TESTED"
+      "astrometry_bibcode": "2020yCat.1350....0G",
+      "astrometry_source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=Barnard%27s+star",
+      "coordinate_context": "SIMBAD ICRS J2000.0 position; propagated to each SPHEREx observation epoch."
     },
     {
       "id": "epsilon-indi-b",
       "name": "Epsilon Indi B",
       "ra": "22h04m10.5951812451s",
       "dec": "-56d46m58.239102418s",
+      "ra_deg": 331.04414658852124,
+      "dec_deg": -56.782844195116105,
+      "reference_epoch_jyear": 2000.0,
+      "pm_ra_cosdec_mas_per_year": 3981.977,
+      "pm_dec_mas_per_year": -2466.832,
       "fov_arcmin": 12,
-      "coordinate_context": "SIMBAD ICRS, epoch J2000, brown-dwarf B system (not Epsilon Indi A). No claim to resolve Ba/Bb; proper motion is not propagated.",
-      "source_url": "https://simbad.u-strasbg.fr/simbad/sim-id?Ident=%2A+eps+Ind+B",
-      "validation_status": "NOT_TESTED"
+      "astrometry_bibcode": "2020yCat.1350....0G",
+      "astrometry_source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=%2A+eps+Ind+B",
+      "coordinate_context": "SIMBAD ICRS J2000.0 position for Epsilon Indi B; propagated to each observation epoch."
     },
     {
       "id": "wise-0855",
-      "name": "WISE 0855",
-      "ra": "08h55m10.831s",
-      "dec": "-07d14m42.53s",
+      "name": "WISE 0855-0714",
+      "ra": "08h55m16.53798s",
+      "dec": "-07d14m49.3728s",
+      "ra_deg": 133.81890825,
+      "dec_deg": -7.247048,
+      "reference_epoch_jyear": 2000.0,
+      "pm_ra_cosdec_mas_per_year": -8123.7,
+      "pm_dec_mas_per_year": 673.2,
       "fov_arcmin": 12,
-      "coordinate_context": "Coordinates supplied in the challenge statement; reference epoch unspecified. No proper-motion propagation or detection asserted.",
-      "source_url": "https://www.spaceappschallenge.org/2026/challenges/planet-x-and-spherex/",
-      "validation_status": "NOT_TESTED"
+      "astrometry_bibcode": "2021ApJS..253....7K",
+      "astrometry_source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=WISE+J085510.83-071442.5",
+      "coordinate_context": "SIMBAD ICRS J2000.0 position and published proper motion; propagated to each observation epoch."
     },
     {
       "id": "rw-aurigae",
       "name": "RW Aurigae",
       "ra": "05h07m49.5662483s",
       "dec": "+30d24m05.177426s",
+      "ra_deg": 76.95652603458333,
+      "dec_deg": 30.401438173888888,
+      "reference_epoch_jyear": 2000.0,
+      "pm_ra_cosdec_mas_per_year": 7.23,
+      "pm_dec_mas_per_year": -20.33,
       "fov_arcmin": 12,
-      "coordinate_context": "SIMBAD ICRS, epoch J2000, RW Aur system. No claim of calibrated variability or resolved components.",
-      "source_url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=RW+Aur",
-      "validation_status": "NOT_TESTED"
+      "astrometry_bibcode": "2007A&A...474..653V",
+      "astrometry_source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+      "coordinate_context": "SIMBAD ICRS J2000.0 position; propagated to each observation epoch."
     },
     {
       "id": "r-draconis",
       "name": "R Draconis",
       "ra": "16h32m40.2265999080s",
       "dec": "+66d45m17.925901992s",
+      "ra_deg": 248.16761083295,
+      "dec_deg": 66.75497941722,
+      "reference_epoch_jyear": 2000.0,
+      "pm_ra_cosdec_mas_per_year": -20.643,
+      "pm_dec_mas_per_year": 6.149,
       "fov_arcmin": 12,
-      "coordinate_context": "SIMBAD ICRS, epoch J2000. Brightness changes require matched wavelengths and quality assessment.",
-      "source_url": "https://simbad.u-strasbg.fr/simbad/sim-id?Ident=R+Dra",
-      "validation_status": "NOT_TESTED"
+      "astrometry_bibcode": "2020yCat.1350....0G",
+      "astrometry_source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=R+Dra",
+      "coordinate_context": "SIMBAD ICRS J2000.0 position; propagated to each observation epoch."
     }
   ]
 }

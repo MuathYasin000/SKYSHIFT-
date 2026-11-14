@@ -9,7 +9,7 @@ from test_local_server import server_module
 from skyshift.jobs import JobStore
 
 
-def test_same_origin_bounded_job_api_works_and_reopens_receipts(tmp_path,monkeypatch):
+def test_retired_preparation_api_is_closed_and_core_capabilities_are_current(tmp_path,monkeypatch):
     web=tmp_path/'web';web.mkdir();(web/'index.html').write_text('<title>Synthetic transport fixture</title>')
     def builder(request,output,progress,cancel):
         output.mkdir();data={'frames':[]};raw=json.dumps(data).encode();(output/'sequence.json').write_bytes(raw);(output/'sequence.sha256').write_text(hashlib.sha256(raw).hexdigest());return data
@@ -27,29 +27,11 @@ def test_same_origin_bounded_job_api_works_and_reopens_receipts(tmp_path,monkeyp
     try:
         assert request('/api/capabilities')[1]['preparation']
         assert request('/api/investigations','POST',payload,'https://unrelated.example')[0]==403
-        assert request('/api/investigations','POST',{**payload,'max_frames':999})[0]==400
-        code,job=request('/api/investigations','POST',payload);assert code==202
-        path='/api/investigations/'+job['id']
-        for _ in range(100):
-            status,value=request(path)
-            if value['state']=='complete':break
-            time.sleep(.01)
-        assert value['state']=='complete'
-        assert request(path+'/result')[1]=={'frames':[]}
-        from skyshift.jobs import PreparationBusy
-        def busy(payload):raise PreparationBusy('Preparation queue is full')
-        with monkeypatch.context() as m:
-            m.setattr(store,'create',busy)
-            assert request('/api/investigations','POST',payload)[0]==429
-        def unavailable(payload):raise OSError('Cannot write '+str(tmp_path/'private-science-cache'))
-        with monkeypatch.context() as m:
-            m.setattr(store,'create',unavailable)
-            code,error=request('/api/investigations','POST',payload)
-            assert code==400 and str(tmp_path) not in error['error'] and '[private path]' in error['error']
-        store.jobs.clear()
-        assert request(path)[1]['state']=='complete'
-        assert request(path+'/result')[1]=={'frames':[]}
-        assert request('/api/investigations/'+'f'*32)[0] in (400,404)
+        assert request('/api/investigations','POST',{**payload,'max_frames':999})[0]==410
+        assert request('/api/investigations','POST',payload)[0]==410
+        capabilities = request('/api/capabilities')[1]
+        assert capabilities['default_detectors'] == [1, 2, 3, 4, 5, 6]
+        assert set(capabilities['release_registry']['releases']) == {'dr1', 'qr3'}
         server.public_hosts.add('skyshift.example')
         assert request('/api/capabilities',host='skyshift.example')[0]==200
         assert request('/api/capabilities',host='unapproved.example')[0]==421

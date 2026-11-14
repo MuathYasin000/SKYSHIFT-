@@ -38,7 +38,7 @@ def test_all_pages_have_unique_ids_and_resolvable_local_links():
                 # The main website uses explicit same-document application routes.
                 # Conventional document anchors elsewhere must still resolve.
                 if target.name=='index.html' and anchor in app_routes:
-                    assert './website-bootstrap.js' in Page(target.read_text(encoding='utf-8')).scripts
+                    assert './core-app.js' in Page(target.read_text(encoding='utf-8')).scripts
                     continue
                 assert anchor in Page(target.read_text(encoding='utf-8')).ids,(path.name,ref)
 
