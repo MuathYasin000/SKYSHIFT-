@@ -1,0 +1,162 @@
+{
+  "status": "pass",
+  "count": 31,
+  "scope": "Every tracked web/dist/data file in HEAD except generated release-integrity.json",
+  "files": [
+    {
+      "path": "web/dist/data/bundle.json",
+      "git_blob": "2e35744def2eb16484f4d1daf6f957151197d284",
+      "sha256": "b36ac03cac9711dbe4aeb0a64ac8cfc898509317d5758d0adb2d2aabacc5effd"
+    },
+    {
+      "path": "web/dist/data/catalog.json",
+      "git_blob": "1d4c9d5322a0bb13ebe20935f00648d21e8f9924",
+      "sha256": "17ad6e099632f13b77d1adae1c9f9c62291e3160da435ea02536183461d5c826"
+    },
+    {
+      "path": "web/dist/data/explore-catalog.json",
+      "git_blob": "9bf5c68d15faea11d04a7cd1c18f0595fef01981",
+      "sha256": "7197f418f2b09922796494943e97a973a9130f8ef69d27da7272a4a508ec2d39"
+    },
+    {
+      "path": "web/dist/data/explore/m101-2025W49_2A_0756_3.json",
+      "git_blob": "8e2b4568e9e088d475b93f562b6e6dc0e30b5f60",
+      "sha256": "d5fe609fc17c1727496eb622b796993ea431138e4d5d2475c5e2dabf5f6b019f"
+    },
+    {
+      "path": "web/dist/data/explore/m101-2025W49_2A_0756_3.png",
+      "git_blob": "b1c4123889aa5720203733418a7faa72c76b380a",
+      "sha256": "56d89cfada9a5f9d1972c9c34e0f0e66a62b40fe83131505b6a894605d7553e2"
+    },
+    {
+      "path": "web/dist/data/explore/m101-2025W50_1A_0736_3.json",
+      "git_blob": "db595c7834f57c59ce473d887b3427648ebdf6cb",
+      "sha256": "3805e172f1fab3f211a634bce269f4c17c401e541b118504108ac508496ee63f"
+    },
+    {
+      "path": "web/dist/data/explore/m101-2025W50_1A_0736_3.png",
+      "git_blob": "28fc638ab8b7582cdabed1ddcf4302d178c06200",
+      "sha256": "c2075c60ab5539f166583dae9f0c1a24702768037881e06f2d11e9d9cfd6a981"
+    },
+    {
+      "path": "web/dist/data/explore/m42-2025W37_2A_0010_1.json",
+      "git_blob": "b7f0703349ee207c904a9c5c3cc56b3e47c03700",
+      "sha256": "0b27840ae389f3d30f1f4b4e88612e284e747c818a103003257397fafd7418be"
+    },
+    {
+      "path": "web/dist/data/explore/m42-2025W37_2A_0010_1.png",
+      "git_blob": "87196f1798353906781c539b54a3bc729dfae592",
+      "sha256": "df907f141934b2b0303f34ac5e8200d9d1cbbd15e30df0bccf938bd127621e46"
+    },
+    {
+      "path": "web/dist/data/explore/m67-2025W44_2B_0657_2.json",
+      "git_blob": "b18faf11b9ec54e7c49449c39c70b86a19a7d15b",
+      "sha256": "bfc3b5bf23083dbf97c033927aba9ab5df6e8a6f4c1d03f75e948833821ba86b"
+    },
+    {
+      "path": "web/dist/data/explore/m67-2025W44_2B_0657_2.png",
+      "git_blob": "889014af89fc7abe8af4e4bb9462c72b7af44ca3",
+      "sha256": "566f5f1942e41e2a17d74253d1592c98671ec1f85fee2a61b026d3a6c2736e4c"
+    },
+    {
+      "path": "web/dist/data/explore/ngc188-2025W36_1A_0724_2.json",
+      "git_blob": "700cf463884eccb34f274174de4c16ce65ade283",
+      "sha256": "b3f8720ae20ba4bcfb2adba4d9961aa98cc732dfce6124c26b5a1950ab381e91"
+    },
+    {
+      "path": "web/dist/data/explore/ngc188-2025W36_1A_0724_2.png",
+      "git_blob": "ca843d472b82517dc9a4098dfc8a2b35ed914daa",
+      "sha256": "41f2b089ec81ffc7ca93cf2d3ec536e7403ce7414b39cf609afdbcf2cf79335b"
+    },
+    {
+      "path": "web/dist/data/pair.fits",
+      "git_blob": "793f9c289510fcd2e57e2b7cb14f5eeb6f56b524",
+      "sha256": "7f0cf23f13e52418b6066e50b173afe1f709c6359ba4259b8ccfb6a0d71f2788"
+    },
+    {
+      "path": "web/dist/data/provenance-audit.json",
+      "git_blob": "c8a38dcf1646993bf41d3cc95e343ef554e77055",
+      "sha256": "83ba2fcff9bab2167203136d1359721b33f3fc52a8656e3a89de68ab5a27c731"
+    },
+    {
+      "path": "web/dist/data/review-part-0.bin",
+      "git_blob": "7a2eea19ba730567bd53932b524975c3ae333d9c",
+      "sha256": "23c44f3918935634bf3081afa2c39b50d50742b4961f959b5189fc58349e534d"
+    },
+    {
+      "path": "web/dist/data/review-part-1.bin",
+      "git_blob": "dd994c22fc9ef3d229995a79a96cb7846d2ccd24",
+      "sha256": "dc521c7f2a92ca6e43c7d0707bb40ea10d6f9df975ac4e2c04e3db66d0e6456b"
+    },
+    {
+      "path": "web/dist/data/review-part-2.bin",
+      "git_blob": "0ee5f989bbc97b1592ff2b546c7f22c800bde04d",
+      "sha256": "2c586275a1d1de3887e4ae9cceb55d3e468c90bf0367a618acf3ea2933550f88"
+    },
+    {
+      "path": "web/dist/data/review-part-3.bin",
+      "git_blob": "22c93c0c8689d53f0d207b72b1c0f99a54f4568e",
+      "sha256": "e91f0d3869d9781dd926e295b7b84228fc65c594eabb66618826938da01d162f"
+    },
+    {
+      "path": "web/dist/data/review-part-4.bin",
+      "git_blob": "6c6b97a61a5b3f3d3ef27176fee6fbe5631d0a6e",
+      "sha256": "55e17525ee56e65a4c5d69b947cdea7513fa9b6ec5b70e7f55bc68fdb9494746"
+    },
+    {
+      "path": "web/dist/data/review-part-5.bin",
+      "git_blob": "08f8f253d220a15e10230063ddcff5037f7bcc2d",
+      "sha256": "2520ca83bf2b0a41f993f7f3f90b5f14034e6cf365bf9f7965703862a0652e42"
+    },
+    {
+      "path": "web/dist/data/science-r-draconis.json",
+      "git_blob": "7befb37ae64219d19194874cdc0e88beda097ed7",
+      "sha256": "7705409ee82540b715aeeb8f3a6eb48d7bc7527d2dc081afa4e5f0ec0637e766"
+    },
+    {
+      "path": "web/dist/data/sequence-barnards-star.json",
+      "git_blob": "850baaf21a3767da399a25dca22613e99c4484c3",
+      "sha256": "3fc48c5e277d746e4ec3dd4d5cff7e1733957d839dcdbe1d424d353bf7764215"
+    },
+    {
+      "path": "web/dist/data/sequence-comet-december.json",
+      "git_blob": "388a861dbe55839e552bae818d26b49af523b22a",
+      "sha256": "993e462b6af122b8132c48b9bdae5fb7ccec557e45dfe791b772a7313eaec9b6"
+    },
+    {
+      "path": "web/dist/data/sequence-epsilon-indi-b.json",
+      "git_blob": "6146c18abba1d6a2d95f39213e09cd9461c87137",
+      "sha256": "c7d62e350d20795246a20bc8a501453d0e85981b90a39ba39742f3a1fc0f2196"
+    },
+    {
+      "path": "web/dist/data/sequence-example.json",
+      "git_blob": "48a342f1fe7cc62b051f51852ca91251d8d01658",
+      "sha256": "845eba8ec3c510f212406e7b74cd801700aad9ed49de071ef533df4536020fc1"
+    },
+    {
+      "path": "web/dist/data/sequence-r-draconis-temporal.json",
+      "git_blob": "17cfe0717d2180f82428d0d60b7b324405e5c281",
+      "sha256": "ea4c955aad476910a8f29661c7e9948dd51941b482ffc71fce5fb92245048d20"
+    },
+    {
+      "path": "web/dist/data/sequence-r-draconis.json",
+      "git_blob": "9f8766a889193f98fd31ccfbdb34e27d4267dbb2",
+      "sha256": "61bdb1d12b665a60d741bb459032ce11f2467f902465cbac1b966566d485af2e"
+    },
+    {
+      "path": "web/dist/data/sequence-rw-aurigae.json",
+      "git_blob": "3f414459a96f90d96b6848b6f42391ab3ba115d4",
+      "sha256": "ec950ba29675f8d1fd5460aa0da038e3c54dd9da90f9ba911122d37458e5568c"
+    },
+    {
+      "path": "web/dist/data/sequence-wise-0855.json",
+      "git_blob": "60f292413f17911356dc7fa4a60ffeb9f23a64fa",
+      "sha256": "3559d57e36c2c55a47cb31cb9a2e7331d7ac927b210302de59a1f3611f4ef98a"
+    },
+    {
+      "path": "web/dist/data/target-status.json",
+      "git_blob": "93495b82083da7c0b1d6fdac8775bd580e1df163",
+      "sha256": "3e9805d6e14250fd37f1f3126a22e78b5c730779d644330d2b35cbf2f8d2f941"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "results": [
+    {
+      "check": "Direct staged science under /dist/ subpath",
+      "status": "pass"
+    },
+    {
+      "check": "Runtime identity stays within subpath",
+      "status": "pass"
+    },
+    {
+      "check": "All staged release hashes match regenerated files",
+      "status": "pass",
+      "files": 161,
+      "content_id": "9a46ee1d344932fd2bc7edf19df1bbef69dba6d43274429b455a88f62ab0f7ca"
+    },
+    {
+      "check": "Page-specific canonical/sharing metadata and matching build receipt",
+      "status": "pass"
+    },
+    {
+      "check": "Final guide headline preserves whole words and fits all seven widths",
+      "status": "pass",
+      "geometry": [
+        {
+          "width": 320,
+          "scroll": 320,
+          "h1Font": "32px"
+        },
+        {
+          "width": 360,
+          "scroll": 360,
+          "h1Font": "36px"
+        },
+        {
+          "width": 390,
+          "scroll": 390,
+          "h1Font": "39px"
+        },
+        {
+          "width": 430,
+          "scroll": 430,
+          "h1Font": "43px"
+        },
+        {
+          "width": 768,
+          "scroll": 768,
+          "h1Font": "56px"
+        },
+        {
+          "width": 1024,
+          "scroll": 1024,
+          "h1Font": "71.68px"
+        },
+        {
+          "width": 1440,
+          "scroll": 1440,
+          "h1Font": "96px"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "scope": "Ordinary local static host under a subpath; production repair deployment not performed"
+}

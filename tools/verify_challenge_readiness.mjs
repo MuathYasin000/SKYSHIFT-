@@ -16,6 +16,43 @@ async function context(options={}){
 const ready=async p=>{await p.goto(base+'/#sky-search');await p.locator('#sky-search-targets button').last().waitFor();};
 const submit=async(p,ra,dec)=>{await p.locator('#search-ra').fill(ra);await p.locator('#search-dec').fill(dec);await p.locator('#sky-search-options').evaluate(e=>e.open=true);await p.locator('#sky-search-check').click();};
 try{
+ await check('The challenge guide opens genuine DR1 dates and round-trips the investigation without WebGL',async()=>{
+  const c=await context({viewport:{width:390,height:844}});
+  try {
+   await c.addInitScript(() => {
+    const getContext=HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext=function(type,...options){
+     return type.startsWith('webgl') ? null : getContext.call(this,type,...options);
+    };
+   });
+   const p=await c.newPage();
+   await p.goto(base+'/');
+   await p.getByRole('link',{name:'Review the five challenge fields'}).click();
+   await p.getByRole('heading',{name:'The five challenge fields'}).waitFor();
+   assert.equal(await p.locator('.challenge-fields dt').count(),5);
+   assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+   await p.evaluate(await fs.readFile('tools/vendor/axe.min.js','utf8'));
+   const violations=await p.evaluate(async()=> (await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>v.id));
+   assert.deepEqual(violations,[]);
+   await p.getByRole('link',{name:'Open two DR1 dates'}).click();
+   const caption=p.locator('#instrument-sequence-position');
+   await caption.waitFor();
+   const first=await caption.innerText();
+   assert.match(first,/2025-12-07.*DR1/);
+   assert.equal(await p.getByRole('button',{name:'Compare with wipe'}).isDisabled(),true);
+   await p.getByRole('button',{name:'Next observation'}).click();
+   const second=await caption.innerText();
+   assert.match(second,/2025-12-10.*DR1/);
+   const download=p.waitForEvent('download');
+   await p.locator('#instrument-save').click();
+   const file=await (await download).path();
+   await p.goto(base+'/#compare');
+   await p.waitForFunction(()=>window.skyshiftWebsite?.diagnostics().investigation?.kind==='pair'&&!skyshiftWebsite.diagnostics().investigation.busy);
+   await p.locator('#instrument-file').setInputFiles(file);
+   await p.waitForFunction(()=>/2025-12-10.*DR1/.test(document.querySelector('#instrument-sequence-position')?.textContent));
+   return {first,second,webgl:false};
+  } finally { await c.close(); }
+ });
  await check('All five target requests preserve coordinates and expose verified field examples without detection claims',async()=>{
   const c=await context(),p=await c.newPage();await ready(p);
   const targets=JSON.parse(await fs.readFile('config/challenge_targets.json','utf8')).targets;
@@ -27,7 +64,7 @@ try{
    const download=p.waitForEvent('download');await p.locator('#sky-search-download').click();
    const file=await download;await file.saveAs(await claimEvidenceFile(evidenceFile(evidenceRun,out+'/'+t.id+'-request.json')));
    const r=JSON.parse(await fs.readFile(out+'/'+t.id+'-request.json','utf8'));
-   assert.equal(r.kind,'skyshift-observation-request');assert.equal(r.release,'qr2');assert.equal(r.detector,2);assert.equal(r.region.size_deg,.2);
+   assert.equal(r.kind,'skyshift-observation-request');assert.equal(r.release,'dr1');assert.equal(r.detector,2);assert.equal(r.region.size_deg,.2);
    assert.equal(new URL(await p.locator('#sky-search-share').getAttribute('href')).searchParams.get('ra'),String(r.region.ra_deg));
   }
   await c.close();return {targets:5,scientific_interpretation:'NOT_ESTABLISHED'};

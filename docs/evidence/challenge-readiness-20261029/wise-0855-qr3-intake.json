@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "kind": "skyshift-resource-intake",
+  "created_at_utc": "2026-10-29T13:10:11.826920+00:00",
+  "request_sha256": "2547728e9e77ccbc3ab21e9d9f1c498dd81d197fb01c8e3934053644112f6d7d",
+  "request": {
+    "schema_version": "1.0",
+    "kind": "skyshift-observation-request",
+    "release": "qr3",
+    "region": {
+      "ra_deg": 133.79512916666667,
+      "dec_deg": -7.245147222222222,
+      "size_deg": 0.2,
+      "frame": "icrs"
+    }
+  },
+  "query_url": "https://irsa.ipac.caltech.edu/SIA?COLLECTION=spherex_qr3&POS=circle+133.79512916666667+-7.245147222222222+0.1414213562373095&MAXREC=5000&RESPONSEFORMAT=VOTABLE",
+  "query_parameters": {
+    "COLLECTION": "spherex_qr3",
+    "POS": "circle 133.79512916666667 -7.245147222222222 0.1414213562373095",
+    "MAXREC": "5000",
+    "RESPONSEFORMAT": "VOTABLE"
+  },
+  "status": "INVENTORIED",
+  "scientific_approval": "PENDING",
+  "target_validation": "NOT_CONDUCTED",
+  "archive_documentation": "https://caltech-ipac.github.io/spherex-archive-documentation/spherex-data-access/",
+  "next": [
+    "Retrieve bounded archive metadata with --query.",
+    "Select source identities and matching release/detector calibration from official resources.",
+    "Use inspect, screen and review with existing thresholds before adding viewer products."
+  ],
+  "summary": {
+    "candidate_rows": 0,
+    "distinct_start_values": 0,
+    "time_min_mjd_raw": null,
+    "time_max_mjd_raw": null,
+    "missing_or_invalid_start_values": 0,
+    "comparison_status": "NOT_SCREENED",
+    "note": "Rows and distinct times are metadata candidates, not independent usable epochs or a detection."
+  }
+}

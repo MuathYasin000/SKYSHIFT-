@@ -1,0 +1,58 @@
+{
+  "created_at_utc": "2026-11-14T16:51:08.044407+00:00",
+  "request": {
+    "schema_version": "1.0",
+    "kind": "skyshift-observation-request",
+    "release": "dr1",
+    "region": {
+      "ra_deg": 210.8023,
+      "dec_deg": 54.3489,
+      "size_deg": 0.03,
+      "frame": "icrs"
+    },
+    "detector": 2,
+    "max_frames": 1,
+    "deep": false,
+    "use_cache": false,
+    "discovery_only": false,
+    "discovery_scope": "selected",
+    "metadata_provider": "sia2",
+    "selection": "chronological",
+    "wavelength_um": null,
+    "start_date": "2025-12-07",
+    "end_date": "2025-12-08"
+  },
+  "origin": "live_archive",
+  "status": "prepared",
+  "observation": {
+    "observation_id": "2025W49_2A_0650_1",
+    "release": "dr1",
+    "detector": 2,
+    "pipeline_version": "7.0.5",
+    "time_start_utc": "2025-12-07T11:21:33.829000Z",
+    "time_end_utc": "2025-12-07T11:23:28.947000Z",
+    "original_timescale": "utc",
+    "science_unit": "MJy/sr",
+    "source": {
+      "path": "1a0da76c33df259c87af5f764ff4012d502d59fa8870d32ab746f7783d4bb415.fits",
+      "sha256": "c3c4f7967a6a3bfa850af6e1e66ca3bd78c5dc2f491b55be17953ccb3b0a1490",
+      "size_bytes": 3954240,
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W49_2A/l2b-v27-2026-209/2/level2_2025W49_2A_0650_1D2_spx_l2b-v27-2026-209.fits?center=210.8023%2C54.3489&size=0.03",
+      "retrieved_at_utc": "2026-11-14T16:50:37.500605Z"
+    },
+    "spectral_calibration": null,
+    "center_wavelength_um": 1.4662392366303705,
+    "center_bandwidth_um": 0.03602630472468102,
+    "hdus": [
+      "PRIMARY",
+      "IMAGE",
+      "FLAGS",
+      "VARIANCE",
+      "ZODI",
+      "EPSF",
+      "WCS-WAVE"
+    ]
+  },
+  "rejections": [],
+  "science": "visualization only"
+}

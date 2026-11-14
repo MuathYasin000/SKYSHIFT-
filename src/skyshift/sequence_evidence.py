@@ -62,7 +62,7 @@ def reconstruct_sequence(packet, output, source_cache=None):
         if cached and cached.is_file() and sha256_file(cached)==record.sha256:
             return cached
         u=urlsplit(record.source_url or '')
-        if u.scheme!='https' or u.hostname not in {'irsa.ipac.caltech.edu','nasa-irsa-spherex.s3.us-east-1.amazonaws.com'} or '/spherex/' not in u.path and not u.path.startswith(('/qr2/','/qr3/')):
+        if u.scheme!='https' or u.hostname not in {'irsa.ipac.caltech.edu','nasa-irsa-spherex.s3.us-east-1.amazonaws.com'} or '/spherex/' not in u.path and not u.path.startswith(('/qr2/','/qr3/','/dr1/')):
             raise ValueError('Unsupported original archive reference')
         path=output/'originals'/(record.sha256+'.fits')
         download(record.source_url,path,max_bytes=40_000_000)

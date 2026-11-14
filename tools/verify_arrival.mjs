@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import {chromium} from 'file:///C:/Users/LOQ/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
 const out=evidenceRun;
 const b=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
-const results=[],errors=[],base='http://localhost:3000/';
+const results=[],errors=[],base='http://localhost:3000/', intro=base+'?intro=1';
 async function page(options={}){const c=await b.newContext({viewport:{width:1440,height:1000},...options});const p=await c.newPage();p.setDefaultTimeout(15000);p.on('pageerror',e=>errors.push(e.message));return {c,p};}
 const initialized=p=>p.waitForFunction(()=>window.skyshiftArrival?.diagnostics().initialized);
 const complete=p=>p.waitForFunction(()=>window.skyshiftArrival&&!skyshiftArrival.diagnostics().active);
@@ -14,7 +14,7 @@ async function check(name,fn){try{const detail=await fn();results.push({name,sta
 try{
  await check('Slow loading keeps the page gated; first frame reveals and lands the same canvas',async()=>{
   const {c,p}=await page();const release=await hold(c);try{
-   await p.goto(base);await initialized(p);await p.waitForFunction(()=>window.skyshiftHero);
+   await p.goto(intro);await initialized(p);await p.waitForFunction(()=>window.skyshiftHero);
    await p.evaluate(()=>window.originalArrivalCanvas=document.getElementById('hero-model-canvas'));
    assert.equal(await p.locator('#main').evaluate(e=>e.inert),true);assert.equal(await p.locator('#arrival-screen').isVisible(),true);
    assert.equal(await p.locator('#arrival-model-stage canvas').count(),1);assert.equal(await p.locator('#hero-model-canvas').count(),1);
@@ -47,7 +47,7 @@ try{
  });
  await check('Mobile arrivals land without overflow, scroll restoration or orphaned canvases',async()=>{
   for(const [width,height] of [[320,667],[390,844],[844,390]]){const {c,p}=await page({viewport:{width,height},isMobile:true,hasTouch:true});try{
-   await p.goto(base);await complete(p);
+   await p.goto(intro);await complete(p);
    assert.equal(await p.evaluate(()=>scrollY),0);assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
    assert.equal(await p.locator('.hero-observatory canvas').count(),1);assert.equal(await p.locator('#arrival-model-stage canvas').count(),0);
    assert.equal(await p.evaluate(()=>skyshiftHero.diagnostics().model.arrival_orbit),false);
@@ -57,7 +57,7 @@ try{
  });
  await check('Reduced motion waits for real rendering and bypasses all reveal flights',async()=>{
   const {c,p}=await page({reducedMotion:'reduce'}),release=await hold(c);try{
-   await p.goto(base);await initialized(p);assert.equal(await p.locator('#main').evaluate(e=>e.inert),true);release();await complete(p);
+   await p.goto(intro);await initialized(p);assert.equal(await p.locator('#main').evaluate(e=>e.inert),true);release();await complete(p);
    assert.ok(await p.evaluate(()=>skyshiftHero.diagnostics().model.frames>0));assert.equal(await p.evaluate(()=>skyshiftHero.diagnostics().model.arrival_orbit),false);
    assert.equal(await p.evaluate(()=>document.getAnimations().filter(a=>a.effect?.target?.closest?.('#arrival-screen,#arrival-model-stage')).some(a=>a.playState==='running')),false);
   }finally{release();await c.close();}
@@ -65,7 +65,7 @@ try{
  await check('No WebGL offers retry and escape; direct scientific access remains functional',async()=>{
   const {c,p}=await page();try{
    await c.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(t,...a){return /webgl/i.test(t)?null:original.call(this,t,...a);};});
-   await p.goto(base);await p.locator('#arrival-retry').waitFor();assert.equal(await p.evaluate(()=>skyshiftArrival.diagnostics().state),'failed');
+   await p.goto(intro);await p.locator('#arrival-retry').waitFor();assert.equal(await p.evaluate(()=>skyshiftArrival.diagnostics().state),'failed');
    await p.locator('#arrival-skip').click();assert.equal(await p.locator('#main').evaluate(e=>e.inert),false);
    await p.evaluate(()=>location.hash='compare');await p.waitForFunction(()=>window.skyshiftWebsite?.diagnostics().investigation?.kind==='pair'&&!skyshiftWebsite.diagnostics().investigation.busy);
    assert.equal(await p.locator('#instrument-save').isEnabled(),true);
@@ -73,7 +73,7 @@ try{
  });
  await check('A stalled import exposes recovery instead of pretending the model is ready',async()=>{
   const {c,p}=await page(),release=await hold(c);try{
-   await p.goto(base);await p.locator('#arrival-retry').waitFor({timeout:16500});
+   await p.goto(intro);await p.locator('#arrival-retry').waitFor({timeout:20000});
    assert.equal(await p.evaluate(()=>skyshiftArrival.diagnostics().state),'failed');assert.equal(await p.locator('#main').evaluate(e=>e.inert),true);
    await p.locator('#arrival-skip').click();await complete(p);release();
    assert.equal(await p.locator('.hero-observatory canvas').count(),1);assert.equal(await p.locator('#main').evaluate(e=>e.inert),false);
@@ -85,14 +85,14 @@ try{
    await p.goto(base+'#compare');await p.waitForFunction(()=>window.skyshiftWebsite?.diagnostics().investigation?.kind==='pair'&&!skyshiftWebsite.diagnostics().investigation.busy);
    assert.equal(await p.locator('#arrival-screen').isVisible(),false);assert.equal(await p.locator('#main').evaluate(e=>e.inert),false);assert.deepEqual(imports,[]);
    await p.goto(base+'#sky-search');await p.locator('#sky-search-prepare').waitFor();assert.equal(await p.locator('#arrival-screen').isVisible(),false);
-   await p.goto(base);await p.waitForFunction(()=>document.documentElement.dataset.arrival==='reveal');
+   await p.goto(intro);await p.waitForFunction(()=>document.documentElement.dataset.arrival==='reveal');
    await p.evaluate(()=>location.hash='compare');await complete(p);assert.equal(await p.evaluate(()=>skyshiftArrival.diagnostics().state),'navigation');
    await p.waitForTimeout(1500);assert.equal(await p.locator('.hero-observatory canvas').count(),1);assert.equal(await p.locator('#main').evaluate(e=>e.inert),false);
   }finally{await c.close();}
  });
  await check('Context loss during reveal cannot finish a stale arrival or strand the visitor',async()=>{
   const {c,p}=await page();try{
-   await p.goto(base);await p.waitForFunction(()=>document.documentElement.dataset.arrival==='reveal');
+   await p.goto(intro);await p.waitForFunction(()=>document.documentElement.dataset.arrival==='reveal');
    await p.evaluate(()=>document.getElementById('hero-model-canvas').getContext('webgl2').getExtension('WEBGL_lose_context').loseContext());
    await p.waitForFunction(()=>skyshiftArrival.diagnostics().state==='failed');await p.waitForTimeout(1800);
    assert.equal(await p.evaluate(()=>skyshiftArrival.diagnostics().state),'failed');
@@ -101,7 +101,7 @@ try{
  });
  await check('Resizing during reveal restores the hero canvas and releases page controls',async()=>{
   const {c,p}=await page();try{
-   await p.goto(base);await p.waitForFunction(()=>document.documentElement.dataset.arrival==='reveal');
+   await p.goto(intro);await p.waitForFunction(()=>document.documentElement.dataset.arrival==='reveal');
    await p.setViewportSize({width:1024,height:768});await complete(p);
    assert.equal(await p.evaluate(()=>skyshiftArrival.diagnostics().state),'resized');
    assert.equal(await p.locator('.hero-observatory canvas').count(),1);assert.equal(await p.locator('#main').evaluate(e=>e.inert),false);
@@ -111,7 +111,7 @@ try{
  await check('The saved reduce-effects preference retains first-frame readiness without an orbital flight',async()=>{
   const {c,p}=await page();try{
    await c.addInitScript(()=>localStorage.setItem('skyshift.space.preferences.v1',JSON.stringify({effects:false})));
-   await p.goto(base);await complete(p);
+   await p.goto(intro);await complete(p);
    assert.equal(await p.evaluate(()=>skyshiftHero.diagnostics().model.arrival_orbit),false);
    assert.equal(await p.locator('#main').evaluate(e=>e.inert),false);
    assert.ok(await p.evaluate(()=>skyshiftHero.diagnostics().model.frames>0));

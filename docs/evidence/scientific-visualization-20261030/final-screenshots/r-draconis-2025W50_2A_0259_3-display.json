@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "kind": "native_display_receipt",
+  "usage": "single_observation_only",
+  "source": {
+    "path": "209600227f8b1d0278663a20a3e3ecf7f7fd631ea405353de0d8aed927f87716.fits",
+    "sha256": "ec6b6f361163ce8adbc23249557aa3ba770f87a6899e408b8d8e3667e244212b",
+    "size_bytes": 5440320,
+    "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_2A/l2b-v20-2025-349/2/level2_2025W50_2A_0259_3D2_spx_l2b-v20-2025-349.fits?center=248.16761083294998%2C66.75497941722&size=0.3",
+    "retrieved_at_utc": null
+  },
+  "asset_sha256": "798a3958be471116ab0475d2a8df8f49ce95ec180fb00075cba52259fae21399",
+  "array_sha256": {
+    "SCI": "3fc571d4cb8f8c2f3425dadb84778e766ece379a8ae76839d28a4061aea859dc",
+    "VALID": "24115fb86ee3f4926669a2b182a61838bce5c339a3f78f8e438c7171af6e3a57",
+    "FLAGS": "355cb234a33364fd70e59be8b28e9d74b1b74e32330187c582544fd564c3c9da",
+    "VARIANCE": "51f40dcca3a1119d2676dc97ad1ce97d336fd0b5548670678e8a7865df23ce8a",
+    "WAVE": "81e19f8a3c04e2eb7c6776a20f21fb027671e659ed421f3a9667fde1a1544d4a",
+    "RA": "9be4a0c358fbf447f566b86bf5bdbb05e015f12d8d24b657206137eb7fafd6ed",
+    "DEC": "f82a7662f50dd50db8fdb1a0969ca46ea9fbff6e9fb5032724e82ab870910b08"
+  },
+  "settings": {
+    "limits": "zscale",
+    "stretch": "linear",
+    "asinh_a": 0.1,
+    "contrast": 2,
+    "palette": "ice",
+    "mask": "excluded"
+  },
+  "effective_limits": {
+    "vmin": 0.24005325618241552,
+    "vmax": 0.4810650939599968,
+    "asinh_a": 0.1
+  },
+  "viewport": {
+    "css_pixels_per_native_pixel": 2,
+    "cx": 68.5,
+    "cy": 87.5
+  },
+  "reference": {
+    "survey": "CDS/P/DSS2/color",
+    "image_sha256": "b95679afabe078c684e44f473c9c10b2f220ac8344150b74eb5d47c12b725aa2",
+    "usage": "Optical context only; never a temporal frame or scientific array"
+  },
+  "scientific_approval": "PENDING",
+  "physical_change": "NOT_ESTABLISHED"
+}

@@ -1,0 +1,18 @@
+{
+  "scope": "Silent intro verified under an explicitly allowed autoplay policy; ordinary interface audio remains enabled",
+  "results": [
+    {
+      "name": "Loading, background clicks, model reveal and landing stay silent even with autoplay allowed",
+      "status": "pass"
+    },
+    {
+      "name": "Skipping a loading model is silent and still releases the homepage",
+      "status": "pass"
+    },
+    {
+      "name": "No-WebGL recovery remains silent and mobile layouts retain their visual arrival",
+      "status": "pass"
+    }
+  ],
+  "page_errors": []
+}

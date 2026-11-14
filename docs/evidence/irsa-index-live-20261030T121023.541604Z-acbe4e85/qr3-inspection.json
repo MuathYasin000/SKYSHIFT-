@@ -1,0 +1,70 @@
+{
+  "observation": {
+    "observation_id": "2026W30_1B_0001_1",
+    "release": "qr3",
+    "detector": 2,
+    "pipeline_version": "7.0.5",
+    "time_start_utc": "2026-07-20T00:06:53.370000Z",
+    "time_end_utc": "2026-07-20T00:08:48.488000Z",
+    "original_timescale": "utc",
+    "science_unit": "MJy/sr",
+    "source": {
+      "path": "D:\\Nasa_SKYSHIFT\\data\\cache\\cutouts\\qr3-reference.fits",
+      "sha256": "5a63b0f9cff6d8ffb00e38e78596ec1bd6e39ec978c276d4ef45f2969791bdcd",
+      "size_bytes": 3954240,
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr3/level2/2026W30_1B/l2b-v27-2026-222/2/level2_2026W30_1B_0001_1D2_spx_l2b-v27-2026-222.fits?center=236.49451667514998%2C-11.607273633843315&size=0.04",
+      "retrieved_at_utc": null
+    },
+    "spectral_calibration": null,
+    "center_wavelength_um": 1.337674635882471,
+    "center_bandwidth_um": 0.032280172276146275,
+    "hdus": [
+      "PRIMARY",
+      "IMAGE",
+      "FLAGS",
+      "VARIANCE",
+      "ZODI",
+      "EPSF",
+      "WCS-WAVE"
+    ]
+  },
+  "shape": [
+    23,
+    24
+  ],
+  "usable_fraction": 0.822463768115942,
+  "unknown_flag_pixels": 0,
+  "spectral_basis": "visualization_wcs_wave_only",
+  "flag_policy": "conservative-v0.1",
+  "masked_flags": [
+    "BLOOM",
+    "COLD",
+    "CROSSTALK",
+    "DICHROIC",
+    "FULLSAMPLE",
+    "GHOST",
+    "GHOST_EXT",
+    "GHOST_FPA",
+    "HALO",
+    "HOT",
+    "MISSING_DATA",
+    "NONFUNC",
+    "NONLINEAR",
+    "OUTLIER",
+    "OVERFLOW",
+    "PERSIST",
+    "PHANMISS",
+    "SNOWBALL",
+    "STREAK",
+    "SUR_ERROR",
+    "TRANSIENT"
+  ],
+  "retained_flag": "SOURCE",
+  "psf_fwhm_header_arcsec": 7.46070125580342,
+  "fine_astrometry_flag": 0,
+  "limitations": [
+    "Inspection and screening do not establish pair suitability.",
+    "SOURCE alone is retained; all other declared flags are masked.",
+    "Unflagged pixels can still contain artifacts."
+  ]
+}

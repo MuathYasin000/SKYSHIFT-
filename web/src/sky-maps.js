@@ -20,10 +20,10 @@ export function createSkyMaps({root}) {
  function links(){
   if(!selected)return;
   $('coordinate').textContent=`Selected search centre · ICRS ${selected.ra_deg.toFixed(7)}°, ${selected.dec_deg.toFixed(7)}°. `+(manifest?'Click the WCS-calibrated mosaic to change this position.':'Published target centre only; image pixels are not assigned celestial coordinates.');
-  const request={schema_version:'1.0',kind:'skyshift-observation-request',release:'qr2',detector:2,region:{...selected,size_deg:.04,frame:'icrs'}};
+  const request={schema_version:'1.0',kind:'skyshift-observation-request',release:'dr1',detector:2,region:{...selected,size_deg:.04,frame:'icrs'}};
   $('dates').href=requestURL(request,location.href);
   $('native').hidden=entry.id!=='m101';
-  const url=new URL(location.href);url.searchParams.set('ra',selected.ra_deg);url.searchParams.set('dec',selected.dec_deg);url.searchParams.set('fov','2.4');url.searchParams.set('release','qr2');
+  const url=new URL(location.href);url.searchParams.set('ra',selected.ra_deg);url.searchParams.set('dec',selected.dec_deg);url.searchParams.set('fov','2.4');url.searchParams.set('release',request.release);
   if(manifest)url.searchParams.set('plane',currentPlane+1);else url.searchParams.delete('plane');history.replaceState(null,'',url);
  }
  function draw(){

@@ -149,14 +149,14 @@ class LocalHandler(SimpleHTTPRequestHandler):
     def api_request(self, path, payload=None):
         try:
             if path == '/api/capabilities' and self.command in ('GET','HEAD'):
-                from skyshift.releases import release_capabilities
+                from skyshift.releases import CURRENT_COLLECTIONS, release_capabilities
                 self.send_json(HTTPStatus.OK, {'preparation': self.server.preparation_enabled,
                     'preparation_code_sha256':hashlib.sha256(b''.join(p.name.encode()+p.read_bytes() for p in sorted((ROOT/'src/skyshift').glob('*.py')))).hexdigest() if self.server.preparation_enabled else None,
                     'max_frames':6,'max_field_arcmin':30,'max_active_jobs':2,
                     'calibrated_temporal_adapters':['qr2/D2'],
                     'release_registry':release_capabilities(),
-                    'archive_discovery':{'collections':['spherex_qr2','spherex_qr2_deep','spherex_qr3','spherex_qr3_deep'],'providers':['sia2','tap'],'max_requests':8,'max_transfer_bytes':16000000,'index_version':'spherex-metadata-index-v1','scope':'Region-scoped incremental ingestion; no all-sky mirror or complete archive claim'},
-                    'scope':'Other release/detector combinations may provide single-frame visualization only; no automatic fallback.'})
+                    'archive_discovery':{'collections':list(CURRENT_COLLECTIONS),'providers':['sia2','tap'],'max_requests':8,'max_transfer_bytes':16000000,'index_version':'spherex-metadata-index-v1','scope':'Region-scoped incremental ingestion; no all-sky mirror or complete archive claim'},
+                    'scope':'DR1 and QR3 support independent dated observations. Prepared QR2/D2 retains the provisional matched-wavelength checks.'})
                 return
             store = self.server.preparation_store()
             if path == '/api/investigations' and self.command == 'POST':

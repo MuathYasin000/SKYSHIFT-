@@ -6,6 +6,9 @@ from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
+SPHERExRelease = Literal['qr2', 'qr3', 'dr1']
+
+
 class Record(BaseModel):
     model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
 
@@ -33,7 +36,7 @@ class SkyRegion(Record):
 
 class Observation(Record):
     observation_id: str
-    release: Literal["qr2", "qr3"]
+    release: SPHERExRelease
     detector: int = Field(ge=1, le=6)
     pipeline_version: str
     time_start_utc: datetime

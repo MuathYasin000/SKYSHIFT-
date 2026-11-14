@@ -24,6 +24,7 @@ from .archive import fetch_header_prefix, sha256_file
 from .coordinates import common_grid
 from .suitability import ScreeningPolicy
 from .messages import public_error_message
+from .releases import product_adapter
 
 MAX_PROBES=12
 
@@ -64,7 +65,7 @@ def quantiles(rows,count):
 def probe_url(row):
     try:
         cloud=json.loads(row['cloud_access'])['aws']
-        if cloud['bucket_name']=='nasa-irsa-spherex' and cloud['region']=='us-east-1' and cloud['key'].startswith(('qr2/level2/','qr3/level2/')) and '..' not in cloud['key']:
+        if cloud['bucket_name']=='nasa-irsa-spherex' and cloud['region']=='us-east-1' and cloud['key'].startswith(('qr2/level2/','qr3/level2/','dr1/level2/')) and '..' not in cloud['key']:
             return 'https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/'+cloud['key']
     except (ValueError,KeyError,TypeError):pass
     return row['access_url']
@@ -107,7 +108,8 @@ def evaluate_header(raw,row,request,ra,dec,layers,orientation):
     if primary.get('SIMPLE') is not True or primary.get('NAXIS')!=0 or header.get('EXTNAME')!='IMAGE':raise ValueError('Unsupported FITS header layout')
     if header.get('OBSID')!=row['obs_id'] or header.get('DETECTOR')!=request.detector:raise ValueError('Header identity differs from metadata')
     version=str(primary.get('VERSION',''))
-    if not version.startswith('6.' if request.release=='qr2' else '7.'):raise ValueError('Header processing version differs from supported release')
+    if product_adapter(version, request.detector, row.get('access_url'))['release'] != request.release:
+        raise ValueError('Header processing version differs from supported release')
     if header.get('L2DQAFLG')!='Pass':raise ValueError('No passing exposure-level quality assessment')
     scale=str(header.get('TIMESYS','')).lower()
     if scale not in {'utc','tai','tt','tdb'}:raise ValueError('Unsupported observation timescale')

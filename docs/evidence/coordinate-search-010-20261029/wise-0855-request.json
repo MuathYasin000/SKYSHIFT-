@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "kind": "skyshift-observation-request",
+  "release": "qr2",
+  "region": {
+    "ra_deg": 133.79512916666667,
+    "dec_deg": -7.245147222222222,
+    "size_deg": 0.2,
+    "frame": "icrs"
+  },
+  "detector": 2
+}

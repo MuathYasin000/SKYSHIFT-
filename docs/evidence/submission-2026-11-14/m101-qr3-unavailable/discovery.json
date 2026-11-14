@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "kind": "spherex_archive_discovery",
+  "frames": [],
+  "status": "partial_or_unavailable",
+  "index_version": "spherex-metadata-index-v1",
+  "metadata_provider": "sia2",
+  "request_scope": "Coordinate field across explicitly requested supported collections; not an all-sky mirror or mission-completeness claim",
+  "detector_filter": 2,
+  "collections": [
+    {
+      "collection": "spherex_qr3",
+      "status": "partial_or_unavailable",
+      "origin": "live_SIA2",
+      "checked_at_utc": "2026-11-14T16:45:36.379139+00:00",
+      "rows": 0,
+      "incremental_changes": {
+        "added": 0,
+        "changed": 0,
+        "unchanged": 0
+      },
+      "remaining_time_partitions": 0,
+      "parts": [
+        {
+          "collection": "spherex_qr3",
+          "url": "https://irsa.ipac.caltech.edu/SIA?COLLECTION=spherex_qr3&POS=circle+210.8023+54.3489+0.021213203435596423&MAXREC=5000&RESPONSEFORMAT=VOTABLE&BAND=1.35e-06+1.35e-06&TIME=60745.00000000+61359.00000000",
+          "time_mjd": [
+            60745.0,
+            61359.0
+          ],
+          "status": "unavailable",
+          "reason": "HTTP Error 502: Proxy Error"
+        }
+      ]
+    }
+  ],
+  "observations": [],
+  "metadata_rows": 0,
+  "network_requests": 1,
+  "network_bytes": 0,
+  "index_bytes": 1904640,
+  "transfer_budget_used_bytes": 8000000,
+  "unmeasured_failed_transfer_upper_bound_bytes": 8000000,
+  "limits": {
+    "requests": 8,
+    "transfer_bytes": 16000000,
+    "index_records": 200000,
+    "index_bytes": 134217728
+  },
+  "limitations": [
+    "SIA2 ingestion may lag browsable directories, the archive GUI and some TAP results; zero rows do not establish mission-wide absence.",
+    "TAP samples at most one authoritative DataLink association list per nonempty collection within the shared request budget; unqueried or failed associations remain unknown.",
+    "Pipeline versions, calibration associations and pixel quality remain unknown where the metadata service does not supply them.",
+    "A complete requested query scope is not a complete all-sky archive index."
+  ],
+  "scientific_approval": "PENDING",
+  "interpretation": "Metadata only. No image acquisition, detection or temporal comparison is established."
+}

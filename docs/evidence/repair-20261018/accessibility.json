@@ -1,0 +1,52 @@
+[
+  {
+    "route": "/",
+    "violations": [],
+    "incomplete": 1
+  },
+  {
+    "route": "/#observations/m101",
+    "violations": [],
+    "incomplete": 1
+  },
+  {
+    "route": "/#compare",
+    "violations": [],
+    "incomplete": 1
+  },
+  {
+    "route": "/#universe",
+    "violations": [],
+    "incomplete": 1
+  },
+  {
+    "route": "/discover.html",
+    "violations": [],
+    "incomplete": 0
+  },
+  {
+    "route": "/explore.html",
+    "violations": [],
+    "incomplete": 2
+  },
+  {
+    "route": "/compare.html",
+    "violations": [],
+    "incomplete": 2
+  },
+  {
+    "route": "/methodology.html",
+    "violations": [],
+    "incomplete": 0
+  },
+  {
+    "route": "/guide.html",
+    "violations": [],
+    "incomplete": 0
+  },
+  {
+    "route": "/classic-home.html",
+    "violations": [],
+    "incomplete": 1
+  }
+]

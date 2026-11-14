@@ -1,0 +1,47 @@
+{
+  "scope": "Local automated browser checks; illustrative arrival artwork, no scientific data changes",
+  "results": [
+    {
+      "name": "Slow loading keeps the page gated; first frame reveals and lands the same canvas",
+      "status": "pass",
+      "detail": {
+        "same_canvas": true,
+        "first_render_gated": true,
+        "accessibility_violations": 0
+      }
+    },
+    {
+      "name": "Mobile arrivals land without overflow, scroll restoration or orphaned canvases",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced motion waits for real rendering and bypasses all reveal flights",
+      "status": "pass"
+    },
+    {
+      "name": "No WebGL offers retry and escape; direct scientific access remains functional",
+      "status": "pass"
+    },
+    {
+      "name": "A stalled import exposes recovery instead of pretending the model is ready",
+      "status": "pass"
+    },
+    {
+      "name": "Direct science and search anchors bypass the arrival; route changes cancel an active flight",
+      "status": "pass"
+    },
+    {
+      "name": "Context loss during reveal cannot finish a stale arrival or strand the visitor",
+      "status": "pass"
+    },
+    {
+      "name": "Resizing during reveal restores the hero canvas and releases page controls",
+      "status": "pass"
+    },
+    {
+      "name": "The saved reduce-effects preference retains first-frame readiness without an orbital flight",
+      "status": "pass"
+    }
+  ],
+  "page_errors": []
+}

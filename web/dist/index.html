@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Explore real SPHEREx observations, compare the restricted M101 field across two dates, and save reproducible investigations. Independent Project Mercury Team application."
+      content="Search current NASA SPHEREx data by sky coordinates, inspect real infrared observations by date, and save the evidence. Independent Project Mercury Team application."
     />
     <title>SKYSHIFT — SPHEREx observations & comparison</title>
     <link rel="icon" href="./assets/skyshift-mark.svg" type="image/svg+xml">
@@ -21,14 +21,10 @@
 <link rel="stylesheet" href="./compare.css">
 <link rel="stylesheet" href="./discover.css">
 <link rel="stylesheet" href="./universe.css">
-<link rel="preload" href="./assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="./assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><link rel="canonical" href="https://skyshiftt.netlify.app/">
+<link rel="preload" href="./assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="./assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta property="og:type" content="website">
 <meta property="og:title" content="SKYSHIFT — SPHEREx observations &amp; comparison">
-<meta property="og:description" content="Explore real SPHEREx observations, compare the restricted M101 field across two dates, and save reproducible investigations. Independent Project Mercury Team application.">
-<meta property="og:url" content="https://skyshiftt.netlify.app/">
-<meta property="og:image" content="https://skyshiftt.netlify.app/assets/mission-control.webp">
-<meta property="og:image:alt" content="SKYSHIFT mission-control interface with an illustrative SPHEREx model; scientific approval pending">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:description" content="Search current NASA SPHEREx data by sky coordinates, inspect real infrared observations by date, and save the evidence.">
 <link rel="stylesheet" href="./kinetic-loader.css">
 <link rel="stylesheet" href="./arrival.css">
 <script src="./arrival.js"></script>
@@ -86,7 +82,7 @@
           <div class="hero-stars stars-mid" aria-hidden="true"></div>
           <div class="intro-copy">
             <p class="eyebrow">
-              <span class="status-dot"></span> A NEW PERSPECTIVE ON THE UNIVERSE
+              <span class="status-dot"></span> SPHEREx DR1 &amp; QR3
             </p>
             <h1 aria-label="Watch the infrared sky change over time.">
               <span class="headline-line">Watch the </span
@@ -136,10 +132,8 @@
                 <span class="launch-spectrum" aria-hidden="true"
                   ><i></i><i></i><i></i><i></i><i></i><i></i
                 ></span> </a
-              ><a href="#universe" class="text-link universe-launch"
-                ><span aria-hidden="true">◌</span> Explore the Universe in 3D
-                <span aria-hidden="true">↗</span></a
               ><a href="#sky-search" class="text-link">Search sky coordinates ↗</a>
+              <a href="./challenge.html" class="text-link">Review the five challenge fields ↗</a>
             </div>
             <p class="intro-note">
               M101 offers a restricted two-date comparison.
@@ -247,7 +241,7 @@
             <div class="search-target-row"><span>Try a target</span><div id="sky-search-targets" class="search-targets" role="group" aria-label="Challenge target search presets"></div></div>
             <div class="search-toolbar">
               <a class="search-example" href="#sky-map/m101">Explore M101 in 102 wavelengths ↗</a>
-              <a class="search-example" href="#sequence-example">Try a cached example ↗</a>
+              <a class="search-example" href="#target-example/m101-dr1">M101 · two DR1 dates ↗</a>
               <a class="search-example" href="#target-example/m101-time-explorer">M101 · matched dates &amp; native images ↗</a>
               <a class="search-example" href="#target-example/r-draconis-temporal">R Draconis field · two dates ↗</a>
               <a class="search-example" href="#target-example/comet-december">Inspect 3I/ATLAS · wavelength check ↗</a>
@@ -256,7 +250,7 @@
                 <summary>Options &amp; data notes</summary>
                 <div class="search-options-body">
                   <div class="search-advanced-grid">
-                    <label for="search-release">Data release<select id="search-release" name="release"><option value="qr2">QR2</option><option value="qr3">QR3</option></select></label>
+                    <label for="search-release">Data release<select id="search-release" name="release"><option value="dr1">DR1 · Surveys 1 and 2</option><option value="qr3">QR3 · Surveys 3 and 4</option><option value="qr2">QR2 · historical inputs</option></select></label>
                     <label for="search-detector">Wavelength group<select id="search-detector"><option value="2">D2 · 1.10–1.62 µm</option><option value="1">D1 · 0.75–1.09 µm</option><option value="3">D3 · 1.63–2.41 µm</option><option value="4">D4 · 2.42–3.82 µm</option><option value="5">D5 · 3.83–4.41 µm</option><option value="6">D6 · 4.42–5.00 µm</option></select></label>
                     <label for="search-selection">Observation selection<select id="search-selection"><option value="compatible">Prefer matching wavelengths</option><option value="chronological">Browse observation dates</option></select></label>
                     <label for="search-wavelength">Local wavelength · µm, optional<input id="search-wavelength" type="number" min="0.75" max="5" step="any" placeholder="Any wavelength"></label>
@@ -264,14 +258,14 @@
                     <label for="search-end">Through · UTC<input id="search-end" type="date"></label>
                     <label for="search-frames">Maximum observations<select id="search-frames"><option value="2">2 observations</option><option value="3" selected>3 observations</option><option value="4">4 observations</option><option value="5">5 observations</option><option value="6">6 observations</option><option value="1">1 observation</option></select></label>
                     <label for="search-deep"><input id="search-deep" type="checkbox">Deep survey collection</label>
-                    <label for="search-metadata-provider">Metadata search service<select id="search-metadata-provider"><option value="sia2">IRSA image search · SIA2</option><option value="tap">IRSA catalogue · TAP/ObsCore</option></select></label>
+                    <label for="search-metadata-provider">Archive search service<select id="search-metadata-provider"><option value="sia2">IRSA image search · SIA2</option><option value="tap">IRSA catalogue · TAP/ObsCore</option></select></label>
                   </div>
                   <p id="search-unit-help">ICRS coordinates: decimal RA/Dec in degrees; hms RA in hours (0–24). Width is the side of a square, 1–30 arcmin. One to six cutouts per request; larger fields may take longer. Conservative quality masks exclude unsupported pixels in every mode.</p>
-                  <label class="search-fresh"><input id="search-fresh" type="checkbox">Refresh from the archive instead of using cached originals.</label>
+                  <label class="search-fresh"><input id="search-fresh" type="checkbox">Refresh the archive search and skip recently prepared results.</label>
                   <button type="button" id="sky-search-check">Check installed fields</button>
-                  <button type="button" id="sky-search-discover">Discover QR2/QR3 wide &amp; deep metadata</button>
+                  <button type="button" id="sky-search-discover">Discover DR1 and QR3 metadata</button>
                   <p>Discovery indexes metadata across the four supported collections with up to eight bounded requests. TAP also samples authoritative calibration links within that limit. It downloads no observation FITS and does not approve temporal comparisons. Service ingestion times can differ.</p>
-                  <p>Matching wavelengths are checked before cutout downloads where supported. Browsing dates is independent inspection: brightness differences between wavelength bands do not establish variability. QR2/D2 has pinned calibration; other groups may allow individual images only. Comparisons still require full wavelength and reference checks.</p>
+                  <p>DR1 and QR3 provide independently viewable dated observations. Their wavelength coordinates are approximate in SKYSHIFT. The cached QR2/D2 examples can use matched-wavelength playback only where the observations pass the calibration and reference checks. IRSA has retired live QR2 searches.</p>
                   <p>Live requests need this host’s preparation service; cached examples work without it. Coordinates and field width go to this host and the public archive. Your notes stay in your browser until exported.</p>
                   <p id="sky-target-context">Choose a target to see its coordinate source and test notes.</p>
                   <a id="sky-target-source" target="_blank" rel="noopener noreferrer" hidden>Coordinate source ↗</a>
@@ -589,6 +583,8 @@
         </button>
       </div>
       <button data-open-sound>Sound design & volume ↗</button>
+      <a href="./challenge.html">Challenge fields &amp; data sources →</a>
+      <a href="./index.html?intro=1">Play spacecraft introduction →</a>
       <p>
         SKYSHIFT is an independent Project Mercury Team application. It uses
         real SPHEREx observations with original source identities, calibration

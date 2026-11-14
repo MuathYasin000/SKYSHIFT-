@@ -12,7 +12,7 @@ export async function validatePreparedExposure(product, arrays) {
       Object.keys(w).some(k => /^(CD\d|A_|B_|AP_|BP_|PV\d)/.test(k)) ||
       ['PC1_1','PC1_2','PC2_1','PC2_2'].some(k => k in w && w[k] !== (k==='PC1_1'||k==='PC2_2'?1:0)))
     throw Error('Prepared exposure has an unsupported sky projection.');
-  if (!o || !['qr2','qr3'].includes(o.release) || !Number.isInteger(o.detector) || o.detector < 1 || o.detector > 6 || o.science_unit !== 'MJy/sr' ||
+  if (!o || !['dr1','qr2','qr3'].includes(o.release) || !Number.isInteger(o.detector) || o.detector < 1 || o.detector > 6 || o.science_unit !== 'MJy/sr' ||
       ![o.time_start_utc,o.time_end_utc].every(t => typeof t === 'string' && t.endsWith('Z') && Number.isFinite(Date.parse(t))) ||
       Date.parse(o.time_end_utc) <= Date.parse(o.time_start_utc))
     throw Error('Prepared exposure has invalid release, detector, units or observation times.');

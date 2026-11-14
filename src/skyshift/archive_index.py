@@ -1,5 +1,6 @@
 """Region-scoped, versioned metadata index. Never a mission mirror or science gate."""
 from collections import deque
+from .releases import INDEXED_COLLECTIONS, collection_for
 from datetime import datetime,timezone,timedelta
 import hashlib
 import json
@@ -22,7 +23,7 @@ TAP_ENDPOINT='https://irsa.ipac.caltech.edu/TAP/sync'
 def tap_query(region,collection,lo,hi,detector=None):
     # Values come from the validated region, fixed collection registry and
     # numeric time partitions. Never accept caller-supplied ADQL/table names.
-    if collection not in {'spherex_qr2','spherex_qr2_deep','spherex_qr3','spherex_qr3_deep'}:raise ValueError('Unsupported indexed collection')
+    if collection not in INDEXED_COLLECTIONS:raise ValueError('Unsupported indexed collection')
     if detector is not None and (type(detector) is not int or detector not in range(1,7)):raise ValueError('Unsupported detector')
     # IRSA's documented CAOM tables supply ObsCore-equivalent columns and the
     # authoritative artifact URI in one spatially indexed query. Joining the
@@ -48,6 +49,8 @@ def canonical_tap_row(row,collection):
     row['datalink_url']=('https://irsa.ipac.caltech.edu/datalink/links/spherex?'+urlencode({'ID':row['obs_publisher_did']})) if row.get('obs_publisher_did') else row.get('access_url')
     row['access_url']='https://irsa.ipac.caltech.edu/'+uri
     normalize_row(row,collection)
+    # normalize_row enforces the release's official /level2/ path.
+    row['calib_level'] = 2
     return row
 
 
@@ -131,7 +134,7 @@ class ObservationIndex:
 
 
 def normalize_row(row,collection):
-    if collection not in {'spherex_qr2','spherex_qr2_deep','spherex_qr3','spherex_qr3_deep'}:raise ValueError('Unsupported indexed collection')
+    if collection not in INDEXED_COLLECTIONS:raise ValueError('Unsupported indexed collection')
     release=collection.split('_')[1]
     url=urlsplit(row.get('access_url') or '')
     if url.scheme!='https' or url.hostname!='irsa.ipac.caltech.edu' or url.username or url.password or url.port or url.query or url.fragment or '..' in url.path.split('/') or not url.path.startswith(f'/ibe/data/spherex/{release}/level2/'):
@@ -188,7 +191,7 @@ def discover(region,collections,output,*,detector=None,start_date=None,end_date=
         return raw
     try:
         for collection in collections:
-            if collection not in {'spherex_qr2','spherex_qr2_deep','spherex_qr3','spherex_qr3_deep'}:raise ValueError('Unsupported indexed collection')
+            if collection not in INDEXED_COLLECTIONS:raise ValueError('Unsupported indexed collection')
             scope={'version':INDEX_VERSION,'provider':provider,'region':region.model_dump(mode='json'),'collection':collection,'detector':detector,'start_date':start_date,'end_date':end_date}
             query_key=hashlib.sha256(json.dumps(scope,sort_keys=True).encode()).hexdigest()
             cached=index.snapshot(query_key) if use_cache else None
@@ -261,7 +264,7 @@ def discover(region,collections,output,*,detector=None,start_date=None,end_date=
     finally:index.close()
 
 
-def indexed_inventory(region,release,output,*,deep=False,detector=None,start_date=None,end_date=None,use_cache=True,cancel=None,progress=lambda _:None,**unused):
-    rows,report=discover(region,[f'spherex_{release}'+('_deep' if deep else '')],output,detector=detector,start_date=start_date,end_date=end_date,use_cache=use_cache,cancel=cancel,progress=progress)
+def indexed_inventory(region,release,output,*,deep=False,detector=None,start_date=None,end_date=None,use_cache=True,cancel=None,progress=lambda _:None,provider='sia2',**unused):
+    rows,report=discover(region,[collection_for(release, deep)],output,detector=detector,start_date=start_date,end_date=end_date,use_cache=use_cache,cancel=cancel,progress=progress,provider=provider)
     if report['status']!='complete':raise ValueError('Archive metadata search is partial or unavailable; no complete coverage or absence is inferred. Inspect its preserved discovery receipt.')
     return rows

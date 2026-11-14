@@ -1,4 +1,13 @@
-# SKYSHIFT 0.9-mission-control — Link and content audit patch
+# SKYSHIFT 0.12.0 — November 14, 2026
+
+- Live coordinate search defaults to IRSA DR1. DR1 and QR3 are indexed independently with release-specific source identities and conservative masks. Archived QR2/D2 remains supported for prepared examples and screened comparisons.
+- Added a two-date DR1 M101 example with native detector views and explicit wavelength differences. DR1 playback is for surveying observations. The earlier M101 matched-wavelength example retains its original reference checks.
+- The homepage opens with direct science links, and the visible SPHEREx model loads independently. The introductory animation is available from the information dialog.
+- Added a challenge field guide and a dated source-package manifest. Original dates, checksums and prior scientific decisions are preserved.
+
+## Earlier release notes
+
+### SKYSHIFT 0.9-mission-control — Link and content audit patch
 
 2026-10-17T20:08:58.353977+00:00
 

@@ -37,7 +37,7 @@ async function prepare() {
 async function discoverArchive() {
   clearResult();const ticket=sequence;
   try {
-    const request={...read(),discovery_only:true,discovery_scope:'all_supported',metadata_provider:$('search-metadata-provider').value,use_cache:!$('search-fresh').checked};
+    const request={...read(),discovery_only:true,discovery_scope:'all_supported',use_cache:!$('search-fresh').checked};
     active=request;preparation=new AbortController();$('sky-search-cancel').hidden=false;$('sky-search-prepare').disabled=true;$('sky-search-discover').disabled=true;
     $('sky-search-status').textContent='Discovering archive metadata; no observation FITS will be downloaded…';
     const {bundle}=await prepareRequest(request,{signal:preparation.signal,onProgress:message=>{if(ticket===sequence)$('sky-search-status').textContent=message;}});
@@ -55,7 +55,7 @@ $('sky-search-discover').onclick=discoverArchive;
 $('sky-search-check').onclick=()=>search();
 $('sky-search-cancel').onclick=()=>{clearResult();$('sky-search-cancel').hidden=true;$('sky-search-prepare').disabled=false;$('sky-search-status').textContent='Preparation cancelled. No late result will replace your view.';};
 function read() {
-  return {...observationRequest({ra: $('search-ra').value, dec: $('search-dec').value, fov: $('search-fov').value, release: $('search-release').value}),detector:Number($('search-detector').value),max_frames:Number($('search-frames').value),deep:$('search-deep').checked,...selectionOptions({selection:$('search-selection').value,wavelength:$('search-wavelength').value,start:$('search-start').value,end:$('search-end').value})};
+  return {...observationRequest({ra: $('search-ra').value, dec: $('search-dec').value, fov: $('search-fov').value, release: $('search-release').value}),detector:Number($('search-detector').value),max_frames:Number($('search-frames').value),deep:$('search-deep').checked,metadata_provider:$('search-metadata-provider').value,...selectionOptions({selection:$('search-selection').value,wavelength:$('search-wavelength').value,start:$('search-start').value,end:$('search-end').value})};
 }
 function fill(request) {
   const r = request.region;
@@ -66,6 +66,7 @@ function fill(request) {
   $('search-detector').value=String(request.detector??2);
   $('search-frames').value=String(request.max_frames??3);
   $('search-deep').checked=request.deep??false;
+  $('search-metadata-provider').value=request.metadata_provider||'sia2';
   $('search-selection').value=request.selection||'compatible';
   $('search-wavelength').value=request.wavelength_um??'';
   $('search-start').value=request.start_date||'';$('search-end').value=request.end_date||'';

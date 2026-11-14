@@ -1,0 +1,1 @@
+{"originals": 7, "calibrations": 1, "reference_catalogues": 1, "verified_bytes": 70968960, "scope": "Exact fixtures, not new astronomical results"}

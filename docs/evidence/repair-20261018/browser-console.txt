@@ -1,0 +1,11 @@
+PASS ZIP: standalone export → integrated import/reload/export → standalone import, preserving all scientific identities and settings
+PASS JSON: integrated ↔ standalone exposure with nondefault visualization, date, viewport, questions and reload
+PASS Malformed and mismatched imports preserve the active investigation in both viewers
+PASS Methodology renders applicable historical counts and separate current-build identity; missing evidence fails honestly
+PASS Review download UI: cancel, recover a 503 without re-fetching verified parts, and verify the complete archive
+PASS Standalone review control, slow-network scientific access, and timeout recovery
+PASS All primary routes at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels
+PASS Browser accessibility scans on rendered primary routes and keyboard menus/dialogs
+PASS 200%/400% desktop zoom equivalent reflow and touch pinch keep scientific controls usable
+PASS Hero starts while scientific controller is delayed; direct science remains WebGL independent
+PASS Repeated Universe visits reuse bounded graphics resources and preserve the scientific canvas

@@ -1,7 +1,7 @@
 // Runs in the head before first paint. No network, storage or 3D dependencies.
 (() => {
   const root=document.documentElement;
-  const home=()=>['','#home'].includes(location.hash)&&!new URLSearchParams(location.search).has('view');
+  const home=()=>['','#home'].includes(location.hash)&&new URLSearchParams(location.search).get('intro')==='1';
   if(!home())return;
   root.dataset.arrival='loading';
   root.dataset.arrivalExperience='true';

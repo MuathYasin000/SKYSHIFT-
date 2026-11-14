@@ -1,0 +1,105 @@
+{
+  "/": {
+    "url": "https://skyshiftt.netlify.app/",
+    "status": 200,
+    "headers": {
+      "Accept-Ranges": "bytes",
+      "Age": "0",
+      "Cache-Control": "no-cache",
+      "Cache-Status": "\"Netlify Edge\"; fwd=miss; fwd-status=200; stored",
+      "Content-Length": "26348",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
+      "Content-Type": "text/html; charset=UTF-8",
+      "Date": "Sun, 18 Oct 2026 05:40:36 GMT",
+      "Etag": "\"4665d494391545b01c4cf3241da2990a-ssl\"",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Server": "Netlify",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+      "Vary": "Accept-Encoding, X-Nf-Account-Tier",
+      "X-Content-Type-Options": "nosniff",
+      "X-Nf-Request-Id": "01M56RDDCTW436TKQS2MWS6N7X",
+      "Connection": "close"
+    },
+    "bytes": 26348,
+    "preview": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" />\n    <meta name=\"theme-color\" content=\"#000000\" />\n    <"
+  },
+  "version.json": {
+    "url": "https://skyshiftt.netlify.app/version.json",
+    "status": 200,
+    "headers": {
+      "Accept-Ranges": "bytes",
+      "Age": "1",
+      "Cache-Control": "no-cache",
+      "Cache-Status": "\"Netlify Edge\"; fwd=miss; fwd-status=200; stored",
+      "Content-Length": "219",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
+      "Content-Type": "application/json",
+      "Date": "Sun, 18 Oct 2026 05:40:37 GMT",
+      "Etag": "\"ebfcf626ebe4d6ecf0dbcfcb9710df01-ssl\"",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Server": "Netlify",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+      "Vary": "X-Nf-Account-Tier",
+      "X-Content-Type-Options": "nosniff",
+      "X-Nf-Request-Id": "01M56RDDXAVABKFFE014T2HN5X",
+      "Connection": "close"
+    },
+    "bytes": 219,
+    "preview": "{\"status\": \"ok\", \"server_version\": \"public-static\", \"app_version\": \"0.9-mission-control\", \"content_id\": \"e112dc65cc40418fbeb557cbb7ec0d54e138e9a5150b61c5ab9f59d48398795a\", \"release_id\": \"skyshift-0.9-"
+  },
+  "release.json": {
+    "url": "https://skyshiftt.netlify.app/release.json",
+    "status": 200,
+    "headers": {
+      "Accept-Ranges": "bytes",
+      "Age": "0",
+      "Cache-Control": "no-cache",
+      "Cache-Status": "\"Netlify Edge\"; fwd=miss; fwd-status=200; stored",
+      "Content-Length": "16149",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
+      "Content-Type": "application/json",
+      "Date": "Sun, 18 Oct 2026 05:40:37 GMT",
+      "Etag": "\"c8f25a6aad9208614ed0a661744b2c50-ssl\"",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Server": "Netlify",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+      "Vary": "Accept-Encoding, X-Nf-Account-Tier",
+      "X-Content-Type-Options": "nosniff",
+      "X-Nf-Request-Id": "01M56RDE9ER2KED2NP202Y9RB0",
+      "Connection": "close"
+    },
+    "bytes": 16149,
+    "preview": "{\r\n  \"schema_version\": \"1.0\",\r\n  \"release_id\": \"skyshift-0.9-mission-control\",\r\n  \"app_version\": \"0.9-mission-control\",\r\n  \"created_at_utc\": \"2026-10-18T04:27:18.170978+00:00\",\r\n  \"scientific_approval"
+  },
+  "data/catalog.json": {
+    "url": "https://skyshiftt.netlify.app/data/catalog.json",
+    "status": 200,
+    "headers": {
+      "Accept-Ranges": "bytes",
+      "Age": "0",
+      "Cache-Control": "no-cache",
+      "Cache-Status": "\"Netlify Edge\"; fwd=miss; fwd-status=200; stored",
+      "Content-Length": "1394",
+      "Content-Security-Policy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
+      "Content-Type": "application/json",
+      "Date": "Sun, 18 Oct 2026 05:40:37 GMT",
+      "Etag": "\"923f76b59cbbe1fad04e26ab6619460e-ssl\"",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Server": "Netlify",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+      "Vary": "Accept-Encoding, X-Nf-Account-Tier",
+      "X-Content-Type-Options": "nosniff",
+      "X-Nf-Request-Id": "01M56RDERQB79YV8JW2Y2EFG4X",
+      "Connection": "close"
+    },
+    "bytes": 1394,
+    "preview": "{\r\n  \"schema_version\": \"1.0\",\r\n  \"bundle_url\": \"./data/bundle.json\",\r\n  \"bundle_sha256\": \"b36ac03cac9711dbe4aeb0a64ac8cfc898509317d5758d0adb2d2aabacc5effd\",\r\n  \"review_packet\": {\r\n    \"name\": \"m101-re"
+  },
+  "_headers": {
+    "error": "HTTP Error 404: Not Found"
+  }
+}

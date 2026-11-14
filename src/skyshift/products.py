@@ -39,22 +39,22 @@ class Product:
 def flag_definitions(header, release):
     """Read each release's explicit bitmap schema; never guess flag meanings.
 
-    QR2 MP_NAME cards give bit indices. QR3 MSKNnnnn gives the name of
+    QR2 MP_NAME cards give bit indices. DR1/QR3 MSKNnnnn gives the name of
     bit nnnn and MSKMnnnn repeats its integer mask. Both identities must agree.
     """
     definitions = {}
     if release == 'qr2':
         cards = [(key[3:], value) for key, value in header.items() if key.startswith('MP_')]
-    elif release == 'qr3':
+    elif release in {'dr1', 'qr3'}:
         cards = []
         names = {key[4:] for key in header if re.fullmatch(r'MSKN\d{4}', key)}
         masks = {key[4:] for key in header if re.fullmatch(r'MSKM\d{4}', key)}
         if names != masks:
-            raise ValueError('QR3 mask names and bitmask definitions differ')
+            raise ValueError(f'{release.upper()} mask names and bitmask definitions differ')
         for suffix in sorted(names):
             bit = int(suffix)
             if not 0 <= bit <= 31 or type(header['MSKM'+suffix]) is not int or header['MSKM'+suffix] != 1 << bit:
-                raise ValueError('QR3 mask integer disagrees with its bit index')
+                raise ValueError(f'{release.upper()} mask integer disagrees with its bit index')
             cards.append((header['MSKN'+suffix], bit))
     else:
         raise ValueError('Unknown quality flag release')

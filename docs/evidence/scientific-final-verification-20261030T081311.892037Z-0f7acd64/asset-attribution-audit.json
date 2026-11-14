@@ -1,0 +1,52 @@
+{
+  "scope": "Source/notices and retirement inventory, not independent rights certification",
+  "records": [
+    {
+      "path": "LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "97182c2e1a2a9bc695957e21704de10b7e190ac784e87ef0c5f0110298bb7bc8"
+    },
+    {
+      "path": "web/dist/assets/assets.json",
+      "sha256": "82ae4c4c753da4648bdad1fb3ad3eae25af88c9e727a0f947419cb0bb10bb110"
+    },
+    {
+      "path": "web/dist/assets/fonts/mission-fonts.json",
+      "sha256": "9a3af4831a899bdb58a755355eef28d761f7df6e74f6942971fbbb2e832853a6"
+    },
+    {
+      "path": "web/dist/assets/space/manifest.json",
+      "sha256": "9cdd31b5da392382c09e2e776b484074d57d77b0d4338e34baedde04cf15a35a"
+    },
+    {
+      "path": "web/dist/vendor/scroll/manifest.json",
+      "sha256": "00f3aa500fa958d274e96993417806cc3ec7bc5342cdee969834e6d41acf9630"
+    },
+    {
+      "path": "web/dist/vendor/ui-patterns/sources.json",
+      "sha256": "e40c70a6dd69e94bd3eb3e0b18bfd036e0dc1911348d82021910211498a6d904"
+    },
+    {
+      "path": "web/dist/vendor/ui-patterns/NOTICES.txt",
+      "sha256": "bdf2a2108bac03ffb751d9ccfb21e81db1e0a1a2a685b04adc886fb34dc3ffa2"
+    },
+    {
+      "path": "web/dist/vendor/three/LICENSE",
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+    },
+    {
+      "path": "web/dist/vendor/three/draco/LICENSE",
+      "sha256": "d3709b0fb4b8a94bbb1d02b8a2e484f258b0d9c5c5a01f940391f3fe662cd1a4"
+    }
+  ],
+  "new_decorative_assets": 0,
+  "team_code_license": "Apache-2.0",
+  "retired_custom_term_component": "Skiper; historical notices retained",
+  "nasa_guidelines_checked": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "nasa_terms_scope": "Educational/informational factual use with source credit; third-party rights and protected identifiers retain their restrictions. No endorsement claimed.",
+  "science_data_attribution": "Existing SPHEREx and Gaia/DPAC citations copied into target assessment",
+  "independent_legal_or_scientific_approval": "NOT_OBTAINED"
+}

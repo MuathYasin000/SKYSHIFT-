@@ -12,13 +12,13 @@ from typing import Literal
 from pydantic import model_validator
 
 from .archive import inventory, sia_query, utc_now
-from .models import Record, SkyRegion
+from .models import Record, SkyRegion, SPHERExRelease
 
 
 class ObservationRequest(Record):
     schema_version: Literal['1.0']
     kind: Literal['skyshift-observation-request']
-    release: Literal['qr2', 'qr3']
+    release: SPHERExRelease
     region: SkyRegion
 
     @model_validator(mode='before')

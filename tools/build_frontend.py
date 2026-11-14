@@ -6,6 +6,7 @@ authoritative there; this build copies only changed bytes, then validates assets
 from pathlib import Path
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 from build_local_release import validate_assets, validate_scientific_assets, validate_sequence_assets
 from local_server import content_identity
@@ -21,6 +22,14 @@ def build():
             continue
         target = dist/path.relative_to(source)
         data = path.read_bytes()
+        if b'<!-- shared-header -->' in data:
+            html = data.decode('utf-8')
+            for element in ('header', 'footer'):
+                template = ROOT/'web/templates'/f'{element}.html'
+                html = html.replace(f'<!-- shared-{element} -->', template.read_text(encoding='utf-8').strip())
+            index = (source/'index.html').read_text(encoding='utf-8')
+            dialog = re.search(r'<dialog\b[^>]*id="site-information"[\s\S]*?</dialog>', index).group()
+            data = html.replace('<!-- shared-information -->', dialog).encode('utf-8')
         if not target.exists() or target.read_bytes() != data:
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(data)
@@ -48,6 +57,13 @@ def build():
             path=(dist/relative.removeprefix('./')).resolve()
             if not path.is_relative_to(dist.resolve()) or hashlib.sha256(path.read_bytes()).hexdigest()!=entry.get('manifest_sha256',entry.get('sha256')):
                 raise ValueError('Sky product manifest or published source identity differs')
+    release = ROOT/'config/web_release.json'
+    if release.exists():
+        target = dist/'release.json'
+        data = release.read_bytes()
+        if not target.exists() or target.read_bytes() != data:
+            target.write_bytes(data)
+            changed.append(target.name)
     validate_assets(dist)
     validate_scientific_assets(dist)
     validate_sequence_assets(dist)

@@ -3,6 +3,13 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {parseCoordinate, observationRequest, requestFromURL, requestURL, archiveURL, nearbyFields, selectionOptions} from '../src/coordinate-query.js';
 
+test('current search defaults to DR1 and retains an explicitly selected TAP provider', () => {
+  const request = {...observationRequest({ra: '210', dec: '54', fov: '3'}), metadata_provider: 'tap'};
+  assert.equal(request.release, 'dr1');
+  assert.deepEqual(requestFromURL(requestURL(request, 'http://localhost:3000')), request);
+  assert.throws(() => requestFromURL('http://localhost:3000/?ra=210&dec=54&provider=unknown'));
+});
+
 test('Temporal selection filters validate dates and survive shareable URLs',()=>{
   const filters=selectionOptions({selection:'chronological',wavelength:'1.32',start:'2025-12-01',end:'2025-12-31'});
   const request={...observationRequest({ra:248.1676,dec:66.75498,fov:2.4,release:'qr2'}),detector:2,...filters};

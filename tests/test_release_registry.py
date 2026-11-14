@@ -46,6 +46,20 @@ def test_source_path_release_cannot_be_hidden_in_query_or_neighboring_path():
             product_adapter('7.0.5', 2, bad)
 
 
+def test_dr1_and_qr3_share_pipeline_family_without_sharing_archive_identity_or_approval():
+    base = 'https://irsa.ipac.caltech.edu/ibe/data/spherex/'
+    for release in ('dr1', 'qr3'):
+        result = product_adapter('7.0.5', 2, f'{base}{release}/level2/a.fits')
+        assert (result['release'], result['mode']) == (release, 'visualization_only')
+    with pytest.raises(ValueError, match='disagree'):
+        product_adapter('6.5.6', 2, f'{base}dr1/level2/a.fits')
+    with pytest.raises(ValueError, match='calibration association'):
+        product_adapter('7.0.5', 2, f'{base}dr1/level2/a.fits', calibration_sha256=CALIBRATION['qr2', 2]['sha256'])
+    capabilities = release_capabilities()
+    assert capabilities['current_collections'] == ['spherex_dr1', 'spherex_dr1_deep', 'spherex_qr3', 'spherex_qr3_deep']
+    assert not capabilities['releases']['qr2']['discovery']
+
+
 def test_qr3_mask_schema_retains_source_but_rejects_bad_and_unknown_bits():
     h = fits.Header({'MSKN0001': 'OVERFLOW', 'MSKM0001': 2,
                      'MSKN0021': 'SOURCE', 'MSKM0021': 1 << 21})

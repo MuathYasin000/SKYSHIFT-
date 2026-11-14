@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "name": "Search anchor remains accessible and scrolling back to the hero starts its model",
+      "status": "pass"
+    },
+    {
+      "name": "Homepage reload starts at the top after scrolling down",
+      "status": "pass"
+    },
+    {
+      "name": "Mobile home remains at the top with its model prepared by the arrival",
+      "status": "pass"
+    },
+    {
+      "name": "Home navigation from the search section resets scroll and resumes rendering",
+      "status": "pass"
+    },
+    {
+      "name": "Hero pauses offscreen and in science, and resumes when visible",
+      "status": "pass"
+    },
+    {
+      "name": "No-WebGL home stops loading and exposes recovery while comparison remains available",
+      "status": "pass"
+    },
+    {
+      "name": "Direct science entry does not import the hero renderer during delayed scientific startup",
+      "status": "pass"
+    },
+    {
+      "name": "A stalled model import ends loading, and Retry recovers after the files become available",
+      "status": "pass"
+    }
+  ],
+  "page_errors": []
+}

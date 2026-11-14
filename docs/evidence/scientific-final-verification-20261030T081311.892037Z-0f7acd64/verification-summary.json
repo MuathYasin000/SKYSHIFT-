@@ -1,0 +1,132 @@
+{
+  "recorded_at_utc": "2026-10-30T08:28:42.194047+00:00",
+  "status": "pass_with_scientific_and_public_release_limits",
+  "tested_head": "211c38520880f32596a50f10acb3e5e9e5d8cef0",
+  "accepted_0a763f8_is_ancestor": true,
+  "clean_checkout_head": "211c38520880f32596a50f10acb3e5e9e5d8cef0",
+  "clean_checkout_tracked_clean": true,
+  "unit_tests": {
+    "python": {
+      "status": "pass",
+      "log": "tmp\\science-head-python.log",
+      "sha256": "8caaed2ec038a1304f161bed145f5b4ae1d8e52e6b31f32b9b0f7ed432ea750c",
+      "result": "170 passed, 1 skipped"
+    },
+    "js": {
+      "status": "pass",
+      "log": "tmp\\science-head-js.log",
+      "sha256": "6e1e199c25c1481c60594d2f1dc047f7d61f66a29704273ada822f99357b4625",
+      "result": "pass 150"
+    },
+    "clean-python": {
+      "status": "pass",
+      "log": "tmp\\science-head-clean-python.log",
+      "sha256": "3e55451d78ac0b3b82f116290eee7866b3c7154d053be96f17592963c7130e12",
+      "result": "162 passed, 9 skipped"
+    },
+    "clean-js": {
+      "status": "pass",
+      "log": "tmp\\science-head-clean-js.log",
+      "sha256": "1892e2bffd7b88e76f18daf100a0d68d0fa3a5d7d8f3a63f32f1bf8326aa40c5",
+      "result": "pass 150"
+    }
+  },
+  "browser_tests": {
+    "chrome-product": {
+      "status": "pass",
+      "passed": 19,
+      "receipt": "docs\\evidence\\verify_website_product-2026-10-30T08-20-34-228Z-59dbbf89\\website07_product_tests.json",
+      "sha256": "555fea5da02077c81c6461ad13a31daa87ac057fffade33816ef890d3c27264e",
+      "log_sha256": "d72dc97f2c6096fda16d294c8ee13a13826df566e50397469d145903bce7f90f"
+    },
+    "chrome-native": {
+      "status": "pass",
+      "passed": 7,
+      "receipt": "docs\\evidence\\verify_native_sequence-2026-10-30T08-21-28-201Z-efb3626c\\browser.json",
+      "sha256": "854fae508b8f3c59852a80e24722a7f1583363878d062fef49c9b96d90d44ada",
+      "log_sha256": "c0e1028d6744eb1e260e2318c04be602a9d3ed652eaed59d445d7af2831f70ce"
+    },
+    "chrome-challenge": {
+      "status": "pass",
+      "passed": 5,
+      "receipt": "docs\\evidence\\verify_challenge_readiness-2026-10-30T08-21-45-333Z-849918ca\\browser.json",
+      "sha256": "55ddeb499313b0a00eef0f63caf19fe46b099cd7d5d9a63fc0db22b2fc010eff",
+      "log_sha256": "16a689c51074d9538e120a610d1aaab0dfe3067c6e272e40cbbbf6801e810c97"
+    },
+    "chrome-target": {
+      "status": "pass",
+      "passed": 3,
+      "receipt": "docs\\evidence\\temporal-selection-2026-10-30T08-21-51-673Z-01f6ab0b\\results.json",
+      "sha256": "9b4c7bfbe1e84826ab8b9b9911caf63b6c897dd9d28a82356d5d8d205971489f",
+      "log_sha256": "1ab1dea51a9e14df5d5490fa04f5adba0aef14e630179efd9e6a2e32a003a0fe"
+    },
+    "edge-product": {
+      "status": "pass",
+      "passed": 19,
+      "receipt": "docs\\evidence\\verify_website_product-2026-10-30T08-20-34-227Z-8205b05d\\website07_product_tests.json",
+      "sha256": "f5f006b93ee43a7a7e0a2029825cfacdf33bbbccaa571c27b8f6494a144e6dbe",
+      "log_sha256": "c519562cd1c061b90b8954438fa9d32b01c3697803b84c06de72567c888329b4"
+    },
+    "edge-target": {
+      "status": "pass",
+      "passed": 3,
+      "receipt": "docs\\evidence\\temporal-selection-2026-10-30T08-21-27-682Z-cea6385c\\results.json",
+      "sha256": "9b4c7bfbe1e84826ab8b9b9911caf63b6c897dd9d28a82356d5d8d205971489f",
+      "log_sha256": "08353b0cdd9828afd2e3e6486457cf3f8a7794421581e44a4db26fad498a73f2"
+    }
+  },
+  "linux_release": {
+    "latest_image_manifest": "production-image-manifest-final.json",
+    "verified_production_files": 205,
+    "real_preparation_restart_receipt": "docs/evidence/linux-service-20261030T080839.113178Z-34263bfa/verification.json",
+    "scope": "Native reconstruction and real preparation/restart tested before tablet CSS/verifier-only commit; production backend unchanged; latest image exact source hashes and persisted result rechecked.",
+    "current_health": {
+      "status": "ok",
+      "application": "SKYSHIFT",
+      "server_version": "1.2",
+      "directory_id": "3298578fc4ed0f0d",
+      "content_id": "7721134847e3bf19af3ee8ab21b4dd93c685f705b8addbefb8ce722f1985748a",
+      "release_id": "workspace",
+      "app_version": "0.10.1-native-preparation-local-workspace"
+    }
+  },
+  "reconstruction": {
+    "status": "pass",
+    "receipt": "linux-scientific-reconstruction.json",
+    "plane_receipt": "linux-plane-reconstruction.json",
+    "array_hashes_exact": 8,
+    "maximum_target_continuous_difference": 1.1102230246251565e-16,
+    "scope": "No scientific threshold relaxation; tolerances apply to continuous floating-point diagnostics only."
+  },
+  "science": {
+    "catalogue_identity": "Gaia DR3 1648328016354496384 / V* R Dra",
+    "native_target_support_invalid": "A 29/29; B 30/30 aperture support pixels",
+    "target_flux": null,
+    "target_centroid_measured": false,
+    "variability_significance": null,
+    "physical_change": "NOT_ESTABLISHED",
+    "field": "Provisional visual temporal field only; 16 stationary references, 11.339608 days; scientific approval pending",
+    "alternative": "Bounded Epsilon Indi B investigation: 68 contained metadata candidates, 12 native header probes, no sampled compatible pair; zero science cutouts; no mission-wide absence inferred."
+  },
+  "public_hosting": {
+    "status": "USER_DEFERRED_PREPARATION_ONLY",
+    "user_ruling": "Preparation only; do not publish yet. Account and spending discussion deferred.",
+    "published_or_purchased": false,
+    "prepared_options": "docs/hosting_options.md",
+    "external_anonymous_acceptance": "NOT_CONDUCTED"
+  },
+  "review_gaps": {
+    "qualified_scientific_review": "PENDING",
+    "human_internal_review": "PENDING",
+    "independent_novice_validation": "NOT_CONDUCTED per user direction",
+    "final_2026_rules": "Not independently verified; access failures preserved, no eligibility ruling inferred",
+    "historical_screenshot_incident": "Four previously lost screenshots remain unrecovered; new screenshots do not replace historical evidence."
+  },
+  "preexisting_tracked_changes_preserved": [
+    " M docs/evidence/website07_product_tests.json",
+    " M docs/evidence/website07_recovery_tests.json",
+    " M docs/feature_status.md"
+  ],
+  "evidence_policy": "Fresh unique directories and exclusive output claims; final receipt intentionally uncommitted so tested source HEAD remains exact.",
+  "verification_wrapper_correction": "First aggregation checked the eight-array count as a boolean; corrected to count == 8. No production change or failed scientific assertion."
+}

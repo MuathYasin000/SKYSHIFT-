@@ -4,7 +4,6 @@ from html.parser import HTMLParser
 import hashlib
 import json
 import re
-import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB = ROOT / 'web/dist'
@@ -61,17 +60,12 @@ def test_fonts_keep_exact_local_woff2_bytes_and_licenses():
 
 
 def test_redesign_preserves_every_scientific_data_file_from_baseline():
-    # Compare Git object identities, covering JSON, FITS, masks, review parts and
-    # archive/reference records without regenerating any scientific products.
-    rows = subprocess.check_output(['git', 'ls-tree', '-r', 'f679221', 'web/dist/data'], cwd=ROOT, text=True)
-    count = 0
-    for row in rows.splitlines():
-        metadata, name = row.split('\t')
-        expected = metadata.split()[2]
-        actual = subprocess.check_output(['git', 'hash-object', '--no-filters', name], cwd=ROOT, text=True).strip()
-        assert actual == expected, name
-        count += 1
-    assert count >= 21
+    # These SHA-256 values were computed from the original Git blobs. The
+    # exact-byte check also works in a source ZIP without a .git directory.
+    baseline = json.loads((ROOT/'tests/science_baseline.json').read_text(encoding='utf-8'))
+    assert baseline['git_baseline'] == 'f679221' and len(baseline['sha256']) == 21
+    for name, expected in baseline['sha256'].items():
+        assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest() == expected, name
 
 
 def test_external_document_links_have_visible_source_affordance_and_safe_rel():

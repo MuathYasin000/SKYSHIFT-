@@ -1,0 +1,67 @@
+...............s........................................................ [ 41%]
+...........................FF..F........................................ [ 82%]
+..............................                                           [100%]
+================================== FAILURES ===================================
+_________ test_one_token_authority_and_no_retired_presentation_layers _________
+
+    def test_one_token_authority_and_no_retired_presentation_layers():
+        css = list(WEB.glob('*.css'))
+        assert sum(p.read_text(encoding='utf-8').count(':root') for p in css) == 1
+        for p in css:
+            text = p.read_text(encoding='utf-8')
+            assert '!important' not in text, p.name
+            assert not FORBIDDEN.search(text), p.name
+            if p.name != 'tokens.css':
+>               assert not re.search(r'#[0-9a-f]{3,8}\b', text, re.I), p.name
+E               AssertionError: native.css
+E               assert not <re.Match object; span=(124, 131), match='#070b12'>
+E                +  where <re.Match object; span=(124, 131), match='#070b12'> = <function search at 0x00000236D1880CC0>('#[0-9a-f]{3,8}\\b', "@font-face{font-family:Inter;src:url('./assets/fonts/InterVariable.woff2')}*{box-sizing:border-box}body{margin:0;back...rection:column}main{padding-top:20px}.view-footer{padding:8px}.view-footer button{font-size:12px}input{width:100px}}\n", re.IGNORECASE)
+E                +    where <function search at 0x00000236D1880CC0> = re.search
+E                +    and   re.IGNORECASE = re.I
+
+tests\test_mission_control_contract.py:25: AssertionError
+___________ test_all_entry_pages_embed_identical_progressive_chrome ___________
+
+    def test_all_entry_pages_embed_identical_progressive_chrome():
+        for p in WEB.glob('*.html'):
+            if p.name == 'universe-shell.html':
+                continue
+            s = p.read_text(encoding='utf-8')
+            for name, tag in [('header', 'header'), ('footer', 'footer')]:
+                canonical = (ROOT / 'web/templates' / (name + '.html')).read_text(encoding='utf-8')
+                actual = re.findall(fr'<{tag}\b[^>]*class="site-{name}"[\s\S]*?</{tag}>', s)
+>               assert len(actual) == 1, p.name
+E               AssertionError: native.html
+E               assert 0 == 1
+E                +  where 0 = len([])
+
+tests\test_mission_control_contract.py:41: AssertionError
+__ test_external_document_links_have_visible_source_affordance_and_safe_rel ___
+
+    def test_external_document_links_have_visible_source_affordance_and_safe_rel():
+        class Links(HTMLParser):
+            def __init__(self, s):
+                super().__init__(); self.current = None; self.links = []; self.feed(s)
+            def handle_starttag(self, tag, attrs):
+                if tag == 'a': self.current = [dict(attrs), '']
+            def handle_data(self, data):
+                if self.current: self.current[1] += data
+            def handle_endtag(self, tag):
+                if tag == 'a' and self.current:
+                    self.links.append(self.current); self.current = None
+        for p in WEB.glob('*.html'):
+            for a, text in Links(p.read_text(encoding='utf-8')).links:
+                if not a.get('href', '').startswith('https://'):
+                    continue
+>               assert 'noopener' in a.get('rel', ''), (p.name, a)
+E               AssertionError: ('native.html', {'href': 'https://doi.org/10.26131/IRSA652'})
+E               assert 'noopener' in ''
+E                +  where '' = <built-in method get of dict object at 0x000002368976E980>('rel', '')
+E                +    where <built-in method get of dict object at 0x000002368976E980> = {'href': 'https://doi.org/10.26131/IRSA652'}.get
+
+tests\test_mission_control_contract.py:92: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_mission_control_contract.py::test_one_token_authority_and_no_retired_presentation_layers
+FAILED tests/test_mission_control_contract.py::test_all_entry_pages_embed_identical_progressive_chrome
+FAILED tests/test_mission_control_contract.py::test_external_document_links_have_visible_source_affordance_and_safe_rel
+3 failed, 170 passed, 1 skipped in 36.15s

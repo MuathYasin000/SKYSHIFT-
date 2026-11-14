@@ -1,0 +1,87 @@
+{
+  "recorded_at_utc": "2026-10-29T16:06:02.413137+00:00",
+  "scope": "Local automated engineering verification, not scientific approval or public deployment verification",
+  "unit_tests": {
+    "python": 136,
+    "javascript": 142,
+    "failed": 0
+  },
+  "browser_receipts": [
+    {
+      "path": "docs/evidence/native-sequence-20261029/browser.json",
+      "passed": 7,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/native010_product_tests.json",
+      "passed": 19,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/native010_recovery_tests.json",
+      "passed": 7,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/home-startup-20261029/browser.json",
+      "passed": 8,
+      "failed": 0
+    },
+    {
+      "path": "docs/evidence/coordinate-search-010-20261029/browser.json",
+      "passed": 5,
+      "failed": 0
+    }
+  ],
+  "capabilities": {
+    "preparation": true,
+    "preparation_code_sha256": "31c60fd5b73f3b8c8c0f5c276b8161a97d0a760f81cf298516296df55ce69834",
+    "max_frames": 6,
+    "max_field_arcmin": 30,
+    "max_active_jobs": 2,
+    "calibrated_temporal_adapters": [
+      "qr2/D2"
+    ],
+    "scope": "Other release/detector combinations may provide single-frame visualization only; no automatic fallback."
+  },
+  "candidate": {
+    "release_id": "skyshift-native-preparation-20261029",
+    "app_version": "0.10-native-preparation",
+    "content_id": "5bf6278013b96d5bf719c3be34cd2f9a34df52009c6168e020c7845bf240a759"
+  },
+  "reconstruction": {
+    "status": "pass",
+    "sequence_id": "sequence-4a9b44ea9eaa25b72346c529",
+    "frames": [
+      {
+        "observation_id": "2025W49_2A_0756_3",
+        "numeric_array_agreement": {
+          "SCI": true,
+          "WAVE": true,
+          "BAND": true,
+          "VALID": true
+        },
+        "questions": 0
+      },
+      {
+        "observation_id": "2025W50_1A_0736_3",
+        "numeric_array_agreement": {
+          "SCI": true,
+          "WAVE": true,
+          "BAND": true,
+          "VALID": true
+        },
+        "questions": 1
+      }
+    ],
+    "scope": "Common-grid arrays and annotation support reconstructed; registration/interpretation are not newly approved",
+    "scientific_approval": "PENDING",
+    "internal_human_review": "PENDING"
+  },
+  "scientific_approval": "PENDING",
+  "internal_human_review": "PENDING",
+  "independent_novice_validation": "NOT CONDUCTED",
+  "external_public_verification": "NOT CONDUCTED",
+  "docker_build": "NOT CONDUCTED",
+  "universal_event_eligibility": "UNVERIFIED"
+}

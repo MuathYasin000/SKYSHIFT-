@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "code_commit": "4322df2095a4732ecd1288aaf9e7602b16c54023",
+  "assessment_semantic_decisions": "exact",
+  "array_hashes_exact": 8,
+  "target_report_numerical_tolerance": {
+    "absolute": 1e-09,
+    "relative": 1e-09,
+    "scope": "Continuous diagnostic values only; no acceptance policy changed"
+  },
+  "continuous_differences": [
+    {
+      "path": "/epochs/1/psf/positive_weight_rms_radius_native_pixels",
+      "absolute_difference": 1.1102230246251565e-16
+    }
+  ],
+  "maximum_absolute_difference": 1.1102230246251565e-16,
+  "scientific_approval": "PENDING",
+  "physical_change": "not_established"
+}

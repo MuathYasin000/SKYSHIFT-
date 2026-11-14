@@ -1,0 +1,37 @@
+[
+  {
+    "width": 320,
+    "scroll": 320,
+    "h1Font": "32px"
+  },
+  {
+    "width": 360,
+    "scroll": 360,
+    "h1Font": "36px"
+  },
+  {
+    "width": 390,
+    "scroll": 390,
+    "h1Font": "39px"
+  },
+  {
+    "width": 430,
+    "scroll": 430,
+    "h1Font": "43px"
+  },
+  {
+    "width": 768,
+    "scroll": 768,
+    "h1Font": "56px"
+  },
+  {
+    "width": 1024,
+    "scroll": 1024,
+    "h1Font": "71.68px"
+  },
+  {
+    "width": 1440,
+    "scroll": 1440,
+    "h1Font": "96px"
+  }
+]

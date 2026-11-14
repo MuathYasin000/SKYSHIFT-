@@ -1,0 +1,9 @@
+{
+  "fixture": "Synthetic blocked builder, one running job; twelve queued create/cancel cycles",
+  "advertised_active_limit": 2,
+  "queued_executor_items": 12,
+  "reported_active_jobs": 1,
+  "retained_jobs": 13,
+  "archive_requests": 0,
+  "finding": "Cancellation frees admission slots before executor work is removed; queue bound is bypassable."
+}

@@ -1,0 +1,39 @@
+{
+  "scope": "Automated engineering verification; no independent novice or qualified scientific review",
+  "results": [
+    {
+      "name": "All five target requests preserve coordinates and expose verified field examples without detection claims",
+      "status": "pass",
+      "detail": {
+        "targets": 5,
+        "scientific_interpretation": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "name": "RA/Dec URL restores, validates malformed links, and opens the native no-WebGL viewer",
+      "status": "pass"
+    },
+    {
+      "name": "Editing settings invalidates old results and Back restores the previous search",
+      "status": "pass"
+    },
+    {
+      "name": "Catalogue failure retains search sharing and download; stale requests never overwrite edited inputs",
+      "status": "pass"
+    },
+    {
+      "name": "Search works with WebGL disabled, keyboard controls, responsive layouts and accessibility",
+      "status": "pass",
+      "detail": {
+        "widths": [
+          320,
+          390,
+          768,
+          1440
+        ],
+        "accessibility_violations": 0
+      }
+    }
+  ],
+  "page_errors": []
+}

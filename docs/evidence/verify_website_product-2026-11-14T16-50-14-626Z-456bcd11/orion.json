@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.2",
+  "record_kind": "single_observation_view",
+  "field": "m42",
+  "product_url": "./data/explore/m42-2025W37_2A_0010_1.json",
+  "product_sha256": "0b27840ae389f3d30f1f4b4e88612e284e747c818a103003257397fafd7418be",
+  "observation": {
+    "observation_id": "2025W37_2A_0010_1",
+    "release": "qr2",
+    "detector": 2,
+    "pipeline_version": "6.4+psffix1",
+    "time_start_utc": "2025-09-11T12:41:53.027000Z",
+    "time_end_utc": "2025-09-11T12:43:48.145000Z",
+    "original_timescale": "utc",
+    "science_unit": "MJy/sr",
+    "source": {
+      "path": "2025W37_2A_0010_1_D2.fits",
+      "sha256": "334b591a00814270d53577bce832cc9dd402aa9f607c2744d5895c0728072f27",
+      "size_bytes": 5279040,
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W37_2A/l2b-v20-2025-267/2/level2_2025W37_2A_0010_1D2_spx_l2b-v20-2025-267.fits?center=83.82083333333334%2C-5.391108333333334&size=0.2",
+      "retrieved_at_utc": "2026-10-16T18:38:46.158125Z"
+    },
+    "spectral_calibration": {
+      "path": "spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+      "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+      "size_bytes": 33312960,
+      "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+      "retrieved_at_utc": null
+    },
+    "center_wavelength_um": 1.3422837257385254,
+    "center_bandwidth_um": 0.03199666365981102,
+    "hdus": [
+      "PRIMARY",
+      "IMAGE",
+      "FLAGS",
+      "VARIANCE",
+      "ZODI",
+      "PSF",
+      "WCS-WAVE"
+    ]
+  },
+  "region": {
+    "ra_deg": 83.82083333333334,
+    "dec_deg": -5.391108333333334,
+    "size_deg": 0.2,
+    "frame": "icrs"
+  },
+  "wcs": {
+    "WCSAXES": 2,
+    "CRPIX1": 59.5,
+    "CRPIX2": 59.5,
+    "CDELT1": -0.0017083333333333,
+    "CDELT2": 0.0017083333333333,
+    "CUNIT1": "deg",
+    "CUNIT2": "deg",
+    "CTYPE1": "RA---TAN",
+    "CTYPE2": "DEC--TAN",
+    "CRVAL1": 83.820833333333,
+    "CRVAL2": -5.3911083333333,
+    "LONPOLE": 180,
+    "LATPOLE": -5.3911083333333,
+    "MJDREF": 0,
+    "RADESYS": "ICRS"
+  },
+  "native_shape": [
+    117,
+    118
+  ],
+  "prepared_shape": [
+    118,
+    118
+  ],
+  "processing": {
+    "algorithm": "reproject_interp bilinear",
+    "flag_policy": "conservative-v0.1; SOURCE alone retained",
+    "support": "all bilinear contributors must be usable; no inpainting, sharpening, PSF matching or background subtraction",
+    "tool_sha256": "4ac4bc252ad7d8cf67e1a18f78eb05091123d20578b8cbf961e3e9f965873839"
+  },
+  "array_hashes": {
+    "SCI": "fd46a39914964b72f059623b1dbf458b8570447b2a620baaae016cafe4ba6d39",
+    "WAVE": "48d7d39322da80a53688bb574449e4a883073736e00fd83a71e1d589610b65a1",
+    "BAND": "75aac6b6bd3ff77b36507b7d476023bf55bc8bcb566e04a9c424b364b324ba5e",
+    "VALID": "507ca488c1dc8ad0f5060f8993d09ac5abea10dcf90d05072c6e6fa8963f5d4c"
+  },
+  "visualization": {
+    "schema_version": "1.0",
+    "stretch": "asinh",
+    "palette": "grayscale",
+    "interpolation": "nearest",
+    "wipe": false,
+    "wipe_position": 50
+  },
+  "display": {
+    "vmin": 1.8003750538825989,
+    "vmax": 66.85502873229981,
+    "stretch": "asinh",
+    "asinh_a": 0.06
+  },
+  "viewport": {
+    "zoom": 1,
+    "center_x": 58.5,
+    "center_y": 58.5
+  },
+  "scientific_approval": "PENDING",
+  "limitations": [
+    "Single exposure only. Wavelength changes across the field.",
+    "Context is not screened as a temporal comparison.",
+    "Display interpolation never creates a measurement.",
+    "No temporal screening, independent source registration or photometric variability assessment for this single exposure.",
+    "Calibration UUID associations and scientific interpretation still require qualified assessment."
+  ],
+  "questions": [
+    {
+      "id": "e48bad89-11be-478b-b569-f0d1c5016e77",
+      "product_sha256": "0b27840ae389f3d30f1f4b4e88612e284e747c818a103003257397fafd7418be",
+      "frame": "icrs",
+      "ra_deg": 83.82683912513914,
+      "dec_deg": -5.397087470503339,
+      "created_at": "2026-11-14T16:50:26.287Z",
+      "question": "What contributes the infrared light at this position?",
+      "category": "uncertain"
+    }
+  ]
+}

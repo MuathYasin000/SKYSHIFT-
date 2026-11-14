@@ -18,6 +18,11 @@ class Page(HTMLParser):
         if tag=='script' and a.get('src'):self.scripts.append(a['src'])
 
 def test_all_pages_have_unique_ids_and_resolvable_local_links():
+    targets = json.loads((WEB/'data/target-status.json').read_text(encoding='utf-8'))
+    examples = json.loads((WEB/'data/time-explorer-examples.json').read_text(encoding='utf-8'))
+    target_routes = {f"target-example/{entry['id']}" for entry in
+                     [*targets['targets'], *targets['case_studies'], *examples['examples']] if entry.get('url')}
+    app_routes = {'home','observations','compare','mission','universe'} | target_routes
     for path in WEB.glob('*.html'):
         p=Page(path.read_text(encoding='utf-8'));assert len(set(p.ids))==len(p.ids),path.name
         for ref in p.refs:
@@ -32,7 +37,7 @@ def test_all_pages_have_unique_ids_and_resolvable_local_links():
             if anchor and target.suffix=='.html':
                 # The main website uses explicit same-document application routes.
                 # Conventional document anchors elsewhere must still resolve.
-                if target.name=='index.html' and anchor in {'home','observations','compare','mission','universe'}:
+                if target.name=='index.html' and anchor in app_routes:
                     assert './website-bootstrap.js' in Page(target.read_text(encoding='utf-8')).scripts
                     continue
                 assert anchor in Page(target.read_text(encoding='utf-8')).ids,(path.name,ref)

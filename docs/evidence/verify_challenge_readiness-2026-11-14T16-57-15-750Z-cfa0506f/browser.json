@@ -1,0 +1,48 @@
+{
+  "scope": "Automated engineering verification; no independent novice or qualified scientific review",
+  "results": [
+    {
+      "name": "The challenge guide opens genuine DR1 dates and round-trips the investigation without WebGL",
+      "status": "pass",
+      "detail": {
+        "first": "2025-12-07T22:47:38.056000Z · DR1 / D2 · λ 1.1008 μm",
+        "second": "2025-12-10T06:10:03.494000Z · DR1 / D2 · λ 1.3980 μm",
+        "webgl": false
+      }
+    },
+    {
+      "name": "All five target requests preserve coordinates and expose verified field examples without detection claims",
+      "status": "pass",
+      "detail": {
+        "targets": 5,
+        "scientific_interpretation": "NOT_ESTABLISHED"
+      }
+    },
+    {
+      "name": "RA/Dec URL restores, validates malformed links, and opens the native no-WebGL viewer",
+      "status": "pass"
+    },
+    {
+      "name": "Editing settings invalidates old results and Back restores the previous search",
+      "status": "pass"
+    },
+    {
+      "name": "Catalogue failure retains search sharing and download; stale requests never overwrite edited inputs",
+      "status": "pass"
+    },
+    {
+      "name": "Search works with WebGL disabled, keyboard controls, responsive layouts and accessibility",
+      "status": "pass",
+      "detail": {
+        "widths": [
+          320,
+          390,
+          768,
+          1440
+        ],
+        "accessibility_violations": 0
+      }
+    }
+  ],
+  "page_errors": []
+}

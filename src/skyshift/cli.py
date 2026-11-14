@@ -23,7 +23,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(prog="skyshift", description="Traceable SPHEREx data feasibility tools")
     sub = parser.add_subparsers(dest="command", required=True)
     inv = sub.add_parser("inventory", help="Save an IRSA query, raw response, and normalized inventory")
-    inv.add_argument("--release", choices=["qr2", "qr3"], default="qr2")
+    inv.add_argument("--release", choices=["dr1", "qr3", "qr2"], default="dr1")
     inv.add_argument("--output", type=Path, required=True)
     inv.add_argument('--deep', action='store_true', help='Query the separate deep-survey collection')
     intake_parser = sub.add_parser('intake', help='Plan a saved sky request; optionally retrieve one bounded metadata inventory')

@@ -28,7 +28,7 @@ from .coordinates import common_grid
 from .intake import ObservationRequest
 from .preparation import numeric_hash
 from .products import read_product
-from .releases import CALIBRATION
+from .releases import CALIBRATION, CURRENT_COLLECTIONS, RELEASE_DOIS, collection_for
 from .registration import measure_registration, reference_position
 from .suitability import screen_pair
 from .messages import public_error_message
@@ -262,7 +262,7 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
     (output/'request.json').write_text(json.dumps(raw_request, indent=2), encoding='utf-8')
     if request.discovery_only:
         from .archive_index import discover
-        collections=['spherex_qr2','spherex_qr2_deep','spherex_qr3','spherex_qr3_deep'] if request.discovery_scope=='all_supported' else ['spherex_'+request.release+('_deep' if request.deep else '')]
+        collections=CURRENT_COLLECTIONS if request.discovery_scope=='all_supported' else [collection_for(request.release, request.deep)]
         _,report=discover(request.region,collections,output/'metadata',detector=None if request.discovery_scope=='all_supported' else request.detector,start_date=request.start_date,end_date=request.end_date,use_cache=request.use_cache,cancel=cancel,progress=progress,provider=request.metadata_provider)
         report['request']=raw_request
         raw=json.dumps(report,separators=(',',':'),allow_nan=False).encode()
@@ -272,6 +272,11 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
         return report
     products, frames, rejections = [], [], []
     selection_report=None
+    # Trusted research callers may select exact originals. HTTP users can only
+    # use the known local cache or obtain observations through IRSA.
+    paths = list(map(Path,input_paths)) if input_paths is not None else (verified_local_inputs(request) if use_local and request.use_cache else [])
+    if not paths and input_paths is None and request.release == 'qr2':
+        raise ValueError('IRSA retired live QR2 searches. Choose DR1 or QR3, or open a prepared QR2 example.')
     pin = CALIBRATION.get((request.release, request.detector))
     calibration = None
     if pin:
@@ -281,15 +286,11 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
             download(pin['url'], calibration, max_bytes=40_000_000)
         if sha256_file(calibration) != pin['sha256']:
             raise ValueError('Pinned calibration bytes changed; adapter review is required')
-    # Research/CLI callers may select exact originals. This is never accepted
-    # from an HTTP payload; each file still passes the same provenance, release,
-    # mask, spectral and reference checks as archive-selected observations.
-    paths = list(map(Path,input_paths)) if input_paths is not None else (verified_local_inputs(request) if use_local and request.use_cache else [])
     origin = 'explicit_originals' if input_paths is not None else ('verified_original_cache' if paths else 'live_archive')
     candidate_count = len(paths)
     if not paths and input_paths is None:
         progress('Searching official archive metadata for the requested position')
-        rows = indexed_inventory(request.region, request.release, output/'inventory', deep=request.deep, detector=request.detector,start_date=request.start_date,end_date=request.end_date,use_cache=request.use_cache,cancel=cancel,progress=progress)
+        rows = indexed_inventory(request.region, request.release, output/'inventory', deep=request.deep, detector=request.detector,start_date=request.start_date,end_date=request.end_date,use_cache=request.use_cache,cancel=cancel,progress=progress,provider=request.metadata_provider)
         from .selection import preselect
         chosen, selection_report = preselect(rows,request,calibration,output/'selection',cancel=cancel,progress=progress)
         candidate_count = selection_report['contained_candidates']
@@ -404,9 +405,9 @@ def build_sequence(request, output, *, progress=lambda message: None, cancel=Non
               'interpretation': 'No measured motion or calibrated variability is established.',
               'selection_strategy': 'Explicit original identities; no archive substitution.' if input_paths is not None else 'Verified original cache when applicable; otherwise bounded metadata/header wavelength preselection, followed by unchanged scientific checks.',
               'citations':[
-                  'SPHEREx '+request.release.upper()+': https://doi.org/10.26131/'+('IRSA652' if request.release=='qr2' else 'IRSA662'),
+                  f'SPHEREx {request.release.upper()}: https://doi.org/{RELEASE_DOIS[request.release]}',
                   'This publication makes use of data products from the Spectro-Photometer for the History of the Universe, Epoch of Reionization and Ices Explorer (SPHEREx), which is a joint project of the Jet Propulsion Laboratory and the California Institute of Technology, and is funded by the National Aeronautics and Space Administration.',
-                  'Gaia DR3: https://doi.org/10.1051/0004-6361/202243940. ESA Gaia data processed by DPAC.'],
+              ] + (['Gaia DR3: https://doi.org/10.1051/0004-6361/202243940. ESA Gaia data processed by DPAC.'] if reference_source else []),
               'limitations': LIMITATIONS, 'identity': identity}
     raw = json.dumps(result, separators=(',', ':'), allow_nan=False).encode()
     if len(raw)>32*1024*1024:raise ValueError('Prepared result exceeds 32 MiB; reduce the field width or frame count')
