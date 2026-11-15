@@ -171,6 +171,21 @@ def _metadata_page(url, collection, lo, hi, directory, progress, *, provider):
         return page
 
 
+def public_provider_failure(error):
+    """Report provider failure without echoing URLs, files or exception internals."""
+    if isinstance(error, HTTPError):
+        return f"HTTP {error.code}"
+    if isinstance(error, TimeoutError) or (isinstance(error, URLError) and isinstance(error.reason, TimeoutError)):
+        return "Archive request timed out"
+    if isinstance(error, URLError):
+        return "Could not reach the archive service"
+    if isinstance(error, ET.ParseError):
+        return "Archive returned an invalid metadata table"
+    if str(error) == METADATA_LIMIT_ERROR:
+        return METADATA_LIMIT_ERROR
+    return "Archive metadata could not be validated or recorded"
+
+
 def _query_collection(region: SkyRegion, collection: str, start, end, *, motion_margin, directory, progress, live_deadline=None):
     release = collection.split("_")[1]
     deep = collection.endswith("_deep")
@@ -208,13 +223,17 @@ def _query_collection(region: SkyRegion, collection: str, start, end, *, motion_
                 except (OSError, ValueError, ET.ParseError) as tap_error:
                     if str(tap_error) == METADATA_LIMIT_ERROR:
                         raise
+                    if live_deadline is not None:
+                        failures.append(f"MJD {lo:.5f}–{hi:.5f}: SIA2 {public_provider_failure(sia_error)}; TAP {public_provider_failure(tap_error)}")
+                        continue
                     raise ValueError(f"SIA2: {sia_error}; TAP: {tap_error}") from tap_error
         except (OSError, ValueError, ET.ParseError) as exc:
             if str(exc) == METADATA_LIMIT_ERROR and hi - lo >= 0.01:
                 mid = (lo + hi) / 2
                 pending.extendleft([(mid, hi), (lo, mid)])
                 continue
-            failures.append(f"MJD {lo:.5f}–{hi:.5f}: {exc}")
+            reason = public_provider_failure(exc) if live_deadline is not None else str(exc)
+            failures.append(f"MJD {lo:.5f}–{hi:.5f}: {reason}")
             continue
         if page["split"]:
             if hi - lo < 0.01:

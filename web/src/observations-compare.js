@@ -66,7 +66,10 @@ function message(text,error=false,pending=false){
   status.dataset.state=error?'error':pending?'loading':'ready';
 }
 const frameDate=frame=>frame.time_start_utc??frame.archiveRow?.time_start_utc;
-const wavelength=frame=>Number.isFinite(frame.wavelength_center_um)?frame.wavelength_center_um.toFixed(3)+' µm':'λ unavailable';
+function wavelength(frame){
+  if(!Number.isFinite(frame.wavelength_center_um))return 'λ unavailable';
+  return frame.wavelength_center_um.toFixed(3)+' µm'+(frame.target?.valid?'':' (nominal)');
+}
 const readout=frame=>`${frameDate(frame).slice(0,10)} · D${frame.detector} · ${wavelength(frame)}`;
 function viewerEmpty(title,description,pending=false){
   $('empty-viewer-title').textContent=title;
@@ -860,7 +863,7 @@ function sampleSpectrum(frame,point){
 
 function describeView(a,b,count){
   if(!a)return 'No loaded frames match the current filters.';
-  const describe=frame=>`${frameDate(frame).slice(0,10)} at ${frameDate(frame).slice(11,19)} UTC, detector ${frame.detector}, ${Number.isFinite(frame.wavelength_center_um)?frame.wavelength_center_um.toFixed(3)+' micrometres':'wavelength unavailable'}`;
+  const describe=frame=>`${frameDate(frame).slice(0,10)} at ${frameDate(frame).slice(11,19)} UTC, detector ${frame.detector}, ${Number.isFinite(frame.wavelength_center_um)?frame.wavelength_center_um.toFixed(3)+' micrometres'+(frame.target?.valid?'':' (nominal channel)'):'wavelength unavailable'}`;
   if(state.mode==='single')return `Blink view, frame ${state.current+1}. ${describe(a)}.${count>1?` The image averages ${count} consecutive frames.`:''}`;
   if(!b)return `Frame A is ${describe(a)}. Choose a second frame to compare.`;
   const heading={side:'Side by side with A on the left',wipe:`Wipe at ${state.wipe}% with A on the left`,
