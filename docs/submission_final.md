@@ -2,7 +2,7 @@
 
 [Public submission repository](https://github.com/MuathYasin000/SKYSHIFT-)
 
-[Paste-ready portal fields](project_page_fields.md) · [Demo and screenshots](demo_final.md) · [Third-party notices](third_party.md)
+[Paste-ready portal fields](project_page_fields.md) · [Seven-slide judging demo](demo/SKYSHIFT-Project-Mercury-Team.pdf) · [Project-page screenshots](demo_final.md#project-page-images) · [Third-party notices](third_party.md)
 
 ## Summary
 
@@ -11,7 +11,7 @@ SKYSHIFT lets visitors look up a place in the sky and explore NASA’s infrared 
 ## Try it in three steps
 
 1. Open **Observations** and enter RA and Dec or choose a challenge target.
-2. Read the dates, detectors, and wavelengths. Choose a thumbnail or select **Play** to blink through single frames.
+2. Select **Same band** to blink through frames at similar wavelengths on one detector. Read the dates, wavelengths and quality labels.
 3. Choose Frame A and Frame B in **Compare** and select **Side by side** or **Wipe**. Use **Share view** to copy the selection.
 
 [Open SKYSHIFT](https://skyshift-j22s.onrender.com/) and choose a challenge target to open its bundled 8′ preview.

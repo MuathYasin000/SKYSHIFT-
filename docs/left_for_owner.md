@@ -3,8 +3,8 @@
 ## Submission
 
 - Confirm **Project Mercury Team** and all six members in the portal. Keep the organizer’s response about earlier work and confirm its scope with the Local Lead. Confirm the Local Event assignment for the full roster and the portal’s deadline in that event’s time zone.
-- The public demo template uses the requested name placeholders. A separate local PDF supplied to the owner already includes the six names as provided. Confirm the team members’ name spellings, casing and permission to publish.
-- Host the finished demo at a link that opens signed out. Use the [demo materials](demo_final.md) and [paste-ready portal fields](project_page_fields.md). Review the originality declaration and terms yourself, select **Submit for Judging**, and confirm the saved submission.
+- The [public judging demo](demo/SKYSHIFT-Project-Mercury-Team.pdf) includes the six approved names. Use its GitHub URL from the [paste-ready portal fields](project_page_fields.md).
+- Review the originality declaration and terms yourself, select **Submit for Judging**, and confirm the saved submission banner.
 - Submit the [optional FortiGuard request](project_page_fields.md#fortiguard) if you choose to use it.
 
 ## Verification limits

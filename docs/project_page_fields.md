@@ -10,7 +10,7 @@ SKYSHIFT turns real NASA SPHEREx infrared observations into a browser flipbook. 
 
 ## Link to Project Demo
 
-[PUBLIC DEMO URL]
+https://github.com/MuathYasin000/SKYSHIFT-/blob/codex/observations-fix/docs/demo/SKYSHIFT-Project-Mercury-Team.pdf
 
 ## Link to Final Project
 

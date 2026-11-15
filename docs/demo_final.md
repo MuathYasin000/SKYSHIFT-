@@ -1,9 +1,10 @@
 # SKYSHIFT demo
 
-Use one submission format. The slide demo contains seven slides including the title and introduction. The alternative storyboard runs from 0:00 through 0:30. The bracketed name and team fields are editable. Replace them before sharing the demo link.
+The judging demo is the seven-slide English PDF with Project Mercury Team and all six members on the cover. Its GitHub link can be pasted into the portal’s Link to Project Demo field. The 30-second storyboard is an alternative format.
 
-- [Editable PowerPoint](demo/SKYSHIFT-demo.pptx)
-- [Seven-slide PDF](demo/SKYSHIFT-demo.pdf)
+- [Judging demo with the confirmed roster](demo/SKYSHIFT-Project-Mercury-Team.pdf)
+- [Editable PowerPoint template](demo/SKYSHIFT-demo.pptx)
+- [PDF template](demo/SKYSHIFT-demo.pdf)
 - [Live SKYSHIFT](https://skyshift-j22s.onrender.com/)
 - [RW Aurigae comparison](https://skyshift-j22s.onrender.com/compare.html?target=rw-aurigae)
 
