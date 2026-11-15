@@ -64,6 +64,20 @@ Objective and consideration headings follow the official [Planet X and SPHEREx s
 
 ## Scientific validity
 
+### Wavelength-aware Blink
+
+The Same band shortcut picks the largest group on one detector within a 0.10 µm total span, then plays the frames in date order. These results cover the default 12 loaded frames per 8′ preview. Nominal channels at masked centers group exposures by channel metadata. The center remains unusable there.
+
+| Target | Detector | Wavelength span (µm) | Frames | UTC date span | Usable centers |
+| --- | ---: | --- | ---: | --- | ---: |
+| Barnard’s Star | 1 | 0.9311 nominal | 5 | 2025-08-27 to 2026-09-02 | 0 |
+| Epsilon Indi B | 1 | 1.06637–1.06658 | 3 | 2025-04-27 to 2026-05-03 | 3 |
+| WISE 0855-0714 | 5 | 4.18880–4.22213 | 2 | 2025-12-13 to 2026-05-11 | 2 |
+| RW Aurigae | 1 | 0.74692–0.78212 | 5 | 2025-09-02 to 2026-09-08 | 5 |
+| R Draconis | 3 | 2.03235 nominal | 5 | 2025-04-24 to 2026-05-21 | 0 |
+
+WISE 0855’s default preview has fewer than three same-band frames. The timeline reports the limit and offers wider windows. Frame comparisons remain exploratory.
+
 | Target | Live cached frames | Usable target pixels | First → next after Play | What the user sees |
 | --- | ---: | ---: | --- | --- |
 | Barnard’s Star | 12 | 0 | 2025-08-15 D3 2.032 µm → 2025-08-21 D2 1.377 µm | Bright surrounding field and a dark masked center. Pixels change with the exposure. No eligible suggested pair. |

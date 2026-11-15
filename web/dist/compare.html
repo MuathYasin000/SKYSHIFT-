@@ -111,6 +111,18 @@
             </div>
             <label class="timeline-scrubber">Jump to frame <output id="scrubber-value">0 / 0</output><input id="scrubber" type="range" min="0" max="0" value="0"></label>
           </div>
+          <div class="wavelength-controls">
+            <label for="wavelength-window">Wavelength window</label>
+            <select id="wavelength-window" aria-describedby="wavelength-count">
+              <option value="">All frames</option>
+              <option value="0.05">±0.05 µm</option>
+              <option value="0.1">±0.10 µm</option>
+              <option value="0.25">±0.25 µm</option>
+            </select>
+            <button id="same-band" type="button" data-sound="compare" aria-describedby="same-band-status">Same band</button>
+            <span id="wavelength-count" role="status"></span>
+          </div>
+          <p id="same-band-status" class="control-reason band-status" role="status" hidden></p>
           <div id="frame-strip" class="frame-strip" role="group" aria-label="Dated frames"></div>
         </section>
       </section>
@@ -228,7 +240,8 @@
     <details class="secondary-panel">
         <summary id="reading-title">How to read this</summary>
         <p>Select a thumbnail for frame A. Shift-select or use “Use current as B” for frame B.</p>
-        <p>Blink steps through dated exposures. Side by side and Wipe compare two frames. Difference displays A minus B where both frames have usable pixels.</p>
+        <p>Blink steps through dated exposures. Same band selects one detector within a 0.10 µm span. Frames at a similar wavelength make real change easier to judge. Differences are not a detection.</p>
+        <p>Side by side and Wipe compare two frames. Difference displays A minus B where both frames have usable pixels.</p>
         <p>Masked pixels include missing or flagged measurements. Gap fill is for display. Different wavelengths can change brightness.</p>
       <p class="keyboard">Keyboard in the image: Space plays or pauses. Left and Right step. Shift + arrow pans. Enter samples a spectrum. Keys 1–4 switch modes. + and − zoom. Home fits.</p>
       </details>

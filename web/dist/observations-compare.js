@@ -6,6 +6,7 @@ import {alignFrame,bicubicBitmap,displayLimits,displayPixels} from './observatio
 import {attachSkyBackground} from './observations-sky-background.js';
 import {createFramePicker} from './observations-picker.js';
 import {installWorkbenchTabs} from './observations-tools.js';
+import {NARROW_BAND_HALF_WIDTH, framesInWavelengthWindow, largestSameBand, readWavelengthWindow, writeWavelengthWindow} from './observations-band.js';
 
 const $=id=>document.getElementById(id);
 let applicationAudio;
@@ -262,6 +263,7 @@ async function runSearch(event,refresh=false){
 
 function resetResults(){
   state.request=null;state.frames=[];state.current=0;state.mode='single';
+  state.band=null;state.sameBand=null;state.bandFeedback='';
   $('viewer-target').textContent='SPHEREx DR1 / QR3';
   if(skyBackground)$('open-sky-background').disabled=true;
   state.pairOverrides={};state.loading=false;
@@ -367,6 +369,7 @@ async function presentResult(result,signal,searchId,cachedMatch){
       state.grid??={shape:frame.arraysDecoded.shape,wcs:frame.wcs};
       alignFrame(frame,state.grid);
       frame.archiveRow=observation;
+      frame.isCached=Boolean(observation.frame_url);
       frame.rowIndex=index;
       state.frames.push(frame);
       drawThumbnail(index,frame);
@@ -672,7 +675,8 @@ function drawThumbnail(index,frame){
   coverage.className='preview-quality';coverage.textContent=maskSummary(frame);cell.append(coverage);
 }
 
-function filteredFrames(){const detector=$('filter-detector').value,min=parseFloat($('filter-min').value),max=parseFloat($('filter-max').value);return state.frames.filter(frame=>(detector==='all'||String(frame.detector)===detector)&&(!Number.isFinite(min)||!Number.isFinite(frame.wavelength_center_um)||frame.wavelength_center_um>=min)&&(!Number.isFinite(max)||!Number.isFinite(frame.wavelength_center_um)||frame.wavelength_center_um<=max));}
+function baseFrames(){const detector=$('filter-detector').value,min=parseFloat($('filter-min').value),max=parseFloat($('filter-max').value);return state.frames.filter(frame=>(detector==='all'||String(frame.detector)===detector)&&(!Number.isFinite(min)||!Number.isFinite(frame.wavelength_center_um)||frame.wavelength_center_um>=min)&&(!Number.isFinite(max)||!Number.isFinite(frame.wavelength_center_um)||frame.wavelength_center_um<=max));}
+function filteredFrames(){return framesInWavelengthWindow(baseFrames(),state.band);}
 function applyFilters(){const detector=$('filter-detector').value,min=parseFloat($('filter-min').value),max=parseFloat($('filter-max').value);for(const row of $('observation-rows').rows){const wave=parseFloat(row.dataset.wave);row.hidden=(detector!=='all'&&row.dataset.detector!==detector)||(Number.isFinite(min)&&Number.isFinite(wave)&&wave<min)||(Number.isFinite(max)&&Number.isFinite(wave)&&wave>max);}}
 for(const id of ['filter-detector','filter-min','filter-max'])$(id).oninput=()=>{applyFilters();refreshFrameOptions();render();if(comparison)drawSpectrum();};
 
@@ -704,8 +708,9 @@ function defaultPair(frames){
 }
 
 function refreshFrameOptions(){
-  const frames=filteredFrames();
-  const pair=state.loading?null:defaultPair(frames);
+  const frames=baseFrames(), timeline=framesInWavelengthWindow(frames,state.band);
+  state.sameBand=state.loading?null:largestSameBand(frames.filter(frame=>frame.isCached));
+  const pair=state.loading?null:defaultPair(timeline)??(state.band?defaultPair(frames):null);
   const indexByFrame=new Map(state.frames.map((frame,index)=>[frame,String(index)]));
   frameChoices=new Map(frames.map(frame=>[indexByFrame.get(frame),frame]));
   for(const [i,id] of ['frame-a','frame-b'].entries()){
@@ -719,7 +724,36 @@ function refreshFrameOptions(){
   note.textContent=pair?'Suggested pair uses detector D'+pair[0].detector+' on '+frameDate(pair[0]).slice(0,10)+' and '+frameDate(pair[1]).slice(0,10)+'. Both target pixels are usable.':
     state.loading?'Checking loaded frames for a comparable pair…':
     'No default pair in these frames. A default needs two dates on one detector, similar wavelengths and two usable target pixels. You can still choose frames manually.';
-  $('scrubber').max=String(Math.max(0,frames.length-1));state.current=Math.min(state.current,Math.max(0,frames.length-1));$('scrubber').value=String(state.current);refreshControls();
+  $('scrubber').max=String(Math.max(0,timeline.length-1));state.current=Math.min(state.current,Math.max(0,timeline.length-1));$('scrubber').value=String(state.current);refreshControls();
+}
+
+function setBand(window, anchor, feedback=''){
+  stop();
+  state.band=window;
+  state.bandFeedback=feedback;
+  state.current=Math.max(0,filteredFrames().indexOf(anchor));
+  refreshFrameOptions();
+  const url=new URL(location.href);
+  for(const key of ['mode','frame','a','b','wipe'])url.searchParams.delete(key);
+  addViewParameters(url.searchParams);
+  history.replaceState(null,'',url);
+  render();
+}
+
+function describeBand(count, total){
+  const window=state.band;
+  const select=$('wavelength-window');
+  select.value=window?.halfWidth??'';
+  select.disabled=!total;
+  $('same-band').disabled=state.loading||!total;
+  const countText=`${count} of ${total} frames`+(window?` · ${window.center.toFixed(3)} µm${window.singleDetector?` · D${window.detector}`:''}`:'');
+  if($('wavelength-count').textContent!==countText)$('wavelength-count').textContent=countText;
+  const groupCount=state.sameBand?.count??0;
+  const status=state.bandFeedback||(!state.loading&&total&&groupCount<3?
+    'The largest cached same-band group has fewer than 3 frames. Widen the window for more dates.':'');
+  const note=$('same-band-status');
+  if(note.textContent!==status)note.textContent=status;
+  note.hidden=!status;
 }
 
 function setInitialView(){const frame=state.frames[0],shape=frame.arraysDecoded.shape;state.view={zoom:1,center_x:(shape[1]-1)/2,center_y:(shape[0]-1)/2};}
@@ -905,8 +939,14 @@ function render(){
   const comparedFrames=state.mode==='single'?frames:[a,b].filter(Boolean);
   const waves=comparedFrames.map(frame=>frame.wavelength_center_um).filter(Number.isFinite);
   const different=comparedFrames.length>1&&(waves.length<comparedFrames.length||Math.max(...waves)-Math.min(...waves)>1e-5);
+  const similar=state.band?.halfWidth===NARROW_BAND_HALF_WIDTH&&comparedFrames.length>1&&
+    waves.length===comparedFrames.length&&waves.every(wave=>Math.abs(wave-state.band.center)<=NARROW_BAND_HALF_WIDTH+1e-9);
+  const wavelengthNote=$('wavelength-note');
+  wavelengthNote.textContent=similar?'Frames in this window have similar wavelengths.':
+    'Wavelength warning: exposure wavelengths differ or are unavailable. Wavelength affects image brightness.';
+  wavelengthNote.classList.toggle('band-match',similar);
   $('release-note').hidden=new Set(comparedFrames.map(frame=>frame.release)).size<2;
-  $('wavelength-note').hidden=!different;
+  wavelengthNote.hidden=!similar&&!different;
   let window={frame:a,count:1};
   let windowError='';
   if(a&&state.mode==='single'){
@@ -942,7 +982,7 @@ function render(){
   const description= differenceMessage||describeView(a,b,window.count);
   $('view-description').textContent=description;
   const announcement=$('viewer-announcement');
-  const update=different&&!differenceMessage?description+' '+$('wavelength-note').textContent:description;
+  const update=!wavelengthNote.hidden&&!differenceMessage?description+' '+wavelengthNote.textContent:description;
   if(!state.timer&&announcement.textContent!==update)announcement.textContent=update;
   $('zoom-value').textContent=`${state.view.zoom.toFixed(1)}×`;$('scrubber-value').textContent=`${frames.length?state.current+1:0} / ${frames.length}`;$('scrubber').value=String(state.current);
   renderTimeline(frames);showMetadata(a);
@@ -951,12 +991,15 @@ function render(){
 }
 
 function refreshControls(){
-  const count=filteredFrames().length,two=count>=2;
-  if(!two){stop();state.mode='single';}
+  const count=filteredFrames().length,total=frameChoices.size,two=total>=2;
+  if(count<2)stop();
+  if(!two)state.mode='single';
+  describeBand(count,total);
   for(const id of ['play','prev','next','scrubber'])$(id).disabled=count<2;
   for(const id of ['side','wipe','difference-mode','choose-frame-b','use-frame-b'])$(id).disabled=!two;
   if(comparison)for(const id of ['add-frames','subtract-frames'])$(id).disabled=!two;
-  for(const id of ['single','choose-frame-a','zoom-out','zoom-in','fit','sample-centre'])$(id).disabled=count<1;
+  $('choose-frame-a').disabled=!total;
+  for(const id of ['single','zoom-out','zoom-in','fit','sample-centre'])$(id).disabled=count<1&&state.mode==='single';
   $('control-reason').textContent=two?'':count===1?'Two-frame tools need a second loaded image.':'Choose observations to populate the timeline.';
   $('control-reason').hidden=two;
   $('figure-b').hidden=!['side','wipe'].includes(state.mode)||!selectedFrame('frame-b');
@@ -972,6 +1015,7 @@ function stop(){if(state.timer)clearInterval(state.timer);state.timer=null;playb
 function play(){if(state.timer){stop();render();return;}if($('play').disabled)return;state.mode='single';refreshControls();playbackState(true);state.timer=setInterval(()=>step(1),Number($('speed').value));render();}
 
 function addViewParameters(params){
+  writeWavelengthWindow(params,state.band);
   if(state.mode!=='single'){
     params.set('mode',state.mode);
     for(const side of ['a','b'])params.set(side,$('frame-'+side).value);
@@ -986,8 +1030,10 @@ function restoreView(){
   const params=sharedView;
   sharedView=new URLSearchParams();
   const mode=params.get('mode');
-  let restored=false;
-  if(['side','wipe','difference'].includes(mode)&&filteredFrames().length>1){
+  state.band=readWavelengthWindow(params);
+  refreshFrameOptions();
+  let restored=Boolean(state.band);
+  if(['side','wipe','difference'].includes(mode)&&frameChoices.size>1){
     for(const side of ['a','b']){
       const select=$('frame-'+side),value=params.get(side);
       if(frameChoices.has(value)||(side==='b'&&value==='')){
@@ -1000,7 +1046,7 @@ function restoreView(){
     if(state.mode==='wipe'&&Number.isFinite(wipe)&&wipe>=0&&wipe<=100){
       state.wipe=wipe;$('wipe-position').value=String(wipe);
     }
-    restored=state.mode===mode;
+    restored=restored||state.mode===mode;
   }else{
     const index=Number(params.get('frame'))-1;
     if(Number.isInteger(index)&&index>0&&index<filteredFrames().length){state.current=index;restored=true;}
@@ -1014,6 +1060,30 @@ function restoreView(){
 }
 
 $('search-form').onsubmit=runSearch;$('retry').onclick=event=>runSearch(event,true);$('prev').onclick=()=>{stop();step(-1)};$('next').onclick=()=>{stop();step(1)};$('play').onclick=play;
+$('wavelength-window').onchange=event=>{
+  const halfWidth=Number(event.target.value);
+  const anchor=currentFrame()??selectedFrame('frame-a');
+  if(!halfWidth){setBand(null,anchor);return;}
+  if(!Number.isFinite(anchor?.wavelength_center_um)){
+    state.bandFeedback='Choose a frame with a wavelength before narrowing the window.';
+    describeBand(filteredFrames().length,frameChoices.size);
+    return;
+  }
+  setBand({center:anchor.wavelength_center_um,halfWidth,detector:anchor.detector,singleDetector:false},anchor);
+};
+$('same-band').onclick=()=>{
+  const group=state.sameBand;
+  if(!group||group.count<2){
+    state.bandFeedback='Fewer than 2 cached frames qualify for Same band. Widen the wavelength window to see more frames.';
+    describeBand(filteredFrames().length,frameChoices.size);
+    return;
+  }
+  const pair=defaultPair(group.frames)??[group.frames[0],group.frames.at(-1)];
+  for(const [i,id] of ['frame-a','frame-b'].entries())state.pairOverrides[id]=String(state.frames.indexOf(pair[i]));
+  state.mode='single';
+  setBand({center:group.center,halfWidth:NARROW_BAND_HALF_WIDTH,detector:group.detector,singleDetector:true},group.frames[0]);
+  play();
+};
 for(const kind of Object.keys(catalogs)){
   const input=$(`overlay-${kind}`);
   input.onchange=()=>toggleReference(kind);

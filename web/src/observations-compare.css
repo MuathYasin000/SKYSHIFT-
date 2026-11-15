@@ -315,6 +315,11 @@
 .timeline-speed input { max-width: 64px; }
 .timeline-controls .timeline-scrubber { flex: 1 1 210px; }
 .timeline-scrubber input { flex: 1 1 64px; }
+.wavelength-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding-block: 2px; }
+.wavelength-controls select { width: auto; }
+.wavelength-controls span, .band-status { font-size: 0.875rem; }
+.band-status { margin: 0; padding-block: 2px 4px; }
+.band-match { color: var(--observation-success, #8de2ab); }
 .frame-strip {
   display: flex;
   gap: 8px;

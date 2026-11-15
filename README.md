@@ -27,7 +27,8 @@ Use `/explore.html` or `/compare.html` with a query string. [Open a tested WISE 
 | `fov` | Square field width in arcminutes, `1` through `30` in 0.1′ increments. Default `8`. A preset can open an exact bundled 8′ preview before making an archive request. |
 | `release` | `all` (default), `dr1`, or `qr3`. A release filter can reduce cached coverage. |
 | `from`, `to` | One-based inclusive bounds into the selected release's date-ordered rows. Omit both to use the default preview subset. |
-| `frame` | One-based frame to show in Blink within the loaded selection. |
+| `frame` | One-based frame to show in the visible Blink selection. |
+| `wl`, `wlw` | Wavelength window center and half-width in µm. Supported half-widths are `0.05`, `0.1`, and `0.25`. `wld` prioritizes a detector (1–6). Same band also sets `wls=1` to restrict playback to that detector. |
 | `mode`, `a`, `b`, `wipe` | For two-frame views use `side`, `wipe`, or `difference`. Frame A/B are zero-based loaded indices. Wipe position is a percentage (`0`–`100`, default 50). Use **Share view** to generate a working URL. |
 
 Link to a view from other sites with an ordinary hyperlink. Cross-origin iframes are blocked by the app's framing policy. A shared custom coordinate repeats the archive request when opened. The short-lived `search` identifier is useful only on the service instance that created it.
