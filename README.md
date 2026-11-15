@@ -72,7 +72,7 @@ OpenAI Codex assisted with implementation, testing, documentation, archive integ
 
 ## Project history
 
-A working SKYSHIFT application existed before November 14, 2026. The earliest commit, `ce53450`, is dated October 16, 2026 and already contains the application. This public repository began as a November 15 snapshot of source commit `c829f26`. The complete development history is preserved locally with its original timestamps. The two earlier GitHub URLs were unavailable at the close of the audit.
+A working SKYSHIFT application existed before November 14, 2026. The earliest commit, `ce53450`, is dated October 16, 2026 and already contains the application. This public repository began as a November 15 snapshot of source commit `c829f26`. The complete 66-commit development history, with its original commit timestamps, can be read on the public [`full-history` branch](https://github.com/MuathYasin000/SKYSHIFT-/tree/full-history). A full `git bundle` can be provided to the organizers on request.
 
 The November 14 commit preserved the pre-cleanup project. The owner reports having obtained permission to reuse earlier work. Fresh copy dates are separate from original Git dates. The November 15 work repaired Observations and Compare, expanded live archive discovery, bundled date-spread target data, built the shared workbench, and prepared and verified the public deployment. Selected lines from the local source history’s `git log --date=short --format="%h %ad %s"` follow.
 
