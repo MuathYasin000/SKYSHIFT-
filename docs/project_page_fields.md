@@ -6,7 +6,7 @@ SKYSHIFT
 
 ## High-Level Project Summary
 
-SKYSHIFT turns real NASA SPHEREx infrared observations into a browser flipbook. Choose one of five challenge targets or enter sky coordinates, then compare different dates and inspect each image’s wavelength, detector and pixel masks. Repeated views help students and citizen scientists identify questions worth investigating.
+SKYSHIFT turns real NASA SPHEREx infrared observations into a browser flipbook. Choose one of five challenge targets or enter sky coordinates. Blink through exposures taken at similar wavelengths, compare dates, and inspect each frame’s detector and pixel masks. The project gives students and citizen scientists a way to explore changes in the infrared sky and decide what deserves a closer look.
 
 ## Link to Project Demo
 
@@ -20,13 +20,13 @@ Source repository and project history: https://github.com/MuathYasin000/SKYSHIFT
 
 ## Detailed Project Description
 
-SKYSHIFT is an interactive viewer for the Planet X and SPHEREx challenge. It lets visitors choose Barnard’s Star, Epsilon Indi B, WISE 0855-0714, RW Aurigae or R Draconis, or enter right ascension and declination. Select a field width and release, then browse dated thumbnails and press Play to blink through exposures. Compare two frames side by side, with a wipe, or through an exploratory difference. A shared link preserves the coordinate or target selection and comparison controls.
+SKYSHIFT is an interactive viewer for the Planet X and SPHEREx challenge. Visitors can choose Barnard’s Star, Epsilon Indi B, WISE 0855-0714, RW Aurigae, or R Draconis, or enter right ascension and declination. Select a field width and release, then blink through dated exposures. The Same band control selects cached frames from a single detector with similar wavelengths. Compare two frames side by side, with a wipe, or through an exploratory difference. A shared link preserves the target, wavelength window and comparison settings.
 
 Python queries NASA/IPAC IRSA for calibrated SPHEREx DR1 and QR3 Level 2 products. Astropy interprets FITS time, WCS and wavelength information. NumPy, SciPy and reproject help prepare real cutouts on a common sky grid. The JavaScript workbench displays usable samples with masked pixels labelled, and each frame links back to its original archive product. The five bundled previews let visitors start without waiting for a new archive search. Optional Gaia DR3 and AllWISE markers and DSS optical imagery provide context. The spectrum view plots exploratory samples from loaded exposures.
 
 Different wavelengths, coverage and processing can alter image appearance. The viewer helps users inspect these effects and decide what to investigate. A future version could expand date and wavelength coverage as more observations arrive. The web interface uses HTML, CSS, JavaScript and Canvas. Docker packages the Python service on Render. Three.js powers the optional illustrative spacecraft model.
 
-The team adapted an existing SKYSHIFT application for the challenge and developed the challenge-target workbench, dated previews and public submission workflow during the event. The public Git history records the earlier app and the event changes.
+The team adapted an existing SKYSHIFT application for the challenge and developed the challenge-target workbench, dated previews and public submission workflow during the event. The README’s Project history section documents the timeline and earlier work.
 
 ## Use of Super Intelligence (SI)
 
@@ -48,6 +48,7 @@ We used OpenAI Codex for application implementation, archive integration, testin
 - CADC archive link for CSA/DRDC NEOSSat. SKYSHIFT links to the archive and uses no NEOSSat exposure. https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/neossat/
 - Backyard Worlds WiseView inspired the flipbook interaction. https://github.com/backyardworlds/wiseview
 - NASA/JPL-Caltech SPHEREx official imagery and JPL spacecraft references. Hubble, Webb and optional solar-system educational assets from NASA, ESA, CSA, STScI and the credited contributors. Asset-specific sources, licenses and modifications are in the public inventory.
+- The homepage reference photos use ESO/DSS2, ESO/2MASS, Webb NIRCam from NASA/ESA/CSA program 1230 with a credited composite by Melina Thévenot, and Pan-STARRS1 from the PS1 Science Consortium through MAST. These are reference photos. The compared exposures are SPHEREx measurements. https://github.com/MuathYasin000/SKYSHIFT-/blob/codex/observations-fix/web/dist/assets/challenge-context/manifest.json
 - Python, Astropy, NumPy, SciPy, reproject, Pydantic, PyVO, Matplotlib, Photutils and Streamlit. HTML, CSS, JavaScript, Canvas and Web Audio. Three.js r180 and loaders, Draco, fflate 0.8.2, Lenis 1.3.11, axe-core 4.14.0 and Playwright. Inter and IBM Plex Mono are under SIL OFL-1.1. Docker and Render package and serve the app.
 - Vengeance UI kinetic loader adapted under MIT. Skiper UI and the earlier Vengeance navigation adaptation are historical. dqnamo Kitchen is visual inspiration. OpenAI Codex and Anthropic Claude assisted as described above.
 - Submission and verification tools include Git, Chromium/Playwright, the Codex presentation runtime, Microsoft PowerPoint PDF export, and Gitleaks. The live app pictures are screenshots.
