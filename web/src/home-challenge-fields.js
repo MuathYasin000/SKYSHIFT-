@@ -46,6 +46,7 @@ function paintCutout(canvas, frame) {
 
 export async function installChallengeFields({gallery, filter, suggestions, status, retry, template}) {
   const cards = new Map();
+  const photos = readJSON('./assets/challenge-context/manifest.json').catch(() => ({}));
   const observer = new IntersectionObserver(entries => {
     for (const {isIntersecting, target} of entries) {
       if (!isIntersecting) continue;
@@ -57,10 +58,40 @@ export async function installChallengeFields({gallery, filter, suggestions, stat
   async function loadPreview(card) {
     const image = card.querySelector('.field-image');
     const feedback = card.querySelector('.field-image-status');
+    const label = card.querySelector('.field-image-label');
+    const source = card.querySelector('.field-source');
+    const photo = (await photos).targets?.[card.dataset.target];
+    if (photo) {
+      const img = image.querySelector('img');
+      img.src = photo.image;
+      try {
+        await img.decode();
+        img.alt = photo.alt;
+        img.hidden = false;
+        label.textContent = photo.label;
+        label.hidden = false;
+        if (photo.note) {
+          const note = card.querySelector('.field-photo-note');
+          note.textContent = photo.note;
+          note.hidden = false;
+        }
+        feedback.hidden = true;
+        source.href = photo.source;
+        source.textContent = `${photo.credit} ↗`;
+        source.hidden = false;
+        return;
+      } catch {
+        feedback.textContent = 'Loading cached SPHEREx cutout…';
+      }
+    }
     try {
       const frame = await firstCachedFrame(card.dataset.target);
-      paintCutout(card.querySelector('canvas'), frame);
+      const canvas = image.querySelector('canvas');
+      paintCutout(canvas, frame);
+      canvas.hidden = false;
       image.dataset.previewReady = 'true';
+      label.textContent = 'Cached SPHEREx exposure';
+      label.hidden = false;
       feedback.hidden = true;
       const date = card.querySelector('time');
       date.dateTime = frame.time_start_utc;
@@ -68,9 +99,9 @@ export async function installChallengeFields({gallery, filter, suggestions, stat
       card.querySelector('.field-band').textContent = ` · ${frame.release.toUpperCase()} · D${frame.detector}` +
         (Number.isFinite(frame.wavelength_center_um) ? ` · ${frame.wavelength_center_um.toFixed(3)} µm${frame.target?.valid ? '' : ' nominal'}` : '');
       card.querySelector('.field-mask').hidden = frame.target?.valid === true;
-      const source = card.querySelector('.field-source');
       source.href = frame.archive_source_url;
       source.title = frame.archive_id;
+      source.textContent = 'IRSA archive source ↗';
       source.hidden = false;
     } catch {
       feedback.textContent = 'Cached image unavailable. Open Compare to view this target.';
@@ -96,7 +127,6 @@ export async function installChallengeFields({gallery, filter, suggestions, stat
         card.dataset.target = id;
         card.querySelector('h3').textContent = name;
         card.querySelector('.field-compare').href = `./compare.html?${new URLSearchParams({target:id})}`;
-        card.querySelector('.field-source').setAttribute('aria-label', `IRSA archive source for ${name}`);
         cards.set(card, `${id} ${name}`.toLowerCase());
         gallery.append(card);
         suggestions.append(new Option(name, name));

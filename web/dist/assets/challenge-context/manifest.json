@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-11-15",
+  "scope": "Archival reference photographs for homepage display. The Compare viewer uses the separate SPHEREx archive cutouts. The downloaded JPEG bytes are preserved. The cards crop images for layout.",
+  "targets": {
+    "barnards-star": {
+      "width": 1280,
+      "height": 1150,
+      "label": "ESO · DSS2",
+      "note": "Three colored points near the center mark Barnard’s Star in different exposures.",
+      "alt": "Wide star field around Barnard’s Star, shown in three colours near the center for three survey exposures.",
+      "credit": "ESO/Digitized Sky Survey 2 Acknowledgement: Davide De Martin, E — Red Dots",
+      "source": "https://cdn3.eso.org/public/images/eso1837d/",
+      "original": "https://cdn.eso.org/images/screen/eso1837d.jpg",
+      "terms": "https://www.eso.org/public/outreach/copyright/",
+      "licence": "CC BY 4.0 for ESO’s published image",
+      "framing": "Centered crop of the published optical composite.",
+      "image": "./assets/challenge-context/barnards-star.jpg",
+      "sha256": "a940f7110f626b0e62829b84ef26de80e5b7db5feae82f47fe4e1dd0ed276446"
+    },
+    "epsilon-indi-b": {
+      "width": 1072,
+      "height": 1556,
+      "label": "ESO · 2MASS near-infrared panel",
+      "note": "Epsilon Indi B is circled on the left.",
+      "alt": "Epsilon Indi B is circled at the left of the orange 2MASS Ks image. The bright star on the far right is Epsilon Indi A.",
+      "credit": "ESO/R.-D.Scholz et al. (AIP)",
+      "source": "https://www.eso.org/public/images/eso0303a/",
+      "original": "https://cdn.eso.org/images/large/eso0303a.jpg",
+      "terms": "https://www.eso.org/public/outreach/copyright/",
+      "licence": "CC BY 4.0 for ESO’s published image",
+      "framing": "Homepage frames the lower 2MASS Ks panel of the published optical/near-infrared collage.",
+      "image": "./assets/challenge-context/epsilon-indi-b.jpg",
+      "sha256": "93fa707322aad5ac2a71b40e148a6e006750b26de61e650fc6c87acd7718979b"
+    },
+    "wise-0855": {
+      "width": 1117,
+      "height": 1116,
+      "label": "Webb · NIRCam",
+      "note": "WISE 0855 is the orange source at the center.",
+      "alt": "Near-infrared Webb view of WISE 0855-0714, the orange source near the center.",
+      "credit": "NASA/ESA/CSA JWST NIRCam, Alves de Oliveira et al. and Melina Thévenot",
+      "source": "https://commons.wikimedia.org/wiki/File:WISE_0855-0714_NIRCam4.jpg",
+      "original": "https://upload.wikimedia.org/wikipedia/commons/7/70/WISE_0855-0714_NIRCam4.jpg",
+      "terms": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "licence": "CC BY-SA 4.0",
+      "science_record": "https://www.stsci.edu/jwst-program-info/program/?program=1230",
+      "framing": "Centered crop of the published F200W/F444W colour composite from NIRCam observations.",
+      "image": "./assets/challenge-context/wise-0855.jpg",
+      "sha256": "eec211b4d1272d6a8039e6ee5fbbe2f79d9818573dfb0b61852d997db64cb7b2"
+    },
+    "rw-aurigae": {
+      "width": 960,
+      "height": 960,
+      "label": "Pan-STARRS1 · Optical colour",
+      "alt": "Pan-STARRS1 optical field centered on RW Aurigae, with a bright central source and surrounding stars.",
+      "credit": "Pan-STARRS1 Science Consortium / MAST",
+      "original": "https://ps1images.stsci.edu/cgi-bin/fitscut.cgi?ra=76.95652603458333&dec=30.401438173888888&size=960&format=jpg&red=/rings.v3.skycell/1947/066/rings.v3.skycell.1947.066.stk.i.unconv.fits&green=/rings.v3.skycell/1947/066/rings.v3.skycell.1947.066.stk.r.unconv.fits&blue=/rings.v3.skycell/1947/066/rings.v3.skycell.1947.066.stk.g.unconv.fits",
+      "terms": "https://archive.stsci.edu/publishing/data-use",
+      "licence": "Public PS1 survey data under MAST Data Use",
+      "framing": "Colour composite of three optical survey stacks. The homepage crop excludes the blank edge of the skycell.",
+      "image": "./assets/challenge-context/rw-aurigae.jpg",
+      "source": "https://ps1images.stsci.edu/cgi-bin/fitscut.cgi?ra=76.95652603458333&dec=30.401438173888888&size=960&format=jpg&red=/rings.v3.skycell/1947/066/rings.v3.skycell.1947.066.stk.i.unconv.fits&green=/rings.v3.skycell/1947/066/rings.v3.skycell.1947.066.stk.r.unconv.fits&blue=/rings.v3.skycell/1947/066/rings.v3.skycell.1947.066.stk.g.unconv.fits",
+      "sha256": "93c5e5c0ffc05c72a5fd3a0cfa42f5c4c4a76ea8a9fe583008bb2f6706352ea6"
+    },
+    "r-draconis": {
+      "width": 720,
+      "height": 720,
+      "label": "Pan-STARRS1 · Optical r band",
+      "alt": "Monochrome Pan-STARRS1 optical field with R Draconis at the bright center.",
+      "credit": "Pan-STARRS1 Science Consortium / MAST",
+      "original": "https://ps1images.stsci.edu/cgi-bin/fitscut.cgi?ra=248.16761083295&dec=66.75497941722&size=720&format=jpg&red=/rings.v3.skycell/2526/066/rings.v3.skycell.2526.066.stk.r.unconv.fits",
+      "terms": "https://archive.stsci.edu/publishing/data-use",
+      "licence": "Public PS1 survey data under MAST Data Use",
+      "framing": "Centered crop of a greyscale optical r-band survey stack.",
+      "image": "./assets/challenge-context/r-draconis.jpg",
+      "source": "https://ps1images.stsci.edu/cgi-bin/fitscut.cgi?ra=248.16761083295&dec=66.75497941722&size=720&format=jpg&red=/rings.v3.skycell/2526/066/rings.v3.skycell.2526.066.stk.r.unconv.fits",
+      "sha256": "8c1913a47bf3204f3f2323d501369d0d43f23f16a93ddf8bba98c87d6e6d68b5"
+    }
+  }
+}

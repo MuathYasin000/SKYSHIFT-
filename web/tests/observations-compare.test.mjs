@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {mkdir, readFile, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
@@ -21,11 +22,35 @@ async function chooseFrame(page,side,index){
   assert.equal(await page.locator('#frame-'+side).inputValue(),String(index));
 }
 
-test('Homepage previews use the first cached Compare exposure for each challenge target',{skip:!base,timeout:90000},async()=>{
+test('Homepage opens the five credited reference photos',{skip:!base,timeout:30000},async()=>{
+  const context=await browser.newContext({baseURL:base,viewport:{width:1440,height:900},reducedMotion:'reduce'});
+  try{
+    const manifest=JSON.parse(await readFile(path.join(dist,'assets/challenge-context/manifest.json'),'utf8'));
+    assert.deepEqual(Object.keys(manifest.targets),targets.map(target=>target.id));
+    const page=await context.newPage();
+    await page.goto('/');
+    for(const target of targets){
+      const expected=manifest.targets[target.id];
+      const asset=await readFile(path.join(dist,expected.image));
+      assert.equal(createHash('sha256').update(asset).digest('hex'),expected.sha256);
+      const card=page.locator(`#home-fields [data-target="${target.id}"]`);
+      await card.scrollIntoViewIfNeeded();
+      const image=card.getByRole('img',{name:expected.alt});
+      await image.waitFor();
+      assert.deepEqual(await image.evaluate(el=>[el.naturalWidth,el.naturalHeight]),[expected.width,expected.height]);
+      assert.equal(await card.locator('.field-image-label').textContent(),expected.label);
+      assert.equal(await card.locator('.field-source').getAttribute('href'),expected.source);
+      assert.equal(await card.locator('.field-compare').getAttribute('href'),`./compare.html?target=${target.id}`);
+    }
+  }finally{await context.close();}
+});
+
+test('Homepage falls back to the matching cached Compare exposure if a reference photo fails',{skip:!base,timeout:90000},async()=>{
   const context=await browser.newContext({baseURL:base,viewport:{width:1440,height:900},reducedMotion:'reduce'});
   try{
     const home=await context.newPage();
     const compare=await context.newPage();
+    await home.route('**/assets/challenge-context/*.jpg',route=>route.abort());
     await home.goto('/');
     const items=home.locator('#home-fields .field-card');
     await items.last().waitFor();

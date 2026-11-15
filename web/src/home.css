@@ -551,6 +551,8 @@
   #home-fields .field-image {
     display: grid;
     place-items: center;
+    height: auto;
+    aspect-ratio: 16 / 9;
     background: var(--surface-2);
   }
   #home-fields .field-image[data-preview-ready] {
@@ -563,6 +565,24 @@
     height: 100%;
     object-fit: cover;
   }
+  #home-fields .field-image > img { filter: none; }
+  #home-fields [data-target="epsilon-indi-b"] .field-image > img { object-position: center bottom; }
+  #home-fields [data-target="rw-aurigae"] .field-image > img { object-position: center 43%; }
+  #home-fields .field-image-label {
+    z-index: 1;
+    top: auto;
+    bottom: 10px;
+    left: 10px;
+    max-width: calc(100% - 20px);
+    background: var(--image-label);
+  }
+  #home-fields [data-target="epsilon-indi-b"] .field-image-label {
+    top: 10px;
+    right: 10px;
+    bottom: auto;
+    left: auto;
+  }
+  #home-fields .field-date:has(time:empty) { display: none; }
   #home-fields .field-image-status {
     z-index: 1;
     margin: 16px;

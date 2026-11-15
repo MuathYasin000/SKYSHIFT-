@@ -120,7 +120,7 @@ try {
     await p.waitForFunction(() => skyshiftInfrared.diagnostics().lens_active);
     await p.click("#site-sound");
   });
-  await test("Search shortcut filters the challenge targets and exposes the IRSA source", async () => {
+  await test("Search shortcut filters the challenge targets and exposes the photo source", async () => {
     await p.keyboard.press("Control+k");
     assert.equal(
       await p
@@ -131,9 +131,9 @@ try {
     await p.locator("#home-field-search").fill("WISE");
     const field = p.locator('#home-fields .field-card:visible');
     assert.equal(await field.count(), 1);
-    const source = field.getByRole('link', { name: /IRSA archive source/ });
+    const source = field.locator('.field-source');
     await source.scrollIntoViewIfNeeded();
-    assert.match(await source.getAttribute('href'), /^https:\/\/irsa\.ipac\.caltech\.edu\//);
+    assert.match(await source.getAttribute('href'), /^https:\/\/commons\.wikimedia\.org\//);
     await p.locator("#home-field-search").fill("");
   });
   await test("Vela original-image reveal, published color ranges and accessible legend", async () => {

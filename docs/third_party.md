@@ -38,6 +38,12 @@ The supporting audit and demo also used [Git](https://git-scm.com/), [Chromium](
 
 ## Official visual media and models
 
+The [homepage reference photo manifest](../web/dist/assets/challenge-context/manifest.json) records the source, attribution, licence and SHA-256 for each of the five downloaded JPEGs. The photos serve as visual references. The Compare viewer uses the archived SPHEREx cutouts.
+
+- **Barnard’s Star and Epsilon Indi B** use the credited ESO publications under [ESO’s CC BY 4.0 terms](https://www.eso.org/public/outreach/copyright/). The Epsilon Indi B card shows the lower 2MASS panel of the published collage. [Barnard’s Star image](https://cdn3.eso.org/public/images/eso1837d/) · [Epsilon Indi B image](https://www.eso.org/public/images/eso0303a/)
+- **WISE 0855** uses Melina Thévenot’s credited F200W/F444W composite of NASA/ESA/CSA Webb NIRCam observations. The card crops the presentation of the original JPEG. [Image and CC BY-SA 4.0 licence](https://commons.wikimedia.org/wiki/File:WISE_0855-0714_NIRCam4.jpg) · [STScI program 1230](https://www.stsci.edu/jwst-program-info/program/?program=1230)
+- **RW Aurigae and R Draconis** are Pan-STARRS1 optical cutouts from the PS1 Science Consortium through MAST at STScI. The manifest gives exact coordinates, source stacks and cutout requests. Cite Chambers et al. (2016). [PS1 survey paper](https://arxiv.org/abs/1612.05560) · [MAST acknowledgements](https://archive.stsci.edu/publishing/mission-acknowledgements) · [MAST data terms](https://archive.stsci.edu/publishing/data-use)
+
 The [image manifest](../web/dist/assets/assets.json) records exact original and delivered SHA-256 values, source URLs, terms and transformations. For NASA media, credit NASA and any co-owners, respect identified third-party copyrights and protect NASA identifiers. [NASA media guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/), [NASA Brand Center](https://www.nasa.gov/nasa-brand-center/brand-guidelines/), [JPL image-use policy](https://www.jpl.nasa.gov/jpl-image-use-policy/).
 
 | Asset | Use and credit |
