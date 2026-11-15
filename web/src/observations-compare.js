@@ -108,8 +108,28 @@ async function getJSON(url,options){
   return value;
 }
 
+const slowRequests=new Set();
+function watchServerStartup(request){
+  const banner=$('server-startup');
+  const timer=setTimeout(()=>{slowRequests.add(timer);banner.hidden=false;},5000);
+  return request.finally(()=>{
+    clearTimeout(timer);
+    slowRequests.delete(timer);
+    banner.hidden=!slowRequests.size;
+  });
+}
+
+function installReleases(configured){
+  if(!Array.isArray(configured)||!configured.length||!configured.every(name=>typeof name==='string'&&/^[a-z0-9]+$/.test(name)))return;
+  const select=$('release'), previous=select.value;
+  releases=configured;
+  select.replaceChildren(new Option(releases.map(name=>name.toUpperCase()).join(' + '),'all'),...releases.map(name=>new Option(name.toUpperCase(),name)));
+  if(['all',...releases].includes(previous))select.value=previous;
+}
+
 async function loadTargets(){
-  const capabilities=getJSON('/api/observations/releases',{signal:AbortSignal.timeout(1500)}).catch(()=>null);
+  const capabilities=watchServerStartup(getJSON('/api/observations/releases',{signal:AbortSignal.timeout(75000)}))
+    .then(value=>installReleases(value.releases)).catch(()=>{});
   const catalog=await getJSON('./observations-targets.json');
   for(const target of catalog.targets){
     const button=document.createElement('button');button.type='button';button.dataset.targetId=target.id;button.dataset.sound='select';button.setAttribute('aria-pressed','false');
@@ -121,13 +141,8 @@ async function loadTargets(){
     $('target-buttons').append(button);
   }
   const params=new URLSearchParams(location.search);
-  const configured=(await capabilities)?.releases;
-  if(Array.isArray(configured)&&configured.length&&configured.every(name=>typeof name==='string'&&/^[a-z0-9]+$/.test(name))){
-    const previous=$('release').value;
-    releases=configured;
-    $('release').replaceChildren(new Option(releases.map(name=>name.toUpperCase()).join(' + '),'all'),...releases.map(name=>new Option(name.toUpperCase(),name)));
-    if(['all',...releases].includes(previous))$('release').value=previous;
-  }
+  const requestedRelease=params.get('release');
+  if(requestedRelease&&!['all',...releases].includes(requestedRelease)&&/^[a-z0-9]+$/.test(requestedRelease))await capabilities;
   const target=catalog.targets.find(item=>item.id===params.get('target'));
   if(target)setTarget(target,[...$('target-buttons').children].find(button=>button.dataset.targetId===target.id));
   const coordinates=params.has('ra')&&params.has('dec');
@@ -196,10 +211,6 @@ async function runSearch(event,refresh=false){
   let cachedPreview;
   let contactedAPI=false;
   let jobAccepted=false;
-  const waking=()=>{
-    viewerEmpty('The server may be waking up','Render can take about a minute to start. You can open a cached challenge target.',true);
-    message('Waking the server. This can take about a minute.',false,true);
-  };
   const useOffline=async reason=>{
     await presentResult(cachedPreview,signal);
     if(signal.aborted)return;
@@ -236,13 +247,9 @@ async function runSearch(event,refresh=false){
     }
     if(installed?.failure_reason)message(`Cached target preparation is unavailable: ${installed.failure_reason} Retrying IRSA live…`,true);
     contactedAPI=true;
-    const timer=setTimeout(()=>{if(!signal.aborted)waking();},1800);
-    let job;
-    try{
-      job=await getJSON('/api/observations/searches',{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify(request),signal:AbortSignal.any([signal,AbortSignal.timeout(75000)])});
-      jobAccepted=true;
-    }finally{clearTimeout(timer);}
+    const job=await watchServerStartup(getJSON('/api/observations/searches',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(request),signal:AbortSignal.any([signal,AbortSignal.timeout(75000)])}));
+    jobAccepted=true;
     viewerEmpty('Searching the live SPHEREx archive','The archive may take a few moments to respond.',true);
     const result=await pollSearch(job.id,signal);
     if(cachedPreview&&result.status!=='complete'&&!result.observations.length){
@@ -787,7 +794,23 @@ function imageFor(frame){
   return canvas;
 }
 
-function geometry(canvas,frame,view=state.view){const [height,width]=frame.arraysDecoded.shape;const base=Math.min(canvas.width/width,canvas.height/height);return {width:canvas.width,height:canvas.height,scale:base*view.zoom,imageWidth:width,imageHeight:height};}
+function isSkyStage(canvas){return canvas.id==='canvas-a'||canvas.id==='canvas-b';}
+function imageScale(width,height,shape,fill){
+  const fit=fill?Math.max:Math.min;
+  return fit(width/shape[1],height/shape[0]);
+}
+function geometry(canvas,frame,view=state.view){
+  const shape=frame.arraysDecoded.shape;
+  return {width:canvas.width,height:canvas.height,scale:imageScale(canvas.width,canvas.height,shape,isSkyStage(canvas))*view.zoom,imageWidth:shape[1],imageHeight:shape[0]};
+}
+function sizeSkyCanvas(canvas){
+  const rect=canvas.getBoundingClientRect();
+  if(!rect.width||!rect.height)return;
+  const density=Math.min(devicePixelRatio,1400/Math.max(rect.width,rect.height));
+  const width=Math.round(rect.width*density),height=Math.round(rect.height*density);
+  if(canvas.width!==width)canvas.width=width;
+  if(canvas.height!==height)canvas.height=height;
+}
 function paint(context,canvas,frame,view,clip,overlays=true){
   const raw=imageFor(frame),g=geometry(canvas,frame,view);
   const native=$('native-pixels').checked;
@@ -914,7 +937,8 @@ function instrumentScale(side,frame){
   const scale=$('scale-'+side);
   scale.hidden=!frame;
   if(!frame)return;
-  const arcseconds=frame.arraysDecoded.shape[1]*Math.abs(frame.wcs.CDELT1)*3600/state.view.zoom;
+  const canvas=$('canvas-'+side);
+  const arcseconds=canvas.width/geometry(canvas,frame).scale*Math.abs(frame.wcs.CDELT1)*3600;
   const length=[240,120,60,30,15,10,5,2,1].find(value=>value<=arcseconds*.22);
   scale.hidden=!length;
   if(!length)return;
@@ -959,7 +983,10 @@ function render(){
     catch(error){window.frame=null;differenceMessage=error.message;}
     if(!window.frame&&!differenceMessage)differenceMessage='Choose two different frames to display their difference.';
   }
-  const canvasA=$('canvas-a'),canvasB=$('canvas-b'),context=canvasA.getContext('2d');
+  const canvasA=$('canvas-a'),canvasB=$('canvas-b');
+  sizeSkyCanvas(canvasA);
+  if(state.mode==='side')sizeSkyCanvas(canvasB);
+  const context=canvasA.getContext('2d');
   context.clearRect(0,0,canvasA.width,canvasA.height);
   if(window.frame){
     const divider=canvasA.width*state.wipe/100;
@@ -1157,15 +1184,17 @@ if(comparison){
     render();
   };
   $('add-frames').onclick=()=>showDerived('mean');$('subtract-frames').onclick=()=>showDerived('difference');$('coadd-frames').onclick=()=>showDerived('detector');
-  for(const canvas of [$('canvas-a'),$('canvas-b')])attachViewportInput(canvas,{
-    getView:()=>filteredFrames().length?state.view:null,
+  const resizeStage=new ResizeObserver(render);
+  for(const canvas of [$('canvas-a'),$('canvas-b')]){
+    resizeStage.observe(canvas);
+    attachViewportInput(canvas,{
+    getView:()=>currentFrame()?state.view:null,
     getGeometry:()=>{
       const {width,height}=canvas.getBoundingClientRect();
-      const shape=filteredFrames()[0].arraysDecoded.shape;
-      return {width,height,scale:Math.min(width/shape[1],height/shape[0])*state.view.zoom};
+      return {width,height,scale:imageScale(width,height,state.grid.shape,true)*state.view.zoom};
     },
     getBounds:()=>{
-      const shape=filteredFrames()[0].arraysDecoded.shape;
+      const shape=state.grid.shape;
       return {width:shape[1],height:shape[0]};
     },
     onView:view=>{state.view=view;render();},
@@ -1177,7 +1206,8 @@ if(comparison){
       }
       sampleSpectrum(frame,point);
     },
-  });
+    });
+  }
   const keys={' ':'play',ArrowLeft:'prev',ArrowRight:'next','1':'single','2':'side','3':'wipe','4':'difference-mode','+':'zoom-in','=':'zoom-in','-':'zoom-out',Home:'fit'};
   document.addEventListener('keydown',event=>{
     if($('compare').hidden||event.ctrlKey||event.altKey||event.metaKey||(event.shiftKey&&event.key.startsWith('Arrow'))||

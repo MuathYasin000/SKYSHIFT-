@@ -59,6 +59,7 @@
 .archive-workspace a { color: var(--accent); text-underline-offset: .2em; }
 .archive-workspace .button-link:not([hidden]) { display: inline-flex; align-items: center; text-decoration: none; }
 .archive-workspace label { display: grid; gap: 4px; min-width: 0; font-size: 14px; }
+.server-startup { margin: 8px 0 0; padding: 8px 12px; color: var(--white); background: var(--panel); border: 1px solid var(--hairline); }
 .archive-workspace :is(input:not([type=range], [type=checkbox], [type=hidden]), select) {
   width: 100%;
   min-width: 0;
@@ -207,7 +208,7 @@
   min-height: 0;
   min-width: 0;
   border-block: 1px solid var(--hairline);
-  background: var(--raised);
+  background: var(--panel);
   isolation: isolate;
 }
 .canvases {
@@ -215,22 +216,10 @@
   position: relative;
   min-width: 0;
   height: 100%;
-  align-content: center;
-  justify-items: center;
-  background: radial-gradient(ellipse at center, var(--page), transparent 78%);
 }
-.canvases::before {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(transparent calc(50% - .5px), var(--hairline) 50%, transparent calc(50% + .5px)),
-    linear-gradient(90deg, transparent calc(50% - .5px), var(--hairline) 50%, transparent calc(50% + .5px));
-  content: "";
-}
-.canvases figure { position: relative; width: min(100%, 592px); min-width: 0; }
-.sky-plate { position: relative; aspect-ratio: 1; background: var(--page); }
-.sky-plate canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.canvases figure { position: relative; width: 100%; min-width: 0; }
+.sky-plate { position: relative; aspect-ratio: 16 / 10; background: var(--panel); }
+.sky-plate canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; touch-action: none; }
 .archive-workspace .sky-plate canvas:focus-visible { outline-offset: -4px; }
 .frame-readout, .sky-grid-compass, .sky-scale {
   position: absolute;
@@ -539,8 +528,7 @@
   }
   .viewer-header { grid-template-areas: "title pickers actions"; grid-template-columns: minmax(112px, .6fr) minmax(0, 1.65fr) auto; }
   .viewer-empty { min-height: 0; }
-  .viewer-stage { container-type: size; }
-  .canvases figure { width: min(100%, 100cqh); }
+  .sky-plate { height: 100%; aspect-ratio: auto; }
   .tools-scroll { overflow-y: auto; overscroll-behavior-y: contain; scrollbar-gutter: stable; }
 }
 @media (min-width: 1100px) and (max-height: 820px) {
@@ -570,6 +558,7 @@
   .archive-workspace .frame-trigger { padding-inline: 8px; gap: 4px; }
   .mode-side .frame-readout { top: auto; bottom: 4px; left: 4px; }
   .mode-side .sky-scale { bottom: 56px; }
+  .sky-plate { aspect-ratio: 1; }
   .timeline-transport { width: 100%; }
   .timeline-controls .timeline-scrubber { flex-basis: 100%; }
   .timeline-controls .timeline-speed { margin-inline-start: auto; gap: 4px; }

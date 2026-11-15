@@ -125,6 +125,28 @@
     max-width: 54ch;
     margin-top: 24px;
   }
+  .observatory-hero .challenge-target-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-width: none;
+  }
+  .challenge-target-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 4px 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    color: var(--white);
+    background: var(--page);
+    text-decoration: none;
+  }
+  .challenge-target-links a:hover { border-color: var(--white); }
+  .intro-secondary { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; }
+  @media (prefers-reduced-motion: reduce) {
+    .intro-secondary .home-intro-replay { display: none; }
+  }
   .intro-note .status-pending {
     margin-top: 12px;
   }

@@ -4,13 +4,7 @@
   const reduce=matchMedia('(prefers-reduced-motion: reduce)');
   const params=new URLSearchParams(location.search);
   const home=()=>['','#home'].includes(location.hash);
-  if(!home()||[...params.keys()].some(key=>key!=='intro'&&!key.startsWith('utm_')))return;
-  const replay=params.get('intro')==='1';
-  try{
-    const key='skyshift.arrival.seen.v1';
-    if(!replay&&sessionStorage.getItem(key))return;
-    sessionStorage.setItem(key,'1');
-  }catch{}
+  if(!home()||params.get('intro')!=='1')return;
   if(reduce.matches)return;
   root.dataset.arrival='loading';
   root.dataset.arrivalExperience='true';
