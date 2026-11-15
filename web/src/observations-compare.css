@@ -308,7 +308,7 @@
 .archive-workspace .wavelength-controls select { width: auto; }
 .wavelength-controls span, .band-status { font-size: 0.875rem; }
 .band-status { margin: 0; padding-block: 2px 4px; }
-.warning.band-match { color: var(--observation-success, #8de2ab); }
+.warning.band-match { color: var(--observation-success); }
 .frame-strip {
   display: flex;
   gap: 8px;
