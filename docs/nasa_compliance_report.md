@@ -132,7 +132,9 @@ The official scale is 1–5. These are audit estimates using the named [2026 Jud
 | Relevance | 4/5 | SPHEREx observations are core to five target flipbooks, coordinate entry and comparison. Spectral and comparison tools address several options. | Establish dependable custom archive coverage with a repeatable health check for DR1/QR3 availability. |
 | Presentation | 3/5 | Workbench opens from direct links with clear modes. The original landing required too many decisions and the public demo link awaits team details. | Publish the completed seven slides and link to a ready-to-play comparison. |
 
-**10 seconds:** A first visit sees a site for comparing NASA SPHEREx infrared images. The revised landing directs the visitor to one ready field, with all five targets visible. The existing first-visit animation can delay reading the page until it completes or the visitor uses Skip intro. **60 seconds:** A visitor can play dated frames, switch to Wipe or Side by side, and understand that wavelength and missing pixels affect what they see. **Memorable detail:** the same field changes on screen while the details explain which pixels and wavelengths can actually be compared.
+**10 seconds.** The previous automatic intro delayed access to the controls. The updated local home puts the explanation, Open the viewer, all five targets and the demo link on the first screen at 1440 × 900 and 390 × 844. The mobile spacecraft sits below those links. A judge can open real observations without waiting for it. The intro remains available through Play intro, and the spacecraft starts when its canvas becomes visible. [Desktop homepage](evidence/final-polish-2026-11-15/home-1440.jpg) · [Mobile homepage](evidence/final-polish-2026-11-15/home-390.jpg)
+
+**60 seconds.** Open the viewer on RW Aurigae, play five frames on one detector with Same band, and switch to a centered Wipe while the wavelength limit stays visible. The quality labels explain which measurements can be compared. [Same band](evidence/final-polish-2026-11-15/rw-aurigae-same-band.jpg) · [Narrow Wipe](evidence/final-polish-2026-11-15/rw-aurigae-wipe-narrow.jpg)
 
 ## SI and third-party inventories
 
@@ -168,7 +170,17 @@ The signed-out production rerun passed all five 12-frame previews and each Blink
 
 **Archive availability after deployment:** The same literal WISE 0855 position with an 8′ field and DR1 accepted the search (HTTP 202). At 151.108 seconds the app returned `partial_or_unavailable`. IRSA SIA2 and TAP timed out in the attempted DR1 and DR1 deep intervals. The app reached its metadata work limit and displayed a retry message. The response included no rows and reported incomplete coverage, so the number of matching observations remains unknown. Cached WISE 0855 preview playback passed separately. [Request and terminal response](evidence/nasa-compliance-2026-11-15/live-deployed.json).
 
+## Final-polish local verification
+
+Chromium 156 passed all five cached previews, the keyboard Blink and Same band walkthrough, Side by side, Wipe, Difference, and reopening the saved narrow Wipe in a fresh context. The viewer kept its target marker and angular scale during the stage crop. The tested layouts showed no unpainted side bands or page-width overflow. The same Chrome run verified intro skip, the sound toggle, the optional Universe route, methodology, and header and footer navigation. A separate check with WebGL disabled opened the cached comparison from the homepage and played the same-band group. [Chromium report](evidence/final-polish-2026-11-15/local-chrome.json)
+
+The five layout captures cover [1920 px](evidence/final-polish-2026-11-15/stage-1920.jpg), [1440 px](evidence/final-polish-2026-11-15/stage-1440.jpg), [1024 px](evidence/final-polish-2026-11-15/stage-1024.jpg), [768 px](evidence/final-polish-2026-11-15/stage-768.jpg), and [390 px](evidence/final-polish-2026-11-15/stage-390.jpg). Axe reported zero violations on the tested Home and Compare views at desktop and phone widths, and on Methodology. With an eight-second simulated API delay, the cached preview loaded in 0.60 seconds and the banner appeared at 5.55 seconds after navigation, then cleared when the request completed.
+
+The Python suite passed 197 tests with 16 skips. The JavaScript suite passed 169 tests with 13 skips in its default configuration. With local Chromium enabled, the focused viewer suite passed 14 tests, with the optional live reference-catalog test skipped. The explicit rendered-color test passed after the success color moved to the shared palette. Render remained on the earlier build, so the new captures and browser results are local. See the [deployment handoff](left_for_owner.md).
+
 ## Left for the owner
+
+The [final-polish handoff](left_for_owner.md) records the current Render verification state and the steps left for submission.
 
 1. Confirm all team members and the team owner's actual Local/Universal Event deadline in the portal. Keep the organizers’ reuse response with the original dates and the precise scope. Verify the team's idea origin and ownership/third-party permissions before attesting. If a member is under 18, ask the Local Lead how to satisfy the demo roster requirement while protecting the recognizable name, voice and likeness under the Terms.
 2. Replace the name and team placeholders, host the chosen demo with a signed-out public link, paste the [portal fields](project_page_fields.md), review terms and originality declarations personally, and select **Submit for Judging**. Confirm the saved-submission banner.

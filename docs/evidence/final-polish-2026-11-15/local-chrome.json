@@ -1,0 +1,252 @@
+{
+  "base": "http://localhost:3000",
+  "browser": "156.0.8078.4",
+  "started": "2026-11-15T17:23:50.454Z",
+  "checks": {
+    "target barnards-star": {
+      "frames": 12,
+      "bandFrames": 5,
+      "dateSpan": [
+        "2025-08-27T05:06:02.615000Z",
+        "2026-09-02T06:10:07.914000Z"
+      ],
+      "detector": "1",
+      "center": "0.9311"
+    },
+    "target epsilon-indi-b": {
+      "frames": 12,
+      "bandFrames": 3,
+      "dateSpan": [
+        "2025-04-27T20:11:18.227000Z",
+        "2026-05-03T17:13:24.716000Z"
+      ],
+      "detector": "1",
+      "center": "1.0664775371551514"
+    },
+    "target wise-0855": {
+      "frames": 12,
+      "bandFrames": 2,
+      "dateSpan": [
+        "2025-12-13T05:32:45.700000Z",
+        "2026-05-11T13:36:45.411000Z"
+      ],
+      "detector": "5",
+      "center": "4.205468416213989"
+    },
+    "target rw-aurigae": {
+      "frames": 12,
+      "bandFrames": 5,
+      "dateSpan": [
+        "2025-09-02T00:43:23.979000Z",
+        "2026-09-08T06:36:13.650000Z"
+      ],
+      "detector": "1",
+      "center": "0.7645176649093628"
+    },
+    "target r-draconis": {
+      "frames": 12,
+      "bandFrames": 5,
+      "dateSpan": [
+        "2025-04-24T21:06:38.391000Z",
+        "2026-05-21T17:25:11.252000Z"
+      ],
+      "detector": "3",
+      "center": "2.03235"
+    },
+    "RW Aurigae compare, share and demo views": {
+      "share": "http://localhost:3000/compare.html?ra=76.95652603458333&dec=30.401438173888888&fov=8&release=all&target=rw-aurigae&wl=0.7645176649093628&wlw=0.05&wld=1&wls=1&mode=wipe&a=3&b=8",
+      "side": true,
+      "wipe": true,
+      "difference": true,
+      "axeViolations": 0
+    },
+    "stage 1920": {
+      "canvasWidth": 966,
+      "canvasHeight": 694.4375,
+      "stageWidth": 966,
+      "stageHeight": 696.4375,
+      "scaleVisible": true,
+      "edgeAlpha": [
+        255,
+        255
+      ],
+      "overflow": 0
+    },
+    "stage 1440": {
+      "canvasWidth": 991.609375,
+      "canvasHeight": 514.4375,
+      "stageWidth": 991.609375,
+      "stageHeight": 516.4375,
+      "scaleVisible": true,
+      "edgeAlpha": [
+        255,
+        255
+      ],
+      "overflow": 0
+    },
+    "stage 1024": {
+      "canvasWidth": 974,
+      "canvasHeight": 608.75,
+      "stageWidth": 974,
+      "stageHeight": 610.75,
+      "scaleVisible": true,
+      "edgeAlpha": [
+        255,
+        255
+      ],
+      "overflow": 0
+    },
+    "stage 768": {
+      "canvasWidth": 718,
+      "canvasHeight": 448.75,
+      "stageWidth": 718,
+      "stageHeight": 450.75,
+      "scaleVisible": true,
+      "edgeAlpha": [
+        255,
+        255
+      ],
+      "overflow": 0
+    },
+    "stage 390": {
+      "canvasWidth": 356,
+      "canvasHeight": 356,
+      "stageWidth": 356,
+      "stageHeight": 358,
+      "scaleVisible": true,
+      "edgeAlpha": [
+        255,
+        255
+      ],
+      "overflow": 0,
+      "axeViolations": 0
+    },
+    "homepage 1440": {
+      "links": [
+        {
+          "text": "Compare real NASA SPHEREx images across dates and see how wavelength affects what you see.",
+          "href": null,
+          "bottom": 522,
+          "visible": true
+        },
+        {
+          "text": "SPHEREx / OBSERVATION LABOpen the viewerStart with RW Aurigae. ↗",
+          "href": "./compare.html?target=rw-aurigae",
+          "bottom": 641,
+          "visible": true
+        },
+        {
+          "text": "Project demo ↗",
+          "href": "./challenge.html#demo",
+          "bottom": 687,
+          "visible": true
+        },
+        {
+          "text": "Barnard’s Star",
+          "href": "./compare.html?target=barnards-star",
+          "bottom": 755,
+          "visible": true
+        },
+        {
+          "text": "Epsilon Indi B",
+          "href": "./compare.html?target=epsilon-indi-b",
+          "bottom": 755,
+          "visible": true
+        },
+        {
+          "text": "WISE 0855-0714",
+          "href": "./compare.html?target=wise-0855",
+          "bottom": 755,
+          "visible": true
+        },
+        {
+          "text": "RW Aurigae",
+          "href": "./compare.html?target=rw-aurigae",
+          "bottom": 755,
+          "visible": true
+        },
+        {
+          "text": "R Draconis",
+          "href": "./compare.html?target=r-draconis",
+          "bottom": 755,
+          "visible": true
+        }
+      ],
+      "axeViolations": 0
+    },
+    "homepage 390": {
+      "links": [
+        {
+          "text": "Compare real NASA SPHEREx images across dates and see how wavelength affects what you see.",
+          "href": null,
+          "bottom": 374,
+          "visible": true
+        },
+        {
+          "text": "SPHEREx / OBSERVATION LABOpen the viewerStart with RW Aurigae. ↗",
+          "href": "./compare.html?target=rw-aurigae",
+          "bottom": 467,
+          "visible": true
+        },
+        {
+          "text": "Project demo ↗",
+          "href": "./challenge.html#demo",
+          "bottom": 506,
+          "visible": true
+        },
+        {
+          "text": "Barnard’s Star",
+          "href": "./compare.html?target=barnards-star",
+          "bottom": 566,
+          "visible": true
+        },
+        {
+          "text": "Epsilon Indi B",
+          "href": "./compare.html?target=epsilon-indi-b",
+          "bottom": 566,
+          "visible": true
+        },
+        {
+          "text": "WISE 0855-0714",
+          "href": "./compare.html?target=wise-0855",
+          "bottom": 616,
+          "visible": true
+        },
+        {
+          "text": "RW Aurigae",
+          "href": "./compare.html?target=rw-aurigae",
+          "bottom": 616,
+          "visible": true
+        },
+        {
+          "text": "R Draconis",
+          "href": "./compare.html?target=r-draconis",
+          "bottom": 616,
+          "visible": true
+        }
+      ],
+      "axeViolations": 0
+    },
+    "slow API and independent bundled preview": {
+      "readySeconds": 0.5982811000000001,
+      "shownSeconds": 5.5450389000000015,
+      "bannerCleared": true
+    },
+    "optional intro, sound, Universe and site chrome": {
+      "introSkip": true,
+      "soundToggle": true,
+      "universe": true,
+      "headerAndFooter": true,
+      "axeViolations": 0
+    }
+  },
+  "errors": [],
+  "marker": {
+    "application": "SKYSHIFT",
+    "server_version": "1.2",
+    "content_id": "49172d50d0375dc7eafe866544b7cfbf328ba23223346ce90f5f78ac09adb2ae",
+    "release_id": "skyshift-2026-11-14",
+    "app_version": "0.12.0",
+    "created_at_utc": "2026-11-14T16:56:36.975571+00:00"
+  }
+}

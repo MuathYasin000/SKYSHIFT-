@@ -11,6 +11,16 @@ const targets=JSON.parse(await readFile(path.join(dist,'observations-targets.jso
 const results=[];
 let browser;
 
+async function waitForFrames(page,count){
+  await page.waitForFunction(n=>document.querySelector('#viewer-load-status').textContent===`${n} cutouts ready in the viewer.`,count);
+}
+
+async function chooseFrame(page,side,index){
+  await page.locator('#choose-frame-'+side).click();
+  await page.locator('#frame-picker-options').getByRole('option').nth(index+(side==='b'?1:0)).click();
+  assert.equal(await page.locator('#frame-'+side).inputValue(),String(index));
+}
+
 before(async()=>{
   if(!base)return;
   const override=process.env.SKYSHIFT_PLAYWRIGHT_MODULE;
@@ -43,10 +53,7 @@ for(const target of targets){
     await context.route('**/api/observations/**',route=>{if(!route.request().url().endsWith('/releases'))live.push(route.request().url());return route.abort();});
     const locator=id=>page.locator('#'+id);
     try{
-      await page.goto('/index.html#observations');
-      await page.waitForURL('**/explore.html');
-      await locator('field').fill('1');
-      await page.getByRole('button',{name:target.name,exact:true}).click();
+      await page.goto(`/explore.html?target=${target.id}&fov=1&from=1&to=${rows.length}`);
       await locator('results').waitFor();
       assert.equal(await page.locator('#observation-rows tr').count(),rows.length);
       const dates=await page.locator('#observation-rows tr td:nth-child(2)').allTextContents();
@@ -57,10 +64,10 @@ for(const target of targets){
         await page.screenshot({path:path.join(evidence,`${target.id}-observations.png`)});
       }
       report.list='Pass';
-      await locator('open-compare').click();
+      await page.goto(await locator('open-compare').getAttribute('href'));
       await page.waitForURL(url=>url.pathname.endsWith('/compare.html')&&url.searchParams.get('target')===target.id);
       await locator('compare').waitFor();
-      await page.waitForFunction(n=>document.querySelectorAll('#frame-b option[value]:not([value=""])').length===n,rows.length);
+      await waitForFrames(page,rows.length);
       assert.equal(await page.locator('#observation-rows tr canvas').count(),rows.length);
       assert.match(await locator('epoch-note').textContent(),/J2000\.0/);
       const slider=locator('scrubber');
@@ -88,16 +95,16 @@ for(const target of targets){
       const first=masked===-1?frames.findIndex(frame=>Number.isFinite(frame.wavelength_center_um)):masked;
       const second=frames.findIndex(frame=>Number.isFinite(frame.wavelength_center_um)&&Math.abs(frame.wavelength_center_um-frames[first].wavelength_center_um)>1e-5);
       assert.ok(first>=0&&second>=0,'A real pair with differing wavelengths is needed');
-      await locator('frame-a').selectOption(String(first));
-      await locator('frame-b').selectOption(String(second));
+      await chooseFrame(page,'a',first);
+      await chooseFrame(page,'b',second);
       for(const mode of ['side','wipe']){
         await locator(mode).click();
         assert.equal(await locator(mode).getAttribute('aria-pressed'),'true');
         assert.equal(await locator('wavelength-note').isVisible(),true);
-        assert.match(await locator('wavelength-note').textContent(),/brightness may differ because of wavelength/);
+        assert.match(await locator('wavelength-note').textContent(),/Wavelength affects image brightness/);
         for(const id of ['play','side','wipe'])assert.equal(await locator(id).isEnabled(),true);
         if(mode==='wipe')await locator('wipe-position').fill('72');
-        if(masked!==-1)assert.match(await locator('mask-a').textContent(),/masked or invalid/);
+        if(masked!==-1)assert.match(await locator('mask-a').textContent(),/Target pixel is masked or outside usable coverage/);
         if(evidence){
           await locator('compare').evaluate(section=>window.scrollBy(0,section.getBoundingClientRect().top-95));
           await page.screenshot({path:path.join(evidence,`${target.id}-${mode}.png`)});
@@ -131,10 +138,11 @@ test('Compare retries a failed live metadata request and reports an empty archiv
     });
     await page.goto('/index.html#compare');
     await page.waitForURL('**/compare.html');
+    await page.locator('#show-search').click();
     await page.locator('#ra').fill('17h57m48.5s');
     await page.locator('#dec').fill('+4d41m36s');
-    await page.getByRole('button',{name:'Find observations'}).click();
-    await page.getByText('HTTP 502 Proxy Error',{exact:true}).waitFor();
+    await page.locator('#search-form button[type=submit]').click();
+    await page.getByText('Could not reach the service. It may take about a minute to wake.',{exact:true}).waitFor();
     await page.getByRole('button',{name:'Retry archive search'}).click();
     await page.getByText('IRSA returned no observations for this field.').waitFor();
     assert.equal(await page.locator('#compare').isHidden(),true);
@@ -151,7 +159,7 @@ test('Saved field and range reopen with analysis, metadata and a narrow-screen l
   try{
     await page.route('**/api/observations/**',route=>route.abort());
     await page.goto('/compare.html?'+view);
-    await page.waitForFunction(()=>document.querySelector('#frame-a').options.length===12);
+    await waitForFrames(page,12);
     const manifest=JSON.parse(await readFile(path.join(dist,'data','observation-targets',target.id,'manifest.json'),'utf8'));
     const releaseCount=manifest.observations.filter(row=>row.release==='dr1').length;
     assert.equal(await id('result-count').textContent(),'12 of '+releaseCount+' cached frames selected');
@@ -159,25 +167,24 @@ test('Saved field and range reopen with analysis, metadata and a narrow-screen l
     await id('copy-view').click();
     const copied=new URL(await page.evaluate(()=>navigator.clipboard.readText()));
     assert.deepEqual([...copied.searchParams].sort(),[...view].sort());
-    await page.evaluate(url=>{
-      const frame=document.createElement('iframe');frame.title='Same-origin shared comparison';frame.src=url;document.body.append(frame);
-    },copied.href);
-    await page.frameLocator('iframe[title="Same-origin shared comparison"]').locator('#frame-strip button').first().waitFor();
-    await page.locator('iframe[title="Same-origin shared comparison"]').evaluate(el=>el.remove());
-    await id('sky-context').locator('summary').click();
+    const reopened=await context.newPage();
+    await reopened.goto(copied.href);
+    await waitForFrames(reopened,12);
+    await reopened.close();
+    await id('tools-tab-overlays').click();
     assert.equal(await page.locator('#context-map .map-field').count(),1);
     assert.match(await id('neossat-reference').textContent(),/CADC/);
     assert.equal(await id('neossat-reference').isVisible(),true);
     assert.equal(await id('overlay-gaia').isChecked(),false);
-    await id('overlay-gaia').check().catch(()=>{});
-    await page.getByText(/Gaia DR3 unavailable/).waitFor();
+    await id('overlay-gaia').click();
+    await page.getByText('Could not load Gaia DR3.',{exact:true}).waitFor();
     assert.equal(await id('overlay-gaia').isChecked(),false);
-    await id('sky-context').locator('summary').click();
+    await id('tools-tab-details').click();
     await id('frame-strip').getByRole('button').nth(2).click();
     assert.equal(await id('scrubber').inputValue(),'2');
     assert.equal(await id('frame-b').inputValue(),'');
     assert.match(await id('pair-note').textContent(),/No default pair/);
-    await id('frame-b').selectOption('1');
+    await chooseFrame(page,'b',1);
     await id('side').click();
     await id('zoom-in').click();
     assert.notEqual(await id('zoom-value').textContent(),'1.0×');
@@ -194,17 +201,24 @@ test('Saved field and range reopen with analysis, metadata and a narrow-screen l
     const box=await canvas.boundingBox();
     assert.ok(box.width<=390);
     await canvas.click({position:{x:box.width/2,y:box.height/2}});
+    await id('tools-tab-spectrum').click();
     await id('spectrum').waitFor();
     assert.match(await id('spectrum-status').textContent(),/usable, \d+ masked/);
     assert.ok(await id('spectrum').locator('.spectrum-sample, .spectrum-masked').count());
+    await id('tools-tab-image').click();
     await id('add-frames').click();
     await id('derived-result').waitFor();
     assert.match(await id('derived-caption').textContent(),/Mean coadd · 2 exposures/);
     await id('subtract-frames').click();
     assert.match(await id('derived-caption').textContent(),/A − B/);
-    await id('frame-details').locator('summary').click();
+    await id('tools-tab-details').click();
     assert.match(await id('frame-metadata').textContent(),/Archive ID.*Wavelength range.*Target epochs.*Native pixel flags/s);
-    assert.ok(await id('frame-metadata').getByRole('link').count()>=2);
+    await id('frame-metadata').locator('summary').click();
+    const row=manifest.observations.filter(row=>row.release==='dr1')[2];
+    const receipt=JSON.parse(await readFile(path.join(dist,row.frame_url),'utf8'));
+    const sourceUrls=await id('frame-metadata').getByRole('link').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
+    assert.ok(sourceUrls.includes(receipt.archive_source_url));
+    if(receipt.cutout_source_url)assert.ok(sourceUrls.includes(receipt.cutout_source_url));
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     if(evidence){
       await id('compare').evaluate(section=>section.scrollIntoView());
@@ -241,7 +255,7 @@ test('Detector stacks work from cached real exposures for D1 through D6',{skip:!
     await page.waitForFunction(()=>{
       const progress=document.querySelector('#progress');return progress.max>1&&progress.value===progress.max;
     });
-    await page.locator('#analysis-tools summary').click();
+    await page.locator('#tools-tab-image').click();
     for(const detector of [1,2,3,4,5,6]){
       await page.locator('#coadd-detector').selectOption(String(detector));
       await page.locator('#coadd-frames').click();
@@ -256,7 +270,7 @@ test('Live Gaia and AllWISE toggles draw reference marks and show the Gaia frame
     const page=await context.newPage();
     await page.goto('/compare.html?target=barnards-star&fov=1&from=2&to=12');
     await page.locator('#compare').waitFor();
-    await page.locator('#sky-context summary').click();
+    await page.locator('#tools-tab-overlays').click();
     for(const kind of ['gaia','wise']){
       const reply=page.waitForResponse(response=>response.url().endsWith('/reference/'+kind));
       await page.locator('#overlay-'+kind).check();
@@ -282,10 +296,7 @@ test('Eight-arcminute presets use single frames and truthful selected-cache labe
       const manifest=JSON.parse(await readFile(path.join(dist,'data','observation-targets',target.id,'preview-8.json'),'utf8'));
       const expected=manifest.preview_frame_urls.length;
       await page.goto('/explore.html?target='+target.id+'&fov=8');
-      await page.waitForFunction(n=>{
-        const progress=document.querySelector('#progress');
-        return progress.max===n&&progress.value===n&&document.querySelector('#frame-a').options.length===n;
-      },expected);
+      await waitForFrames(page,expected);
       assert.equal(await page.locator('#window-size').inputValue(),'1');
       assert.equal(await page.locator('#flipbook-view').inputValue(),'single');
       assert.equal(await page.locator('#play').getAttribute('aria-pressed'),'false');
@@ -294,23 +305,16 @@ test('Eight-arcminute presets use single frames and truthful selected-cache labe
       assert.equal(await page.locator('#progress-caption').innerText(),'Selected frames loaded');
       assert.equal(await page.locator('#progress-label').innerText(),expected+' / '+expected);
       assert.equal(await page.locator('#observation-rows tr').count(),expected);
-      const labelsFit=await page.locator('#frame-a,#frame-b').evaluateAll(selects=>selects.every(select=>{
-        const style=getComputedStyle(select);
-        const context=document.createElement('canvas').getContext('2d');
-        context.font=style.font;
-        const padding=parseFloat(style.paddingLeft)+parseFloat(style.paddingRight);
-        const available=select.clientWidth-padding-22; // Allow for the native dropdown arrow.
-        return [...select.options].every(option=>context.measureText(option.textContent).width<=available);
-      }));
+      const labelsFit=await page.locator('#choose-frame-a,#choose-frame-b').evaluateAll(buttons=>buttons.every(button=>button.scrollWidth<=button.clientWidth+1));
       assert.ok(labelsFit,'Every frame label should fit at 390 px.');
-      const [a,b]=await page.locator('#frame-a,#frame-b').evaluateAll(e=>e.map(s=>s.selectedOptions[0].textContent));
-      if(b==='Choose a second date'){
+      const [a,b]=await page.locator('#choose-frame-a,#choose-frame-b').evaluateAll(buttons=>buttons.map(button=>button.title));
+      if(!b){
         assert.match(await page.locator('#pair-note').innerText(),/No default pair/);
       }else{
         assert.notEqual(a.match(/\d{4}-\d{2}-\d{2}/)[0],b.match(/\d{4}-\d{2}-\d{2}/)[0]);
         assert.equal(a.match(/D\d/)[0],b.match(/D\d/)[0]);
         await page.locator('#side').click();
-        for(const id of ['mask-a','mask-b'])assert.match(await page.locator('#'+id).innerText(),/usable measured pixel/);
+        for(const id of ['mask-a','mask-b'])assert.doesNotMatch(await page.locator('#'+id).textContent(),/Target pixel is masked/);
       }
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
     }
@@ -324,14 +328,12 @@ test('A cross-release pair keeps Wipe and Difference available and reopens from 
     const page=await context.newPage();
     const params=new URLSearchParams({target:target.id,ra:target.ra_deg,dec:target.dec_deg,fov:8,release:'all',from:1,to:21});
     await page.goto('/compare.html?'+params);
-    await page.waitForFunction(()=>document.querySelector('#frame-a').options.length===21);
-    const [a,b]=await page.locator('#frame-a').evaluate(s=>{
-      const option=release=>[...s.options].find(o=>o.textContent.endsWith(release)).value;
-      return [option('DR1'),option('QR3')];
-    });
-    await page.locator('#frame-a').selectOption(a);
-    await page.locator('#frame-b').selectOption(b);
-    assert.equal(await page.locator('#release-note').innerText(),'Different data releases; processing may differ.');
+    await waitForFrames(page,21);
+    const rows=JSON.parse(await readFile(path.join(dist,'data','observation-targets',target.id,'preview-8.json'),'utf8')).observations;
+    const a=rows.findIndex(row=>row.release==='dr1'),b=rows.findIndex(row=>row.release==='qr3');
+    await chooseFrame(page,'a',a);
+    await chooseFrame(page,'b',b);
+    assert.match(await page.locator('#release-note').textContent(),/different data releases/i);
     for(const mode of ['difference-mode','wipe']){
       await page.locator('#'+mode).click();
       assert.equal(await page.locator('#'+mode).getAttribute('aria-pressed'),'true');
@@ -347,9 +349,46 @@ test('A cross-release pair keeps Wipe and Difference available and reopens from 
     const reopened=await second.newPage();
     await reopened.goto(url.href);
     await reopened.waitForFunction(()=>document.querySelector('#wipe').getAttribute('aria-pressed')==='true');
-    assert.equal(await reopened.locator('#frame-a').inputValue(),a);
-    assert.equal(await reopened.locator('#frame-b').inputValue(),b);
+    assert.equal(await reopened.locator('#frame-a').inputValue(),String(a));
+    assert.equal(await reopened.locator('#frame-b').inputValue(),String(b));
     assert.equal(await reopened.locator('#wipe-position').inputValue(),'72');
     assert.equal(await reopened.locator('#release-note').isVisible(),true);
   }finally{await context.close();await second.close();}
+});
+
+test('Same band plays in date order and a shared Wipe keeps its wavelength window',{skip:!base,timeout:45000},async()=>{
+  const context=await browser.newContext({baseURL:base,viewport:{width:390,height:844},reducedMotion:'reduce',permissions:['clipboard-read','clipboard-write']});
+  const fresh=await browser.newContext({baseURL:base,reducedMotion:'reduce'});
+  try{
+    const page=await context.newPage();
+    await page.goto('/compare.html?target=rw-aurigae');
+    await waitForFrames(page,12);
+    const strip=page.locator('#frame-strip button');
+    assert.equal(await strip.count(),12);
+    await page.locator('#same-band').focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await page.locator('#play').getAttribute('aria-pressed'),'true');
+    assert.equal(await strip.count(),5);
+    assert.match(await page.locator('#wavelength-count').textContent(),/5 of 12 frames/);
+    const dates=await strip.locator('time').evaluateAll(items=>items.map(item=>item.dateTime));
+    assert.deepEqual(dates,dates.toSorted());
+    await page.locator('#wipe').click();
+    assert.match(await page.locator('#wavelength-note').textContent(),/similar wavelengths/);
+    await page.locator('#copy-view').click();
+    const link=new URL(await page.evaluate(()=>navigator.clipboard.readText()));
+    assert.match(link.searchParams.get('wl'),/^0\.7645/);
+    assert.equal(link.searchParams.get('wlw'),'0.05');
+    assert.equal(link.searchParams.get('wld'),'1');
+    const reopened=await fresh.newPage();
+    await reopened.goto(link.href);
+    await waitForFrames(reopened,12);
+    assert.equal(await reopened.locator('#wipe').getAttribute('aria-pressed'),'true');
+    assert.equal(await reopened.locator('#wavelength-window').inputValue(),'0.05');
+    assert.equal(await reopened.locator('#frame-strip button').count(),5);
+    await reopened.locator('#wavelength-window').selectOption('0.25');
+    assert.match(await reopened.locator('#wavelength-note').textContent(),/Wavelength warning/);
+    await reopened.locator('#wavelength-window').selectOption('');
+    assert.equal(await reopened.locator('#frame-strip button').count(),12);
+    assert.equal(new URL(reopened.url()).searchParams.has('wl'),false);
+  }finally{await context.close();await fresh.close();}
 });
