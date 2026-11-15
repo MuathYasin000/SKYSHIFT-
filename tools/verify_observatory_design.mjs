@@ -120,7 +120,7 @@ try {
     await p.waitForFunction(() => skyshiftInfrared.diagnostics().lens_active);
     await p.click("#site-sound");
   });
-  await test("Search shortcut, source IDs and tap reveal retain original exposures", async () => {
+  await test("Search shortcut filters the challenge targets and exposes the IRSA source", async () => {
     await p.keyboard.press("Control+k");
     assert.equal(
       await p
@@ -128,14 +128,12 @@ try {
         .evaluate((e) => e === document.activeElement),
       true,
     );
-    await p.locator("#home-field-search").fill("M101");
-    assert.equal(await p.locator(".field-card").count(), 1);
-    assert.ok((await p.locator(".field-source-id").textContent()).length > 20);
-    await p.locator(".field-reveal-toggle").click();
-    assert.equal(
-      await p.locator(".field-reveal-toggle").getAttribute("aria-pressed"),
-      "true",
-    );
+    await p.locator("#home-field-search").fill("WISE");
+    const field = p.locator('#home-fields .field-card:visible');
+    assert.equal(await field.count(), 1);
+    const source = field.getByRole('link', { name: /IRSA archive source/ });
+    await source.scrollIntoViewIfNeeded();
+    assert.match(await source.getAttribute('href'), /^https:\/\/irsa\.ipac\.caltech\.edu\//);
     await p.locator("#home-field-search").fill("");
   });
   await test("Vela original-image reveal, published color ranges and accessible legend", async () => {

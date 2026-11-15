@@ -284,45 +284,51 @@
           <div class="section-divider" aria-hidden="true"></div>
           <div class="section-heading">
             <div>
-              <p class="eyebrow">HISTORICAL SPHEREX PREVIEWS</p>
-              <h2 id="fields-heading">Earlier windows into the sky.</h2>
+              <h2 id="fields-heading">Compare the five challenge targets</h2>
             </div>
             <div class="field-tools">
               <label for="home-field-search" class="sr-only"
-                >Find a sky region</label
+                >Filter challenge targets</label
               ><input
                 id="home-field-search"
                 list="sky-region-suggestions"
                 type="search"
-                placeholder="Find a sky region"
+                placeholder="Filter challenge targets"
                 maxlength="100"
-              /><datalist id="sky-region-suggestions">
-                <option value="M101"></option>
-                <option value="M67"></option>
-                <option value="NGC 188"></option>
-                <option value="Orion"></option></datalist
+              /><datalist id="sky-region-suggestions"></datalist
               ><kbd class="search-shortcut">Ctrl K</kbd
               ><button id="home-resume" hidden>Open Observations ↗</button>
             </div>
           </div>
           <p class="preview-explanation">
-            Move over a field or use Reveal preview to lift the dimming. Both
-            views use the same infrared exposure; no visible-light image or
-            extra detail is synthesized.
+            Each card shows one cached SPHEREx cutout from NASA/IPAC IRSA. Open Compare to see the same field across dates.
           </p>
           <p class="mask-legend"><i class="mask-key" aria-hidden="true"></i>Masked / unsupported · hatched areas contain no usable measurement.</p>
-          <div id="home-fields" class="home-fields" aria-live="polite">
-            <div class="field-skeleton" aria-hidden="true"></div>
-            <div class="field-skeleton" aria-hidden="true"></div>
-            <div class="field-skeleton" aria-hidden="true"></div>
-            <div class="field-skeleton" aria-hidden="true"></div>
-          </div>
+          <div id="home-fields" class="home-fields"></div>
+          <template id="home-field-template">
+            <article class="field-card">
+              <a class="field-compare">
+                <div class="field-image">
+                  <canvas aria-hidden="true"></canvas>
+                  <p class="field-image-status">Loading cached exposure…</p>
+                </div>
+                <div class="field-card-copy">
+                  <h3></h3>
+                  <p class="field-date"><time></time><span class="field-band"></span></p>
+                  <p class="field-mask" hidden>Target center is masked in this exposure.</p>
+                  <p class="field-availability">Open comparison ↗</p>
+                </div>
+              </a>
+              <a class="field-source text-link" target="_blank" rel="noopener noreferrer" hidden>IRSA archive source ↗</a>
+            </article>
+          </template>
           <p id="home-fields-status" class="field-status" role="status">
-            Loading earlier SPHEREx previews…
+            Loading challenge targets…
           </p>
           <button id="home-catalogue-retry" hidden>
-            Retry image previews
+            Retry challenge targets
           </button>
+          <a href="./classic-home.html" class="text-link">Browse earlier SPHEREx examples ↗</a>
         </section>
         <section
           class="infrared-story"

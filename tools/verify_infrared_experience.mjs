@@ -126,30 +126,13 @@ try {
     },
   );
   await check(
-    "Explicit preview reveal toggles on and off and card navigation retains the real exposure route",
+    "A challenge preview opens its cached comparison",
     async () => {
-      const b = p.locator(".field-reveal-toggle").first();
-      await b.click();
-      assert.equal(await b.getAttribute("aria-pressed"), "true");
-      await b.click();
-      assert.equal(await b.getAttribute("aria-pressed"), "false");
-      await p.locator(".field-card>a").first().click();
-      await p.waitForFunction(
-        () =>
-          window.skyshiftWebsite?.diagnostics().investigation.kind ===
-            "exposure" &&
-          !window.skyshiftWebsite.diagnostics().investigation.busy,
-      );
-      assert.match(p.url(), /#observations\/m101/);
+      await p.locator("#home-fields .field-compare").first().click();
+      await p.waitForURL('**/compare.html?target=barnards-star**');
       assert.equal(
         await p
-          .locator("#infrared-lens")
-          .evaluate((e) => e.classList.contains("active")),
-        false,
-      );
-      assert.equal(
-        await p
-          .locator("#instrument-canvas-a")
+          .locator("#canvas-a")
           .evaluate((e) => getComputedStyle(e).filter),
         "none",
       );
@@ -337,7 +320,7 @@ try {
   await c.close();
   for (const width of [1024, 390, 320])
     await check(
-      `Touch and responsive presentation at ${width}px preserves CTA, reveal and comparison`,
+      `Touch and responsive presentation at ${width}px preserves the CTA and challenge comparison`,
       async () => {
         const { c, p } = await context({
           viewport: { width, height: width === 320 ? 667 : 844 },
@@ -359,24 +342,15 @@ try {
             a.y + a.height <= (width === 320 ? 667 : 844),
             "main CTA must fit the initial viewport",
           );
-          const b = p.locator(".field-reveal-toggle").first();
-          await b.tap();
-          assert.equal(await b.getAttribute("aria-pressed"), "true");
           assert.equal(
             await p.evaluate(() => skyshiftInfrared.diagnostics().lens_active),
             false,
           );
           await p.evaluate(() => scrollTo(0, 0));
           await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + `/home-${width}.png` ))});
-          await p.locator('.site-navigation [href="#compare"]').click();
-          await science(p);
-          const selector = await p
-            .locator("#instrument-field-select")
-            .boundingBox();
-          assert.ok(
-            selector.width >= 200,
-            "sky-region names must remain readable beside the status badge",
-          );
+          await p.locator('#home-fields .field-compare').first().tap();
+          await p.locator('#canvas-a').waitFor();
+          assert.match(p.url(), /\/compare\.html\?.*target=barnards-star/);
           assert.equal(
             await p.evaluate(
               () => document.documentElement.scrollWidth - innerWidth,
@@ -410,18 +384,8 @@ try {
             .evaluate((e) => getComputedStyle(e).animationName),
           "none",
         );
-        await p.locator(".field-reveal-toggle").first().click();
-        assert.equal(
-          await p
-            .locator(".field-reveal-toggle")
-            .first()
-            .getAttribute("aria-pressed"),
-          "true",
-        );
-        await p.locator('.site-navigation [href="#compare"]').click();
-        await science(p);
-        await p.locator("[data-compare=single]").click();
-        await p.locator("#instrument-dates button").nth(1).click();
+        await p.locator('#home-fields .field-compare').first().click();
+        await p.locator('#next').click();
         assert.equal(await p.locator(".date-transition-wrap").count(), 0);
       } finally {
         await c.close();
@@ -429,7 +393,7 @@ try {
     },
   );
   await check(
-    "Missing animation library leaves the 3D hero, observations, preview buttons and native scrolling usable",
+    "Missing animation library leaves the 3D hero and cached comparisons usable",
     async () => {
       const { c, p } = await context();
       try {
@@ -437,13 +401,8 @@ try {
           r.fulfill({ status: 404, body: "" }),
         );
         await home(p);
-        await p.locator(".field-reveal-toggle").first().click();
-        await p.locator('.site-navigation [href="#compare"]').click();
-        await science(p);
-        assert.match(
-          await p.locator("#instrument-suitability").textContent(),
-          /PENDING/,
-        );
+        await p.locator('#home-fields .field-compare').first().click();
+        await p.locator('#canvas-a').waitFor();
       } finally {
         await c.close();
       }

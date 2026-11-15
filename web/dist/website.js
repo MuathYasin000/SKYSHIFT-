@@ -1,7 +1,5 @@
-import { displayPreview } from "./mask-display.js";
 import { createObservationConsole } from "./observation-console.js";
-import { fetchCatalogue } from "./catalogue.js";
-import { stories, friendlyDate } from "./field-guide.js";
+import { installChallengeFields } from "./home-challenge-fields.js";
 import { components } from "./space-content.js";
 import { createExplorationMemory } from "./exploration-memory.js";
 import {preparedJob} from './preparation-client.js';
@@ -11,7 +9,6 @@ const $ = (id) => document.getElementById(id),
   memory = createExplorationMemory();
 let surface = "home",
   routeSequence = 0,
-  catalogue = null,
   universe = null,
   universeFactory = null,
   model = null,
@@ -277,9 +274,8 @@ async function routeChanged() {
     });
   }
   if (route === "mission") {
-    // The real field cards precede this anchor. Let their first layout settle
-    // so direct mission links do not slide offscreen as the catalogue arrives.
-    await initialCatalogue;
+    // The target cards precede this anchor and reserve their image space.
+    await initialFields;
     if (ticket !== routeSequence) return;
     requestAnimationFrame(() => {
       if (ticket !== routeSequence || surface !== 'home') return;
@@ -291,126 +287,6 @@ async function routeChanged() {
     });
   }
 }
-async function fields() {
-  $("home-catalogue-retry").hidden = true;
-  try {
-    catalogue = await fetchCatalogue();
-    renderFields();
-    $("home-fields-status").textContent =
-      `${catalogue.fields.length} earlier regions · ${catalogue.fields.reduce((n, f) => n + f.observations.length, 0)} recorded exposures`;
-  } catch (e) {
-    $("home-fields-status").textContent = e.message;
-    $("home-catalogue-retry").hidden = false;
-  }
-}
-function renderFields() {
-  const query = $("home-field-search").value.trim().toLowerCase();
-  $("home-fields").replaceChildren();
-  let count = 0;
-  for (const field of catalogue?.fields || []) {
-    const story = stories[field.id];
-    if (
-      ![field.title, story?.name, story?.kind, story?.constellation]
-        .join(" ")
-        .toLowerCase()
-        .includes(query)
-    )
-      continue;
-    count++;
-    const card = node("article", undefined, "field-card"),
-      link = node("a");
-    link.href = "./explore.html?" + new URLSearchParams({ra:field.ra_deg,dec:field.dec_deg,fov:Number((field.size_deg*60).toFixed(1))});
-    link.dataset.field = field.id;
-    const image = node("img");
-    image.src = displayPreview(field.observations[0].preview);
-    image.alt =
-      "Real prepared single-band SPHEREx observation of " +
-      (story?.name || field.title);
-    image.width = 260;
-    image.height = 160;
-    const wrap = node("div", undefined, "field-image");
-    const revealImage = image.cloneNode();
-    revealImage.alt = "";
-    revealImage.setAttribute("aria-hidden", "true");
-    revealImage.className = "field-reveal-image";
-    const reticle = node("i", undefined, "field-reticle");
-    reticle.setAttribute("aria-hidden", "true");
-    wrap.append(
-      image,
-      revealImage,
-      reticle,
-      node("span", "REAL SPHEREx EXPOSURE"),
-    );
-    const coordinates = node(
-      "small",
-      `RA ${field.ra_deg.toFixed(3)}° / Dec ${field.dec_deg >= 0 ? "+" : ""}${field.dec_deg.toFixed(3)}°`,
-      "field-coordinates",
-    );
-    wrap.append(coordinates);
-    const content = node("div", undefined, "field-card-copy");
-    content.append(
-      node("p", story?.kind || "SPHEREx field", "eyebrow"),
-      node("h3", story?.name || field.title),
-      node("p", story?.short || field.description),
-    );
-    const dates = node(
-      "p",
-      field.observations.map((o) => friendlyDate(o.time_start_utc)).join(" / "),
-      "field-date",
-    );
-    content.append(
-      dates,
-      node(
-        "p",
-        field.observations.map((o) => o.observation_id).join(" / "),
-        "field-source-id",
-      ),
-    );
-    link.append(wrap, content);
-    card.append(link);
-    const reveal = node("button", "◉ Reveal preview", "field-reveal-toggle");
-    reveal.setAttribute("aria-pressed", "false");
-    reveal.setAttribute(
-      "aria-label",
-      "◉ Reveal preview — original infrared view of " +
-        (story?.name || field.title),
-    );
-    reveal.onclick = () => {
-      const active = card.classList.toggle("preview-revealed");
-      reveal.setAttribute("aria-pressed", String(active));
-      reveal.textContent = active
-        ? "◉ Original preview · on"
-        : "◉ Reveal preview";
-      reveal.setAttribute(
-        "aria-label",
-        reveal.textContent + " — " + (story?.name || field.title),
-      );
-    };
-    card.append(reveal);
-    card.append(
-      node(
-        "p",
-        "Search these coordinates in Observations ↗",
-        "field-availability",
-      ),
-    );
-    $("home-fields").append(card);
-  }
-  if (!count)
-    $("home-fields").append(
-      node(
-        "p",
-        "No earlier preview matches. Clear the filter to see all earlier previews.",
-        "empty-fields",
-      ),
-    );
-}
-$("home-field-search").oninput = () => {
-  renderFields();
-  $("home-fields-status").textContent =
-    "Filtering earlier previews. Use Observations for archive searches.";
-};
-$("home-catalogue-retry").onclick = fields;
 document.querySelector(".skip-link").onclick = (e) => {
   e.preventDefault();
   $("main").focus({ preventScroll: true });
@@ -549,5 +425,12 @@ Object.defineProperty(window, "skyshiftWebsite", {
     skyMapPixels:()=>skyMaps?.pixels(),
   }),
 });
-const initialCatalogue = fields();
+const initialFields = installChallengeFields({
+  gallery: $("home-fields"),
+  filter: $("home-field-search"),
+  suggestions: $("sky-region-suggestions"),
+  status: $("home-fields-status"),
+  retry: $("home-catalogue-retry"),
+  template: $("home-field-template"),
+});
 await routeChanged();

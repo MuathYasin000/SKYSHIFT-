@@ -376,8 +376,8 @@ try {
     "Field search and contextual NASA composite legend are functional",
     async () => {
       await p.click(".site-brand");
-      await p.fill("#home-field-search", "Orion");
-      assert.equal(await p.locator(".field-card").count(), 1);
+      await p.fill("#home-field-search", "WISE");
+      assert.equal(await p.locator("#home-fields .field-card:visible").count(), 1);
       await p.fill("#home-field-search", "");
       await p.click("#infrared-legend-button");
       assert.match(

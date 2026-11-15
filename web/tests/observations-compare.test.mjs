@@ -21,6 +21,45 @@ async function chooseFrame(page,side,index){
   assert.equal(await page.locator('#frame-'+side).inputValue(),String(index));
 }
 
+test('Homepage previews use the first cached Compare exposure for each challenge target',{skip:!base,timeout:90000},async()=>{
+  const context=await browser.newContext({baseURL:base,viewport:{width:1440,height:900},reducedMotion:'reduce'});
+  try{
+    const home=await context.newPage();
+    const compare=await context.newPage();
+    await home.goto('/');
+    const items=home.locator('#home-fields .field-card');
+    await items.last().waitFor();
+    assert.deepEqual(await items.locator('h3').allTextContents(),targets.map(target=>target.name));
+    const masked=[];
+    for(const target of targets){
+      const manifest=JSON.parse(await readFile(path.join(dist,'data','observation-targets',target.id,'preview-8.json'),'utf8'));
+      const selected=new Set(manifest.preview_frame_urls);
+      const first=manifest.observations.find(row=>selected.has(row.frame_url));
+      const frame=JSON.parse(await readFile(path.join(dist,first.frame_url),'utf8'));
+      const card=items.filter({hasText:target.name});
+      await card.scrollIntoViewIfNeeded();
+      await card.locator('.field-image[data-preview-ready]').waitFor();
+      assert.equal(await card.locator('time').getAttribute('datetime'),frame.time_start_utc);
+      assert.equal(await card.locator('.field-source').getAttribute('href'),frame.archive_source_url);
+      const canvas=card.locator('canvas');
+      const centerAlpha=await canvas.evaluate(el=>el.getContext('2d').getImageData(Math.floor(el.width/2),Math.floor(el.height/2),1,1).data[3]);
+      if(!frame.target.valid){
+        masked.push(target.id);
+        assert.equal(centerAlpha,0);
+        assert(await card.getByText('Target center is masked in this exposure.').isVisible());
+      }
+      await compare.goto(await card.locator('.field-compare').getAttribute('href'));
+      await waitForFrames(compare,12);
+      assert.match(await compare.locator('#meta-a').textContent(),new RegExp(`^${frame.time_start_utc.slice(0,10)} · D${frame.detector}`));
+      assert.equal(await compare.getByRole('link',{name:'Open IRSA source ↗'}).getAttribute('href'),frame.archive_source_url);
+    }
+    assert.deepEqual(masked,['barnards-star','r-draconis']);
+    const filter=home.getByLabel('Filter challenge targets');
+    await filter.fill('wise');
+    assert.deepEqual(await items.filter({visible:true}).locator('h3').allTextContents(),['WISE 0855-0714']);
+  }finally{await context.close();}
+});
+
 before(async()=>{
   if(!base)return;
   const override=process.env.SKYSHIFT_PLAYWRIGHT_MODULE;
