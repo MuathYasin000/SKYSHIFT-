@@ -40,7 +40,6 @@
     document.getElementById('arrival-retry').hidden=false;
     document.getElementById('arrival-skip').textContent='Enter without 3D ↗';
     clearTimeout(timer);
-    if(!replay)timer=setTimeout(()=>finish('unavailable'),2200);
   }
   function positionStage(){
     const target=placeholder.getBoundingClientRect(),ratio=target.width/Math.max(1,target.height);
@@ -107,7 +106,7 @@
         }
       });
       initialized=true;document.getElementById('arrival-skip').focus({preventScroll:true});
-      timer=setTimeout(()=>fail('The spacecraft is taking longer to arrive. Retry, or enter without 3D.'),replay?18000:6500);
+      timer=setTimeout(()=>fail('The spacecraft is taking longer to arrive. Retry, or enter without 3D.'),18000);
       observer=new MutationObserver(()=>{if(active)checkReady();});
       observer.observe(document.querySelector('.hero-observatory'),{attributes:true,attributeFilter:['data-model-state']});
       window.dispatchEvent(new Event('skyshift:arrival-start'));checkReady();
