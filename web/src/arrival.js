@@ -2,15 +2,15 @@
 (() => {
   const root=document.documentElement;
   const reduce=matchMedia('(prefers-reduced-motion: reduce)');
-  const params=new URLSearchParams(location.search);
   const home=()=>['','#home'].includes(location.hash);
-  if(!home()||params.get('intro')!=='1')return;
-  if(reduce.matches)return;
+  if(!home())return;
   root.dataset.arrival='loading';
   root.dataset.arrivalExperience='true';
   const started=performance.now();
   let active=true,initialized=false,revealing=false,screen,stage,canvas,placeholder,timer,delay,wake,observer,generation=0,animations=[],state='loading',renderedAt=null;
   const wait=ms=>new Promise(resolve=>{wake=resolve;delay=setTimeout(()=>{wake=null;resolve();},ms);});
+  const reducedMotion=()=>reduce.matches||document.body.classList.contains('reduced-effects');
+  async function waitUntilVisible(){while(active&&document.hidden)await wait(200);}
   const locked=new Map();
   const setState=value=>{state=value;root.dataset.arrival=value;};
   function restoreCanvas(){
@@ -55,20 +55,34 @@
     const a=el.animate(frames,{fill:'forwards',...options});animations.push(a);
     try{await a.finished;}catch{}return active;
   };
+  function stopMotionForPreference(){
+    if(!active||!revealing||!reducedMotion())return;
+    animations.forEach(a=>a.cancel());animations=[];
+    if(stage)stage.style.opacity='1';
+  }
   async function reveal(){
     if(!active||revealing||!initialized||document.hidden)return;
     revealing=true;const ticket=++generation;renderedAt=performance.now();clearTimeout(timer);
-    if(reduce.matches||document.body.classList.contains('reduced-effects')){finish();return;}
     await wait(Math.max(0,650-(performance.now()-started)));
     if(!active||ticket!==generation)return;
     setState('reveal');
     document.getElementById('arrival-status').textContent='SPHEREx ready · exploring the infrared sky.';
+    if(reducedMotion()){
+      stage.style.opacity='1';
+      await wait(1650);await waitUntilVisible();
+      if(active&&ticket===generation)finish();
+      return;
+    }
     window.skyshiftHero?.arrivalOrbit?.(2200);
     await animate(stage,[{opacity:0,transform:'scale(.86)'},{opacity:1,transform:'scale(1)'}],{duration:650,easing:'cubic-bezier(.16,1,.3,1)'});
     if(!active||ticket!==generation)return;
     await wait(1650);
     if(!active||ticket!==generation)return;
-    if(document.hidden){finish();return;}
+    await waitUntilVisible();
+    if(!active||ticket!==generation)return;
+    if(reducedMotion()){
+      stage.style.opacity='1';finish();return;
+    }
     setState('settling');
     const from=stage.getBoundingClientRect(),to=placeholder.getBoundingClientRect();
     const flight=animate(stage,[{opacity:1,transform:'translate(0,0) scale(1,1)'},{opacity:1,transform:`translate(${to.left-from.left}px,${to.top-from.top}px) scale(${to.width/from.width},${to.height/from.height})`}],{duration:1050,easing:'cubic-bezier(.65,0,.25,1)'});
@@ -85,7 +99,6 @@
     try{
       screen=document.getElementById('arrival-screen');stage=document.getElementById('arrival-model-stage');canvas=document.getElementById('hero-model-canvas');
       if(!screen||!stage||!canvas){finish('unavailable');return;}
-      if(reduce.matches||document.body.classList.contains('reduced-effects')){finish('reduced-motion');return;}
       window.scrollTo({top:0,behavior:'instant'});
       const stars=document.getElementById('arrival-stars');let seed=71;
       const random=()=>{seed=(seed*16807)%2147483647;return seed/2147483647;};
@@ -105,7 +118,7 @@
           else if(!event.shiftKey&&(document.activeElement===last||document.activeElement===screen)){event.preventDefault();first.focus();}
         }
       });
-      initialized=true;document.getElementById('arrival-skip').focus({preventScroll:true});
+      initialized=true;screen.focus({preventScroll:true});
       timer=setTimeout(()=>fail('The spacecraft is taking longer to arrive. Retry, or enter without 3D.'),18000);
       observer=new MutationObserver(()=>{if(active)checkReady();});
       observer.observe(document.querySelector('.hero-observatory'),{attributes:true,attributeFilter:['data-model-state']});
@@ -118,14 +131,14 @@
   window.addEventListener('skyshift:hero-import-failed',()=>fail());
   window.addEventListener('hashchange',()=>{if(!home())finish('navigation');});
   window.addEventListener('pagehide',()=>finish('pagehide'));
-  window.addEventListener('resize',()=>{if(!active||!initialized)return;if(revealing)finish('resized');else positionStage();});
+  window.addEventListener('resize',()=>{if(!active||!initialized)return;positionStage();});
   document.addEventListener('visibilitychange',()=>{
     if(!active)return;
     root.toggleAttribute('data-arrival-paused',document.hidden);
     for(const a of animations)document.hidden?a.pause():a.play();
     if(!document.hidden)checkReady();
   });
-  reduce.addEventListener('change',()=>{if(active&&reduce.matches)finish('reduced-motion');});
-  document.addEventListener('skyshift:effects',event=>{if(active&&!event.detail)finish('reduced-motion');});
+  reduce.addEventListener('change',stopMotionForPreference);
+  document.addEventListener('skyshift:effects',stopMotionForPreference);
   document.addEventListener('DOMContentLoaded',init,{once:true});
 })();
