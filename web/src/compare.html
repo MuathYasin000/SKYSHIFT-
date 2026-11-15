@@ -144,6 +144,11 @@
         <p id="release-note" class="warning" role="status" hidden>These exposures use different data releases. Processing may differ.</p>
         <p id="mask-a" class="mask-state" hidden></p>
         <p id="mask-b" class="mask-state" hidden></p>
+        <div id="masked-center-help" hidden>
+          <p><strong>Why is the center masked?</strong> Very bright sources can saturate a detector and cause pixel flags. Missing coverage and other quality flags can also mask a center. The mask alone cannot identify the cause.</p>
+          <button id="nearby-stars" type="button">Show nearby stars instead</button>
+          <p class="control-reason">Use the Gaia DR3 overlay to identify nearby catalog sources.</p>
+        </div>
         <p id="window-summary" class="control-reason" hidden></p>
         <p id="viewer-announcement" class="visually-hidden" role="status" aria-atomic="true"></p>
 

@@ -23,6 +23,7 @@ const catalogs={gaia:null,wise:null};
 const catalogNames={gaia:'Gaia DR3',wise:'AllWISE'};
 const referenceRequests=new Map();
 const widePreviewTargets=new Set(['barnards-star','epsilon-indi-b','wise-0855','rw-aurigae','r-draconis']);
+const maskedPreviewTargets=new Set(['barnards-star','r-draconis']);
 const displaySettings={subtract:true,lower:null,upper:null,showMasks:false,upperPercentile:.997,revision:0};
 const updateSkyBackground=$('sky-background')?attachSkyBackground({
   panel:$('sky-background'),host:$('dss-view'),status:$('dss-status'),retry:$('retry-dss'),opacity:$('dss-opacity'),output:$('dss-opacity-value'),
@@ -283,6 +284,7 @@ function resetResults(){
   $('frame-details').hidden=true;
   $('empty-viewer').setAttribute('aria-busy','false');
   for(const id of ['mask-a','mask-b'])$(id).hidden=true;
+  $('masked-center-help').hidden=true;
   frameChoices.clear();
   if(comparison){$('derived-result').hidden=true;$('spectrum').setAttribute('hidden','');$('spectrum-status').textContent='';}
   $('filter-detector').value='all';$('filter-min').value='';$('filter-max').value='';
@@ -1004,6 +1006,7 @@ function render(){
   $('meta-b').textContent=b?'B · '+readout(b):'';
   targetMaskNote('mask-a',a,window.frame);
   targetMaskNote('mask-b',b,b);
+  $('masked-center-help').hidden=!maskedPreviewTargets.has(state.target?.id)||![a,b].some(frame=>frame?.target&&!frame.target.valid);
   instrumentScale('a',window.frame);
   instrumentScale('b',state.mode==='side'?b:null);
   const description= differenceMessage||describeView(a,b,window.count);
@@ -1110,6 +1113,10 @@ $('same-band').onclick=()=>{
   state.mode='single';
   setBand({center:group.center,halfWidth:NARROW_BAND_HALF_WIDTH,detector:group.detector,singleDetector:true},group.frames[0]);
   play();
+};
+$('nearby-stars').onclick=()=>{
+  selectTool($('tools-tab-overlays'));
+  $('overlay-gaia').focus();
 };
 for(const kind of Object.keys(catalogs)){
   const input=$(`overlay-${kind}`);

@@ -78,6 +78,17 @@ The Same band shortcut picks the largest group on one detector within a 0.10 µm
 
 WISE 0855’s default preview has fewer than three same-band frames. The timeline reports the limit and offers wider windows. Frame comparisons remain exploratory.
 
+### Alternative cached fields at masked centers
+
+All bundled 1′ and 8′ real cutouts were checked for each target using the supplied observation-epoch target position and its `target.valid` flag. The best field examples below maximize usable pixel fraction across the whole cutout. Both target centers remain masked, including on alternate detectors.
+
+| Target | Usable center by field | Detectors checked | Best 8′ context frame | Best 1′ context frame |
+| --- | --- | --- | --- | --- |
+| Barnard’s Star | 0/30 (8′), 0/148 (1′) | D1–D6 | `2026W34_2A_0757_1`, QR3 D1, 2026-08-23, 94.71% usable field | `2025W33_2C_0321_3`, DR1 D6, 2025-08-15, 91.00% |
+| R Draconis | 0/31 (8′), 0/61 (1′) | D1, D2, D3, D4, D6 | `2025W47_1A_0388_1`, DR1 D2, 2025-11-18, 92.07% usable field | Same observation, 27.00% |
+
+The Details panel explains possible reasons for masking, including saturation in general, and links to the Gaia DR3 overlay control for locating nearby reference stars. Neither the masking label nor these receipts identifies the cause for a specific frame.
+
 | Target | Live cached frames | Usable target pixels | First → next after Play | What the user sees |
 | --- | ---: | ---: | --- | --- |
 | Barnard’s Star | 12 | 0 | 2025-08-15 D3 2.032 µm → 2025-08-21 D2 1.377 µm | Bright surrounding field and a dark masked center. Pixels change with the exposure. No eligible suggested pair. |
