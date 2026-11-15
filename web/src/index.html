@@ -61,9 +61,6 @@
     <div class="reading-spectrum" aria-hidden="true">
       <div data-spectrum></div>
     </div>
-    <div id="infrared-lens" aria-hidden="true">
-      <span>IR LENS / HISTORICAL IMAGE CENTRE<br>RA 210.802° / DEC +54.349°<br>Not spacecraft pointing</span>
-    </div>
 <header class="site-header" id="site-header">
  <a class="skip-link" href="#main">Skip to content</a>
  <a class="site-brand" href="./index.html" aria-label="SKYSHIFT SPHEREX OBSERVATION EXPLORER home"><img src="./assets/skyshift-mark.svg" width="36" height="42" alt=""><span>SKYSHIFT <small>SPHEREX OBSERVATION EXPLORER</small></span></a>
@@ -148,9 +145,9 @@
               <a href="./index.html?intro=1" class="text-link home-intro-replay">Play intro ↗</a>
             </div>
             <div class="vision-controls">
-              <button id="vision-effects" aria-pressed="true">
-                ◉ Infrared lens on</button
-              ><span>Display effect only · real pixels stay unchanged</span>
+              <button id="vision-effects" type="button" aria-pressed="true">
+                Infrared lens <span id="lens-state" aria-hidden="true">On</span>
+              </button>
             </div>
           </div>
           <figure class="hero-observatory">
@@ -165,9 +162,6 @@
               ><span id="hero-field-coordinates"
                 >Barnard’s Star · RA 269.452° / Dec +4.693°</span
               ><small>Challenge reference position · ICRS J2000</small>
-              <small id="hero-cursor-position"
-                >DISPLAY POSITION / move over the hero</small
-              >
             </div>
             <div class="observatory-rings" aria-hidden="true">
               <i></i><i></i><i></i><span class="orbit-point"></span>
@@ -179,6 +173,7 @@
               aria-label="Interactive 3D SPHEREx telescope. Drag or use arrow keys to rotate; plus and minus zoom; Home resets."
               aria-describedby="hero-model-description"
             ></canvas>
+            <div id="infrared-lens" aria-hidden="true"></div>
             <div
               id="hero-model-message"
               class="hero-model-message"

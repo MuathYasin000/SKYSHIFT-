@@ -54,7 +54,6 @@
     margin-left: 0.06em;
   }
   .observatory-hero h1 em:hover,
-  .observatory-hero.lens-active h1 em,
   .intro-complete .observatory-hero h1 em {
     color: var(--white);
     -webkit-text-stroke: 1.5px var(--white);
@@ -158,14 +157,31 @@
     margin-top: 24px;
   }
   .vision-controls button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 6px 10px 6px 12px;
+    font: 500 13px var(--sans);
+    color: var(--text-2);
+    border-color: var(--line);
+    background: var(--surface-1);
+  }
+  .vision-controls button:hover { color: var(--white); border-color: var(--line-strong); }
+  #lens-state {
+    min-width: 3ch;
+    padding: 3px 6px;
+    border-radius: var(--radius);
+    background: var(--surface-3);
+    text-align: center;
     font: 12px var(--mono);
   }
-  .vision-controls > span {
-    font: 12px/1.6 var(--mono);
-    color: var(--text-3);
-    max-width: 36ch;
+  .vision-controls button[aria-pressed="true"] #lens-state {
+    color: var(--hero-lens-warm);
   }
   #home-view .hero-observatory {
+    --model-inset-top: 48px;
+    --model-inset-bottom: 88px;
     grid-column: 7/13;
     position: relative;
     height: 650px;
@@ -177,29 +193,43 @@
     align-self: start;
     isolation: isolate;
   }
-  .hero-model-canvas {
+  .hero-model-canvas,
+  #infrared-lens {
     position: absolute;
-    inset: 48px 0 88px;
+    inset: var(--model-inset-top) 0 var(--model-inset-bottom);
     width: 100%;
-    height: calc(100% - 136px);
+    height: calc(100% - var(--model-inset-top) - var(--model-inset-bottom));
+  }
+  .hero-model-canvas {
     z-index: 1;
     filter: grayscale(1);
   }
-  .hero-observatory::after {
-    content: "";
-    position: absolute;
-    inset: 48px 0 88px;
-    background: var(--black);
-    opacity: 0.25;
+  #infrared-lens {
+    --lens-shade: color-mix(in srgb, var(--black) 25%, transparent);
     z-index: 2;
     pointer-events: none;
   }
-  .lens-active .hero-observatory::after {
-    mask-image: radial-gradient(
-      circle 110px at var(--lens-panel-x, -300px) var(--lens-panel-y, -300px),
-      transparent 98%,
-      var(--black) 100%
+  #infrared-lens::before,
+  #infrared-lens::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transition: opacity 160ms ease-out;
+  }
+  #infrared-lens::before { background: var(--lens-shade); }
+  #infrared-lens::after {
+    opacity: 0;
+    background: radial-gradient(
+      circle clamp(100px, 11vw, 168px) at var(--lens-x, 50%) var(--lens-y, 50%),
+      color-mix(in srgb, var(--hero-lens-warm) 7%, transparent),
+      transparent 32%,
+      color-mix(in srgb, var(--black) 12%, transparent) 63%,
+      var(--lens-shade) 100%
     );
+  }
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    #infrared-lens.active::before { opacity: 0; }
+    #infrared-lens.active::after { opacity: 1; }
   }
   .hero-hud {
     position: absolute;
@@ -278,9 +308,6 @@
     -webkit-text-stroke: 1px var(--line);
     opacity: 0.65;
     pointer-events: none;
-  }
-  .lens-active .observatory-lettering {
-    color: var(--surface-3);
   }
   .hero-flare,
   .hero-grid,
@@ -687,52 +714,6 @@
     font-size: 14px;
     width: 100%;
   }
-  #infrared-lens {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 232px;
-    height: 232px;
-    border: 1px solid var(--line-strong);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 20;
-    opacity: 0;
-    background: transparent;
-    transition: opacity 0.2s;
-  }
-  #infrared-lens.active {
-    opacity: 1;
-  }
-  #infrared-lens::before,
-  #infrared-lens::after {
-    content: "";
-    position: absolute;
-    background: var(--white);
-  }
-  #infrared-lens::before {
-    height: 1px;
-    width: 20px;
-    left: 106px;
-    top: 115px;
-  }
-  #infrared-lens::after {
-    width: 1px;
-    height: 20px;
-    left: 115px;
-    top: 106px;
-  }
-  #infrared-lens > span {
-    position: absolute;
-    top: 240px;
-    left: 0;
-    width: 320px;
-    padding: 8px;
-    background: var(--black);
-    border: 1px solid var(--line);
-    font: 12px/1.6 var(--mono);
-    color: var(--text-2);
-  }
   .observatory-cursor {
     display: none;
   }
@@ -833,18 +814,8 @@
     .hero-hud {
       font-size: 12px;
     }
-    .hero-model-canvas {
-      inset: 52px 0 80px;
-      height: calc(100% - 132px);
-    }
-    .hero-observatory::after {
-      inset: 52px 0 80px;
-    }
     .hero-hud small {
       font-size: 12px;
-    }
-    .hero-hud #hero-cursor-position {
-      display: none;
     }
     .observatory-lettering {
       top: 80px;
@@ -882,9 +853,11 @@
     }
   }
   @media (prefers-reduced-motion: reduce), (pointer: coarse) {
-    #infrared-lens {
+    .vision-controls {
       display: none;
     }
+    #infrared-lens::before,
+    #infrared-lens::after { transition: none; }
     .headline-line,
     .hero-model-canvas {
       animation: none;
@@ -897,9 +870,6 @@
   .reduced-effects .headline-line,
   .reduced-effects .hero-model-canvas {
     animation: none;
-  }
-  .reduced-effects #infrared-lens {
-    display: none;
   }
   .reduced-effects .field-action {
     transform: none;
@@ -1556,19 +1526,14 @@
     min-height: 0;
   }
   #home-view .hero-observatory {
+    --model-inset-top: 96px;
+    --model-inset-bottom: 188px;
     display: grid;
     grid-template-rows: minmax(0, 1fr) auto auto auto;
     gap: 12px;
     padding-top: 96px;
     padding-bottom: 16px;
     height: 650px;
-  }
-  .hero-model-canvas {
-    inset: 96px 0 188px;
-    height: calc(100% - 284px);
-  }
-  .hero-observatory::after {
-    inset: 96px 0 188px;
   }
   .hero-model-controls {
     position: relative;
@@ -1757,16 +1722,11 @@
       margin-top: 16px;
     }
     #home-view .hero-observatory {
+      --model-inset-top: 80px;
+      --model-inset-bottom: 176px;
       order: 1;
       height: 500px;
       padding-top: 80px;
-    }
-    .hero-model-canvas {
-      inset: 80px 0 176px;
-      height: calc(100% - 256px);
-    }
-    .hero-observatory::after {
-      inset: 80px 0 176px;
     }
     .hero-model-controls {
       inset: auto;

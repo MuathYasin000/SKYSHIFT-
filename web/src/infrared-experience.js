@@ -8,7 +8,9 @@ export function installInfraredExperience() {
     reduce = matchMedia("(prefers-reduced-motion: reduce)"),
     fine = matchMedia("(hover: hover) and (pointer: fine)"),
     hero = document.querySelector(".observatory-hero"),
-    lens = $("infrared-lens");
+    lens = $("infrared-lens"),
+    model = lens.parentElement,
+    lensToggle = $("vision-effects");
   let enabled = readPreferences().effects,
     pointerFrame = 0,
     scrollFrame = 0,
@@ -19,7 +21,7 @@ export function installInfraredExperience() {
     libs = null,
     generation = 0,
     lensUpdates = 0,
-    pointer = null,
+    pointer,
     visibleHero = true;
   for (const strip of document.querySelectorAll("[data-spectrum]")) {
     strip.setAttribute("aria-hidden", "true");
@@ -56,18 +58,36 @@ export function installInfraredExperience() {
     return enabled && !reduce.matches && !document.hidden && home();
   }
   function hideLens() {
+    cancelAnimationFrame(pointerFrame);
+    pointerFrame = 0;
     lens.classList.remove("active");
-    hero.classList.remove("lens-active");
   }
-  function resetPointer() {
-    hideLens();
-    document.querySelectorAll(".field-card").forEach((c) => {
-      c.style.removeProperty("--tilt-x");
-      c.style.removeProperty("--tilt-y");
-    });
-    document
-      .querySelectorAll(".primary-link")
-      .forEach((b) => b.style.removeProperty("translate"));
+
+  function updatePointer() {
+    pointerFrame = 0;
+    if (!effects()) return;
+    const { x, y, target, buttons } = pointer;
+    hero.style.setProperty("--depth-x", (x / innerWidth - 0.5) * 10 + "px");
+    hero.style.setProperty("--depth-y", (y / innerHeight - 0.5) * 7 + "px");
+    if (
+      target.id !== "hero-model-canvas" ||
+      !model.contains(target) ||
+      model.dataset.modelState !== "ready" ||
+      buttons ||
+      document.documentElement.hasAttribute("data-arrival")
+    ) {
+      hideLens();
+      return;
+    }
+    const bounds = lens.getBoundingClientRect();
+    if (x < bounds.left || x >= bounds.right || y < bounds.top || y >= bounds.bottom) {
+      hideLens();
+      return;
+    }
+    lens.style.setProperty("--lens-x", `${x - bounds.left}px`);
+    lens.style.setProperty("--lens-y", `${y - bounds.top}px`);
+    lens.classList.add("active");
+    lensUpdates++;
   }
   document.addEventListener(
     "pointermove",
@@ -76,78 +96,26 @@ export function installInfraredExperience() {
         !effects() ||
         !fine.matches ||
         event.pointerType === "touch" ||
-        event.target.closest("dialog, #space-workspace")
-      )
+        !hero.contains(event.target)
+      ) {
+        hideLens();
         return;
-      pointer = { x: event.clientX, y: event.clientY, target: event.target };
-      if (pointerFrame) return;
-      pointerFrame = requestAnimationFrame(() => {
-        pointerFrame = 0;
-        if (!effects()) return;
-        const { x, y, target } = pointer;
-        // Keep the real pointer, text and scientific canvases unobscured.
-        lens.style.transform = `translate3d(${x - 116}px,${y - 116}px,0)`;
-        lens.classList.add("active");
-        lensUpdates++;
-        const r = hero.getBoundingClientRect(),
-          inside = y >= r.top && y <= r.bottom;
-        hero.classList.toggle("lens-active", inside);
-        if (inside) {
-          hero.style.setProperty("--lens-x", x - r.left + "px");
-          hero.style.setProperty("--lens-y", y - r.top + "px");
-          const panel = hero
-            .querySelector(".hero-observatory")
-            .getBoundingClientRect();
-          hero.style.setProperty("--lens-panel-x", x - panel.left + "px");
-          hero.style.setProperty("--lens-panel-y", y - panel.top - 48 + "px");
-          hero.style.setProperty(
-            "--depth-x",
-            (x / innerWidth - 0.5) * 10 + "px",
-          );
-          hero.style.setProperty(
-            "--depth-y",
-            (y / innerHeight - 0.5) * 7 + "px",
-          );
-          const ghost = hero
-            .querySelector(".observatory-lettering")
-            .getBoundingClientRect();
-          hero.style.setProperty("--ghost-x", x - ghost.left + "px");
-          hero.style.setProperty("--ghost-y", y - ghost.top + "px");
-        }
-        const card = target.closest(".field-card");
-        if (card) {
-          const c = card.getBoundingClientRect(),
-            image = card.querySelector(".field-image").getBoundingClientRect();
-          card.style.setProperty("--reveal-x", x - image.left + "px");
-          card.style.setProperty("--reveal-y", y - image.top + "px");
-          // Actual curated field coordinates, never cursor-generated RA/Dec.
-          $("hero-field-coordinates").textContent =
-            card.querySelector(".field-coordinates").textContent +
-            " · field centre";
-          lens.querySelector("span").textContent =
-            "IR LENS / CURATED FIELD CENTRE / " +
-            card.querySelector(".field-coordinates").textContent +
-            " / Not spacecraft pointing";
-        }
-      });
+      }
+      pointer = { x: event.clientX, y: event.clientY, target: event.target, buttons: event.buttons };
+      if (!pointerFrame) pointerFrame = requestAnimationFrame(updatePointer);
     },
     { passive: true },
   );
   document.addEventListener(
     "pointerout",
-    (e) => {
-      const card = e.target.closest?.(".field-card");
-      if (card && !card.contains(e.relatedTarget)) {
-        card.style.removeProperty("--tilt-x");
-        card.style.removeProperty("--tilt-y");
-      }
-      const b = e.target.closest?.(".primary-link");
-      if (b && !b.contains(e.relatedTarget))
-        b.style.removeProperty("translate");
+    (event) => {
+      if (event.target.id === "hero-model-canvas") hideLens();
     },
     { passive: true },
   );
-  document.addEventListener("pointerleave", hideLens);
+  document.addEventListener("pointerdown", hideLens, { passive: true });
+  document.addEventListener("pointercancel", hideLens);
+  window.addEventListener("blur", hideLens);
   document.addEventListener("focusin", hideLens);
   const vela = document.querySelector(".intro-image");
   let revealStep = null;
@@ -323,20 +291,16 @@ export function installInfraredExperience() {
   );
   function sync() {
     const ticket = ++generation;
-    resetPointer();
+    hideLens();
     cleanup();
     body.classList.toggle("infrared-effects", enabled && !reduce.matches);
     body.classList.toggle("effects-paused", !effects());
-    $("vision-effects").setAttribute("aria-pressed", String(enabled));
-    $("vision-effects").textContent = enabled
-      ? reduce.matches
-        ? "◉ Lens off · reduced motion"
-        : "◉ Infrared lens on"
-      : "◉ Infrared lens off";
+    lensToggle.setAttribute("aria-pressed", String(enabled));
+    $("lens-state").textContent = enabled ? "On" : "Off";
     if (effects()) animateStory(ticket);
     progress();
   }
-  $("vision-effects").onclick = () => {
+  lensToggle.onclick = () => {
     enabled = !enabled;
     const p = readPreferences();
     p.effects = enabled;
@@ -344,7 +308,6 @@ export function installInfraredExperience() {
     document.dispatchEvent(
       new CustomEvent("skyshift:effects", { detail: enabled }),
     );
-    sync();
   };
   document.addEventListener("skyshift:effects", (e) => {
     enabled = Boolean(e.detail);
@@ -361,7 +324,7 @@ export function installInfraredExperience() {
     diagnostics: () => ({
       enabled,
       reduced_motion: reduce.matches,
-      lens_active: lens.classList.contains("active"),
+      lens_active: effects() && fine.matches && lens.classList.contains("active"),
       lens_updates: lensUpdates,
       smooth_scroll: Boolean(lenis),
       smooth_frame_pending: Boolean(smoothFrame),

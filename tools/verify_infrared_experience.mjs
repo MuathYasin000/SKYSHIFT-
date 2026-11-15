@@ -110,30 +110,19 @@ try {
     },
   );
   await check(
-    "Fine-pointer infrared lens illuminates the hero and lifts real preview dimming without inventing RA/Dec",
+    "The fine-pointer spotlight stays on the spacecraft canvas",
     async () => {
-      await p.mouse.move(810, 300);
+      const coordinates = await p.locator("#hero-field-coordinates").textContent();
+      await p.locator('.hero-observatory[data-model-state="ready"]').waitFor();
+      await p.locator("#hero-model-canvas").hover();
       await p.waitForFunction(() => skyshiftInfrared.diagnostics().lens_active);
-      assert.equal(
-        await p
-          .locator(".observatory-hero")
-          .evaluate((e) => e.classList.contains("lens-active")),
-        true,
-      );
+      const lens = p.locator("#infrared-lens");
+      assert.equal(await lens.textContent(), "");
+      assert.equal(await lens.evaluate((e) => getComputedStyle(e).pointerEvents), "none");
+      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/spacecraft-spotlight.png" ))});
       await p.locator(".field-image").first().hover();
-      await p.waitForTimeout(350);
-      assert.equal(
-        await p
-          .locator(".field-reveal-image")
-          .first()
-          .evaluate((e) => getComputedStyle(e).opacity),
-        "1",
-      );
-      assert.match(
-        await p.locator("#hero-field-coordinates").textContent(),
-        /210\.802.*54\.349.*field centre/,
-      );
-      await p.screenshot({ path: await claimEvidenceFile(evidenceFile(evidenceRun,out + "/field-lens.png" ))});
+      await p.waitForFunction(() => !skyshiftInfrared.diagnostics().lens_active);
+      assert.equal(await p.locator("#hero-field-coordinates").textContent(), coordinates);
     },
   );
   await check(

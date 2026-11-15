@@ -67,16 +67,6 @@ export function installMissionInteractions() {
   document.addEventListener("pointerleave", () =>
     cursor.classList.remove("active"),
   );
-  document.querySelector(".observatory-hero").addEventListener(
-    "pointermove",
-    (e) => {
-      if (reduce.matches || body.classList.contains("reduced-effects")) return;
-      const r = e.currentTarget.getBoundingClientRect();
-      document.getElementById("hero-cursor-position").textContent =
-        `DISPLAY POSITION / x ${Math.round(e.clientX - r.left)} · y ${Math.round(e.clientY - r.top)} px`;
-    },
-    { passive: true },
-  );
   const chips = [...document.querySelectorAll("[data-website-component]")],
     modelPanel = document.querySelector(".mission-model");
   chips.forEach((chip, i) => {

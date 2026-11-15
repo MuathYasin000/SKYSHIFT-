@@ -115,7 +115,8 @@ try {
       await p.locator("#reduce-effects").getAttribute("aria-pressed"),
       "false",
     );
-    await p.mouse.move(600, 350);
+    await p.locator('.hero-observatory[data-model-state="ready"]').waitFor();
+    await p.locator("#hero-model-canvas").hover();
     await p.waitForFunction(() => skyshiftInfrared.diagnostics().lens_active);
     await p.click("#site-sound");
   });
@@ -243,7 +244,7 @@ try {
           })),
       );
       assert.deepEqual(tooSmall, [], String(width));
-      assert.equal(await p.locator("#infrared-lens").isVisible(), false);
+      assert.equal(await p.locator("#vision-effects").isVisible(), false);
       await axe();
       if ([390, 1440, 1920].includes(width)) {
         await p.waitForFunction(
