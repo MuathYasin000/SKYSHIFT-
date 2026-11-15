@@ -56,7 +56,17 @@
           "native_spectral_WCS_um": 2.3073951158488786,
           "independent_expected_um": 2.03235,
           "shown_um": 2.03235,
-          "wavelength_delta_um": 0.0
+          "wavelength_delta_um": 0.0,
+          "native_cutout_center_deg": [
+            269.4471195415282,
+            4.766881359551307
+          ],
+          "native_cutout_center_to_target_arcsec": 2.876702022727996,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 4,
@@ -101,7 +111,17 @@
           "native_spectral_WCS_um": 1.0165155517965878,
           "independent_expected_um": 0.9311,
           "shown_um": 0.9311,
-          "wavelength_delta_um": 0.0
+          "wavelength_delta_um": 0.0,
+          "native_cutout_center_deg": [
+            269.4457814582071,
+            4.767582234411934
+          ],
+          "native_cutout_center_to_target_arcsec": 2.354435076930963,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 7,
@@ -146,7 +166,17 @@
           "native_spectral_WCS_um": 1.7934570853973841,
           "independent_expected_um": 2.03235,
           "shown_um": 2.03235,
-          "wavelength_delta_um": 0.0
+          "wavelength_delta_um": 0.0,
+          "native_cutout_center_deg": [
+            269.44671165349075,
+            4.768076166760736
+          ],
+          "native_cutout_center_to_target_arcsec": 3.1852766868453934,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 9,
@@ -191,7 +221,17 @@
           "native_spectral_WCS_um": 1.6504346267947778,
           "independent_expected_um": 2.03235,
           "shown_um": 2.03235,
-          "wavelength_delta_um": 0.0
+          "wavelength_delta_um": 0.0,
+          "native_cutout_center_deg": [
+            269.44668747022627,
+            4.770709673949378
+          ],
+          "native_cutout_center_to_target_arcsec": 3.250716906272498,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 12,
@@ -236,7 +276,17 @@
           "native_spectral_WCS_um": 1.5115603755610172,
           "independent_expected_um": 1.3766,
           "shown_um": 1.3766,
-          "wavelength_delta_um": 0.0
+          "wavelength_delta_um": 0.0,
+          "native_cutout_center_deg": [
+            269.44551652563734,
+            4.769994329131464
+          ],
+          "native_cutout_center_to_target_arcsec": 2.369504721646334,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         }
       ]
     },
@@ -291,7 +341,17 @@
           "native_spectral_WCS_um": 1.5616662122188525,
           "independent_expected_um": 1.5616662122188525,
           "shown_um": 1.5616662502288818,
-          "wavelength_delta_um": 3.801002934622488e-08
+          "wavelength_delta_um": 3.801002934622488e-08,
+          "native_cutout_center_deg": [
+            331.09539130735345,
+            -56.80043558456727
+          ],
+          "native_cutout_center_to_target_arcsec": 0.9270428065563908,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 4,
@@ -333,7 +393,17 @@
           "native_spectral_WCS_um": 4.527552667533888,
           "independent_expected_um": 4.527552667533888,
           "shown_um": 4.527552604675293,
-          "wavelength_delta_um": -6.285859477372924e-08
+          "wavelength_delta_um": -6.285859477372924e-08,
+          "native_cutout_center_deg": [
+            331.0934953995144,
+            -56.79992409060019
+          ],
+          "native_cutout_center_to_target_arcsec": 3.9101914603853025,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 7,
@@ -375,7 +445,17 @@
           "native_spectral_WCS_um": 0.7673856342456548,
           "independent_expected_um": 0.7673856342456548,
           "shown_um": 0.7673856616020203,
-          "wavelength_delta_um": 2.7356365506214786e-08
+          "wavelength_delta_um": 2.7356365506214786e-08,
+          "native_cutout_center_deg": [
+            331.0970305132264,
+            -56.80070131350706
+          ],
+          "native_cutout_center_to_target_arcsec": 1.7254666855985015,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 9,
@@ -417,7 +497,17 @@
           "native_spectral_WCS_um": 0.8328077951410104,
           "independent_expected_um": 0.8328077951410104,
           "shown_um": 0.8328077793121338,
-          "wavelength_delta_um": -1.5828876653856128e-08
+          "wavelength_delta_um": -1.5828876653856128e-08,
+          "native_cutout_center_deg": [
+            331.09556795127776,
+            -56.80048606579212
+          ],
+          "native_cutout_center_to_target_arcsec": 1.6084706472556658,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 12,
@@ -459,7 +549,17 @@
           "native_spectral_WCS_um": 3.982452776318011,
           "independent_expected_um": 3.982452776318011,
           "shown_um": 3.982452869415283,
-          "wavelength_delta_um": 9.309727211359586e-08
+          "wavelength_delta_um": 9.309727211359586e-08,
+          "native_cutout_center_deg": [
+            331.0991313123049,
+            -56.80162547646384
+          ],
+          "native_cutout_center_to_target_arcsec": 2.5113334008047175,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         }
       ]
     },
@@ -517,7 +617,17 @@
           "native_spectral_WCS_um": 1.6627032672061284,
           "independent_expected_um": 2.03235,
           "shown_um": 2.03235,
-          "wavelength_delta_um": 0.0
+          "wavelength_delta_um": 0.0,
+          "native_cutout_center_deg": [
+            248.16549963375837,
+            66.75489025354992
+          ],
+          "native_cutout_center_to_target_arcsec": 2.5224888688503775,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 4,
@@ -562,7 +672,17 @@
           "native_spectral_WCS_um": 0.979399686326788,
           "independent_expected_um": 0.9311,
           "shown_um": 0.9311,
-          "wavelength_delta_um": 0.0
+          "wavelength_delta_um": 0.0,
+          "native_cutout_center_deg": [
+            248.16686983631024,
+            66.75540850366588
+          ],
+          "native_cutout_center_to_target_arcsec": 1.479776971886097,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 7,
@@ -607,7 +727,17 @@
           "native_spectral_WCS_um": 2.2823583209306744,
           "independent_expected_um": 2.03235,
           "shown_um": 2.03235,
-          "wavelength_delta_um": 0.0
+          "wavelength_delta_um": 0.0,
+          "native_cutout_center_deg": [
+            248.1664556187496,
+            66.75504179999832
+          ],
+          "native_cutout_center_to_target_arcsec": 1.1039344054150853,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 9,
@@ -653,7 +783,17 @@
           "native_spectral_WCS_um": 2.4089812807915143,
           "independent_expected_um": 2.03235,
           "shown_um": 2.03235,
-          "wavelength_delta_um": 0.0
+          "wavelength_delta_um": 0.0,
+          "native_cutout_center_deg": [
+            248.16626125251165,
+            66.7553608811347
+          ],
+          "native_cutout_center_to_target_arcsec": 1.8306088441406825,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 12,
@@ -698,7 +838,17 @@
           "native_spectral_WCS_um": 1.1133816160433077,
           "independent_expected_um": 0.9311,
           "shown_um": 0.9311,
-          "wavelength_delta_um": 0.0
+          "wavelength_delta_um": 0.0,
+          "native_cutout_center_deg": [
+            248.21095081944873,
+            66.73289402232015
+          ],
+          "native_cutout_center_to_target_arcsec": 101.0498213187244,
+          "native_cutout_shape": [
+            46,
+            78
+          ],
+          "target_is_within_native_cutout": true
         }
       ]
     },
@@ -753,7 +903,17 @@
           "native_spectral_WCS_um": 1.068335143418105,
           "independent_expected_um": 1.068335143418105,
           "shown_um": 1.0683351755142212,
-          "wavelength_delta_um": 3.2096116209245906e-08
+          "wavelength_delta_um": 3.2096116209245906e-08,
+          "native_cutout_center_deg": [
+            76.9560716426876,
+            30.401218833583425
+          ],
+          "native_cutout_center_to_target_arcsec": 1.6187720436692243,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 4,
@@ -795,7 +955,17 @@
           "native_spectral_WCS_um": 0.7644661384729912,
           "independent_expected_um": 0.7644661384729912,
           "shown_um": 0.7644661664962769,
-          "wavelength_delta_um": 2.8023285691958222e-08
+          "wavelength_delta_um": 2.8023285691958222e-08,
+          "native_cutout_center_deg": [
+            76.95700715751568,
+            30.401286593870527
+          ],
+          "native_cutout_center_to_target_arcsec": 1.3085198372315383,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 7,
@@ -837,7 +1007,17 @@
           "native_spectral_WCS_um": 0.9430803994212353,
           "independent_expected_um": 0.9430803994212353,
           "shown_um": 0.9430804252624512,
-          "wavelength_delta_um": 2.5841215833821707e-08
+          "wavelength_delta_um": 2.5841215833821707e-08,
+          "native_cutout_center_deg": [
+            76.95752922175419,
+            30.401384165427505
+          ],
+          "native_cutout_center_to_target_arcsec": 2.947530926692456,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 9,
@@ -879,7 +1059,17 @@
           "native_spectral_WCS_um": 0.7757421161215282,
           "independent_expected_um": 0.7757421161215282,
           "shown_um": 0.7757421135902405,
-          "wavelength_delta_um": -2.5312877349747964e-09
+          "wavelength_delta_um": -2.5312877349747964e-09,
+          "native_cutout_center_deg": [
+            76.95686192541605,
+            30.40160814927402
+          ],
+          "native_cutout_center_to_target_arcsec": 1.4276100411686565,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 12,
@@ -923,7 +1113,17 @@
           "native_spectral_WCS_um": 1.973171505582791,
           "independent_expected_um": 2.03235,
           "shown_um": 2.03235,
-          "wavelength_delta_um": 0.0
+          "wavelength_delta_um": 0.0,
+          "native_cutout_center_deg": [
+            76.95607657847991,
+            30.401901687388587
+          ],
+          "native_cutout_center_to_target_arcsec": 2.7230530702928313,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         }
       ]
     },
@@ -978,7 +1178,17 @@
           "native_spectral_WCS_um": 2.3634493359569713,
           "independent_expected_um": 2.3634493359569717,
           "shown_um": 2.3634493350982666,
-          "wavelength_delta_um": -8.587051070207963e-10
+          "wavelength_delta_um": -8.587051070207963e-10,
+          "native_cutout_center_deg": [
+            133.76064795016612,
+            -7.242451629390794
+          ],
+          "native_cutout_center_to_target_arcsec": 2.2493977102515594,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 4,
@@ -1020,7 +1230,17 @@
           "native_spectral_WCS_um": 1.4818584050858081,
           "independent_expected_um": 1.481858405085808,
           "shown_um": 1.4818583726882935,
-          "wavelength_delta_um": -3.239751444894523e-08
+          "wavelength_delta_um": -3.239751444894523e-08,
+          "native_cutout_center_deg": [
+            133.76054104491237,
+            -7.241720855162898
+          ],
+          "native_cutout_center_to_target_arcsec": 2.3727206768270395,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 7,
@@ -1062,7 +1282,17 @@
           "native_spectral_WCS_um": 1.6385022274435233,
           "independent_expected_um": 1.638502227443523,
           "shown_um": 1.6385022401809692,
-          "wavelength_delta_um": 1.2737446208888059e-08
+          "wavelength_delta_um": 1.2737446208888059e-08,
+          "native_cutout_center_deg": [
+            133.76143394490694,
+            -7.234210109699408
+          ],
+          "native_cutout_center_to_target_arcsec": 29.725405272318362,
+          "native_cutout_shape": [
+            69,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 9,
@@ -1104,7 +1334,17 @@
           "native_spectral_WCS_um": 3.9691161155891272,
           "independent_expected_um": 3.9691161155891272,
           "shown_um": 3.9691162109375,
-          "wavelength_delta_um": 9.534837275282371e-08
+          "wavelength_delta_um": 9.534837275282371e-08,
+          "native_cutout_center_deg": [
+            133.75808490791562,
+            -7.242175552903082
+          ],
+          "native_cutout_center_to_target_arcsec": 3.3037610794369625,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         },
         {
           "index_1_based": 12,
@@ -1146,7 +1386,17 @@
           "native_spectral_WCS_um": 4.368753441281537,
           "independent_expected_um": 4.368753441281537,
           "shown_um": 4.368753433227539,
-          "wavelength_delta_um": -8.053998357127057e-09
+          "wavelength_delta_um": -8.053998357127057e-09,
+          "native_cutout_center_deg": [
+            133.75803546781768,
+            -7.2422398932130285
+          ],
+          "native_cutout_center_to_target_arcsec": 3.2406843760539576,
+          "native_cutout_shape": [
+            78,
+            78
+          ],
+          "target_is_within_native_cutout": true
         }
       ]
     }
@@ -1208,5 +1458,6 @@
         "simbad": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=WISE+J085510.83-071442.5"
       }
     ]
-  }
+  },
+  "native_cutout_center_rechecked_at_utc": "2026-11-15T16:20:22.980251+00:00"
 }

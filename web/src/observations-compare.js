@@ -806,10 +806,7 @@ function windowFrame(reference,frames){
   if(state.window?.group.length!==group.length||group.some((frame,index)=>frame!==state.window?.group[index])){
     state.window={group,frame:combineFrames(reference,group,'mean')};
   }
-  const waves=group.map(frame=>frame.wavelength_center_um).filter(Number.isFinite);
-  return {frame:state.window.frame,count:group.length,detector:mode==='detector',
-    different:waves.length<group.length||Math.max(...waves)-Math.min(...waves)>1e-5,
-    mixedReleases:new Set(group.map(frame=>frame.release)).size>1};
+  return {frame:state.window.frame,count:group.length,detector:mode==='detector'};
 }
 
 function showDerived(mode){
@@ -904,16 +901,18 @@ function render(){
   if(!comparison||$('compare').hidden)return;
   const frames=filteredFrames();
   const a=currentFrame();
-  const pairA=selectedFrame('frame-a'),pairB=selectedFrame('frame-b');
-  const releaseWarning=Boolean(pairA&&pairB&&pairA.release!==pairB.release);
-  const b=state.mode==='single'?null:pairB;
+  const b=state.mode==='single'?null:selectedFrame('frame-b');
+  const comparedFrames=state.mode==='single'?frames:[a,b].filter(Boolean);
+  const waves=comparedFrames.map(frame=>frame.wavelength_center_um).filter(Number.isFinite);
+  const different=comparedFrames.length>1&&(waves.length<comparedFrames.length||Math.max(...waves)-Math.min(...waves)>1e-5);
+  $('release-note').hidden=new Set(comparedFrames.map(frame=>frame.release)).size<2;
+  $('wavelength-note').hidden=!different;
   let window={frame:a,count:1};
   let windowError='';
   if(a&&state.mode==='single'){
     try{window=windowFrame(a,frames);}
     catch(error){windowError=error.message;}
   }
-  $('release-note').hidden=!(releaseWarning||window.mixedReleases);
   let differenceMessage='';
   if(state.mode==='difference'){
     try{window.frame=displayedDifference(a,b);}
@@ -940,7 +939,6 @@ function render(){
   targetMaskNote('mask-b',b,b);
   instrumentScale('a',window.frame);
   instrumentScale('b',state.mode==='side'?b:null);
-  const different=window.different||a&&b&&(!Number.isFinite(a.wavelength_center_um)||!Number.isFinite(b.wavelength_center_um)||Math.abs(a.wavelength_center_um-b.wavelength_center_um)>1e-5);$('wavelength-note').hidden=!different;
   const description= differenceMessage||describeView(a,b,window.count);
   $('view-description').textContent=description;
   const announcement=$('viewer-announcement');
