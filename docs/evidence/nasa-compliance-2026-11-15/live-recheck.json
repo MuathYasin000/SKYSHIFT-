@@ -1,0 +1,271 @@
+{
+  "browser": "156.0.8078.4",
+  "base": "https://skyshift-j22s.onrender.com",
+  "started": "2026-11-15T16:25:33.018Z",
+  "targets": {
+    "barnards-star": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-08-15 · D3 · 2.032 µm",
+      "secondDate": "2025-08-21 · D2 · 1.377 µm",
+      "imageChanged": true,
+      "initialMask": "Target pixel is masked in this frame. Its flags are consistent with a very bright source. 691 masked or invalid grid pixels. 315 filled for display only.",
+      "pairNote": "No default pair in these frames. A default needs two dates on one detector, similar wavelengths and two usable target pixels. You can still choose frames manually.",
+      "noHorizontalOverflow": true
+    },
+    "epsilon-indi-b": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-04-24 · D2 · 1.562 µm",
+      "secondDate": "2025-04-27 · D1 · 1.066 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D1 on 2025-04-27 and 2026-05-03. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "wise-0855": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-05-05 · D3 · 2.363 µm",
+      "secondDate": "2025-05-06 · D5 · 4.332 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D5 on 2025-05-06 and 2026-05-14. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "rw-aurigae": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-09-01 · D1 · 1.068 µm",
+      "secondDate": "2025-09-01 · D1 · 1.094 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D1 on 2025-09-02 and 2026-03-10. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "r-draconis": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-04-24 · D3 · 2.032 µm",
+      "secondDate": "2025-06-27 · D2 · 1.377 µm",
+      "imageChanged": true,
+      "initialMask": "Target pixel is masked in this frame. Its flags are consistent with a very bright source. 1449 masked or invalid grid pixels. 292 filled for display only.",
+      "pairNote": "No default pair in these frames. A default needs two dates on one detector, similar wavelengths and two usable target pixels. You can still choose frames manually.",
+      "noHorizontalOverflow": true
+    }
+  },
+  "routes": {
+    "/": {
+      "lang": "en",
+      "title": "SKYSHIFT — SPHEREx observations & comparison",
+      "h1": "Watch the\ninfrared sky\nover time.",
+      "alts": [
+        "",
+        "SPHEREx published infrared composite of the Vela Molecular Ridge, with stars and bright clouds of gas and dust",
+        "",
+        "NASA/JPL-Caltech artist’s concept of SPHEREx above Earth"
+      ],
+      "meta": [
+        "Search current NASA SPHEREx data by sky coordinates, inspect real infrared observations by date, and save the evidence. Independent Project Mercury Team application.",
+        "SKYSHIFT — SPHEREx observations & comparison",
+        "Search current NASA SPHEREx data by sky coordinates, inspect real infrared observations by date, and save the evidence.",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    },
+    "/discover.html": {
+      "lang": "en",
+      "title": "SKYSHIFT — Discover SPHEREx",
+      "h1": "Beyond what\nour eyes can see.",
+      "alts": [
+        "",
+        "Official SPHEREx first all-sky infrared composite, with the Milky Way across an oval sky map",
+        "Artist’s concept of the SPHEREx spacecraft above Earth"
+      ],
+      "meta": [
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT — Discover SPHEREx",
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    },
+    "/methodology.html": {
+      "lang": "en",
+      "title": "SKYSHIFT — Data, methods and sources",
+      "h1": "Wonder, with\nthe evidence attached.",
+      "alts": [
+        ""
+      ],
+      "meta": [
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT — Data, methods and sources",
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    },
+    "/guide.html": {
+      "lang": "en",
+      "title": "SKYSHIFT — Reconstruction guide",
+      "h1": "Compare the infrared sky over time.",
+      "alts": [
+        ""
+      ],
+      "meta": [
+        "Reopen and independently reconstruct a SKYSHIFT SPHEREx comparison using its source identities, masks, saved settings and evidence.",
+        "SKYSHIFT — Reconstruction guide",
+        "Reopen and independently reconstruct a SKYSHIFT SPHEREx comparison using its source identities, masks, saved settings and evidence.",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    },
+    "/challenge.html": {
+      "lang": "en",
+      "title": "Challenge fields and sources — SKYSHIFT",
+      "h1": "How can you tell if the sky changed?",
+      "alts": [
+        ""
+      ],
+      "meta": [
+        "Inspect the five Planet X and SPHEREx challenge fields and follow the evidence back to NASA/IPAC IRSA.",
+        "Challenge fields and sources — SKYSHIFT",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    },
+    "/explore.html": {
+      "lang": "en",
+      "title": "SKYSHIFT — Find SPHEREx observations",
+      "h1": "Observations",
+      "alts": [
+        ""
+      ],
+      "meta": [
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT — Find SPHEREx observations",
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    }
+  },
+  "checks": {
+    "barnards-star": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-08-15 · D3 · 2.032 µm",
+      "secondDate": "2025-08-21 · D2 · 1.377 µm",
+      "imageChanged": true,
+      "initialMask": "Target pixel is masked in this frame. Its flags are consistent with a very bright source. 691 masked or invalid grid pixels. 315 filled for display only.",
+      "pairNote": "No default pair in these frames. A default needs two dates on one detector, similar wavelengths and two usable target pixels. You can still choose frames manually.",
+      "noHorizontalOverflow": true
+    },
+    "epsilon-indi-b": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-04-24 · D2 · 1.562 µm",
+      "secondDate": "2025-04-27 · D1 · 1.066 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D1 on 2025-04-27 and 2026-05-03. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "wise-0855": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-05-05 · D3 · 2.363 µm",
+      "secondDate": "2025-05-06 · D5 · 4.332 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D5 on 2025-05-06 and 2026-05-14. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "rw-aurigae": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-09-01 · D1 · 1.068 µm",
+      "secondDate": "2025-09-01 · D1 · 1.094 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D1 on 2025-09-02 and 2026-03-10. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "r-draconis": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-04-24 · D3 · 2.032 µm",
+      "secondDate": "2025-06-27 · D2 · 1.377 µm",
+      "imageChanged": true,
+      "initialMask": "Target pixel is masked in this frame. Its flags are consistent with a very bright source. 1449 masked or invalid grid pixels. 292 filled for display only.",
+      "pairNote": "No default pair in these frames. A default needs two dates on one detector, similar wavelengths and two usable target pixels. You can still choose frames manually.",
+      "noHorizontalOverflow": true
+    },
+    "modes and fresh share": {
+      "side": true,
+      "wipe": true,
+      "difference": "Difference A − B · signed surface brightness",
+      "sharedView": "https://skyshift-j22s.onrender.com/compare.html?ra=76.95652603458333&dec=30.401438173888888&fov=8&release=all&target=rw-aurigae&mode=wipe&a=3&b=8&wipe=1"
+    },
+    "coordinate and frame parameters": {
+      "url": "https://skyshift-j22s.onrender.com/explore.html?ra=133.81890825&dec=-7.247048&fov=8&release=dr1&from=2&to=5&target=wise-0855&frame=2",
+      "frames": 4,
+      "frame": 2,
+      "release": "dr1",
+      "fov": 8
+    },
+    "mobile": {
+      "width": 390,
+      "overflow": 0
+    },
+    "route /": {
+      "http": 200,
+      "h1": "Watch the\ninfrared sky\nover time.",
+      "lang": "en"
+    },
+    "route /discover.html": {
+      "http": 200,
+      "h1": "Beyond what\nour eyes can see.",
+      "lang": "en"
+    },
+    "route /methodology.html": {
+      "http": 200,
+      "h1": "Wonder, with\nthe evidence attached.",
+      "lang": "en"
+    },
+    "route /guide.html": {
+      "http": 200,
+      "h1": "Compare the infrared sky over time.",
+      "lang": "en"
+    },
+    "route /challenge.html": {
+      "http": 200,
+      "h1": "How can you tell if the sky changed?",
+      "lang": "en"
+    },
+    "route /explore.html": {
+      "http": 200,
+      "h1": "Observations",
+      "lang": "en"
+    },
+    "one live IRSA search": {
+      "acceptedHttp": 202,
+      "lastState": "running",
+      "message": "Searching spherex_dr1_deep via SIA2 · MJD 61105–61225",
+      "timeout": true,
+      "elapsedSeconds": 160.853,
+      "query": "https://skyshift-j22s.onrender.com/explore.html?ra=133.79512916666667&dec=-7.245147222222222&fov=8&release=dr1&from=1&to=1"
+    }
+  },
+  "errors": [],
+  "health": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.2",
+    "directory_id": "3298578fc4ed0f0d",
+    "content_id": "8b16b2efe3482979f7b6916bb856dd3288ebc121acb36c1f44b33bad0f10a806",
+    "release_id": "skyshift-2026-11-14",
+    "app_version": "0.12.0",
+    "created_at_utc": "2026-11-14T16:56:36.975571+00:00"
+  },
+  "independent_irsa_probe": {
+    "url": "https://irsa.ipac.caltech.edu/SIA?POS=CIRCLE+133.795129167+-7.245147222+0.0943&COLLECTION=spherex_dr1&MAXREC=1",
+    "did_receive_response": false,
+    "timeout_seconds": 20,
+    "scope": "Single independent bounded metadata request from the audit workstation. No archive availability conclusion beyond this probe."
+  }
+}

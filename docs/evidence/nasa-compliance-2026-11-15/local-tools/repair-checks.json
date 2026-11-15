@@ -1,0 +1,28 @@
+{
+  "tested": true,
+  "date": "2026-11-15T16:22:05.848Z",
+  "checks": {
+    "blink": {
+      "warnings": [
+        "wavelength",
+        "release"
+      ],
+      "readout": "2025-08-15 · D3 · 2.032 µm (nominal)",
+      "mask": "Target pixel is masked or outside usable coverage. Native flags: OVERFLOW, SUR_ERROR, SOURCE, BLOOM. 691 masked or invalid grid pixels. 315 filled for display only."
+    },
+    "coordinates": {
+      "input": [
+        "08h55m10.831s",
+        "-07d14m42.53s"
+      ],
+      "ra": 133.79512916666667,
+      "dec": -7.245147222222222
+    },
+    "wakeup": {
+      "visible": true,
+      "route": "delayed then reset HTTP connection, no scientific payload",
+      "message": "Could not reach the service. It may take about a minute to wake."
+    },
+    "cachedRecovery": true
+  }
+}
