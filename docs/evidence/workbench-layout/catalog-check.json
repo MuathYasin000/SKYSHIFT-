@@ -1,0 +1,12 @@
+[
+  {
+    "kind": "gaia",
+    "state": "ready",
+    "message": "366 sources in the 0.114° field. Cyan circles. Catalog epochs are retained where motion is missing."
+  },
+  {
+    "kind": "wise",
+    "state": "ready",
+    "message": "500 sources in the 0.114° field (first 500). Gold squares at catalog positions."
+  }
+]

@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "inspected_date_utc": "2026-10-17",
+  "scope": "Educational hardware appearance and light-direction explanation only; not scientific SPHEREx pixels or calibrated ray tracing",
+  "images": [
+    {
+      "local_reference": "data/raw/optics-reference/webb-mirror.jpg",
+      "page": "https://science.nasa.gov/image-detail/webb_4/",
+      "download": "https://science.nasa.gov/wp-content/uploads/2023/04/webb_4.jpg",
+      "credit": "NASA/Chris Gunn",
+      "used_for": "Primary segment seams, gold/silver contrast, blankets and supports",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "sha256": "313a63f70e89009580640c0cf249b73eec7ef42a62859a6d7c72744d065c0f0d",
+      "bytes": 1162307,
+      "dimensions": [
+        2557,
+        3833
+      ]
+    },
+    {
+      "local_reference": "data/raw/optics-reference/hubble-orbit.jpg",
+      "page": "https://science.nasa.gov/asset/hubble/grappling-hubble-2009/",
+      "download": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/servicing-missions/sm4/STScI-01EVVGJWHR6J4STZRWG1MKNHRZ.tif?w=2000",
+      "credit": "NASA",
+      "used_for": "Open aperture door, reflective insulation, source-era historical array appearance",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "sha256": "b7b5f0cc94fd8ab83c422e70aa2e7f1e47596c9147fd9ae07430d718258b7548",
+      "bytes": 361983,
+      "dimensions": [
+        2000,
+        1328
+      ]
+    },
+    {
+      "local_reference": "data/raw/optics-reference/hubble-light-path.png",
+      "page": "https://science.nasa.gov/asset/hubble/hubble-space-telescopes-internal-components-light-path/",
+      "download": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/observatory/infographics/STScI-01EVSVFJ3S6PFYHKCS4GG5CJEK.png?crop=faces%2Cfocalpoint&fit=clip&h=994&w=2400",
+      "credit": "NASA/STScI",
+      "used_for": "Qualitative open-tube -> primary -> secondary -> primary opening -> instruments order",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "sha256": "65ac489b6eb2908483d4761812ec38e55a36768638087610a370f652d33555f9",
+      "bytes": 1855057,
+      "dimensions": [
+        2400,
+        994
+      ]
+    },
+    {
+      "local_reference": "data/raw/optics-reference/webb-light-path.png",
+      "page": "https://science.nasa.gov/mission/webb/optical-telescope-element-ote/",
+      "download": "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/webb/outreach/migrated/2021/STScI-01FFMWVXQ49DG3VRX0DKQ9EKXF.png?fit=clip&h=665&w=1024",
+      "credit": "NASA/STScI",
+      "used_for": "Primary -> secondary -> aft tertiary/fine steering -> instruments; our SVG is original and schematic",
+      "terms": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "sha256": "fdb91d1f9f397a1cb37d1487cb83573cb1d4062c9591d1f60c78e52853f1e89a",
+      "bytes": 670479,
+      "dimensions": [
+        1024,
+        665
+      ]
+    }
+  ],
+  "architecture_references": [
+    "https://science.nasa.gov/mission/webb/optical-telescope-element-ote/",
+    "https://science.nasa.gov/mission/webb/webbs-mirrors/",
+    "https://science.nasa.gov/mission/hubble/observatory/design/optics/",
+    "https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/"
+  ],
+  "geometry_method": "Hash-pinned official NASA GLBs. Webb A full world transforms baked before batching; 493785 triangles retained, 1657 render meshes -> 54. Sequential Draco quantizes positions/normals. Naive CLI join/flatten was rejected after independent decoded-bounds checks exposed changed shape; EdgeBreaker discarded 801 source triangles. Neither rejected derivative ships.",
+  "preparation_dependencies": {
+    "core": "@gltf-transform/core@4.5.1",
+    "extensions": "@gltf-transform/extensions@4.5.1",
+    "functions": "@gltf-transform/functions@4.5.1",
+    "draco": "draco3dgltf@1.5.9",
+    "licenses": "MIT (glTF Transform), Apache-2.0 (Draco)",
+    "runtime_requirement": "None: development asset preparation only. Existing local Three.js loader/Draco decoder serves the derivative offline."
+  },
+  "appearance_method": "Source-informed estimated PBR values; Hubble preserves source UVs and five colour atlases and derives bounded metal/roughness masks. Webb retains source hardware geometry with gold primary, silver/pink shields, insulation and low-metalness solar/black surfaces. Original procedural foil normal field applied only where source UVs exist. Virtual studio reflection cards are presentation lighting, not a physical Sun/environment.",
+  "hubble_aperture": "96 pinned source-cover triangles reposed around an inferred hinge into an illustrative open state. Added dark recess and rim are appearance only. No hidden internal optical surfaces reconstructed; exact door angle and baffle dimensions are inferred. Nine geometry-intersection samples pass into the tube. Original GLB bytes unchanged.",
+  "axes": "Detailed Webb A +X toward its source secondary, rotated -pi/2 around scene Y; lightweight NASA B +Z; Hubble front +Y. SPHEREx frame matches existing inferred 0.1-radian Z housing tilt and full root transform. Model geometry alignment only, no measured flight boresight.",
+  "external_paths": "Eight parallel on-axis samples toward a model-local collecting plane, transformed with the full model matrix. Segment lengths/speed are illustrative. Foreground-mesh intersection stops markers on support structures; this visibility test performs no optical reflections/refractions. Colour keys change tint only. No FOV cone, pre-aperture convergence, coloured prism fan or 3D published-image billboard.",
+  "internal_paths": "Original four-step SVG diagrams independently explain the optical order. Schematics are not to scale; SPHEREx mirror geometry remains explicitly unreconstructed. Published mission images retain source-verified native pixels and separate 2D credit panels, not live/matched targets.",
+  "limits": [
+    "Material reflectance/roughness and fine normals are appearance estimates, not measured BRDF",
+    "Hubble source-era hardware retained; no claim of exact present-day flight configuration",
+    "No engineering CAD, optical prescription, PSF, throughput, field angles, telemetry or live pointing certification",
+    "Reference photographs are not baked into model textures; no NASA Eyes assets extracted",
+    "Qualified scientific approval and internal human review PENDING",
+    "Independent novice validation NOT CONDUCTED"
+  ],
+  "transport": "Windows curl HTTPS with certificate verification enabled",
+  "implementation": [
+    {
+      "file": "web/dist/observatory-hardware.js",
+      "sha256": "38fdf5c861aa322223834f277ff98391be34fccd4f418ccff72b1af03bd7bed4"
+    },
+    {
+      "file": "web/dist/telescope-optics.js",
+      "sha256": "c6a64ec73998dec60b0f8ad6c3edfab872a935931c640c4589663744c77cb95c"
+    },
+    {
+      "file": "web/dist/observation-effects.js",
+      "sha256": "ea6b5ed1f4bee97ee36f2d3f4f754fdabb41c2047296bb475b42bfbdb4c4f5d2"
+    },
+    {
+      "file": "web/dist/optics-explainer.js",
+      "sha256": "e61298ff926429ac7e63579e9a265575a197b0ad427c2bfbb29ea83296d7d6cd"
+    },
+    {
+      "file": "tools/prepare_webb_detail.mjs",
+      "sha256": "6df11883de022a28ce90fdec1a8f0b9ebf656d285f283784ee46345d78ef4e53"
+    }
+  ]
+}

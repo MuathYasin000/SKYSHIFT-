@@ -1,0 +1,11 @@
+{
+  "browser": "157.0.8103.51",
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "IRSA failure offers a retry without replacing the empty viewer with data",
+      "status": "pass"
+    }
+  ],
+  "pageErrors": []
+}

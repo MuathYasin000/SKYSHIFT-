@@ -1,0 +1,8 @@
+{
+  "outcome": "no_long_cadence_pair_in_bounded_subset",
+  "interpretation": "No mission-wide nonexistence or target nondetection is inferred. No extra science cutouts acquired.",
+  "metadata_candidates": 68,
+  "probed_headers": 12,
+  "compatible_pairs": [],
+  "physical_change": "not_established"
+}

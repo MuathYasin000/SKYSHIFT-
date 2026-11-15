@@ -1,0 +1,254 @@
+@layer structure {
+  /* Document-only form, notebook and evidence structures shared by subpages. */
+  main {
+    width: 100%;
+    min-width: 0;
+  }
+  .table-scroll {
+    max-width: 100%;
+    overflow: auto;
+  }
+  .settings-grid,
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .settings-grid label,
+  .form-grid label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .settings-grid input,
+  .form-grid input {
+    width: 100%;
+    min-width: 0;
+  }
+  .display-settings > p {
+    font-size: 14px;
+  }
+  .display-settings {
+    margin-block: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .display-settings summary span {
+    display: block;
+    font: 12px var(--mono);
+    color: var(--text-3);
+  }
+  .comparison-context a {
+    font-size: 14px;
+  }
+  .comparison-context details > strong {
+    display: block;
+  }
+  .single-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-block: 8px;
+    flex-wrap: wrap;
+  }
+  .single-controls span {
+    font: 12px var(--mono);
+  }
+  .note-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .empty-notes {
+    padding: 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .empty-notes > span {
+    font-size: 14px;
+    color: var(--text-3);
+  }
+  .notebook-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .notebook-bottom p {
+    font-size: 14px;
+  }
+  .full {
+    width: 100%;
+  }
+  .evidence-section {
+    padding-top: 64px;
+  }
+  .evidence-section > .section-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 32px;
+  }
+  .evidence-section > .section-heading p {
+    max-width: 55ch;
+  }
+  .evidence-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 32px;
+  }
+  .evidence-layout details {
+    border-top: 1px solid var(--line);
+    padding-block: 12px;
+  }
+  .evidence-layout p {
+    font-size: 16px;
+    margin-block: 16px;
+  }
+  .review-packet {
+    padding: 24px;
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    align-self: start;
+  }
+  .review-packet h3 {
+    margin-bottom: 24px;
+  }
+  .review-packet > span {
+    display: block;
+    font: 12px var(--mono);
+    margin-block: 12px;
+  }
+  .review-packet .small {
+    font-size: 14px;
+  }
+  .checks {
+    display: grid;
+    gap: 8px;
+  }
+  .check {
+    padding: 12px;
+    border: 1px solid var(--line);
+    font: 12px/1.6 var(--mono);
+  }
+  .check strong {
+    font-weight: 600;
+  }
+  .coordinate-bar {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 12px;
+  }
+  .coordinate-bar span {
+    font: 12px/1.6 var(--mono);
+  }
+  .viewer-help {
+    margin-block: 12px;
+    font: 12px/1.6 var(--mono);
+    color: var(--text-3);
+  }
+  .mask-key {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: var(--surface-1);
+    border: 1px solid var(--line-strong);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .image-options summary span {
+    display: block;
+    font: 12px var(--mono);
+    color: var(--text-3);
+  }
+  .visual-controls {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-block: 24px;
+  }
+  .visual-controls label {
+    display: block;
+  }
+  .visual-controls select {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .image-options p {
+    font-size: 14px;
+  }
+  .comparison-technical-field {
+    display: none;
+  }
+  .viewer-loading {
+    padding: 24px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: var(--surface-1);
+  }
+  .viewer-loading strong {
+    font-size: 16px;
+  }
+  .viewer-loading span {
+    font: 12px var(--mono);
+  }
+  .viewer-loading::before {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+  }
+  .dialog-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+  }
+  .dialog-heading {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .dialog-heading .icon-button {
+    width: 44px;
+  }
+  .form-error {
+    font: 12px var(--mono);
+  }
+  #note-dialog textarea,
+  #exposure-question-dialog textarea {
+    width: 100%;
+    margin-top: 8px;
+  }
+  .context-dialog {
+    padding: 24px;
+  }
+  .context-dialog a {
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 800px) {
+    .evidence-layout {
+      grid-template-columns: 1fr;
+    }
+    .evidence-section > .section-heading {
+      flex-direction: column;
+    }
+    .settings-grid,
+    .form-grid,
+    .visual-controls {
+      grid-template-columns: 1fr;
+    }
+    .coordinate-bar {
+      flex-direction: column;
+    }
+    .table-scroll table {
+      min-width: 480px;
+    }
+  }
+}

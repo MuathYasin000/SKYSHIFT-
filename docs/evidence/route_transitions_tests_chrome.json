@@ -1,0 +1,120 @@
+{
+  "recorded_at_utc": "2026-10-17T13:25:03.414Z",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "name": "Home to Compare has measured outgoing and incoming opacity frames; data load and viewport remain native",
+      "status": "pass",
+      "detail": {
+        "frames": [
+          {
+            "target": "home-view",
+            "duration": 110,
+            "frames": [
+              {
+                "opacity": 1
+              },
+              {
+                "opacity": 0
+              }
+            ],
+            "samples": [
+              1,
+              1,
+              0.827264,
+              0.402388,
+              0.305753,
+              0.22943,
+              0.170333,
+              0.123429,
+              0.087,
+              0.0593312,
+              0.0383186,
+              0.0226049,
+              0.0115926,
+              0.00461365,
+              0.000880788,
+              1
+            ]
+          },
+          {
+            "target": "space-workspace",
+            "duration": 240,
+            "frames": [
+              {
+                "opacity": 0
+              },
+              {
+                "opacity": 1
+              }
+            ],
+            "samples": [
+              0,
+              0,
+              0.446203,
+              0.506228,
+              0.656787,
+              0.734295,
+              0.969598,
+              0.986785,
+              0.996422,
+              0.999924,
+              1
+            ]
+          }
+        ],
+        "initial_route_animated": false
+      }
+    },
+    {
+      "name": "Home return, browser Back and saved viewport survive repeated animated navigation",
+      "status": "pass",
+      "detail": {
+        "restored_zoom": 1.25
+      }
+    },
+    {
+      "name": "Rapid Compare, Observations and Home clicks leave only the latest route visible and interactive",
+      "status": "pass",
+      "detail": {
+        "rounds": 3,
+        "final_route": "compare"
+      }
+    },
+    {
+      "name": "Single observations and same-surface changes fade without changing science availability",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced motion disables transitions on desktop and mobile; direct comparison links never animate startup",
+      "status": "pass"
+    },
+    {
+      "name": "Changing motion preferences during a transition completes navigation with no invisible surface",
+      "status": "pass"
+    },
+    {
+      "name": "Missing transition module preserves scientific navigation and saving",
+      "status": "pass"
+    },
+    {
+      "name": "Unavailable Web Animations support cannot block scientific navigation",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "limits": [
+    "Opacity samples are from actual requestAnimationFrame/computed styles, not a recording",
+    "Fresh isolated profiles; mobile is emulated",
+    "No scientific pixels or saved settings are animated or modified; review gates remain PENDING"
+  ],
+  "release_integrity": {
+    "content_id": "0b3f3e5bb3dc35792379583e2f107e630ac8a51019eeb856f0d0eaa7e81034e7",
+    "source_assets_exact": 146,
+    "scientific_files_byte_identical": 21,
+    "scientific_engine_and_models_unchanged": true,
+    "javascript_tests_passed": 99,
+    "python_frontend_server_tests_passed": 24,
+    "cloud_deployment_performed": false
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "scope": "Audit-only in-memory change to one expectation; application and original test unchanged",
+  "original": "Universe sound enabled === false",
+  "adjusted": "Universe sound enabled === true",
+  "reason": "User explicitly requested sound on by default"
+}

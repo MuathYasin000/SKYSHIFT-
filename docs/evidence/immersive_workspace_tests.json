@@ -1,0 +1,126 @@
+{
+  "date_utc": "2026-10-16T19:48:55.954Z",
+  "browser": "Chromium",
+  "browser_version": "153.0.8010.12",
+  "results": [
+    {
+      "name": "Real WebGL environment starts with official branding and muted audio",
+      "status": "pass"
+    },
+    {
+      "name": "Component inspection and keyboard camera controls have immediate feedback",
+      "status": "pass"
+    },
+    {
+      "name": "Official Hubble and Webb GLBs decode with local Draco, materials and textures",
+      "status": "pass"
+    },
+    {
+      "name": "All eight planets, Sun and Moon load from local authentic contextual assets",
+      "status": "pass"
+    },
+    {
+      "name": "Destination search has clear results and accessible selection independent of 3D picking",
+      "status": "pass"
+    },
+    {
+      "name": "Celestial navigation preserves genuine fields, dates and comparison restrictions",
+      "status": "pass"
+    },
+    {
+      "name": "Entering real data pauses the contextual renderer and uses the original verified viewer",
+      "status": "pass"
+    },
+    {
+      "name": "Classic/Immersive toggles preserve the same live document, viewport and science identity",
+      "status": "pass"
+    },
+    {
+      "name": "Coordinate questions export and reconstruct through the immersive scientific workspace",
+      "status": "pass"
+    },
+    {
+      "name": "Return and Resume preserve science work and the spatial camera",
+      "status": "pass"
+    },
+    {
+      "name": "Restricted comparison, coordinate annotations and ZIP exports work inside both modes",
+      "status": "pass"
+    },
+    {
+      "name": "Optional audio needs a deliberate click and Classic mode returns it to silence",
+      "status": "pass"
+    },
+    {
+      "name": "Quality and decorative effects preferences persist without altering science",
+      "status": "pass"
+    },
+    {
+      "name": "Measured render work is recorded and demand rendering becomes idle",
+      "status": "pass",
+      "detail": {
+        "draw_calls": 37,
+        "triangles": 10328,
+        "render_cpu_median_ms": 0.30000000074505806,
+        "render_cpu_p95_ms": 0.4000000022351742,
+        "idle_frames_in_450ms": 0,
+        "scope": "Headless browser on this computer; CPU render submission timing, not GPU completion or a 60 FPS guarantee"
+      }
+    },
+    {
+      "name": "Asset credits expose original sources, hashes, terms and illustrative limitations",
+      "status": "pass"
+    },
+    {
+      "name": "Guided journey is visitor-controlled and can be abandoned",
+      "status": "pass"
+    },
+    {
+      "name": "Remembered Classic mode starts without loading the 3D runtime",
+      "status": "pass"
+    },
+    {
+      "name": "Early destination selection and search survive 3D startup",
+      "status": "pass"
+    },
+    {
+      "name": "Corrupted contextual model bytes are rejected and a clean retry recovers",
+      "status": "pass"
+    },
+    {
+      "name": "A WebGL context loss keeps the scientific fallback available",
+      "status": "pass"
+    },
+    {
+      "name": "Unavailable WebGL offers functional Classic scientific access",
+      "status": "pass"
+    },
+    {
+      "name": "390px touch layout, camera gestures and Classic switching remain usable",
+      "status": "pass"
+    },
+    {
+      "name": "320px touch layout, camera gestures and Classic switching remain usable",
+      "status": "pass"
+    },
+    {
+      "name": "Immersive controls pass automated accessibility rules and all runtime requests stay local",
+      "status": "pass",
+      "detail": {
+        "violations": [],
+        "manual_review": [
+          "aria-prohibited-attr",
+          "color-contrast"
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "console_errors": [
+    "THREE.WebGLRenderer: Error creating WebGL context."
+  ],
+  "external": [],
+  "touch_scope": "Chromium touch emulation; no physical-device or independent novice validation",
+  "scientific_approval": "PENDING",
+  "independent_novice_validation": "NOT CONDUCTED"
+}

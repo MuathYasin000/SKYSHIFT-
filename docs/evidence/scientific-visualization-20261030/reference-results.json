@@ -1,0 +1,26 @@
+[
+  {
+    "id": "m101-2025W49_2A_0756_3",
+    "max_channel_error": 0,
+    "mismatched_pixels": 0,
+    "pixel_count": 20416
+  },
+  {
+    "id": "m101-2025W50_1A_0736_3",
+    "max_channel_error": 0,
+    "mismatched_pixels": 0,
+    "pixel_count": 24112
+  },
+  {
+    "id": "r-draconis-2025W49_1A_0009_3",
+    "max_channel_error": 0,
+    "mismatched_pixels": 0,
+    "pixel_count": 30976
+  },
+  {
+    "id": "r-draconis-2025W50_2A_0259_3",
+    "max_channel_error": 0,
+    "mismatched_pixels": 0,
+    "pixel_count": 24288
+  }
+]

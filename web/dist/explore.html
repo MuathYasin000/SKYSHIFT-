@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#000000" name="theme-color"/><meta content="Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application." name="description"/><title>SKYSHIFT — Find SPHEREx observations</title><link rel="icon" href="./assets/skyshift-mark.svg" type="image/svg+xml"><link href="./tokens.css" rel="stylesheet"/>
+<link href="./base.css" rel="stylesheet"/>
+<link href="./components.css" rel="stylesheet"/>
+<link href="./shell-document.css" rel="stylesheet"/>
+<link rel="preload" href="./assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="./assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><link rel="canonical" href="https://skyshift-j22s.onrender.com/explore.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SKYSHIFT — Find SPHEREx observations">
+<meta property="og:description" content="Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.">
+<meta property="og:url" content="https://skyshift-j22s.onrender.com/explore.html">
+<meta property="og:image" content="https://skyshift-j22s.onrender.com/assets/mission-control.webp">
+<meta property="og:image:alt" content="SKYSHIFT mission-control interface with an illustrative SPHEREx model">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="./kinetic-loader.css">
+<script type="module" src="./kinetic-loader.js"></script>
+<link rel="stylesheet" href="./observations-compare.css">
+</head><body data-page="explore" data-shell="document">
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" id="site-header">
+ <a class="site-brand" href="./index.html" aria-label="SKYSHIFT SPHEREX OBSERVATION EXPLORER home"><img src="./assets/skyshift-mark.svg" width="36" height="42" alt=""><span>SKYSHIFT <small>SPHEREX OBSERVATION EXPLORER</small></span></a>
+ <button class="mobile-menu-toggle" id="site-menu-toggle" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false" title="Navigation">☰</button>
+ <nav class="site-navigation" id="site-nav" aria-label="Main navigation">
+  <a href="./explore.html" data-route="observations">Observations</a><a href="./compare.html" data-route="compare">Compare</a><a href="./discover.html" data-route="discover">Discover SPHEREx</a><a href="./index.html#universe" data-route="universe">3D Universe</a><a href="./methodology.html" data-route="methodology">Methodology</a>
+ </nav>
+ <div class="chrome-actions"><button id="site-sound" data-sound-toggle aria-pressed="false" aria-label="Sound off — turn SKYSHIFT sound on" title="Turn SKYSHIFT sound on"><svg class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6m0-6-5 6"/></svg><span class="sound-word">Sound off</span></button><button id="site-more" aria-expanded="false" aria-controls="resources-menu">Resources <span aria-hidden="true">+</span></button><a href="./compare.html" class="header-launch">Compare dates</a></div>
+ <nav id="resources-menu" class="resources-menu" aria-label="Resources" hidden><button id="resources-information">ⓘ Sources, methods & credits</button><button data-open-sound>♫ Sound & volume</button><a href="./explore.html">Find SPHEREx observations →</a><a href="./index.html#mission">Interactive spacecraft →</a><a href="./compare.html">Compare SPHEREx dates →</a><a href="./guide.html">Observation guide →</a><a href="./classic-home.html">Project introduction →</a></nav>
+</header>
+
+<main id="main" class="archive-workspace" tabindex="-1">
+  <div id="workbench" class="workbench-grid">
+    <div id="viewer-column" class="viewer-column">
+      <div class="viewer-header">
+        <div class="workbench-identity"><h1>Observations</h1><span id="viewer-target">SPHEREx DR1 / QR3</span></div>
+        <div class="frame-pickers">
+            <div class="frame-picker">
+              <input id="frame-a" type="hidden">
+              <button id="choose-frame-a" class="frame-trigger" type="button" aria-haspopup="dialog">
+                <span class="frame-slot">Frame A</span><span class="frame-trigger-value" id="value-frame-a">Choose a date</span>
+              </button>
+            </div>
+            <div class="frame-picker">
+              <input id="frame-b" type="hidden">
+              <button id="choose-frame-b" class="frame-trigger" type="button" aria-haspopup="dialog" aria-describedby="pair-note">
+                <span class="frame-slot">Frame B</span><span class="frame-trigger-value" id="value-frame-b">Choose a date</span>
+              </button>
+            </div>
+          </div>
+        <div class="workbench-actions">
+          <button id="show-search" class="primary" type="button" aria-haspopup="dialog" title="Find observations" aria-label="Find observations">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/></svg><span>Find<span class="long-action"> observations</span></span>
+          </button>
+          <div class="workbench-share">
+      <button id="copy-view" type="button" aria-label="Share view" title="Share view"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5h6v6m0-6-8 8m6 0v6H5V7h6"/></svg><span>Share view</span></button>
+      <output id="share-note" aria-live="polite"></output>
+    </div>
+        </div>
+      </div>
+      <section id="empty-viewer" class="viewer-empty" aria-labelledby="empty-viewer-title">
+        <div class="viewer-empty-copy">
+          <span class="empty-reticle"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10V5h5m4 0h5v5m0 4v5h-5m-4 0H5v-5m7-5v6m-3-3h6"/></svg></span>
+          <h2 id="empty-viewer-title">Choose a place in the sky</h2>
+          <p id="empty-viewer-note">Use Find observations to pick a challenge target or search IRSA by coordinates.</p>
+        </div>
+      </section>
+      <section id="compare" class="compare-panel" hidden aria-labelledby="compare-title">
+        <h2 id="compare-title" class="visually-hidden" tabindex="-1">Sky viewer</h2>
+        <div class="viewer-toolbar">
+          <div class="viewer-modes" role="group" aria-label="Viewing mode">
+            <button id="single" data-sound="compare" type="button" aria-pressed="true">Blink</button>
+            <button id="side" data-sound="compare" type="button" aria-pressed="false">Side by side</button>
+            <button id="wipe" data-sound="compare" type="button" aria-pressed="false">Wipe</button>
+            <button id="difference-mode" data-sound="compare" type="button" aria-pressed="false">Difference</button>
+          </div>
+            <div class="viewer-adjustments" role="group" aria-label="Image navigation">
+              <button id="zoom-out" type="button" title="Zoom out" aria-label="Zoom out"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM15 15l5 5M8 10.5h5"/></svg></button>
+              <output id="zoom-value" aria-label="Zoom level">1.0×</output>
+              <button id="zoom-in" type="button" title="Zoom in" aria-label="Zoom in"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM15 15l5 5M8 10.5h5m-2.5-2.5v5"/></svg></button>
+              <button id="fit" type="button" title="Fit image" aria-label="Fit image"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5m-6 0H4v-5"/></svg></button>
+            </div>
+            <button id="use-frame-b" data-sound="date" type="button">Use current as B</button>
+          </div>
+        <div id="viewer-stage" class="viewer-stage">
+          <div id="canvases" class="canvases mode-single">
+          <figure>
+            <div class="sky-plate">
+              <canvas id="canvas-a" width="840" height="840" tabindex="0" role="img" aria-label="SPHEREx image" aria-describedby="view-description mask-a"></canvas>
+              <div class="sky-grid-compass" aria-hidden="true"><span>N</span><span>E</span><svg viewBox="0 0 28 28" width="28" height="28"><path d="M22 7v15H7m11-11 4-4 4 4M11 18l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></div>
+              <div id="scale-a" class="sky-scale" aria-hidden="true" hidden><span></span><i></i></div>
+            </div>
+            <figcaption id="meta-a" class="frame-readout"></figcaption>
+          </figure>
+          <figure id="figure-b" hidden>
+            <div class="sky-plate">
+              <canvas id="canvas-b" width="840" height="840" tabindex="0" role="img" aria-label="Second SPHEREx image" aria-describedby="view-description mask-b"></canvas>
+              <div class="sky-grid-compass" aria-hidden="true"><span>N</span><span>E</span><svg viewBox="0 0 28 28" width="28" height="28"><path d="M22 7v15H7m11-11 4-4 4 4M11 18l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></div>
+              <div id="scale-b" class="sky-scale" aria-hidden="true" hidden><span></span><i></i></div>
+            </div>
+            <figcaption id="meta-b" class="frame-readout"></figcaption>
+          </figure>
+          </div>
+          <label id="wipe-control" hidden>Wipe position <input id="wipe-position" type="range" min="0" max="100" value="50"></label>
+        </div>
+        <section id="viewer-timeline" class="viewer-timeline" aria-labelledby="timeline-title">
+          <h3 id="timeline-title" class="visually-hidden">Timeline</h3>
+          <div class="timeline-controls">
+            <div class="timeline-transport" role="group" aria-label="Playback controls">
+              <button id="prev" data-sound="date" type="button" title="Previous frame" aria-label="Previous frame">‹</button>
+              <button id="play" class="primary" data-sound="toggle" type="button" aria-pressed="false"><span id="play-label">Play</span></button>
+              <button id="next" data-sound="date" type="button" title="Next frame" aria-label="Next frame">›</button>
+              <label class="timeline-speed">Speed <output id="speed-value">0.60 s</output><input id="speed" type="range" min="300" max="1000" step="50" value="600"></label>
+            </div>
+            <label class="timeline-scrubber">Jump to frame <output id="scrubber-value">0 / 0</output><input id="scrubber" type="range" min="0" max="0" value="0"></label>
+          </div>
+          <div id="frame-strip" class="frame-strip" role="group" aria-label="Dated frames"></div>
+        </section>
+      </section>
+    </div>
+    <aside id="workbench-tools" class="workbench-tools" aria-label="Viewer tools">
+      <div id="tools-tabs" class="tools-tabs" role="tablist" aria-label="Viewer tools">
+          <button id="tools-tab-details" type="button" role="tab" aria-controls="tools-panel-details" aria-selected="true" tabindex="0">Details</button>
+          <button id="tools-tab-image" type="button" role="tab" aria-controls="tools-panel-image" aria-selected="false" tabindex="-1">Image</button>
+          <button id="tools-tab-overlays" type="button" role="tab" aria-controls="tools-panel-overlays" aria-selected="false" tabindex="-1">Overlays</button>
+          <button id="tools-tab-spectrum" type="button" role="tab" aria-controls="tools-panel-spectrum" aria-selected="false" tabindex="-1">Spectrum</button>
+      </div>
+      <div id="tools-scroll" class="tools-scroll">
+          <div id="tools-panel-details" class="tab-panel" role="tabpanel" aria-labelledby="tools-tab-details" tabindex="0">
+<section id="view-caption" class="tool-section" aria-labelledby="caption-title">
+        <h2 id="caption-title">What you’re seeing</h2>
+        <p id="view-description">Pick a place to see a dated infrared image.</p>
+        <p id="wavelength-note" class="warning" hidden>Wavelength warning: brightness may differ because of wavelength, not change.</p>
+        <p id="release-note" class="warning" role="status" hidden>These exposures use different data releases. Processing may differ.</p>
+        <p id="mask-a" class="mask-state" hidden></p>
+        <p id="mask-b" class="mask-state" hidden></p>
+        <p id="window-summary" class="control-reason" hidden></p>
+        <p id="viewer-announcement" class="visually-hidden" role="status" aria-atomic="true"></p>
+
+<p id="pair-note" class="control-reason" role="status" hidden></p>
+<p id="control-reason" class="control-reason"></p>
+      </section>
+<section id="frame-details" class="tool-section" aria-labelledby="frame-details-title" hidden>
+        <h2 id="frame-details-title">Frame details</h2>
+        <p id="epoch-note" class="epoch-note">Custom coordinate: no proper-motion propagation is applied.</p>
+        <div id="frame-metadata"></div>
+      </section>
+          </div>
+          <div id="tools-panel-image" class="tab-panel" role="tabpanel" aria-labelledby="tools-tab-image" tabindex="0" hidden>
+<section id="image-options" class="tool-section" aria-labelledby="image-title">
+        <h2 id="image-title">Image display</h2>
+        <label>Frames to average<input id="window-size" type="number" min="1" max="15" value="1" aria-describedby="coadd-note"></label>
+        <p id="coadd-note" class="control-reason">Averaging can mix dates and wavelengths and smear a moving object.</p>
+        <label>Flipbook image<select id="flipbook-view"><option value="window">Window coadd</option><option value="detector">Per-detector window</option><option value="single" selected>Single frame</option></select></label>
+        <label class="pixel-toggle"><input id="native-pixels" type="checkbox"> Show native pixels</label>
+        <label class="pixel-toggle"><input id="show-masks" type="checkbox"> Show masked pixels</label>
+        <label class="pixel-toggle"><input id="subtract-background" type="checkbox" checked> Subtract median background for display</label>
+        <div class="range-fields">
+          <label>Asinh low (MJy/sr)<input id="stretch-low" type="number" step="any" placeholder="Auto"></label>
+          <label>Asinh high (MJy/sr)<input id="stretch-high" type="number" step="any" placeholder="Auto"></label>
+        </div>
+        <p id="stretch-status" class="control-reason" role="status">Blank limits use each image’s percentiles.</p>
+      </section>
+<section id="analysis-tools" class="tool-section" aria-labelledby="analysis-title">
+          <h2 id="analysis-title">Combine frames</h2>
+          <div class="analysis-buttons">
+            <button id="add-frames" type="button">Coadd A + B</button>
+            <button id="subtract-frames" type="button">Difference A − B</button>
+            <label>Detector stack<select id="coadd-detector"><option value="1">D1</option><option value="2">D2</option><option value="3">D3</option><option value="4">D4</option><option value="5">D5</option><option value="6">D6</option></select></label>
+            <button id="coadd-frames" type="button">Coadd detector</button>
+          </div>
+          <p id="analysis-note" role="status">Coadds average usable pixels. Wavelength and background differences affect the result.</p>
+          <figure id="derived-result" hidden><figcaption id="derived-caption"></figcaption><canvas id="derived-canvas" width="500" height="500" role="img" aria-label="Derived image" aria-describedby="derived-caption"></canvas></figure>
+        </section>
+          </div>
+          <div id="tools-panel-overlays" class="tab-panel" role="tabpanel" aria-labelledby="tools-tab-overlays" tabindex="0" hidden>
+<section class="tool-section" aria-labelledby="catalog-title"><h2 id="catalog-title">Reference catalogs</h2>
+              <div class="overlay-row">
+                <label class="pixel-toggle"><input id="overlay-gaia" type="checkbox" aria-describedby="overlay-gaia-status" disabled> Gaia star positions</label>
+                <div class="overlay-feedback">
+                  <p id="overlay-gaia-status" class="request-status" role="status" aria-atomic="true">Off</p>
+                  <button id="retry-gaia" type="button" aria-label="Retry Gaia star positions" hidden>Retry</button>
+                </div>
+              </div>
+              <div class="overlay-row">
+                <label class="pixel-toggle"><input id="overlay-wise" type="checkbox" aria-describedby="overlay-wise-status" disabled> AllWISE infrared sources</label>
+                <div class="overlay-feedback">
+                  <p id="overlay-wise-status" class="request-status" role="status" aria-atomic="true">Off</p>
+                  <button id="retry-wise" type="button" aria-label="Retry AllWISE infrared sources" hidden>Retry</button>
+                </div>
+              </div></section>
+<section class="tool-section" aria-labelledby="background-title"><h2 id="background-title">Sky background</h2><p>Compare the infrared frame with the Digitized Sky Survey.</p><a id="dss-view-link" class="button-link" href="./compare.html#sky-background">Open sky background in Compare</a></section>
+<section id="sky-context" class="tool-section" aria-labelledby="context-title" hidden>
+          <h2 id="context-title">Sky context map</h2>
+          <div class="sky-context-grid">
+            <figure><svg id="context-map" viewBox="0 0 240 180" aria-label="ICRS field outline and optional catalog sources" role="img"></svg><figcaption id="context-coordinate"></figcaption></figure>
+            <p><a id="aladin-link" href="https://aladin.cds.unistra.fr/AladinLite/" target="_blank" rel="noopener noreferrer">Open this field in the CDS Aladin sky atlas ↗</a></p>
+            <p id="neossat-reference" hidden>CADC returned NEOSSat observation 2019312133048 near this preset. <a href="https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/neossat/" target="_blank" rel="noopener noreferrer">CADC catalog and FITS products ↗</a> · NEOSSat is a separate instrument.</p>
+          </div>
+        </section>
+          </div>
+          <div id="tools-panel-spectrum" class="tab-panel" role="tabpanel" aria-labelledby="tools-tab-spectrum" tabindex="0" hidden>
+<section class="tool-section" aria-labelledby="tools-tab-spectrum">
+        <p>Choose a spot in the image or focus it and press Enter to sample a spectrum.</p>
+        <button id="sample-centre" type="button" disabled>Sample image centre</button>
+        <svg id="spectrum" viewBox="0 0 500 200" role="img" aria-label="Surface brightness samples by wavelength" aria-describedby="spectrum-status" hidden></svg>
+        <p id="spectrum-status" role="status"></p>
+
+      </section>
+          </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="workbench-secondary">
+    <div id="search-feedback-loaded">
+      <div id="search-feedback" class="search-status">
+        <div class="search-feedback">
+      <p id="search-message" class="message" role="status" aria-atomic="true">Select a target to open its cached observations.</p>
+      <button id="retry" class="secondary" type="button" hidden>Retry IRSA search</button>
+      <a id="view-jump" href="#compare-title" hidden>Go to sky viewer ↓</a>
+    </div>
+        <div id="download-progress" class="download-progress" hidden>
+      <label id="progress-caption" for="progress">Downloading real cutouts progressively</label>
+      <progress id="progress" value="0" max="1"></progress>
+      <span id="progress-label">0 / 0</span>
+    </div>
+        <p id="viewer-load-status" class="visually-hidden" role="status" aria-atomic="true"></p>
+      </div>
+    </div>
+    <details class="secondary-panel">
+        <summary id="reading-title">How to read this</summary>
+        <p>Select a thumbnail for frame A. Shift-select or use “Use current as B” for frame B.</p>
+        <p>Blink steps through dated exposures. Side by side and Wipe compare two frames. Difference displays A minus B where both frames have usable pixels.</p>
+        <p>Masked pixels include missing or flagged measurements. Gap fill is for display. Different wavelengths can change brightness.</p>
+      <p class="keyboard">Keyboard in the image: Space plays or pauses. Left and Right step. Shift + arrow pans. Enter samples a spectrum. Keys 1–4 switch modes. + and − zoom. Home fits.</p>
+      </details>
+    <section id="results" class="panel observation-list" hidden aria-labelledby="results-title">
+    <div class="section-heading">
+      <div><h2 id="results-title">Observation list</h2><p id="result-count"></p></div>
+      <a id="open-compare" class="primary button-link" href="./compare.html" hidden>Open these frames in Compare →</a>
+    </div>
+    <div class="filters" role="group" aria-label="Observation filters">
+      <label>Detector <select id="filter-detector"><option value="all">All detectors</option><option value="1">D1</option><option value="2">D2</option><option value="3">D3</option><option value="4">D4</option><option value="5">D5</option><option value="6">D6</option></select></label>
+      <label>Minimum wavelength (µm)<input id="filter-min" type="number" min="0.75" max="5" step="0.01" placeholder="0.75"></label>
+      <label>Maximum wavelength (µm)<input id="filter-max" type="number" min="0.75" max="5" step="0.01" placeholder="5.00"></label>
+    </div>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable observation results">
+      <table>
+        <thead><tr><th scope="col">Preview</th><th scope="col">Date · UTC</th><th scope="col">Wavelength</th><th scope="col">Detector</th><th scope="col">Release</th><th scope="col">Archive ID</th><th scope="col">Source</th></tr></thead>
+        <tbody id="observation-rows"></tbody>
+      </table>
+    </div>
+  </section>
+  <details class="secondary-panel frame-range-panel">
+    <summary id="frame-range-title">Frame range</summary>
+    <p>Enter the first and last frame to load a chronological range instead of the date-spread preview. To load all cached frames, enter 1 and leave the last frame blank.</p>
+    <div class="range-fields">
+      <label>First frame<input id="frame-start" type="number" min="1" placeholder="1"></label>
+      <label>Last frame<input id="frame-end" type="number" min="1" placeholder="All"></label>
+      <button type="submit" form="search-form">Apply frame range</button>
+    </div>
+  </details>
+  <details id="evidence" class="secondary-panel">
+    <summary>Observation sources and earlier comparisons</summary>
+    <p>Open an IRSA link in the observation list to inspect that exposure’s source. The earlier M101 example is documented separately in <a href="./methodology.html">Data &amp; methodology</a>.</p>
+  </details>
+    <details class="secondary-panel" id="data-credits">
+      <summary>Data sources, credits and use</summary>
+      <p>SPHEREx data products are from a joint JPL and California Institute of Technology mission funded by NASA and served by NASA/IPAC IRSA. See the <a href="https://irsa.ipac.caltech.edu/Missions/spherex.html" target="_blank" rel="noopener noreferrer">SPHEREx acknowledgment ↗</a> and data citations for <a href="https://doi.org/10.26131/IRSA678" target="_blank" rel="noopener noreferrer">DR1 ↗</a> and <a href="https://doi.org/10.26131/IRSA662" target="_blank" rel="noopener noreferrer">QR3 ↗</a>. Challenge-target astrometry is credited to <a href="https://simbad.cfa.harvard.edu/simbad/" target="_blank" rel="noopener noreferrer">SIMBAD/CDS ↗</a>.</p>
+      <p id="gaia-credit" hidden>Gaia DR3 data come from ESA, were processed by the Gaia Data Processing and Analysis Consortium, and are provided by MAST/STScI. See the <a href="https://archive.stsci.edu/publishing/data-use" target="_blank" rel="noopener noreferrer">MAST data-use policy ↗</a>.</p>
+      <p id="wise-credit" hidden>AllWISE combines WISE (UCLA and JPL/Caltech) and NEOWISE (JPL/Caltech) data, both funded by NASA. Reference positions use the <a href="https://vizier.cfa.harvard.edu/viz-bin/VizieR-3?-source=II%2F328%2Fallwise" target="_blank" rel="noopener noreferrer">AllWISE catalog ↗</a> via <a href="https://doi.org/10.26093/cds/vizier" target="_blank" rel="noopener noreferrer">CDS VizieR ↗</a>. See the <a href="https://irsa.ipac.caltech.edu/data/WISE/docs/release/AllWISE/expsup/sec1_6b.html" target="_blank" rel="noopener noreferrer">AllWISE acknowledgment ↗</a>.</p>
+      <p id="neossat-credit" hidden>NEOSSat catalog reference: CSA and DRDC, via CADC/NRC. See the <a href="https://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/neossat/" target="_blank" rel="noopener noreferrer">NEOSSat acknowledgment and product guide ↗</a>.</p>
+    </details>
+  </div>
+
+  <dialog id="search" class="workbench-dialog search-dialog" aria-labelledby="search-title">
+    <div class="dialog-heading"><h2 id="search-title">Find observations</h2><button id="close-search" type="button" aria-label="Close search">Close</button></div>
+    <section class="tool-section" aria-labelledby="target-title">
+      <h3 id="target-title">Challenge targets</h3>
+      <div id="target-buttons" role="group" aria-labelledby="target-title"></div>
+    </section>
+    <section id="coordinate-search" class="tool-section" aria-labelledby="coordinates-title">
+      <h3 id="coordinates-title">Search by coordinates</h3>
+      <form id="search-form">
+      <label>RA<input aria-label="Right ascension" id="ra" required maxlength="48" placeholder="269.452077" autocomplete="off" aria-describedby="search-help"></label>
+      <label>Dec<input aria-label="Declination" id="dec" required maxlength="48" placeholder="+4.693365" autocomplete="off" aria-describedby="search-help"></label>
+      <label>Field of view <span class="input-unit"><input id="field" type="number" min="1" max="30" step="0.1" value="8" required aria-describedby="search-help"><span>arcmin</span></span></label>
+      <label>Data release<select id="release"><option value="all">DR1 + QR3</option><option value="dr1">DR1</option><option value="qr3">QR3</option></select></label>
+      <button class="primary" type="submit">Find observations</button>
+    </form>
+      <p id="search-help" class="control-reason">Decimal degrees or sexagesimal. Field width is in arcminutes.</p>
+    </section>
+    <div id="search-feedback-top"></div>
+  </dialog>
+  <dialog id="frame-picker-dialog" class="workbench-dialog" aria-labelledby="picker-title">
+            <div class="picker-heading"><h3 id="picker-title">Choose a frame</h3><button type="button" id="close-frame-picker" aria-label="Close frame picker">×</button></div>
+            <div id="frame-picker-options" role="listbox" aria-labelledby="picker-title" class="frame-picker-options"></div>
+          </dialog>
+</main>
+<footer class="site-footer">
+<div aria-hidden="true" class="footer-wordmark"></div>
+<div class="footer-columns"><div><p class="label">EXPLORE</p><a href="./explore.html">Observations →</a><a href="./compare.html">Compare dates →</a><a href="./index.html#universe">3D Universe →</a><a href="./discover.html">Discover SPHEREx →</a></div><div><p class="label">METHODS &amp; PROVENANCE</p><a href="./methodology.html">Data &amp; methodology →</a><a href="./guide.html">How to use the viewer →</a><a href="./methodology.html#imagery">Image source records ↗</a><a href="./methodology.html#models">Models, terms &amp; hashes ↗</a></div><div><p class="label">CREDITS</p><p>Project Mercury Team</p><p>SPHEREx imagery: NASA/JPL-Caltech.<br/>Original astronomical data: NASA/IPAC IRSA.</p></div></div>
+<p class="footer-notice">Independent educational application. No NASA endorsement.</p>
+<details id="footer-credits"><summary>Sources &amp; acknowledgments</summary><p>Original image, model and calibration identities stay with their source records. Interface type: <a href="./methodology.html#fonts">Inter &amp; IBM Plex Mono — licenses and hashes ↗</a>.</p><p>Earlier interaction studies: <a href="https://skiper-ui.com/v1/preview/skiper40" target="_blank" rel="noopener noreferrer">Skiper UI ↗</a>, <a href="https://github.com/Ashutoshx7/VengeanceUI" target="_blank" rel="noopener noreferrer">Vengeance UI ↗</a> and <a href="https://www.dqnamo.com/kitchen" target="_blank" rel="noopener noreferrer">dqnamo Kitchen ↗</a>. <a href="./methodology.html#patterns">Original pattern notices ↗</a>. Optional scroll presentation uses <a href="./methodology.html#libraries">native browser animation and locally supplied Lenis ↗</a>.</p></details>
+</footer>
+
+<script src="./observations-compare.js" type="module"></script><dialog id="site-information" class="space-dialog" aria-labelledby="site-information-title">
+      <div class="dialog-top">
+        <h2 id="site-information-title">Sources, methods &amp; SKYSHIFT</h2>
+        <button id="site-information-close" aria-label="Close information">×</button>
+      </div>
+      <button data-open-sound>Sound design &amp; volume ↗</button>
+      <a href="./index.html?intro=1">Replay intro →</a>
+      <p>SKYSHIFT is an independent Project Mercury Team application. It displays dated SPHEREx DR1 and QR3 cutouts with their detector, wavelength and archive source.</p>
+      <p>Wavelength, processing and masked pixels can change how the same field looks. Treat visual differences as questions to investigate.</p>
+      <a href="./methodology.html#sources">Archive, catalogs, background and credits ↗</a>
+      <a href="./challenge.html">Challenge targets and how to compare ↗</a>
+      <a href="./assets/assets.json" target="_blank" rel="noopener noreferrer">Mission imagery, hashes and usage terms ↗</a>
+      <a href="./methodology.html#models">3D models, hashes and usage terms ↗</a>
+    </dialog><script src="./site-chrome.js" type="module"></script></body></html>

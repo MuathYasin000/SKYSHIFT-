@@ -1,0 +1,45 @@
+{
+  "completed_at": "2026-10-16T12:53:50.479875+00:00",
+  "outcomes": [
+    {
+      "path": "data/raw/m101_probe/2025W19_2B_0346_4_D2.fits",
+      "status": "verified",
+      "sha256": "79cc3f6e0089fe9c1fd3cd7e17df70bb5493d94790d7fbaa204fe189b8495d04"
+    },
+    {
+      "path": "data/raw/m101_probe/2025W20_1C_0373_3_D2.fits",
+      "status": "verified",
+      "sha256": "134cc4dc8518f49eff513e0c2ff6f90ad0d5a84f42e5491f2ab070bf01deba22"
+    },
+    {
+      "path": "data/raw/m101_probe/2025W49_2A_0756_3_D2.fits",
+      "status": "verified",
+      "sha256": "a0b4c2a812dd7336bbc5739cce794d0f16ab8fc640aa70465f0582c18b50e2b6"
+    },
+    {
+      "path": "data/raw/m101_probe/2025W50_1A_0736_3_D2.fits",
+      "status": "verified",
+      "sha256": "1666908fd6d2f3bc3071df00768327dba108422ed336346292e877bf73e2f7a6"
+    },
+    {
+      "path": "data/raw/m101_probe/2026W21_2A_0268_3_D2.fits",
+      "status": "verified",
+      "sha256": "761a81122ebee7cd27c527553fb184bc36b51c2920b6ea6857d2e8dfbf9dd281"
+    },
+    {
+      "path": "data/raw/m101_probe/2026W23_2A_0336_4_D2.fits",
+      "status": "verified",
+      "sha256": "aad8eb62807e9cda65b52aa2953dd767d2e4986626a83bebef9b2c7e03075103"
+    },
+    {
+      "path": "data/raw/m101_probe/2026W26_1A_0500_1_D2.fits",
+      "status": "verified",
+      "sha256": "40616fbd15a76e94f199b5586b94438c6f1a46ee0a43eaa44aadbf41f9bd2aae"
+    },
+    {
+      "path": "data/calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+      "status": "verified",
+      "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7"
+    }
+  ]
+}

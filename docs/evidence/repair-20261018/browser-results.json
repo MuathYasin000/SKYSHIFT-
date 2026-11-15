@@ -1,0 +1,121 @@
+{
+  "results": [
+    {
+      "name": "ZIP: standalone export → integrated import/reload/export → standalone import, preserving all scientific identities and settings",
+      "status": "pass",
+      "detail": {
+        "directions": 2,
+        "reloads": 2,
+        "fields": [
+          "FITS/masks",
+          "observations/dates",
+          "source hashes",
+          "WCS/region",
+          "display/zoom/pan",
+          "visualization/wipe",
+          "questions",
+          "attribution"
+        ]
+      }
+    },
+    {
+      "name": "JSON: integrated ↔ standalone exposure with nondefault visualization, date, viewport, questions and reload",
+      "status": "pass",
+      "detail": {
+        "directions": 2,
+        "reloads": 1
+      }
+    },
+    {
+      "name": "Malformed and mismatched imports preserve the active investigation in both viewers",
+      "status": "pass"
+    },
+    {
+      "name": "Methodology renders applicable historical counts and separate current-build identity; missing evidence fails honestly",
+      "status": "pass"
+    },
+    {
+      "name": "Review download UI: cancel, recover a 503 without re-fetching verified parts, and verify the complete archive",
+      "status": "pass",
+      "detail": {
+        "counts": {
+          "review-part-0.bin": 2,
+          "review-part-1.bin": 1,
+          "review-part-2.bin": 2,
+          "review-part-3.bin": 1,
+          "review-part-4.bin": 1,
+          "review-part-5.bin": 1
+        },
+        "archive_sha256": "2187c38e4e97e8c94999e0ac9794a69e9c357f04ead6298e56b877ed64e30d78",
+        "temporary_downloads_removed_on_context_close": true
+      }
+    },
+    {
+      "name": "Standalone review control, slow-network scientific access, and timeout recovery",
+      "status": "pass"
+    },
+    {
+      "name": "All primary routes at 320, 360, 390, 430, 768, 1024 and 1440 CSS pixels",
+      "status": "pass",
+      "detail": {
+        "routes": 10,
+        "widths": 7,
+        "checks": 70
+      }
+    },
+    {
+      "name": "Browser accessibility scans on rendered primary routes and keyboard menus/dialogs",
+      "status": "pass",
+      "detail": {
+        "scans": 10,
+        "keyboard": "mobile menu enter/escape and dialog focus return"
+      }
+    },
+    {
+      "name": "200%/400% desktop zoom equivalent reflow and touch pinch keep scientific controls usable",
+      "status": "pass",
+      "detail": {
+        "zoomReflow": "Equivalent 1440px desktop at 200%/400% (720/360 CSS px); no physical browser toolbar zoom certification",
+        "touchZoomBefore": 1.5625,
+        "touchZoomAfter": 3.125
+      }
+    },
+    {
+      "name": "Hero starts while scientific controller is delayed; direct science remains WebGL independent",
+      "status": "pass"
+    },
+    {
+      "name": "Repeated Universe visits reuse bounded graphics resources and preserve the scientific canvas",
+      "status": "pass",
+      "detail": {
+        "visits": 5,
+        "gpuResources": [
+          {
+            "geometries": 42,
+            "textures": 5
+          },
+          {
+            "geometries": 44,
+            "textures": 7
+          },
+          {
+            "geometries": 44,
+            "textures": 7
+          },
+          {
+            "geometries": 44,
+            "textures": 7
+          },
+          {
+            "geometries": 44,
+            "textures": 7
+          }
+        ],
+        "scope": "Renderer resource counters; not a proof of absence of all browser/GPU leaks"
+      }
+    }
+  ],
+  "errors": [],
+  "scientific_approval": "PENDING",
+  "independent_novice_validation": "NOT CONDUCTED"
+}

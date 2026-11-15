@@ -1,0 +1,309 @@
+{
+  "browser": "157.0.8103.51",
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "compare rw-aurigae 1280px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {
+          "details": 0.6475,
+          "image": 0.6475,
+          "overlays": 0.6475,
+          "spectrum": 0.6475
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare rw-aurigae 768px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare rw-aurigae 1920px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {
+          "details": 0.6271527777777778,
+          "image": 0.6271527777777778,
+          "overlays": 0.6271527777777778,
+          "spectrum": 0.6271527777777778
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare wise-0855 1280px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {
+          "details": 0.6475,
+          "image": 0.6475,
+          "overlays": 0.6475,
+          "spectrum": 0.6475
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare wise-0855 1920px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {
+          "details": 0.6271527777777778,
+          "image": 0.6271527777777778,
+          "overlays": 0.6271527777777778,
+          "spectrum": 0.6271527777777778
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare wise-0855 768px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore rw-aurigae 1280px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {
+          "details": 0.6475,
+          "image": 0.6475,
+          "overlays": 0.6475,
+          "spectrum": 0.6475
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore rw-aurigae 768px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore rw-aurigae 1920px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {
+          "details": 0.6271527777777778,
+          "image": 0.6271527777777778,
+          "overlays": 0.6271527777777778,
+          "spectrum": 0.6271527777777778
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore wise-0855 768px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore wise-0855 1280px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {
+          "details": 0.6475,
+          "image": 0.6475,
+          "overlays": 0.6475,
+          "spectrum": 0.6475
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore wise-0855 1920px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {
+          "details": 0.6271527777777778,
+          "image": 0.6271527777777778,
+          "overlays": 0.6271527777777778,
+          "spectrum": 0.6271527777777778
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare rw-aurigae 390px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare rw-aurigae 1024px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare rw-aurigae 1440px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {
+          "details": 0.6271527777777778,
+          "image": 0.6271527777777778,
+          "overlays": 0.6271527777777778,
+          "spectrum": 0.6271527777777778
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare wise-0855 390px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare wise-0855 1024px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare wise-0855 1440px",
+      "status": "pass",
+      "details": {
+        "heading": "Compare",
+        "stageRatios": {
+          "details": 0.6271527777777778,
+          "image": 0.6271527777777778,
+          "overlays": 0.6271527777777778,
+          "spectrum": 0.6271527777777778
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore rw-aurigae 390px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore rw-aurigae 1440px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {
+          "details": 0.6271527777777778,
+          "image": 0.6271527777777778,
+          "overlays": 0.6271527777777778,
+          "spectrum": 0.6271527777777778
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore rw-aurigae 1024px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore wise-0855 390px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore wise-0855 1440px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {
+          "details": 0.6271527777777778,
+          "image": 0.6271527777777778,
+          "overlays": 0.6271527777777778,
+          "spectrum": 0.6271527777777778
+        },
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore wise-0855 1024px",
+      "status": "pass",
+      "details": {
+        "heading": "Observations",
+        "stageRatios": {},
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "Keyboard tabs, centered 1100 px boundary and independent scrolling",
+      "status": "pass"
+    },
+    {
+      "name": "AllWISE times out in ten seconds and offers Retry",
+      "status": "pass"
+    },
+    {
+      "name": "DSS modal, logo, bounds and focus at 1920px",
+      "status": "pass",
+      "details": {
+        "dialogWidth": 880,
+        "logo": true,
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "DSS modal, logo, bounds and focus at 390px",
+      "status": "pass",
+      "details": {
+        "dialogWidth": 358,
+        "logo": true,
+        "axeViolations": 0
+      }
+    }
+  ],
+  "errors": []
+}

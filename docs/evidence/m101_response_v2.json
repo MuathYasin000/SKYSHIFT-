@@ -1,0 +1,156 @@
+{
+  "status": "diagnostics_complete_review_pending",
+  "products": [
+    {
+      "observation_id": "2025W49_2A_0756_3",
+      "source_sha256": "48acaf60861e1ca7eac5cc0119c63f3c5ecf5714fd7f9eaefa59aa1e69a5cd03",
+      "calibration_history": {
+        "dichroic": "2ca9ffb7-e6e9-4f8c-b85e-75ef2671614d",
+        "gain_factors": "74478304-abf1-4a9c-9eb2-926090a84446",
+        "initial_distortion_table": "f34a9ef8-e81a-4c7d-8322-e7da6e458ef9",
+        "nonfunc": "14c3b71f-5632-4e40-925e-bfa636e01952",
+        "spectral_wcs": "a9cb438e-e37d-4888-a1a5-5a9db6ad0737",
+        "nonlinear_pars": "81296b79-30e6-44ee-a7c1-5167be3e254a",
+        "readnoise_pars": "f6a0f49d-4bf8-43cb-ab45-46a912f0f98c",
+        "abs_gain_matrix": "17b9dc97-03e7-4e17-9d1c-56abae92edc5",
+        "average_psf": "b50151c0-9248-4ada-ae66-eff2f6879fa3",
+        "dark": "c082adae-af5b-43f2-9130-03ddb1eeec1c"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "retrieved_at_utc": null
+      },
+      "wave_lookup_minus_cwave_abs_median_um": 0.00046471195558250855,
+      "band_lookup_minus_cband_abs_median_um": 0.0002625204489545979,
+      "background": {
+        "status": "measured",
+        "sample_count": 13868,
+        "median_mjy_sr": 0.24915670603513718,
+        "robust_scatter_mjy_sr": 0.11277370963096618,
+        "variance_noise_median_mjy_sr": 0.018531939865754448,
+        "zodiacal_model_median_mjy_sr": 0.1322246715426445,
+        "note": "Native valid pixels without SOURCE flag; background estimates can still contain diffuse astrophysical emission."
+      },
+      "local_epsf": {
+        "calibration": {
+          "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\epsf_D2_spx_cal-epsf-v1-2026-191.fits",
+          "sha256": "7b94af0250aa7e56a9e78af34ca2c1373985926c0a0f3263218d1b0ddc94a926",
+          "size_bytes": 7943040,
+          "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr3/epsf/cal-epsf-v1-2026-191/2/epsf_D2_spx_cal-epsf-v1-2026-191.fits",
+          "retrieved_at_utc": null
+        },
+        "zone_index": 422,
+        "parent_x": 223.3721276969482,
+        "parent_y": 2011.2817460991243,
+        "oversampling": 5,
+        "effective_area_native_pixels": 3.2266829013824463,
+        "model_wavelength_um": 1.1047449111938477,
+        "positive_weight_rms_radius_native_pixels": 0.8475655302084381,
+        "note": "Nearest local ePSF zone. Positive-wing moments are descriptive only; no deconvolution or matching applied."
+      },
+      "flags": {
+        "TRANSIENT": 184,
+        "OVERFLOW": 0,
+        "SUR_ERROR": 31,
+        "PHANTOM": 0,
+        "REFERENCE": 0,
+        "NONFUNC": 5,
+        "DICHROIC": 0,
+        "MISSING_DATA": 0,
+        "HOT": 0,
+        "COLD": 5,
+        "FULLSAMPLE": 0,
+        "PHANMISS": 0,
+        "NONLINEAR": 0,
+        "PERSIST": 8,
+        "OUTLIER": 633,
+        "SOURCE": 5789
+      }
+    },
+    {
+      "observation_id": "2025W50_1A_0736_3",
+      "source_sha256": "27943f13c77d7b1b6927fcbba15341d2589f79a923322732ab8608fbb4940dbb",
+      "calibration_history": {
+        "dichroic": "2ca9ffb7-e6e9-4f8c-b85e-75ef2671614d",
+        "gain_factors": "74478304-abf1-4a9c-9eb2-926090a84446",
+        "initial_distortion_table": "f34a9ef8-e81a-4c7d-8322-e7da6e458ef9",
+        "nonfunc": "14c3b71f-5632-4e40-925e-bfa636e01952",
+        "spectral_wcs": "a9cb438e-e37d-4888-a1a5-5a9db6ad0737",
+        "nonlinear_pars": "81296b79-30e6-44ee-a7c1-5167be3e254a",
+        "readnoise_pars": "f6a0f49d-4bf8-43cb-ab45-46a912f0f98c",
+        "abs_gain_matrix": "17b9dc97-03e7-4e17-9d1c-56abae92edc5",
+        "average_psf": "b50151c0-9248-4ada-ae66-eff2f6879fa3",
+        "dark": "c082adae-af5b-43f2-9130-03ddb1eeec1c"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "retrieved_at_utc": null
+      },
+      "wave_lookup_minus_cwave_abs_median_um": 0.0005369916821801324,
+      "band_lookup_minus_cband_abs_median_um": 0.00023386881260024917,
+      "background": {
+        "status": "measured",
+        "sample_count": 16682,
+        "median_mjy_sr": 0.26308655738830566,
+        "robust_scatter_mjy_sr": 0.10564505772739648,
+        "variance_noise_median_mjy_sr": 0.018925725796879806,
+        "zodiacal_model_median_mjy_sr": 0.13160440325737,
+        "note": "Native valid pixels without SOURCE flag; background estimates can still contain diffuse astrophysical emission."
+      },
+      "local_epsf": {
+        "calibration": {
+          "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\epsf_D2_spx_cal-epsf-v1-2026-191.fits",
+          "sha256": "7b94af0250aa7e56a9e78af34ca2c1373985926c0a0f3263218d1b0ddc94a926",
+          "size_bytes": 7943040,
+          "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr3/epsf/cal-epsf-v1-2026-191/2/epsf_D2_spx_cal-epsf-v1-2026-191.fits",
+          "retrieved_at_utc": null
+        },
+        "zone_index": 439,
+        "parent_x": 1851.7807019481093,
+        "parent_y": 1990.8554600173525,
+        "oversampling": 5,
+        "effective_area_native_pixels": 3.149092435836792,
+        "model_wavelength_um": 1.1070870161056519,
+        "positive_weight_rms_radius_native_pixels": 0.8392857375588717,
+        "note": "Nearest local ePSF zone. Positive-wing moments are descriptive only; no deconvolution or matching applied."
+      },
+      "flags": {
+        "TRANSIENT": 103,
+        "OVERFLOW": 1,
+        "SUR_ERROR": 59,
+        "PHANTOM": 0,
+        "REFERENCE": 0,
+        "NONFUNC": 25,
+        "DICHROIC": 0,
+        "MISSING_DATA": 0,
+        "HOT": 0,
+        "COLD": 5,
+        "FULLSAMPLE": 0,
+        "PHANMISS": 0,
+        "NONLINEAR": 0,
+        "PERSIST": 6,
+        "OUTLIER": 718,
+        "SOURCE": 6613
+      }
+    }
+  ],
+  "same_pipeline_spectral_calibration_history": true,
+  "empirical_profile_width_ratio_median_b_over_a": 0.982617485975734,
+  "empirical_profile_width_ratio_p95_absolute_deviation": 0.2537896322763724,
+  "local_epsf_effective_area_ratio_b_over_a": 0.9759534891041164,
+  "background_offset_mjy_sr": 0.013929851353168488,
+  "restrictions": [
+    "Qualitative spatial inspection only; brightness variability and quantitative residuals are unsupported.",
+    "Wavelength responses differ; CWAVE/CBAND agreement is an engineering screen, not response-function equality.",
+    "ePSF calibration is a documented newer model applicable to QR2, not a change to original calibrated arrays.",
+    "Background and zodiacal model remain unmodified in displayed scientific arrays.",
+    "Pipeline HISTORY identities agree, but public calibration files do not expose those same UUIDs; association needs independent review.",
+    "Unflagged instrumental artifacts and source blending remain possible."
+  ]
+}

@@ -1,0 +1,8 @@
+{"changed": ["guide.css"], "content_id": "9a46ee1d344932fd2bc7edf19df1bbef69dba6d43274429b455a88f62ab0f7ca", "scientific_approval": "PENDING"}
+{
+  "directory": "D:\\Nasa_SKYSHIFT\\tmp\\skyshift-upload\\dist",
+  "source_files": 161,
+  "scientific_approval": "PENDING",
+  "content_id": "9a46ee1d344932fd2bc7edf19df1bbef69dba6d43274429b455a88f62ab0f7ca",
+  "credentials_included": false
+}

@@ -1,0 +1,82 @@
+{
+  "recorded_at_utc": "2026-10-17T08:28:02Z",
+  "application": "0.7-local-workspace",
+  "baseline": "6b4315c",
+  "localhost": "http://localhost:3000",
+  "server_content_id": "dd5c954617380cf6c8cf76d6d41d039be7749e36f1534ff81f737d894d01c96e",
+  "server_content_id_matches_current_ui_bytes": true,
+  "scientific_assets": {
+    "tracked_files": 21,
+    "all_bytes_match_baseline": true,
+    "pair_id": "pair-52ad675d929b0740c23b",
+    "scientific_code_unchanged": ["src/skyshift", "tools/build_exploration_assets.py", "web/dist/investigation.js"],
+    "original_spacecraft_geometry_unchanged": true,
+    "original_logo_sha256": "5b7eb030b8b6e8c59f9ad7f35a8fcb9be4056efd3916b7c47bc701cacb6e5611",
+    "full_review_packet": {
+      "bytes": 40697263,
+      "sha256": "2187c38e4e97e8c94999e0ac9794a69e9c357f04ead6298e56b877ed64e30d78",
+      "method": "SHA-256 over the existing ordered review-part bytes; no canonical packet was regenerated"
+    }
+  },
+  "fonts": {
+    "manifest": "web/dist/assets/fonts/website-fonts.json",
+    "upstream_commit": "47d54ca1ebb14fd864695f1d39dc734f39017c33",
+    "original_binary_and_license_hashes_verified": true,
+    "runtime_requests": "same-origin local assets only"
+  },
+  "tests": {
+    "python_full_regression": {"passed": 102, "skipped": 0},
+    "python_final_server_frontend_provenance": {"passed": 32, "skipped": 0},
+    "javascript": {"passed": 74, "skipped": 0},
+    "production_static_references": "pass",
+    "production_scientific_asset_checksums": "pass",
+    "chrome_product_scenarios": 19,
+    "edge_product_scenarios": 19,
+    "injected_recovery_scenarios": 7,
+    "concurrent_startup_trials": 6,
+    "actual_server_restart": "pass",
+    "current_and_previous_exports_reopened_after_restart": 6,
+    "export_after_restart": "pass",
+    "automated_accessibility_violations_in_tested_home_and_science_states": 0,
+    "browser_receipts": [
+      "docs/evidence/website07_product_tests.json",
+      "docs/evidence/website07_product_tests_edge.json",
+      "docs/evidence/website07_recovery_tests.json",
+      "docs/evidence/website07_concurrent_startup_tests.json",
+      "docs/evidence/website07_local_restart_tests.json"
+    ]
+  },
+  "scientific_reconstruction": {
+    "status": "pass",
+    "input": "tmp/website07-qa/comparison.zip",
+    "input_sha256": "73efd3f0db53c9e50e1d374fe783b3ca6e8e0d3ba9e0c9d44f5d221dfb4ebf25",
+    "result": "tmp/website07-final-reconstruction/reconstruction_result.json",
+    "result_sha256": "b38a4e87c32914f61486f18f89502776aac73ad6e083cc1de0ac7d650316094b",
+    "checked_arrays": ["SCI_A", "SCI_B", "VALID_A", "VALID_B", "COMMON", "WAVE_A", "WAVE_B", "BAND_A", "BAND_B", "SEPARATION"],
+    "maximum_absolute_error": 0,
+    "coordinate_annotations_verified": 1,
+    "source_cache": "data/reconstruction/m101-v6-clean-environment",
+    "internet_required_for_this_reconstruction": false
+  },
+  "visual_inspection": {
+    "screenshots": [
+      "tmp/website07-qa-edge/home.png",
+      "tmp/website07-qa-edge/mission-model.png",
+      "tmp/website07-qa/final-compare-1440.png",
+      "tmp/website07-qa/compare-1024.png",
+      "tmp/website07-qa/final-compare-390.png",
+      "tmp/website07-qa/final-compare-320.png"
+    ],
+    "scope": "Agent inspection of rendered browser screenshots; no independent human UX results inferred"
+  },
+  "limitations": {
+    "qualified_scientific_approval": "PENDING",
+    "internal_human_review": "PENDING",
+    "independent_novice_validation": "NOT CONDUCTED",
+    "physical_mobile_device_validation": "NOT CONDUCTED",
+    "manual_accessibility_certification": "NOT CONDUCTED",
+    "user_browser_profile": "Not accessed; fresh isolated test profiles used",
+    "subjective_design_acceptance": "Awaiting user's direct evaluation",
+    "no_new_scientific_pair_approved": true
+  }
+}

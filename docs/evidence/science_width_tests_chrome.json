@@ -1,0 +1,371 @@
+{
+  "recorded_at_utc": "2026-10-17T13:17:25.621Z",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "name": "compare at 390x844",
+      "status": "pass",
+      "detail": {
+        "width": 390,
+        "height": 844,
+        "field": "m101",
+        "kind": "pair",
+        "logo_left": 12,
+        "workspace": {
+          "left": 14,
+          "right": 376,
+          "width": 362,
+          "top": 126,
+          "bottom": 832
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "observations/m42 at 390x844",
+      "status": "pass",
+      "detail": {
+        "width": 390,
+        "height": 844,
+        "field": "m42",
+        "kind": "exposure",
+        "logo_left": 12,
+        "workspace": {
+          "left": 14,
+          "right": 376,
+          "width": 362,
+          "top": 126,
+          "bottom": 832
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "compare at 768x1024",
+      "status": "pass",
+      "detail": {
+        "width": 768,
+        "height": 1024,
+        "field": "m101",
+        "kind": "pair",
+        "logo_left": 18,
+        "workspace": {
+          "left": 14,
+          "right": 754,
+          "width": 740,
+          "top": 126,
+          "bottom": 1012
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "observations/m42 at 768x1024",
+      "status": "pass",
+      "detail": {
+        "width": 768,
+        "height": 1024,
+        "field": "m42",
+        "kind": "exposure",
+        "logo_left": 18,
+        "workspace": {
+          "left": 14,
+          "right": 754,
+          "width": 740,
+          "top": 126,
+          "bottom": 1012
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "compare at 1000x900",
+      "status": "pass",
+      "detail": {
+        "width": 1000,
+        "height": 900,
+        "field": "m101",
+        "kind": "pair",
+        "logo_left": 20,
+        "workspace": {
+          "left": 28,
+          "right": 972,
+          "width": 944,
+          "top": 110,
+          "bottom": 884
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "observations/m42 at 1000x900",
+      "status": "pass",
+      "detail": {
+        "width": 1000,
+        "height": 900,
+        "field": "m42",
+        "kind": "exposure",
+        "logo_left": 20,
+        "workspace": {
+          "left": 28,
+          "right": 972,
+          "width": 944,
+          "top": 110,
+          "bottom": 884
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "compare at 1001x900",
+      "status": "pass",
+      "detail": {
+        "width": 1001,
+        "height": 900,
+        "field": "m101",
+        "kind": "pair",
+        "logo_left": 24,
+        "workspace": {
+          "left": 24,
+          "right": 977,
+          "width": 953,
+          "top": 110,
+          "bottom": 884
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "observations/m42 at 1001x900",
+      "status": "pass",
+      "detail": {
+        "width": 1001,
+        "height": 900,
+        "field": "m42",
+        "kind": "exposure",
+        "logo_left": 24,
+        "workspace": {
+          "left": 24,
+          "right": 977,
+          "width": 953,
+          "top": 110,
+          "bottom": 884
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "compare at 1366x768",
+      "status": "pass",
+      "detail": {
+        "width": 1366,
+        "height": 768,
+        "field": "m101",
+        "kind": "pair",
+        "logo_left": 30.734375,
+        "workspace": {
+          "left": 30.734375,
+          "right": 1335.265625,
+          "width": 1304.53125,
+          "top": 110,
+          "bottom": 752
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "observations/m42 at 1366x768",
+      "status": "pass",
+      "detail": {
+        "width": 1366,
+        "height": 768,
+        "field": "m42",
+        "kind": "exposure",
+        "logo_left": 30.734375,
+        "workspace": {
+          "left": 30.734375,
+          "right": 1335.265625,
+          "width": 1304.53125,
+          "top": 110,
+          "bottom": 752
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "compare at 1920x1080",
+      "status": "pass",
+      "detail": {
+        "width": 1920,
+        "height": 1080,
+        "field": "m101",
+        "kind": "pair",
+        "logo_left": 43.1875,
+        "workspace": {
+          "left": 43.1875,
+          "right": 1876.8125,
+          "width": 1833.625,
+          "top": 110,
+          "bottom": 1064
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "observations/m42 at 1920x1080",
+      "status": "pass",
+      "detail": {
+        "width": 1920,
+        "height": 1080,
+        "field": "m42",
+        "kind": "exposure",
+        "logo_left": 43.1875,
+        "workspace": {
+          "left": 43.1875,
+          "right": 1876.8125,
+          "width": 1833.625,
+          "top": 110,
+          "bottom": 1064
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "compare at 2560x1440",
+      "status": "pass",
+      "detail": {
+        "width": 2560,
+        "height": 1440,
+        "field": "m101",
+        "kind": "pair",
+        "logo_left": 48,
+        "workspace": {
+          "left": 48,
+          "right": 2512,
+          "width": 2464,
+          "top": 110,
+          "bottom": 1424
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "observations/m42 at 2560x1440",
+      "status": "pass",
+      "detail": {
+        "width": 2560,
+        "height": 1440,
+        "field": "m42",
+        "kind": "exposure",
+        "logo_left": 48,
+        "workspace": {
+          "left": 48,
+          "right": 2512,
+          "width": 2464,
+          "top": 110,
+          "bottom": 1424
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "compare at 1366x700",
+      "status": "pass",
+      "detail": {
+        "width": 1366,
+        "height": 700,
+        "field": "m101",
+        "kind": "pair",
+        "logo_left": 30.734375,
+        "workspace": {
+          "left": 30.734375,
+          "right": 1335.265625,
+          "width": 1304.53125,
+          "top": 106,
+          "bottom": 776
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "observations/m42 at 1366x700",
+      "status": "pass",
+      "detail": {
+        "width": 1366,
+        "height": 700,
+        "field": "m42",
+        "kind": "exposure",
+        "logo_left": 30.734375,
+        "workspace": {
+          "left": 30.734375,
+          "right": 1335.265625,
+          "width": 1304.53125,
+          "top": 106,
+          "bottom": 776
+        },
+        "horizontal_bounds": "pass"
+      }
+    },
+    {
+      "name": "compare information, appearance and questions panels remain usable",
+      "status": "pass",
+      "detail": {
+        "field": "m101",
+        "panels": [
+          "Sources & suitability",
+          "Appearance",
+          "Questions"
+        ]
+      }
+    },
+    {
+      "name": "observations/m42 information, appearance and questions panels remain usable",
+      "status": "pass",
+      "detail": {
+        "field": "m42",
+        "panels": [
+          "Sources & suitability",
+          "Appearance",
+          "Questions"
+        ]
+      }
+    },
+    {
+      "name": "Logo stays aligned while navigating Home, Compare, Observations and Mission",
+      "status": "pass",
+      "detail": {
+        "lefts": [
+          {
+            "route": "home",
+            "left": 43.1875
+          },
+          {
+            "route": "compare",
+            "left": 43.1875
+          },
+          {
+            "route": "observations",
+            "left": 43.1875
+          },
+          {
+            "route": "mission",
+            "left": 43.1875
+          }
+        ]
+      }
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "limits": [
+    "Fresh installed-browser profiles; viewport dimensions are emulated",
+    "No change to scientific pixels, image aspect ratio, calibration or review gates",
+    "Qualified scientific approval and internal human review PENDING; independent novice validation NOT CONDUCTED"
+  ],
+  "upload_integrity": {
+    "source_assets_exact": 145,
+    "content_id": "b6259df7f61acbf00ef00b3acf99ac242d49e40c5e57141e2e959298eabf7899",
+    "scientific_files_unchanged": 21,
+    "new_cloud_deployment": false
+  }
+}

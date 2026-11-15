@@ -1,0 +1,94 @@
+{
+  "assembled_at_utc": "2026-10-17T15:49:00.634098+00:00",
+  "scope": "Actual local Chrome; Lighthouse mobile accessibility category. Each audit timestamp is preserved. No physical-device/manual accessibility certification inferred.",
+  "results": [
+    {
+      "page": "home",
+      "url": "http://localhost:3000/",
+      "score": 100,
+      "unresolved_automated_audits": [],
+      "lighthouse_version": "13.5.0",
+      "recorded_at_utc": "2026-10-17T15:39:14.512Z"
+    },
+    {
+      "page": "explore",
+      "url": "http://localhost:3000/explore.html",
+      "score": 100,
+      "unresolved_automated_audits": [],
+      "lighthouse_version": "13.5.0",
+      "recorded_at_utc": "2026-10-17T15:43:45.264Z"
+    },
+    {
+      "page": "comparison-document",
+      "url": "http://localhost:3000/compare.html",
+      "score": 100,
+      "unresolved_automated_audits": [],
+      "lighthouse_version": "13.5.0",
+      "recorded_at_utc": "2026-10-17T15:39:26.657Z"
+    },
+    {
+      "page": "discover",
+      "url": "http://localhost:3000/discover.html",
+      "score": 100,
+      "unresolved_automated_audits": [],
+      "lighthouse_version": "13.5.0",
+      "recorded_at_utc": "2026-10-17T15:39:32.151Z"
+    },
+    {
+      "page": "methodology",
+      "url": "http://localhost:3000/methodology.html",
+      "score": 100,
+      "unresolved_automated_audits": [],
+      "lighthouse_version": "13.5.0",
+      "recorded_at_utc": "2026-10-17T15:39:37.551Z"
+    },
+    {
+      "page": "guide",
+      "url": "http://localhost:3000/guide.html",
+      "score": 100,
+      "unresolved_automated_audits": [],
+      "lighthouse_version": "13.5.0",
+      "recorded_at_utc": "2026-10-17T15:39:43.224Z"
+    },
+    {
+      "page": "introduction",
+      "url": "http://localhost:3000/classic-home.html",
+      "score": 100,
+      "unresolved_automated_audits": [],
+      "lighthouse_version": "13.5.0",
+      "recorded_at_utc": "2026-10-17T15:39:48.674Z"
+    },
+    {
+      "page": "observations",
+      "url": "http://localhost:3000/#observations/m42",
+      "score": 100,
+      "unresolved_automated_audits": [],
+      "lighthouse_version": "13.5.0",
+      "recorded_at_utc": "2026-10-17T15:39:54.206Z"
+    },
+    {
+      "page": "compare",
+      "url": "http://localhost:3000/#compare",
+      "score": 100,
+      "unresolved_automated_audits": [],
+      "lighthouse_version": "13.5.0",
+      "recorded_at_utc": "2026-10-17T15:39:59.738Z"
+    },
+    {
+      "page": "mission",
+      "url": "http://localhost:3000/#mission",
+      "score": 100,
+      "unresolved_automated_audits": [],
+      "lighthouse_version": "13.5.0",
+      "recorded_at_utc": "2026-10-17T15:40:05.499Z"
+    },
+    {
+      "page": "universe",
+      "url": "http://localhost:3000/#universe",
+      "score": 100,
+      "unresolved_automated_audits": [],
+      "lighthouse_version": "13.5.0",
+      "recorded_at_utc": "2026-10-17T15:47:34.116Z"
+    }
+  ]
+}

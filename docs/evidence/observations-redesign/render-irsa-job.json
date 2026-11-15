@@ -1,0 +1,31 @@
+[
+  {
+    "state": "running",
+    "message": "Searching spherex_dr1_deep via SIA2 · MJD 61105–61225"
+  },
+  {
+    "state": "running",
+    "message": "Searching spherex_dr1_deep via SIA2 · MJD 61105–61225"
+  },
+  {
+    "state": "running",
+    "message": "Searching spherex_dr1_deep via SIA2 · MJD 61225–61345"
+  },
+  {
+    "state": "complete",
+    "message": "Archive search was incomplete. Retry is available; missing collections are not treated as zero observations."
+  },
+  {
+    "status": "partial_or_unavailable",
+    "matches": 0,
+    "failures": [
+      "spherex_dr1: MJD 60745.00000–61360.00000: SIA2: HTTP Error 502: Proxy Error; TAP: HTTP Error 502: Proxy Error",
+      "spherex_dr1_deep: MJD 60745.00000–60865.00000: SIA2: The read operation timed out; TAP: HTTP Error 502: Proxy Error",
+      "spherex_dr1_deep: MJD 60865.00000–60985.00000: SIA2: The read operation timed out; TAP: HTTP Error 502: Proxy Error",
+      "spherex_dr1_deep: MJD 60985.00000–61105.00000: SIA2: HTTP Error 502: Proxy Error; TAP: HTTP Error 502: Proxy Error",
+      "spherex_dr1_deep: MJD 61105.00000–61225.00000: SIA2: The read operation timed out; TAP: HTTP Error 502: Proxy Error",
+      "spherex_dr1_deep: MJD 61225.00000–61345.00000: SIA2: HTTP Error 502: Proxy Error; TAP: HTTP Error 502: Proxy Error",
+      "spherex_dr1_deep: MJD 61345.00000–61360.00000: SIA2: HTTP Error 502: Proxy Error; TAP: HTTP Error 502: Proxy Error"
+    ]
+  }
+]

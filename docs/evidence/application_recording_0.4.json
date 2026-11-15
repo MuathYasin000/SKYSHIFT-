@@ -1,0 +1,71 @@
+{
+  "recorded_at_utc": "2026-10-16T16:25:21.414Z",
+  "capture_status": "completed",
+  "capture_failure": null,
+  "raw_video": "output/video/visitor-0.4-raw/page@ce41209f0b942ba499daab0e15be5d80.webm",
+  "browser_version": "153.0.8010.12",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "planned_seconds": 180,
+  "live_application_capture": true,
+  "interaction_operator": "automated Playwright script; not a human usability participant",
+  "visible_pointer": "capture-only overlay",
+  "human_presenter": false,
+  "scientific_approval": "PENDING",
+  "independent_novice_validation": "NOT CONDUCTED",
+  "external_requests": [],
+  "page_errors": [],
+  "events": [
+    {
+      "scene": 1,
+      "title": "A local observatory",
+      "planned_start_seconds": 0,
+      "actual_start_seconds": 0.00007619999999997163
+    },
+    {
+      "scene": 2,
+      "title": "Choose a real sky region",
+      "planned_start_seconds": 18,
+      "actual_start_seconds": 18.0094951
+    },
+    {
+      "scene": 3,
+      "title": "Understand the image and its sources",
+      "planned_start_seconds": 42,
+      "actual_start_seconds": 42.004526
+    },
+    {
+      "scene": 4,
+      "title": "Two dates, with explicit limits",
+      "planned_start_seconds": 66,
+      "actual_start_seconds": 66.0068889
+    },
+    {
+      "scene": 5,
+      "title": "Explore without inventing detail",
+      "planned_start_seconds": 94,
+      "actual_start_seconds": 94.00622539999999
+    },
+    {
+      "scene": 6,
+      "title": "Save a question and its evidence",
+      "planned_start_seconds": 118,
+      "actual_start_seconds": 118.00846150000001
+    },
+    {
+      "scene": 7,
+      "title": "Reopen the comparison",
+      "planned_start_seconds": 146,
+      "actual_start_seconds": 146.00749699999997
+    },
+    {
+      "scene": 8,
+      "title": "Trust comes from clear limits",
+      "planned_start_seconds": 166,
+      "actual_start_seconds": 166.0061109
+    }
+  ],
+  "export_sha256": "aa5e9cf71a40b49c5e161b3f03f496e712b17ab241a6093ff03cee72b58e739b"
+}

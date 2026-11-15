@@ -1,0 +1,184 @@
+{
+  "results": [
+    {
+      "test": "Native identity, diagnostics, reference, controls, no horizontal overflow",
+      "id": "m101-2025W49_2A_0756_3",
+      "width": 1440,
+      "diagnostics": {
+        "id": "m101-2025W49_2A_0756_3",
+        "shape": [
+          116,
+          176
+        ],
+        "settings": {
+          "limits": "percentile",
+          "stretch": "asinh",
+          "asinh_a": 0.1,
+          "contrast": 1,
+          "palette": "grayscale",
+          "mask": "overlay"
+        },
+        "effective_limits": {
+          "vmin": 0.14235787749290463,
+          "vmax": 2.496150569915812,
+          "asinh_a": 0.1
+        },
+        "scale": 5.5,
+        "source_sha256": "48acaf60861e1ca7eac5cc0119c63f3c5ecf5714fd7f9eaefa59aa1e69a5cd03",
+        "reference": "c29ca9ba92d4d146fff54b4af997337f6fe03602ff006d7d5b1981f43a709606"
+      },
+      "status": "pass"
+    },
+    {
+      "test": "Native identity, diagnostics, reference, controls, no horizontal overflow",
+      "id": "m101-2025W50_1A_0736_3",
+      "width": 1440,
+      "diagnostics": {
+        "id": "m101-2025W50_1A_0736_3",
+        "shape": [
+          137,
+          176
+        ],
+        "settings": {
+          "limits": "percentile",
+          "stretch": "asinh",
+          "asinh_a": 0.1,
+          "contrast": 1,
+          "palette": "grayscale",
+          "mask": "overlay"
+        },
+        "effective_limits": {
+          "vmin": 0.157870200276375,
+          "vmax": 2.3674861514568453,
+          "asinh_a": 0.1
+        },
+        "scale": 4.656934306569343,
+        "source_sha256": "27943f13c77d7b1b6927fcbba15341d2589f79a923322732ab8608fbb4940dbb",
+        "reference": "c29ca9ba92d4d146fff54b4af997337f6fe03602ff006d7d5b1981f43a709606"
+      },
+      "status": "pass"
+    },
+    {
+      "test": "Native identity, diagnostics, reference, controls, no horizontal overflow",
+      "id": "r-draconis-2025W49_1A_0009_3",
+      "width": 1440,
+      "diagnostics": {
+        "id": "r-draconis-2025W49_1A_0009_3",
+        "shape": [
+          176,
+          176
+        ],
+        "settings": {
+          "limits": "percentile",
+          "stretch": "asinh",
+          "asinh_a": 0.1,
+          "contrast": 1,
+          "palette": "grayscale",
+          "mask": "overlay"
+        },
+        "effective_limits": {
+          "vmin": 0.1292119133472447,
+          "vmax": 4.521967287063599,
+          "asinh_a": 0.1
+        },
+        "scale": 3.625,
+        "source_sha256": "e48ac3fc5cf16f815b4799b631856e77d64ca46c750ee2339c0abf5b2b869412",
+        "reference": "b95679afabe078c684e44f473c9c10b2f220ac8344150b74eb5d47c12b725aa2"
+      },
+      "status": "pass"
+    },
+    {
+      "test": "Native identity, diagnostics, reference, controls, no horizontal overflow",
+      "id": "r-draconis-2025W50_2A_0259_3",
+      "width": 1440,
+      "diagnostics": {
+        "id": "r-draconis-2025W50_2A_0259_3",
+        "shape": [
+          176,
+          138
+        ],
+        "settings": {
+          "limits": "percentile",
+          "stretch": "asinh",
+          "asinh_a": 0.1,
+          "contrast": 1,
+          "palette": "grayscale",
+          "mask": "overlay"
+        },
+        "effective_limits": {
+          "vmin": 0.13792468458414042,
+          "vmax": 7.128505153655991,
+          "asinh_a": 0.1
+        },
+        "scale": 3.625,
+        "source_sha256": "ec6b6f361163ce8adbc23249557aa3ba770f87a6899e408b8d8e3667e244212b",
+        "reference": "b95679afabe078c684e44f473c9c10b2f220ac8344150b74eb5d47c12b725aa2"
+      },
+      "status": "pass"
+    },
+    {
+      "test": "Native identity, diagnostics, reference, controls, no horizontal overflow",
+      "id": "m101-2025W49_2A_0756_3",
+      "width": 390,
+      "diagnostics": {
+        "id": "m101-2025W49_2A_0756_3",
+        "shape": [
+          116,
+          176
+        ],
+        "settings": {
+          "limits": "percentile",
+          "stretch": "asinh",
+          "asinh_a": 0.1,
+          "contrast": 1,
+          "palette": "grayscale",
+          "mask": "overlay"
+        },
+        "effective_limits": {
+          "vmin": 0.14235787749290463,
+          "vmax": 2.496150569915812,
+          "asinh_a": 0.1
+        },
+        "scale": 1.9772727272727273,
+        "source_sha256": "48acaf60861e1ca7eac5cc0119c63f3c5ecf5714fd7f9eaefa59aa1e69a5cd03",
+        "reference": "c29ca9ba92d4d146fff54b4af997337f6fe03602ff006d7d5b1981f43a709606"
+      },
+      "status": "pass"
+    },
+    {
+      "test": "Native identity, diagnostics, reference, controls, no horizontal overflow",
+      "id": "r-draconis-2025W49_1A_0009_3",
+      "width": 390,
+      "diagnostics": {
+        "id": "r-draconis-2025W49_1A_0009_3",
+        "shape": [
+          176,
+          176
+        ],
+        "settings": {
+          "limits": "percentile",
+          "stretch": "asinh",
+          "asinh_a": 0.1,
+          "contrast": 1,
+          "palette": "grayscale",
+          "mask": "overlay"
+        },
+        "effective_limits": {
+          "vmin": 0.1292119133472447,
+          "vmax": 4.521967287063599,
+          "asinh_a": 0.1
+        },
+        "scale": 1.9772727272727273,
+        "source_sha256": "e48ac3fc5cf16f815b4799b631856e77d64ca46c750ee2339c0abf5b2b869412",
+        "reference": "b95679afabe078c684e44f473c9c10b2f220ac8344150b74eb5d47c12b725aa2"
+      },
+      "status": "pass"
+    },
+    {
+      "test": "Tampered native payload never rendered",
+      "status": "pass"
+    }
+  ],
+  "errors": [],
+  "scientific_approval": "PENDING"
+}

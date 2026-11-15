@@ -1,0 +1,55 @@
+{
+  "verified_at_utc": "2026-10-16T14:46:14.216587+00:00",
+  "url": "https://skyshift-project-mercury.surebream11.chatgpt.site/",
+  "credentials_used": false,
+  "pair_id": "pair-52ad675d929b0740c23b",
+  "review_packet_sha256": "2187c38e4e97e8c94999e0ac9794a69e9c357f04ead6298e56b877ed64e30d78",
+  "browser_download_matches_snapshot": true,
+  "production_comparison_annotations": 1,
+  "measurements": [
+    {
+      "path": "",
+      "status": 200,
+      "size_bytes": 12964,
+      "elapsed_seconds": 1.8085939000011422
+    },
+    {
+      "path": "data/catalog.json",
+      "status": 200,
+      "size_bytes": 1394,
+      "elapsed_seconds": 2.646026399999755
+    },
+    {
+      "path": "./data/bundle.json",
+      "status": 200,
+      "size_bytes": 125268,
+      "elapsed_seconds": 0.07762900000125228
+    },
+    {
+      "path": "./data/bundle.json",
+      "status": 200,
+      "size_bytes": 125268,
+      "elapsed_seconds": 0.09439320000092266
+    },
+    {
+      "path": "./data/bundle.json",
+      "status": 200,
+      "size_bytes": 125268,
+      "elapsed_seconds": 0.08049420000133978
+    },
+    {
+      "path": "./data/bundle.json",
+      "status": 200,
+      "size_bytes": 125268,
+      "elapsed_seconds": 0.09211370000048191
+    },
+    {
+      "path": "data/pair.fits",
+      "status": 200,
+      "size_bytes": 60480,
+      "elapsed_seconds": 0.07671730000038224
+    }
+  ],
+  "performance_scope": "Unauthenticated HTTP transfer timings only, not browser paint, controlled cache, concurrent load, or user-study measurements.",
+  "scientific_approval": "PENDING"
+}

@@ -1,0 +1,95 @@
+{
+  "created_at_utc": "2026-10-16T17:17:24.756411+00:00",
+  "duration_seconds": 180.0,
+  "video_frames": 4500,
+  "fps": "25/1",
+  "width": 1280,
+  "height": 720,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "subtitle_tracks": 1,
+  "live_application_capture": true,
+  "human_presenter": false,
+  "independent_novice_validation": "NOT CONDUCTED",
+  "final_frame_hold": "End frame held as needed for the exact 180-second encode; no generated imagery",
+  "qualified_scientific_approval": "PENDING",
+  "narration": "generic installed Windows SAPI voice",
+  "caption_timing": "approximate sentence timing within actual scene intervals",
+  "raw_capture_sha256": "f74b6fa86e0f9411741f307d90ca8fd94d6fe61489da902dd4886094a2394276",
+  "sha256": "f4cf81d4563793535b26ebbd6797f00635cd1ddcc56fd7a1c9692dc14a1508f9",
+  "scene_timings": [
+    {
+      "scene": 1,
+      "start": 0,
+      "seconds": 18,
+      "original_narration_seconds": 17.04122448979592,
+      "narration_tempo": 1.0083564786861492
+    },
+    {
+      "scene": 2,
+      "start": 18,
+      "seconds": 24,
+      "original_narration_seconds": 22.6253514739229,
+      "narration_tempo": 1.0
+    },
+    {
+      "scene": 3,
+      "start": 42,
+      "seconds": 24,
+      "original_narration_seconds": 22.150521541950113,
+      "narration_tempo": 1.0
+    },
+    {
+      "scene": 4,
+      "start": 66,
+      "seconds": 28,
+      "original_narration_seconds": 23.380408163265304,
+      "narration_tempo": 1.0
+    },
+    {
+      "scene": 5,
+      "start": 94,
+      "seconds": 24,
+      "original_narration_seconds": 24.415419501133787,
+      "narration_tempo": 1.0661755240669777
+    },
+    {
+      "scene": 6,
+      "start": 118,
+      "seconds": 28,
+      "original_narration_seconds": 24.46077097505669,
+      "narration_tempo": 1.0
+    },
+    {
+      "scene": 7,
+      "start": 146,
+      "seconds": 20,
+      "original_narration_seconds": 22.04530612244898,
+      "narration_tempo": 1.1664183133570891
+    },
+    {
+      "scene": 8,
+      "start": 166,
+      "seconds": 14,
+      "original_narration_seconds": 14.20204081632653,
+      "narration_tempo": 1.1009333966144597
+    }
+  ],
+  "full_decode_check": {
+    "decoded_video_frames": 4500,
+    "decoded_audio_samples": 3969000,
+    "all_video_frames_decoded": true,
+    "audio_stream_decoded": true,
+    "human_audio_audition": false
+  },
+  "visually_inspected_frames_seconds": [
+    5,
+    26,
+    52,
+    78,
+    105,
+    129,
+    157,
+    175
+  ]
+}

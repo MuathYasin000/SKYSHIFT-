@@ -1,0 +1,116 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "headers": {
+      "server": "SKYSHIFT/1.1 ",
+      "date": "Sun, 18 Oct 2026 05:52:13 GMT",
+      "content-type": "text/html",
+      "content-length": "26751",
+      "last-modified": "Sun, 18 Oct 2026 05:49:35 GMT",
+      "vary": "Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "camera=(), microphone=(), geolocation=()",
+      "cross-origin-opener-policy": "same-origin",
+      "content-security-policy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
+      "cache-control": "no-cache"
+    }
+  },
+  {
+    "path": "site.js",
+    "status": 200,
+    "headers": {
+      "server": "SKYSHIFT/1.1 ",
+      "date": "Sun, 18 Oct 2026 05:52:13 GMT",
+      "content-type": "text/javascript",
+      "content-length": "6527",
+      "last-modified": "Sun, 18 Oct 2026 05:38:40 GMT",
+      "vary": "Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "camera=(), microphone=(), geolocation=()",
+      "cross-origin-opener-policy": "same-origin",
+      "content-security-policy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
+      "cache-control": "no-cache"
+    }
+  },
+  {
+    "path": "data/catalog.json",
+    "status": 200,
+    "headers": {
+      "server": "SKYSHIFT/1.1 ",
+      "date": "Sun, 18 Oct 2026 05:52:13 GMT",
+      "content-type": "application/json",
+      "content-length": "1394",
+      "last-modified": "Fri, 16 Oct 2026 14:36:49 GMT",
+      "vary": "Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "camera=(), microphone=(), geolocation=()",
+      "cross-origin-opener-policy": "same-origin",
+      "content-security-policy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
+      "cache-control": "no-cache"
+    }
+  },
+  {
+    "path": "data/pair.fits",
+    "status": 200,
+    "headers": {
+      "server": "SKYSHIFT/1.1 ",
+      "date": "Sun, 18 Oct 2026 05:52:13 GMT",
+      "content-type": "application/fits",
+      "content-length": "60480",
+      "last-modified": "Fri, 16 Oct 2026 14:36:49 GMT",
+      "vary": "Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "camera=(), microphone=(), geolocation=()",
+      "cross-origin-opener-policy": "same-origin",
+      "content-security-policy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
+      "cache-control": "no-cache"
+    }
+  },
+  {
+    "path": "assets/space/earth-natural.glb",
+    "status": 200,
+    "headers": {
+      "server": "SKYSHIFT/1.1 ",
+      "date": "Sun, 18 Oct 2026 05:52:13 GMT",
+      "content-type": "model/gltf-binary",
+      "content-length": "502500",
+      "last-modified": "Fri, 16 Oct 2026 20:10:31 GMT",
+      "vary": "Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "camera=(), microphone=(), geolocation=()",
+      "cross-origin-opener-policy": "same-origin",
+      "content-security-policy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
+      "cache-control": "no-cache"
+    }
+  },
+  {
+    "path": "data/review-part-0.bin",
+    "status": 200,
+    "headers": {
+      "server": "SKYSHIFT/1.1 ",
+      "date": "Sun, 18 Oct 2026 05:52:13 GMT",
+      "content-type": "application/octet-stream",
+      "content-length": "8000000",
+      "last-modified": "Fri, 16 Oct 2026 14:36:49 GMT",
+      "vary": "Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "permissions-policy": "camera=(), microphone=(), geolocation=()",
+      "cross-origin-opener-policy": "same-origin",
+      "content-security-policy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'",
+      "cache-control": "no-cache"
+    }
+  }
+]

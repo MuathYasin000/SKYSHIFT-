@@ -1,0 +1,26 @@
+{
+  "base": "https://skyshift-j22s.onrender.com",
+  "health": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.2",
+    "directory_id": "3298578fc4ed0f0d",
+    "content_id": "7f81095e688119bff8e97c1443d1fac90b958bf30c45ca271a0189c6a3acc4e7",
+    "release_id": "skyshift-2026-11-14",
+    "app_version": "0.12.0",
+    "created_at_utc": "2026-11-14T16:56:36.975571+00:00"
+  },
+  "release": {
+    "releases": [
+      "dr1",
+      "qr3"
+    ]
+  },
+  "sha256": {
+    "index.html": "63da95585f51e46b35a4a3ec0b1ec9bb48467eaa8dabb5cc02563a2f0007b82c",
+    "challenge.html": "f5d7045d547b0d81cf973317f84e4e11e820b99ec46345854a55a65d0d4c74d0",
+    "observations-compare.css": "cf7b844255604654e593ce7813d3be2874126f0217426f5c04c7a01fb7c6d21a",
+    "observations-compare.js": "b2c58b9bd85cd6352f585a8090354ea67c1448d0e3d86fca7aac79593c985123"
+  },
+  "commit": "fac6e8f778a6cc222557e33c7c120faf6ed0dbfc"
+}

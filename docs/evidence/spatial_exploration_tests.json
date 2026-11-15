@@ -1,0 +1,79 @@
+{
+  "date_utc": "2026-10-16T19:45:58.359Z",
+  "browser": "Chromium",
+  "browser_version": "153.0.8010.12",
+  "results": [
+    {
+      "name": "Sky locator clearly separates coordinate context from real observations and coverage",
+      "status": "pass"
+    },
+    {
+      "name": "A spatial field marker opens its real exposure and preserves comparison restrictions",
+      "status": "pass"
+    },
+    {
+      "name": "Back to sky and Reset provide a known navigation point with keyboard equivalents",
+      "status": "pass"
+    },
+    {
+      "name": "Search uses real curated field context and supports a clear empty result",
+      "status": "pass"
+    },
+    {
+      "name": "Orion opens its genuine September exposure without implying a tested temporal pair",
+      "status": "pass"
+    },
+    {
+      "name": "Resume from Home restores source identity, viewport, contrast and appearance",
+      "status": "pass"
+    },
+    {
+      "name": "Compare returns to the same larger exposure and saved exploration state",
+      "status": "pass"
+    },
+    {
+      "name": "Storage denial cannot prevent scientific viewing, inspection or export",
+      "status": "pass"
+    },
+    {
+      "name": "Corrupted local history is ignored without inventing an approved or empty sky",
+      "status": "pass"
+    },
+    {
+      "name": "Syntactically valid but altered saved metadata cannot disable a healthy catalogue",
+      "status": "pass"
+    },
+    {
+      "name": "Automatic view restoration cannot override a field selected during startup",
+      "status": "pass"
+    },
+    {
+      "name": "1024px spatial navigation has no overflow and the list remains an equivalent control",
+      "status": "pass"
+    },
+    {
+      "name": "390px spatial navigation has no overflow and the list remains an equivalent control",
+      "status": "pass"
+    },
+    {
+      "name": "320px spatial navigation has no overflow and the list remains an equivalent control",
+      "status": "pass"
+    },
+    {
+      "name": "Spatial workspace passes automated accessibility rules and stays local",
+      "status": "pass",
+      "detail": {
+        "violations": [],
+        "manual_review": [
+          "aria-prohibited-attr",
+          "color-contrast",
+          "label-content-name-mismatch"
+        ]
+      }
+    }
+  ],
+  "external": [],
+  "errors": [],
+  "scientific_approval": "PENDING",
+  "independent_novice_validation": "NOT CONDUCTED"
+}

@@ -1,0 +1,115 @@
+{
+  "recorded_at_utc": "2026-10-17T18:29:52.317849+00:00",
+  "baseline_commit": "aa0189c",
+  "scientific_files": {
+    "count": 21,
+    "changed": [],
+    "qualified_approval": "PENDING",
+    "internal_human_review": "PENDING",
+    "independent_novice_validation": "NOT CONDUCTED"
+  },
+  "display_derivatives": {
+    "count": 5,
+    "supported_RGB": "Exact equality tested; only excluded pixels restyled"
+  },
+  "lighthouse": {
+    "before": {
+      "phase": "before",
+      "scope": "Local Lighthouse mobile simulated throttling; hardware/frame-rate and field performance are not certified.",
+      "results": [
+        {
+          "page": "home",
+          "performance": 37,
+          "accessibility": 100,
+          "lcp_ms": 7963.46895,
+          "tbt_ms": 2152.275875000003,
+          "cls": 0,
+          "version": "13.5.0",
+          "fetch_time": "2026-10-17T16:06:33.280Z"
+        },
+        {
+          "page": "compare",
+          "performance": 73,
+          "accessibility": 100,
+          "lcp_ms": 5709.566200000001,
+          "tbt_ms": 0,
+          "cls": 0,
+          "version": "13.5.0",
+          "fetch_time": "2026-10-17T16:06:46.918Z"
+        }
+      ]
+    },
+    "after": {
+      "phase": "final",
+      "scope": "Local Lighthouse mobile simulated throttling; hardware/frame-rate and field performance are not certified.",
+      "results": [
+        {
+          "page": "home",
+          "performance": 69,
+          "accessibility": 100,
+          "lcp_ms": 6487.30515,
+          "tbt_ms": 0,
+          "cls": 0,
+          "version": "13.5.0",
+          "fetch_time": "2026-10-17T18:25:44.977Z"
+        },
+        {
+          "page": "compare",
+          "performance": 87,
+          "accessibility": 100,
+          "lcp_ms": 3705.3929999999996,
+          "tbt_ms": 16.5,
+          "cls": 0,
+          "version": "13.5.0",
+          "fetch_time": "2026-10-17T18:25:54.633Z"
+        }
+      ]
+    },
+    "interpretation": "Actual single local mobile-profile runs. Lab scores are not field-performance guarantees."
+  },
+  "shared_components_bytes": {
+    "before": 174147,
+    "after": 16128
+  },
+  "tests": {
+    "python": 108,
+    "javascript": 106,
+    "product_journeys": 19,
+    "mission_control": 37,
+    "disclosure_destinations_each_primary_width": 17,
+    "disclosure_states_checked": 76,
+    "refinement_acceptance": 24,
+    "static_provider_independent": 4
+  },
+  "screenshots": {
+    "gallery": "tmp/refinement/index.html",
+    "before": "tmp/refinement/before",
+    "after": "tmp/refinement/after",
+    "widths": [
+      [
+        1440,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ]
+  },
+  "retained_routes": {
+    "classic-home.html": "Actively linked Project introduction and independent recovery; unique content, so the conditional deletion request does not apply."
+  },
+  "hygiene_notes": [
+    "Retired local font/image runtime references removed. Exact original upstream TTF source URL remains in the active WOFF2 provenance record.",
+    "Historical evidence and source records outside the shipped build remain preserved.",
+    "CSS coverage is coarse for cascade layers; DOM-selector union and source review supported removal of 39 proven-unused branches."
+  ],
+  "limitations": [
+    "Safari and physical touch devices not tested; touch emulation exercised in product suite.",
+    "No subjective listening acceptance or manual accessibility certification.",
+    "Chromium reports NVIDIA GTX 1660 SUPER / D3D11. Earth rendered; zero JS readPixels calls and no GPU-stall warnings observed in normal acceptance journeys. No driver-level profiling.",
+    "Home Lighthouse performance remains 69/100 under simulated mobile throttling.",
+    "No public deployment was performed."
+  ],
+  "static_content_id": "fe359eaa2314760d1f679899e397e8f723f1e99b242ce57de128c67eab437a61"
+}

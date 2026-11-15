@@ -1,0 +1,12 @@
+{
+  "source_sha256": "44e89f460c55f46f7e384ba7dfe8927fa8e56163875aba3766499a5646813447",
+  "plane": 1,
+  "wavelength_um": 0.753,
+  "skyshift_settings": {
+    "palette": "grayscale",
+    "limits": "zscale",
+    "stretch": "asinh"
+  },
+  "official_reference": "../irsa-official-mosaic-2026-10-30T12-14-02-684Z-26d525ea/official-initial.png",
+  "scope": "Same original FITS and wavelength plane; independent viewer display/mask policies, no bitmap-equality claim"
+}

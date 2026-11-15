@@ -1,0 +1,6 @@
+{
+  "url": "https://irsa.ipac.caltech.edu/TAP/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&QUERY=SELECT+TOP+2000+source_id%2Cra%2Cdec%2Cref_epoch%2Cpmra%2Cpmdec%2Cparallax%2Cruwe%2Cphot_g_mean_mag+FROM+gaia_dr3_source+WHERE+CONTAINS%28POINT%28%27ICRS%27%2Cra%2Cdec%29%2CCIRCLE%28%27ICRS%27%2C167.24287178688297%2C5.134201895882312%2C0.21213203435596423%29%29%3D1+AND+phot_g_mean_mag%3C20+AND+ruwe%3C1.4+AND+pmra+IS+NOT+NULL+AND+pmdec+IS+NOT+NULL",
+  "query": "SELECT TOP 2000 source_id,ra,dec,ref_epoch,pmra,pmdec,parallax,ruwe,phot_g_mean_mag FROM gaia_dr3_source WHERE CONTAINS(POINT('ICRS',ra,dec),CIRCLE('ICRS',167.24287178688297,5.134201895882312,0.21213203435596423))=1 AND phot_g_mean_mag<20 AND ruwe<1.4 AND pmra IS NOT NULL AND pmdec IS NOT NULL",
+  "retrieved_at_utc": "2026-10-29T22:24:49.066419+00:00",
+  "sha256": "26c3d7b67f5e0bd86d97ed9fc3343606049cf5d34cabe1b2178f0d1aeb22f2ed"
+}

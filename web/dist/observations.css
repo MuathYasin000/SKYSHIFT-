@@ -1,0 +1,574 @@
+@layer pages {
+  body[data-page="explore"] > main {
+    width: min(calc(var(--content) + 2 * var(--gutter)), 100%);
+    max-width: none;
+    margin: 0 auto;
+    padding: 80px var(--gutter);
+  }
+  .spatial-workspace {
+    width: 100%;
+    margin: 0;
+  }
+  .spatial-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .spatial-heading h1 {
+    font-size: clamp(3.5rem, 7vw, 7rem);
+    max-width: 13ch;
+    margin-bottom: 24px;
+  }
+  .spatial-heading p {
+    max-width: 52ch;
+  }
+  .spatial-heading .review-tag {
+    flex: none;
+    font-size: 12px;
+  }
+  .atlas-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(300px, 1fr);
+    gap: 24px;
+  }
+  .atlas-surface {
+    position: relative;
+    min-height: 690px;
+    border: 1px solid var(--line);
+    background: var(--black);
+    overflow: hidden;
+  }
+  .atlas-caption {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .atlas-caption .eyebrow {
+    margin-bottom: 12px;
+  }
+  .atlas-caption p {
+    font: 12px/1.7 var(--mono);
+    color: var(--text-3);
+  }
+  #atlas-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+  }
+  #atlas-markers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .atlas-marker {
+    position: absolute;
+    min-width: 44px;
+    min-height: 44px;
+    background: transparent;
+    border: 0;
+    transform: translate(-50%, -50%);
+    padding: 12px;
+    z-index: 3;
+    pointer-events: auto;
+  }
+  .atlas-marker:hover {
+    background: transparent;
+  }
+  .atlas-marker-dot {
+    width: 16px;
+    height: 16px;
+    display: block;
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    background: var(--black);
+  }
+  .atlas-marker.limited .atlas-marker-dot {
+    border-color: var(--red);
+  }
+  .atlas-marker[aria-pressed="true"] .atlas-marker-dot {
+    background: var(--blue);
+    border-color: var(--white);
+  }
+  .atlas-marker-name {
+    position: absolute;
+    left: 50%;
+    top: 44px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font: 12px/1.5 var(--mono);
+    color: var(--white);
+    padding: 8px 10px;
+    background: var(--black);
+    border: 1px solid var(--line);
+  }
+  .atlas-controls {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    z-index: 2;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .atlas-controls > div {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .atlas-controls button {
+    font-size: 14px;
+    min-width: 44px;
+  }
+  .atlas-controls p {
+    font: 12px/1.6 var(--mono);
+    color: var(--text-3);
+  }
+  .atlas-catalogue {
+    border: 1px solid var(--line);
+    padding: 24px;
+    min-width: 0;
+    background: var(--surface-1);
+    max-height: 690px;
+    overflow: auto;
+  }
+  .atlas-catalogue label {
+    font: 12px var(--mono);
+    color: var(--text-3);
+    margin-bottom: 12px;
+  }
+  .atlas-catalogue input {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  .atlas-catalogue p {
+    font-size: 14px;
+  }
+  .atlas-catalogue-heading {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  .visitor-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .visitor-gallery .field-card {
+    border: 1px solid var(--line);
+    background: var(--black);
+    overflow: hidden;
+  }
+  .visitor-gallery .field-card > a {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    gap: 0;
+    text-decoration: none;
+    color: var(--white);
+  }
+  .visitor-gallery .field-preview {
+    position: relative;
+    min-height: 180px;
+  }
+  .visitor-gallery img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .visitor-gallery .preview-label {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 8px;
+    font: 12px/1.4 var(--mono);
+    padding: 6px;
+    background: var(--black);
+    color: var(--white);
+  }
+  .field-card-body {
+    padding: 16px;
+    min-width: 0;
+  }
+  .field-card-body h3 {
+    font-size: 22px;
+    margin: 12px 0;
+  }
+  .field-card-body p {
+    font-size: 14px;
+  }
+  .field-kind,
+  .field-meta,
+  .field-card-body .field-status {
+    font: 12px/1.6 var(--mono);
+    color: var(--text-3);
+  }
+  .field-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .field-card-body .field-action {
+    font: 12px var(--mono);
+    margin-top: 16px;
+    min-height: 24px;
+    color: var(--blue-text);
+  }
+  .catalogue-recovery {
+    margin-block: 24px;
+    font-size: 14px;
+  }
+  .explorer {
+    padding-top: 100px;
+    margin: 0;
+    scroll-margin-top: 96px;
+  }
+  .explorer-title {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+  .explorer-title h2 {
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    max-width: 20ch;
+    margin-bottom: 24px;
+  }
+  .explorer-title p {
+    max-width: 55ch;
+  }
+  .explorer-title .primary {
+    flex: none;
+  }
+  .visit-subnav {
+    padding-block: 24px;
+    border-block: 1px solid var(--line);
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .visit-subnav span {
+    font: 12px/1.6 var(--mono);
+    color: var(--text-3);
+  }
+  .view-file-controls {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 24px 0;
+  }
+  .view-file-controls button {
+    font-size: 14px;
+  }
+  .view-file-controls p {
+    font-size: 14px;
+    flex-basis: 100%;
+  }
+  .explore-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(280px, 1fr);
+    gap: 32px;
+  }
+  .explore-image-column {
+    min-width: 0;
+  }
+  .explore-toolbar {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .control-caption {
+    font: 12px var(--mono);
+    color: var(--text-3);
+    margin-bottom: 12px;
+  }
+  .explore-canvas-wrap {
+    width: 100%;
+    height: clamp(400px, 60vh, 720px);
+    position: relative;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    background: var(--black);
+  }
+  #explore-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+  }
+  .pixel-summary {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 48px;
+    padding: 16px;
+    background: var(--black);
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font: 12px/1.6 var(--mono);
+    color: var(--text-2);
+  }
+  .pixel-summary button {
+    font-size: 14px;
+  }
+  #dismiss-pixel {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    min-width: 44px;
+  }
+  .pixel-summary strong {
+    padding-right: 44px;
+  }
+  .image-explainer {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 16px 0;
+  }
+  .image-explainer > span {
+    font: 12px var(--mono);
+    color: var(--text-3);
+  }
+  .image-explainer button {
+    font-size: 14px;
+  }
+  .viewer-help {
+    font: 12px/1.7 var(--mono);
+    color: var(--text-3);
+    margin-bottom: 24px;
+  }
+  .image-options,
+  .pixel-inspector {
+    border-top: 1px solid var(--line);
+    padding-block: 16px;
+  }
+  .image-options p,
+  .pixel-inspector p {
+    font-size: 14px;
+  }
+  .image-options summary span,
+  .pixel-inspector summary span {
+    display: block;
+    font: 12px/1.6 var(--mono);
+    color: var(--text-3);
+  }
+  .visual-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-block: 24px;
+  }
+  .visual-controls label {
+    font-size: 14px;
+  }
+  .visual-controls select,
+  .visual-controls input {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+  }
+  .coordinate-bar {
+    font: 12px/1.7 var(--mono);
+    color: var(--text-2);
+  }
+  .exposure-questions {
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
+    margin-top: 32px;
+  }
+  .exposure-questions h3 {
+    font-size: 24px;
+  }
+  .exposure-questions p {
+    font-size: 16px;
+  }
+  .exposure-questions .caption {
+    font: 12px/1.7 var(--mono);
+    color: var(--text-3);
+  }
+  .observation-card h3 {
+    font-size: clamp(1.75rem, 3vw, 3rem);
+    margin-bottom: 24px;
+  }
+  .observation-card p {
+    font-size: 16px;
+  }
+  .observation-card .eyebrow {
+    font-size: 12px;
+  }
+  .observation-card .caption {
+    font: 12px/1.7 var(--mono);
+    color: var(--text-3);
+  }
+  .look-for {
+    padding-block: 24px;
+    margin-block: 24px;
+    border-block: 1px solid var(--line);
+  }
+  .look-for .eyebrow {
+    margin-bottom: 12px;
+  }
+  .observation-card details {
+    border-top: 1px solid var(--line);
+    padding-block: 16px;
+  }
+  .observation-card details p {
+    font-size: 14px;
+  }
+  .observation-card dl {
+    font: 12px/1.7 var(--mono);
+  }
+  .observation-card dt {
+    color: var(--text-3);
+    margin-top: 16px;
+  }
+  .observation-card dd {
+    color: var(--text-2);
+    margin-left: 0;
+    overflow-wrap: anywhere;
+  }
+  .observation-card code {
+    font: 12px var(--mono);
+    display: block;
+    overflow-wrap: anywhere;
+  }
+  .observation-card a {
+    font-size: 14px;
+    overflow-wrap: anywhere;
+  }
+  .coordinate-reference {
+    margin-top: 80px;
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
+  #sky-map {
+    width: 100%;
+    height: auto;
+  }
+  #sky-map text {
+    font: 12px var(--mono);
+    fill: var(--text-2);
+  }
+  #sky-map path,
+  #sky-map line {
+    stroke: var(--line-strong);
+  }
+  .viewer-loading {
+    padding: 40px;
+    border: 1px solid var(--line);
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    background: var(--surface-1);
+  }
+  .viewer-loading strong {
+    font-size: 16px;
+  }
+  .viewer-loading span {
+    font: 12px var(--mono);
+    color: var(--text-3);
+  }
+  @media (max-width: 1100px) {
+    .atlas-layout {
+      grid-template-columns: minmax(0, 1fr) 340px;
+    }
+    .explore-layout {
+      grid-template-columns: minmax(0, 1fr) 300px;
+    }
+    .spatial-heading {
+      flex-direction: column;
+    }
+    .visitor-gallery .field-card > a {
+      grid-template-columns: 1fr;
+    }
+    .visitor-gallery .field-preview {
+      min-height: 150px;
+      height: 150px;
+    }
+  }
+  @media (max-width: 800px) {
+    body[data-page="explore"] > main {
+      padding-top: 48px;
+    }
+    .atlas-layout,
+    .explore-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .atlas-surface {
+      min-height: 560px;
+    }
+    .atlas-catalogue {
+      max-height: none;
+    }
+    .visitor-gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .explorer-title {
+      flex-direction: column;
+    }
+    .atlas-caption {
+      left: 16px;
+      right: 16px;
+      top: 16px;
+    }
+    .atlas-controls {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+    }
+    .spatial-heading h1 {
+      font-size: clamp(3.5rem, 9vw, 5.5rem);
+    }
+    .explore-canvas-wrap {
+      height: 500px;
+    }
+    .visual-controls {
+      grid-template-columns: 1fr;
+    }
+    .explorer {
+      padding-top: 80px;
+    }
+  }
+  @media (max-width: 550px) {
+    .visitor-gallery {
+      grid-template-columns: 1fr;
+    }
+    .visitor-gallery .field-card > a {
+      grid-template-columns: 100px minmax(0, 1fr);
+    }
+    .visitor-gallery .field-preview {
+      height: auto;
+      min-height: 220px;
+    }
+    .atlas-controls > div {
+      flex-wrap: wrap;
+    }
+    .field-card-body h3 {
+      font-size: 22px;
+    }
+    .explore-canvas-wrap {
+      height: 420px;
+    }
+    .view-file-controls button {
+      width: 100%;
+    }
+  }
+ .visitor-gallery .field-card-body h3{height:auto;max-height:none;overflow:visible;white-space:normal;-webkit-line-clamp:unset;line-clamp:unset;overflow-wrap:anywhere}.image-caption{padding-inline:0}
+
+}

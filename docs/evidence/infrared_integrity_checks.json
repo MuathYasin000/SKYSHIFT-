@@ -1,0 +1,124 @@
+{
+  "recorded_at_utc": "2026-10-17T09:44:32.826503+00:00",
+  "scope": "Seeing the Invisible interface revision; no scientific approval inferred",
+  "baseline_commit": "36124ca",
+  "localhost": "http://localhost:3000",
+  "preservation": {
+    "tracked_scientific_assets_unchanged": 21,
+    "python_scientific_source_unchanged": true,
+    "investigation_engine_unchanged": true,
+    "photo_assisted_spacecraft_geometry_materials_unchanged": true,
+    "method": "git diff --quiet against baseline for web/dist/data, src/skyshift and web/dist/investigation.js; manifest model/material hashes verified"
+  },
+  "new_logo": {
+    "id": "logo-outlined",
+    "file": "assets/LOGO2.PNG",
+    "credit": "Project Mercury Team / supplied by the user",
+    "source_page": "User attachment LOGO2.PNG, 17 October 2026",
+    "terms": "User-authorized project use; original artwork preserved",
+    "sha256": "9a8996f1d57c7f655ed2a6d6e37d47912fd76a77d22c390384373c3d08992d9b",
+    "bytes": 775265,
+    "modifications": "none"
+  },
+  "executed_checks": {
+    "javascript_unit_tests": {
+      "passed": 80,
+      "failed": 0,
+      "skipped": 0
+    },
+    "python_frontend_server_tests": {
+      "passed": 24
+    },
+    "final_targeted_asset_layout_tests": {
+      "passed": 9
+    },
+    "browser_suites": {
+      "infrared_model_tests": {
+        "passed": 13,
+        "browser": "155.0.8059.80",
+        "receipt_sha256": "364f9e1724b3435a91ef4505331f44b9ff7918b127660f95e13fec6ddaf9fc97"
+      },
+      "infrared_product_tests": {
+        "passed": 19,
+        "browser": "155.0.8059.80",
+        "receipt_sha256": "0b4941bdca2b8d8a9b7d3b95350003b239bad3ee31eb70ff4b347ed3a82c157e"
+      },
+      "infrared_product_tests_edge": {
+        "passed": 19,
+        "browser": "155.0.4283.45",
+        "receipt_sha256": "7e87b3705c1b42c0e7fa2b761eab29ff43d45105d2506c9f889878a6e0379c98"
+      },
+      "infrared_experience_tests": {
+        "passed": 13,
+        "browser": "155.0.8059.80",
+        "receipt_sha256": "8c4e378457ae1b15b104edb4141b74c57850f218800b0742d233a255bde8fb02"
+      },
+      "infrared_experience_tests_edge": {
+        "passed": 13,
+        "browser": "155.0.4283.45",
+        "receipt_sha256": "afeee9a0021579a840c8c17d9ab51b941dcadfe3b934365c10e59b5cad7f7a85"
+      }
+    },
+    "static_references": "PASS",
+    "scientific_assets": "PASS",
+    "context_asset_hashes": "PASS"
+  },
+  "reconstruction": {
+    "input": "tmp/infrared-qa/comparison.zip",
+    "input_sha256": "7d8baaa7e8329c7d9840234f99f50dbf63a4e63c03130ce70fbadddb20fd1385",
+    "result": "tmp/infrared-reconstruction/reconstruction_result.json",
+    "result_sha256": "b38a4e87c32914f61486f18f89502776aac73ad6e083cc1de0ac7d650316094b",
+    "checked_arrays": [
+      "SCI_A",
+      "SCI_B",
+      "VALID_A",
+      "VALID_B",
+      "COMMON",
+      "WAVE_A",
+      "WAVE_B",
+      "BAND_A",
+      "BAND_B",
+      "SEPARATION"
+    ],
+    "maximum_absolute_error": 0,
+    "coordinate_annotations_verified": 1,
+    "source_cache": "data/reconstruction/m101-v6-clean-environment",
+    "network_needed": false
+  },
+  "presentation_boundaries": [
+    "Spectrum colours are a decorative motif, not a detector response or wavelength calibration",
+    "Cards and Vela compare a dimmed presentation to the same infrared source; no visible-light data invented",
+    "Date crossfades are ephemeral UI bitmaps and never enter evidence",
+    "HUD coordinates identify curated field centres, not live pointing or invented cursor RA/Dec",
+    "Starfields, Milky Way-like haze and atmosphere glow are illustrative scenery"
+  ],
+  "visual_inspection": [
+    "tmp/infrared-qa/home-1440.png",
+    "tmp/infrared-qa/field-lens.png",
+    "tmp/infrared-qa/vela-legend.png",
+    "tmp/infrared-qa/compare-wipe.png",
+    "tmp/infrared-qa-edge/home-320.png",
+    "tmp/infrared-qa-edge/science-320.png",
+    "tmp/infrared-qa-edge/solar-labels.png",
+    "web/dist/assets/seeing-invisible.png"
+  ],
+  "limitations": {
+    "qualified_scientific_approval": "PENDING",
+    "internal_human_review": "PENDING",
+    "independent_novice_validation": "NOT CONDUCTED",
+    "user_visual_acceptance": "UNCLAIMED",
+    "physical_mobile_device_validation": "NOT CONDUCTED",
+    "performance": "Bounded effects, event-driven pointer/scroll updates and idle/offscreen rendering verified; no 60 FPS/GPU timing guarantee",
+    "full_python_scientific_suite": "Not rerun; scientific source and data unchanged"
+  },
+  "post_restart": {
+    "recorded_at_utc": "2026-10-17T09:45:45.516Z",
+    "content_id": "499487644b0803ec86a1d3e92c0db25de503533ed14f7c9e7c874d36b350b40a",
+    "release_id": "workspace",
+    "logo_loaded": true,
+    "hero_rendered": true,
+    "infrared_controller_ready": true,
+    "comparison_and_wipe_loaded": true,
+    "page_errors": []
+  }
+}

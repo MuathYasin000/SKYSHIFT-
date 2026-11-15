@@ -1,0 +1,14 @@
+{
+  "old_packet": "m101-review-v4.zip",
+  "current_packet": "m101-review-v6.zip",
+  "reason": "Remove a superseded rounded residual from one specialist question; authoritative registration-v2 measurements were already correct.",
+  "scientific_manifest_and_prepared_bytes_unchanged": true,
+  "scientific_approval": "PENDING",
+  "intermediate_v5": "Unpublished packaging artifact included source-install build caches; retained but superseded by the clean canonical-ZIP derivation.",
+  "packet": {
+    "path": "D:\\Nasa_SKYSHIFT\\data\\exports\\m101-review-v6.zip",
+    "size_bytes": 40697263,
+    "sha256": "2187c38e4e97e8c94999e0ac9794a69e9c357f04ead6298e56b877ed64e30d78",
+    "files": 43
+  }
+}

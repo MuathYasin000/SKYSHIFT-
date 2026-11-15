@@ -1,0 +1,225 @@
+{
+  "scope": "Read-only endpoint reachability and identity; not automatic interpretation or approval of final rules",
+  "resources": [
+    {
+      "name": "challenge",
+      "url": "https://www.spaceappschallenge.org/2026/challenges/planet-x-and-spherex/",
+      "expected_response": "HTML; challenge/resources may be temporarily unavailable",
+      "accessed_at_utc": "2026-10-30T12:22:44.484347+00:00",
+      "status": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>"
+    },
+    {
+      "name": "event",
+      "url": "https://www.spaceappschallenge.org/2026/",
+      "expected_response": "HTML; final event and submission rules need organizer confirmation",
+      "accessed_at_utc": "2026-10-30T12:22:44.484347+00:00",
+      "status": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>"
+    },
+    {
+      "name": "terms",
+      "url": "https://www.spaceappschallenge.org/legal/",
+      "expected_response": "HTML; no organizer exception is inferred",
+      "accessed_at_utc": "2026-10-30T12:22:44.485348+00:00",
+      "status": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>"
+    },
+    {
+      "name": "mission",
+      "url": "https://irsa.ipac.caltech.edu/Missions/spherex.html",
+      "expected_response": "HTML; mission entry and attributions",
+      "accessed_at_utc": "2026-10-30T12:22:44.485348+00:00",
+      "status": 200,
+      "final_url": "https://irsa.ipac.caltech.edu/Missions/spherex.html",
+      "content_type": "text/html",
+      "bytes": 9194,
+      "sha256": "3f8b49280576745cec8c988bda560962b59e2e71f2cfd8c30874c96f3a53d2ba",
+      "truncated": false
+    },
+    {
+      "name": "products",
+      "url": "https://caltech-ipac.github.io/spherex-archive-documentation/spherex-data-products/",
+      "expected_response": "HTML; release/HDU/calibration conventions",
+      "accessed_at_utc": "2026-10-30T12:22:44.620285+00:00",
+      "status": 200,
+      "final_url": "https://caltech-ipac.github.io/spherex-archive-documentation/spherex-data-products/",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 162716,
+      "sha256": "6cdbe80911d97ec9aa7d78f73c40789b80dd52b1fbd1e1c9f685efd542932689",
+      "truncated": false
+    },
+    {
+      "name": "access",
+      "url": "https://caltech-ipac.github.io/spherex-archive-documentation/spherex-data-access/",
+      "expected_response": "HTML; SIA2 and authoritative access URLs",
+      "accessed_at_utc": "2026-10-30T12:22:44.620285+00:00",
+      "status": 200,
+      "final_url": "https://caltech-ipac.github.io/spherex-archive-documentation/spherex-data-access/",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 111848,
+      "sha256": "521ff97ae7812634430db96209f24328e33f166e6f0d37e6ce7725ffa526a91f",
+      "truncated": false
+    },
+    {
+      "name": "cutouts",
+      "url": "https://irsa.ipac.caltech.edu/ibe/cutouts.html",
+      "expected_response": "HTML; bounded FITS cutout API",
+      "accessed_at_utc": "2026-10-30T12:22:44.621286+00:00",
+      "status": 200,
+      "final_url": "https://irsa.ipac.caltech.edu/ibe/cutouts.html",
+      "content_type": "text/html",
+      "bytes": 21896,
+      "sha256": "795a86d8cbe57c8b59bfec31540b28cea7b6e97340b1cf005606535ecfbb06b9",
+      "truncated": false
+    },
+    {
+      "name": "mosaic",
+      "url": "https://irsa.ipac.caltech.edu/onlinehelp/spherex/spherex/mosaic.html",
+      "expected_response": "HTML; multi-epoch mosaics cannot substitute for temporal frames",
+      "accessed_at_utc": "2026-10-30T12:22:45.134064+00:00",
+      "status": 200,
+      "final_url": "https://irsa.ipac.caltech.edu/onlinehelp/spherex/spherex/mosaic.html",
+      "content_type": "text/html",
+      "bytes": 15526,
+      "sha256": "351de8959c9cc0e7676ca11b25789beaae637903566a65001f1abd466b43ff1a",
+      "truncated": false
+    },
+    {
+      "name": "spectrophotometry",
+      "url": "https://irsa.ipac.caltech.edu/onlinehelp/spherex/spherex/sp.html",
+      "expected_response": "HTML; exploratory pixel values are not fitted source spectra",
+      "accessed_at_utc": "2026-10-30T12:22:45.236940+00:00",
+      "status": 200,
+      "final_url": "https://irsa.ipac.caltech.edu/onlinehelp/spherex/spherex/sp.html",
+      "content_type": "text/html",
+      "bytes": 58917,
+      "sha256": "be8a955fd54c3883e84e3cbc8223166aaeca29ded00fbba347266001b353f404",
+      "truncated": false
+    },
+    {
+      "name": "most",
+      "url": "https://irsa.ipac.caltech.edu/applications/MOST/instructions.html",
+      "expected_response": "HTML; known-object search context, not a detection",
+      "accessed_at_utc": "2026-10-30T12:22:45.479666+00:00",
+      "status": 200,
+      "final_url": "https://irsa.ipac.caltech.edu/applications/MOST/instructions.html",
+      "content_type": "text/html",
+      "bytes": 17295,
+      "sha256": "6a56529ecf6782079157d1549f51f2004f178a35289f90017b67c277c75a6675",
+      "truncated": false
+    },
+    {
+      "name": "horizons",
+      "url": "https://ssd.jpl.nasa.gov/horizons/manual.html",
+      "expected_response": "HTML; observer-specific predictions, not measured source positions",
+      "accessed_at_utc": "2026-10-30T12:22:45.873540+00:00",
+      "status": 200,
+      "final_url": "https://ssd.jpl.nasa.gov/horizons/manual.html",
+      "content_type": "text/html",
+      "bytes": 229798,
+      "sha256": "5c5100b08abeb10f4a6074e02102e4fe5d915203eed360bb4dd839a77210ddcc",
+      "truncated": false
+    },
+    {
+      "name": "gaia",
+      "url": "https://gea.esac.esa.int/archive/",
+      "expected_response": "HTML; catalogue reference context",
+      "accessed_at_utc": "2026-10-30T12:22:45.984648+00:00",
+      "status": 200,
+      "final_url": "https://gea.esac.esa.int/archive/",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 4536,
+      "sha256": "fd012f09514334064fd70b4191bc8c79d2f63c5fdeedc31a024c42c5f0cf0b93",
+      "truncated": false
+    },
+    {
+      "name": "aladin",
+      "url": "https://aladin.cds.unistra.fr/AladinLite/doc/",
+      "expected_response": "HTML; optional sky context, not a temporal substitute",
+      "accessed_at_utc": "2026-10-30T12:22:46.303743+00:00",
+      "status": null,
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "name": "normalization",
+      "url": "https://docs.astropy.org/en/stable/visualization/normalization.html",
+      "expected_response": "HTML; display transformations preserve source arrays",
+      "accessed_at_utc": "2026-10-30T12:22:46.343261+00:00",
+      "status": 200,
+      "final_url": "https://docs.astropy.org/en/stable/visualization/normalization.html",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 269663,
+      "sha256": "74c5cecaed34849a19ebb7f4a593aa3e51c5762681ab82981f15eec11e9ba8fd",
+      "truncated": false
+    },
+    {
+      "name": "mosaic_tutorial",
+      "url": "https://caltech-ipac.github.io/irsa-tutorials/spherex-mosaic/",
+      "expected_response": "HTML; published 102-plane M101 cube; no Mosaic Tool API",
+      "accessed_at_utc": "2026-10-30T12:22:46.380282+00:00",
+      "status": 200,
+      "final_url": "https://caltech-ipac.github.io/irsa-tutorials/spherex-mosaic/",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 301636,
+      "sha256": "3818b888356c091bd8e75ad1284253821973d7ebd0f5c89ccf900057379d8349",
+      "truncated": false
+    },
+    {
+      "name": "gallery",
+      "url": "https://spherex.caltech.edu/images",
+      "expected_response": "HTML; public images require source-specific credits",
+      "accessed_at_utc": "2026-10-30T12:22:46.654468+00:00",
+      "status": 200,
+      "final_url": "https://spherex.caltech.edu/images",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 36840,
+      "sha256": "922a3b1a184d7063149a81e43fe6df50adddeefacd13d253fbb6e1fd9018a3d0",
+      "truncated": false
+    },
+    {
+      "name": "cloud",
+      "url": "https://registry.opendata.aws/spherex-qr/",
+      "expected_response": "HTML; public cloud products, not an authorization for bulk mirroring",
+      "accessed_at_utc": "2026-10-30T12:22:46.910623+00:00",
+      "status": 200,
+      "final_url": "https://registry.opendata.aws/spherex-qr/",
+      "content_type": "text/html",
+      "bytes": 18427,
+      "sha256": "3553a63b293c78b0a3dca0cbccff8a6483674ad4f21d87eeb07d64fb66d8d164",
+      "truncated": false
+    },
+    {
+      "name": "nasa_media",
+      "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "expected_response": "HTML; educational use with credit and no implied endorsement; respect third-party rights",
+      "accessed_at_utc": "2026-10-30T12:22:47.347459+00:00",
+      "status": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1010)>"
+    },
+    {
+      "name": "image_policy",
+      "url": "https://spherex.caltech.edu/page/image-use-policy",
+      "expected_response": "HTML; image credits, third-party exceptions and protected logos",
+      "accessed_at_utc": "2026-10-30T12:22:47.430837+00:00",
+      "status": 200,
+      "final_url": "https://spherex.caltech.edu/page/image-use-policy",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 19674,
+      "sha256": "25cd1c33f33b96ba02c3745baf46826e3fa8d03c1f4b88266b66f11472b3dee8",
+      "truncated": false
+    },
+    {
+      "name": "irsa_terms",
+      "url": "https://irsa.ipac.caltech.edu/data_use_terms.html",
+      "expected_response": "HTML; public data terms and attribution; other datasets can have separate terms",
+      "accessed_at_utc": "2026-10-30T12:22:47.533918+00:00",
+      "status": 200,
+      "final_url": "https://irsa.ipac.caltech.edu/data_use_terms.html",
+      "content_type": "text/html",
+      "bytes": 3420,
+      "sha256": "d9d10ec8433f88399f12223875b7fdd638cfbd0cdd68792a0dc85bd995dbd976",
+      "truncated": false
+    }
+  ]
+}

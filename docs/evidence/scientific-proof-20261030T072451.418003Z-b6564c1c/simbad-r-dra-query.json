@@ -1,0 +1,6 @@
+{
+  "url": "https://simbad.u-strasbg.fr/simbad/sim-tap/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=csv&QUERY=SELECT+TOP+1+b.%2A+FROM+basic+AS+b+JOIN+ident+AS+i+ON+b.oid%3Di.oidref+WHERE+i.id%3D%27R+Dra%27",
+  "query": "SELECT TOP 1 b.* FROM basic AS b JOIN ident AS i ON b.oid=i.oidref WHERE i.id='R Dra'",
+  "attempted_at_utc": "2026-10-30T07:24:51.419003+00:00",
+  "error": "<urlopen error [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond>"
+}

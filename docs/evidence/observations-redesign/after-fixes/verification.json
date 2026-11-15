@@ -1,0 +1,39 @@
+{
+  "browser": "157.0.8103.51",
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "index protected page and navigation at 390",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "index protected page and navigation at 1440",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "challenge protected page and navigation at 390",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "challenge protected page and navigation at 1440",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "Sound waits for gesture, gives science cues and remembers mute",
+      "status": "pass"
+    }
+  ],
+  "pageErrors": []
+}

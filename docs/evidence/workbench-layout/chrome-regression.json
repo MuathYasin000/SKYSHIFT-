@@ -1,0 +1,320 @@
+{
+  "browser": "157.0.8103.51",
+  "base": "http://localhost:3000",
+  "results": [
+    {
+      "name": "explore barnards-star at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-08-15T20:45:11.376Z",
+        "last": "2026-09-22T15:04:20.981000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore barnards-star at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-08-15T20:45:11.376Z",
+        "last": "2026-09-22T15:04:20.981000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore epsilon-indi-b at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T20:31:57.081000Z",
+        "last": "2026-10-02T03:17:15.828000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore epsilon-indi-b at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T20:31:57.081000Z",
+        "last": "2026-10-02T03:17:15.828000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore wise-0855 at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-05-05T16:48:02.459000Z",
+        "last": "2026-05-14T06:53:35.614000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore wise-0855 at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-05-05T16:48:02.459000Z",
+        "last": "2026-05-14T06:53:35.614000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore rw-aurigae at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-09-01T10:04:17.466000Z",
+        "last": "2026-09-16T06:48:20.865000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore rw-aurigae at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-09-01T10:04:17.466000Z",
+        "last": "2026-09-16T06:48:20.865000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore r-draconis at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T21:06:38.390Z",
+        "last": "2026-09-27T06:59:17.520Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore r-draconis at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T21:06:38.390Z",
+        "last": "2026-09-27T06:59:17.520Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare barnards-star at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-08-15T20:45:11.376Z",
+        "last": "2026-09-22T15:04:20.981000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare barnards-star at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-08-15T20:45:11.376Z",
+        "last": "2026-09-22T15:04:20.981000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare epsilon-indi-b at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T20:31:57.081000Z",
+        "last": "2026-10-02T03:17:15.828000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare epsilon-indi-b at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T20:31:57.081000Z",
+        "last": "2026-10-02T03:17:15.828000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare wise-0855 at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-05-05T16:48:02.459000Z",
+        "last": "2026-05-14T06:53:35.614000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare wise-0855 at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-05-05T16:48:02.459000Z",
+        "last": "2026-05-14T06:53:35.614000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare rw-aurigae at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-09-01T10:04:17.466000Z",
+        "last": "2026-09-16T06:48:20.865000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare rw-aurigae at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-09-01T10:04:17.466000Z",
+        "last": "2026-09-16T06:48:20.865000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare r-draconis at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T21:06:38.390Z",
+        "last": "2026-09-27T06:59:17.520Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare r-draconis at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T21:06:38.390Z",
+        "last": "2026-09-27T06:59:17.520Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "index protected page and navigation at 390",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "index protected page and navigation at 1440",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "methodology protected page and navigation at 390",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "discover protected page and navigation at 390",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "methodology protected page and navigation at 1440",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "guide protected page and navigation at 390",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "discover protected page and navigation at 1440",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "challenge protected page and navigation at 390",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "guide protected page and navigation at 1440",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "challenge protected page and navigation at 1440",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "classic-home protected page and navigation at 390",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "classic-home protected page and navigation at 1440",
+      "status": "pass",
+      "details": {
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "Keyboard playback, frame pickers, all modes, wipe, and shared view at 390",
+      "status": "pass"
+    },
+    {
+      "name": "Arrival uses one canvas, auto-plays once, skips and replays",
+      "status": "pass"
+    },
+    {
+      "name": "Arrival completes automatically and keeps the live spacecraft canvas",
+      "status": "pass"
+    },
+    {
+      "name": "Sound waits for gesture, gives science cues and remembers mute",
+      "status": "pass"
+    },
+    {
+      "name": "Optional Universe opens directly with its renderer and no arrival",
+      "status": "pass"
+    },
+    {
+      "name": "Cached Observations work without WebGL",
+      "status": "pass"
+    },
+    {
+      "name": "IRSA failure offers a retry without replacing the empty viewer with data",
+      "status": "fail",
+      "error": "locator.click: Error: strict mode violation: getByRole('button', { name: 'Find observations' }) resolved to 2 elements:\n    1) <button type=\"button\" class=\"primary\" id=\"show-search\" aria-haspopup=\"dialog\" title=\"Find observations\" aria-label=\"Find observations\">…</button> aka getByRole('button', { name: 'Find observations', description: 'Find observations' })\n    2) <button type=\"submit\" class=\"primary\">Find observations</button> aka getByLabel('Search by coordinates').getByRole('button', { name: 'Find observations' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Find observations' })\u001b[22m\n\n    at D:\\SKYSHIFT_observations-fix\\tools\\verify_observation_workbench.mjs:284:63\n    at async withPage (D:\\SKYSHIFT_observations-fix\\tools\\verify_observation_workbench.mjs:39:12)\n    at async check (D:\\SKYSHIFT_observations-fix\\tools\\verify_observation_workbench.mjs:25:19)\n    at async file:///D:/SKYSHIFT_observations-fix/tools/verify_observation_workbench.mjs:274:3"
+    }
+  ],
+  "pageErrors": []
+}

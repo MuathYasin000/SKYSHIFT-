@@ -1,0 +1,28 @@
+{
+  "managed_root_bootstrap_http_uid": 999,
+  "runtime_home_fix": "HOME and XDG dirs reset before exec; real preparation and restart pass",
+  "health_probe_host_checks": [
+    {
+      "method": "GET",
+      "path": "/healthz",
+      "status": 200
+    },
+    {
+      "method": "HEAD",
+      "path": "/healthz",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/capabilities",
+      "status": 421
+    },
+    {
+      "method": "POST",
+      "path": "/healthz",
+      "status": 421
+    }
+  ],
+  "second_volume_owner": "refused by kernel lock in targeted test",
+  "first_api_failure_preserved": "docs/evidence/linux-service-20261030T080225.319840Z-847b2f6a/verification.json"
+}

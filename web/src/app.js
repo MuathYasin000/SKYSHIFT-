@@ -1,0 +1,1156 @@
+import { drawMaskedPixels } from "./mask-display.js";
+import { spectralScreenCopy } from './spectral-screen-copy.js';
+const theme = uiTheme();
+import { uiTheme, drawPixelGuide } from "./ui-theme.js";
+import { showSources, markStep } from "./visitor.js";
+import { friendlyDate } from "./field-guide.js";
+import { attachViewportInput } from "./viewport-input.js";
+import {
+  decodeArray,
+  pixelToSky,
+  skyToPixel,
+  validateAnnotation,
+  validateDisplay,
+  sha256,
+} from "./science.js";
+import { zipSync, strToU8, strFromU8 } from "./vendor/fflate.js";
+
+import "./site.js";
+import {
+  defaultVisualization,
+  validateVisualization,
+  displayLevel,
+  paletteRGB,
+} from "./visualization.js";
+
+import { openComparison } from "./packets.js";
+import {attachReviewDownload} from './review-download.js';
+
+const $ = (id) => document.getElementById(id);
+const state = {
+  bundle: null,
+  arrays: {},
+  manifest: null,
+  display: null,
+  annotations: [],
+  marking: false,
+  blink: null,
+  editing: null,
+  catalogue: null,
+  dirty: false,
+  visual: { ...defaultVisualization },
+};
+let toastTimer;
+function toast(message, error = false) {
+  $("toast").textContent = message;
+  $("toast").dataset.state = error ? "error" : "notice";
+  $("toast").hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => ($("toast").hidden = true), 6000);
+}
+function element(tag, text, cls) {
+  const e = document.createElement(tag);
+  if (text !== undefined) e.textContent = text;
+  if (cls) e.className = cls;
+  return e;
+}
+const categoryLabels = {
+  uncertain: "Question for review",
+  possible_position_difference: "Possible position difference",
+  possible_brightness_difference: "Possible brightness difference",
+  quality_issue: "Image quality / artifact",
+};
+
+async function getBytes(url, expected) {
+  const r = await fetch(url, { cache: "no-cache",signal:AbortSignal.timeout(12000) });
+  if (!r.ok)
+    throw Error(
+      `Data request failed (${r.status}). Please reload or try later.`,
+    );
+  const b = new Uint8Array(await r.arrayBuffer());
+  if (expected && (await sha256(b)) !== expected)
+    throw Error(
+      "Data integrity check failed. This comparison has not been opened.",
+    );
+  return b;
+}
+function persist() {
+  try {
+    sessionStorage.setItem(
+      "skyshift:" + state.manifest.pair_id,
+      JSON.stringify({
+        display: state.display,
+        visual: state.visual,
+        annotations: state.annotations,
+      }),
+    );
+  } catch {
+    /* Exports remain available when browser storage is disabled. */
+  }
+}
+function stopBlink() {
+  if (state.blink) {
+    clearInterval(state.blink);
+    state.blink = null;
+  }
+  $("blink").textContent = "Blink";
+  $("blink").setAttribute("aria-pressed", "false");
+}
+document.addEventListener("skyshift:workspace-hidden", stopBlink);
+
+let hoverPoint = null;
+const offscreens = {};
+function renderScience() {
+  for (const epoch of ["A", "B"]) {
+    const [h, w] = state.manifest.processing.shape;
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    const pixels = ctx.createImageData(w, h);
+    const data = state.arrays["SCI_" + epoch];
+    for (let i = 0; i < data.length; i++) {
+      const k = i * 4;
+      if (!state.arrays.COMMON[i] || !Number.isFinite(data[i])) {
+        pixels.data.set([17, 17, 17, 255], k);
+      } else {
+        const v = displayLevel(data[i], state.display, state.visual);
+        pixels.data.set([...paletteRGB(v, state.visual.palette), 255], k);
+      }
+    }
+    ctx.putImageData(pixels, 0, 0);
+    offscreens[epoch] = canvas;
+  }
+  drawAll();
+}
+
+function geometry(canvas) {
+  const rect = canvas.getBoundingClientRect();
+  const [h, w] = state.manifest.processing.shape;
+  return {
+    width: rect.width,
+    height: rect.height,
+    scale: Math.min(rect.width / w, rect.height / h) * state.display.zoom,
+    cx: state.display.center_x,
+    cy: state.display.center_y,
+  };
+}
+function drawCanvas(canvas, epoch) {
+  if (
+    !state.manifest ||
+    !offscreens[epoch] ||
+    !canvas.getBoundingClientRect().width
+  )
+    return;
+  const g = geometry(canvas),
+    dpr = Math.min(devicePixelRatio || 1, 2);
+  canvas.width = Math.round(g.width * dpr);
+  canvas.height = Math.round(g.height * dpr);
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = theme.black;
+  ctx.fillRect(0, 0, g.width, g.height);
+  ctx.save();
+  ctx.translate(g.width / 2, g.height / 2);
+  ctx.scale(g.scale, -g.scale);
+  ctx.imageSmoothingEnabled = state.visual.interpolation === "smooth";
+  ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(offscreens[epoch], -g.cx - 0.5, -g.cy - 0.5);
+  if (state.visual.wipe && canvas.id === "canvas-a") {
+    const boundary =
+      ((state.visual.wipe_position / 100 - 0.5) * g.width) / g.scale;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(boundary, -10000, 20000, 20000);
+    ctx.clip();
+    ctx.drawImage(offscreens.B, -g.cx - 0.5, -g.cy - 0.5);
+    ctx.restore();
+  }
+  const [mh, mw] = state.manifest.processing.shape;
+  ctx.fillStyle = theme.raised;
+  for (let y = 0; y < mh; y++)
+    for (let x = 0; x < mw; x++)
+      if (!state.arrays.COMMON[y * mw + x])
+        ctx.fillRect(x - g.cx - 0.5, y - g.cy - 0.5, 1, 1);
+  ctx.restore();
+  drawMaskedPixels(
+    ctx,
+    g,
+    state.display,
+    state.manifest.processing.shape,
+    state.arrays.COMMON,
+    theme,
+  );
+  if (state.visual.wipe && canvas.id === "canvas-a") {
+    const split = (g.width * state.visual.wipe_position) / 100;
+    ctx.strokeStyle = theme.white;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(split, 0);
+    ctx.lineTo(split, g.height);
+    ctx.stroke();
+    ctx.fillStyle = theme.white;
+    ctx.font = '12px "IBM Plex Mono",monospace';
+    ctx.fillText("A", 12, 20);
+    ctx.fillText("B", g.width - 65, 20);
+  }
+  if (canvas.id === "canvas-a")
+    drawPixelGuide(
+      ctx,
+      g,
+      state.display,
+      state.manifest.processing.shape,
+      hoverPoint,
+      theme,
+    );
+  for (let i = 0; i < state.annotations.length; i++) {
+    const p = skyToPixel(
+      state.annotations[i].ra_deg,
+      state.annotations[i].dec_deg,
+      state.manifest.processing.output_wcs,
+    );
+    const x = g.width / 2 + (p.x - g.cx) * g.scale,
+      y = g.height / 2 - (p.y - g.cy) * g.scale;
+    ctx.strokeStyle = theme.white;
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.arc(x, y, 9, 0, Math.PI * 2);
+    ctx.moveTo(x - 14, y);
+    ctx.lineTo(x - 10, y);
+    ctx.moveTo(x + 10, y);
+    ctx.lineTo(x + 14, y);
+    ctx.moveTo(x, y - 14);
+    ctx.lineTo(x, y - 10);
+    ctx.moveTo(x, y + 10);
+    ctx.lineTo(x, y + 14);
+    ctx.stroke();
+    ctx.fillStyle = theme.white;
+    ctx.font = '12px "IBM Plex Mono",monospace';
+    ctx.fillText(String(i + 1), x + 12, y - 10);
+  }
+  ctx.strokeStyle = theme.white;
+  ctx.fillStyle = theme.white;
+  ctx.font = '12px "IBM Plex Mono",monospace';
+  const length = Math.min(g.width * 0.2, 80),
+    arcsec = (length / g.scale) * 6.15;
+  ctx.beginPath();
+  ctx.moveTo(16, g.height - 52);
+  ctx.lineTo(16 + length, g.height - 52);
+  ctx.moveTo(16, g.height - 56);
+  ctx.lineTo(16, g.height - 48);
+  ctx.moveTo(16 + length, g.height - 56);
+  ctx.lineTo(16 + length, g.height - 48);
+  ctx.stroke();
+  ctx.fillText(arcsec.toFixed(1) + " arcsec", 16, g.height - 62);
+  ctx.fillText("N ↑", g.width - 43, 23);
+  ctx.fillText("E ←", g.width - 43, 37);
+}
+let drawFrame = 0;
+function drawAll() {
+  if (!drawFrame)
+    drawFrame = requestAnimationFrame(() => {
+      drawFrame = 0;
+      drawNow();
+    });
+}
+function drawNow() {
+  if (!state.manifest) return;
+  const handle = $("legacy-wipe-handle");
+  handle.hidden = !state.visual.wipe;
+  handle.style.left = state.visual.wipe_position + "%";
+  handle.setAttribute(
+    "aria-valuenow",
+    String(Math.round(state.visual.wipe_position)),
+  );
+  drawCanvas(
+    $("canvas-a"),
+    state.display.view_mode === "single" && !state.visual.wipe ? state.display.selected_epoch : "A",
+  );
+  drawCanvas($("canvas-b"), "B");
+  $("zoom-label").textContent = state.display.zoom.toFixed(1) + "×";
+}
+function setViewport(
+  zoom,
+  cx = state.display.center_x,
+  cy = state.display.center_y,
+) {
+  markStep(2);
+  const [h, w] = state.manifest.processing.shape;
+  state.display = validateDisplay(
+    {
+      ...state.display,
+      zoom: Math.max(1, Math.min(20, zoom)),
+      center_x: Math.max(0, Math.min(w - 1, cx)),
+      center_y: Math.max(0, Math.min(h - 1, cy)),
+    },
+    state.manifest,
+  );
+  persist();
+  $("zoom-label").textContent = state.display.zoom.toFixed(1) + "×";
+  drawAll();
+}
+function setMode(mode, keepWipe = false) {
+  stopBlink();
+  if (!keepWipe) state.visual.wipe = false;
+  $("wipe-controls").hidden = true;
+  $("overlay-mode").setAttribute("aria-pressed", String(state.visual.wipe));
+  state.display.view_mode = mode;
+  $("images").classList.toggle("single", mode === "single");
+  $("panel-b").hidden = mode === "single";
+  $("single-controls").hidden = mode !== "single" || state.visual.wipe;
+  for (const [id, value] of [
+    ["side-mode", "side_by_side"],
+    ["single-mode", "single"],
+  ]) {
+    const selected = mode === value && !state.visual.wipe;
+    $(id).classList.toggle("selected", selected);
+    $(id).setAttribute("aria-pressed", String(selected));
+  }
+  setEpoch(state.display.selected_epoch);
+  persist();
+  requestAnimationFrame(drawAll);
+}
+function setEpoch(epoch) {
+  state.display.selected_epoch = epoch;
+  for (const e of ["A", "B"]) {
+    $("epoch-" + e.toLowerCase()).classList.toggle("selected", epoch === e);
+    $("epoch-" + e.toLowerCase()).setAttribute(
+      "aria-pressed",
+      String(epoch === e),
+    );
+  }
+  populateObservation("a", state.display.view_mode === "single" && !state.visual.wipe ? epoch : "A");
+  drawAll();
+  persist();
+}
+function populateObservation(panel, epoch) {
+  const o = state.manifest.observations[epoch === "A" ? 0 : 1];
+  const date = new Date(o.time_start_utc);
+  $("date-" + panel).textContent = friendlyDate(o.time_start_utc, true);
+  $("date-" + panel).title = o.time_start_utc;
+  $("wave-" + panel).textContent =
+    `λ ${o.center_wavelength_um.toFixed(4)} μm · width ${o.center_bandwidth_um.toFixed(4)} μm`;
+  $("id-" + panel).textContent = o.observation_id;
+  const count = state.arrays.COMMON.reduce((a, b) => a + b, 0);
+  $("coverage-" + panel).textContent =
+    ((count / state.arrays.COMMON.length) * 100).toFixed(1) + "% common usable";
+  $("panel-" + panel).querySelector(".epoch-badge").textContent = epoch;
+  $("canvas-" + panel).setAttribute(
+    "aria-label",
+    `Observation ${epoch}, ${o.time_start_utc}, synchronized sky view`,
+  );
+}
+
+function inspectComparisonPixel(point, { announce = false } = {}) {
+  if (!point || !state.manifest) return;
+  const [h, w] = state.manifest.processing.shape,
+    x = Math.round(point.x),
+    y = Math.round(point.y);
+  if (x < 0 || y < 0 || x >= w || y >= h) {
+    $("coordinate-readout").textContent = "Outside the prepared image.";
+    return;
+  }
+  const i = y * w + x,
+    sky = pixelToSky(x, y, state.manifest.processing.output_wcs),
+    valid = state.arrays.COMMON[i];
+  const text = `ICRS ${sky.ra_deg.toFixed(6)}°, ${sky.dec_deg.toFixed(6)}° · ${valid ? "A " + state.arrays.SCI_A[i].toPrecision(6) + " / B " + state.arrays.SCI_B[i].toPrecision(6) + " MJy/sr" : "Excluded pixel: no common usable data."}`;
+  $("coordinate-readout").textContent = text;
+  if (announce) $("compare-pixel-announcement").textContent = text;
+  if (valid)
+    for (const panel of ["a", "b"]) {
+      const epoch =
+        panel === "a" && state.display.view_mode === "single"
+          ? state.display.selected_epoch
+          : panel.toUpperCase();
+      $("wave-" + panel).textContent =
+        `λ ${state.arrays["WAVE_" + epoch][i].toFixed(4)} μm · width ${state.arrays["BAND_" + epoch][i].toFixed(4)} μm`;
+    }
+}
+for (const id of ["canvas-a", "canvas-b"]) {
+  const canvas = $(id);
+  attachViewportInput(canvas, {
+    getView: () => (state.manifest ? state.display : null),
+    getGeometry: () => geometry(canvas),
+    getBounds: () => ({
+      width: state.manifest.processing.shape[1],
+      height: state.manifest.processing.shape[0],
+    }),
+    onView: (view) => setViewport(view.zoom, view.center_x, view.center_y),
+    onInspect: inspectComparisonPixel,
+    onTap: (point) => {
+      if (!state.marking) return;
+      try {
+        const sky = pixelToSky(
+          point.x,
+          point.y,
+          state.manifest.processing.output_wcs,
+        );
+        validateAnnotation(
+          {
+            annotation_id: "position-check",
+            pair_id: state.manifest.pair_id,
+            frame: "icrs",
+            category: "uncertain",
+            note: "",
+            created_at: new Date().toISOString(),
+            ...sky,
+          },
+          state.manifest,
+          state.arrays.COMMON,
+        );
+        openNote(sky);
+      } catch {
+        toast(
+          "Choose a visible location with usable data on both dates.",
+          true,
+        );
+      }
+    },
+  });
+  canvas.addEventListener("pointerleave", () => {
+    if (state.manifest) {
+      populateObservation(
+        "a",
+        state.display.view_mode === "single"
+          ? state.display.selected_epoch
+          : "A",
+      );
+      populateObservation("b", "B");
+    }
+  });
+}
+new ResizeObserver(() => drawAll()).observe($("images"));
+
+function setMarking(value) {
+  if (value) markStep(3);
+  state.marking = value;
+  $("mark-mode").setAttribute("aria-pressed", String(value));
+  for (const id of ["canvas-a", "canvas-b"])
+    $(id).classList.toggle("marking", value);
+  $("viewer-help").textContent = value
+    ? "Tap or press Enter on usable data to attach a question. Hatched areas cannot hold a note."
+    : "Drag to move · Scroll or pinch to zoom · Tap or Enter to inspect · Views stay synchronized";
+}
+function openNote(position = {}, existing = null) {
+  stopBlink();
+  state.editing = existing?.annotation_id ?? null;
+  $("note-ra").value = existing?.ra_deg ?? position.ra_deg ?? "";
+  $("note-dec").value = existing?.dec_deg ?? position.dec_deg ?? "";
+  $("note-category").value = existing?.category ?? "uncertain";
+  $("note-text").value = existing?.note ?? "";
+  $("note-error").textContent = "";
+  $("note-location").open = position.ra_deg === undefined && !existing;
+  $("note-dialog").showModal();
+  markStep(3);
+  setMarking(false);
+  if (position.ra_deg !== undefined) $("note-text").focus();
+  else $("note-ra").focus();
+}
+function renderNotes() {
+  $("notes").replaceChildren();
+  $("note-count").textContent = String(state.annotations.length);
+  $("empty-notes").hidden = state.annotations.length > 0;
+  state.annotations.forEach((note, i) => {
+    const row = element("article", undefined, "note"),
+      top = element("div", undefined, "note-top");
+    top.append(
+      element("span", String(i + 1).padStart(2, "0"), "note-index"),
+      element("span", categoryLabels[note.category], "note-category"),
+    );
+    row.append(
+      top,
+      element("p", note.note || "No additional note.", "note-content"),
+      element(
+        "p",
+        note.ra_deg.toFixed(6) + "°, " + note.dec_deg.toFixed(6) + "° · ICRS",
+        "note-coordinate",
+      ),
+    );
+    const actions = element("div", undefined, "note-actions");
+    for (const [label, action] of [
+      [
+        "Locate",
+        () => {
+          const p = skyToPixel(
+            note.ra_deg,
+            note.dec_deg,
+            state.manifest.processing.output_wcs,
+          );
+          setViewport(Math.max(2, state.display.zoom), p.x, p.y);
+          $("workspace").scrollIntoView({ behavior: "smooth" });
+        },
+      ],
+      ["Edit", () => openNote({}, note)],
+      [
+        "Delete",
+        () => {
+          state.annotations = state.annotations.filter(
+            (n) => n.annotation_id !== note.annotation_id,
+          );
+          state.dirty = true;
+          renderNotes();
+          persist();
+          drawAll();
+        },
+      ],
+    ]) {
+      const b = element("button", label);
+      b.addEventListener("click", action);
+      actions.append(b);
+    }
+    row.append(actions);
+    $("notes").append(row);
+  });
+  drawAll();
+}
+$("note-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  try {
+    const existing = state.annotations.find(
+      (n) => n.annotation_id === state.editing,
+    );
+    const note = {
+      annotation_id: state.editing ?? crypto.randomUUID(),
+      pair_id: state.manifest.pair_id,
+      ra_deg: Number($("note-ra").value),
+      dec_deg: Number($("note-dec").value),
+      frame: "icrs",
+      category: $("note-category").value,
+      note: $("note-text").value,
+      created_at: existing?.created_at ?? new Date().toISOString(),
+    };
+    validateAnnotation(note, state.manifest, state.arrays.COMMON);
+    if (existing)
+      state.annotations = state.annotations.map((n) =>
+        n.annotation_id === note.annotation_id ? note : n,
+      );
+    else {
+      if (state.annotations.length >= 500)
+        throw Error(
+          "A comparison supports up to 500 notes. Export these notes before starting a new record.",
+        );
+      state.annotations.push(note);
+    }
+    state.dirty = true;
+    renderNotes();
+    persist();
+    $("note-dialog").close();
+    toast(
+      "Question saved in this tab. Download the comparison to keep it after closing.",
+    );
+  } catch (error) {
+    $("note-error").textContent = error.message;
+  }
+});
+for (const id of ["close-note", "cancel-note"])
+  $(id).addEventListener("click", () => $("note-dialog").close());
+$("coordinate-note").addEventListener("click", () => openNote());
+$("mark-mode").addEventListener("click", () => setMarking(!state.marking));
+$("side-mode").addEventListener("click", () => setMode("side_by_side"));
+$("single-mode").addEventListener("click", () => {
+  const current = state.display.selected_epoch;
+  setMode("single");
+  setEpoch(current === "A" ? "B" : "A");
+});
+$("epoch-a").addEventListener("click", () => setEpoch("A"));
+$("epoch-b").addEventListener("click", () => setEpoch("B"));
+$("zoom-in").addEventListener("click", () =>
+  setViewport(state.display.zoom * 1.25),
+);
+$("zoom-out").addEventListener("click", () =>
+  setViewport(state.display.zoom / 1.25),
+);
+$("reset-view").addEventListener("click", () => {
+  const [h, w] = state.manifest.processing.shape;
+  setViewport(1, (w - 1) / 2, (h - 1) / 2);
+});
+$("blink").addEventListener("click", () => {
+  if (state.blink) {
+    stopBlink();
+    return;
+  }
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    toast(
+      "Blinking is disabled by your reduced-motion preference. Use manual A / B switching.",
+    );
+    return;
+  }
+  setMode("single");
+  state.blink = setInterval(
+    () => setEpoch(state.display.selected_epoch === "A" ? "B" : "A"),
+    1500,
+  );
+  $("blink").textContent = "Stop blink";
+  $("blink").setAttribute("aria-pressed", "true");
+});
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) stopBlink();
+});
+function reflectDisplay() {
+  for (const key of ["stretch", "palette", "interpolation"])
+    $("visual-" + key).value = state.visual[key];
+  legacyHandle.setAttribute(
+    "aria-valuenow",
+    String(state.visual.wipe_position),
+  );
+  $("wipe").value = state.visual.wipe_position;
+  $("stretch").value = state.display.stretch;
+  $("vmin").value = state.display.vmin.toFixed(5);
+  $("vmax").value = state.display.vmax.toFixed(5);
+}
+$("apply-display").addEventListener("click", () => {
+  try {
+    state.display = validateDisplay(
+      {
+        ...state.display,
+        vmin: Number($("vmin").value),
+        vmax: Number($("vmax").value),
+        stretch: $("stretch").value,
+      },
+      state.manifest,
+    );
+    state.visual.stretch = state.display.stretch;
+    reflectDisplay();
+    persist();
+    renderScience();
+  } catch (error) {
+    toast(error.message, true);
+  }
+});
+$("reset-display").addEventListener("click", () => {
+  state.display = {
+    ...state.display,
+    vmin: state.manifest.display.vmin,
+    vmax: state.manifest.display.vmax,
+    stretch: state.manifest.display.stretch,
+  };
+  state.visual = {
+    ...defaultVisualization,
+    wipe: state.visual.wipe,
+    wipe_position: state.visual.wipe_position,
+  };
+  reflectDisplay();
+  persist();
+  renderScience();
+});
+document.addEventListener("keydown", (event) => {
+  if (
+    event.defaultPrevented ||
+    document.querySelector("dialog[open]") ||
+    !state.manifest ||
+    /INPUT|TEXTAREA|SELECT/.test(event.target.tagName) ||
+    $("note-dialog").open
+  )
+    return;
+  if (event.key === "1" || event.key === "2") {
+    setMode("single");
+    setEpoch(event.key === "1" ? "A" : "B");
+  }
+  if (event.key === "+" || event.key === "=")
+    setViewport(state.display.zoom * 1.25);
+  if (event.key === "-") setViewport(state.display.zoom / 1.25);
+  if (event.key.toLowerCase() === "r") $("reset-view").click();
+  if (event.key.toLowerCase() === "m") setMarking(!state.marking);
+  if (event.key === "Escape") {
+    stopBlink();
+    setMarking(false);
+  }
+});
+
+function populateEvidence() {
+  const m = state.manifest,
+    r = state.bundle.registration;
+  const titles = {
+    distinct_epochs: "Distinct observation times",
+    homogeneous_release: "Consistent release and pipeline",
+    science_spectral_calibration: "Full per-pixel spectral calibration",
+    archive_provenance: "Original source identities preserved",
+    known_quality_flags: "Quality flags interpreted",
+    coordinate_roundtrip: "Coordinate arithmetic checked",
+    common_coverage: "Common usable support",
+    local_spectral_screen: "Local wavelength screen",
+    independent_registration: "Independent reference registration",
+    scientific_review: "Independent scientific review",
+  };
+  for (const c of m.suitability.checks) {
+    const pending = c.status !== "pass",
+      row = element("div", undefined, "check"),
+      icon = element(
+        "span",
+        pending ? "·" : "✓",
+        "check-icon" + (pending ? " pending" : ""),
+      ),
+      body = element("div");
+    body.append(
+      element("strong", titles[c.code] ?? c.code),
+      element("p", c.explanation),
+    );
+    const spectral = spectralScreenCopy(c);
+    if(spectral)body.append(element('p',spectral));
+    row.append(
+      icon,
+      body,
+      element(
+        "span",
+        c.status.toUpperCase(),
+        "check-status" + (pending ? " pending" : ""),
+      ),
+    );
+    $("checks").append(row);
+  }
+  $("registration-details").textContent =
+    `${r.reference_count} measured Gaia references across ${r.quadrants} quadrants in a ${(state.bundle.registration_context_size_deg * 60).toFixed(0)}-arcminute context. Median residual ${r.median_residual_arcsec.toFixed(2)} arcsec; 95th percentile ${r.p95_residual_arcsec.toFixed(2)} arcsec. These are measured inter-epoch residuals, not a claim of absolute astrometric precision.`;
+  for (const ref of r.references.filter((x) => x.status === "measured")) {
+    const tr = element("tr");
+    tr.append(
+      element("td", ref.source_id),
+      element("td", (ref.residual_pixels * 6.15).toFixed(3)),
+      element(
+        "td",
+        ref.a.profile_fwhm_pixels.toFixed(3) +
+          " / " +
+          ref.b.profile_fwhm_pixels.toFixed(3),
+      ),
+    );
+    $("reference-table").append(tr);
+  }
+  const response = state.bundle.response;
+  $("response-details").textContent =
+    `Empirical median profile-width ratio B/A: ${response.empirical_profile_width_ratio_median_b_over_a.toFixed(3)}. Local ePSF effective-area ratio: ${response.local_epsf_effective_area_ratio_b_over_a.toFixed(3)}. Estimated background offset: ${response.background_offset_mjy_sr.toFixed(4)} MJy/sr. None of these establishes photometric equivalence.`;
+  for (const text of response.restrictions)
+    $("restrictions").append(element("li", text));
+  for (const o of m.observations) {
+    for (const [title, f] of [
+      ["Observation " + o.observation_id, o.source],
+      ["Spectral calibration", o.spectral_calibration],
+    ]) {
+      const row = element("div", undefined, "source-row");
+      row.append(
+        element("strong", title),
+        element("code", "SHA-256 " + f.sha256),
+      );
+      const a = element("a", "Open original archive source ↗");
+      a.href = f.source_url;
+      a.target = "_blank";
+      a.rel = "noreferrer";
+      row.append(a);
+      $("sources").append(row);
+    }
+  }
+  const row = element("div", undefined, "source-row");
+  row.append(
+    element("strong", "Processing"),
+    element("code", JSON.stringify(m.processing, null, 2)),
+  );
+  $("sources").append(row);
+}
+
+function downloadBlob(bytes, name, type = "application/zip") {
+  const blob = new Blob([bytes], { type }),
+    url = URL.createObjectURL(blob),
+    a = element("a");
+  a.href = url;
+  a.download = name;
+  document.body.append(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
+}
+async function hashPayload(payload) {
+  const hashes = {};
+  for (const [name, data] of Object.entries(payload))
+    hashes[name] = await sha256(data);
+  return strToU8(JSON.stringify(hashes, null, 2));
+}
+function previewPng() {
+  const canvas = document.createElement("canvas");
+  canvas.width = 1100;
+  canvas.height = 680;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = theme.black;
+  ctx.fillRect(0, 0, 1100, 680);
+  ctx.fillStyle = theme.white;
+  ctx.font = "24px Inter,sans-serif";
+  ctx.fillText("SKYSHIFT / M101 comparison", 28, 38);
+  ctx.fillStyle = theme.white;
+  ctx.font = "14px Inter,sans-serif";
+  ctx.fillText(
+    "REAL DATA · Scientific approval PENDING · No confirmed motion or variability",
+    28,
+    65,
+  );
+  for (let i = 0; i < 2; i++) {
+    const c = document.createElement("canvas");
+    c.style.width = "510px";
+    c.style.height = "510px"; // Build the same viewport without requiring a DOM layout.
+    const epoch = "AB"[i],
+      x = 28 + i * 544,
+      y = 115,
+      w = 510,
+      h = 480;
+    ctx.fillStyle = theme.white;
+    ctx.font = '13px "IBM Plex Mono",monospace';
+    ctx.fillText(
+      `${epoch} · ${state.manifest.observations[i].time_start_utc}`,
+      x,
+      98,
+    );
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(x, y, w, h);
+    ctx.clip();
+    const [gh, gw] = state.manifest.processing.shape,
+      s = Math.min(w / gw, h / gh) * state.display.zoom;
+    ctx.translate(x + w / 2, y + h / 2);
+    ctx.scale(s, -s);
+    ctx.imageSmoothingEnabled = state.visual.interpolation === "smooth";
+    ctx.drawImage(
+      offscreens[epoch],
+      -state.display.center_x - 0.5,
+      -state.display.center_y - 0.5,
+    );
+    ctx.fillStyle = theme.raised;
+    for (let yy = 0; yy < gh; yy++)
+      for (let xx = 0; xx < gw; xx++)
+        if (!state.arrays.COMMON[yy * gw + xx])
+          ctx.fillRect(
+            xx - state.display.center_x - 0.5,
+            yy - state.display.center_y - 0.5,
+            1,
+            1,
+          );
+    ctx.restore();
+    for (let n = 0; n < state.annotations.length; n++) {
+      const p = skyToPixel(
+        state.annotations[n].ra_deg,
+        state.annotations[n].dec_deg,
+        state.manifest.processing.output_wcs,
+      );
+      const xx = x + w / 2 + (p.x - state.display.center_x) * s,
+        yy = y + h / 2 - (p.y - state.display.center_y) * s;
+      ctx.strokeStyle = theme.white;
+      ctx.beginPath();
+      ctx.arc(xx, yy, 8, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fillStyle = theme.white;
+      ctx.font = '12px "IBM Plex Mono",monospace';
+      ctx.fillText(String(n + 1), xx + 11, yy - 10);
+    }
+  }
+  ctx.fillStyle = theme.white;
+  ctx.font = '12px "IBM Plex Mono",monospace';
+  ctx.fillText(
+    `ICRS · N up / E left · ${state.annotations.length} notes · ${state.visual.stretch}/${state.visual.palette}/${state.visual.interpolation} · limits ${state.display.vmin.toFixed(4)}–${state.display.vmax.toFixed(4)} MJy/sr`,
+    28,
+    625,
+  );
+  ctx.fillText(
+    `Reference A/B panels · active view: ${state.visual.wipe ? "wipe " + state.visual.wipe_position + "%" : state.display.view_mode} · visualization.json preserves display extensions.`,
+    28,
+    648,
+  );
+  const raw = atob(canvas.toDataURL("image/png").split(",")[1]);
+  return Uint8Array.from(raw, (c) => c.charCodeAt(0));
+}
+$("export").addEventListener("click", async () => {
+  stopBlink();
+  const button = $("export");
+  button.disabled = true;
+  button.textContent = "Preparing evidence…";
+  try {
+    for (const note of state.annotations)
+      validateAnnotation(note, state.manifest, state.arrays.COMMON);
+    const manifest = structuredClone(state.manifest);
+    manifest.display = validateDisplay(state.display, state.manifest);
+    manifest.annotations = structuredClone(state.annotations);
+    const payload = {
+      "visualization.json": strToU8(
+        JSON.stringify(validateVisualization(state.visual), null, 2),
+      ),
+      "manifest.json": strToU8(JSON.stringify(manifest, null, 2)),
+      "packet.json": strToU8(
+        JSON.stringify({ mode: "references", scientific_approval: "PENDING" }),
+      ),
+      "annotations.json": strToU8(
+        JSON.stringify(manifest.annotations, null, 2),
+      ),
+      "prepared/pair.fits": await getBytes(
+        state.bundle.prepared_fits_url,
+        manifest.prepared_files[0].sha256,
+      ),
+      "diagnostics/registration.json": strToU8(
+        JSON.stringify(state.bundle.registration, null, 2),
+      ),
+      "diagnostics/response.json": strToU8(
+        JSON.stringify(state.bundle.response, null, 2),
+      ),
+      "preview.png": previewPng(),
+      "citations.txt": strToU8(manifest.citations.join("\n\n")),
+      "README.txt": strToU8(
+        "SKYSHIFT saved comparison. Scientific approval PENDING.\nOriginal FITS and calibration URLs/hashes are in manifest.json; this compact packet references them.\nRun: skyshift reconstruct comparison.zip --output new-folder\nArchive access is required when original inputs are absent. If upstream bytes changed, use the self-contained review packet.\nDisplay extensions (log, palette, interpolation, wipe) are in visualization.json and restored by this browser; Python reconstructs scientific arrays and core manifest settings. Notes are user observations, not confirmed discoveries.\n",
+      ),
+    };
+    payload["hashes.json"] = await hashPayload(payload);
+    downloadBlob(
+      zipSync(payload, { level: 6 }),
+      `SKYSHIFT-${manifest.pair_id}-comparison.zip`,
+    );
+    state.dirty = false;
+    toast(
+      "Comparison exported with notes, settings, prepared FITS, source identities, and hashes.",
+    );
+  } catch (error) {
+    toast(error.message, true);
+  } finally {
+    button.disabled = false;
+    button.textContent = "↓ Save comparison (.zip)";
+  }
+});
+
+async function importBytes(bytes) {
+  const saved = await openComparison(
+    bytes,
+    state.manifest,
+    state.arrays.COMMON,
+    state.bundle,
+  );
+  stopBlink();
+  state.display = saved.display;
+  state.visual = validateVisualization(
+    saved.visualization ?? defaultVisualization,
+  );
+  state.annotations = saved.annotations;
+  state.dirty = false;
+  reflectDisplay();
+  setMode(saved.display.view_mode, state.visual.wipe);
+  renderScience();
+  renderNotes();
+  persist();
+  toast(
+    "Comparison reopened. Source identity and every saved file hash were verified.",
+  );
+}
+$("import").addEventListener("click", () => $("import-file").click());
+$("import-file").addEventListener("change", async (event) => {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  try {
+    await importBytes(new Uint8Array(await file.arrayBuffer()));
+  } catch (error) {
+    toast(error.message, true);
+  }
+  event.target.value = "";
+});
+attachReviewDownload($("review-download"),()=>state.catalogue.review_packet,file=>downloadBlob(file.bytes,file.name),{onError:message=>toast(message,true)});
+
+async function initialize() {
+  try {
+    const r = await fetch("./data/catalog.json", { cache: "no-cache",signal:AbortSignal.timeout(12000) });
+    if (!r.ok) throw Error("The scientific data catalogue is unavailable");
+    state.catalogue = await r.json();
+    state.bundle = JSON.parse(
+      strFromU8(
+        await getBytes(
+          state.catalogue.bundle_url,
+          state.catalogue.bundle_sha256,
+        ),
+      ),
+    );
+    state.manifest = state.bundle.manifest;
+    if (
+      state.manifest.processing.scientific_approval !== "PENDING" ||
+      state.manifest.suitability.status !== "pending"
+    )
+      throw Error(
+        "This release requires an explicit pending scientific-review state",
+      );
+    for (const [name, entry] of Object.entries(state.bundle.arrays))
+      state.arrays[name] = decodeArray(entry);
+    const [h, w] = state.manifest.processing.shape;
+    for (const data of Object.values(state.arrays))
+      if (data.length !== h * w)
+        throw Error("Prepared arrays have inconsistent shapes");
+    state.display = validateDisplay(
+      { ...state.manifest.display, view_mode: "single" },
+      state.manifest,
+    );
+    state.visual = {
+      ...defaultVisualization,
+      interpolation: "nearest",
+      wipe: true,
+    };
+    try {
+      const saved = JSON.parse(
+        sessionStorage.getItem("skyshift:" + state.manifest.pair_id),
+      );
+      if (saved) {
+        const d = validateDisplay(saved.display, state.manifest);
+        for (const note of saved.annotations)
+          validateAnnotation(note, state.manifest, state.arrays.COMMON);
+        state.display = d;
+        state.visual = validateVisualization(
+          saved.visual ?? defaultVisualization,
+        );
+        state.annotations = saved.annotations;
+      }
+    } catch {
+      /* Invalid local session data are discarded, never promoted to evidence. */
+    }
+    $("field-position").textContent =
+      `ICRS ${state.manifest.region.ra_deg.toFixed(5)}°  ${state.manifest.region.dec_deg.toFixed(5)}°`;
+    $("pair-label").textContent = state.manifest.pair_id;
+    populateObservation("a", "A");
+    populateObservation("b", "B");
+    $("comparison-timeline").textContent = state.manifest.observations
+      .map((o, i) => "AB"[i] + " · " + friendlyDate(o.time_start_utc, true))
+      .join("    /    ");
+    const days =
+      (Date.parse(state.manifest.observations[1].time_start_utc) -
+        Date.parse(state.manifest.observations[0].time_start_utc)) /
+      86400000;
+    $("time-baseline").textContent = days.toFixed(2) + " days";
+    $("common-coverage").textContent =
+      (
+        (state.arrays.COMMON.reduce((a, b) => a + b, 0) /
+          state.arrays.COMMON.length) *
+        100
+      ).toFixed(1) + "%";
+    $("registration-median").textContent =
+      state.bundle.registration.median_residual_arcsec.toFixed(2) + " arcsec";
+    $("field-size").textContent =
+      (state.manifest.region.size_deg * 60).toFixed(1) + " arcmin";
+    $("review-size").textContent =
+      (state.catalogue.review_packet.size_bytes / 1e6).toFixed(1) +
+      " MB · includes original data";
+    reflectDisplay();
+    populateEvidence();
+    $("epoch-a").textContent = friendlyDate(
+      state.manifest.observations[0].time_start_utc,
+    );
+    $("epoch-b").textContent = friendlyDate(
+      state.manifest.observations[1].time_start_utc,
+    );
+    $("comparison-source").disabled = false;
+    $("comparison-source").onclick = (event) =>
+      showSources(
+        state.manifest.observations,
+        state.manifest.processing,
+        event.currentTarget,
+      );
+    $("loading").hidden = true;
+    $("workspace").hidden = false;
+    setMode(state.display.view_mode, state.visual.wipe);
+    renderScience();
+    renderNotes();
+    markStep(1);
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      $("blink").disabled = true;
+      $("blink").title =
+        "Disabled by reduced-motion preference; manual switching remains available";
+    }
+  } catch (error) {
+    $("loading").hidden = true;
+    $("fatal").hidden = false;
+    $("fatal").textContent = error.message;
+    $("export").disabled = true;
+    $("review-download").disabled = true;
+  }
+}
+for (const key of ["stretch", "palette", "interpolation"])
+  $("visual-" + key).addEventListener("change", (event) => {
+    state.visual = validateVisualization({
+      ...state.visual,
+      [key]: event.target.value,
+    });
+    if (key === "stretch" && state.visual.stretch !== "log")
+      state.display.stretch = state.visual.stretch;
+    reflectDisplay();
+    persist();
+    renderScience();
+  });
+$("overlay-mode").addEventListener("click", () => {
+  if (!state.manifest) return;
+  const enabled = !state.visual.wipe;
+  state.visual.wipe = enabled;
+  setMode(enabled ? "single" : "side_by_side", enabled);
+  $("single-controls").hidden = enabled;
+  drawAll();
+  persist();
+});
+$("wipe").addEventListener("input", (event) => {
+  state.visual = validateVisualization({
+    ...state.visual,
+    wipe_position: Number(event.target.value),
+  });
+  drawAll();
+  persist();
+});
+for (const id of ["side-mode", "single-mode", "epoch-a", "epoch-b"])
+  $(id).addEventListener("click", () => markStep(2));
+initialize();
+window.addEventListener("message", (event) => {
+  if (
+    window.parent !== window &&
+    event.source === window.parent &&
+    event.origin === location.origin &&
+    event.data?.type === "skyshift:request-controller-status"
+  )
+    window.parent.postMessage(
+      { type: "skyshift:viewer-ready" },
+      location.origin,
+    );
+});
+
+const legacyHandle = $("legacy-wipe-handle");
+let dividerDrag = false;
+function divider(value) {
+  state.visual = validateVisualization({
+    ...state.visual,
+    wipe_position: Math.max(0, Math.min(100, value)),
+  });
+  $("wipe").value = state.visual.wipe_position;
+  persist();
+  drawAll();
+}
+legacyHandle.onpointerdown = (e) => {
+  dividerDrag = true;
+  legacyHandle.setPointerCapture(e.pointerId);
+};
+legacyHandle.onpointermove = (e) => {
+  if (!dividerDrag) return;
+  const r = $("canvas-a").getBoundingClientRect();
+  divider(((e.clientX - r.left) / r.width) * 100);
+};
+legacyHandle.onpointerup = legacyHandle.onpointercancel = () =>
+  (dividerDrag = false);
+legacyHandle.onkeydown = (e) => {
+  if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) {
+    e.preventDefault();
+    divider(
+      e.key === "Home"
+        ? 0
+        : e.key === "End"
+          ? 100
+          : state.visual.wipe_position + (e.key === "ArrowLeft" ? -1 : 1),
+    );
+  }
+};
+$("canvas-a").addEventListener(
+  "pointermove",
+  (e) => {
+    if (!state.manifest) return;
+    const c = $("canvas-a"),
+      r = c.getBoundingClientRect(),
+      g = geometry(c);
+    hoverPoint = {
+      x: (e.clientX - r.left - g.width / 2) / g.scale + state.display.center_x,
+      y: -(e.clientY - r.top - g.height / 2) / g.scale + state.display.center_y,
+    };
+    drawAll();
+  },
+  { passive: true },
+);
+$("canvas-a").addEventListener("pointerleave", () => {
+  hoverPoint = null;
+  drawAll();
+});

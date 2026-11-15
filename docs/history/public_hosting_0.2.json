@@ -1,0 +1,9 @@
+{
+  "historical_only": true,
+  "project_id": "appgprj_6ad224d35b908191a0566896f57187a7",
+  "public_url": "https://skyshift-project-mercury.surebream11.chatgpt.site",
+  "last_verified_frontend_commit": "6807f11336594c2182f8251246427f48b8c775f8",
+  "current_runtime": "http://localhost:3000",
+  "publication_performed_for_0.3": false,
+  "reason": "User explicitly selected independent local hosting. Original public deployment preserved without modification."
+}

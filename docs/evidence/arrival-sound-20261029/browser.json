@@ -1,0 +1,43 @@
+{
+  "scope": "Automated state and synthesis verification; allowed policy set in test browser, blocked cases add a deterministic activation guard around native Web Audio; human listening acceptance remains with user",
+  "results": [
+    {
+      "name": "Allowed autoplay follows actual loading, rendered model, scan and landing phases exactly once",
+      "status": "pass",
+      "detail": {
+        "policy": "explicitly allowed in test browser",
+        "phase_order": [
+          "arrival_loading",
+          "arrival_reveal",
+          "arrival_scan",
+          "arrival_land"
+        ]
+      }
+    },
+    {
+      "name": "Blocked autoplay offers an accessible sound control and starts only after a trusted click",
+      "status": "pass"
+    },
+    {
+      "name": "Enabling during reveal plays the current phase without replaying missed loading cues",
+      "status": "pass"
+    },
+    {
+      "name": "Late activation after the intro never plays stale startup tones",
+      "status": "pass"
+    },
+    {
+      "name": "Muting and leaving the intro cancel its tones and remember mute on reload",
+      "status": "pass"
+    },
+    {
+      "name": "A missing audio module leaves the full visual arrival and science escape available",
+      "status": "pass"
+    },
+    {
+      "name": "Mobile sound control fits the loader and a trusted touch unlocks it",
+      "status": "pass"
+    }
+  ],
+  "page_errors": []
+}

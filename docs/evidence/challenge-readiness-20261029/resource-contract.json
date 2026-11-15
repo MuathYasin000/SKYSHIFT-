@@ -1,0 +1,40 @@
+{
+  "scope": "Engineering resource preparation; not submission readiness or scientific validation",
+  "target_contracts": [
+    {
+      "target": "barnards-star",
+      "coordinate_contract": "PASS",
+      "offline_intake": "PASS",
+      "scientific_target_test": "NOT_CONDUCTED"
+    },
+    {
+      "target": "epsilon-indi-b",
+      "coordinate_contract": "PASS",
+      "offline_intake": "PASS",
+      "scientific_target_test": "NOT_CONDUCTED"
+    },
+    {
+      "target": "wise-0855",
+      "coordinate_contract": "PASS",
+      "offline_intake": "PASS",
+      "scientific_target_test": "NOT_CONDUCTED"
+    },
+    {
+      "target": "rw-aurigae",
+      "coordinate_contract": "PASS",
+      "offline_intake": "PASS",
+      "scientific_target_test": "NOT_CONDUCTED"
+    },
+    {
+      "target": "r-draconis",
+      "coordinate_contract": "PASS",
+      "offline_intake": "PASS",
+      "scientific_target_test": "NOT_CONDUCTED"
+    }
+  ],
+  "existing_scientific_asset_integrity": "PASS",
+  "recorded_wise_0855_qr3_inventory_rows": 0,
+  "scientific_approval": "PENDING",
+  "internal_human_review": "PENDING",
+  "independent_novice_validation": "NOT_CONDUCTED"
+}

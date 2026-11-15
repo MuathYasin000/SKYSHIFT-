@@ -1,0 +1,44 @@
+{
+  "recorded_at_utc": "2026-10-17T08:57:10Z",
+  "baseline": "f111efa",
+  "scope": "Replace rejected clipped hero illustration with the existing interactive SPHEREx model",
+  "localhost": "http://localhost:3000",
+  "final_server_content_id": "cbf94b4424bf24b5b4e64e10671b2f8f9b76aa9b62b23bdf964fe723a6d15e5c",
+  "actual_server_restart_and_browser_smoke": "pass; hero rendered and direct comparison opened",
+  "scientific_data_engine_and_viewer_code_unchanged": true,
+  "model": {
+    "file": "web/dist/spherex-model.js",
+    "sha256": "e61cdf4adb9e6005f839b81655782cd3e326353d475038c06f2d8c7a5c28f0e4",
+    "previous_source_sha256": "b1bfa701c372bd7634b24488dc81a6661f24099aa2119a112aa902a582fdbe9a",
+    "source_reference": "https://www.jpl.nasa.gov/press-kits/spherex/mission-overview/spacecraft/",
+    "updates": ["smooth white exterior and reflective inner face", "subtle foil normals", "nested radiator mirrors", "instanced fasteners and solar conductors", "deck rings, braces and representative cable runs"],
+    "limits": "Educational geometry, illustrative small fittings and lighting; not certified engineering CAD or live spacecraft pointing",
+    "sample_browser_counters": {"draw_calls": 70, "triangles": 20992},
+    "render_policy": "Demand-driven; pauses while idle, offscreen, hidden or in science. No automatic spin or animation loop."
+  },
+  "verified": {
+    "javascript_tests": 74,
+    "python_frontend_contract_tests": 4,
+    "chrome_product_journeys": 19,
+    "edge_product_journeys": 19,
+    "targeted_hero_checks": 13,
+    "production_static_references_and_science_checksums": "pass",
+    "enhanced_model_source_hash_validation": "pass",
+    "direct_scientific_route_3d_downloads": 0,
+    "real_context_loss_and_fresh_canvas_retry": "pass",
+    "webgl_disabled_science_and_export": "pass",
+    "missing_or_delayed_graphics_module_keeps_science_available": "pass",
+    "touch_horizontal_rotation_and_vertical_page_scroll": "pass",
+    "reduced_motion_manual_interaction": "pass",
+    "receipt_files": ["docs/evidence/hero3d_model_tests.json", "docs/evidence/hero3d_product_tests.json", "docs/evidence/hero3d_product_tests_edge.json"],
+    "inspected_screenshots": ["tmp/hero3d-qa/home-1440.png", "tmp/hero3d-details-qa/home-320.png", "tmp/hero3d-qa/home-390.png"]
+  },
+  "review_limits": {
+    "user_visual_acceptance": "Awaiting direct evaluation",
+    "scientific_approval": "PENDING",
+    "internal_human_review": "PENDING",
+    "independent_novice_validation": "NOT CONDUCTED",
+    "physical_mobile_device_validation": "NOT CONDUCTED",
+    "manual_accessibility_certification": "NOT CONDUCTED"
+  }
+}

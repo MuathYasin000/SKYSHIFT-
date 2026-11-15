@@ -1,0 +1,417 @@
+"""Bounded, traceable sky-position preparation using the established science code.
+
+No fitted target alignment, background subtraction, PSF matching or photometric
+variability is introduced. Every temporal link is screened and reference-checked.
+"""
+from __future__ import annotations
+
+import base64
+import csv
+import hashlib
+import io
+import json
+import math
+from itertools import combinations
+from importlib.metadata import version
+from pathlib import Path
+from threading import Event
+from datetime import date
+from typing import Literal
+from urllib.parse import urlencode, urlsplit, parse_qs
+
+import numpy as np
+from pydantic import Field, model_validator
+from reproject import reproject_interp
+
+from .archive import inventory, download, cutout_url, sha256_file, fetch_bytes, utc_now
+from .coordinates import common_grid
+from .intake import ObservationRequest
+from .preparation import numeric_hash
+from .products import read_product
+from .releases import CALIBRATION, CURRENT_COLLECTIONS, RELEASE_DOIS, collection_for
+from .registration import measure_registration, reference_position
+from .suitability import screen_pair
+from .messages import public_error_message
+from .archive_index import indexed_inventory
+
+ROOT = Path(__file__).resolve().parents[2]
+LIMITATIONS = [
+    'Qualitative inspection only; no confirmed motion, photometric variability or discovery.',
+    'No PSF matching, background subtraction or significance map; blending and unflagged artifacts remain possible.',
+    'WCS reprojection alone does not establish registration. Playback requires separate reference checks.',
+    'CWAVE/CBAND screening is not equality of spectral response functions.',
+    'The requested centre is a search position, not a propagated position or a detected source.',
+]
+
+
+class SequenceRequest(ObservationRequest):
+    detector: int = Field(default=2, ge=1, le=6, strict=True)
+    max_frames: int = Field(default=3, ge=1, le=6, strict=True)
+    deep: bool = Field(default=False,strict=True)
+    use_cache: bool = Field(default=True,strict=True)
+    discovery_only: bool = Field(default=False,strict=True)
+    discovery_scope: Literal['selected','all_supported'] = 'selected'
+    metadata_provider: Literal['sia2','tap'] = 'sia2'
+    selection: Literal['compatible','chronological'] = 'compatible'
+    wavelength_um: float | None = Field(default=None,ge=.75,le=5,strict=True)
+    start_date: str | None = Field(default=None,pattern=r'^\d{4}-\d{2}-\d{2}$')
+    end_date: str | None = Field(default=None,pattern=r'^\d{4}-\d{2}-\d{2}$')
+
+    @model_validator(mode='after')
+    def valid_dates(self):
+        for value in (self.start_date,self.end_date):
+            if value:date.fromisoformat(value)
+        if self.start_date and self.end_date and self.start_date>self.end_date:
+            raise ValueError('Start date must not follow end date')
+        return self
+
+
+class Cancelled(ValueError):
+    pass
+
+
+def check_cancel(cancel):
+    if cancel and cancel.is_set():
+        raise Cancelled('Investigation cancelled; no later result will replace it.')
+
+
+def encode(array):
+    a = np.ascontiguousarray(array, dtype=np.uint8 if array.dtype.kind in 'bu' else '<f4').copy()
+    if a.dtype.kind == 'f':
+        a[np.isnan(a)] = np.float32(np.nan)
+    return {'dtype': 'uint8' if a.dtype.kind in 'bu' else 'float32', 'shape': list(a.shape),
+            'data': base64.b64encode(a.tobytes()).decode(), 'numeric_sha256': numeric_hash(a)}
+
+
+def prepare_exposure(product, region):
+    """Use exactly the established grid and all-contributors-valid mask policy."""
+    wcs, shape = common_grid(region)
+    arrays = {}
+    for name, data in [('SCI', product.image), ('WAVE', product.wavelength_um), ('BAND', product.bandwidth_um)]:
+        value, _ = reproject_interp((data, product.wcs), wcs, shape_out=shape, order='bilinear')
+        arrays[name] = np.asarray(value, dtype=np.float32)
+    support, footprint = reproject_interp((product.valid.astype(float), product.wcs), wcs, shape_out=shape, order='bilinear')
+    valid = (footprint > 0) & np.isfinite(support) & (support >= 1 - 1e-10)
+    for a in arrays.values():
+        valid &= np.isfinite(a)
+    valid &= (arrays['WAVE'] > 0) & (arrays['BAND'] > 0)
+    if not valid.any():
+        raise ValueError('No usable measured pixels in the requested field')
+    arrays['VALID'] = valid.astype(np.uint8)
+    arrays['SCI'][~valid] = np.nan
+    lo, hi = np.percentile(arrays['SCI'][valid], [1, 99.7]).tolist()
+    if hi <= lo:
+        hi = lo + 1
+    obs = product.observation.model_dump(mode='json')
+    for key in ('source', 'spectral_calibration'):
+        if obs[key]:
+            obs[key]['path'] = Path(obs[key]['path']).name
+    return {'schema_version': '1.0', 'dataset_kind': 'real', 'usage': 'single_observation_only',
+            'scientific_approval': 'PENDING', 'observation': obs, 'region': region.model_dump(),
+            'shape': list(shape), 'native_shape': list(product.image.shape), 'pixel_scale_arcsec': 6.15,
+            'wcs': dict(wcs.to_header()), 'arrays': {k: encode(v) for k, v in arrays.items()},
+            'display': {'vmin': lo, 'vmax': hi, 'stretch': 'asinh', 'asinh_a': .06},
+            'wavelength_range_um': [float(arrays['WAVE'][valid].min()), float(arrays['WAVE'][valid].max())],
+            'processing': {'algorithm': 'reproject_interp bilinear', 'flag_policy': 'conservative-v0.1; SOURCE alone retained',
+                           'spectral_basis': product.spectral_basis, 'usable_fraction': float(valid.mean()),
+                           'unknown_flag_pixels': product.unknown_flag_pixels, 'masked_flags': product.fatal_flag_names,
+                           'support': 'all bilinear contributors must be usable; no inpainting or target alignment',
+                           'tool_sha256': sha256_file(Path(__file__))},
+            'limitations': LIMITATIONS}
+
+
+def selected_rows(rows, detector, count):
+    # Fixed temporal quantiles, not an exhaustive pair search or optimization
+    # against a hoped-for result. Keep every subsequent rejection.
+    candidates = {}
+    for row in rows:
+        if row.get('energy_bandpassname') != f'SPHEREx-D{detector}':
+            continue
+        try:
+            time = float(row['t_min'])
+            if not math.isfinite(time):
+                continue
+            url = urlsplit(row['access_url'])
+            if url.scheme != 'https' or url.hostname != 'irsa.ipac.caltech.edu' or not url.path.startswith('/ibe/data/spherex/') or url.query:
+                continue
+            previous=candidates.get(row['obs_id'])
+            if previous is None or (row.get('obs_release_date') or '',row['access_url'])>(previous.get('obs_release_date') or '',previous['access_url']):
+                candidates[row['obs_id']] = row
+        except (TypeError, KeyError, ValueError):
+            continue
+    ordered = sorted(candidates.values(), key=lambda r: (float(r['t_min']), r['access_url']))
+    indices = sorted({round(i * (len(ordered) - 1) / max(1, count - 1)) for i in range(min(count, len(ordered)))})
+    return [ordered[i] for i in indices], len(ordered)
+
+
+def verified_local_inputs(request):
+    """Reuse authenticated originals only when their actual WCS contains the centre."""
+    if request.release != 'qr2' or request.detector != 2 or request.deep or request.selection!='compatible' or request.start_date or request.end_date or request.wavelength_um is not None:
+        return []
+    catalog = json.loads((ROOT/'web/dist/data/explore-catalog.json').read_text(encoding='utf-8'))
+    result = []
+    for field in catalog['fields']:
+        # This is merely a cache index. read_product below checks actual WCS;
+        # this proximity test never establishes usable support.
+        da = math.radians(field['ra_deg'] - request.region.ra_deg)
+        d1, d2 = map(math.radians, (field['dec_deg'], request.region.dec_deg))
+        separation=math.degrees(2*math.asin(math.sqrt(max(0,min(1,math.sin((d1-d2)/2)**2+math.cos(d1)*math.cos(d2)*math.sin(da/2)**2)))))
+        if separation > .02:
+            continue
+        for entry in field['observations']:
+            record = json.loads((ROOT/'web/dist'/entry['url'].removeprefix('./')).read_text(encoding='utf-8'))
+            size=parse_qs(urlsplit(record['observation']['source']['source_url']).query).get('size',['0'])[0]
+            if float(size)<request.region.size_deg+2*separation-1e-9:continue
+            identity = record['observation']['source']['sha256']
+            for sidecar in (ROOT/'data/raw').glob(f"*/{entry['observation_id']}_D2.fits.source.json"):
+                path = sidecar.with_suffix('').with_suffix('')
+                if path.is_file() and sha256_file(path) == identity:
+                    result.append(path)
+    return result[:request.max_frames]
+
+
+def reference_catalogue(region, output, cancel, reference_inputs=None):
+    # Same catalogue selection as the established native-reference validation.
+    # A larger context does not relax the reference residual/coverage policies.
+    if reference_inputs is not None:
+        # Trusted CLI reconstruction only. HTTP requests cannot supply paths.
+        csv_path,query_path=map(Path,reference_inputs)
+        raw=csv_path.read_bytes();source=json.loads(query_path.read_text(encoding='utf-8'))
+        if len(raw)>2_000_000 or hashlib.sha256(raw).hexdigest()!=source['sha256']:
+            raise ValueError('Reference snapshot identity differs')
+        parsed=urlsplit(source['url'])
+        expected=f"CIRCLE('ICRS',{region.ra_deg},{region.dec_deg},{region.size_deg/math.sqrt(2)}))=1"
+        if parsed.scheme!='https' or parsed.hostname!='irsa.ipac.caltech.edu' or parsed.path!='/TAP/sync' or expected not in source['query'] or parse_qs(parsed.query).get('QUERY')!=[source['query']]:
+            raise ValueError('Reference snapshot query differs from the requested context')
+        source={**source,'input_mode':'verified_recorded_snapshot'}
+    elif (abs(region.ra_deg-210.80227) < .02 and abs(region.dec_deg-54.34895) < .02
+            and (ROOT/'research/validation/m101_context_gaia_dr3.csv').is_file()
+            and (ROOT/'research/validation/m101_context_gaia_query.json').is_file()):
+        raw = (ROOT/'research/validation/m101_context_gaia_dr3.csv').read_bytes()
+        source = json.loads((ROOT/'research/validation/m101_context_gaia_query.json').read_text())
+    else:
+        query = ("SELECT TOP 2000 source_id,ra,dec,ref_epoch,pmra,pmdec,parallax,ruwe,phot_g_mean_mag "
+                 "FROM gaia_dr3_source WHERE CONTAINS(POINT('ICRS',ra,dec),"
+                 f"CIRCLE('ICRS',{region.ra_deg},{region.dec_deg},{region.size_deg/math.sqrt(2)}))=1 "
+                 "AND phot_g_mean_mag<20 AND ruwe<1.4 AND pmra IS NOT NULL AND pmdec IS NOT NULL")
+        url = 'https://irsa.ipac.caltech.edu/TAP/sync?' + urlencode({'REQUEST':'doQuery','LANG':'ADQL','FORMAT':'csv','QUERY':query})
+        check_cancel(cancel)
+        raw = fetch_bytes(url, max_bytes=2_000_000, timeout=30, attempts=2)
+        source = {'url': url, 'query': query, 'retrieved_at_utc': utc_now().isoformat()}
+    rows = list(csv.DictReader(io.StringIO(raw.decode('utf-8-sig'))))
+    if len(rows) >= 2000:
+        raise ValueError('Reference catalogue reached its row limit; truncation cannot approve registration')
+    required = {'source_id','ra','dec','ref_epoch','pmra','pmdec','parallax'}
+    if not rows or not required.issubset(rows[0]):
+        raise ValueError('No supported Gaia reference catalogue returned')
+    (output/'gaia.csv').write_bytes(raw)
+    source['sha256'] = hashlib.sha256(raw).hexdigest()
+    (output/'gaia-query.json').write_text(json.dumps(source, indent=2), encoding='utf-8')
+    return rows, source
+
+
+def playback_modes(frames, comparisons):
+    """Keep chronological browsing separate from scientifically screened links.
+
+    Even a valid matched group supports qualitative inspection only. No mode
+    establishes source detection, measured displacement or calibrated photometry.
+    Every pair in a matched subset must pass; pairwise links are not transitive.
+    """
+    count=len(frames)
+    edges={tuple(sorted((c['a'],c['b']))) for c in comparisons if c['playback_eligible'] is True}
+    matched=[]
+    for size in range(count,1,-1):
+        groups=[g for g in combinations(range(count),size) if all(pair in edges for pair in combinations(g,2))]
+        if groups:
+            # Frames are chronologically ordered; ISO UTC values retain explicit
+            # dates. Actual elapsed seconds, rather than frame count, rank spans.
+            from astropy.time import Time
+            def rank(group):
+                span=(Time(frames[group[-1]]['observation']['time_start_utc'])-
+                      Time(frames[group[0]]['observation']['time_start_utc'])).sec
+                return (-float(span),tuple(frames[i]['observation']['observation_id'] for i in group))
+            matched=list(min(groups,key=rank));break
+    survey_reason=('Genuine observations on the same requested ICRS grid. Dates and wavelengths can differ; '
+                   'brightness or positional differences are visual evidence only, with no physical-change claim.' if count>1 else
+                   'At least two prepared observations are required for chronological playback.' if count else
+                   'No supported observation could be prepared for this bounded request.')
+    matched_reason=('Every pair in this subset passes the unchanged wavelength, support and stationary-reference checks; '
+                    'qualitative inspection only, with scientific review pending.' if matched else
+                    'No two prepared epochs passed all required wavelength, support and stationary-reference checks. '
+                    'Inspect the Survey Timeline or individual observations; rejected comparisons remain in the receipt.')
+    return {
+        'survey_timeline':{'eligible':count>1,'frame_indices':list(range(count)),
+            'physical_comparison':False,'alignment':'Common requested ICRS grid; registration is not assumed verified.',
+            'display_policy':'Shared sequence limits; wavelength-dependent differences must not be interpreted as variability.',
+            'reason':survey_reason},
+        'matched_wavelength':{'eligible':bool(matched),'frame_indices':matched,
+            'physical_comparison':False,'comparison_scope':'Qualitative matched-wavelength inspection; no established physical change.',
+            'alignment':'Independent stationary-reference checks passed for every included pair.' if matched else 'Not verified for a usable matched subset.',
+            'display_policy':'Shared sequence limits; no PSF matching or calibrated photometry.',
+            'reason':matched_reason}}
+
+
+def build_sequence(request, output, *, progress=lambda message: None, cancel=None, use_local=True, input_paths=None, reference_inputs=None):
+    check_cancel(cancel)
+    request = SequenceRequest.model_validate(request)
+    if input_paths is not None and not 1 <= len(input_paths) <= request.max_frames:
+        raise ValueError('Explicit original count exceeds the request bound')
+    output = Path(output)
+    output.mkdir(parents=True, exist_ok=False)
+    raw_request = request.model_dump(mode='json')
+    (output/'request.json').write_text(json.dumps(raw_request, indent=2), encoding='utf-8')
+    if request.discovery_only:
+        from .archive_index import discover
+        collections=CURRENT_COLLECTIONS if request.discovery_scope=='all_supported' else [collection_for(request.release, request.deep)]
+        _,report=discover(request.region,collections,output/'metadata',detector=None if request.discovery_scope=='all_supported' else request.detector,start_date=request.start_date,end_date=request.end_date,use_cache=request.use_cache,cancel=cancel,progress=progress,provider=request.metadata_provider)
+        report['request']=raw_request
+        raw=json.dumps(report,separators=(',',':'),allow_nan=False).encode()
+        if len(raw)>32*1024*1024:raise ValueError('Metadata result exceeds 32 MiB')
+        (output/'sequence.json').write_bytes(raw)
+        (output/'sequence.sha256').write_text(hashlib.sha256(raw).hexdigest())
+        return report
+    products, frames, rejections = [], [], []
+    selection_report=None
+    # Trusted research callers may select exact originals. HTTP users can only
+    # use the known local cache or obtain observations through IRSA.
+    paths = list(map(Path,input_paths)) if input_paths is not None else (verified_local_inputs(request) if use_local and request.use_cache else [])
+    if not paths and input_paths is None and request.release == 'qr2':
+        raise ValueError('IRSA retired live QR2 searches. Choose DR1 or QR3, or open a prepared QR2 example.')
+    pin = CALIBRATION.get((request.release, request.detector))
+    calibration = None
+    if pin:
+        calibration = ROOT/pin['path']
+        if not calibration.exists():
+            progress('Retrieving the pinned detector calibration')
+            download(pin['url'], calibration, max_bytes=40_000_000)
+        if sha256_file(calibration) != pin['sha256']:
+            raise ValueError('Pinned calibration bytes changed; adapter review is required')
+    origin = 'explicit_originals' if input_paths is not None else ('verified_original_cache' if paths else 'live_archive')
+    candidate_count = len(paths)
+    if not paths and input_paths is None:
+        progress('Searching official archive metadata for the requested position')
+        rows = indexed_inventory(request.region, request.release, output/'inventory', deep=request.deep, detector=request.detector,start_date=request.start_date,end_date=request.end_date,use_cache=request.use_cache,cancel=cancel,progress=progress,provider=request.metadata_provider)
+        from .selection import preselect
+        chosen, selection_report = preselect(rows,request,calibration,output/'selection',cancel=cancel,progress=progress)
+        candidate_count = selection_report['contained_candidates']
+        acquisition_region=request.region.model_copy(update={'size_deg':max(.3,request.region.size_deg)}) if calibration and len(chosen)>1 else request.region
+        selection_report['acquisition_context_deg']=acquisition_region.size_deg
+        (output/'selection/selection.json').write_text(json.dumps(selection_report,indent=2),encoding='utf-8')
+        paths = []
+        for i, row in enumerate(chosen):
+            check_cancel(cancel)
+            progress(f'Retrieving bounded cutout {i+1} of {len(chosen)}')
+            source = row['access_url']
+            if f'/{request.release}/' not in source:
+                rejections.append({'observation_id': row['obs_id'], 'reason': 'Archive release mismatch'})
+                continue
+            # Content-addressed source URL cache; never overwrite source bytes.
+            url = cutout_url(source, acquisition_region)
+            path = ROOT/'data/cache/cutouts'/(hashlib.sha256(url.encode()).hexdigest()+'.fits')
+            try:
+                if not path.exists() and path.parent.exists() and sum(p.stat().st_size for p in path.parent.glob('*.fits'))+20_000_000>512*1024*1024:
+                    raise ValueError('Original cutout cache reached its 512 MiB acquisition budget; existing evidence is preserved')
+                download(url, path, max_bytes=20_000_000)
+                paths.append(path)
+            except (OSError, ValueError) as exc:
+                rejections.append({'observation_id': row['obs_id'], 'source_url': url, 'reason': public_error_message(exc)})
+    for i, path in enumerate(paths):
+        check_cancel(cancel)
+        progress(f'Preparing measured pixels and conservative masks {i+1} of {len(paths)}')
+        try:
+            product = read_product(path, request.region, calibration=calibration, calibration_url=pin['url'] if pin else None)
+            for file,record in ((path,product.observation.source),(calibration,product.observation.spectral_calibration)):
+                if file and record:
+                    sidecar=file.with_suffix(file.suffix+'.source.json')
+                    if sidecar.exists():
+                        from .models import FileRecord
+                        record.retrieved_at_utc=FileRecord.model_validate_json(sidecar.read_text()).retrieved_at_utc
+            if product.observation.release != request.release or product.observation.detector != request.detector:
+                raise ValueError('Input release or detector differs from the request')
+            frames.append(prepare_exposure(product, request.region))
+            products.append(product)
+        except (ValueError, OSError, KeyError) as exc:
+            rejections.append({'input_sha256': sha256_file(path), 'reason': public_error_message(exc)})
+    order = sorted(range(len(frames)), key=lambda i: frames[i]['observation']['time_start_utc'])
+    products, frames = [products[i] for i in order], [frames[i] for i in order]
+    comparisons, references, reference_source = [], None, None
+    context = request.region.model_copy(update={'size_deg': max(.3, request.region.size_deg)})
+    if len(products) > 1 and calibration:
+        try:
+            progress('Checking stationary Gaia references without fitting a target alignment')
+            references, reference_source = reference_catalogue(context, output, cancel, reference_inputs)
+        except (ValueError, OSError) as exc:
+            rejections.append({'stage': 'reference_catalogue', 'reason': public_error_message(exc)})
+        for i in range(len(products)):
+            for j in range(i+1, len(products)):
+                check_cancel(cancel)
+                report, _ = screen_pair(products[i], products[j], request.region)
+                try:
+                    registration = measure_registration(products[i], products[j], references, context) if references else {'status': 'pending', 'reference_count': 0}
+                except (ValueError,KeyError,ArithmeticError) as exc:
+                    registration={'status':'fail','reference_count':0,'reason':public_error_message(exc)}
+                    rejections.append({'stage':'registration','a':i,'b':j,'reason':public_error_message(exc)})
+                comparisons.append({'a': i, 'b': j, 'screen': report, 'registration': registration,
+                                    'playback_eligible': report['suitability']['status'] != 'rejected' and registration['status'] == 'pass'})
+    # Legacy eligibility remains the all-frame science gate. Survey browsing
+    # is separately labeled and never upgrades rejected scientific comparisons.
+    eligible = len(frames) > 1 and len(comparisons) == len(frames)*(len(frames)-1)//2 and all(c['playback_eligible'] for c in comparisons)
+    modes=playback_modes(frames,comparisons)
+    native_frames=[];native_rejections=[];native_pixels=0
+    from .native_display import native_payload
+    for product in products:
+        try:
+            if native_pixels+product.image.size>400_000:
+                raise ValueError('Native display reached the bounded 400,000-pixel sequence budget; common-grid imagery remains available')
+            payload=native_payload(product,request.region)
+            native_pixels+=product.image.size
+            native_frames.append(payload)
+        except (ValueError,ArithmeticError) as exc:
+            native_frames.append(None)
+            native_rejections.append({'observation_id':product.observation.observation_id,'reason':public_error_message(exc)})
+    finite = [np.frombuffer(base64.b64decode(f['arrays']['SCI']['data']), dtype='<f4') for f in frames]
+    values = np.concatenate([a[np.isfinite(a)] for a in finite]) if finite else np.array([])
+    display = {'vmin': 0., 'vmax': 1., 'stretch': 'asinh', 'asinh_a': .06}
+    if values.size:
+        lo, hi = np.percentile(values, [1,99.7]).tolist()
+        display.update(vmin=lo, vmax=max(hi, lo+1e-6))
+    identity = {'request':raw_request, 'source_hashes':[f['observation']['source']['sha256'] for f in frames],
+                'calibration_sha256': pin['sha256'] if pin else None, 'code_sha256': sha256_file(Path(__file__)),
+                'code_hashes':{name:sha256_file(Path(__file__).with_name(name)) for name in ('sequence.py','selection.py','archive.py','products.py','coordinates.py','registration.py','suitability.py','preparation.py','native_display.py','releases.py','messages.py','archive_index.py')},
+                'software_versions':{name:version(name) for name in ('numpy','astropy','scipy','reproject')}}
+    overlay=[]
+    if references and comparisons:
+        measured=set.intersection(*[{r['source_id'] for r in c['registration'].get('references',[]) if r['status']=='measured'} for c in comparisons])
+        for row in references:
+            if str(row['source_id']) not in measured:continue
+            positions=[]
+            for p in products:
+                pos=reference_position(row,p.observation.time_start_utc)
+                positions.append({'ra_deg':float(pos.ra.deg),'dec_deg':float(pos.dec.deg)})
+            overlay.append({'source_id':str(row['source_id']),'reference_epoch_jyear':float(row['ref_epoch']),'positions':positions})
+            if len(overlay)>=100:break
+    result = {'schema_version': '1.0', 'kind': 'spherex_sequence', 'dataset_kind': 'real',
+              'sequence_id': 'sequence-'+hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()[:24],
+              'created_at_utc': utc_now().isoformat(), 'request': raw_request,
+              'origin': origin, 'candidate_rows_for_detector': candidate_count,
+              'status': 'prepared' if frames else 'unavailable_in_tested_request',
+              'selection':selection_report,
+              'frames': frames, 'native_frames':native_frames, 'native_display_rejections':native_rejections,
+              'display': display, 'comparisons': comparisons, 'playback_modes':modes,
+              'matched_frame_indices':modes['matched_wavelength']['frame_indices'],
+              'playback_eligible': eligible, 'reference_catalogue': reference_source,
+              'reference_overlay':overlay,
+              'rejections': rejections, 'scientific_approval': 'PENDING', 'internal_human_review': 'PENDING',
+              'interpretation': 'No measured motion or calibrated variability is established.',
+              'selection_strategy': 'Explicit original identities; no archive substitution.' if input_paths is not None else 'Verified original cache when applicable; otherwise bounded metadata/header wavelength preselection, followed by unchanged scientific checks.',
+              'citations':[
+                  f'SPHEREx {request.release.upper()}: https://doi.org/{RELEASE_DOIS[request.release]}',
+                  'This publication makes use of data products from the Spectro-Photometer for the History of the Universe, Epoch of Reionization and Ices Explorer (SPHEREx), which is a joint project of the Jet Propulsion Laboratory and the California Institute of Technology, and is funded by the National Aeronautics and Space Administration.',
+              ] + (['Gaia DR3: https://doi.org/10.1051/0004-6361/202243940. ESA Gaia data processed by DPAC.'] if reference_source else []),
+              'limitations': LIMITATIONS, 'identity': identity}
+    raw = json.dumps(result, separators=(',', ':'), allow_nan=False).encode()
+    if len(raw)>32*1024*1024:raise ValueError('Prepared result exceeds 32 MiB; reduce the field width or frame count')
+    (output/'sequence.json').write_bytes(raw)
+    (output/'sequence.sha256').write_text(hashlib.sha256(raw).hexdigest())
+    progress('Prepared images are ready' if frames else 'No supported image could be prepared for this bounded request')
+    return result

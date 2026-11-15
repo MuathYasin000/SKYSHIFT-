@@ -1,0 +1,10 @@
+{
+  "status": "pass",
+  "regenerated_files": {
+    "explore.html": "0d57951b3a6b68b1d3984cc0a5f53d899a487da10679ea3516faccdbdcbb7cfd",
+    "compare.html": "88886904945e9643d1e4d1528e8a7acd4a372818c6f6f90070f03c0fdd9b92bb",
+    "site.js": "add32a0dc13458a700fd1ebd0c4e0bd86daa013bc76830510e8f3c7cb08cfbc4",
+    "app.js": "d72c6d68bc7403ccae56916a306a63139f318fc698aba0621fcc3e09e1e45760"
+  },
+  "science_rebuilt": false
+}

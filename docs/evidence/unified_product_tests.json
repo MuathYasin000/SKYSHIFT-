@@ -1,0 +1,112 @@
+{
+  "recorded_at_utc": "2026-10-17T07:32:02.707Z",
+  "browser": "155.0.8059.80",
+  "profile": "isolated; not the user session",
+  "results": [
+    {
+      "name": "SPHEREx alone leads launch; official Earth context loads; no scientific iframe",
+      "status": "pass",
+      "detail": {
+        "telescopes": [
+          "spherex"
+        ],
+        "assets": [
+          "earth-natural"
+        ]
+      }
+    },
+    {
+      "name": "Spacecraft component and wavelength explanations are interactive",
+      "status": "pass"
+    },
+    {
+      "name": "Sourced optional observatory collection is secondary and returnable",
+      "status": "pass"
+    },
+    {
+      "name": "Actual sky selection enters the native instrument in one document",
+      "status": "pass"
+    },
+    {
+      "name": "Coordinates, questions, edit, locate, JSON save and Classic mode share exact state",
+      "status": "pass"
+    },
+    {
+      "name": "Provenance is clickable and explicitly pending, with exact archive identity",
+      "status": "pass"
+    },
+    {
+      "name": "Return to sky and resume retain region, questions, viewport and canvas identity",
+      "status": "pass"
+    },
+    {
+      "name": "M101 UTC timeline and restricted comparison preserve scientific gates",
+      "status": "pass"
+    },
+    {
+      "name": "Linked canvases, actual draggable wipe, A/B and blink preserve coordinate viewport",
+      "status": "pass"
+    },
+    {
+      "name": "Comparison question, source diagnostics, ZIP export and exact reopen",
+      "status": "pass"
+    },
+    {
+      "name": "Classic pauses the decorative renderer and supports full investigation",
+      "status": "pass"
+    },
+    {
+      "name": "Original audio starts muted, distinct cues and separate volumes remain usable",
+      "status": "pass"
+    },
+    {
+      "name": "Fresh browser reconstructs both native exports with questions and strict identity",
+      "status": "pass"
+    },
+    {
+      "name": "Responsive native inspection and comparison at 1024px",
+      "status": "pass"
+    },
+    {
+      "name": "Responsive native inspection and comparison at 390px",
+      "status": "pass"
+    },
+    {
+      "name": "Responsive native inspection and comparison at 320px",
+      "status": "pass"
+    },
+    {
+      "name": "Reload in the same tab restores the pending investigation and private notes",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced motion keeps manual epochs and scientific viewing available",
+      "status": "pass"
+    },
+    {
+      "name": "No WebGL still opens native Classic science, not an embedded page",
+      "status": "pass"
+    },
+    {
+      "name": "Corrupted exposure is refused, previous view survives and retry loads exact data",
+      "status": "pass"
+    },
+    {
+      "name": "Keyboard pixel inspection and automated accessibility checks",
+      "status": "pass",
+      "detail": {
+        "violations": [],
+        "incomplete": 0
+      }
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "limits": [
+    "Qualified scientific approval PENDING",
+    "Internal human review PENDING",
+    "Independent novice usability validation NOT CONDUCTED",
+    "Mobile tests are emulation, not physical-device tests",
+    "User visual and audio evaluation remains outstanding"
+  ]
+}

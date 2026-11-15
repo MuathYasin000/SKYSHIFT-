@@ -1,0 +1,41 @@
+{
+  "recorded_at_utc": "2026-10-17T14:32:00.695Z",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "name": "102 bars, silent first visit, keyboard resources and bounded boot",
+      "status": "pass"
+    },
+    {
+      "name": "Lens and effects preferences stay synchronized, including explicit sound opt-in",
+      "status": "pass"
+    },
+    {
+      "name": "Search shortcut, source IDs and tap reveal retain original exposures",
+      "status": "pass"
+    },
+    {
+      "name": "Vela original-image reveal, published color ranges and accessible legend",
+      "status": "pass"
+    },
+    {
+      "name": "Lazy model exposes actual projected component hotspots",
+      "status": "pass"
+    },
+    {
+      "name": "Exact evidence checksum copy and keyboard comparison wipe",
+      "status": "pass"
+    },
+    {
+      "name": "Responsive home font floor, navigation, no horizontal overflow and reduced-motion recovery",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "limits": [
+    "Automated browser evaluation only; user remains sole human UX evaluator.",
+    "Qualified scientific approval and internal human review PENDING. Independent novice validation NOT CONDUCTED.",
+    "Emulated viewport sizes do not certify physical-device performance."
+  ]
+}

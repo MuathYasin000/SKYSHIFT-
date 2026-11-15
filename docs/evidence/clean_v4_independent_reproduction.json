@@ -1,0 +1,14 @@
+{
+  "reconstruction": "pass",
+  "registration": "pass",
+  "registration_agreement": {
+    "reference_count": true,
+    "quadrants": true,
+    "convex_hull_fraction": true,
+    "median_residual_pixels": true,
+    "p95_residual_pixels": true
+  },
+  "scientific_approval": "PENDING",
+  "internal_technical_review": "PENDING",
+  "note": "Automated reproduction completed. A human reviewer must inspect the evidence and document their own findings."
+}

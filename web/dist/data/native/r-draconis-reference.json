@@ -1,0 +1,141 @@
+{
+  "field": "r-draconis",
+  "survey": "CDS/P/DSS2/color",
+  "usage": "Optical context only; never a temporal frame or scientific array",
+  "title": "DSS2 optical color / CDS HiPS, served by IRSA",
+  "fov_deg": 1,
+  "shape": [
+    720,
+    720
+  ],
+  "image": "./data/native/r-draconis-reference.png",
+  "image_sha256": "b95679afabe078c684e44f473c9c10b2f220ac8344150b74eb5d47c12b725aa2",
+  "credit": "Digitized Sky Survey \u2014 STScI/NASA. Colored and HEALPix tiled by CDS (CNRS/Unistra).",
+  "acknowledgement": "The Digitized Sky Surveys were produced at the Space Telescope Science Institute under U.S. Government grant NAG W-2166. The images of these surveys are based on photographic data obtained using the Oschin Schmidt Telescope on Palomar Mountain and the UK Schmidt Telescope. The plates were processed into the present compressed digital form with the permission of these institutions. The National Geographic Society - Palomar Observatory Sky Atlas (POSS-I) was made by the California Institute of Technology with grants from the National Geographic Society. The Second Palomar Observatory Sky Survey (POSS-II) was made by the California Institute of Technology with funds from the National Science Foundation, the National Geographic Society, the Sloan Foundation, the Samuel Oschin Foundation, and the Eastman Kodak Corporation. The Oschin Schmidt Telescope is operated by the California Institute of Technology and Palomar Observatory. The UK Schmidt Telescope was operated by the Royal Observatory Edinburgh, with funding from the UK Science and Engineering Research Council (later the UK Particle Physics and Astronomy Research Council), until 1988 June, and thereafter by the Anglo-Australian Observatory. The blue plates of the southern Sky Atlas and its Equatorial Extension (together known as the SERC-J), as well as the Equatorial Red (ER), and the Second Epoch [red] Survey (SES) were all taken with the UK Schmidt. Supplemental funding for sky-survey work at the ST ScI is provided by the European Southern Observatory.",
+  "copyright_url": "https://archive.stsci.edu/dss/copyright.html",
+  "properties_url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/properties",
+  "properties_sha256": "7e5a2618bda285941b6d77303d45443d56a4ec4fae143cfdba58ee7c9034eda8",
+  "reference_epoch": "Historical photographic plates, survey-wide 1975\u20131999; individual plate dates not inferred.",
+  "spectral_regime": "Optical; not wavelength compatible with SPHEREx detector 2",
+  "method": "Nearest HEALPix sample to TAN grid using Astropy HEALPix; order 7 / tile width 512. HiPS JPEG row=local HEALPix x, column=local HEALPix y; final TAN y flipped north up. Display context only.",
+  "mapping_version": "hips-jpeg-xy-v2",
+  "wcs": {
+    "WCSAXES": 2,
+    "CRPIX1": 360.5,
+    "CRPIX2": 360.5,
+    "CDELT1": -0.0013888888888889,
+    "CDELT2": 0.0013888888888889,
+    "CUNIT1": "deg",
+    "CUNIT2": "deg",
+    "CTYPE1": "RA---TAN",
+    "CTYPE2": "DEC--TAN",
+    "CRVAL1": 248.16761083295,
+    "CRVAL2": 66.75497941722,
+    "LONPOLE": 180.0,
+    "LATPOLE": 66.75497941722,
+    "MJDREF": 0.0,
+    "RADESYS": "ICRS"
+  },
+  "footprints": {
+    "r-draconis-2025W49_1A_0009_3": [
+      [
+        454.2720757938947,
+        478.54414206888515
+      ],
+      [
+        479.0046870677958,
+        263.77312741738615
+      ],
+      [
+        263.6266994719452,
+        239.38507300283572
+      ],
+      [
+        238.87565171092243,
+        454.31109630809516
+      ]
+    ],
+    "r-draconis-2025W50_2A_0259_3": [
+      [
+        427.1770344791221,
+        497.91344352186724
+      ],
+      [
+        480.7879483501032,
+        336.9304362631592
+      ],
+      [
+        276.26707400114367,
+        264.77449125712843
+      ],
+      [
+        222.62521608689516,
+        425.87743617952805
+      ]
+    ]
+  },
+  "restricted_field_pixels": 28.8,
+  "created_at_utc": "2026-10-30T08:41:00.301702+00:00",
+  "tiles": [
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46335.jpg",
+      "sha256": "a31fd9c3b5dfff0381f6ac03743d5a7df396c9d2a73551304115d9627189cf79",
+      "size_bytes": 65183
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46504.jpg",
+      "sha256": "042e59abaa84eef5d2ae3a9695da9b3dd9cfeeddf0b0de65433ec2cb7efd142e",
+      "size_bytes": 71207
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46505.jpg",
+      "sha256": "b3167ff51e63cd484f55dc606ffca1d5f4c72146e8e1f580c263c55c908e1fbc",
+      "size_bytes": 71364
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46506.jpg",
+      "sha256": "c54651a43a2838d577190de06e1df3dfc255911b54ecbeef69d8c99fc7e0bed6",
+      "size_bytes": 65804
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46507.jpg",
+      "sha256": "8e6107bcd305c4dece63b5bd6e149b9c21a2a19775218e8386fc653e3d45d2f2",
+      "size_bytes": 69559
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46677.jpg",
+      "sha256": "5919b1bbc698d69143cfbb2b6f11ce15d745a3ff57bd665708b970447859e760",
+      "size_bytes": 66570
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46679.jpg",
+      "sha256": "a76709ff53458d26a26f32015bfef1dcdf9caaaef1328b7f9802b5c2c147b8f3",
+      "size_bytes": 66748
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46848.jpg",
+      "sha256": "1c7f5a003e1adc183a48e3a29620a1f58a3263359e7ca99f96bc98b3a89c7f75",
+      "size_bytes": 65252
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46849.jpg",
+      "sha256": "8ffcb6b028c61937419d9d48e022c82b7e13b515c2a817aa0a539d9197f08c68",
+      "size_bytes": 63882
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46850.jpg",
+      "sha256": "cb50908103257c265b52db5695de6e014baecf5f0bfa8c6bc1a7e6494a4cd815",
+      "size_bytes": 65003
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46851.jpg",
+      "sha256": "53432cebfc1ea3d95e85613f557914a731654e3382ea6c9677ad7215567ef97a",
+      "size_bytes": 66640
+    },
+    {
+      "url": "https://irsa.ipac.caltech.edu/data/hips/CDS/DSS2/color/Norder7/Dir40000/Npix46856.jpg",
+      "sha256": "e9912ac93b4e1f10adcf92c69cc2728c7a508a1ae48e9534ac3f6b31b9ced44d",
+      "size_bytes": 61918
+    }
+  ]
+}

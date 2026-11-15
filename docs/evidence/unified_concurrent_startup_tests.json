@@ -1,0 +1,70 @@
+{
+  "date_utc": "2026-10-17T07:33:39.216Z",
+  "server": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.1",
+    "directory_id": "cf30d37f4287c0b3",
+    "content_id": "38ca9d9dc1d6ecf17877458c2d3cb49c2ffac6b92230d7a0b4f362ff5e6c0c1a",
+    "release_id": "workspace",
+    "app_version": "0.6-local-workspace"
+  },
+  "results": [
+    {
+      "name": "Installed Chrome",
+      "version": "155.0.8059.80",
+      "trial": 0,
+      "status": "pass",
+      "spherex_science_and_input_ready_ms": 1969.1569000000002,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Microsoft Edge",
+      "version": "155.0.4283.45",
+      "trial": 0,
+      "status": "pass",
+      "spherex_science_and_input_ready_ms": 1867.2536,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Installed Chrome",
+      "version": "155.0.8059.80",
+      "trial": 1,
+      "status": "pass",
+      "spherex_science_and_input_ready_ms": 1768.0503000000003,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Microsoft Edge",
+      "version": "155.0.4283.45",
+      "trial": 1,
+      "status": "pass",
+      "spherex_science_and_input_ready_ms": 1883.2338,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Installed Chrome",
+      "version": "155.0.8059.80",
+      "trial": 2,
+      "status": "pass",
+      "spherex_science_and_input_ready_ms": 1720.265699999999,
+      "errors": [],
+      "failed": []
+    },
+    {
+      "name": "Microsoft Edge",
+      "version": "155.0.4283.45",
+      "trial": 2,
+      "status": "pass",
+      "spherex_science_and_input_ready_ms": 1930.748599999999,
+      "errors": [],
+      "failed": []
+    }
+  ],
+  "user_session": "Fresh-profile checks of 0.6; no claim of verification in the user session",
+  "scope": "Two browsers concurrently per trial, three trials; SPHEREx rendered, native science loaded and settings opened, no external requests required"
+}

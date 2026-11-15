@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "retrieved_date_utc": "2026-10-17",
+  "scope": "Interface interaction patterns; not astronomical data or image evidence",
+  "adaptations": [
+    {
+      "name": "Vengeance UI Spotlight Navbar",
+      "website": "https://github.com/Ashutoshx7/VengeanceUI",
+      "source_url": "https://raw.githubusercontent.com/Ashutoshx7/VengeanceUI/2cf9379129a0167f0210cfd70a4fa4415c09f9e0/src/components/ui/spotlight-navbar.tsx",
+      "upstream_commit": "2cf9379129a0167f0210cfd70a4fa4415c09f9e0",
+      "original_sha256": "ce17272872bb7d90a8636ac41dbe8d52c34287fcbd80013ee527e209cefba3b4",
+      "original_bytes": 7871,
+      "license": "MIT",
+      "license_file": "Vengeance-LICENSE.txt",
+      "downloaded_license_sha256": "b90027fc729c84a7e3b976b046996a685f5b1a2f448f5bc3514ce32314b77c46",
+      "modifications": "Historical native interaction study. Current mission-interactions.js retains optional presentation effects; components.css and home.css provide the current static navigation and link treatment. The earlier pointer-following navigation spotlight is retired.",
+      "local_implementation": [
+        "mission-interactions.js",
+        "home.css",
+        "components.css"
+      ]
+    },
+    {
+      "name": "Skiper UI Skiper40 CssLink",
+      "website": "https://skiper-ui.com/v1/preview/skiper40",
+      "source_url": "https://skiper-ui.com/r/skiper40.json",
+      "original_sha256": "df4c9c719080a9454f47005a939a0ee408f8067930db0ff83fca52e3e734e28f",
+      "original_bytes": 9487,
+      "license": "Component-specific free-use-and-modification terms with attribution",
+      "license_reference": "https://skiper-ui.com/docs/quick-start",
+      "license_file": "NOTICES.txt",
+      "attribution": "Visible homepage footer and interface source records",
+      "modifications": "Retired link-transition study. Current navigation changes text color, footer links use ordinary text-decoration, and the launch arrow changes color. No Skiper Link000/Link001 transform-origin/scale underline or SVG arrow implementation remains in the distributed interface. Historical source, authorship and custom terms remain recorded; those terms are not relabeled as OSI or Apache-2.0.",
+      "local_implementation": [],
+      "runtime_status": "retired; historical acknowledgment retained"
+    },
+    {
+      "name": "Vengeance UI Kinetic Text Loader",
+      "website": "https://www.vengenceui.com/components/kinetic-text-loader",
+      "source_url": "https://raw.githubusercontent.com/Ashutoshx7/VengeanceUI/2b6e4e673c950e2075dde853d55688498b9fda6d/public/r/kinetic-text-loader.json",
+      "upstream_commit": "2b6e4e673c950e2075dde853d55688498b9fda6d",
+      "original_sha256": "711fe4e9a45e7b7db1fe3f0b38993ce1d92b93226a82b11794d4f89e6201c656",
+      "original_bytes": 3766,
+      "license": "MIT",
+      "license_file": "Vengeance-LICENSE.txt",
+      "retrieved_date_utc": "2026-10-18",
+      "modifications": "Native DOM/CSS adaptation of the 1800ms moving dot, L bounce and i stretch. Local Inter font, responsive em units, accessible original status text, automatic dynamic status decoration and reduced-motion fallback; no React, Tailwind or remote fonts.",
+      "local_implementation": [
+        "kinetic-loader.js",
+        "kinetic-loader.css"
+      ]
+    }
+  ],
+  "inspiration_only": [
+    {
+      "name": "dqnamo Kitchen",
+      "website": "https://www.dqnamo.com/kitchen",
+      "studies": [
+        "Tactile Button",
+        "Iridescent Foil"
+      ],
+      "reuse_status": "No explicit source-code license identified; no source copied",
+      "original_skyshift_work": "Layered press depth on primary action; restrained interface surfaces"
+    }
+  ],
+  "hero_image_treatment": {
+    "type": "interactive_3d_model",
+    "asset_manifest": "assets/space/manifest.json",
+    "asset_id": "spherex",
+    "treatment": "Actual existing SPHEREx geometry rendered through WebGL with studio lighting and interactive camera controls. The rejected SVG-clipped illustration is no longer used in the hero.",
+    "caption": "Interactive 3D; illustrative spacecraft model",
+    "scientific_pixels_modified": false
+  },
+  "raw_references": "data/raw/ui-references (local reference copies; not runtime dependencies)"
+}

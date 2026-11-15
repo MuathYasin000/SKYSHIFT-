@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "record_kind": "single_observation_view",
+  "field": "m101",
+  "product_url": "./data/explore/m101-2025W50_1A_0736_3.json",
+  "product_sha256": "3805e172f1fab3f211a634bce269f4c17c401e541b118504108ac508496ee63f",
+  "observation": {
+    "observation_id": "2025W50_1A_0736_3",
+    "release": "qr2",
+    "detector": 2,
+    "pipeline_version": "6.4+psffix1",
+    "time_start_utc": "2025-12-11T05:01:27.448000Z",
+    "time_end_utc": "2025-12-11T05:03:22.566000Z",
+    "original_timescale": "utc",
+    "science_unit": "MJy/sr",
+    "source": {
+      "path": "2025W50_1A_0736_3_D2.fits",
+      "sha256": "27943f13c77d7b1b6927fcbba15341d2589f79a923322732ab8608fbb4940dbb",
+      "size_bytes": 5440320,
+      "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_1A/l2b-v20-2025-345/2/level2_2025W50_1A_0736_3D2_spx_l2b-v20-2025-345.fits?center=210.80227%2C54.34895&size=0.3",
+      "retrieved_at_utc": null
+    },
+    "spectral_calibration": {
+      "path": "spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+      "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+      "size_bytes": 33312960,
+      "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+      "retrieved_at_utc": null
+    },
+    "center_wavelength_um": 1.105954647064209,
+    "center_bandwidth_um": 0.026426851749420166,
+    "hdus": [
+      "PRIMARY",
+      "IMAGE",
+      "FLAGS",
+      "VARIANCE",
+      "ZODI",
+      "PSF",
+      "WCS-WAVE"
+    ]
+  },
+  "region": {
+    "ra_deg": 210.80227,
+    "dec_deg": 54.34895,
+    "size_deg": 0.3,
+    "frame": "icrs"
+  },
+  "wcs": {
+    "WCSAXES": 2,
+    "CRPIX1": 88.5,
+    "CRPIX2": 88.5,
+    "CDELT1": -0.0017083333333333,
+    "CDELT2": 0.0017083333333333,
+    "CUNIT1": "deg",
+    "CUNIT2": "deg",
+    "CTYPE1": "RA---TAN",
+    "CTYPE2": "DEC--TAN",
+    "CRVAL1": 210.80227,
+    "CRVAL2": 54.34895,
+    "LONPOLE": 180,
+    "LATPOLE": 54.34895,
+    "MJDREF": 0,
+    "RADESYS": "ICRS"
+  },
+  "native_shape": [
+    137,
+    176
+  ],
+  "prepared_shape": [
+    176,
+    176
+  ],
+  "processing": {
+    "algorithm": "reproject_interp bilinear",
+    "flag_policy": "conservative-v0.1; SOURCE alone retained",
+    "support": "all bilinear contributors must be usable; no inpainting, sharpening, PSF matching or background subtraction",
+    "tool_sha256": "4ac4bc252ad7d8cf67e1a18f78eb05091123d20578b8cbf961e3e9f965873839"
+  },
+  "array_hashes": {
+    "SCI": "fa77d3114689ca1ee66381e4dad6ede1d794b6bff40fbff05219199827c8ff6d",
+    "WAVE": "40e4e9f5809a72e1f86a9b315e493736c3ef8cd19241e6f596854a061bcc8dc7",
+    "BAND": "c8a08cf004549965c6a5b03c870c623fed71f00b5c8e8c03e4a723b2c0d56767",
+    "VALID": "22958ac112dc1952d7b4bb90b6d1271fbcc7b0f9b5b2d31b1e144dc3e9f05c79"
+  },
+  "visualization": {
+    "schema_version": "1.0",
+    "stretch": "log",
+    "palette": "ember",
+    "interpolation": "smooth",
+    "wipe": false,
+    "wipe_position": 50
+  },
+  "display": {
+    "vmin": 0.1754054968059063,
+    "vmax": 3.3049119911193867,
+    "stretch": "asinh",
+    "asinh_a": 0.06
+  },
+  "viewport": {
+    "zoom": 1.25,
+    "center_x": 87.5,
+    "center_y": 87.5
+  },
+  "scientific_approval": "PENDING",
+  "limitations": [
+    "Single exposure only. Wavelength changes across the field.",
+    "Context is not screened as a temporal comparison.",
+    "Display interpolation never creates a measurement."
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "date_utc": "2026-10-16T20:58:37.372Z",
+  "browser": "Installed Chrome",
+  "version": "155.0.8059.80",
+  "results": [
+    {
+      "name": "Telescope-led entry renders all three models together and no separate mode switch",
+      "status": "pass"
+    },
+    {
+      "name": "Mouse and keyboard camera movement works before mission selection",
+      "status": "pass"
+    },
+    {
+      "name": "Actual 3D picking selects Hubble and opens its observation explanation",
+      "status": "pass"
+    },
+    {
+      "name": "Each telescope has a working animated light path, instrument stage and sourced image",
+      "status": "pass"
+    },
+    {
+      "name": "Opt-in audio has distinct mission, instrument, travel and zoom cues",
+      "status": "pass",
+      "detail": {
+        "enabled": true,
+        "last_cue": "travel",
+        "recent_cues": [
+          "spherex",
+          "spherex",
+          "spectrum",
+          "close",
+          "webb-b",
+          "spectrum",
+          "close",
+          "hubble",
+          "spectrum",
+          "close",
+          "zoom",
+          "travel"
+        ],
+        "active_voice_count": 3,
+        "context_state": "running"
+      }
+    },
+    {
+      "name": "Visible interaction effects respond and can be disabled without disabling explanations",
+      "status": "pass"
+    },
+    {
+      "name": "SPHEREx mission opens Orion real data inside the same exploration world",
+      "status": "pass"
+    },
+    {
+      "name": "Pixel questions save and reopen and survive leaving the lens for another telescope",
+      "status": "pass"
+    },
+    {
+      "name": "Restricted comparison supports edit, export, reopen and deletion within the lens",
+      "status": "pass"
+    },
+    {
+      "name": "Solar system and real-field navigation still work beside telescope access",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced motion keeps explanatory diagrams static and legacy mode preferences cannot restore a split UI",
+      "status": "pass"
+    },
+    {
+      "name": "1024px layout offers telescope explanations and real observations with no overflow",
+      "status": "pass"
+    },
+    {
+      "name": "390px layout offers telescope explanations and real observations with no overflow",
+      "status": "pass"
+    },
+    {
+      "name": "320px layout offers telescope explanations and real observations with no overflow",
+      "status": "pass"
+    },
+    {
+      "name": "Opening a new browser page can reconstruct the downloaded exposure and comparison",
+      "status": "pass"
+    },
+    {
+      "name": "Unsupported WebGL leaves the integrated observation lens usable",
+      "status": "pass"
+    },
+    {
+      "name": "A corrupt telescope asset is not substituted and selection retries the verified model",
+      "status": "pass"
+    },
+    {
+      "name": "Corrupted mission imagery is rejected and image reload verifies fresh bytes",
+      "status": "pass"
+    },
+    {
+      "name": "A lost WebGL context preserves observation access and a fresh renderer recovers",
+      "status": "pass"
+    },
+    {
+      "name": "Explanations have automated accessibility checks and runtime stays local",
+      "status": "pass",
+      "detail": {
+        "violations": [],
+        "manual": [
+          "aria-prohibited-attr",
+          "color-contrast"
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "console_errors": [
+    "THREE.WebGLRenderer: Error creating WebGL context."
+  ],
+  "failed_requests": [],
+  "external": [],
+  "user_journey_verified": false,
+  "user_freeze_feedback": "User confirmed the prior repaired application now responds; new telescope experience awaits user evaluation",
+  "scientific_approval": "PENDING",
+  "independent_novice_validation": "NOT CONDUCTED"
+}

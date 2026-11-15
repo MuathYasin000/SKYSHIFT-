@@ -1,0 +1,181 @@
+{
+  "method": "Chromium coverage and DOM-selector union across eight routes, two widths and representative opened states, followed by active HTML/JS source cross-check. Unseen dynamic selectors retained.",
+  "removed": [
+    {
+      "file": "components.css",
+      "selector": ".skip"
+    },
+    {
+      "file": "components.css",
+      "selector": ".skip:focus"
+    },
+    {
+      "file": "components.css",
+      "selector": ".wordmark"
+    },
+    {
+      "file": "components.css",
+      "selector": ".wordmark img"
+    },
+    {
+      "file": "components.css",
+      "selector": ".wordmark small"
+    },
+    {
+      "file": "components.css",
+      "selector": ".nav-label-short"
+    },
+    {
+      "file": "components.css",
+      "selector": ".footer-columns button"
+    },
+    {
+      "file": "components.css",
+      "selector": ".site-footer .interface-credits"
+    },
+    {
+      "file": "components.css",
+      "selector": ".review-banner"
+    },
+    {
+      "file": "components.css",
+      "selector": "[data-spectrum] i[data-band=\"blue\"]"
+    },
+    {
+      "file": "components.css",
+      "selector": "[data-spectrum] i[data-band=\"red\"]"
+    },
+    {
+      "file": "components.css",
+      "selector": ".chrome-effects"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".instrument-panel-actions"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".instrument-question-card"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".instrument-question-card button"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".instrument-question-card p"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".instrument-question-card > div"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".instrument-options"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".instrument-options label"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".instrument-options select"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".telescope-focus-title"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".mission-controls"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".mission-image"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".mission-image-credit"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".mission-content"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".mission-component-grid"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".mission-component-grid button"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".mission-selector"
+    },
+    {
+      "file": "shell-app.css",
+      "selector": ".mission-fine"
+    },
+    {
+      "file": "shell-document.css",
+      "selector": ".note-card"
+    },
+    {
+      "file": "shell-document.css",
+      "selector": ".source-record"
+    },
+    {
+      "file": "shell-document.css",
+      "selector": ".source-record a"
+    },
+    {
+      "file": "shell-document.css",
+      "selector": ".source-record code"
+    },
+    {
+      "file": "shell-document.css",
+      "selector": ".source-record p"
+    },
+    {
+      "file": "shell-document.css",
+      "selector": ".review-banner"
+    },
+    {
+      "file": "shell-document.css",
+      "selector": ".exposure-question-card"
+    },
+    {
+      "file": "shell-document.css",
+      "selector": ".exposure-question-card button"
+    },
+    {
+      "file": "shell-document.css",
+      "selector": ".exposure-choices"
+    },
+    {
+      "file": "shell-document.css",
+      "selector": ".exposure-choices button"
+    }
+  ],
+  "sizes": {
+    "components.css": {
+      "before": 16437,
+      "after": 15301
+    },
+    "shell-app.css": {
+      "before": 4976,
+      "after": 3643
+    },
+    "shell-document.css": {
+      "before": 5536,
+      "after": 4696
+    }
+  },
+  "coverage_limitation": "Chromium reports coarse used ranges for cascade layers; it does not certify every declaration used.",
+  "final_formatted_bytes": {
+    "components.css": 16128,
+    "shell-app.css": 3789,
+    "shell-document.css": 4902
+  }
+}

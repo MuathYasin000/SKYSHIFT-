@@ -1,0 +1,21 @@
+{
+  "cause": "Existing arrival verifier had a hard-coded historical output directory; this run overwrote five screenshots before the collision was detected.",
+  "changed_files": [
+    "docs/evidence/arrival-20261029/landed.png",
+    "docs/evidence/arrival-20261029/loading.png",
+    "docs/evidence/arrival-20261029/mobile-landed.png",
+    "docs/evidence/arrival-20261029/reveal.png",
+    "docs/evidence/arrival-20261029/settling.png"
+  ],
+  "restored_from_identical_hash": {
+    "docs/evidence/arrival-20261029/landed.png": "tmp\\reveal_sound\\hero-desktop.png"
+  },
+  "unrecoverable_originals": [
+    "docs/evidence/arrival-20261029/loading.png",
+    "docs/evidence/arrival-20261029/mobile-landed.png",
+    "docs/evidence/arrival-20261029/reveal.png",
+    "docs/evidence/arrival-20261029/settling.png"
+  ],
+  "fresh_run_directory": "docs/evidence/completion-20261030",
+  "historical_screenshot_integrity": "Do not claim preservation for unrecovered originals. Other previous scientific evidence was not regenerated."
+}

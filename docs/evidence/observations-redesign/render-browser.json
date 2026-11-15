@@ -1,0 +1,111 @@
+{
+  "browser": "157.0.8103.51",
+  "base": "https://skyshift-j22s.onrender.com",
+  "results": [
+    {
+      "name": "explore barnards-star at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-08-15T20:45:11.376Z",
+        "last": "2026-09-22T15:04:20.981000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare barnards-star at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-08-15T20:45:11.376Z",
+        "last": "2026-09-22T15:04:20.981000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore epsilon-indi-b at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T20:31:57.081000Z",
+        "last": "2026-10-02T03:17:15.828000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare epsilon-indi-b at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T20:31:57.081000Z",
+        "last": "2026-10-02T03:17:15.828000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore wise-0855 at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-05-05T16:48:02.459000Z",
+        "last": "2026-05-14T06:53:35.614000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare wise-0855 at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-05-05T16:48:02.459000Z",
+        "last": "2026-05-14T06:53:35.614000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore rw-aurigae at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-09-01T10:04:17.466000Z",
+        "last": "2026-09-16T06:48:20.865000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare rw-aurigae at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-09-01T10:04:17.466000Z",
+        "last": "2026-09-16T06:48:20.865000Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "explore r-draconis at 1440",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T21:06:38.390Z",
+        "last": "2026-09-27T06:59:17.520Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "compare r-draconis at 390",
+      "status": "pass",
+      "details": {
+        "frames": 12,
+        "first": "2025-04-24T21:06:38.390Z",
+        "last": "2026-09-27T06:59:17.520Z",
+        "axeViolations": 0
+      }
+    },
+    {
+      "name": "Keyboard playback, frame pickers, all modes, wipe, and shared view at 390",
+      "status": "pass"
+    }
+  ],
+  "pageErrors": []
+}

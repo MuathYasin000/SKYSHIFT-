@@ -1,0 +1,81 @@
+{
+  "host": "https://skyshift-j22s.onrender.com",
+  "commit": "c1e14f6989dd64d8a7ed13c06b848b2e82b71962",
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "tags": {
+        "canonical": "https://skyshift-j22s.onrender.com/",
+        "url": "https://skyshift-j22s.onrender.com/",
+        "image": "https://skyshift-j22s.onrender.com/assets/mission-control.webp"
+      }
+    },
+    {
+      "path": "/explore.html",
+      "status": 200,
+      "tags": {
+        "canonical": "https://skyshift-j22s.onrender.com/explore.html",
+        "url": "https://skyshift-j22s.onrender.com/explore.html",
+        "image": "https://skyshift-j22s.onrender.com/assets/mission-control.webp"
+      }
+    },
+    {
+      "path": "/compare.html",
+      "status": 200,
+      "tags": {
+        "canonical": "https://skyshift-j22s.onrender.com/compare.html",
+        "url": "https://skyshift-j22s.onrender.com/compare.html",
+        "image": "https://skyshift-j22s.onrender.com/assets/mission-control.webp"
+      }
+    }
+  ],
+  "targets": [
+    {
+      "target": "barnards-star",
+      "frames": 12,
+      "stage": 0.6271527777777778,
+      "widthOverflow": 0,
+      "active": "Details"
+    },
+    {
+      "target": "epsilon-indi-b",
+      "frames": 12,
+      "stage": 0.6271527777777778,
+      "widthOverflow": 0,
+      "active": "Details"
+    },
+    {
+      "target": "wise-0855",
+      "frames": 12,
+      "stage": 0.6271527777777778,
+      "widthOverflow": 0,
+      "active": "Details"
+    },
+    {
+      "target": "rw-aurigae",
+      "frames": 12,
+      "stage": 0.6271527777777778,
+      "widthOverflow": 0,
+      "active": "Details"
+    },
+    {
+      "target": "r-draconis",
+      "frames": 12,
+      "stage": 0.6271527777777778,
+      "widthOverflow": 0,
+      "active": "Details"
+    }
+  ],
+  "health": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.2",
+    "directory_id": "3298578fc4ed0f0d",
+    "content_id": "8b16b2efe3482979f7b6916bb856dd3288ebc121acb36c1f44b33bad0f10a806",
+    "release_id": "skyshift-2026-11-14",
+    "app_version": "0.12.0",
+    "created_at_utc": "2026-11-14T16:56:36.975571+00:00"
+  },
+  "mobileObservations": true
+}

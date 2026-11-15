@@ -1,0 +1,105 @@
+{
+  "recorded_at_utc": "2026-10-17T14:16:59.560Z",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "name": "Home to Compare has measured outgoing and incoming opacity frames; data load and viewport remain native",
+      "status": "pass",
+      "detail": {
+        "frames": [
+          {
+            "target": "home-view",
+            "duration": 110,
+            "frames": [
+              {
+                "opacity": 1
+              },
+              {
+                "opacity": 0
+              }
+            ],
+            "samples": [
+              1,
+              1,
+              1,
+              0.305092,
+              0.228909,
+              0.169925,
+              0.1237,
+              0.08721,
+              0.0591426,
+              0.0381771,
+              0.0116514,
+              1
+            ]
+          },
+          {
+            "target": "space-workspace",
+            "duration": 240,
+            "frames": [
+              {
+                "opacity": 0
+              },
+              {
+                "opacity": 1
+              }
+            ],
+            "samples": [
+              0,
+              0,
+              0,
+              0.0805494,
+              0.903146,
+              0.917846,
+              0.931069,
+              0.942589,
+              1
+            ]
+          }
+        ],
+        "initial_route_animated": false
+      }
+    },
+    {
+      "name": "Home return, browser Back and saved viewport survive repeated animated navigation",
+      "status": "pass",
+      "detail": {
+        "restored_zoom": 1.25
+      }
+    },
+    {
+      "name": "Rapid Compare, Observations and Home clicks leave only the latest route visible and interactive",
+      "status": "pass",
+      "detail": {
+        "rounds": 3,
+        "final_route": "compare"
+      }
+    },
+    {
+      "name": "Single observations and same-surface changes fade without changing science availability",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced motion disables transitions on desktop and mobile; direct comparison links never animate startup",
+      "status": "pass"
+    },
+    {
+      "name": "Changing motion preferences during a transition completes navigation with no invisible surface",
+      "status": "pass"
+    },
+    {
+      "name": "Missing transition module preserves scientific navigation and saving",
+      "status": "pass"
+    },
+    {
+      "name": "Unavailable Web Animations support cannot block scientific navigation",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "limits": [
+    "Opacity samples are from actual requestAnimationFrame/computed styles, not a recording",
+    "Fresh isolated profiles; mobile is emulated",
+    "No scientific pixels or saved settings are animated or modified; review gates remain PENDING"
+  ]
+}

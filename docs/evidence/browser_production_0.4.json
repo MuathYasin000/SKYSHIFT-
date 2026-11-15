@@ -1,0 +1,194 @@
+{
+  "created_at_utc": "2026-10-16T16:24:44.820Z",
+  "base": "http://localhost:3001",
+  "browser_version": "153.0.8010.12",
+  "scope": "Automated engineering QA; independent novice validation NOT CONDUCTED",
+  "scientific_approval": "PENDING",
+  "results": [
+    {
+      "name": "Clear field choices distinguish exposure browsing from limited comparison",
+      "status": "pass"
+    },
+    {
+      "name": "Clicking a real field changes its story, availability and browser history",
+      "status": "pass"
+    },
+    {
+      "name": "Technical metadata stays collapsed while clickable provenance opens accessible source panel",
+      "status": "pass"
+    },
+    {
+      "name": "Contextual infrared and mask explanations are accessible without opening metadata",
+      "status": "pass"
+    },
+    {
+      "name": "Exposure date selection preserves single-exposure meaning and exact export identity",
+      "status": "pass"
+    },
+    {
+      "name": "Comparison keeps pending science visible and optional controls closed by default",
+      "status": "pass"
+    },
+    {
+      "name": "Both original observations are reachable in the simple source panel",
+      "status": "pass"
+    },
+    {
+      "name": "Switching dates and zooming keep linked settings and update journey guidance",
+      "status": "pass"
+    },
+    {
+      "name": "Click-to-note makes the question primary while retaining validated sky coordinates",
+      "status": "pass"
+    },
+    {
+      "name": "Appearance, wipe and blinking remain available on demand",
+      "status": "pass"
+    },
+    {
+      "name": "Actual browser save/reopen restores the question, palette and wipe",
+      "status": "pass",
+      "detail": {
+        "sha256": "a45137703db729f84db756912ddf66132c77d23c65b654d6761839211f9ed6ba"
+      }
+    },
+    {
+      "name": "Invalid coordinate notes and corrupt comparisons fail without losing a saved question",
+      "status": "pass"
+    },
+    {
+      "name": "Existing complete review packet downloads unchanged",
+      "status": "pass"
+    },
+    {
+      "name": "Loading hides previous science and disables export until the selected identity is checked",
+      "status": "pass"
+    },
+    {
+      "name": "Damaged exposure shows an honest error and supports retry",
+      "status": "pass"
+    },
+    {
+      "name": "Reduced-motion keeps manual date switching and disables blinking",
+      "status": "pass"
+    },
+    {
+      "name": "desktop responsive Explore/Compare and keyboard information panels",
+      "status": "pass"
+    },
+    {
+      "name": "tablet responsive Explore/Compare and keyboard information panels",
+      "status": "pass"
+    },
+    {
+      "name": "mobile responsive Explore/Compare and keyboard information panels",
+      "status": "pass"
+    },
+    {
+      "name": "narrow responsive Explore/Compare and keyboard information panels",
+      "status": "pass"
+    },
+    {
+      "name": "Automated WCAG 2.1 AA scans report findings transparently",
+      "status": "pass"
+    },
+    {
+      "name": "No external runtime requests or uncaught browser script errors",
+      "status": "pass"
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "accessibility": [
+    {
+      "page": "index",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 19
+        },
+        {
+          "id": "link-in-text-block",
+          "impact": "serious",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "page": "explore",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 20
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "nodes": 2
+        }
+      ]
+    },
+    {
+      "page": "compare",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 3
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "nodes": 2
+        }
+      ]
+    },
+    {
+      "page": "discover",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 3
+        }
+      ]
+    },
+    {
+      "page": "methodology",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "page": "source dialog",
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 1
+        },
+        {
+          "id": "label-content-name-mismatch",
+          "impact": "serious",
+          "nodes": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "recorded_at_utc": "2026-10-29T21:54:42.213961+00:00",
+  "javascript": {
+    "passed": 143,
+    "failed": 0,
+    "log": "tmp/mission-audit-js.log"
+  },
+  "python": {
+    "passed": 135,
+    "failed": 1,
+    "failure": "tests/test_mission_control_contract.py:22, !important in arrival.css",
+    "log": "tmp/mission-audit-pytest.log"
+  },
+  "original_browser": {
+    "passed": 9,
+    "failed": 1,
+    "receipt": "docs/evidence/mission_audit_product_tests.json"
+  },
+  "audit_browser_current_sound_preference": {
+    "passed": 19,
+    "failed": 0,
+    "receipt": "docs/evidence/mission_audit_current_preferences_product_tests.json",
+    "adjustment": "One sound-default assertion changed only in memory; original test and implementation unchanged"
+  },
+  "implementation_integrity": {
+    "hashed_files_checked": 399,
+    "changes_since_inventory": []
+  },
+  "scientific_approval": "PENDING",
+  "internal_human_review": "PENDING",
+  "independent_novice_validation": "NOT CONDUCTED"
+}

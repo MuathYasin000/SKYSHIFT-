@@ -1,0 +1,1141 @@
+{
+  "scope": "Emulated Chrome, reduced motion; one fresh-context sample per condition in a shared browser process, no statistical speed claim. Before replays repository-baseline JavaScript in the current presentation shell. Poster is an isolated measurement control only.",
+  "results": [
+    {
+      "scenario": "automatic",
+      "errors": [],
+      "metrics": {
+        "Nodes": 1552,
+        "ScriptDuration": 1.174429,
+        "TaskDuration": 1.721266,
+        "JSHeapUsedSize": 10352984
+      },
+      "timing": {
+        "navigation": {
+          "name": "http://localhost:3000/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 273.40000000037253,
+          "navigationId": 5088,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.6999999992549419,
+          "domainLookupStart": 0.6999999992549419,
+          "domainLookupEnd": 0.6999999992549419,
+          "connectStart": 0.6999999992549419,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.6999999992549419,
+          "requestStart": 7.199999999254942,
+          "responseStart": 12,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 12,
+          "responseEnd": 13.099999999627471,
+          "transferSize": 27586,
+          "encodedBodySize": 27286,
+          "decodedBodySize": 27286,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 134.30000000074506,
+          "domContentLoadedEventStart": 137.80000000074506,
+          "domContentLoadedEventEnd": 138,
+          "domComplete": 273.40000000037253,
+          "loadEventStart": 273.40000000037253,
+          "loadEventEnd": 273.40000000037253,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        },
+        "resources": [
+          {
+            "name": "tokens.css",
+            "bytes": 1639,
+            "duration": 20.90000000037253
+          },
+          {
+            "name": "components.css",
+            "bytes": 16428,
+            "duration": 21.800000000745058
+          },
+          {
+            "name": "base.css",
+            "bytes": 5308,
+            "duration": 27.700000001117587
+          },
+          {
+            "name": "shell-app.css",
+            "bytes": 4089,
+            "duration": 27.5
+          },
+          {
+            "name": "home.css",
+            "bytes": 39194,
+            "duration": 28.799999998882413
+          },
+          {
+            "name": "observations.css",
+            "bytes": 12191,
+            "duration": 29.199999999254942
+          },
+          {
+            "name": "compare.css",
+            "bytes": 24366,
+            "duration": 31.200000001117587
+          },
+          {
+            "name": "discover.css",
+            "bytes": 2991,
+            "duration": 30.5
+          },
+          {
+            "name": "universe.css",
+            "bytes": 32833,
+            "duration": 36.100000001490116
+          },
+          {
+            "name": "InterVariable.woff2",
+            "bytes": 137624,
+            "duration": 33.79999999888241
+          },
+          {
+            "name": "IBMPlexMono-Regular.woff2",
+            "bytes": 39520,
+            "duration": 34.09999999962747
+          },
+          {
+            "name": "skyshift-mark.svg",
+            "bytes": 744,
+            "duration": 34.19999999925494
+          },
+          {
+            "name": "website-bootstrap.js",
+            "bytes": 1985,
+            "duration": 91.40000000037253
+          },
+          {
+            "name": "site-chrome.js",
+            "bytes": 6049,
+            "duration": 127.10000000149012
+          },
+          {
+            "name": "website.js",
+            "bytes": 17030,
+            "duration": 126.90000000037253
+          },
+          {
+            "name": "skyshift-wordmark.svg",
+            "bytes": 2666,
+            "duration": 112.69999999925494
+          },
+          {
+            "name": "space-preferences.js",
+            "bytes": 1372,
+            "duration": 382.5
+          },
+          {
+            "name": "navigation-links.js",
+            "bytes": 1184,
+            "duration": 382.6000000014901
+          },
+          {
+            "name": "mask-display.js",
+            "bytes": 1946,
+            "duration": 382.69999999925494
+          },
+          {
+            "name": "catalogue.js",
+            "bytes": 3382,
+            "duration": 383.59999999962747
+          },
+          {
+            "name": "observation-console.js",
+            "bytes": 48928,
+            "duration": 383.2999999988824
+          },
+          {
+            "name": "field-guide.js",
+            "bytes": 7705,
+            "duration": 383.69999999925494
+          },
+          {
+            "name": "space-content.js",
+            "bytes": 7047,
+            "duration": 383.90000000037253
+          },
+          {
+            "name": "exploration-memory.js",
+            "bytes": 1244,
+            "duration": 385.19999999925494
+          },
+          {
+            "name": "skyshift-mark.svg",
+            "bytes": 744,
+            "duration": 6.200000001117587
+          },
+          {
+            "name": "application-sound.js",
+            "bytes": 9134,
+            "duration": 51.80000000074506
+          },
+          {
+            "name": "spectral-screen-copy.js",
+            "bytes": 788,
+            "duration": 459.2999999988824
+          },
+          {
+            "name": "investigation.js",
+            "bytes": 14455,
+            "duration": 459.80000000074506
+          },
+          {
+            "name": "science.js",
+            "bytes": 4261,
+            "duration": 460.19999999925494
+          },
+          {
+            "name": "visualization.js",
+            "bytes": 1830,
+            "duration": 460.40000000037253
+          },
+          {
+            "name": "viewport-input.js",
+            "bytes": 5016,
+            "duration": 460.5
+          },
+          {
+            "name": "evidence-trail.js",
+            "bytes": 778,
+            "duration": 460.80000000074506
+          },
+          {
+            "name": "ui-theme.js",
+            "bytes": 2732,
+            "duration": 461.40000000037253
+          },
+          {
+            "name": "exposure-records.js",
+            "bytes": 5402,
+            "duration": 462.19999999925494
+          },
+          {
+            "name": "space-audio.js",
+            "bytes": 7718,
+            "duration": 468.5
+          },
+          {
+            "name": "exposure-loader.js",
+            "bytes": 3785,
+            "duration": 246.80000000074506
+          },
+          {
+            "name": "exposure-questions.js",
+            "bytes": 2077,
+            "duration": 247.5
+          },
+          {
+            "name": "packets.js",
+            "bytes": 5066,
+            "duration": 247.90000000037253
+          },
+          {
+            "name": "fflate.js",
+            "bytes": 89498,
+            "duration": 251.5
+          },
+          {
+            "name": "evidence-identity.js",
+            "bytes": 719,
+            "duration": 247.7999999988824
+          },
+          {
+            "name": "route-transitions.js",
+            "bytes": 3833,
+            "duration": 154.2000000011176
+          },
+          {
+            "name": "explore-catalog.json",
+            "bytes": 4625,
+            "duration": 58.59999999962747
+          },
+          {
+            "name": "hero-model.js",
+            "bytes": 3871,
+            "duration": 197.90000000037253
+          },
+          {
+            "name": "infrared-experience.js",
+            "bytes": 13252,
+            "duration": 198.40000000037253
+          },
+          {
+            "name": "mission-interactions.js",
+            "bytes": 6704,
+            "duration": 198.59999999962747
+          },
+          {
+            "name": "m67-2025W44_2B_0657_2.webp",
+            "bytes": 8144,
+            "duration": 129.7999999988824
+          },
+          {
+            "name": "m101-2025W49_2A_0756_3.webp",
+            "bytes": 12932,
+            "duration": 131.19999999925494
+          },
+          {
+            "name": "ngc188-2025W36_1A_0724_2.webp",
+            "bytes": 9048,
+            "duration": 131.2999999988824
+          },
+          {
+            "name": "m42-2025W37_2A_0010_1.webp",
+            "bytes": 8794,
+            "duration": 131.09999999962747
+          },
+          {
+            "name": "infrared-layout.js",
+            "bytes": 2247,
+            "duration": 47.09999999962747
+          },
+          {
+            "name": "mission-model.js",
+            "bytes": 11052,
+            "duration": 77.5
+          },
+          {
+            "name": "hardware-studio.js",
+            "bytes": 1589,
+            "duration": 86.30000000074506
+          },
+          {
+            "name": "OrbitControls.js",
+            "bytes": 40875,
+            "duration": 89.90000000037253
+          },
+          {
+            "name": "three.module.js",
+            "bytes": 621664,
+            "duration": 90.80000000074506
+          },
+          {
+            "name": "spherex-model.js",
+            "bytes": 15368,
+            "duration": 86.39999999850988
+          },
+          {
+            "name": "spherex-materials.js",
+            "bytes": 4867,
+            "duration": 50.5
+          },
+          {
+            "name": "BufferGeometryUtils.js",
+            "bytes": 37286,
+            "duration": 53.5
+          },
+          {
+            "name": "three.core.js",
+            "bytes": 1462549,
+            "duration": 44.5
+          }
+        ],
+        "hero": {
+          "state": "ready",
+          "visible": true,
+          "model": {
+            "frames": 2,
+            "visible": true,
+            "selected": null,
+            "kind": "illustrative_spacecraft",
+            "presentation": "hero",
+            "camera": [
+              -3.8446368145307557,
+              2.25765483603093,
+              4.100945935499472
+            ],
+            "draw_calls": 29,
+            "triangles": 86040
+          }
+        }
+      }
+    },
+    {
+      "scenario": "poster-control",
+      "errors": [],
+      "metrics": {
+        "Nodes": 1552,
+        "ScriptDuration": 0.011643,
+        "TaskDuration": 0.294347,
+        "JSHeapUsedSize": 2288188
+      },
+      "timing": {
+        "navigation": {
+          "name": "http://localhost:3000/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 244,
+          "navigationId": 2143,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.8000000007450581,
+          "domainLookupStart": 0.8000000007450581,
+          "domainLookupEnd": 0.8000000007450581,
+          "connectStart": 0.8000000007450581,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.8000000007450581,
+          "requestStart": 4.200000001117587,
+          "responseStart": 7,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 7,
+          "responseEnd": 8.300000000745058,
+          "transferSize": 27586,
+          "encodedBodySize": 27286,
+          "decodedBodySize": 27286,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 122.90000000037253,
+          "domContentLoadedEventStart": 125,
+          "domContentLoadedEventEnd": 125,
+          "domComplete": 243.90000000037253,
+          "loadEventStart": 244,
+          "loadEventEnd": 244,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        },
+        "resources": [
+          {
+            "name": "tokens.css",
+            "bytes": 1639,
+            "duration": 21
+          },
+          {
+            "name": "base.css",
+            "bytes": 5308,
+            "duration": 21.59999999962747
+          },
+          {
+            "name": "components.css",
+            "bytes": 16428,
+            "duration": 22.699999999254942
+          },
+          {
+            "name": "shell-app.css",
+            "bytes": 4089,
+            "duration": 24.90000000037253
+          },
+          {
+            "name": "home.css",
+            "bytes": 39194,
+            "duration": 29.699999999254942
+          },
+          {
+            "name": "observations.css",
+            "bytes": 12191,
+            "duration": 27.200000001117587
+          },
+          {
+            "name": "compare.css",
+            "bytes": 24366,
+            "duration": 32.600000001490116
+          },
+          {
+            "name": "universe.css",
+            "bytes": 32833,
+            "duration": 29.199999999254942
+          },
+          {
+            "name": "discover.css",
+            "bytes": 2991,
+            "duration": 31.09999999962747
+          },
+          {
+            "name": "InterVariable.woff2",
+            "bytes": 137624,
+            "duration": 36.69999999925494
+          },
+          {
+            "name": "IBMPlexMono-Regular.woff2",
+            "bytes": 39520,
+            "duration": 34.30000000074506
+          },
+          {
+            "name": "skyshift-mark.svg",
+            "bytes": 744,
+            "duration": 33.19999999925494
+          },
+          {
+            "name": "website-bootstrap.js",
+            "bytes": 1985,
+            "duration": 75.80000000074506
+          },
+          {
+            "name": "site-chrome.js",
+            "bytes": 6049,
+            "duration": 111.59999999962747
+          },
+          {
+            "name": "website.js",
+            "bytes": 17030,
+            "duration": 111.69999999925494
+          },
+          {
+            "name": "skyshift-wordmark.svg",
+            "bytes": 2666,
+            "duration": 100.5
+          },
+          {
+            "name": "space-preferences.js",
+            "bytes": 1372,
+            "duration": 102.30000000074506
+          },
+          {
+            "name": "navigation-links.js",
+            "bytes": 1184,
+            "duration": 372.69999999925494
+          },
+          {
+            "name": "mask-display.js",
+            "bytes": 1946,
+            "duration": 377.80000000074506
+          },
+          {
+            "name": "observation-console.js",
+            "bytes": 48928,
+            "duration": 378.7000000011176
+          },
+          {
+            "name": "catalogue.js",
+            "bytes": 3382,
+            "duration": 378.7999999988824
+          },
+          {
+            "name": "field-guide.js",
+            "bytes": 7705,
+            "duration": 379.19999999925494
+          },
+          {
+            "name": "space-content.js",
+            "bytes": 7047,
+            "duration": 379.3999999985099
+          },
+          {
+            "name": "exploration-memory.js",
+            "bytes": 1244,
+            "duration": 379.59999999962747
+          },
+          {
+            "name": "skyshift-mark.svg",
+            "bytes": 744,
+            "duration": 101.59999999962747
+          },
+          {
+            "name": "application-sound.js",
+            "bytes": 9134,
+            "duration": 45.70000000111759
+          },
+          {
+            "name": "spectral-screen-copy.js",
+            "bytes": 788,
+            "duration": 360.09999999962747
+          },
+          {
+            "name": "investigation.js",
+            "bytes": 14455,
+            "duration": 360.5
+          },
+          {
+            "name": "science.js",
+            "bytes": 4261,
+            "duration": 360.69999999925494
+          },
+          {
+            "name": "visualization.js",
+            "bytes": 1830,
+            "duration": 360.90000000037253
+          },
+          {
+            "name": "viewport-input.js",
+            "bytes": 5016,
+            "duration": 361.09999999962747
+          },
+          {
+            "name": "evidence-trail.js",
+            "bytes": 778,
+            "duration": 361.09999999962747
+          },
+          {
+            "name": "ui-theme.js",
+            "bytes": 2732,
+            "duration": 361.2000000011176
+          },
+          {
+            "name": "exposure-records.js",
+            "bytes": 5402,
+            "duration": 361.40000000037253
+          },
+          {
+            "name": "space-audio.js",
+            "bytes": 7718,
+            "duration": 369.59999999962747
+          },
+          {
+            "name": "exposure-loader.js",
+            "bytes": 3785,
+            "duration": 223.09999999962747
+          },
+          {
+            "name": "exposure-questions.js",
+            "bytes": 2077,
+            "duration": 223.7000000011176
+          },
+          {
+            "name": "packets.js",
+            "bytes": 5066,
+            "duration": 224.10000000149012
+          },
+          {
+            "name": "fflate.js",
+            "bytes": 89498,
+            "duration": 228.09999999962747
+          },
+          {
+            "name": "evidence-identity.js",
+            "bytes": 719,
+            "duration": 223
+          },
+          {
+            "name": "route-transitions.js",
+            "bytes": 3833,
+            "duration": 56
+          },
+          {
+            "name": "explore-catalog.json",
+            "bytes": 4625,
+            "duration": 5.299999998882413
+          },
+          {
+            "name": "hero-model.js",
+            "bytes": 669,
+            "duration": 136
+          },
+          {
+            "name": "infrared-experience.js",
+            "bytes": 13252,
+            "duration": 137.30000000074506
+          },
+          {
+            "name": "mission-interactions.js",
+            "bytes": 6704,
+            "duration": 137.80000000074506
+          },
+          {
+            "name": "m101-2025W49_2A_0756_3.webp",
+            "bytes": 12932,
+            "duration": 35.79999999888241
+          },
+          {
+            "name": "m67-2025W44_2B_0657_2.webp",
+            "bytes": 8144,
+            "duration": 36.09999999962747
+          },
+          {
+            "name": "ngc188-2025W36_1A_0724_2.webp",
+            "bytes": 9048,
+            "duration": 37.19999999925494
+          },
+          {
+            "name": "m42-2025W37_2A_0010_1.webp",
+            "bytes": 8794,
+            "duration": 36.90000000037253
+          },
+          {
+            "name": "spherex-spacecraft-concept.jpg",
+            "bytes": 113994,
+            "duration": 4.400000000372529
+          },
+          {
+            "name": "infrared-layout.js",
+            "bytes": 2247,
+            "duration": 43.19999999925494
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "mobile-low",
+      "errors": [],
+      "metrics": {
+        "Nodes": 1553,
+        "ScriptDuration": 0.138334,
+        "TaskDuration": 0.646154,
+        "JSHeapUsedSize": 11485216
+      },
+      "timing": {
+        "navigation": {
+          "name": "http://localhost:3000/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 207.80000000074506,
+          "navigationId": 7190,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.40000000037252903,
+          "domainLookupStart": 0.40000000037252903,
+          "domainLookupEnd": 0.40000000037252903,
+          "connectStart": 0.40000000037252903,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.40000000037252903,
+          "requestStart": 2.800000000745058,
+          "responseStart": 4.900000000372529,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 4.900000000372529,
+          "responseEnd": 5.400000000372529,
+          "transferSize": 27586,
+          "encodedBodySize": 27286,
+          "decodedBodySize": 27286,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 92.5,
+          "domContentLoadedEventStart": 94.30000000074506,
+          "domContentLoadedEventEnd": 94.30000000074506,
+          "domComplete": 207.80000000074506,
+          "loadEventStart": 207.80000000074506,
+          "loadEventEnd": 207.80000000074506,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "low"
+          }
+        },
+        "resources": [
+          {
+            "name": "tokens.css",
+            "bytes": 1639,
+            "duration": 15.400000000372529
+          },
+          {
+            "name": "base.css",
+            "bytes": 5308,
+            "duration": 15.599999999627471
+          },
+          {
+            "name": "components.css",
+            "bytes": 16428,
+            "duration": 19.799999998882413
+          },
+          {
+            "name": "shell-app.css",
+            "bytes": 4089,
+            "duration": 20
+          },
+          {
+            "name": "home.css",
+            "bytes": 39194,
+            "duration": 19.90000000037253
+          },
+          {
+            "name": "observations.css",
+            "bytes": 12191,
+            "duration": 20.800000000745058
+          },
+          {
+            "name": "compare.css",
+            "bytes": 24366,
+            "duration": 22.300000000745058
+          },
+          {
+            "name": "discover.css",
+            "bytes": 2991,
+            "duration": 22.100000001490116
+          },
+          {
+            "name": "universe.css",
+            "bytes": 32833,
+            "duration": 24.799999998882413
+          },
+          {
+            "name": "InterVariable.woff2",
+            "bytes": 137624,
+            "duration": 25
+          },
+          {
+            "name": "IBMPlexMono-Regular.woff2",
+            "bytes": 39520,
+            "duration": 25
+          },
+          {
+            "name": "skyshift-mark.svg",
+            "bytes": 744,
+            "duration": 24.199999999254942
+          },
+          {
+            "name": "website-bootstrap.js",
+            "bytes": 1985,
+            "duration": 53.100000001490116
+          },
+          {
+            "name": "site-chrome.js",
+            "bytes": 6049,
+            "duration": 51.59999999962747
+          },
+          {
+            "name": "website.js",
+            "bytes": 17030,
+            "duration": 108.29999999888241
+          },
+          {
+            "name": "skyshift-wordmark.svg",
+            "bytes": 2666,
+            "duration": 100
+          },
+          {
+            "name": "space-preferences.js",
+            "bytes": 1372,
+            "duration": 133
+          },
+          {
+            "name": "navigation-links.js",
+            "bytes": 1184,
+            "duration": 133.2000000011176
+          },
+          {
+            "name": "mask-display.js",
+            "bytes": 1946,
+            "duration": 358.30000000074506
+          },
+          {
+            "name": "observation-console.js",
+            "bytes": 48928,
+            "duration": 359.09999999962747
+          },
+          {
+            "name": "catalogue.js",
+            "bytes": 3382,
+            "duration": 359.30000000074506
+          },
+          {
+            "name": "field-guide.js",
+            "bytes": 7705,
+            "duration": 359.5
+          },
+          {
+            "name": "space-content.js",
+            "bytes": 7047,
+            "duration": 359.59999999962747
+          },
+          {
+            "name": "exploration-memory.js",
+            "bytes": 1244,
+            "duration": 359.7999999988824
+          },
+          {
+            "name": "skyshift-mark.svg",
+            "bytes": 744,
+            "duration": 93.60000000149012
+          },
+          {
+            "name": "application-sound.js",
+            "bytes": 9134,
+            "duration": 322.5
+          },
+          {
+            "name": "exposure-records.js",
+            "bytes": 5402,
+            "duration": 468.40000000037253
+          },
+          {
+            "name": "spectral-screen-copy.js",
+            "bytes": 788,
+            "duration": 468.40000000037253
+          },
+          {
+            "name": "investigation.js",
+            "bytes": 14455,
+            "duration": 468.69999999925494
+          },
+          {
+            "name": "science.js",
+            "bytes": 4261,
+            "duration": 469
+          },
+          {
+            "name": "visualization.js",
+            "bytes": 1830,
+            "duration": 469.09999999962747
+          },
+          {
+            "name": "evidence-trail.js",
+            "bytes": 778,
+            "duration": 469.40000000037253
+          },
+          {
+            "name": "viewport-input.js",
+            "bytes": 5016,
+            "duration": 469.2000000011176
+          },
+          {
+            "name": "ui-theme.js",
+            "bytes": 2732,
+            "duration": 469.5
+          },
+          {
+            "name": "space-audio.js",
+            "bytes": 7718,
+            "duration": 451.90000000037253
+          },
+          {
+            "name": "evidence-identity.js",
+            "bytes": 719,
+            "duration": 223.10000000149012
+          },
+          {
+            "name": "exposure-questions.js",
+            "bytes": 2077,
+            "duration": 223.39999999850988
+          },
+          {
+            "name": "exposure-loader.js",
+            "bytes": 3785,
+            "duration": 222.80000000074506
+          },
+          {
+            "name": "packets.js",
+            "bytes": 5066,
+            "duration": 222.80000000074506
+          },
+          {
+            "name": "fflate.js",
+            "bytes": 89498,
+            "duration": 225.80000000074506
+          },
+          {
+            "name": "route-transitions.js",
+            "bytes": 3833,
+            "duration": 91
+          },
+          {
+            "name": "explore-catalog.json",
+            "bytes": 4625,
+            "duration": 5.600000001490116
+          },
+          {
+            "name": "hero-model.js",
+            "bytes": 3871,
+            "duration": 189.09999999962747
+          },
+          {
+            "name": "mission-interactions.js",
+            "bytes": 6704,
+            "duration": 195.89999999850988
+          },
+          {
+            "name": "infrared-experience.js",
+            "bytes": 13252,
+            "duration": 195.59999999962747
+          },
+          {
+            "name": "m101-2025W49_2A_0756_3.webp",
+            "bytes": 12932,
+            "duration": 74.5
+          },
+          {
+            "name": "m67-2025W44_2B_0657_2.webp",
+            "bytes": 8144,
+            "duration": 76
+          },
+          {
+            "name": "m42-2025W37_2A_0010_1.webp",
+            "bytes": 8794,
+            "duration": 75.90000000037253
+          },
+          {
+            "name": "ngc188-2025W36_1A_0724_2.webp",
+            "bytes": 9048,
+            "duration": 75.90000000037253
+          },
+          {
+            "name": "infrared-layout.js",
+            "bytes": 2247,
+            "duration": 83.19999999925494
+          },
+          {
+            "name": "mission-model.js",
+            "bytes": 11052,
+            "duration": 54.40000000037253
+          },
+          {
+            "name": "three.module.js",
+            "bytes": 621664,
+            "duration": 109
+          },
+          {
+            "name": "hardware-studio.js",
+            "bytes": 1589,
+            "duration": 101.30000000074506
+          },
+          {
+            "name": "spherex-model.js",
+            "bytes": 15368,
+            "duration": 101.59999999962747
+          },
+          {
+            "name": "OrbitControls.js",
+            "bytes": 40875,
+            "duration": 107.09999999962747
+          },
+          {
+            "name": "BufferGeometryUtils.js",
+            "bytes": 37286,
+            "duration": 59.40000000037253
+          },
+          {
+            "name": "spherex-materials.js",
+            "bytes": 4867,
+            "duration": 57.19999999925494
+          },
+          {
+            "name": "three.core.js",
+            "bytes": 1462549,
+            "duration": 49.59999999962747
+          }
+        ],
+        "hero": {
+          "state": "ready",
+          "visible": true,
+          "model": {
+            "frames": 2,
+            "visible": true,
+            "selected": null,
+            "kind": "illustrative_spacecraft",
+            "presentation": "hero",
+            "camera": [
+              -3.8446368145307557,
+              2.25765483603093,
+              4.100945935499472
+            ],
+            "draw_calls": 29,
+            "triangles": 86040
+          }
+        }
+      }
+    }
+  ],
+  "hashes": {
+    "web/dist/data/bundle.json": "b36ac03cac9711dbe4aeb0a64ac8cfc898509317d5758d0adb2d2aabacc5effd",
+    "web/dist/data/catalog.json": "17ad6e099632f13b77d1adae1c9f9c62291e3160da435ea02536183461d5c826",
+    "web/dist/data/explore/m101-2025W49_2A_0756_3.json": "d5fe609fc17c1727496eb622b796993ea431138e4d5d2475c5e2dabf5f6b019f",
+    "web/dist/data/explore/m101-2025W49_2A_0756_3.png": "56d89cfada9a5f9d1972c9c34e0f0e66a62b40fe83131505b6a894605d7553e2",
+    "web/dist/data/explore/m101-2025W50_1A_0736_3.json": "3805e172f1fab3f211a634bce269f4c17c401e541b118504108ac508496ee63f",
+    "web/dist/data/explore/m101-2025W50_1A_0736_3.png": "c2075c60ab5539f166583dae9f0c1a24702768037881e06f2d11e9d9cfd6a981",
+    "web/dist/data/explore/m42-2025W37_2A_0010_1.json": "0b27840ae389f3d30f1f4b4e88612e284e747c818a103003257397fafd7418be",
+    "web/dist/data/explore/m42-2025W37_2A_0010_1.png": "df907f141934b2b0303f34ac5e8200d9d1cbbd15e30df0bccf938bd127621e46",
+    "web/dist/data/explore/m67-2025W44_2B_0657_2.json": "bfc3b5bf23083dbf97c033927aba9ab5df6e8a6f4c1d03f75e948833821ba86b",
+    "web/dist/data/explore/m67-2025W44_2B_0657_2.png": "566f5f1942e41e2a17d74253d1592c98671ec1f85fee2a61b026d3a6c2736e4c",
+    "web/dist/data/explore/ngc188-2025W36_1A_0724_2.json": "b3f8720ae20ba4bcfb2adba4d9961aa98cc732dfce6124c26b5a1950ab381e91",
+    "web/dist/data/explore/ngc188-2025W36_1A_0724_2.png": "41f2b089ec81ffc7ca93cf2d3ec536e7403ce7414b39cf609afdbcf2cf79335b",
+    "web/dist/data/explore-catalog.json": "7197f418f2b09922796494943e97a973a9130f8ef69d27da7272a4a508ec2d39",
+    "web/dist/data/pair.fits": "7f0cf23f13e52418b6066e50b173afe1f709c6359ba4259b8ccfb6a0d71f2788",
+    "web/dist/data/provenance-audit.json": "83ba2fcff9bab2167203136d1359721b33f3fc52a8656e3a89de68ab5a27c731",
+    "web/dist/data/review-part-0.bin": "23c44f3918935634bf3081afa2c39b50d50742b4961f959b5189fc58349e534d",
+    "web/dist/data/review-part-1.bin": "dc521c7f2a92ca6e43c7d0707bb40ea10d6f9df975ac4e2c04e3db66d0e6456b",
+    "web/dist/data/review-part-2.bin": "2c586275a1d1de3887e4ae9cceb55d3e468c90bf0367a618acf3ea2933550f88",
+    "web/dist/data/review-part-3.bin": "e91f0d3869d9781dd926e295b7b84228fc65c594eabb66618826938da01d162f",
+    "web/dist/data/review-part-4.bin": "55e17525ee56e65a4c5d69b947cdea7513fa9b6ec5b70e7f55bc68fdb9494746",
+    "web/dist/data/review-part-5.bin": "2520ca83bf2b0a41f993f7f3f90b5f14034e6cf365bf9f7965703862a0652e42",
+    "web/dist/assets/assets.json": "82ae4c4c753da4648bdad1fb3ad3eae25af88c9e727a0f947419cb0bb10bb110",
+    "web/dist/assets/fonts/IBMPlexMono-OFL.txt": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+    "web/dist/assets/fonts/IBMPlexMono-Regular.woff2": "d1dd9a133f79638bbf55b0530caadd18814a1a8b59208b4262eca070d455f2ca",
+    "web/dist/assets/fonts/Inter-OFL.txt": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+    "web/dist/assets/fonts/InterVariable.woff2": "10f4019d33cf0a8efe6be0a08e670fdb333efc531faf457a03cea812cea639f7",
+    "web/dist/assets/fonts/mission-fonts.json": "9a3af4831a899bdb58a755355eef28d761f7df6e74f6942971fbbb2e832853a6",
+    "web/dist/assets/m101-hubble-context.jpg": "16da1f3b51cb85543fd2c104993d6b454faea7aabf58316aeba6f416a682d907",
+    "web/dist/assets/mission-control-assets.json": "f9a3024d366303a0cd5a4b26240dcfbb01f678e09e31718eeb4f98e0d2068f10",
+    "web/dist/assets/mission-control.webp": "84b4842a1201602bdc52e1a283059e32475488bfc2d85b3ad402eba169871fd3",
+    "web/dist/assets/previews/m101-2025W49_2A_0756_3.webp": "b6bd592a8ecf330b7359f2271cbe1ce00dc0c41567ebd4eaace689750bfa68e1",
+    "web/dist/assets/previews/m101-2025W50_1A_0736_3.webp": "4e734789061ab0978525199839534c7ec8cfcb092dd18c53e695cf10b3bff019",
+    "web/dist/assets/previews/m42-2025W37_2A_0010_1.webp": "2b4b738805793fee0bf7abcf7bf00e2f1183969f0bf04a0b28e28ce5eec534c0",
+    "web/dist/assets/previews/m67-2025W44_2B_0657_2.webp": "9231bab6c9a6430046ff9f9cc87c6f950edf7b3c392f069de805128b6fe76547",
+    "web/dist/assets/previews/manifest.json": "3bdaddad8536af25068d30dedbb36a4413b117e2ee88eebfad4af5749a38ade1",
+    "web/dist/assets/previews/ngc188-2025W36_1A_0724_2.webp": "bbbb3f4c3c6022c662632e105321a1d5023168d9ae6ce8b276ca34fd6cd0e5cc",
+    "web/dist/assets/skyshift-mark.svg": "851908d39fececef6993f5e486725771ad4413d7459ac81577bfff304a7d7767",
+    "web/dist/assets/skyshift-wordmark.svg": "8c6973717bb4011a4600861579812b73bc2e65d372ddedfd1d3311e672b23064",
+    "web/dist/assets/space/earth-natural.glb": "bc421b730fde54e528a171958a709bb76ce615e7fb72e87e83b21519c4df2a23",
+    "web/dist/assets/space/earth.webp": "94140dd575bdacdff96da1ddbecd44926c3903faf222e416c503517cb8b5567b",
+    "web/dist/assets/space/hubble-thumbnail.webp": "2f9c657373648708e82762ad99f8d3209831b59a4e4bf46fb3a19272147ae4f8",
+    "web/dist/assets/space/hubble.glb": "e5ba4de15c7d359ac8fa1ab7e286aff42dec09c0fadae3db99252587f39fa384",
+    "web/dist/assets/space/jupiter.webp": "419930a5ce1a93c467d3a450f69e2e302d8c98201687444af43111e1948a833f",
+    "web/dist/assets/space/manifest.json": "9cdd31b5da392382c09e2e776b484074d57d77b0d4338e34baedde04cf15a35a",
+    "web/dist/assets/space/mars.webp": "d4ebdb30788c61d45e65596c6b30c13a250ebb6a9c9442e26123668106069af6",
+    "web/dist/assets/space/mercury.glb": "20986a96e851bab240d392f8f3e14e9acf74fa5ffac77aefd429a33a5bb05499",
+    "web/dist/assets/space/moon.webp": "ab1e7d393cce5635d9169b68d765179102ca173458e1238f3e05f9e90590201e",
+    "web/dist/assets/space/neptune.webp": "56c6f2b832c0ee86616be4324a9f2b1110f49960c8050f82b040d7d4bf74ab27",
+    "web/dist/assets/space/observatory-optics-references.json": "f4c5366a95f7b06cd884912f0e1fe99a4e52ab5a875e53942fb196e711843a76",
+    "web/dist/assets/space/saturn.glb": "c85a96313e8584d0f3854734ee6fd4d044b2d726d9bc68717c882cd9a52213f4",
+    "web/dist/assets/space/spherex-hardware-references.json": "aa964293eb1c384ae0986dfac4c19b4b0d1cad6ad54f322fe8cc923e3086a2f0",
+    "web/dist/assets/space/spherex-thumbnail.webp": "f06f9114c14c97257b95c098fb455484a529c818ed3b3e24aeb64012f97fc9b8",
+    "web/dist/assets/space/sun.glb": "fbf5ff39b8789cc145c1d33c996867f965bb8ac21ce1ecc7d1fddd0256c26020",
+    "web/dist/assets/space/uranus.glb": "3b386fd361b2ec1e9ee0f16735d1debcf0301f0fddafdda2ec5f4e85ea423500",
+    "web/dist/assets/space/venus.webp": "0cd14d0565122c5acf25547d11cbdbbbad1374b633c4c25d385e1b49730d067f",
+    "web/dist/assets/space/webb-b-thumbnail.webp": "2cf7c7a408c26b1fdbe8923b4d1d67366c7348b5b6fe8f12eba9a9c981894774",
+    "web/dist/assets/space/webb-b.glb": "4958e61e5a564f2efcc32cd516b9d36ea0b9bc644f64dbcfe182ce8a422ae526",
+    "web/dist/assets/space/webb-detail.glb": "3de051a2526d30fb152ade16e0486fe05ea598d12c3183bdba97f10073fe115d",
+    "web/dist/assets/spherex-all-sky.jpg": "d74adacc36fc0c6047393147d6ed9e11261e210158a78d24964717bcd9fa99b3",
+    "web/dist/assets/spherex-spacecraft-concept.jpg": "b6bb377ec29f6dd29dc342dcf7e6889013cb98435c354ad6dfe37bf2797dcc3d",
+    "web/dist/assets/spherex-vela.jpg": "0abed3abe976406c0dd36a02911494476ffa66b65e8ef610497a50a84dceda67",
+    "web/dist/assets/webb-deep-field.webp": "dac4a84bcfad2d06bf7201718e68c60578d5460566776dfdd30049e6f462f33b"
+  }
+}

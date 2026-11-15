@@ -1,0 +1,16 @@
+{
+  "scope": "Local WSL2 Linux container verification, not public deployment or scientific approval",
+  "results": [],
+  "container": {
+    "image_id": "sha256:50a842fbf7e85c05c477a87f882cd21928b90fd6c8af73dca0135667220cbc48",
+    "read_only_root": true,
+    "memory_bytes": 2147483648,
+    "nano_cpus": 2000000000,
+    "pids_limit": 256,
+    "mount_destinations": [
+      "/app/data"
+    ]
+  },
+  "status": "fail",
+  "error": "Command '['docker', 'exec', 'skyshift-irsa-c4944e1', 'python', '-c', \"import os,sys,json,pathlib;uid=int(next(line for line in pathlib.Path('/proc/1/status').read_text().splitlines() if line.startswith('Uid:')).split()[2]);print(json.dumps({'uid':uid,'exec_probe_uid':os.getuid(),'python':sys.version}))\"]' returned non-zero exit status 1."
+}

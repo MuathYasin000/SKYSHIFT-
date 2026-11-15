@@ -1,0 +1,89 @@
+{
+  "date_utc": "2026-10-16T20:55:27.790Z",
+  "browser": "Installed Chrome, fresh test profiles",
+  "version": "155.0.8059.80",
+  "results": [
+    {
+      "name": "A failed controller dependency displays recovery and the independent observation link works",
+      "status": "pass",
+      "detail": {
+        "fixture": "Intentionally aborted space-audio.js import",
+        "expected_console": [
+          "Failed to load resource: net::ERR_FAILED",
+          "SKYSHIFT startup: TypeError: Failed to fetch dynamically imported module: http://localhost:3000/immersive.js"
+        ]
+      }
+    },
+    {
+      "name": "A delayed renderer startup preserves an explicit early travel request",
+      "status": "pass"
+    },
+    {
+      "name": "A failed scientific controller is explained and Reload viewer recovers",
+      "status": "pass",
+      "detail": {
+        "fixture": "Intentionally aborted explore.js",
+        "expected_console": [
+          "Failed to load resource: net::ERR_FAILED"
+        ]
+      }
+    },
+    {
+      "name": "Selecting a destination during loading travels to the latest selection only",
+      "status": "pass",
+      "detail": {
+        "target": [
+          -12.340849171402384,
+          0,
+          -11.692024706127555
+        ]
+      }
+    },
+    {
+      "name": "Rapid field changes while the scientific catalogue loads preserve the latest requested field",
+      "status": "pass"
+    },
+    {
+      "name": "A fresh browser page reopens the saved real-data investigation and comparison ZIP",
+      "status": "pass",
+      "detail": {
+        "scope": "Fresh contexts on the running server; separate process restart exercised by HTTP tests, no browser-profile persistence claim"
+      }
+    },
+    {
+      "name": "Installed Chrome remains responsive through repeated scene and workspace changes",
+      "status": "pass",
+      "detail": {
+        "rounds": 8,
+        "settings_roundtrip_ms": [
+          53.97120000000359,
+          43.558499999999185,
+          42.90370000000257,
+          43.91869999999835,
+          42.58749999999782,
+          49.50970000000234,
+          42.18540000000212,
+          42.64170000000013
+        ],
+        "idle_frames": 0,
+        "gpu": {
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce GTX 1660 SUPER (0x000021C4) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+          "drawing_buffer": [
+            2049,
+            1152
+          ]
+        },
+        "raf_intervals_during_camera_input": {
+          "samples": 176,
+          "median_ms": 6.900000000000546,
+          "p95_ms": 7.100000000000364,
+          "max_ms": 7.199999999999818
+        },
+        "scope": "Browser automation timings include input dispatch; not frame-rate or GPU timing measurements"
+      }
+    }
+  ],
+  "errors": [],
+  "user_session_verified": false,
+  "scientific_approval": "PENDING"
+}

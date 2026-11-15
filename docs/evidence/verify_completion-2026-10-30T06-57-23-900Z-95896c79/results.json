@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "name": "Real comet independent inspection and spectral rejection at 1440px with API unavailable",
+      "status": "pass"
+    },
+    {
+      "name": "Real comet independent inspection and spectral rejection at 390px with API unavailable",
+      "status": "pass"
+    },
+    {
+      "name": "Restarted preparation backend completes original-cache request and native viewer entry",
+      "status": "pass",
+      "elapsed_ms": 13274,
+      "scope": "Local Windows test, not external hosting verification"
+    }
+  ],
+  "page_errors": [],
+  "scientific_approval": "PENDING",
+  "known_comet_motion": "NOT ESTABLISHED"
+}

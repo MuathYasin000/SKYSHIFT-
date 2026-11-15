@@ -1,0 +1,1047 @@
+{
+  "status": "partial",
+  "field_arcmin": 8,
+  "target_id": "rw-aurigae",
+  "observations": [
+    {
+      "observation_id": "2025W36_1A_0095_1",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 1,
+      "ra_deg": 75.11185798696576,
+      "dec_deg": 31.559995911754218,
+      "footprint": "POLYGON ICRS 77.2503153570916 30.00243749238915 73.26502422330879 29.638364956231037 72.8937692791407 33.108478351825504 77.06432081491849 33.48939928602037 77.2503153570916 30.00243749238915",
+      "footprint_format": "STC-S",
+      "start_mjd": 60919.419647,
+      "end_mjd": 60919.420979,
+      "time_start_utc": "2025-09-01T10:04:17.466000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0095_1D1_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0095_1D1_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658580049317,
+        "dec_deg": 30.40129322589556,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-01T10:04:17.501Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 1.0684667825698853,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-dfdafcc56a5c6a510641.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          39
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0095_1",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 4,
+      "ra_deg": 75.11816479003352,
+      "dec_deg": 31.580349610301806,
+      "footprint": "POLYGON ICRS 77.25507942695674 30.017954931310854 73.26488905956701 29.65971758213109 72.90111219450763 33.13359904914021 77.0778416835868 33.50886025436643 77.25507942695674 30.017954931310854",
+      "footprint_format": "STC-S",
+      "start_mjd": 60919.419647,
+      "end_mjd": 60919.420979,
+      "time_start_utc": "2025-09-01T10:04:17.467000Z",
+      "wavelength_min_m": 2.4027e-06,
+      "wavelength_max_m": 3.8473e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0095_1D4_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0095_1D4_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658580049317,
+        "dec_deg": 30.40129322589556,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-01T10:04:17.501Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 3.125,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-f91453b0fae1d83629d9.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          38
+        ],
+        "target_bits": 69206021,
+        "target_flags": [
+          "TRANSIENT",
+          "SUR_ERROR",
+          "SOURCE",
+          "BLOOM"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0095_2",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 4,
+      "ra_deg": 75.09924485261304,
+      "dec_deg": 31.776410861365896,
+      "footprint": "POLYGON ICRS 77.24030320244128 30.21377725303633 73.24227682788985 29.855779185301024 72.87739005026668 33.329539285533215 77.06338738043274 33.70455757116346 77.24030320244128 30.21377725303633",
+      "footprint_format": "STC-S",
+      "start_mjd": 60919.421139,
+      "end_mjd": 60919.422471,
+      "time_start_utc": "2025-09-01T10:06:26.397000Z",
+      "wavelength_min_m": 2.4027e-06,
+      "wavelength_max_m": 3.8473e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0095_2D4_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0095_2D4_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658580050268,
+        "dec_deg": 30.401293225872493,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-01T10:06:26.410Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 3.125,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-07944eedbb412d9e2fb1.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          38
+        ],
+        "target_bits": 69206021,
+        "target_flags": [
+          "TRANSIENT",
+          "SUR_ERROR",
+          "SOURCE",
+          "BLOOM"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0095_2",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 1,
+      "ra_deg": 75.09293532074298,
+      "dec_deg": 31.756056014388403,
+      "footprint": "POLYGON ICRS 77.2355323180962 30.198284699162024 73.24229463693084 29.834353362772752 72.8699154378625 33.30444975144675 77.04996155301225 33.68526202651669 77.2355323180962 30.198284699162024",
+      "footprint_format": "STC-S",
+      "start_mjd": 60919.421139,
+      "end_mjd": 60919.422471,
+      "time_start_utc": "2025-09-01T10:06:26.398000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0095_2D1_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0095_2D1_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658580050268,
+        "dec_deg": 30.401293225872493,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-01T10:06:26.410Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 1.0941002368927002,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-917de46f09340b77be2d.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          38
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0155_1",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 1,
+      "ra_deg": 75.06886065162111,
+      "dec_deg": 31.950191018963352,
+      "footprint": "POLYGON ICRS 77.2157416525372 30.392221644633977 73.21470095037813 30.028400165135047 72.84084371983634 33.498488250581794 77.03030210430273 33.87928653562731 77.2157416525372 30.392221644633977",
+      "footprint_format": "STC-S",
+      "start_mjd": 60919.687204,
+      "end_mjd": 60919.688537,
+      "time_start_utc": "2025-09-01T16:29:34.452000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0155_1D1_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0155_1D1_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658580219887,
+        "dec_deg": 30.401293221758795,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-01T16:29:34.426Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 0.9311,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-bcb524e1275a93e819db.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          39,
+          18
+        ],
+        "target_bits": 2097154,
+        "target_flags": [
+          "OVERFLOW",
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0155_1",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 4,
+      "ra_deg": 75.07517862400775,
+      "dec_deg": 31.970544259429325,
+      "footprint": "POLYGON ICRS 77.22054692041817 30.407751441052522 73.21458031705042 30.049792090982894 72.84837071175394 33.52350068229933 77.04380651225814 33.89871883742528 77.22054692041817 30.407751441052522",
+      "footprint_format": "STC-S",
+      "start_mjd": 60919.687204,
+      "end_mjd": 60919.688537,
+      "time_start_utc": "2025-09-01T16:29:34.452000Z",
+      "wavelength_min_m": 2.4027e-06,
+      "wavelength_max_m": 3.8473e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0155_1D4_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0155_1D4_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658580219887,
+        "dec_deg": 30.401293221758795,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-01T16:29:34.426Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 3.125,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-e6558504a630a7c57f28.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          39,
+          9
+        ],
+        "target_bits": 69206018,
+        "target_flags": [
+          "OVERFLOW",
+          "SOURCE",
+          "BLOOM"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0233_2",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 4,
+      "ra_deg": 75.44451502711462,
+      "dec_deg": 28.58683072927748,
+      "footprint": "POLYGON ICRS 77.52265921137345 27.027667377254822 73.6437307245584 26.666763121235036 73.29662753638351 30.14107475964195 77.33964404900873 30.51791700404078 77.52265921137345 27.027667377254822",
+      "footprint_format": "STC-S",
+      "start_mjd": 60920.030139,
+      "end_mjd": 60920.031471,
+      "time_start_utc": "2025-09-02T00:43:23.978000Z",
+      "wavelength_min_m": 2.4027e-06,
+      "wavelength_max_m": 3.8473e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0233_2D4_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0233_2D4_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658580438511,
+        "dec_deg": 30.40129321645659,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-02T00:43:24.010Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 3.125,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-d4c2cbd1677d07e1527e.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          39,
+          38
+        ],
+        "target_bits": 2097154,
+        "target_flags": [
+          "OVERFLOW",
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0233_2",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 1,
+      "ra_deg": 75.43839598243254,
+      "dec_deg": 28.56646908599125,
+      "footprint": "POLYGON ICRS 77.51816019373926 27.012154199370105 73.64387422764482 26.64538939423263 73.28932355207921 30.115924339140996 77.32670007309204 30.49859282176103 77.51816019373926 27.012154199370105",
+      "footprint_format": "STC-S",
+      "start_mjd": 60920.030139,
+      "end_mjd": 60920.031471,
+      "time_start_utc": "2025-09-02T00:43:23.979000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0233_2D1_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0233_2D1_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658580438511,
+        "dec_deg": 30.40129321645659,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-02T00:43:24.010Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 0.7470112442970276,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-ee55cf5625acc1c1847a.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          39
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0233_3",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 4,
+      "ra_deg": 75.4252607050423,
+      "dec_deg": 28.782787851333975,
+      "footprint": "POLYGON ICRS 77.50700311744916 27.22327075140299 73.62122914887331 26.862707269389983 73.27319697083858 30.33687552795878 77.32426016181115 30.713257047058708 77.50700311744916 27.22327075140299",
+      "footprint_format": "STC-S",
+      "start_mjd": 60920.031631,
+      "end_mjd": 60920.032963,
+      "time_start_utc": "2025-09-02T00:45:32.908000Z",
+      "wavelength_min_m": 2.4027e-06,
+      "wavelength_max_m": 3.8473e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0233_3D4_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0233_3D4_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658580439462,
+        "dec_deg": 30.401293216433523,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-02T00:45:32.918Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 3.125,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-5d72d8322f3ef9674e69.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          39
+        ],
+        "target_bits": 69206018,
+        "target_flags": [
+          "OVERFLOW",
+          "SOURCE",
+          "BLOOM"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0233_3",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 1,
+      "ra_deg": 75.41913637268165,
+      "dec_deg": 28.762374620417702,
+      "footprint": "POLYGON ICRS 77.50243714318694 27.207769069026014 73.6212807088093 26.841271034626036 73.26594038337116 30.31182568880988 77.31140491883897 30.694294391041886 77.50243714318694 27.207769069026014",
+      "footprint_format": "STC-S",
+      "start_mjd": 60920.031631,
+      "end_mjd": 60920.032963,
+      "time_start_utc": "2025-09-02T00:45:32.909000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0233_3D1_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0233_3D1_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658580439462,
+        "dec_deg": 30.401293216433523,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-02T00:45:32.918Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 0.7645584344863892,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-dc945b2e899b9150c4c1.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          39,
+          39
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0446_1",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 1,
+      "ra_deg": 75.39491199762182,
+      "dec_deg": 28.95710721577396,
+      "footprint": "POLYGON ICRS 77.48177758955447 27.402286198465 73.59394995299245 27.03592135566506 73.23742735232723 30.50646504728926 77.29110442379424 30.888880387046143 77.48177758955447 27.402286198465",
+      "footprint_format": "STC-S",
+      "start_mjd": 60920.977365,
+      "end_mjd": 60920.978697,
+      "time_start_utc": "2025-09-02T23:27:24.334000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0446_1D1_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0446_1D1_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658581042375,
+        "dec_deg": 30.401293201811292,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-02T23:27:24.336Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 0.7822142839431763,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-12b63604d36759efd50c.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          39,
+          38
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0446_1",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 4,
+      "ra_deg": 75.40104282123771,
+      "dec_deg": 28.977483430655717,
+      "footprint": "POLYGON ICRS 77.4863671890472 27.417784270821446 73.59383294079656 27.05720528938765 73.24461326156762 30.531501462639746 77.30407019005543 30.908252500748528 77.4863671890472 27.417784270821446",
+      "footprint_format": "STC-S",
+      "start_mjd": 60920.977365,
+      "end_mjd": 60920.978697,
+      "time_start_utc": "2025-09-02T23:27:24.334000Z",
+      "wavelength_min_m": 2.4027e-06,
+      "wavelength_max_m": 3.8473e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0446_1D4_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/4/level2_2025W36_1A_0446_1D4_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658581042375,
+        "dec_deg": 30.401293201811292,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-02T23:27:24.336Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 3.125,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-e04b9b60561d1334e6b6.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          39,
+          39
+        ],
+        "target_bits": 69206018,
+        "target_flags": [
+          "OVERFLOW",
+          "SOURCE",
+          "BLOOM"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0663_2",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 1,
+      "ra_deg": 75.178493828116,
+      "dec_deg": 30.973494954131645,
+      "footprint": "POLYGON ICRS 77.30466576355465 29.416501850041865 73.34246595784516 29.052065626359884 72.97482056829091 32.52224623760078 77.11770998578716 32.903369976856865 77.30466576355465 29.416501850041865",
+      "footprint_format": "STC-S",
+      "start_mjd": 60921.997001,
+      "end_mjd": 60921.998334,
+      "time_start_utc": "2025-09-03T23:55:40.902000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0663_2D1_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0663_2D1_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658581692402,
+        "dec_deg": 30.401293186046445,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-03T23:55:40.886Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 0.9958640933036804,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-694a09fdd2c7770d50b6.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          39
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2025W36_1A_0677_1",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 1,
+      "ra_deg": 75.22486516817362,
+      "dec_deg": 30.520293457697466,
+      "footprint": "POLYGON ICRS 77.3419254337226 28.96378023760179 73.39702800402833 28.598844632601846 73.0319353429298 32.06917881913093 77.1540949861671 32.45065514736253 77.3419254337226 28.96378023760179",
+      "footprint_format": "STC-S",
+      "start_mjd": 60922.066533,
+      "end_mjd": 60922.067866,
+      "time_start_utc": "2025-09-04T01:35:48.464000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0677_1D1_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2025W36_1A/l2b-v27-2026-232/1/level2_2025W36_1A_0677_1D1_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.9565858173673,
+        "dec_deg": 30.40129318497139,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2025-09-04T01:35:48.451Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 0.943193793296814,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-2aef14bbba75ff390694.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          39,
+          38
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2026W10_1A_0445_2",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 1,
+      "ra_deg": 77.8414746728383,
+      "dec_deg": 30.754961935464017,
+      "footprint": "POLYGON ICRS 75.65056471204731 32.2751843637336 79.74653592580711 32.64987080731783 79.96984749808479 29.17128544819925 75.98487758182787 28.797196224716203 75.65056471204731 32.2751843637336",
+      "footprint_format": "STC-S",
+      "start_mjd": 61103.331099,
+      "end_mjd": 61103.332431,
+      "time_start_utc": "2026-03-04T07:56:46.935000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-229",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2026W10_1A/l2b-v27-2026-229/1/level2_2026W10_1A_0445_2D1_spx_l2b-v27-2026-229.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2026W10_1A/l2b-v27-2026-229/1/level2_2026W10_1A_0445_2D1_spx_l2b-v27-2026-229.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658697294431,
+        "dec_deg": 30.401290382394293,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2026-03-04T07:56:46.954Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 0.8786877989768982,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-b33075a860c1673e4745.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          39,
+          38
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2026W11_1A_0285_1",
+      "collection": "spherex_dr1",
+      "release": "dr1",
+      "detector": 1,
+      "ra_deg": 77.72727380889567,
+      "dec_deg": 31.79422752607002,
+      "footprint": "POLYGON ICRS 75.50664522148051 33.30940222921751 79.64991619692918 33.69222115015048 79.8819170182561 30.21387323403616 75.856765583429 29.832210915016933 75.50664522148051 33.30940222921751",
+      "footprint_format": "STC-S",
+      "start_mjd": 61109.439412,
+      "end_mjd": 61109.440744,
+      "time_start_utc": "2026-03-10T10:32:45.196000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-232",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2026W11_1A/l2b-v27-2026-232/1/level2_2026W11_1A_0285_1D1_spx_l2b-v27-2026-232.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"dr1/level2/2026W11_1A/l2b-v27-2026-232/1/level2_2026W11_1A_0285_1D1_spx_l2b-v27-2026-232.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658701188533,
+        "dec_deg": 30.40129028795213,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2026-03-10T10:32:45.197Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 0.7756505012512207,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-d80e5d8b75ff4b89958e.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          39
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2026W36_1A_0476_2",
+      "collection": "spherex_qr3",
+      "release": "qr3",
+      "detector": 1,
+      "ra_deg": 75.39405817323285,
+      "dec_deg": 31.091351257521136,
+      "footprint": "POLYGON ICRS 77.51993240285591 29.53140850187066 73.55249745262043 29.172119215278908 73.19024505744872 32.6429115789964 77.33942957948504 33.018639846693176 77.51993240285591 29.53140850187066",
+      "footprint_format": "STC-S",
+      "start_mjd": 61285.098662,
+      "end_mjd": 61285.099994,
+      "time_start_utc": "2026-09-02T02:22:04.361000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-252",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr3/level2/2026W36_1A/l2b-v27-2026-252/1/level2_2026W36_1A_0476_2D1_spx_l2b-v27-2026-252.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"qr3/level2/2026W36_1A/l2b-v27-2026-252/1/level2_2026W36_1A_0476_2D1_spx_l2b-v27-2026-252.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658813172798,
+        "dec_deg": 30.401287572040232,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2026-09-02T02:22:04.397Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 1.0050818920135498,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-936d48e68489f56aa3d5.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          38
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2026W37_1A_0234_2",
+      "collection": "spherex_qr3",
+      "release": "qr3",
+      "detector": 1,
+      "ra_deg": 75.64784700073395,
+      "dec_deg": 28.683290429586354,
+      "footprint": "POLYGON ICRS 77.72715980288315 27.12610843250904 73.84829077938794 26.764324755086417 73.49876623759869 30.23539962505968 77.54168219512212 30.612937760583897 77.72715980288315 27.12610843250904",
+      "footprint_format": "STC-S",
+      "start_mjd": 61291.275158,
+      "end_mjd": 61291.27649,
+      "time_start_utc": "2026-09-08T06:36:13.650000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-255",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr3/level2/2026W37_1A/l2b-v27-2026-255/1/level2_2026W37_1A_0234_2D1_spx_l2b-v27-2026-255.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"qr3/level2/2026W37_1A/l2b-v27-2026-255/1/level2_2026W37_1A_0234_2D1_spx_l2b-v27-2026-255.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658817110366,
+        "dec_deg": 30.40128747654387,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2026-09-08T06:36:13.651Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 0.7538074851036072,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-0337a6aa4905d2fb5ff0.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          39,
+          39
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2026W37_1A_0234_3",
+      "collection": "spherex_qr3",
+      "release": "qr3",
+      "detector": 1,
+      "ra_deg": 75.62705311433287,
+      "dec_deg": 28.87906468407135,
+      "footprint": "POLYGON ICRS 77.7099544549091 27.321698786834506 73.82421026057253 26.96012906237048 73.47384058868715 30.43114952871488 77.52486588160681 30.808499838697344 77.7099544549091 27.321698786834506",
+      "footprint_format": "STC-S",
+      "start_mjd": 61291.27665,
+      "end_mjd": 61291.277983,
+      "time_start_utc": "2026-09-08T06:38:22.582000Z",
+      "wavelength_min_m": 7.455e-07,
+      "wavelength_max_m": 1.1167e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-255",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr3/level2/2026W37_1A/l2b-v27-2026-255/1/level2_2026W37_1A_0234_3D1_spx_l2b-v27-2026-255.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"qr3/level2/2026W37_1A/l2b-v27-2026-255/1/level2_2026W37_1A_0234_3D1_spx_l2b-v27-2026-255.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.95658817111318,
+        "dec_deg": 30.401287476520803,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2026-09-08T06:38:22.560Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 0.7712776064872742,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-89b45930f66aee24bf97.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          38
+        ],
+        "target_bits": 2097152,
+        "target_flags": [
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2026W38_1A_0435_1",
+      "collection": "spherex_qr3",
+      "release": "qr3",
+      "detector": 3,
+      "ra_deg": 78.0166038681464,
+      "dec_deg": 30.376993959382744,
+      "footprint": "POLYGON ICRS 80.16314765459681 28.722077126464605 76.20644707187309 28.55695954654001 75.76283677692336 32.02714749579157 79.89769191216875 32.19928683293714 80.16314765459681 28.722077126464605",
+      "footprint_format": "STC-S",
+      "start_mjd": 61299.283575,
+      "end_mjd": 61299.284907,
+      "time_start_utc": "2026-09-16T06:48:20.865000Z",
+      "wavelength_min_m": 1.6301e-06,
+      "wavelength_max_m": 2.4346e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-261",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr3/level2/2026W38_1A/l2b-v27-2026-261/3/level2_2026W38_1A_0435_1D3_spx_l2b-v27-2026-261.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"qr3/level2/2026W38_1A/l2b-v27-2026-261/3/level2_2026W38_1A_0435_1D3_spx_l2b-v27-2026-261.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.956588222158,
+        "dec_deg": 30.40128735272372,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2026-09-16T06:48:20.880Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 2.03235,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-b739e97725fcbf85683a.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          38
+        ],
+        "target_bits": 69206018,
+        "target_flags": [
+          "OVERFLOW",
+          "SOURCE",
+          "BLOOM"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    },
+    {
+      "observation_id": "2026W38_1A_0435_1",
+      "collection": "spherex_qr3",
+      "release": "qr3",
+      "detector": 6,
+      "ra_deg": 78.01347490644818,
+      "dec_deg": 30.396496562592915,
+      "footprint": "POLYGON ICRS 80.15921594217176 28.73663702870378 76.19749316287117 28.577828280264402 75.75973883697432 32.05187617566619 79.90102042636597 32.21776059967742 80.15921594217176 28.73663702870378",
+      "footprint_format": "STC-S",
+      "start_mjd": 61299.283575,
+      "end_mjd": 61299.284907,
+      "time_start_utc": "2026-09-16T06:48:20.865000Z",
+      "wavelength_min_m": 4.4115e-06,
+      "wavelength_max_m": 5.0096e-06,
+      "pipeline_version": null,
+      "processing_product_version": "l2b-v27-2026-261",
+      "calibration_associations": {},
+      "quality_metadata": {},
+      "access_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr3/level2/2026W38_1A/l2b-v27-2026-261/6/level2_2026W38_1A_0435_1D6_spx_l2b-v27-2026-261.fits",
+      "datalink_url": null,
+      "archive_checksum": null,
+      "cloud_access": "{\"aws\": {\"bucket_name\": \"nasa-irsa-spherex\", \"key\":\"qr3/level2/2026W38_1A/l2b-v27-2026-261/6/level2_2026W38_1A_0435_1D6_spx_l2b-v27-2026-261.fits\", \"region\": \"us-east-1\"}}",
+      "interpretation": "Archive metadata candidate only; local calibration, pixel quality and temporal compatibility are not established.",
+      "target_position": {
+        "ra_deg": 76.956588222158,
+        "dec_deg": 30.40128735272372,
+        "reference_epoch": "J2000.0",
+        "observation_epoch_utc": "2026-09-16T06:48:20.880Z",
+        "method": "ICRS linear proper motion; pm_ra is mu_alpha*cos(dec); no parallax or radial-velocity correction",
+        "source_url": "https://simbad.cfa.harvard.edu/simbad/sim-id?Ident=RW+Aur",
+        "source_bibcode": "2007A&A...474..653V"
+      },
+      "wavelength_center_um": 4.7105500000000005,
+      "frame_url": "./data/observation-targets/rw-aurigae/preview-8-dc8e68548442a0295f54.json",
+      "quality": {
+        "archive_flags": {},
+        "nearest_native_pixel": [
+          38,
+          39
+        ],
+        "target_bits": 2097154,
+        "target_flags": [
+          "OVERFLOW",
+          "SOURCE"
+        ],
+        "target_unknown_bits": 0,
+        "usable_pixel_policy": "Native archive flags and finite measurements determine which samples enter the display."
+      }
+    }
+  ],
+  "preview": true,
+  "preview_frame_urls": [
+    "./data/observation-targets/rw-aurigae/preview-8-dfdafcc56a5c6a510641.json",
+    "./data/observation-targets/rw-aurigae/preview-8-917de46f09340b77be2d.json",
+    "./data/observation-targets/rw-aurigae/preview-8-ee55cf5625acc1c1847a.json",
+    "./data/observation-targets/rw-aurigae/preview-8-dc945b2e899b9150c4c1.json",
+    "./data/observation-targets/rw-aurigae/preview-8-12b63604d36759efd50c.json",
+    "./data/observation-targets/rw-aurigae/preview-8-694a09fdd2c7770d50b6.json",
+    "./data/observation-targets/rw-aurigae/preview-8-2aef14bbba75ff390694.json",
+    "./data/observation-targets/rw-aurigae/preview-8-b33075a860c1673e4745.json",
+    "./data/observation-targets/rw-aurigae/preview-8-d80e5d8b75ff4b89958e.json",
+    "./data/observation-targets/rw-aurigae/preview-8-936d48e68489f56aa3d5.json",
+    "./data/observation-targets/rw-aurigae/preview-8-0337a6aa4905d2fb5ff0.json",
+    "./data/observation-targets/rw-aurigae/preview-8-b739e97725fcbf85683a.json"
+  ]
+}

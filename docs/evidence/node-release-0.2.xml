@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="curated scientific product and settings round trip" time="0.040006" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="metadata equality is independent of JSON key order" time="0.000493" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="forged scientific approval is rejected even with new hashes" time="0.015147" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="changed prepared bytes are rejected even with self-consistent archive hashes" time="0.002896" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="tampered evidence hash fails before import" time="0.001643" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="reject unsafe path ../a" time="0.000251" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="reject unsafe path C:/a" time="0.000097" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="reject unsafe path a\b" time="0.000081" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="reject unsafe path a/./b" time="0.000108" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="reject unsafe path a//b" time="0.000161" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="reject unsafe path NUL" time="0.000104" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="reject unsafe path dir/con.txt" time="0.000097" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="reject unsafe path a." time="0.000125" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="reject unsafe path a " time="0.000082" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="multi-disk ZIP is rejected before decompression" time="0.004636" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="misreported ZIP size is rejected before allocation" time="0.003205" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\packets.test.mjs"/>
+	<testcase name="browser tangent projection round-trips every prepared pixel" time="0.002709" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\science.test.mjs"/>
+	<testcase name="browser coordinates agree with published Astropy center" time="0.000165" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\science.test.mjs"/>
+	<testcase name="RA wrap does not break pixel conversion" time="0.000139" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\science.test.mjs"/>
+	<testcase name="invalid and unsupported coordinates cannot be annotated" time="0.002062" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\science.test.mjs"/>
+	<testcase name="invalid display and viewport settings are rejected" time="0.000321" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\science.test.mjs"/>
+	<testcase name="malformed scientific array cannot be loaded" time="0.000418" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\science.test.mjs"/>
+	<testcase name="display uses finite shared transform and fixed endpoints" time="0.000171" classname="test" file="D:\Nasa_SKYSHIFT\web\tests\science.test.mjs"/>
+	<!-- tests 23 -->
+	<!-- suites 0 -->
+	<!-- pass 23 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 188.642 -->
+</testsuites>

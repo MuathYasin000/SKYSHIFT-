@@ -1,0 +1,74 @@
+{
+  "verified_at_utc": "2026-10-16T19:09:36.319379+00:00",
+  "base_commit": "93345ed41799406096de86b10c2cdf7a8837a19e",
+  "python": {
+    "command": ".venv/Scripts/python.exe -m pytest -q",
+    "passed": 93,
+    "failed": 0,
+    "duration_seconds": 22.25
+  },
+  "javascript": {
+    "tests": 57,
+    "pass": 57,
+    "fail": 0,
+    "skipped": 0
+  },
+  "browser_receipts": {
+    "interaction_foundation_tests": {
+      "cases_passed": 10,
+      "receipt_sha256": "1bb228802403d0b7cd77802a5d3ec51376870f24fda71b5e2e6eeaf92ace0859"
+    },
+    "exposure_workflow_tests": {
+      "cases_passed": 14,
+      "receipt_sha256": "3de7cea832a813ae61f386d9cc8378e550acb9d96dc2c468377f4346a65725ee"
+    },
+    "spatial_exploration_tests": {
+      "cases_passed": 15,
+      "receipt_sha256": "93a06c840332f663a785250f08785ac8db4da8bd06142b748f7d116758da5627"
+    },
+    "exposure_question_tests": {
+      "cases_passed": 13,
+      "receipt_sha256": "bc82c3966b4fa307bff50c8ed9e5dc6f3952be2521ce00f59d3d9cf83738f354"
+    },
+    "spatial_exploration_tests_edge": {
+      "cases_passed": 15,
+      "receipt_sha256": "4110909c63efaaba3159da816f812f4f29575cbff0062426ea8b92370abcd867"
+    }
+  },
+  "preservation": {
+    "previous_scientific_nontransport_assets_checked": 18,
+    "changed": 0,
+    "previous_catalogue_fields_unchanged": true,
+    "scientific_package_and_base_preparer_unchanged": true
+  },
+  "asset_sha256": {
+    "explore.js": "9b822afeccdd73b3340aa62a6222707bc1c6008e8e3cb2f71a2496f13362e0b9",
+    "app.js": "c583ee27b7b9d2c8a75fde3390c93c215121c79d54c16459a41255d695a089eb",
+    "viewport-input.js": "bc904540aefb4762ca08a2a9fff4d119cc83d67f2d903a5f413ba177846dc744",
+    "sky-projection.js": "560bc8ae19331530447d30682d434e7d663ce5e617ea69e54d3e712c2a969469",
+    "sky-atlas.js": "792a98a3ae345e4af6a6391cc08f4870b9606400aeb6654076d0173036850afc",
+    "catalogue.js": "daf79cc1784cf114c63b2f02a4f3924c64f810e1761f3666140cceaccdee9332",
+    "exploration-memory.js": "dd8c1a8debb64cdff476138988d15977a4e2aa59d84666aca5dc2caf08279964",
+    "exposure-records.js": "6df4125931023264c259b3902452160144ea54d5cef72a73ef0e5d75c62101fe",
+    "exposure-questions.js": "8a9ede83514751e7fc29635ebdfc737a28ad6ec2216712fc0caa565e74225ff3",
+    "exposure-notebook.js": "22c14efdbb851385585a16b1d2957f5177712dcf4763f707b63d453bb3ad2bf5",
+    "explore.html": "50dbcae7ad78a3299ade65e350f6eb72a64136cce622fe3d5a39ce3dd6de55a6",
+    "compare.html": "af53ee0dd9c37afca1dc0a78faea351ce68c85d0da0d1870e9cf08aa4760afd5",
+    "visitor.css": "adbac3573995c2b5ca6eddf4df2199804d289dfd1dace5f35763e8403bbd46d1"
+  },
+  "orion_offline_reconstruction": {
+    "test": "tests/test_exploration_assets.py::test_orion_context_reconstructs_offline_from_original_bytes",
+    "status": "pass",
+    "tool_sha256": "444b2f80a098f374e9517c8f09c0efb91a17c3bd9b48bbfd70b8d347c809cc11"
+  },
+  "known_limitations": [
+    "Initial concurrent-browser readiness timeout; cause unconfirmed; final sequential suites passed. See browser_startup_timeout.json.",
+    "Touch tested by emulation, not physical devices.",
+    "Chromium and Edge tested; Firefox and Safari/WebKit not tested.",
+    "Automated accessibility checks do not replace manual accessibility review."
+  ],
+  "scientific_approval": "PENDING",
+  "internal_human_scientific_review": "PENDING",
+  "independent_novice_validation": "NOT CONDUCTED",
+  "byte_preservation_note": "Text changes preserve baseline line endings where applicable; scientific input/prepared bytes and base preparer remain unchanged."
+}

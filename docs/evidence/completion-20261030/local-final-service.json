@@ -1,0 +1,28 @@
+{
+  "health": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.2",
+    "directory_id": "cf30d37f4287c0b3",
+    "content_id": "a87c21bef997e71c0aad9bd6660183976f3ad3b2a881976e3adb90d5c4434471",
+    "release_id": "workspace",
+    "app_version": "0.10.1-native-preparation-local-workspace"
+  },
+  "capabilities": {
+    "preparation": true,
+    "preparation_code_sha256": "34540f893ed4f46dbc9189d45d6130f7a888a470ee4dfb979209b213fa31f294",
+    "max_frames": 6,
+    "max_field_arcmin": 30,
+    "max_active_jobs": 2,
+    "calibrated_temporal_adapters": [
+      "qr2/D2"
+    ],
+    "scope": "Other release/detector combinations may provide single-frame visualization only; no automatic fallback."
+  },
+  "after_restart": {
+    "state": "complete",
+    "frames": 2,
+    "playback_eligible": true,
+    "scope": "Restricted M101 engineering example; no measured motion or external deployment claim"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "url": "https://irsa.ipac.caltech.edu/SIA?COLLECTION=spherex_qr3&POS=circle+133.79512916666667+-7.245147222222222+0.1414213562373095&MAXREC=5000&RESPONSEFORMAT=VOTABLE",
+  "parameters": {
+    "COLLECTION": "spherex_qr3",
+    "POS": "circle 133.79512916666667 -7.245147222222222 0.1414213562373095",
+    "MAXREC": "5000",
+    "RESPONSEFORMAT": "VOTABLE"
+  },
+  "attempted_at": "2026-10-29T13:10:11.826920+00:00",
+  "status": "complete",
+  "retrieved_at": "2026-10-29T13:10:27.500587+00:00",
+  "response_sha256": "d2cce5b4542afdde6fa4e4d770e6352b3b9e65476a6f8c2ba7387beb88301414",
+  "row_count": 0
+}

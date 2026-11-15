@@ -1,0 +1,399 @@
+{
+  "recorded_at_utc": "2026-10-29T23:06:14.330359+00:00",
+  "client_date": "2026-10-30",
+  "timezone": "Asia/Hebron",
+  "source_commit": "ccbc885b2abe0a76ddb685126fe7982ef5e51b91",
+  "branch": "codex/scientific-completion",
+  "scope": "Local implementation milestone, not a public release or final submission",
+  "approval": "User-reported organizer permission for current development; external wording not independently verified; authentic history retained",
+  "tests": {
+    "main_python": {
+      "passed": 144,
+      "failed": 0,
+      "log": "tmp/completion-pytest-integrated.log",
+      "scope": "Full suite before final receipt-storage refinement"
+    },
+    "final_resource_regressions": {
+      "passed": 19,
+      "failed": 0,
+      "log": "tmp/completion-resource-safety-final.log",
+      "scope": "Overlaps main suite; after final quota refinement"
+    },
+    "javascript": {
+      "passed": 145,
+      "failed": 0,
+      "log": "tmp/completion-javascript-final.log"
+    },
+    "chrome_product": {
+      "passed": 19,
+      "failed": 0,
+      "page_errors": [],
+      "receipt": "docs/evidence/completion_chrome_final_20261030_product_tests.json"
+    },
+    "edge_product": {
+      "passed": 19,
+      "failed": 0,
+      "page_errors": [],
+      "receipt": "docs/evidence/completion_edge_final_20261030_product_tests.json"
+    },
+    "focused_comet_and_api": {
+      "passed": 3,
+      "failed": 0,
+      "page_errors": [],
+      "receipt": "docs/evidence/completion-20261030/browser-final/results.json"
+    },
+    "arrival": {
+      "passed": 9,
+      "failed": 0,
+      "evidence_preservation_limitation": "evidence-collision.json"
+    },
+    "clean_checkout": {
+      "frontend_build_changed_files": [],
+      "python_passed": 136,
+      "python_skipped": 8,
+      "python_failed": 0,
+      "skips": "Five optional context-model originals and three optional historical review-snapshot tests",
+      "latest_resource_tests_passed": 19,
+      "javascript_passed": 145,
+      "scope": "One clean Git checkout, isolated locked dependency environment, pinned test-input bootstrap; no Linux container verification"
+    }
+  },
+  "package": {
+    "version": "0.10.1",
+    "wheel_sha256": "3502d002518ba7e34473da3a7396d089f34bed7f9048de468ff2c3dced728e89",
+    "isolated_pip_check": "No broken requirements found",
+    "installed_package_location": "tmp/completion-clean-env/Lib/site-packages/skyshift"
+  },
+  "scientific_results": [
+    {
+      "candidate": "DEC-D2",
+      "outcome": "rejected_for_temporal_comparison",
+      "failed_checks": [
+        {
+          "code": "local_spectral_screen",
+          "status": "fail",
+          "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+          "measurements": {
+            "max_separation_bandwidths": 4.234200453967182,
+            "threshold": 0.25,
+            "compatible_fraction_of_grid": 0.0
+          }
+        }
+      ],
+      "secondary_error": null,
+      "registration": {
+        "method": "Gaia DR3 anchored, native-image integrated-Gaussian centroids; no fitted registration transform",
+        "region": {
+          "ra_deg": 167.24287178688297,
+          "dec_deg": 5.134201895882312,
+          "size_deg": 0.3,
+          "frame": "icrs"
+        },
+        "policy": {
+          "version": "registration-v2",
+          "minimum_references": 6,
+          "minimum_quadrants": 3,
+          "minimum_hull_fraction": 0.1,
+          "maximum_median_pixels": 0.25,
+          "maximum_p95_pixels": 0.5,
+          "minimum_peak_snr": 8,
+          "maximum_proper_motion_masyr": 100,
+          "maximum_parallax_mas": 5,
+          "isolation_arcsec": 30,
+          "fit_radius": 4
+        },
+        "status": "pass",
+        "reference_count": 7,
+        "quadrants": 3,
+        "convex_hull_fraction": 0.24241884497614924,
+        "median_residual_pixels": 0.061364853065282346,
+        "p95_residual_pixels": 0.09765929678588582,
+        "pixel_scale_arcsec": 6.15,
+        "median_residual_arcsec": 0.37739384635148643,
+        "p95_residual_arcsec": 0.6006046752331978,
+        "limitations": [
+          "Reference identity is independent of SPHEREx image processing. No astrometric correction was fitted.",
+          "Empirical Gaussian profiles are diagnostics, not an ePSF astrometric likelihood.",
+          "No formal positional uncertainties or absolute astrometric precision are claimed.",
+          "Catalogue positions use proper motion; sub-5 mas parallax is neglected for this arcsecond-scale check.",
+          "References outside the inspection region can constrain surrounding registration, but do not prove local distortions are absent."
+        ]
+      },
+      "detection": "NOT ESTABLISHED",
+      "source_records": [
+        {
+          "observation_id": "2025W50_2A_0685_1",
+          "release": "qr2",
+          "detector": 2,
+          "pipeline_version": "6.4+psffix1",
+          "time_start_utc": "2025-12-14T04:26:46.211000Z",
+          "time_end_utc": "2025-12-14T04:28:41.329000Z",
+          "original_timescale": "utc",
+          "science_unit": "MJy/sr",
+          "source": {
+            "path": "D:\\Nasa_SKYSHIFT\\research\\validation\\comet-20261030\\DEC-D2\\2025W50_2A_0685_1_D2.fits",
+            "sha256": "1fc862651ab5af3e8b63de434b34bc865be9717490d76ab3d5c6cdf2f0235032",
+            "size_bytes": 5555520,
+            "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_2A/l2b-v20-2025-349/2/level2_2025W50_2A_0685_1D2_spx_l2b-v20-2025-349.fits?center=167.24287178688297%2C5.134201895882312&size=0.3",
+            "retrieved_at_utc": null
+          },
+          "spectral_calibration": {
+            "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+            "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+            "size_bytes": 33312960,
+            "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+            "retrieved_at_utc": null
+          },
+          "center_wavelength_um": 1.216496229171753,
+          "center_bandwidth_um": 0.029739757999777794,
+          "hdus": [
+            "PRIMARY",
+            "IMAGE",
+            "FLAGS",
+            "VARIANCE",
+            "ZODI",
+            "PSF",
+            "WCS-WAVE"
+          ]
+        },
+        {
+          "observation_id": "2025W50_2A_0698_1",
+          "release": "qr2",
+          "detector": 2,
+          "pipeline_version": "6.4+psffix1",
+          "time_start_utc": "2025-12-14T06:01:11.491000Z",
+          "time_end_utc": "2025-12-14T06:03:06.609000Z",
+          "original_timescale": "utc",
+          "science_unit": "MJy/sr",
+          "source": {
+            "path": "D:\\Nasa_SKYSHIFT\\research\\validation\\comet-20261030\\DEC-D2\\2025W50_2A_0698_1_D2.fits",
+            "sha256": "1dd57e0069287ce0c0b6e20a9f18f2355a1cd935d0e951c878a3ae9306044217",
+            "size_bytes": 5555520,
+            "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W50_2A/l2b-v20-2025-349/2/level2_2025W50_2A_0698_1D2_spx_l2b-v20-2025-349.fits?center=167.24287178688297%2C5.134201895882312&size=0.3",
+            "retrieved_at_utc": null
+          },
+          "spectral_calibration": {
+            "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+            "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+            "size_bytes": 33312960,
+            "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+            "retrieved_at_utc": null
+          },
+          "center_wavelength_um": 1.3354547023773193,
+          "center_bandwidth_um": 0.031933195888996124,
+          "hdus": [
+            "PRIMARY",
+            "IMAGE",
+            "FLAGS",
+            "VARIANCE",
+            "ZODI",
+            "PSF",
+            "WCS-WAVE"
+          ]
+        }
+      ]
+    },
+    {
+      "candidate": "AUG-D2",
+      "outcome": "acquisition_or_validation_failed",
+      "failed_checks": [
+        {
+          "code": "local_spectral_screen",
+          "status": "fail",
+          "explanation": "Engineering screening threshold across all common supported pixels; not equivalence of spectral response functions.",
+          "measurements": {
+            "max_separation_bandwidths": 5.479835055994367,
+            "threshold": 0.25,
+            "compatible_fraction_of_grid": 0.0
+          }
+        }
+      ],
+      "secondary_error": "Reference catalogue reached its row limit; truncation cannot approve registration",
+      "registration": null,
+      "detection": "NOT ESTABLISHED",
+      "source_records": [
+        {
+          "observation_id": "2025W32_2D_0189_1",
+          "release": "qr2",
+          "detector": 2,
+          "pipeline_version": "6.4+psffix1",
+          "time_start_utc": "2025-08-08T12:48:37.214000Z",
+          "time_end_utc": "2025-08-08T12:50:32.332000Z",
+          "original_timescale": "utc",
+          "science_unit": "MJy/sr",
+          "source": {
+            "path": "D:\\Nasa_SKYSHIFT\\research\\validation\\comet-20261030\\AUG-D2\\2025W32_2D_0189_1_D2.fits",
+            "sha256": "6436841a6f331a959766c6482b7b36e3aaee06e151490d269dbb91232415a028",
+            "size_bytes": 5555520,
+            "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W32_2D/l2b-v20-2025-264/2/level2_2025W32_2D_0189_1D2_spx_l2b-v20-2025-264.fits?center=247.69151087607597%2C-16.91468057534263&size=0.3",
+            "retrieved_at_utc": null
+          },
+          "spectral_calibration": {
+            "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+            "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+            "size_bytes": 33312960,
+            "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+            "retrieved_at_utc": null
+          },
+          "center_wavelength_um": 1.3574702739715576,
+          "center_bandwidth_um": 0.03259218856692314,
+          "hdus": [
+            "PRIMARY",
+            "IMAGE",
+            "FLAGS",
+            "VARIANCE",
+            "ZODI",
+            "PSF",
+            "WCS-WAVE"
+          ]
+        },
+        {
+          "observation_id": "2025W32_2D_0201_1",
+          "release": "qr2",
+          "detector": 2,
+          "pipeline_version": "6.4+psffix1",
+          "time_start_utc": "2025-08-08T14:29:47.707000Z",
+          "time_end_utc": "2025-08-08T14:31:42.825000Z",
+          "original_timescale": "utc",
+          "science_unit": "MJy/sr",
+          "source": {
+            "path": "D:\\Nasa_SKYSHIFT\\research\\validation\\comet-20261030\\AUG-D2\\2025W32_2D_0201_1_D2.fits",
+            "sha256": "8a56ecda800233d7ea021231262c4b3d8c98072e572b34b44d5f0f013684575d",
+            "size_bytes": 5555520,
+            "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W32_2D/l2b-v20-2025-264/2/level2_2025W32_2D_0201_1D2_spx_l2b-v20-2025-264.fits?center=247.69151087607597%2C-16.91468057534263&size=0.3",
+            "retrieved_at_utc": null
+          },
+          "spectral_calibration": {
+            "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+            "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+            "size_bytes": 33312960,
+            "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+            "retrieved_at_utc": null
+          },
+          "center_wavelength_um": 1.5290236473083496,
+          "center_bandwidth_um": 0.0374143011868,
+          "hdus": [
+            "PRIMARY",
+            "IMAGE",
+            "FLAGS",
+            "VARIANCE",
+            "ZODI",
+            "PSF",
+            "WCS-WAVE"
+          ]
+        }
+      ]
+    }
+  ],
+  "clean_reconstruction": {
+    "status": "pass",
+    "sequence_id": "sequence-f7b6ff0b4e7841831047513a",
+    "frames": [
+      {
+        "observation_id": "2025W50_2A_0685_1",
+        "numeric_array_agreement": {
+          "SCI": true,
+          "WAVE": true,
+          "BAND": true,
+          "VALID": true
+        },
+        "questions": 0
+      },
+      {
+        "observation_id": "2025W50_2A_0698_1",
+        "numeric_array_agreement": {
+          "SCI": true,
+          "WAVE": true,
+          "BAND": true,
+          "VALID": true
+        },
+        "questions": 0
+      }
+    ],
+    "scope": "Common-grid arrays and annotation support reconstructed; registration/interpretation are not newly approved",
+    "scientific_approval": "PENDING",
+    "internal_human_review": "PENDING"
+  },
+  "local_service": {
+    "health": {
+      "status": "ok",
+      "application": "SKYSHIFT",
+      "server_version": "1.2",
+      "directory_id": "cf30d37f4287c0b3",
+      "content_id": "a87c21bef997e71c0aad9bd6660183976f3ad3b2a881976e3adb90d5c4434471",
+      "release_id": "workspace",
+      "app_version": "0.10.1-native-preparation-local-workspace"
+    },
+    "capabilities": {
+      "preparation": true,
+      "preparation_code_sha256": "34540f893ed4f46dbc9189d45d6130f7a888a470ee4dfb979209b213fa31f294",
+      "max_frames": 6,
+      "max_field_arcmin": 30,
+      "max_active_jobs": 2,
+      "calibrated_temporal_adapters": [
+        "qr2/D2"
+      ],
+      "scope": "Other release/detector combinations may provide single-frame visualization only; no automatic fallback."
+    },
+    "after_restart": {
+      "state": "complete",
+      "frames": 2,
+      "playback_eligible": true,
+      "scope": "Restricted M101 engineering example; no measured motion or external deployment claim"
+    }
+  },
+  "public_service": {
+    "url": "https://skyshiftt.netlify.app/",
+    "scope": "Fresh anonymous browser, read-only existing deployment. No publication performed.",
+    "cached_sequence_opened": true,
+    "investigation": {
+      "field": "sequence-4a9b44ea9eaa25b72346c529",
+      "kind": "exposure",
+      "sequence": {
+        "id": "sequence-4a9b44ea9eaa25b72346c529",
+        "index": 0,
+        "frames": 2,
+        "playback_eligible": true
+      }
+    },
+    "capabilities_status": 404,
+    "release": {
+      "status": "ok",
+      "server_version": "public-static",
+      "app_version": "0.10-native-preparation",
+      "content_id": "a4b80ed914ca06c11ebadc0c13d47548b05faad0981152ad47961d0a9b286f93",
+      "release_id": "skyshift-native-preparation-20261029"
+    },
+    "page_errors": []
+  },
+  "completion_gates": {
+    "A": "Limited real-data fallback available; meaningful comet motion comparison not established",
+    "B": "Local core workflows implemented; full public workflow incomplete; complete official challenge retrieval unverified",
+    "C": "Queue/resource defects repaired and relevant tests pass; clean source build verified; Linux container unverified",
+    "D": "BLOCKED: existing public site static, preparation API 404; Python host destination/access missing",
+    "E": "Automated desktop/mobile/keyboard/reduced-motion/no-WebGL journeys verified; user evaluation pending",
+    "F": "Provenance/reconstruction available; Skiper competition-license compatibility and expert/human approval pending; organizer approval user-reported",
+    "G": "Authentic restricted comparison and rejected-case workflow demonstrable; no final submission or media prepared"
+  },
+  "historical_evidence_collision": {
+    "cause": "Existing arrival verifier had a hard-coded historical output directory; this run overwrote five screenshots before the collision was detected.",
+    "changed_files": [
+      "docs/evidence/arrival-20261029/landed.png",
+      "docs/evidence/arrival-20261029/loading.png",
+      "docs/evidence/arrival-20261029/mobile-landed.png",
+      "docs/evidence/arrival-20261029/reveal.png",
+      "docs/evidence/arrival-20261029/settling.png"
+    ],
+    "restored_from_identical_hash": {
+      "docs/evidence/arrival-20261029/landed.png": "tmp\\reveal_sound\\hero-desktop.png"
+    },
+    "unrecoverable_originals": [
+      "docs/evidence/arrival-20261029/loading.png",
+      "docs/evidence/arrival-20261029/mobile-landed.png",
+      "docs/evidence/arrival-20261029/reveal.png",
+      "docs/evidence/arrival-20261029/settling.png"
+    ],
+    "fresh_run_directory": "docs/evidence/completion-20261030",
+    "historical_screenshot_integrity": "Do not claim preservation for unrecovered originals. Other previous scientific evidence was not regenerated."
+  }
+}

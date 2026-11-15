@@ -1,0 +1,33 @@
+{
+  "assets": [
+    {
+      "file": "InterVariable.woff2",
+      "source": "https://raw.githubusercontent.com/rsms/inter/master/docs/font-files/InterVariable.woff2",
+      "sha256": "10f4019d33cf0a8efe6be0a08e670fdb333efc531faf457a03cea812cea639f7",
+      "bytes": 137324,
+      "license": "SIL Open Font License 1.1",
+      "license_file": "Inter-OFL.txt",
+      "modification": "Local Latin/used-interface Unicode subset of upstream Inter Variable; glyph outlines and variable weight axis preserved. All used UI codepoints retained; original upstream font recoverable at aa0189c.",
+      "original_sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "original_bytes": 352240
+    },
+    {
+      "file": "Inter-OFL.txt",
+      "source": "https://raw.githubusercontent.com/rsms/inter/master/LICENSE.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "bytes": 4380,
+      "license": "SIL Open Font License 1.1",
+      "license_file": "Inter-OFL.txt",
+      "modification": "none"
+    },
+    {
+      "file": "IBMPlexMono-Regular.woff2",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexmono/IBMPlexMono-Regular.ttf",
+      "sha256": "d1dd9a133f79638bbf55b0530caadd18814a1a8b59208b4262eca070d455f2ca",
+      "bytes": 39220,
+      "license": "SIL Open Font License 1.1",
+      "license_file": "IBMPlexMono-OFL.txt",
+      "modification": "Lossless WOFF2 encoding from preserved upstream TTF"
+    }
+  ]
+}

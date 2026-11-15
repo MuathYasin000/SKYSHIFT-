@@ -1,0 +1,26 @@
+{
+  "browser": "157.0.8103.51",
+  "base": "https://skyshift-j22s.onrender.com",
+  "results": [
+    {
+      "name": "compare wise-0855 at 390",
+      "status": "fail",
+      "error": "page.waitForFunction: TypeError: Cannot read properties of null (reading 'textContent')\n    at eval (eval at predicate (eval at evaluate (:311:30)), <anonymous>:1:50)\n    at predicate (eval at evaluate (:311:30), <anonymous>:7:27)\n    at next (eval at evaluate (:311:30), <anonymous>:29:33)\n    at eval (eval at evaluate (:311:30), <anonymous>:42:13)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at ready (D:\\SKYSHIFT_observations-fix\\tools\\verify_observation_workbench.mjs:45:14)\n    at D:\\SKYSHIFT_observations-fix\\tools\\verify_observation_workbench.mjs:67:15\n    at async check (D:\\SKYSHIFT_observations-fix\\tools\\verify_observation_workbench.mjs:25:19)\n    at async file:///D:/SKYSHIFT_observations-fix/tools/verify_observation_workbench.mjs:65:7\n    at async withPage (D:\\SKYSHIFT_observations-fix\\tools\\verify_observation_workbench.mjs:39:12)\n    at async file:///D:/SKYSHIFT_observations-fix/tools/verify_observation_workbench.mjs:63:3"
+    },
+    {
+      "name": "Keyboard playback, frame pickers, all modes, wipe, and shared view at 390",
+      "status": "fail",
+      "error": "page.waitForFunction: TypeError: Cannot read properties of null (reading 'textContent')\n    at eval (eval at predicate (eval at evaluate (:311:30)), <anonymous>:1:50)\n    at predicate (eval at evaluate (:311:30), <anonymous>:7:27)\n    at next (eval at evaluate (:311:30), <anonymous>:29:33)\n    at eval (eval at evaluate (:311:30), <anonymous>:42:13)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at ready (D:\\SKYSHIFT_observations-fix\\tools\\verify_observation_workbench.mjs:45:14)\n    at D:\\SKYSHIFT_observations-fix\\tools\\verify_observation_workbench.mjs:127:11\n    at async withPage (D:\\SKYSHIFT_observations-fix\\tools\\verify_observation_workbench.mjs:39:12)\n    at async check (D:\\SKYSHIFT_observations-fix\\tools\\verify_observation_workbench.mjs:25:19)\n    at async file:///D:/SKYSHIFT_observations-fix/tools/verify_observation_workbench.mjs:123:3"
+    }
+  ],
+  "pageErrors": [
+    {
+      "url": "https://skyshift-j22s.onrender.com/compare.html?target=wise-0855",
+      "message": "Cannot read properties of null (reading 'textContent')"
+    },
+    {
+      "url": "https://skyshift-j22s.onrender.com/compare.html?target=epsilon-indi-b",
+      "message": "Cannot read properties of null (reading 'textContent')"
+    }
+  ]
+}

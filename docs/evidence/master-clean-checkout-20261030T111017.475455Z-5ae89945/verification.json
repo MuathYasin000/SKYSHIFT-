@@ -1,0 +1,29 @@
+{
+  "source_head": "280036134f07b1334397bb4a4e9f188422e85b7d",
+  "clean_start": true,
+  "checkout": "D:\\Nasa_SKYSHIFT\\tmp\\mission-clean-fixtures",
+  "results": [
+    {
+      "name": "dependency-check",
+      "exit_code": 0
+    },
+    {
+      "name": "build",
+      "exit_code": 0
+    },
+    {
+      "name": "authenticated-fixtures",
+      "exit_code": 0
+    },
+    {
+      "name": "python-tests",
+      "exit_code": 0
+    },
+    {
+      "name": "javascript-tests",
+      "exit_code": 0
+    }
+  ],
+  "environment": "Existing pinned Windows interpreter; the separate Linux Docker build installs requirements from scratch.",
+  "status": "pass"
+}

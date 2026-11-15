@@ -1,0 +1,23 @@
+{
+  "archive": "D:\\Nasa_SKYSHIFT\\output\\SKYSHIFT_Local_Full_Backup_0.4.zip",
+  "sha256": "9b87749dcf68f39ea77c88202c21e6d40b53a91bbfcb0dd50393f2cb4cc90ff0",
+  "size_bytes": 2028108843,
+  "source_bytes": 2292370631,
+  "files_verified": 1295,
+  "source_commit": "85b15acf77d2b09ad104dfa197cd1db111f6f21c",
+  "scientific_approval": "PENDING",
+  "all_member_hashes_match": true,
+  "exclusions": [
+    ".git",
+    ".pytest_cache",
+    ".skyshift-local",
+    ".venv",
+    "__pycache__",
+    "node_modules",
+    "tmp",
+    "older output backup ZIPs",
+    "*.log",
+    "*.pyc",
+    "*.pyo"
+  ]
+}

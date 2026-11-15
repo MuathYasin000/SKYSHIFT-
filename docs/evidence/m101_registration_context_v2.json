@@ -1,0 +1,3751 @@
+{
+  "method": "Gaia DR3 anchored, native-image integrated-Gaussian centroids; no fitted registration transform",
+  "region": {
+    "ra_deg": 210.80227,
+    "dec_deg": 54.34895,
+    "size_deg": 0.3,
+    "frame": "icrs"
+  },
+  "policy": {
+    "version": "registration-v2",
+    "minimum_references": 6,
+    "minimum_quadrants": 3,
+    "minimum_hull_fraction": 0.1,
+    "maximum_median_pixels": 0.25,
+    "maximum_p95_pixels": 0.5,
+    "minimum_peak_snr": 8,
+    "maximum_proper_motion_masyr": 100,
+    "maximum_parallax_mas": 5,
+    "isolation_arcsec": 30,
+    "fit_radius": 4
+  },
+  "status": "pass",
+  "reference_count": 13,
+  "quadrants": 4,
+  "convex_hull_fraction": 0.27137686524801846,
+  "median_residual_pixels": 0.050689344748316274,
+  "p95_residual_pixels": 0.3263884324967464,
+  "pixel_scale_arcsec": 6.15,
+  "median_residual_arcsec": 0.3117394702021451,
+  "p95_residual_arcsec": 2.0072888598549903,
+  "references": [
+    {
+      "source_id": "1609218800070998528",
+      "catalogue_ra_deg": 210.77558312902,
+      "catalogue_dec_deg": 54.14520417295,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609222648361698944",
+      "catalogue_ra_deg": 211.05230726916,
+      "catalogue_dec_deg": 54.19088918142,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609223095038316672",
+      "catalogue_ra_deg": 211.11325475528,
+      "catalogue_dec_deg": 54.21002205181,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609223193820820608",
+      "catalogue_ra_deg": 211.10085439263,
+      "catalogue_dec_deg": 54.23107086964,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609223713513586048",
+      "catalogue_ra_deg": 210.89464001756,
+      "catalogue_dec_deg": 54.12890384243,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609223984094652288",
+      "catalogue_ra_deg": 210.95775860056,
+      "catalogue_dec_deg": 54.15156059781,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609224362051867264",
+      "catalogue_ra_deg": 210.8623590173,
+      "catalogue_dec_deg": 54.12459489323,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609224366348614656",
+      "catalogue_ra_deg": 210.85033866241,
+      "catalogue_dec_deg": 54.12214675713,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609224499490832640",
+      "catalogue_ra_deg": 210.88331479129,
+      "catalogue_dec_deg": 54.15379401071,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609224533850567552",
+      "catalogue_ra_deg": 210.85567019792,
+      "catalogue_dec_deg": 54.14519435634,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609224705649265024",
+      "catalogue_ra_deg": 210.8007080015,
+      "catalogue_dec_deg": 54.15441143742,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609224709946010624",
+      "catalogue_ra_deg": 210.78837904352,
+      "catalogue_dec_deg": 54.16096469672,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609224709946010752",
+      "catalogue_ra_deg": 210.79668258536,
+      "catalogue_dec_deg": 54.17018192017,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609224774368752128",
+      "catalogue_ra_deg": 210.83447582973,
+      "catalogue_dec_deg": 54.17183326892,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609225190982336128",
+      "catalogue_ra_deg": 210.87048904443,
+      "catalogue_dec_deg": 54.19259048537,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609225221045365248",
+      "catalogue_ra_deg": 210.84247406966,
+      "catalogue_dec_deg": 54.19641085226,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609225255405112320",
+      "catalogue_ra_deg": 210.83554708894,
+      "catalogue_dec_deg": 54.20940788193,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609225259701813504",
+      "catalogue_ra_deg": 210.83802156231,
+      "catalogue_dec_deg": 54.21891160261,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609225397140767104",
+      "catalogue_ra_deg": 210.85378719106,
+      "catalogue_dec_deg": 54.2325477173,
+      "a": {
+        "status": "measured",
+        "x": 26.174593776588747,
+        "y": 51.93474659150415,
+        "sigma_x_pixels": 0.35906688999581987,
+        "sigma_y_pixels": 0.3464468777210863,
+        "profile_fwhm_pixels": 0.8305460586530191,
+        "peak_snr": 71.25442109489673,
+        "background_mjy_sr": 0.18196749194123665,
+        "fit_residual_rms_sigma": 1.0466192117823812,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609225465860243968",
+      "catalogue_ra_deg": 211.01162828321,
+      "catalogue_dec_deg": 54.16915461525,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609225637658936064",
+      "catalogue_ra_deg": 211.00253589365,
+      "catalogue_dec_deg": 54.19200998005,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609225667721972608",
+      "catalogue_ra_deg": 211.01771495968,
+      "catalogue_dec_deg": 54.21544422071,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609225942599895552",
+      "catalogue_ra_deg": 210.97706149397,
+      "catalogue_dec_deg": 54.23642949982,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609226011319368064",
+      "catalogue_ra_deg": 211.05119665529,
+      "catalogue_dec_deg": 54.22974452877,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609226015616077824",
+      "catalogue_ra_deg": 211.05152976132,
+      "catalogue_dec_deg": 54.23155703569,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609226049975797504",
+      "catalogue_ra_deg": 211.01839189454,
+      "catalogue_dec_deg": 54.22557130753,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609226114398582656",
+      "catalogue_ra_deg": 211.05662986123,
+      "catalogue_dec_deg": 54.23120701298,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609226148758331648",
+      "catalogue_ra_deg": 211.08794290765,
+      "catalogue_dec_deg": 54.24586684877,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609226221774490112",
+      "catalogue_ra_deg": 211.0538457803,
+      "catalogue_dec_deg": 54.26672721912,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609226221774490240",
+      "catalogue_ra_deg": 211.06268185174,
+      "catalogue_dec_deg": 54.2624880065,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609226389276519168",
+      "catalogue_ra_deg": 211.02870918587,
+      "catalogue_dec_deg": 54.26075581674,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609226393573181568",
+      "catalogue_ra_deg": 211.02181444775,
+      "catalogue_dec_deg": 54.26391267309,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609226492355756160",
+      "catalogue_ra_deg": 211.02056244061,
+      "catalogue_dec_deg": 54.28720654923,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609226840250252672",
+      "catalogue_ra_deg": 210.90389008492,
+      "catalogue_dec_deg": 54.23852326941,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609227012048445440",
+      "catalogue_ra_deg": 210.89430451416,
+      "catalogue_dec_deg": 54.27184809384,
+      "a": {
+        "status": "measured",
+        "x": 33.150499097178184,
+        "y": 77.80872265351357,
+        "sigma_x_pixels": 0.3717739255163293,
+        "sigma_y_pixels": 0.35073289680051645,
+        "profile_fwhm_pixels": 0.8503259449592045,
+        "peak_snr": 81.41812478867185,
+        "background_mjy_sr": 0.24333551283502527,
+        "fit_residual_rms_sigma": 1.1842297495878773,
+        "valid_window_fraction": 1.0
+      },
+      "b": {
+        "status": "measured",
+        "x": 34.66489829744261,
+        "y": 75.07400327654346,
+        "sigma_x_pixels": 0.3492705629307603,
+        "sigma_y_pixels": 0.3310113934676068,
+        "profile_fwhm_pixels": 0.8006822096976147,
+        "peak_snr": 67.22739834116956,
+        "background_mjy_sr": 0.25742316477143834,
+        "fit_residual_rms_sigma": 1.3966167962599936,
+        "valid_window_fraction": 1.0
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.12593937839428548,
+      "dy_output_pixels": 0.017788604004607578,
+      "residual_pixels": 0.12718947072290127,
+      "absolute_offset_a_pixels": [
+        -0.0647358647868117,
+        -0.02779646794515145
+      ],
+      "absolute_offset_b_pixels": [
+        0.06120351360747378,
+        -0.01000786394054387
+      ],
+      "output_x": 56.14363999255538,
+      "output_y": 42.37584331896307
+    },
+    {
+      "source_id": "1609227149487903744",
+      "catalogue_ra_deg": 210.95547040447,
+      "catalogue_dec_deg": 54.27434655115,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "measured",
+        "x": 19.909768950770314,
+        "y": 90.1538667430067,
+        "sigma_x_pixels": 0.5006172412427615,
+        "sigma_y_pixels": 0.3513443965273252,
+        "profile_fwhm_pixels": 0.9875910210657823,
+        "peak_snr": 17.76541969685217,
+        "background_mjy_sr": 0.19635384958308721,
+        "fit_residual_rms_sigma": 1.9081544691468806,
+        "valid_window_fraction": 0.9506172839506173
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609227321286118144",
+      "catalogue_ra_deg": 210.98883914971,
+      "catalogue_dec_deg": 54.30409413933,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "measured",
+        "x": 22.598158535933898,
+        "y": 110.79075421967508,
+        "sigma_x_pixels": 0.4405954847241747,
+        "sigma_y_pixels": 0.4225476008581106,
+        "profile_fwhm_pixels": 1.0160511152700502,
+        "peak_snr": 14.562069553772137,
+        "background_mjy_sr": 0.2148060250812804,
+        "fit_residual_rms_sigma": 0.9777644518101754,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609227454428437888",
+      "catalogue_ra_deg": 210.92730976366,
+      "catalogue_dec_deg": 54.29454688904,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609227561804750080",
+      "catalogue_ra_deg": 210.92145377733,
+      "catalogue_dec_deg": 54.31809947355,
+      "a": {
+        "status": "measured",
+        "x": 45.907384372967506,
+        "y": 103.53281474097336,
+        "sigma_x_pixels": 0.5238193096448411,
+        "sigma_y_pixels": 0.880946205719345,
+        "profile_fwhm_pixels": 1.5996433404961174,
+        "peak_snr": 95.86684728199735,
+        "background_mjy_sr": 0.48842557964055117,
+        "fit_residual_rms_sigma": 3.5139838079592725,
+        "valid_window_fraction": 0.9629629629629629
+      },
+      "b": {
+        "status": "measured",
+        "x": 44.97560240279783,
+        "y": 101.56725947880967,
+        "sigma_x_pixels": 0.5334240758780681,
+        "sigma_y_pixels": 0.8788777328539021,
+        "profile_fwhm_pixels": 1.6123460320454854,
+        "peak_snr": 98.01663447744882,
+        "background_mjy_sr": 0.43186199201165026,
+        "fit_residual_rms_sigma": 3.612013960409571,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.019022704390465606,
+      "dy_output_pixels": 0.014685761055744706,
+      "residual_pixels": 0.02403195497901632,
+      "absolute_offset_a_pixels": [
+        -0.315760586884025,
+        -0.1458761127965431
+      ],
+      "absolute_offset_b_pixels": [
+        -0.29673788249355937,
+        -0.1311903517407984
+      ],
+      "output_x": 46.8066070564918,
+      "output_y": 69.4785655410439
+    },
+    {
+      "source_id": "1609227596164002432",
+      "catalogue_ra_deg": 210.9404071166,
+      "catalogue_dec_deg": 54.32197630174,
+      "a": {
+        "status": "measured",
+        "x": 43.26412068775484,
+        "y": 109.51721078335554,
+        "sigma_x_pixels": 0.502172188626792,
+        "sigma_y_pixels": 0.5549314505056133,
+        "profile_fwhm_pixels": 1.243093265452034,
+        "peak_snr": 9.98883119284488,
+        "background_mjy_sr": 0.5130993631828061,
+        "fit_residual_rms_sigma": 1.5911631954257495,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "b": {
+        "status": "measured",
+        "x": 41.98241128519058,
+        "y": 107.33082717251081,
+        "sigma_x_pixels": 0.4799879719443673,
+        "sigma_y_pixels": 0.4876383775663193,
+        "profile_fwhm_pixels": 1.1392573306877491,
+        "peak_snr": 20.868210781406553,
+        "background_mjy_sr": 0.38163251606423976,
+        "fit_residual_rms_sigma": 2.319412959096028,
+        "valid_window_fraction": 0.9506172839506173
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.18824704027348105,
+      "dy_output_pixels": 0.10371945327901244,
+      "residual_pixels": 0.21492946089408693,
+      "absolute_offset_a_pixels": [
+        -0.04334158668081045,
+        -0.12808667892014114
+      ],
+      "absolute_offset_b_pixels": [
+        0.1449054535926706,
+        -0.024367225641128698
+      ],
+      "output_x": 40.34187702240955,
+      "output_y": 71.7497742789354
+    },
+    {
+      "source_id": "1609249689475796096",
+      "catalogue_ra_deg": 211.06989341804,
+      "catalogue_dec_deg": 54.27083134462,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609249719538880896",
+      "catalogue_ra_deg": 211.07861999576,
+      "catalogue_dec_deg": 54.27779439497,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609249788258367872",
+      "catalogue_ra_deg": 211.12716157357,
+      "catalogue_dec_deg": 54.28909976896,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609249792555012096",
+      "catalogue_ra_deg": 211.10956161023,
+      "catalogue_dec_deg": 54.29531924261,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609250063136302336",
+      "catalogue_ra_deg": 211.08901355714,
+      "catalogue_dec_deg": 54.31905863025,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609250234934986240",
+      "catalogue_ra_deg": 211.1002365719,
+      "catalogue_dec_deg": 54.31359053812,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609250239231611136",
+      "catalogue_ra_deg": 211.10577734601,
+      "catalogue_dec_deg": 54.312591327,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609250441093191808",
+      "catalogue_ra_deg": 211.09031922811,
+      "catalogue_dec_deg": 54.32289187054,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609250445390041216",
+      "catalogue_ra_deg": 211.08623869367,
+      "catalogue_dec_deg": 54.32203108269,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609250445390041472",
+      "catalogue_ra_deg": 211.09083408529,
+      "catalogue_dec_deg": 54.32266151982,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609250647251884032",
+      "catalogue_ra_deg": 211.09802628715,
+      "catalogue_dec_deg": 54.36588923293,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609250720267947264",
+      "catalogue_ra_deg": 211.01143848081,
+      "catalogue_dec_deg": 54.30498420777,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "measured",
+        "x": 17.11378559694291,
+        "y": 116.14347467094713,
+        "sigma_x_pixels": 0.33744680972823055,
+        "sigma_y_pixels": 0.3309175788620167,
+        "profile_fwhm_pixels": 0.7869013640011312,
+        "peak_snr": 754.412416863134,
+        "background_mjy_sr": 0.2535777707754173,
+        "fit_residual_rms_sigma": 1.6018994167191292,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609250784690803584",
+      "catalogue_ra_deg": 210.99008712195,
+      "catalogue_dec_deg": 54.31554998571,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609250956489516160",
+      "catalogue_ra_deg": 211.0251847315,
+      "catalogue_dec_deg": 54.34352830522,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609250956489529600",
+      "catalogue_ra_deg": 211.01719899095,
+      "catalogue_dec_deg": 54.3635860958,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609250960786096128",
+      "catalogue_ra_deg": 211.0301737681,
+      "catalogue_dec_deg": 54.35205879421,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609251132584785920",
+      "catalogue_ra_deg": 210.98250434142,
+      "catalogue_dec_deg": 54.3494511243,
+      "status": "rejected",
+      "reason": "proper_motion_or_parallax_limit"
+    },
+    {
+      "source_id": "1609251132584786048",
+      "catalogue_ra_deg": 210.98352219852,
+      "catalogue_dec_deg": 54.34935927451,
+      "status": "rejected",
+      "reason": "proper_motion_or_parallax_limit"
+    },
+    {
+      "source_id": "1609251197007710336",
+      "catalogue_ra_deg": 210.98370601078,
+      "catalogue_dec_deg": 54.36369346637,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609251201302726272",
+      "catalogue_ra_deg": 210.97637880884,
+      "catalogue_dec_deg": 54.36980332918,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609251235664489472",
+      "catalogue_ra_deg": 210.98426087551,
+      "catalogue_dec_deg": 54.3732014804,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609251368806395648",
+      "catalogue_ra_deg": 211.05014613379,
+      "catalogue_dec_deg": 54.37244634432,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609251403166132096",
+      "catalogue_ra_deg": 211.06845761594,
+      "catalogue_dec_deg": 54.36943718899,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609251441820898176",
+      "catalogue_ra_deg": 211.06946172352,
+      "catalogue_dec_deg": 54.39097899163,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609251441822433792",
+      "catalogue_ra_deg": 211.06836281417,
+      "catalogue_dec_deg": 54.39067991633,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609251441822434176",
+      "catalogue_ra_deg": 211.08509715145,
+      "catalogue_dec_deg": 54.3901524615,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609251574969871488",
+      "catalogue_ra_deg": 211.016768068,
+      "catalogue_dec_deg": 54.39809367836,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609251643684331392",
+      "catalogue_ra_deg": 210.99366520987,
+      "catalogue_dec_deg": 54.40398222927,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609251746763560320",
+      "catalogue_ra_deg": 211.0006575287,
+      "catalogue_dec_deg": 54.41267005727,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609252060297753472",
+      "catalogue_ra_deg": 211.16935596233,
+      "catalogue_dec_deg": 54.39781858738,
+      "status": "rejected",
+      "reason": "proper_motion_or_parallax_limit"
+    },
+    {
+      "source_id": "1609252197737171456",
+      "catalogue_ra_deg": 211.12195032305,
+      "catalogue_dec_deg": 54.39776061836,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609252949354387328",
+      "catalogue_ra_deg": 211.09846378337,
+      "catalogue_dec_deg": 54.40525336001,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609253018073889664",
+      "catalogue_ra_deg": 211.09193900433,
+      "catalogue_dec_deg": 54.42752679736,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609253022370399616",
+      "catalogue_ra_deg": 211.08591803486,
+      "catalogue_dec_deg": 54.42008727984,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609253121153120256",
+      "catalogue_ra_deg": 211.08703401163,
+      "catalogue_dec_deg": 54.44088898606,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609253258592084224",
+      "catalogue_ra_deg": 211.03252248702,
+      "catalogue_dec_deg": 54.44626156519,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609253331608045056",
+      "catalogue_ra_deg": 211.08472016761,
+      "catalogue_dec_deg": 54.44791118177,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609253842707680640",
+      "catalogue_ra_deg": 211.07215340953,
+      "catalogue_dec_deg": 54.49832248223,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609265735473609088",
+      "catalogue_ra_deg": 210.76320730305,
+      "catalogue_dec_deg": 54.15166688526,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609265872912531328",
+      "catalogue_ra_deg": 210.69206961521,
+      "catalogue_dec_deg": 54.15064886852,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609265937335316480",
+      "catalogue_ra_deg": 210.67522933381,
+      "catalogue_dec_deg": 54.16509681371,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609265971695050880",
+      "catalogue_ra_deg": 210.70325972638,
+      "catalogue_dec_deg": 54.1600117651,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609266044711223680",
+      "catalogue_ra_deg": 210.69707353313,
+      "catalogue_dec_deg": 54.16727655594,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609266044711223808",
+      "catalogue_ra_deg": 210.69431339213,
+      "catalogue_dec_deg": 54.16943064597,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609266079070962816",
+      "catalogue_ra_deg": 210.70467258595,
+      "catalogue_dec_deg": 54.18128139883,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609266280932694528",
+      "catalogue_ra_deg": 210.64180053501,
+      "catalogue_dec_deg": 54.15532367406,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609266285229391488",
+      "catalogue_ra_deg": 210.64934925174,
+      "catalogue_dec_deg": 54.14558981055,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609266315292429568",
+      "catalogue_ra_deg": 210.62595932601,
+      "catalogue_dec_deg": 54.14964853674,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609266353948868352",
+      "catalogue_ra_deg": 210.62500962487,
+      "catalogue_dec_deg": 54.16823564363,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609266594467036544",
+      "catalogue_ra_deg": 210.57059619658,
+      "catalogue_dec_deg": 54.18016229045,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609266693249565440",
+      "catalogue_ra_deg": 210.67960132244,
+      "catalogue_dec_deg": 54.172427793,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609266693249568512",
+      "catalogue_ra_deg": 210.6712084333,
+      "catalogue_dec_deg": 54.17775274895,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609266800625468416",
+      "catalogue_ra_deg": 210.6749663168,
+      "catalogue_dec_deg": 54.19453353586,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609266903704683776",
+      "catalogue_ra_deg": 210.66839766702,
+      "catalogue_dec_deg": 54.20125071659,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609266903704683904",
+      "catalogue_ra_deg": 210.66454039743,
+      "catalogue_dec_deg": 54.20534860114,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609266972424159360",
+      "catalogue_ra_deg": 210.63773796209,
+      "catalogue_dec_deg": 54.19656985023,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609267139926196608",
+      "catalogue_ra_deg": 210.62896213576,
+      "catalogue_dec_deg": 54.22050491734,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609267144222851712",
+      "catalogue_ra_deg": 210.618728615,
+      "catalogue_dec_deg": 54.21241971066,
+      "status": "rejected",
+      "reason": "proper_motion_or_parallax_limit"
+    },
+    {
+      "source_id": "1609267178582590976",
+      "catalogue_ra_deg": 210.62966902859,
+      "catalogue_dec_deg": 54.23444078889,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609269893001897472",
+      "catalogue_ra_deg": 210.49978420799,
+      "catalogue_dec_deg": 54.23071655774,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609270064801103616",
+      "catalogue_ra_deg": 210.57419749257,
+      "catalogue_dec_deg": 54.2273236317,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609270099160374272",
+      "catalogue_ra_deg": 210.61322722059,
+      "catalogue_dec_deg": 54.23267388583,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609270167878150912",
+      "catalogue_ra_deg": 210.57711653506,
+      "catalogue_dec_deg": 54.24535063209,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609270167879805952",
+      "catalogue_ra_deg": 210.57821556734,
+      "catalogue_dec_deg": 54.24552114659,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609270167879806336",
+      "catalogue_ra_deg": 210.58259170184,
+      "catalogue_dec_deg": 54.24918170583,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609270270959020544",
+      "catalogue_ra_deg": 210.54270276169,
+      "catalogue_dec_deg": 54.24113808982,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609270270959020672",
+      "catalogue_ra_deg": 210.5468067093,
+      "catalogue_dec_deg": 54.24626330844,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609270374038236032",
+      "catalogue_ra_deg": 210.5581958426,
+      "catalogue_dec_deg": 54.25131055992,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609270374038236288",
+      "catalogue_ra_deg": 210.55252797176,
+      "catalogue_dec_deg": 54.26479353243,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609270442756058752",
+      "catalogue_ra_deg": 210.53799129408,
+      "catalogue_dec_deg": 54.27392217517,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609270442757713152",
+      "catalogue_ra_deg": 210.53879711322,
+      "catalogue_dec_deg": 54.27298535497,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609270644619531904",
+      "catalogue_ra_deg": 210.48004251364,
+      "catalogue_dec_deg": 54.24087327417,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609270683275880320",
+      "catalogue_ra_deg": 210.48737185278,
+      "catalogue_dec_deg": 54.2555979299,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609270751995356800",
+      "catalogue_ra_deg": 210.4784659396,
+      "catalogue_dec_deg": 54.2572026569,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609270958152130176",
+      "catalogue_ra_deg": 210.46432307439,
+      "catalogue_dec_deg": 54.26963171297,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609271129952479616",
+      "catalogue_ra_deg": 210.48052615958,
+      "catalogue_dec_deg": 54.27248174934,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609271267391434240",
+      "catalogue_ra_deg": 210.50570042286,
+      "catalogue_dec_deg": 54.29262446766,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609271366174086528",
+      "catalogue_ra_deg": 210.46959585112,
+      "catalogue_dec_deg": 54.29792748431,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609271434893569152",
+      "catalogue_ra_deg": 210.45589237155,
+      "catalogue_dec_deg": 54.30777493331,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609271439190125312",
+      "catalogue_ra_deg": 210.46220559087,
+      "catalogue_dec_deg": 54.30234507178,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609271572332538624",
+      "catalogue_ra_deg": 210.48501741871,
+      "catalogue_dec_deg": 54.32802728767,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609271748426335104",
+      "catalogue_ra_deg": 210.79781586342,
+      "catalogue_dec_deg": 54.1787256961,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609271748427824384",
+      "catalogue_ra_deg": 210.79762835058,
+      "catalogue_dec_deg": 54.17911156247,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609271988945963520",
+      "catalogue_ra_deg": 210.7340639412,
+      "catalogue_dec_deg": 54.20979329919,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "centroid_fit_not_reliable"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609272023305702272",
+      "catalogue_ra_deg": 210.74651366937,
+      "catalogue_dec_deg": 54.20524215054,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609272332543349120",
+      "catalogue_ra_deg": 210.83877891268,
+      "catalogue_dec_deg": 54.23936895557,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609272332543349760",
+      "catalogue_ra_deg": 210.84898574206,
+      "catalogue_dec_deg": 54.24236159337,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609272366903087360",
+      "catalogue_ra_deg": 210.80311827368,
+      "catalogue_dec_deg": 54.24552951895,
+      "a": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 7.388176609546809
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609272401262826624",
+      "catalogue_ra_deg": 210.81585164836,
+      "catalogue_dec_deg": 54.26243501702,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609272538701778816",
+      "catalogue_ra_deg": 210.77407213548,
+      "catalogue_dec_deg": 54.2555306751,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609272573061517312",
+      "catalogue_ra_deg": 210.78850995559,
+      "catalogue_dec_deg": 54.25158340485,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609272607421256192",
+      "catalogue_ra_deg": 210.80691406694,
+      "catalogue_dec_deg": 54.26198703841,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609272676140733696",
+      "catalogue_ra_deg": 210.77582296653,
+      "catalogue_dec_deg": 54.28510776993,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609272710500468352",
+      "catalogue_ra_deg": 210.69730956889,
+      "catalogue_dec_deg": 54.20204017108,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609272710500468480",
+      "catalogue_ra_deg": 210.70666458902,
+      "catalogue_dec_deg": 54.20484240908,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609272710500468608",
+      "catalogue_ra_deg": 210.70210052162,
+      "catalogue_dec_deg": 54.21061875834,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609272985378865152",
+      "catalogue_ra_deg": 210.66791748639,
+      "catalogue_dec_deg": 54.23259381172,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609273015445501824",
+      "catalogue_ra_deg": 210.66290914889,
+      "catalogue_dec_deg": 54.24982894872,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273019736524672",
+      "catalogue_ra_deg": 210.66284609897,
+      "catalogue_dec_deg": 54.24855660953,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273019738114432",
+      "catalogue_ra_deg": 210.66013972757,
+      "catalogue_dec_deg": 54.24744653489,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273122817330176",
+      "catalogue_ra_deg": 210.68267014882,
+      "catalogue_dec_deg": 54.24850084749,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609273290322043264",
+      "catalogue_ra_deg": 210.74751905096,
+      "catalogue_dec_deg": 54.27417623517,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273359039733888",
+      "catalogue_ra_deg": 210.73070653065,
+      "catalogue_dec_deg": 54.27774413109,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273359041507072",
+      "catalogue_ra_deg": 210.73788701023,
+      "catalogue_dec_deg": 54.27802221524,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273363335499392",
+      "catalogue_ra_deg": 210.7254927054,
+      "catalogue_dec_deg": 54.27476535224,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273432054978560",
+      "catalogue_ra_deg": 210.77427352325,
+      "catalogue_dec_deg": 54.29035241181,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273569492347904",
+      "catalogue_ra_deg": 210.69843630089,
+      "catalogue_dec_deg": 54.2913291111,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609273599561101824",
+      "catalogue_ra_deg": 210.68294222116,
+      "catalogue_dec_deg": 54.2910129915,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609273706932885376",
+      "catalogue_ra_deg": 210.72844421278,
+      "catalogue_dec_deg": 54.31508201375,
+      "a": {
+        "status": "measured",
+        "x": 90.76933526961179,
+        "y": 55.416017847350105,
+        "sigma_x_pixels": 0.6939504712362654,
+        "sigma_y_pixels": 0.6047807648571858,
+        "profile_fwhm_pixels": 1.5255306518938663,
+        "peak_snr": 22.637375079332525,
+        "background_mjy_sr": 0.6470097018509079,
+        "fit_residual_rms_sigma": 2.760893327828184,
+        "valid_window_fraction": 0.9629629629629629
+      },
+      "b": {
+        "status": "measured",
+        "x": 93.99218625817663,
+        "y": 56.284872619537296,
+        "sigma_x_pixels": 0.4454908316515005,
+        "sigma_y_pixels": 0.476460554147914,
+        "profile_fwhm_pixels": 1.0849021671846666,
+        "peak_snr": 28.38789878103087,
+        "background_mjy_sr": 0.6700907973057549,
+        "fit_residual_rms_sigma": 3.321300700991073,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "status": "measured",
+      "dx_output_pixels": -0.05321446201904223,
+      "dy_output_pixels": -0.03558948181995447,
+      "residual_pixels": 0.06401867059060941,
+      "absolute_offset_a_pixels": [
+        0.21497090590513324,
+        0.03941147676165713
+      ],
+      "absolute_offset_b_pixels": [
+        0.161756443886091,
+        0.0038219949417026555
+      ],
+      "output_x": 112.7081830099371,
+      "output_y": 67.68041453222779
+    },
+    {
+      "source_id": "1609273810012100736",
+      "catalogue_ra_deg": 210.84316274994,
+      "catalogue_dec_deg": 54.26007545508,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273810012100864",
+      "catalogue_ra_deg": 210.8635530081,
+      "catalogue_dec_deg": 54.25264013317,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "measured",
+        "x": 34.996944929569786,
+        "y": 60.35603388429618,
+        "sigma_x_pixels": 0.5124946636770827,
+        "sigma_y_pixels": 0.5161975573269284,
+        "profile_fwhm_pixels": 1.2111846610678307,
+        "peak_snr": 10.93850398236773,
+        "background_mjy_sr": 0.23253792802814777,
+        "fit_residual_rms_sigma": 1.121890125076507,
+        "valid_window_fraction": 0.9753086419753086
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609273844371840128",
+      "catalogue_ra_deg": 210.86098410435,
+      "catalogue_dec_deg": 54.27437652932,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273874434947328",
+      "catalogue_ra_deg": 210.82984646058,
+      "catalogue_dec_deg": 54.26191466473,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273913091316224",
+      "catalogue_ra_deg": 210.84927442924,
+      "catalogue_dec_deg": 54.27064777921,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273913091317376",
+      "catalogue_ra_deg": 210.8453595705,
+      "catalogue_dec_deg": 54.28620591252,
+      "a": {
+        "status": "measured",
+        "x": 50.83109148128037,
+        "y": 72.05361186149801,
+        "sigma_x_pixels": 0.4340488000153676,
+        "sigma_y_pixels": 0.35400974012435177,
+        "profile_fwhm_pixels": 0.9230699251082106,
+        "peak_snr": 13.937639625233269,
+        "background_mjy_sr": 0.4893158650850083,
+        "fit_residual_rms_sigma": 2.1458462009059693,
+        "valid_window_fraction": 0.9753086419753086
+      },
+      "b": {
+        "status": "measured",
+        "x": 52.79716082506838,
+        "y": 69.98190862163152,
+        "sigma_x_pixels": 0.39665780988227434,
+        "sigma_y_pixels": 0.5864732815379722,
+        "profile_fwhm_pixels": 1.1357685435498874,
+        "peak_snr": 11.292847391230982,
+        "background_mjy_sr": 0.5045913609705153,
+        "fit_residual_rms_sigma": 2.2291568752434467,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.38030289201587664,
+      "dy_output_pixels": -0.3146233566797676,
+      "residual_pixels": 0.4935768899007365,
+      "absolute_offset_a_pixels": [
+        -0.05661863358990615,
+        0.1402831583671187
+      ],
+      "absolute_offset_b_pixels": [
+        0.3236842584259705,
+        -0.1743401983126489
+      ],
+      "output_x": 72.77671023509959,
+      "output_y": 50.76805252017499
+    },
+    {
+      "source_id": "1609273943157239936",
+      "catalogue_ra_deg": 210.86769475543,
+      "catalogue_dec_deg": 54.28278984058,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273947449484800",
+      "catalogue_ra_deg": 210.86817933188,
+      "catalogue_dec_deg": 54.28542863746,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609274016170533120",
+      "catalogue_ra_deg": 210.8496069197,
+      "catalogue_dec_deg": 54.29968190872,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609274187967649664",
+      "catalogue_ra_deg": 210.79610737745,
+      "catalogue_dec_deg": 54.30858439018,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609274187969710592",
+      "catalogue_ra_deg": 210.79420451803,
+      "catalogue_dec_deg": 54.30250055802,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609274291048440320",
+      "catalogue_ra_deg": 210.82493911478,
+      "catalogue_dec_deg": 54.31869595054,
+      "a": {
+        "status": "measured",
+        "x": 69.30335319033021,
+        "y": 80.40783178298278,
+        "sigma_x_pixels": 0.6267433919136902,
+        "sigma_y_pixels": 0.45573272323774533,
+        "profile_fwhm_pixels": 1.2585129951421044,
+        "peak_snr": 8.071680812865555,
+        "background_mjy_sr": 0.8286427853830263,
+        "fit_residual_rms_sigma": 1.936858050281745,
+        "valid_window_fraction": 0.9506172839506173
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "centroid_fit_not_reliable"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609274565924798848",
+      "catalogue_ra_deg": 210.89359692215,
+      "catalogue_dec_deg": 54.33961025819,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609274565926351104",
+      "catalogue_ra_deg": 210.89843149056,
+      "catalogue_dec_deg": 54.34175292356,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609274600286089984",
+      "catalogue_ra_deg": 210.90065461918,
+      "catalogue_dec_deg": 54.3496822568,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609274703365302528",
+      "catalogue_ra_deg": 210.82661055707,
+      "catalogue_dec_deg": 54.3479517251,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609274767791245440",
+      "catalogue_ra_deg": 210.88071151015,
+      "catalogue_dec_deg": 54.34828586042,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "measured",
+        "x": 67.22467796762339,
+        "y": 105.25179970224046,
+        "sigma_x_pixels": 0.6815414643389778,
+        "sigma_y_pixels": 0.4085887735136959,
+        "profile_fwhm_pixels": 1.2426449867549936,
+        "peak_snr": 15.302175962608864,
+        "background_mjy_sr": 0.6878554987992377,
+        "fit_residual_rms_sigma": 1.9731980295353067,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609274772083231616",
+      "catalogue_ra_deg": 210.87027557318,
+      "catalogue_dec_deg": 54.35804438291,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609274806444552448",
+      "catalogue_ra_deg": 210.88451343054,
+      "catalogue_dec_deg": 54.36923882534,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609274875163997056",
+      "catalogue_ra_deg": 210.85695615212,
+      "catalogue_dec_deg": 54.37872258451,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "measured",
+        "x": 85.07710268668737,
+        "y": 113.08947925649167,
+        "sigma_x_pixels": 0.35773000359719365,
+        "sigma_y_pixels": 0.35966800359695233,
+        "profile_fwhm_pixels": 0.8446685055563453,
+        "peak_snr": 52.681718661956715,
+        "background_mjy_sr": 0.7869765217571767,
+        "fit_residual_rms_sigma": 1.68594748657857,
+        "valid_window_fraction": 0.9753086419753086
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609274973949235072",
+      "catalogue_ra_deg": 210.75501710835,
+      "catalogue_dec_deg": 54.31100411719,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 6.159833930259456
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609275012603433088",
+      "catalogue_ra_deg": 210.76094000108,
+      "catalogue_dec_deg": 54.33370087286,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609275012603433344",
+      "catalogue_ra_deg": 210.75658946048,
+      "catalogue_dec_deg": 54.33396717853,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609275081320852864",
+      "catalogue_ra_deg": 210.80637810659,
+      "catalogue_dec_deg": 54.33181972069,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609275081320938752",
+      "catalogue_ra_deg": 210.8034712598,
+      "catalogue_dec_deg": 54.34770252454,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609275081320939136",
+      "catalogue_ra_deg": 210.80208081253,
+      "catalogue_dec_deg": 54.34826048041,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609275081322910336",
+      "catalogue_ra_deg": 210.80601999273,
+      "catalogue_dec_deg": 54.33178616183,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609275115680664832",
+      "catalogue_ra_deg": 210.78049390951,
+      "catalogue_dec_deg": 54.33498938407,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609275459277984000",
+      "catalogue_ra_deg": 210.82049413247,
+      "catalogue_dec_deg": 54.34566942002,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609275562358762368",
+      "catalogue_ra_deg": 210.81085154104,
+      "catalogue_dec_deg": 54.37031401176,
+      "a": {
+        "status": "measured",
+        "x": 94.3131597590344,
+        "y": 98.11905727509215,
+        "sigma_x_pixels": 0.36172784253565393,
+        "sigma_y_pixels": 0.34851589141515943,
+        "profile_fwhm_pixels": 0.8361033770320009,
+        "peak_snr": 393.7907324940503,
+        "background_mjy_sr": 1.3150202273919347,
+        "fit_residual_rms_sigma": 2.013345611929945,
+        "valid_window_fraction": 1.0
+      },
+      "b": {
+        "status": "measured",
+        "x": 93.77120072066116,
+        "y": 99.0835480971821,
+        "sigma_x_pixels": 0.34374563831495336,
+        "sigma_y_pixels": 0.3202399723585442,
+        "profile_fwhm_pixels": 0.7812932705274112,
+        "peak_snr": 476.5575836455696,
+        "background_mjy_sr": 1.248758745778675,
+        "fit_residual_rms_sigma": 2.340917625958214,
+        "valid_window_fraction": 1.0
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.037172598581562966,
+      "dy_output_pixels": 0.0344616828623856,
+      "residual_pixels": 0.050689344748316274,
+      "absolute_offset_a_pixels": [
+        0.022400449202976347,
+        -0.0250538698019227
+      ],
+      "absolute_offset_b_pixels": [
+        0.05957304778453931,
+        0.0094078130604629
+      ],
+      "output_x": 84.54209345031603,
+      "output_y": 100.01209986031319
+    },
+    {
+      "source_id": "1609275699797690496",
+      "catalogue_ra_deg": 210.82554988375,
+      "catalogue_dec_deg": 54.40025299397,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "centroid_fit_not_reliable"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609275802876904576",
+      "catalogue_ra_deg": 210.75628599598,
+      "catalogue_dec_deg": 54.38595808847,
+      "a": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 7.958847238249835
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 6.662663495711163
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609275871594747136",
+      "catalogue_ra_deg": 210.79264599593,
+      "catalogue_dec_deg": 54.39767792261,
+      "a": {
+        "status": "measured",
+        "x": 110.11940487377058,
+        "y": 104.93093719226034,
+        "sigma_x_pixels": 0.33581026995085395,
+        "sigma_y_pixels": 0.33993012488030283,
+        "profile_fwhm_pixels": 0.7956087110856586,
+        "peak_snr": 95.13887855478234,
+        "background_mjy_sr": 0.7872911893845607,
+        "fit_residual_rms_sigma": 1.7160907521598843,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "b": {
+        "status": "measured",
+        "x": 108.92689783235426,
+        "y": 106.83768865584547,
+        "sigma_x_pixels": 0.38366123764158505,
+        "sigma_y_pixels": 0.34984582078246945,
+        "profile_fwhm_pixels": 0.8627203106346308,
+        "peak_snr": 103.44431448634889,
+        "background_mjy_sr": 0.6242351781353334,
+        "fit_residual_rms_sigma": 1.8219687728098395,
+        "valid_window_fraction": 1.0
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.039493948841851534,
+      "dy_output_pixels": 0.048067005024435616,
+      "residual_pixels": 0.062211003585715484,
+      "absolute_offset_a_pixels": [
+        -0.008756006583908515,
+        -0.020585760004280473
+      ],
+      "absolute_offset_b_pixels": [
+        0.03073794225794302,
+        0.027481245020155143
+      ],
+      "output_x": 90.79939954427664,
+      "output_y": 115.99917805718295
+    },
+    {
+      "source_id": "1609276043395068160",
+      "catalogue_ra_deg": 210.62470392409,
+      "catalogue_dec_deg": 54.2721603446,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609276215193760384",
+      "catalogue_ra_deg": 210.62325125358,
+      "catalogue_dec_deg": 54.28207122464,
+      "a": {
+        "status": "measured",
+        "x": 101.70258404513743,
+        "y": 16.579545818270354,
+        "sigma_x_pixels": 0.39936284678387657,
+        "sigma_y_pixels": 0.4353784258742303,
+        "profile_fwhm_pixels": 0.9819174946815553,
+        "peak_snr": 298.2009916090084,
+        "background_mjy_sr": 0.3006289715851032,
+        "fit_residual_rms_sigma": 2.290808826600604,
+        "valid_window_fraction": 1.0
+      },
+      "b": {
+        "status": "measured",
+        "x": 108.46442454368892,
+        "y": 18.168864590974884,
+        "sigma_x_pixels": 0.4149370253183965,
+        "sigma_y_pixels": 0.3604367439860036,
+        "profile_fwhm_pixels": 0.9106748422981449,
+        "peak_snr": 320.5759953424446,
+        "background_mjy_sr": 0.3219381589990405,
+        "fit_residual_rms_sigma": 3.2684046224027554,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.010146806874075764,
+      "dy_output_pixels": -0.027973204302107035,
+      "residual_pixels": 0.02975664377357115,
+      "absolute_offset_a_pixels": [
+        0.011514669912287445,
+        0.010279809547249386
+      ],
+      "absolute_offset_b_pixels": [
+        0.02166147678636321,
+        -0.01769339475485765
+      ],
+      "output_x": 148.67954495576686,
+      "output_y": 48.43627791482843
+    },
+    {
+      "source_id": "1609276352632736000",
+      "catalogue_ra_deg": 210.55715072172,
+      "catalogue_dec_deg": 54.29901756782,
+      "status": "rejected",
+      "reason": "proper_motion_or_parallax_limit"
+    },
+    {
+      "source_id": "1609276520137197952",
+      "catalogue_ra_deg": 210.58744866606,
+      "catalogue_dec_deg": 54.33454119992,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609276588854329216",
+      "catalogue_ra_deg": 210.66340151685,
+      "catalogue_dec_deg": 54.32121701313,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609276623213828352",
+      "catalogue_ra_deg": 210.65116437093,
+      "catalogue_dec_deg": 54.31498244488,
+      "a": {
+        "status": "measured",
+        "x": 108.88713780495168,
+        "y": 36.85705072016446,
+        "sigma_x_pixels": 0.34146295035992885,
+        "sigma_y_pixels": 0.344728840038642,
+        "profile_fwhm_pixels": 0.807919925162196,
+        "peak_snr": 344.4620273157581,
+        "background_mjy_sr": 0.26511241527854745,
+        "fit_residual_rms_sigma": 1.589048374792923,
+        "valid_window_fraction": 1.0
+      },
+      "b": {
+        "status": "measured",
+        "x": 113.81317926494155,
+        "y": 38.87838941744741,
+        "sigma_x_pixels": 0.33771168031634274,
+        "sigma_y_pixels": 0.33654574288906136,
+        "profile_fwhm_pixels": 0.7938762457325802,
+        "peak_snr": 346.712156157145,
+        "background_mjy_sr": 0.2839291212560145,
+        "fit_residual_rms_sigma": 1.352701318846063,
+        "valid_window_fraction": 1.0
+      },
+      "status": "measured",
+      "dx_output_pixels": -0.009308751898686296,
+      "dy_output_pixels": 0.02471967843429468,
+      "residual_pixels": 0.026414302258553585,
+      "absolute_offset_a_pixels": [
+        -0.005616328838812024,
+        0.0507271557012956
+      ],
+      "absolute_offset_b_pixels": [
+        -0.01492508073749832,
+        0.07544683413559028
+      ],
+      "output_x": 139.11424966247296,
+      "output_y": 67.62932797101027
+    },
+    {
+      "source_id": "1609276661870360320",
+      "catalogue_ra_deg": 210.65626113815,
+      "catalogue_dec_deg": 54.33016752103,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609276730589838592",
+      "catalogue_ra_deg": 210.68754773729,
+      "catalogue_dec_deg": 54.34686106581,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609276833667404800",
+      "catalogue_ra_deg": 210.61378887944,
+      "catalogue_dec_deg": 54.33124667758,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "measured",
+        "x": 128.9764677216544,
+        "y": 36.65030977148952,
+        "sigma_x_pixels": 0.8574489083433745,
+        "sigma_y_pixels": 1.0086866845547033,
+        "profile_fwhm_pixels": 2.189979177319538,
+        "peak_snr": 12.289920106581244,
+        "background_mjy_sr": 0.32333768908582033,
+        "fit_residual_rms_sigma": 1.5867646895382497,
+        "valid_window_fraction": 0.9259259259259259
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609276971108006144",
+      "catalogue_ra_deg": 210.64556555255,
+      "catalogue_dec_deg": 54.34418765803,
+      "a": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 5.170430878732045
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 7.772090669681933
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609276971108006400",
+      "catalogue_ra_deg": 210.64338785971,
+      "catalogue_dec_deg": 54.35465953221,
+      "status": "rejected",
+      "reason": "proper_motion_or_parallax_limit"
+    },
+    {
+      "source_id": "1609277039827483008",
+      "catalogue_ra_deg": 210.6249415315,
+      "catalogue_dec_deg": 54.35855672205,
+      "a": {
+        "status": "measured",
+        "x": 132.22374095680033,
+        "y": 46.97127592323738,
+        "sigma_x_pixels": 0.36601072720875166,
+        "sigma_y_pixels": 0.34826737911889427,
+        "profile_fwhm_pixels": 0.8407386665385123,
+        "peak_snr": 1096.1858995771327,
+        "background_mjy_sr": 0.30670340621269054,
+        "fit_residual_rms_sigma": 5.703533287261122,
+        "valid_window_fraction": 1.0
+      },
+      "b": {
+        "status": "measured",
+        "x": 136.1906954798324,
+        "y": 50.28509066349837,
+        "sigma_x_pixels": 0.35520903528273373,
+        "sigma_y_pixels": 0.3739881418172307,
+        "profile_fwhm_pixels": 0.8582792911484849,
+        "peak_snr": 967.9258903376032,
+        "background_mjy_sr": 0.32621821921886235,
+        "fit_residual_rms_sigma": 5.972549526955859,
+        "valid_window_fraction": 1.0
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.06348494938217186,
+      "dy_output_pixels": -0.024190070799164687,
+      "residual_pixels": 0.06793745891130698,
+      "absolute_offset_a_pixels": [
+        0.2603309509221958,
+        -1.8687150596655897
+      ],
+      "absolute_offset_b_pixels": [
+        0.3238159003043677,
+        -1.8929051304647544
+      ],
+      "output_x": 147.99349475821214,
+      "output_y": 93.19747340609516
+    },
+    {
+      "source_id": "1609277069890711680",
+      "catalogue_ra_deg": 210.6288303357,
+      "catalogue_dec_deg": 54.37696887413,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609277074187222528",
+      "catalogue_ra_deg": 210.64035032193,
+      "catalogue_dec_deg": 54.37621769586,
+      "status": "rejected",
+      "reason": "proper_motion_or_parallax_limit"
+    },
+    {
+      "source_id": "1609277349065127168",
+      "catalogue_ra_deg": 210.54686555423,
+      "catalogue_dec_deg": 54.35600935373,
+      "a": {
+        "status": "measured",
+        "x": 150.84270062251971,
+        "y": 28.56286620197214,
+        "sigma_x_pixels": 0.39973946836730445,
+        "sigma_y_pixels": 0.40065496593625527,
+        "profile_fwhm_pixels": 0.9423917944286768,
+        "peak_snr": 70.43585840724826,
+        "background_mjy_sr": 0.17478963078924153,
+        "fit_residual_rms_sigma": 0.9964505517638342,
+        "valid_window_fraction": 1.0
+      },
+      "b": {
+        "status": "measured",
+        "x": 156.38612133274634,
+        "y": 33.065613306115154,
+        "sigma_x_pixels": 0.4218974750838439,
+        "sigma_y_pixels": 0.3498653946601892,
+        "profile_fwhm_pixels": 0.9047147544634421,
+        "peak_snr": 71.5600802096867,
+        "background_mjy_sr": 0.19612551204230985,
+        "fit_residual_rms_sigma": 0.9394508350394789,
+        "valid_window_fraction": 1.0
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.0213921157275081,
+      "dy_output_pixels": -0.030200325063361788,
+      "residual_pixels": 0.037009218435841325,
+      "absolute_offset_a_pixels": [
+        -0.0024713657888639773,
+        -0.0011330681834635925
+      ],
+      "absolute_offset_b_pixels": [
+        0.01892074993864412,
+        -0.03133339324682538
+      ],
+      "output_x": 174.67450758342522,
+      "output_y": 91.75624346984391
+    },
+    {
+      "source_id": "1609277383424864000",
+      "catalogue_ra_deg": 210.50406192907,
+      "catalogue_dec_deg": 54.33317015982,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609277417784603392",
+      "catalogue_ra_deg": 210.50838585518,
+      "catalogue_dec_deg": 54.34546043184,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609277486504080384",
+      "catalogue_ra_deg": 210.49643924896,
+      "catalogue_dec_deg": 54.35658170593,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609277619646524416",
+      "catalogue_ra_deg": 210.52102106275,
+      "catalogue_dec_deg": 54.37143996273,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609277791445217536",
+      "catalogue_ra_deg": 210.59958494728,
+      "catalogue_dec_deg": 54.3763824371,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609277830101466752",
+      "catalogue_ra_deg": 210.61043607858,
+      "catalogue_dec_deg": 54.3932514565,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609277967540418432",
+      "catalogue_ra_deg": 210.55202925259,
+      "catalogue_dec_deg": 54.38921246718,
+      "a": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 7.057760229091581
+      },
+      "b": {
+        "status": "measured",
+        "x": 167.8111276879107,
+        "y": 48.896044226185914,
+        "sigma_x_pixels": 0.3484702861999517,
+        "sigma_y_pixels": 0.34323840838335,
+        "profile_fwhm_pixels": 0.814401437309918,
+        "peak_snr": 13.60278140720025,
+        "background_mjy_sr": 0.19405614354549552,
+        "fit_residual_rms_sigma": 1.0978091489922228,
+        "valid_window_fraction": 0.9629629629629629
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609277997603672704",
+      "catalogue_ra_deg": 210.51860154513,
+      "catalogue_dec_deg": 54.40011827681,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609278242416685440",
+      "catalogue_ra_deg": 210.70874979551,
+      "catalogue_dec_deg": 54.36054221956,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609278242418327424",
+      "catalogue_ra_deg": 210.70715444408,
+      "catalogue_dec_deg": 54.35814718914,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609278311137804288",
+      "catalogue_ra_deg": 210.67780043969,
+      "catalogue_dec_deg": 54.37530894469,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609278311137804544",
+      "catalogue_ra_deg": 210.69440069953,
+      "catalogue_dec_deg": 54.37001136681,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "measured",
+        "x": 123.67245337011744,
+        "y": 72.66000198543416,
+        "sigma_x_pixels": 0.38469195612911905,
+        "sigma_y_pixels": 0.4571635488364135,
+        "profile_fwhm_pixels": 0.9875294729525859,
+        "peak_snr": 205.66651619303065,
+        "background_mjy_sr": 0.4826795814944708,
+        "fit_residual_rms_sigma": 7.130443918336183,
+        "valid_window_fraction": 1.0
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609278444280788992",
+      "catalogue_ra_deg": 210.71480886781,
+      "catalogue_dec_deg": 54.40285747401,
+      "a": {
+        "status": "rejected",
+        "reason": "centroid_fit_not_reliable"
+      },
+      "b": {
+        "status": "measured",
+        "x": 132.28441533048237,
+        "y": 92.11737479212067,
+        "sigma_x_pixels": 0.8501553407704251,
+        "sigma_y_pixels": 0.546130545967124,
+        "profile_fwhm_pixels": 1.6045567928691558,
+        "peak_snr": 45.48914785924372,
+        "background_mjy_sr": 0.32659319523687885,
+        "fit_residual_rms_sigma": 4.373631695201277,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609278581719224576",
+      "catalogue_ra_deg": 210.64572626466,
+      "catalogue_dec_deg": 54.40458987468,
+      "a": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609278787877925248",
+      "catalogue_ra_deg": 210.75000273235,
+      "catalogue_dec_deg": 54.4099098861,
+      "a": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 6.51280854787512
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609278994036137216",
+      "catalogue_ra_deg": 210.75861537789,
+      "catalogue_dec_deg": 54.45137985588,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 6.152246018146434
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609279131475089792",
+      "catalogue_ra_deg": 210.69600005574,
+      "catalogue_dec_deg": 54.44856152357,
+      "a": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 3.8400927158242864
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "flagged_or_missing_source_support"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609279165834837888",
+      "catalogue_ra_deg": 210.7167504645,
+      "catalogue_dec_deg": 54.45965172134,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 4.122311895844486
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609279204491004160",
+      "catalogue_ra_deg": 210.73183210827,
+      "catalogue_dec_deg": 54.45348357307,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 5.974221499003282
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609279268914068096",
+      "catalogue_ra_deg": 210.70360991288,
+      "catalogue_dec_deg": 54.48023114582,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609279268914533888",
+      "catalogue_ra_deg": 210.69900329997,
+      "catalogue_dec_deg": 54.4759786752,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609279307570216704",
+      "catalogue_ra_deg": 210.61884611254,
+      "catalogue_dec_deg": 54.40476173992,
+      "a": {
+        "status": "measured",
+        "x": 154.16489400293187,
+        "y": 65.99815206913163,
+        "sigma_x_pixels": 0.37067435840852947,
+        "sigma_y_pixels": 0.3360766798602113,
+        "profile_fwhm_pixels": 0.831138072964551,
+        "peak_snr": 91.3721887503952,
+        "background_mjy_sr": 0.2204805731232847,
+        "fit_residual_rms_sigma": 1.1228645281414358,
+        "valid_window_fraction": 1.0
+      },
+      "b": {
+        "status": "measured",
+        "x": 156.3449434977139,
+        "y": 70.65947992150016,
+        "sigma_x_pixels": 0.38695647544874884,
+        "sigma_y_pixels": 0.42780398711739376,
+        "profile_fwhm_pixels": 0.9581007695260502,
+        "peak_snr": 51.77895847408805,
+        "background_mjy_sr": 0.23385416234306242,
+        "fit_residual_rms_sigma": 1.3774739714540432,
+        "valid_window_fraction": 0.9753086419753086
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.013951465600882784,
+      "dy_output_pixels": 0.03429506541317551,
+      "residual_pixels": 0.03702424751573761,
+      "absolute_offset_a_pixels": [
+        -0.024410284828604745,
+        -0.03421029463683567
+      ],
+      "absolute_offset_b_pixels": [
+        -0.01045881922772196,
+        8.477077633983754e-05
+      ],
+      "output_x": 149.9969041227315,
+      "output_y": 120.23471426779824
+    },
+    {
+      "source_id": "1609279337633991680",
+      "catalogue_ra_deg": 210.63745405226,
+      "catalogue_dec_deg": 54.41741571895,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609279341929966336",
+      "catalogue_ra_deg": 210.63394947555,
+      "catalogue_dec_deg": 54.41751324979,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609279410649432576",
+      "catalogue_ra_deg": 210.61709907209,
+      "catalogue_dec_deg": 54.4158331284,
+      "a": {
+        "status": "measured",
+        "x": 159.1963645535047,
+        "y": 70.09693011631768,
+        "sigma_x_pixels": 0.36542986403367067,
+        "sigma_y_pixels": 0.35441677916215353,
+        "profile_fwhm_pixels": 0.8474554385735334,
+        "peak_snr": 140.04286781145203,
+        "background_mjy_sr": 0.21177547974145253,
+        "fit_residual_rms_sigma": 1.8760390556576088,
+        "valid_window_fraction": 1.0
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609279479368920064",
+      "catalogue_ra_deg": 210.66034458176,
+      "catalogue_dec_deg": 54.43537402805,
+      "a": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 6.652336934165507
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609279548088386432",
+      "catalogue_ra_deg": 210.63684966235,
+      "catalogue_dec_deg": 54.44795562987,
+      "a": {
+        "status": "measured",
+        "x": 168.1443284005421,
+        "y": 88.08843902879767,
+        "sigma_x_pixels": 0.3615924378356631,
+        "sigma_y_pixels": 0.3484670254504935,
+        "profile_fwhm_pixels": 0.8358882673456054,
+        "peak_snr": 138.2568833628145,
+        "background_mjy_sr": 0.2461954056026867,
+        "fit_residual_rms_sigma": 4.941135420816925,
+        "valid_window_fraction": 1.0
+      },
+      "b": {
+        "status": "measured",
+        "x": 168.22251510657995,
+        "y": 93.53729666580277,
+        "sigma_x_pixels": 0.4072156397328826,
+        "sigma_y_pixels": 0.4127015363604685,
+        "profile_fwhm_pixels": 0.9653570736438722,
+        "peak_snr": 119.20136421909942,
+        "background_mjy_sr": 0.20965590931747483,
+        "fit_residual_rms_sigma": 4.645961874169211,
+        "valid_window_fraction": 1.0
+      },
+      "status": "measured",
+      "dx_output_pixels": -0.031008140902969217,
+      "dy_output_pixels": -0.0030789171306082608,
+      "residual_pixels": 0.03116062472023861,
+      "absolute_offset_a_pixels": [
+        0.014419540939798026,
+        -0.002926604207004857
+      ],
+      "absolute_offset_b_pixels": [
+        -0.01658859996317119,
+        -0.006005521337613118
+      ],
+      "output_x": 143.85008701461595,
+      "output_y": 145.54843268764813
+    },
+    {
+      "source_id": "1609279582448104704",
+      "catalogue_ra_deg": 210.58923883312,
+      "catalogue_dec_deg": 54.42797629849,
+      "a": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 6.885094695634332
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609279651165887104",
+      "catalogue_ra_deg": 210.56999385178,
+      "catalogue_dec_deg": 54.43907143307,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609279651167600768",
+      "catalogue_ra_deg": 210.55814939061,
+      "catalogue_dec_deg": 54.44285378457,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609279685527320576",
+      "catalogue_ra_deg": 210.57081010523,
+      "catalogue_dec_deg": 54.45829019852,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609279715590660224",
+      "catalogue_ra_deg": 210.59991109655,
+      "catalogue_dec_deg": 54.45500277994,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609279784310606720",
+      "catalogue_ra_deg": 210.58740897419,
+      "catalogue_dec_deg": 54.46139870248,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609279822966274432",
+      "catalogue_ra_deg": 210.59716366973,
+      "catalogue_dec_deg": 54.46713011672,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609279857326032128",
+      "catalogue_ra_deg": 210.65182245907,
+      "catalogue_dec_deg": 54.44642500999,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609279926045490304",
+      "catalogue_ra_deg": 210.63365072326,
+      "catalogue_dec_deg": 54.46761443384,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609280029124725120",
+      "catalogue_ra_deg": 210.69333640979,
+      "catalogue_dec_deg": 54.47626582785,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609280166563659264",
+      "catalogue_ra_deg": 210.63275467998,
+      "catalogue_dec_deg": 54.48870782356,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609280196627012992",
+      "catalogue_ra_deg": 210.59317920474,
+      "catalogue_dec_deg": 54.48566499897,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609280338362351232",
+      "catalogue_ra_deg": 210.61159399433,
+      "catalogue_dec_deg": 54.51102590027,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609280338362351360",
+      "catalogue_ra_deg": 210.62508931269,
+      "catalogue_dec_deg": 54.51092984328,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609283155861410688",
+      "catalogue_ra_deg": 210.42773519267,
+      "catalogue_dec_deg": 54.29530562487,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609283293299863168",
+      "catalogue_ra_deg": 210.43897442551,
+      "catalogue_dec_deg": 54.33312687694,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609283323363069696",
+      "catalogue_ra_deg": 210.45880698822,
+      "catalogue_dec_deg": 54.33925961693,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609283392082564224",
+      "catalogue_ra_deg": 210.42681793126,
+      "catalogue_dec_deg": 54.36029339361,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609289306254060800",
+      "catalogue_ra_deg": 210.45745333589,
+      "catalogue_dec_deg": 54.38400945928,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609289306254571136",
+      "catalogue_ra_deg": 210.45608809667,
+      "catalogue_dec_deg": 54.3821344564,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609289374973537920",
+      "catalogue_ra_deg": 210.50328470748,
+      "catalogue_dec_deg": 54.38769082892,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609289512413001216",
+      "catalogue_ra_deg": 210.434010791,
+      "catalogue_dec_deg": 54.3919508952,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609289581131967104",
+      "catalogue_ra_deg": 210.41884721836,
+      "catalogue_dec_deg": 54.39986220106,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609289611195258368",
+      "catalogue_ra_deg": 210.44071961313,
+      "catalogue_dec_deg": 54.41052114913,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609289645554997376",
+      "catalogue_ra_deg": 210.46532016333,
+      "catalogue_dec_deg": 54.41219248414,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609289645555001344",
+      "catalogue_ra_deg": 210.45347477815,
+      "catalogue_dec_deg": 54.41567837283,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609289856009875584",
+      "catalogue_ra_deg": 210.48953401759,
+      "catalogue_dec_deg": 54.42955248163,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609289856009875712",
+      "catalogue_ra_deg": 210.48633016463,
+      "catalogue_dec_deg": 54.4319776393,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609290027808567040",
+      "catalogue_ra_deg": 210.45724695723,
+      "catalogue_dec_deg": 54.42927058742,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609290057871890944",
+      "catalogue_ra_deg": 210.47866715226,
+      "catalogue_dec_deg": 54.44068070364,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609290130887782912",
+      "catalogue_ra_deg": 210.45990520706,
+      "catalogue_dec_deg": 54.44976433114,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609290130887783040",
+      "catalogue_ra_deg": 210.46456279,
+      "catalogue_dec_deg": 54.45077752743,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609290165247521664",
+      "catalogue_ra_deg": 210.47467675868,
+      "catalogue_dec_deg": 54.45083537627,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609291642716273536",
+      "catalogue_ra_deg": 210.55580124087,
+      "catalogue_dec_deg": 54.50293468161,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609291711435748864",
+      "catalogue_ra_deg": 210.50046043966,
+      "catalogue_dec_deg": 54.48501797421,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609291848874703488",
+      "catalogue_ra_deg": 210.54398794059,
+      "catalogue_dec_deg": 54.50307085336,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609292020673395968",
+      "catalogue_ra_deg": 210.55946297853,
+      "catalogue_dec_deg": 54.51153961213,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609292119459912192",
+      "catalogue_ra_deg": 210.60555091141,
+      "catalogue_dec_deg": 54.53661168859,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609298029331095680",
+      "catalogue_ra_deg": 210.95427197384,
+      "catalogue_dec_deg": 54.36384352914,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609298098050579712",
+      "catalogue_ra_deg": 210.92578087992,
+      "catalogue_dec_deg": 54.37383905889,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609298098050588416",
+      "catalogue_ra_deg": 210.92566538848,
+      "catalogue_dec_deg": 54.38170427256,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609298132410318592",
+      "catalogue_ra_deg": 210.94735941404,
+      "catalogue_dec_deg": 54.37482642572,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609298171066613632",
+      "catalogue_ra_deg": 210.9562690338,
+      "catalogue_dec_deg": 54.38585838723,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609298201129806592",
+      "catalogue_ra_deg": 210.94291777909,
+      "catalogue_dec_deg": 54.38513353077,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609298274145826176",
+      "catalogue_ra_deg": 210.89683217517,
+      "catalogue_dec_deg": 54.37853374136,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609298342865303168",
+      "catalogue_ra_deg": 210.88755693995,
+      "catalogue_dec_deg": 54.38778494332,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609298342865794560",
+      "catalogue_ra_deg": 210.87809505993,
+      "catalogue_dec_deg": 54.39325396312,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609298372931504896",
+      "catalogue_ra_deg": 210.88532627154,
+      "catalogue_dec_deg": 54.40431231913,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609298377223499136",
+      "catalogue_ra_deg": 210.88703713426,
+      "catalogue_dec_deg": 54.40723198146,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609298411584781056",
+      "catalogue_ra_deg": 210.91707008734,
+      "catalogue_dec_deg": 54.39177540816,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "measured",
+        "x": 74.69927490732357,
+        "y": 132.3438361375972,
+        "sigma_x_pixels": 0.3765142237137921,
+        "sigma_y_pixels": 0.4573199370216515,
+        "profile_fwhm_pixels": 0.9771437912950336,
+        "peak_snr": 89.62872943239078,
+        "background_mjy_sr": 0.5319975926370984,
+        "fit_residual_rms_sigma": 1.4929215580698705,
+        "valid_window_fraction": 1.0
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609298510367488000",
+      "catalogue_ra_deg": 210.89895884531,
+      "catalogue_dec_deg": 54.41992893605,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609298617743212800",
+      "catalogue_ra_deg": 210.95558436962,
+      "catalogue_dec_deg": 54.42004358629,
+      "status": "rejected",
+      "reason": "proper_motion_or_parallax_limit"
+    },
+    {
+      "source_id": "1609298853964886016",
+      "catalogue_ra_deg": 210.94211954524,
+      "catalogue_dec_deg": 54.43438849582,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609298858261381504",
+      "catalogue_ra_deg": 210.94190139219,
+      "catalogue_dec_deg": 54.44673461658,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609298995700335232",
+      "catalogue_ra_deg": 210.95635726704,
+      "catalogue_dec_deg": 54.46095021927,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609299133139286272",
+      "catalogue_ra_deg": 210.87011179276,
+      "catalogue_dec_deg": 54.41608678429,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 5.338631266264631
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609299163207106176",
+      "catalogue_ra_deg": 210.84277980582,
+      "catalogue_dec_deg": 54.41048110841,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 6.073624247282087
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609299231922001152",
+      "catalogue_ra_deg": 210.87946044526,
+      "catalogue_dec_deg": 54.42627892122,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609299270578241664",
+      "catalogue_ra_deg": 210.89614164266,
+      "catalogue_dec_deg": 54.43760538078,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609299369361689984",
+      "catalogue_ra_deg": 210.82170647682,
+      "catalogue_dec_deg": 54.43064626647,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "centroid_fit_not_reliable"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609299373655792512",
+      "catalogue_ra_deg": 210.82241530158,
+      "catalogue_dec_deg": 54.41856746726,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 5.496858988310314
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609299575519427200",
+      "catalogue_ra_deg": 210.82272799056,
+      "catalogue_dec_deg": 54.46170300731,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609299579815857024",
+      "catalogue_ra_deg": 210.81555283577,
+      "catalogue_dec_deg": 54.45778676117,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609299579815857152",
+      "catalogue_ra_deg": 210.81510497017,
+      "catalogue_dec_deg": 54.45868826889,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609299579815857280",
+      "catalogue_ra_deg": 210.81253511124,
+      "catalogue_dec_deg": 54.46301536591,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609299644238883584",
+      "catalogue_ra_deg": 210.90022785137,
+      "catalogue_dec_deg": 54.44338720437,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609299712958377984",
+      "catalogue_ra_deg": 210.87108365295,
+      "catalogue_dec_deg": 54.46078175265,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609299747318117376",
+      "catalogue_ra_deg": 210.89130258738,
+      "catalogue_dec_deg": 54.46211939627,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609299850397353856",
+      "catalogue_ra_deg": 210.89718966238,
+      "catalogue_dec_deg": 54.49141516689,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609299884757103744",
+      "catalogue_ra_deg": 210.90717585792,
+      "catalogue_dec_deg": 54.50593744007,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609299889053503744",
+      "catalogue_ra_deg": 210.91533428998,
+      "catalogue_dec_deg": 54.49103999927,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609300163931410816",
+      "catalogue_ra_deg": 210.86472937443,
+      "catalogue_dec_deg": 54.53113907668,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609300262714180352",
+      "catalogue_ra_deg": 210.99824079384,
+      "catalogue_dec_deg": 54.45158176591,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609300365793419008",
+      "catalogue_ra_deg": 211.05197472158,
+      "catalogue_dec_deg": 54.4822646962,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609300365793424896",
+      "catalogue_ra_deg": 211.04004018591,
+      "catalogue_dec_deg": 54.48959514195,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609300503232377216",
+      "catalogue_ra_deg": 210.98213761078,
+      "catalogue_dec_deg": 54.48668651211,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609300571951866880",
+      "catalogue_ra_deg": 210.95585819942,
+      "catalogue_dec_deg": 54.50057328195,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609300816766469888",
+      "catalogue_ra_deg": 211.03950406295,
+      "catalogue_dec_deg": 54.49977305128,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609300816766470016",
+      "catalogue_ra_deg": 211.04122346457,
+      "catalogue_dec_deg": 54.50054347636,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609301293506363776",
+      "catalogue_ra_deg": 210.94579462848,
+      "catalogue_dec_deg": 54.49088401982,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609301327866119680",
+      "catalogue_ra_deg": 210.94182914267,
+      "catalogue_dec_deg": 54.51739397873,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609301396585599104",
+      "catalogue_ra_deg": 210.92323033744,
+      "catalogue_dec_deg": 54.52173578549,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609301435241730816",
+      "catalogue_ra_deg": 210.95163364325,
+      "catalogue_dec_deg": 54.51932187277,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609301710119638016",
+      "catalogue_ra_deg": 210.90929006838,
+      "catalogue_dec_deg": 54.5441950155,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609301774542736512",
+      "catalogue_ra_deg": 210.90051471267,
+      "catalogue_dec_deg": 54.5481436622,
+      "status": "rejected",
+      "reason": "proper_motion_or_parallax_limit"
+    },
+    {
+      "source_id": "1609301847558592512",
+      "catalogue_ra_deg": 210.98389112689,
+      "catalogue_dec_deg": 54.54523613484,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609301847558592640",
+      "catalogue_ra_deg": 210.97967072675,
+      "catalogue_dec_deg": 54.54976180133,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609301911981689856",
+      "catalogue_ra_deg": 210.95765892822,
+      "catalogue_dec_deg": 54.5510140518,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609302427377711488",
+      "catalogue_ra_deg": 210.78911408193,
+      "catalogue_dec_deg": 54.46009426764,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609302431674141184",
+      "catalogue_ra_deg": 210.78295896764,
+      "catalogue_dec_deg": 54.4596958005,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609302637832572160",
+      "catalogue_ra_deg": 210.79561302345,
+      "catalogue_dec_deg": 54.49269749243,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609302637832572288",
+      "catalogue_ra_deg": 210.7943183438,
+      "catalogue_dec_deg": 54.49717776536,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609302706552056960",
+      "catalogue_ra_deg": 210.75142364138,
+      "catalogue_dec_deg": 54.49132015423,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609302775271525120",
+      "catalogue_ra_deg": 210.73785482269,
+      "catalogue_dec_deg": 54.49968489303,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609302809631272192",
+      "catalogue_ra_deg": 210.75520728196,
+      "catalogue_dec_deg": 54.49247079309,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609303256307863296",
+      "catalogue_ra_deg": 210.79359492464,
+      "catalogue_dec_deg": 54.53185929762,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609303325027320960",
+      "catalogue_ra_deg": 210.76965395548,
+      "catalogue_dec_deg": 54.54817506648,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609303428107040896",
+      "catalogue_ra_deg": 210.78678629306,
+      "catalogue_dec_deg": 54.54912467874,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609303561251465600",
+      "catalogue_ra_deg": 210.68861223219,
+      "catalogue_dec_deg": 54.50805654674,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609303737344180864",
+      "catalogue_ra_deg": 210.70381357295,
+      "catalogue_dec_deg": 54.54528801875,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609303840423395328",
+      "catalogue_ra_deg": 210.63041642181,
+      "catalogue_dec_deg": 54.53318247659,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609303870486779392",
+      "catalogue_ra_deg": 210.6497239287,
+      "catalogue_dec_deg": 54.54941255951,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609303943502611200",
+      "catalogue_ra_deg": 210.69245893508,
+      "catalogue_dec_deg": 54.55971809255,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609304046581826560",
+      "catalogue_ra_deg": 210.74257418529,
+      "catalogue_dec_deg": 54.54047018336,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609304149661061248",
+      "catalogue_ra_deg": 210.73890884651,
+      "catalogue_dec_deg": 54.57054609631,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609304321459733376",
+      "catalogue_ra_deg": 210.70318534956,
+      "catalogue_dec_deg": 54.56198875323,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609304665057137280",
+      "catalogue_ra_deg": 210.82754982468,
+      "catalogue_dec_deg": 54.55805970046,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609304733776614656",
+      "catalogue_ra_deg": 210.88841057661,
+      "catalogue_dec_deg": 54.56287321875,
+      "status": "rejected",
+      "reason": "outside_declared_registration_context"
+    },
+    {
+      "source_id": "1609304866919198464",
+      "catalogue_ra_deg": 210.82442215435,
+      "catalogue_dec_deg": 54.56973979226,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609304905575286528",
+      "catalogue_ra_deg": 210.82401721428,
+      "catalogue_dec_deg": 54.57747289631,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    }
+  ],
+  "limitations": [
+    "Reference identity is independent of SPHEREx image processing. No astrometric correction was fitted.",
+    "Empirical Gaussian profiles are diagnostics, not an ePSF astrometric likelihood.",
+    "No formal positional uncertainties or absolute astrometric precision are claimed.",
+    "Catalogue positions use proper motion; sub-5 mas parallax is neglected for this arcsecond-scale check.",
+    "References outside the inspection region can constrain surrounding registration, but do not prove local distortions are absent."
+  ]
+}

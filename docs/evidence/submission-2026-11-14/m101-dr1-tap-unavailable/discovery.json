@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "kind": "spherex_archive_discovery",
+  "frames": [],
+  "status": "partial_or_unavailable",
+  "index_version": "spherex-metadata-index-v1",
+  "metadata_provider": "tap",
+  "request_scope": "Coordinate field across explicitly requested supported collections; not an all-sky mirror or mission-completeness claim",
+  "detector_filter": 2,
+  "collections": [
+    {
+      "collection": "spherex_dr1",
+      "status": "partial_or_unavailable",
+      "origin": "live_TAP_CAOM_ObsCore_columns",
+      "checked_at_utc": "2026-11-14T16:44:02.582119+00:00",
+      "rows": 0,
+      "incremental_changes": {
+        "added": 0,
+        "changed": 0,
+        "unchanged": 0
+      },
+      "remaining_time_partitions": 0,
+      "parts": [
+        {
+          "collection": "spherex_dr1",
+          "url": "https://irsa.ipac.caltech.edu/TAP/sync?REQUEST=doQuery&LANG=ADQL&FORMAT=votable&MAXREC=5001&QUERY=SELECT+TOP+5001+o.observationid+AS+obs_id%2Co.collection+AS+obs_collection%2Cp.energy_bandpassname%2Cp.time_bounds_lower+AS+t_min%2Cp.time_bounds_upper+AS+t_max%2Cp.poly+AS+s_region%2CCOORD1%28p.pt%29+AS+s_ra%2CCOORD2%28p.pt%29+AS+s_dec%2Cp.energy_bounds_lower+AS+em_min%2Cp.energy_bounds_upper+AS+em_max%2Cp.provenance_version+AS+pipeline_version%2Cp.quality_flag%2Cp.obs_publisher_did%2Ca.uri+AS+product_uri%2Ca.contentchecksum+AS+archive_checksum+FROM+spherex.observation+o+JOIN+spherex.plane+p+ON+o.obsid%3Dp.obsid+JOIN+spherex.artifact+a+ON+p.planeid%3Da.planeid+WHERE+o.collection%3D%27spherex_dr1%27+AND+a.producttype%3D%27science%27+AND+a.releasetype%3D%27data%27+AND+p.time_bounds_upper%3E%3D61010.00000000+AND+p.time_bounds_lower%3C%3D61027.00000000+AND+INTERSECTS%28p.poly%2CCIRCLE%28%27ICRS%27%2C210.8023%2C54.3489%2C0.021213203435596423%29%29%3D1+AND+p.energy_bandpassname%3D%27SPHEREx-D2%27",
+          "time_mjd": [
+            61010.0,
+            61027.0
+          ],
+          "status": "unavailable",
+          "reason": "HTTP Error 502: Proxy Error"
+        }
+      ]
+    }
+  ],
+  "observations": [],
+  "metadata_rows": 0,
+  "network_requests": 1,
+  "network_bytes": 0,
+  "index_bytes": 1675264,
+  "transfer_budget_used_bytes": 8000000,
+  "unmeasured_failed_transfer_upper_bound_bytes": 8000000,
+  "limits": {
+    "requests": 2,
+    "transfer_bytes": 16000000,
+    "index_records": 200000,
+    "index_bytes": 134217728
+  },
+  "limitations": [
+    "SIA2 ingestion may lag browsable directories, the archive GUI and some TAP results; zero rows do not establish mission-wide absence.",
+    "TAP samples at most one authoritative DataLink association list per nonempty collection within the shared request budget; unqueried or failed associations remain unknown.",
+    "Pipeline versions, calibration associations and pixel quality remain unknown where the metadata service does not supply them.",
+    "A complete requested query scope is not a complete all-sky archive index."
+  ],
+  "scientific_approval": "PENDING",
+  "interpretation": "Metadata only. No image acquisition, detection or temporal comparison is established."
+}

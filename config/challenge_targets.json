@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "checked_on": "2026-10-29",
+  "scope": "Search centres for the five challenge targets; no detection, propagated position or SPHEREx validation is asserted.",
+  "targets": [
+    {
+      "id": "barnards-star",
+      "name": "Barnard’s Star",
+      "ra": "17h57m48.4984700685s",
+      "dec": "+04d41m36.113879676s",
+      "fov_arcmin": 12,
+      "coordinate_context": "SIMBAD ICRS, epoch J2000. High proper motion; search centre is not a predicted observation-epoch position.",
+      "source_url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=Barnard%27s+Star",
+      "validation_status": "NOT_TESTED"
+    },
+    {
+      "id": "epsilon-indi-b",
+      "name": "Epsilon Indi B",
+      "ra": "22h04m10.5951812451s",
+      "dec": "-56d46m58.239102418s",
+      "fov_arcmin": 12,
+      "coordinate_context": "SIMBAD ICRS, epoch J2000, brown-dwarf B system (not Epsilon Indi A). No claim to resolve Ba/Bb; proper motion is not propagated.",
+      "source_url": "https://simbad.u-strasbg.fr/simbad/sim-id?Ident=%2A+eps+Ind+B",
+      "validation_status": "NOT_TESTED"
+    },
+    {
+      "id": "wise-0855",
+      "name": "WISE 0855",
+      "ra": "08h55m10.831s",
+      "dec": "-07d14m42.53s",
+      "fov_arcmin": 12,
+      "coordinate_context": "Coordinates supplied in the challenge statement; reference epoch unspecified. No proper-motion propagation or detection asserted.",
+      "source_url": "https://www.spaceappschallenge.org/2026/challenges/planet-x-and-spherex/",
+      "validation_status": "NOT_TESTED"
+    },
+    {
+      "id": "rw-aurigae",
+      "name": "RW Aurigae",
+      "ra": "05h07m49.5662483s",
+      "dec": "+30d24m05.177426s",
+      "fov_arcmin": 12,
+      "coordinate_context": "SIMBAD ICRS, epoch J2000, RW Aur system. No claim of calibrated variability or resolved components.",
+      "source_url": "https://simbad.cds.unistra.fr/simbad/sim-id?Ident=RW+Aur",
+      "validation_status": "NOT_TESTED"
+    },
+    {
+      "id": "r-draconis",
+      "name": "R Draconis",
+      "ra": "16h32m40.2265999080s",
+      "dec": "+66d45m17.925901992s",
+      "fov_arcmin": 12,
+      "coordinate_context": "SIMBAD ICRS, epoch J2000. Brightness changes require matched wavelengths and quality assessment.",
+      "source_url": "https://simbad.u-strasbg.fr/simbad/sim-id?Ident=R+Dra",
+      "validation_status": "NOT_TESTED"
+    }
+  ]
+}

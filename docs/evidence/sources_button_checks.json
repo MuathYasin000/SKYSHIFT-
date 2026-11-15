@@ -1,0 +1,537 @@
+{
+  "recorded_at_utc": "2026-10-17T13:39:05.648Z",
+  "results": [
+    {
+      "browser": "Chrome",
+      "width": 1440,
+      "height": 900,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 1093,
+        "y": 443.640625,
+        "width": 284,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 1184.953125,
+        "y": 456.515625,
+        "width": 100.09375,
+        "height": 18
+      },
+      "center_dx": 0,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Chrome",
+      "width": 1440,
+      "height": 900,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 1093,
+        "y": 352.953125,
+        "width": 284,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 1194.6875,
+        "y": 365.828125,
+        "width": 80.609375,
+        "height": 18
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Chrome",
+      "width": 1920,
+      "height": 1080,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 1573,
+        "y": 443.640625,
+        "width": 284,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 1664.953125,
+        "y": 456.515625,
+        "width": 100.09375,
+        "height": 18
+      },
+      "center_dx": 0,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Chrome",
+      "width": 1920,
+      "height": 1080,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 1573,
+        "y": 396.828125,
+        "width": 284,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 1674.6875,
+        "y": 409.703125,
+        "width": 80.609375,
+        "height": 18
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Chrome",
+      "width": 1024,
+      "height": 768,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 755,
+        "y": 353,
+        "width": 232,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 820.953125,
+        "y": 365.875,
+        "width": 100.09375,
+        "height": 18
+      },
+      "center_dx": 0,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Chrome",
+      "width": 1024,
+      "height": 768,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 755,
+        "y": 312.0625,
+        "width": 232,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 830.6875,
+        "y": 324.9375,
+        "width": 80.609375,
+        "height": 18
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Chrome",
+      "width": 768,
+      "height": 1024,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 499,
+        "y": 402.03125,
+        "width": 232,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 564.953125,
+        "y": 414.90625,
+        "width": 100.09375,
+        "height": 18
+      },
+      "center_dx": 0,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Chrome",
+      "width": 768,
+      "height": 1024,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 499,
+        "y": 358.25,
+        "width": 232,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 574.6875,
+        "y": 371.125,
+        "width": 80.609375,
+        "height": 18
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Chrome",
+      "width": 390,
+      "height": 844,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 243,
+        "y": 461.6875,
+        "width": 120,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 260.65625,
+        "y": 475.8125,
+        "width": 84.6875,
+        "height": 15
+      },
+      "center_dx": 0,
+      "center_dy": -0.375,
+      "overflow": 0
+    },
+    {
+      "browser": "Chrome",
+      "width": 390,
+      "height": 844,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 243,
+        "y": 385.125,
+        "width": 120,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 268.890625,
+        "y": 399.25,
+        "width": 68.203125,
+        "height": 15
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.375,
+      "overflow": 0
+    },
+    {
+      "browser": "Chrome",
+      "width": 320,
+      "height": 740,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 173,
+        "y": 357.6875,
+        "width": 120,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 190.65625,
+        "y": 371.8125,
+        "width": 84.6875,
+        "height": 15
+      },
+      "center_dx": 0,
+      "center_dy": -0.375,
+      "overflow": 0
+    },
+    {
+      "browser": "Chrome",
+      "width": 320,
+      "height": 740,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 173,
+        "y": 309.203125,
+        "width": 120,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 198.890625,
+        "y": 323.328125,
+        "width": 68.203125,
+        "height": 15
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.375,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 1440,
+      "height": 900,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 1093,
+        "y": 443.640625,
+        "width": 284,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 1184.953125,
+        "y": 456.515625,
+        "width": 100.09375,
+        "height": 18
+      },
+      "center_dx": 0,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 1440,
+      "height": 900,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 1093,
+        "y": 352.953125,
+        "width": 284,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 1194.6875,
+        "y": 365.828125,
+        "width": 80.609375,
+        "height": 18
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 1920,
+      "height": 1080,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 1573,
+        "y": 443.640625,
+        "width": 284,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 1664.953125,
+        "y": 456.515625,
+        "width": 100.09375,
+        "height": 18
+      },
+      "center_dx": 0,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 1920,
+      "height": 1080,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 1573,
+        "y": 396.828125,
+        "width": 284,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 1674.6875,
+        "y": 409.703125,
+        "width": 80.609375,
+        "height": 18
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 1024,
+      "height": 768,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 755,
+        "y": 353,
+        "width": 232,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 820.953125,
+        "y": 365.875,
+        "width": 100.09375,
+        "height": 18
+      },
+      "center_dx": 0,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 1024,
+      "height": 768,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 755,
+        "y": 312.0625,
+        "width": 232,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 830.6875,
+        "y": 324.9375,
+        "width": 80.609375,
+        "height": 18
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 768,
+      "height": 1024,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 499,
+        "y": 402.03125,
+        "width": 232,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 564.953125,
+        "y": 414.90625,
+        "width": 100.09375,
+        "height": 18
+      },
+      "center_dx": 0,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 768,
+      "height": 1024,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 499,
+        "y": 358.25,
+        "width": 232,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 574.6875,
+        "y": 371.125,
+        "width": 80.609375,
+        "height": 18
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.125,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 390,
+      "height": 844,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 243,
+        "y": 461.6875,
+        "width": 120,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 260.65625,
+        "y": 475.8125,
+        "width": 84.6875,
+        "height": 15
+      },
+      "center_dx": 0,
+      "center_dy": -0.375,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 390,
+      "height": 844,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 243,
+        "y": 385.125,
+        "width": 120,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 268.890625,
+        "y": 399.25,
+        "width": 68.203125,
+        "height": 15
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.375,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 320,
+      "height": 740,
+      "expanded": false,
+      "text": "About & sources +",
+      "button": {
+        "x": 173,
+        "y": 357.6875,
+        "width": 120,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 190.65625,
+        "y": 371.8125,
+        "width": 84.6875,
+        "height": 15
+      },
+      "center_dx": 0,
+      "center_dy": -0.375,
+      "overflow": 0
+    },
+    {
+      "browser": "Edge",
+      "width": 320,
+      "height": 740,
+      "expanded": true,
+      "text": "Close details −",
+      "button": {
+        "x": 173,
+        "y": 309.203125,
+        "width": 120,
+        "height": 44
+      },
+      "text_bounds": {
+        "x": 198.890625,
+        "y": 323.328125,
+        "width": 68.203125,
+        "height": 15
+      },
+      "center_dx": -0.0078125,
+      "center_dy": -0.375,
+      "overflow": 0
+    }
+  ],
+  "limits": [
+    "Actual text/button bounds and open/close behaviour; mobile sizes are emulated",
+    "CSS-only change; no scientific data, models or review status modified"
+  ]
+}

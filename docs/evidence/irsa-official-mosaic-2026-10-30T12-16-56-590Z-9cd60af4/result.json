@@ -1,0 +1,7 @@
+{
+  "source_sha256": "44e89f460c55f46f7e384ba7dfe8927fa8e56163875aba3766499a5646813447",
+  "viewer": "https://irsa.ipac.caltech.edu/irsaviewer/",
+  "input": "Exact public IRSA M101 tutorial cube; no private observations uploaded",
+  "status": "unavailable",
+  "error": "locator.click: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Zoom the image to fit entirely within its frame', exact: true })\u001b[22m\n"
+}

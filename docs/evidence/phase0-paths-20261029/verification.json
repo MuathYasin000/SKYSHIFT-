@@ -1,0 +1,29 @@
+{
+  "recorded_at_utc": "2026-10-29T22:07:14.040116+00:00",
+  "scope": "Research/documentation verification, not implementation acceptance or independent human/scientific approval",
+  "head_preserved": "2766b635d5bc3b34fbce8a52fb96d8c8a97d3025",
+  "implementation_and_test_files_checked": 399,
+  "changes_against_prior_inventory": [],
+  "metadata_sha256_verified": "11ff6a524c1b344b3c15c4875429b5b89fd053a18eef4d66328a5632382ef4af",
+  "row_count_verified": 259,
+  "candidate_recalculations_passed": [
+    "AUG-D2",
+    "DEC-D2",
+    "AUG-D5",
+    "SHORT-D2",
+    "SEASONS-D2"
+  ],
+  "datalink_snapshots_hash_verified": 5,
+  "report_local_links_missing": [],
+  "report_sha256": "ab9bf57ab7660ef1267ecfeeed7ddeec68ed77fb3e4f71d7842ca7c6bfbe1097",
+  "report_words": 3845,
+  "competition_implementation_changed": false,
+  "fits_downloads": 0,
+  "new_prepared_science_products": 0,
+  "organizer_reuse_ruling": "UNRESOLVED",
+  "development_window": "UNCONFIRMED FOR UNIVERSAL EVENT",
+  "qualified_scientific_approval": "PENDING",
+  "independent_human_review": "PENDING",
+  "path_a_execution": "NOT STARTED",
+  "path_b_execution": "NOT STARTED"
+}

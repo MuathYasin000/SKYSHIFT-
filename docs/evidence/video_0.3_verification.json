@@ -1,0 +1,14 @@
+{
+  "duration_seconds": 180.0,
+  "video_frames": 2160,
+  "fps": "12/1",
+  "width": 1280,
+  "height": 720,
+  "audio_codec": "aac",
+  "source_narration_seconds": 264.90761904761905,
+  "tempo_factor": 1.4717089947089947,
+  "sha256": "a1b0dac294d53501221c7f78965a784fb48329d0f62778ac0ccdcefa07df9bf8",
+  "scientific_approval": "PENDING",
+  "independent_browser_checks": 17,
+  "live_recording": false
+}

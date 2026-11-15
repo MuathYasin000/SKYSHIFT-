@@ -1,0 +1,46 @@
+SKYSHIFT interface adaptations
+
+Vengeance UI / Spotlight Navbar
+Copyright (c) 2025-2026 Ashutoshx7. MIT License (Vengeance-LICENSE.txt).
+Historical native adaptation; current optional effects live in mission-interactions.js.
+Current navigation and link styling live in components.css and home.css.
+The earlier pointer-following navigation spotlight has been retired.
+React state and Motion springs replaced with native events and CSS.
+Source: https://github.com/Ashutoshx7/VengeanceUI
+
+Skiper UI / Skiper 40 CssLink / Link000 and Link001
+Author: @gurvinder-singh02 / gxuri, https://gxuri.me
+Website: https://skiper-ui.com/v1/preview/skiper40
+Source registry: https://skiper-ui.com/r/skiper40.json
+Upstream source's license and usage notice:
+- Free to use and modify in both personal and commercial projects.
+- Attribution to Skiper UI is required when using the free version.
+- No attribution required with Skiper UI Pro.
+Source comments identify the work as inspired by https://cursor.com/?from=home,
+an independent recreation, not associated with cursor.com.
+RUNTIME STATUS: retired as of 30 October 2026. Current links use ordinary text
+color/text-decoration states; the launch arrow changes color. The Skiper
+scale/origin underline transition and SVG arrow implementation are absent.
+This historical notice and the original source are preserved; no relicensing
+of the historical component is claimed.
+Visible Skiper UI attribution is retained in the website footer; source and
+license records are linked through Sources & acknowledgments.
+Only the explicitly free Skiper40 was retrieved. No Pro components used.
+
+dqnamo / The Kitchen
+https://www.dqnamo.com/kitchen
+https://www.dqnamo.com/experiments/tactile-button
+https://www.dqnamo.com/experiments/iridescent-foil
+Design inspiration only. No explicit code reuse license was identified on the
+inspected pages. No Kitchen source, logo, illustration, or CSS was copied.
+SKYSHIFT's compressible main action and restrained surface treatments are
+original implementations informed by these public interaction studies.
+
+All adaptations run locally. No external runtime scripts, analytics, React,
+Next.js, Motion, or remote fonts were added. Scientific data are unaffected.
+
+Vengeance UI Kinetic Text Loader (Ashutoshx7, MIT)
+https://raw.githubusercontent.com/Ashutoshx7/VengeanceUI/2b6e4e673c950e2075dde853d55688498b9fda6d/public/r/kinetic-text-loader.json
+Adapted to native DOM/CSS in kinetic-loader.js and kinetic-loader.css.
+Original 1800ms dot/letter motion; local fonts, accessible labels and reduced-motion support.
+License: Vengeance-LICENSE.txt. Exact source hash: sources.json.

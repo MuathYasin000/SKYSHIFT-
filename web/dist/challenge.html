@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Inspect the five Planet X and SPHEREx challenge fields and follow the evidence back to NASA/IPAC IRSA.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>Challenge fields and sources — SKYSHIFT</title>
+  <link rel="icon" href="./assets/skyshift-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./tokens.css">
+  <link rel="stylesheet" href="./base.css">
+  <link rel="stylesheet" href="./components.css">
+  <link rel="stylesheet" href="./shell-document.css">
+  <link rel="stylesheet" href="./challenge.css">
+  <link rel="preload" href="./assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="canonical" href="https://skyshift-j22s.onrender.com/challenge.html">
+<meta property="og:url" content="https://skyshift-j22s.onrender.com/challenge.html">
+<meta property="og:image" content="https://skyshift-j22s.onrender.com/assets/mission-control.webp">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Challenge fields and sources — SKYSHIFT">
+<meta property="og:image:alt" content="SKYSHIFT mission-control interface with an illustrative SPHEREx model">
+</head>
+<body data-shell="document" data-page="challenge">
+  <a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" id="site-header">
+ <a class="site-brand" href="./index.html" aria-label="SKYSHIFT SPHEREX OBSERVATION EXPLORER home"><img src="./assets/skyshift-mark.svg" width="36" height="42" alt=""><span>SKYSHIFT <small>SPHEREX OBSERVATION EXPLORER</small></span></a>
+ <button class="mobile-menu-toggle" id="site-menu-toggle" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false" title="Navigation">☰</button>
+ <nav class="site-navigation" id="site-nav" aria-label="Main navigation">
+  <a href="./explore.html" data-route="observations">Observations</a><a href="./compare.html" data-route="compare">Compare</a><a href="./discover.html" data-route="discover">Discover SPHEREx</a><a href="./index.html#universe" data-route="universe">3D Universe</a><a href="./methodology.html" data-route="methodology">Methodology</a>
+ </nav>
+ <div class="chrome-actions"><button id="site-sound" data-sound-toggle aria-pressed="false" aria-label="Sound off — turn SKYSHIFT sound on" title="Turn SKYSHIFT sound on"><svg class="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM17 9l5 6m0-6-5 6"/></svg><span class="sound-word">Sound off</span></button><button id="site-more" aria-expanded="false" aria-controls="resources-menu">Resources <span aria-hidden="true">+</span></button><a href="./compare.html" class="header-launch">Compare dates</a></div>
+ <nav id="resources-menu" class="resources-menu" aria-label="Resources" hidden><button id="resources-information">ⓘ Sources, methods & credits</button><button data-open-sound>♫ Sound & volume</button><a href="./explore.html">Find SPHEREx observations →</a><a href="./index.html#mission">Interactive spacecraft →</a><a href="./compare.html">Compare SPHEREx dates →</a><a href="./guide.html">Observation guide →</a><a href="./classic-home.html">Project introduction →</a></nav>
+</header>
+  <main id="main" tabindex="-1" class="challenge-page">
+    <header>
+      <p class="challenge-date">Planet X and SPHEREx · November 14, 2026</p>
+      <h1>How can you tell if the sky changed?</h1>
+      <p>Choose a challenge target in the SPHEREx DR1 and QR3 archive. Blink through dates, then compare two frames and check their wavelengths, releases and masks.</p>
+      <div class="challenge-actions">
+        <a href="./compare.html?target=rw-aurigae">Open a challenge target in Compare →</a>
+        <a href="./explore.html">Search your own coordinates →</a>
+      </div>
+    </header>
+    <section aria-labelledby="field-tests">
+      <h2 id="field-tests">The five challenge targets</h2>
+      <p>Each target opens cached 8′ cutouts from NASA/IPAC IRSA. More observations may be available from the live archive. The dates, detector, wavelength and source links are visible in the viewer.</p>
+      <dl class="challenge-fields">
+        <dt><a href="./compare.html?target=barnards-star">Barnard’s Star</a></dt><dd>Check the target marker for this high proper-motion star. Bright-source flags can mask its central pixel.</dd>
+        <dt><a href="./compare.html?target=epsilon-indi-b">Epsilon Indi B</a></dt><dd>Browse the observations of this nearby brown dwarf pair. The images can show an unresolved source at this sampling.</dd>
+        <dt><a href="./compare.html?target=wise-0855">WISE 0855-0714</a></dt><dd>Check multiple dates and detector bands around this cold brown dwarf. Compare source positions with the epoch marked on each frame.</dd>
+        <dt><a href="./compare.html?target=rw-aurigae">RW Aurigae</a></dt><dd>Compare this young variable star across dates and read the wavelength and mask details before interpreting brightness changes.</dd>
+        <dt><a href="./compare.html?target=r-draconis">R Draconis</a></dt><dd>Inspect the mask around this pulsating red giant. A central masked area can appear even when the surrounding signal is bright.</dd>
+      </dl>
+    </section>
+    <section aria-labelledby="challenge-sources">
+      <h2 id="challenge-sources">Data sources and credits</h2>
+      <p><a href="https://irsa.ipac.caltech.edu/Missions/spherex.html" target="_blank" rel="noopener noreferrer">SPHEREx mission archive ↗</a> · <a href="https://doi.org/10.26131/IRSA678" target="_blank" rel="noopener noreferrer">DR1 DOI ↗</a> · <a href="https://doi.org/10.26131/IRSA662" target="_blank" rel="noopener noreferrer">QR3 DOI ↗</a></p>
+      <p>Preset coordinates and proper motions are credited to CDS SIMBAD. The flipbook interaction was inspired by WiseView. <a href="./methodology.html#sources">Read the full archive, catalog and imagery credits ↗</a></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+<div aria-hidden="true" class="footer-wordmark"></div>
+<div class="footer-columns"><div><p class="label">EXPLORE</p><a href="./explore.html">Observations →</a><a href="./compare.html">Compare dates →</a><a href="./index.html#universe">3D Universe →</a><a href="./discover.html">Discover SPHEREx →</a></div><div><p class="label">METHODS &amp; PROVENANCE</p><a href="./methodology.html">Data &amp; methodology →</a><a href="./guide.html">How to use the viewer →</a><a href="./methodology.html#imagery">Image source records ↗</a><a href="./methodology.html#models">Models, terms &amp; hashes ↗</a></div><div><p class="label">CREDITS</p><p>Project Mercury Team</p><p>SPHEREx imagery: NASA/JPL-Caltech.<br/>Original astronomical data: NASA/IPAC IRSA.</p></div></div>
+<p class="footer-notice">Independent educational application. No NASA endorsement.</p>
+<details id="footer-credits"><summary>Sources &amp; acknowledgments</summary><p>Original image, model and calibration identities stay with their source records. Interface type: <a href="./methodology.html#fonts">Inter &amp; IBM Plex Mono — licenses and hashes ↗</a>.</p><p>Earlier interaction studies: <a href="https://skiper-ui.com/v1/preview/skiper40" target="_blank" rel="noopener noreferrer">Skiper UI ↗</a>, <a href="https://github.com/Ashutoshx7/VengeanceUI" target="_blank" rel="noopener noreferrer">Vengeance UI ↗</a> and <a href="https://www.dqnamo.com/kitchen" target="_blank" rel="noopener noreferrer">dqnamo Kitchen ↗</a>. <a href="./methodology.html#patterns">Original pattern notices ↗</a>. Optional scroll presentation uses <a href="./methodology.html#libraries">native browser animation and locally supplied Lenis ↗</a>.</p></details>
+</footer>
+  <dialog id="site-information" class="space-dialog" aria-labelledby="site-information-title">
+      <div class="dialog-top">
+        <h2 id="site-information-title">Sources, methods &amp; SKYSHIFT</h2>
+        <button id="site-information-close" aria-label="Close information">×</button>
+      </div>
+      <button data-open-sound>Sound design &amp; volume ↗</button>
+      <a href="./index.html?intro=1">Replay intro →</a>
+      <p>SKYSHIFT is an independent Project Mercury Team application. It displays dated SPHEREx DR1 and QR3 cutouts with their detector, wavelength and archive source.</p>
+      <p>Wavelength, processing and masked pixels can change how the same field looks. Treat visual differences as questions to investigate.</p>
+      <a href="./methodology.html#sources">Archive, catalogs, background and credits ↗</a>
+      <a href="./challenge.html">Challenge targets and how to compare ↗</a>
+      <a href="./assets/assets.json" target="_blank" rel="noopener noreferrer">Mission imagery, hashes and usage terms ↗</a>
+      <a href="./methodology.html#models">3D models, hashes and usage terms ↗</a>
+    </dialog>
+  <script type="module" src="./site-chrome.js"></script>
+</body>
+</html>

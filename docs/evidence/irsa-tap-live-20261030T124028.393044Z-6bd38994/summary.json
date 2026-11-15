@@ -1,0 +1,62 @@
+{
+  "status": "complete",
+  "rows": 375,
+  "network_bytes": 353836,
+  "requests": 5,
+  "cache_requests": 0,
+  "collections": [
+    {
+      "collection": "spherex_qr2",
+      "status": "complete",
+      "origin": "live_TAP_CAOM_ObsCore_columns",
+      "checked_at_utc": "2026-10-30T12:41:03.519392+00:00",
+      "rows": 375,
+      "incremental_changes": {
+        "added": 1,
+        "changed": 374,
+        "unchanged": 0
+      },
+      "remaining_time_partitions": 0
+    },
+    {
+      "collection": "spherex_qr2_deep",
+      "status": "complete",
+      "origin": "live_TAP_CAOM_ObsCore_columns",
+      "checked_at_utc": "2026-10-30T12:41:11.808025+00:00",
+      "rows": 0,
+      "incremental_changes": {
+        "added": 0,
+        "changed": 0,
+        "unchanged": 0
+      },
+      "remaining_time_partitions": 0
+    },
+    {
+      "collection": "spherex_qr3",
+      "status": "complete",
+      "origin": "live_TAP_CAOM_ObsCore_columns",
+      "checked_at_utc": "2026-10-30T12:41:22.338985+00:00",
+      "rows": 0,
+      "incremental_changes": {
+        "added": 0,
+        "changed": 0,
+        "unchanged": 0
+      },
+      "remaining_time_partitions": 0
+    },
+    {
+      "collection": "spherex_qr3_deep",
+      "status": "complete",
+      "origin": "live_TAP_CAOM_ObsCore_columns",
+      "checked_at_utc": "2026-10-30T12:41:38.225406+00:00",
+      "rows": 0,
+      "incremental_changes": {
+        "added": 0,
+        "changed": 0,
+        "unchanged": 0
+      },
+      "remaining_time_partitions": 0
+    }
+  ],
+  "calibration_samples": 1
+}

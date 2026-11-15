@@ -1,0 +1,1380 @@
+{
+  "recorded_at_utc": "2026-10-17T18:22:19.788Z",
+  "browser": "155.0.8059.80",
+  "results": [
+    {
+      "environment": "observatory",
+      "destination": "spherex",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 115,
+            "content_height": 115,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "observatory",
+      "destination": "webb-b",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "observatory",
+      "destination": "hubble",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "sun",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "mercury",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "venus",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "earth",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 115,
+            "content_height": 115,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "mars",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "jupiter",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "saturn",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "uranus",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "neptune",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "moon",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "sky",
+      "destination": "m101",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 46,
+            "content_height": 46,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "sky",
+      "destination": "m67",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "sky",
+      "destination": "ngc188",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "sky",
+      "destination": "m42",
+      "width": 390,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "observatory",
+      "destination": "spherex",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 115,
+            "content_height": 115,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 115,
+            "content_height": 115,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "observatory",
+      "destination": "webb-b",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "observatory",
+      "destination": "hubble",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 115,
+            "content_height": 115,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 115,
+            "content_height": 115,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "sun",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "mercury",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "venus",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "earth",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 115,
+            "content_height": 115,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 115,
+            "content_height": 115,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "mars",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "jupiter",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "saturn",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "uranus",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 92,
+            "content_height": 92,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "neptune",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "solar",
+      "destination": "moon",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "sky",
+      "destination": "m101",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "sky",
+      "destination": "m67",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "sky",
+      "destination": "ngc188",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "sky",
+      "destination": "m42",
+      "width": 1440,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 69,
+            "content_height": 69,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "observatory",
+      "destination": "spherex",
+      "width": 320,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 139,
+            "content_height": 139,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "observatory",
+      "destination": "spherex",
+      "width": 768,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": -0.0078125,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "none",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 0,
+            "content_height": 0,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.90625,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 46,
+            "content_height": 46,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "observatory",
+      "destination": "spherex",
+      "width": 1024,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 139,
+            "content_height": 139,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 139,
+            "content_height": 139,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "environment": "observatory",
+      "destination": "spherex",
+      "width": 1920,
+      "status": "pass",
+      "states": [
+        {
+          "expanded": false,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 115,
+            "content_height": 115,
+            "card_scroll": "auto"
+          }
+        },
+        {
+          "expanded": true,
+          "label_center_dx": 0,
+          "label_center_dy": -0.296875,
+          "label_clear_of_indicator": true,
+          "paragraph": {
+            "display": "block",
+            "white_space": "normal",
+            "overflow": "visible",
+            "height": 115,
+            "content_height": 115,
+            "card_scroll": "auto"
+          }
+        }
+      ]
+    }
+  ],
+  "page_errors": [],
+  "limits": [
+    "Actual label text bounds, distinct icon, keyboard toggle and aria state; mobile widths emulated",
+    "All local destination options exercised; no subjective design certification inferred",
+    "Scientific data/review status unchanged"
+  ]
+}

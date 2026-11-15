@@ -1,0 +1,126 @@
+...............ssssss...........................sFF..................... [ 38%]
+.............................................F..............sss......... [ 76%]
+....................s................s.......                            [100%]
+================================== FAILURES ===================================
+_____________ test_rebuilding_context_assets_is_byte_reproducible _____________
+
+tmp_path = WindowsPath('C:/Users/LOQ/AppData/Local/Temp/pytest-of-LOQ/pytest-48/test_rebuilding_context_assets0')
+
+    def test_rebuilding_context_assets_is_byte_reproducible(tmp_path):
+        spec=importlib.util.spec_from_file_location('exploration',ROOT/'tools/build_exploration_assets.py')
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+>       module.build(tmp_path/'explore')
+
+tests\test_exploration_assets.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+output = WindowsPath('C:/Users/LOQ/AppData/Local/Temp/pytest-of-LOQ/pytest-48/test_rebuilding_context_assets0/explore')
+
+    def build(output=None):
+        out = Path(output or ROOT/'web/dist/data/explore'); out.mkdir(parents=True, exist_ok=True)
+        cal = ROOT/'data/calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits'
+        fields = []
+        for key, title, description, ra, dec, size, directory in FIELDS:
+            region = SkyRegion(ra_deg=ra, dec_deg=dec, size_deg=size)
+            candidates = []
+            for path in sorted((ROOT/'data/raw'/directory).glob('*.fits')):
+                try:
+                    p = read_product(path, region, calibration=cal)
+                    candidates.append((float(p.valid.mean()), path, p))
+                except ValueError:
+                    continue  # Rejections remain in the original screening records.
+>           if not candidates: raise ValueError(f'No readable authenticated context for {key}')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           ValueError: No readable authenticated context for m101
+
+tools\build_exploration_assets.py:41: ValueError
+_________ test_orion_context_reconstructs_offline_from_original_bytes _________
+
+tmp_path = WindowsPath('C:/Users/LOQ/AppData/Local/Temp/pytest-of-LOQ/pytest-48/test_orion_context_reconstruct0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000026784A22C90>
+
+    def test_orion_context_reconstructs_offline_from_original_bytes(tmp_path,monkeypatch):
+        monkeypatch.syspath_prepend(str(ROOT/'tools'))
+        from reconstruct_orion_context import reconstruct
+>       rebuilt=reconstruct(tmp_path/'orion')
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_exploration_assets.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tools\reconstruct_orion_context.py:22: in reconstruct
+    if sha256_file(source)!='334b591a00814270d53577bce832cc9dd402aa9f607c2744d5895c0728072f27':raise ValueError('Original exposure identity differs')
+       ^^^^^^^^^^^^^^^^^^^
+src\skyshift\archive.py:30: in sha256_file
+    with path.open("rb") as stream:
+         ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('D:/Nasa_SKYSHIFT/tmp/mission-clean-765e577/data/raw/m42_context/2025W37_2A_0010_1_D2.fits')
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Nasa_SKYSHIFT\\tmp\\mission-clean-765e577\\data\\raw\\m42_context\\2025W37_2A_0010_1_D2.fits'
+
+C:\Users\LOQ\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1013: FileNotFoundError
+__ test_installed_native_arrays_match_exact_fits_science_flags_and_variance ___
+
+    def test_installed_native_arrays_match_exact_fits_science_flags_and_variance():
+        from astropy.io import fits
+        catalog=json.loads((ROOT/'web/dist/data/native/catalog.json').read_text())
+        temporal=json.loads((ROOT/'config/temporal_example.json').read_text())
+        r_bundle=json.loads((ROOT/'web/dist/data/sequence-r-draconis-temporal.json').read_text())
+        for index,e in enumerate(catalog['entries']):
+            path=ROOT/'web/dist'/e['url'].removeprefix('./');raw=path.read_bytes()
+            assert hashlib.sha256(raw).hexdigest()==e['sha256']
+            p=json.loads(raw)
+            source=(ROOT/'data/prepared/m101-review-v6/sources'/('AB'[index]+'.fits') if index<2 else ROOT/'data/cache/cutouts'/temporal['sources'][index-2]['path'])
+>           assert hashlib.sha256(source.read_bytes()).hexdigest()==e['source_sha256']
+                                  ^^^^^^^^^^^^^^^^^^^
+
+tests\test_native_display.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\LOQ\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1019: in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('D:/Nasa_SKYSHIFT/tmp/mission-clean-765e577/data/prepared/m101-review-v6/sources/A.fits')
+mode = 'rb', buffering = -1, encoding = None, errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Nasa_SKYSHIFT\\tmp\\mission-clean-765e577\\data\\prepared\\m101-review-v6\\sources\\A.fits'
+
+C:\Users\LOQ\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py:1013: FileNotFoundError
+============================== warnings summary ===============================
+tests/test_release_registry.py::test_qr2_original_bit_schema_remains_distinct
+  D:\Nasa_SKYSHIFT\.venv\Lib\site-packages\astropy\io\fits\card.py:271: VerifyWarning: Keyword name 'MP_SOURCE' is greater than 8 characters or contains characters not allowed by the FITS standard; a HIERARCH card will be created.
+    warnings.warn(
+
+tests/test_release_registry.py::test_qr2_original_bit_schema_remains_distinct
+  D:\Nasa_SKYSHIFT\.venv\Lib\site-packages\astropy\io\fits\card.py:271: VerifyWarning: Keyword name 'MP_OVERFLOW' is greater than 8 characters or contains characters not allowed by the FITS standard; a HIERARCH card will be created.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_exploration_assets.py::test_rebuilding_context_assets_is_byte_reproducible
+FAILED tests/test_exploration_assets.py::test_orion_context_reconstructs_offline_from_original_bytes
+FAILED tests/test_native_display.py::test_installed_native_arrays_match_exact_fits_science_flags_and_variance
+3 failed, 174 passed, 12 skipped, 2 warnings in 12.73s

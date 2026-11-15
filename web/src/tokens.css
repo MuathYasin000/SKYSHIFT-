@@ -1,0 +1,52 @@
+/* SKYSHIFT / BLACK & WHITE MISSION CONTROL. Values are defined here only. */
+@layer structure, base, components, pages, accessibility;
+@font-face {
+  font-family: Inter;
+  src: url("./assets/fonts/InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBMPlexMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+:root {
+  --black: #000000;
+  --surface-1: #0a0a0a;
+  --surface-2: #111111;
+  --surface-3: #1a1a1a;
+  --image-label:rgba(0,0,0,.72);
+  --line: rgba(255, 255, 255, 0.14);
+  --line-strong: rgba(255, 255, 255, 0.32);
+  --white: #ffffff;
+  --text-2: #a6a6a6;
+  --text-3: #8c8c8c;
+  --text-dim: #6e6e6e;
+  --red: #fc3d21;
+  --blue: #0b3d91;
+  --blue-text: #5b9bff;
+  --arrival-planet-warm-light: #8b7977;
+  --arrival-planet-warm-dark: #382525;
+  --arrival-planet-blue-light: #406ba5;
+  --arrival-planet-blue-dark: #0b2348;
+  --legend-green: rgb(
+    92,
+    186,
+    124
+  ); /* Published composite legend swatch only. */
+  --sans: Inter, sans-serif;
+  --mono: "IBM Plex Mono", monospace;
+  --radius: 2px;
+  --content: 1440px;
+  --gutter: clamp(20px, 3vw, 48px);
+  --home-gutter: var(--gutter);
+  --desktop-gutter: max(var(--gutter), calc((100vw - var(--content)) / 2));
+  --hero-gutter: var(--desktop-gutter);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  color-scheme: dark;
+  font-family: var(--sans);
+  background: var(--black);
+  color: var(--white);
+}

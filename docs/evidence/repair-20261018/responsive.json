@@ -1,0 +1,618 @@
+[
+  {
+    "route": "/",
+    "width": 320,
+    "scroll": 320,
+    "offenders": []
+  },
+  {
+    "route": "/",
+    "width": 360,
+    "scroll": 360,
+    "offenders": []
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "scroll": 390,
+    "offenders": []
+  },
+  {
+    "route": "/",
+    "width": 430,
+    "scroll": 430,
+    "offenders": []
+  },
+  {
+    "route": "/",
+    "width": 768,
+    "scroll": 768,
+    "offenders": []
+  },
+  {
+    "route": "/",
+    "width": 1024,
+    "scroll": 1024,
+    "offenders": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "scroll": 1440,
+    "offenders": []
+  },
+  {
+    "route": "/#observations/m101",
+    "width": 320,
+    "scroll": 320,
+    "offenders": []
+  },
+  {
+    "route": "/#observations/m101",
+    "width": 360,
+    "scroll": 360,
+    "offenders": []
+  },
+  {
+    "route": "/#observations/m101",
+    "width": 390,
+    "scroll": 390,
+    "offenders": []
+  },
+  {
+    "route": "/#observations/m101",
+    "width": 430,
+    "scroll": 430,
+    "offenders": []
+  },
+  {
+    "route": "/#observations/m101",
+    "width": 768,
+    "scroll": 768,
+    "offenders": []
+  },
+  {
+    "route": "/#observations/m101",
+    "width": 1024,
+    "scroll": 1024,
+    "offenders": []
+  },
+  {
+    "route": "/#observations/m101",
+    "width": 1440,
+    "scroll": 1440,
+    "offenders": []
+  },
+  {
+    "route": "/#compare",
+    "width": 320,
+    "scroll": 320,
+    "offenders": []
+  },
+  {
+    "route": "/#compare",
+    "width": 360,
+    "scroll": 360,
+    "offenders": []
+  },
+  {
+    "route": "/#compare",
+    "width": 390,
+    "scroll": 390,
+    "offenders": []
+  },
+  {
+    "route": "/#compare",
+    "width": 430,
+    "scroll": 430,
+    "offenders": []
+  },
+  {
+    "route": "/#compare",
+    "width": 768,
+    "scroll": 768,
+    "offenders": []
+  },
+  {
+    "route": "/#compare",
+    "width": 1024,
+    "scroll": 1024,
+    "offenders": []
+  },
+  {
+    "route": "/#compare",
+    "width": 1440,
+    "scroll": 1440,
+    "offenders": []
+  },
+  {
+    "route": "/#universe",
+    "width": 320,
+    "scroll": 320,
+    "offenders": []
+  },
+  {
+    "route": "/#universe",
+    "width": 360,
+    "scroll": 360,
+    "offenders": []
+  },
+  {
+    "route": "/#universe",
+    "width": 390,
+    "scroll": 390,
+    "offenders": []
+  },
+  {
+    "route": "/#universe",
+    "width": 430,
+    "scroll": 430,
+    "offenders": []
+  },
+  {
+    "route": "/#universe",
+    "width": 768,
+    "scroll": 768,
+    "offenders": []
+  },
+  {
+    "route": "/#universe",
+    "width": 1024,
+    "scroll": 1024,
+    "offenders": []
+  },
+  {
+    "route": "/#universe",
+    "width": 1440,
+    "scroll": 1440,
+    "offenders": []
+  },
+  {
+    "route": "/discover.html",
+    "width": 320,
+    "scroll": 320,
+    "offenders": []
+  },
+  {
+    "route": "/discover.html",
+    "width": 360,
+    "scroll": 360,
+    "offenders": []
+  },
+  {
+    "route": "/discover.html",
+    "width": 390,
+    "scroll": 390,
+    "offenders": []
+  },
+  {
+    "route": "/discover.html",
+    "width": 430,
+    "scroll": 430,
+    "offenders": []
+  },
+  {
+    "route": "/discover.html",
+    "width": 768,
+    "scroll": 768,
+    "offenders": []
+  },
+  {
+    "route": "/discover.html",
+    "width": 1024,
+    "scroll": 1024,
+    "offenders": []
+  },
+  {
+    "route": "/discover.html",
+    "width": 1440,
+    "scroll": 1440,
+    "offenders": []
+  },
+  {
+    "route": "/explore.html",
+    "width": 320,
+    "scroll": 320,
+    "offenders": []
+  },
+  {
+    "route": "/explore.html",
+    "width": 360,
+    "scroll": 360,
+    "offenders": []
+  },
+  {
+    "route": "/explore.html",
+    "width": 390,
+    "scroll": 390,
+    "offenders": []
+  },
+  {
+    "route": "/explore.html",
+    "width": 430,
+    "scroll": 430,
+    "offenders": []
+  },
+  {
+    "route": "/explore.html",
+    "width": 768,
+    "scroll": 768,
+    "offenders": []
+  },
+  {
+    "route": "/explore.html",
+    "width": 1024,
+    "scroll": 1024,
+    "offenders": []
+  },
+  {
+    "route": "/explore.html",
+    "width": 1440,
+    "scroll": 1440,
+    "offenders": []
+  },
+  {
+    "route": "/compare.html",
+    "width": 320,
+    "scroll": 320,
+    "offenders": [
+      {
+        "tag": "TABLE",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "THEAD",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TR",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TH",
+        "id": "",
+        "cls": "",
+        "right": 322.78125
+      },
+      {
+        "tag": "TH",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TBODY",
+        "id": "reference-table",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TR",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TD",
+        "id": "",
+        "cls": "",
+        "right": 322.78125
+      }
+    ]
+  },
+  {
+    "route": "/compare.html",
+    "width": 360,
+    "scroll": 360,
+    "offenders": [
+      {
+        "tag": "TABLE",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "THEAD",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TR",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TH",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TBODY",
+        "id": "reference-table",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TR",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TD",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TR",
+        "id": "",
+        "cls": "",
+        "right": 500
+      }
+    ]
+  },
+  {
+    "route": "/compare.html",
+    "width": 390,
+    "scroll": 390,
+    "offenders": [
+      {
+        "tag": "TABLE",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "THEAD",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TR",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TH",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TBODY",
+        "id": "reference-table",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TR",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TD",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TR",
+        "id": "",
+        "cls": "",
+        "right": 500
+      }
+    ]
+  },
+  {
+    "route": "/compare.html",
+    "width": 430,
+    "scroll": 430,
+    "offenders": [
+      {
+        "tag": "TABLE",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "THEAD",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TR",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TH",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TBODY",
+        "id": "reference-table",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TR",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TD",
+        "id": "",
+        "cls": "",
+        "right": 500
+      },
+      {
+        "tag": "TR",
+        "id": "",
+        "cls": "",
+        "right": 500
+      }
+    ]
+  },
+  {
+    "route": "/compare.html",
+    "width": 768,
+    "scroll": 768,
+    "offenders": []
+  },
+  {
+    "route": "/compare.html",
+    "width": 1024,
+    "scroll": 1024,
+    "offenders": []
+  },
+  {
+    "route": "/compare.html",
+    "width": 1440,
+    "scroll": 1440,
+    "offenders": []
+  },
+  {
+    "route": "/methodology.html",
+    "width": 320,
+    "scroll": 320,
+    "offenders": []
+  },
+  {
+    "route": "/methodology.html",
+    "width": 360,
+    "scroll": 360,
+    "offenders": []
+  },
+  {
+    "route": "/methodology.html",
+    "width": 390,
+    "scroll": 390,
+    "offenders": []
+  },
+  {
+    "route": "/methodology.html",
+    "width": 430,
+    "scroll": 430,
+    "offenders": []
+  },
+  {
+    "route": "/methodology.html",
+    "width": 768,
+    "scroll": 768,
+    "offenders": []
+  },
+  {
+    "route": "/methodology.html",
+    "width": 1024,
+    "scroll": 1024,
+    "offenders": []
+  },
+  {
+    "route": "/methodology.html",
+    "width": 1440,
+    "scroll": 1440,
+    "offenders": []
+  },
+  {
+    "route": "/guide.html",
+    "width": 320,
+    "scroll": 320,
+    "offenders": []
+  },
+  {
+    "route": "/guide.html",
+    "width": 360,
+    "scroll": 360,
+    "offenders": []
+  },
+  {
+    "route": "/guide.html",
+    "width": 390,
+    "scroll": 390,
+    "offenders": []
+  },
+  {
+    "route": "/guide.html",
+    "width": 430,
+    "scroll": 430,
+    "offenders": []
+  },
+  {
+    "route": "/guide.html",
+    "width": 768,
+    "scroll": 768,
+    "offenders": []
+  },
+  {
+    "route": "/guide.html",
+    "width": 1024,
+    "scroll": 1024,
+    "offenders": []
+  },
+  {
+    "route": "/guide.html",
+    "width": 1440,
+    "scroll": 1440,
+    "offenders": []
+  },
+  {
+    "route": "/classic-home.html",
+    "width": 320,
+    "scroll": 320,
+    "offenders": []
+  },
+  {
+    "route": "/classic-home.html",
+    "width": 360,
+    "scroll": 360,
+    "offenders": []
+  },
+  {
+    "route": "/classic-home.html",
+    "width": 390,
+    "scroll": 390,
+    "offenders": []
+  },
+  {
+    "route": "/classic-home.html",
+    "width": 430,
+    "scroll": 430,
+    "offenders": []
+  },
+  {
+    "route": "/classic-home.html",
+    "width": 768,
+    "scroll": 768,
+    "offenders": []
+  },
+  {
+    "route": "/classic-home.html",
+    "width": 1024,
+    "scroll": 1024,
+    "offenders": []
+  },
+  {
+    "route": "/classic-home.html",
+    "width": 1440,
+    "scroll": 1440,
+    "offenders": []
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "examples": [
+    {
+      "id": "m101-time-explorer",
+      "name": "M101 / matched-wavelength time explorer",
+      "url": "./data/sequence-m101-time-explorer.json",
+      "sha256": "7c16107be35a6dcde9ca7fbb7310ef4f82acfd02aee4ad24e17efa7850ed3a60",
+      "prepared_at_utc": "2026-10-30T10:58:58.846040+00:00",
+      "usage": "Qualitative matched-wavelength inspection; no measured physical change",
+      "observation_ids": [
+        "2026W20_2A_0464_3",
+        "2026W26_1A_0500_1"
+      ]
+    },
+    {
+      "id": "m101-dr1",
+      "name": "M101 / DR1 survey timeline",
+      "url": "./data/sequence-m101-dr1.json",
+      "sha256": "fb3bdd534f368b858b825153adb84fc4f198f3fb8add310c866e5c470db16e83",
+      "prepared_at_utc": "2026-11-14T16:49:05.835365+00:00",
+      "usage": "Independent dated inspection; wavelengths differ and physical change is unestablished",
+      "observation_ids": [
+        "2025W49_2A_0756_3",
+        "2025W50_1A_0506_1"
+      ]
+    }
+  ]
+}

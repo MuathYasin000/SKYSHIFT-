@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {pixelToSky,skyToPixel,validateAnnotation,validateDisplay,decodeArray,intensity} from '../dist/science.js';
+import fs from 'node:fs';
+const bundle=JSON.parse(fs.readFileSync(new URL('../dist/data/bundle.json',import.meta.url))),m=bundle.manifest;
+const common=decodeArray(bundle.arrays.COMMON),wcs=m.processing.output_wcs;
+test('browser tangent projection round-trips every prepared pixel',()=>{for(let y=0;y<24;y++)for(let x=0;x<24;x++){const s=pixelToSky(x,y,wcs),p=skyToPixel(s.ra_deg,s.dec_deg,wcs);assert.ok(Math.hypot(p.x-x,p.y-y)<1e-7);}});
+test('browser coordinates agree with published Astropy center',()=>{const s=pixelToSky(11.5,11.5,wcs);assert.ok(Math.abs(s.ra_deg-m.region.ra_deg)<1e-10);assert.ok(Math.abs(s.dec_deg-m.region.dec_deg)<1e-10);});
+test('RA wrap does not break pixel conversion',()=>{const w={...wcs,CRVAL1:359.999};const s=pixelToSky(0,0,w);const p=skyToPixel(s.ra_deg,s.dec_deg,w);assert.ok(s.ra_deg>=0&&s.ra_deg<360);assert.ok(Math.hypot(p.x,p.y)<1e-7);});
+test('invalid and unsupported coordinates cannot be annotated',()=>{const s=pixelToSky(11.5,11.5,wcs),note={annotation_id:'x',pair_id:m.pair_id,frame:'icrs',category:'uncertain',note:'test',created_at:new Date().toISOString(),...s};assert.doesNotThrow(()=>validateAnnotation(note,m,common));assert.throws(()=>validateAnnotation({...note,ra_deg:NaN},m,common));assert.throws(()=>validateAnnotation({...note,pair_id:'other'},m,common));const bad=common.findIndex(v=>!v);const sky=pixelToSky(bad%24,Math.floor(bad/24),wcs);assert.throws(()=>validateAnnotation({...note,...sky},m,common),/usable/);});
+test('invalid display and viewport settings are rejected',()=>{assert.throws(()=>validateDisplay({vmin:4,vmax:3},m));assert.throws(()=>validateDisplay({zoom:30},m));assert.throws(()=>validateDisplay({center_x:100},m));assert.equal(validateDisplay(m.display,m).center_x,11.5);});
+test('malformed scientific array cannot be loaded',()=>{assert.throws(()=>decodeArray({...bundle.arrays.SCI_A,shape:[1,1]}));});
+test('display uses finite shared transform and fixed endpoints',()=>{const d=validateDisplay(m.display,m);assert.equal(intensity(d.vmin,d),0);assert.equal(intensity(d.vmax,d),255);assert.ok(intensity((d.vmin+d.vmax)/2,d)>0);});

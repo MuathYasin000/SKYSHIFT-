@@ -1,0 +1,432 @@
+{
+  "method": "Gaia DR3 anchored, native-image integrated-Gaussian centroids; no fitted registration transform",
+  "policy": {
+    "version": "registration-v1",
+    "minimum_references": 6,
+    "minimum_quadrants": 3,
+    "minimum_hull_fraction": 0.1,
+    "maximum_median_pixels": 0.25,
+    "maximum_p95_pixels": 0.5,
+    "minimum_peak_snr": 8,
+    "maximum_proper_motion_masyr": 100,
+    "maximum_parallax_mas": 5,
+    "isolation_arcsec": 30,
+    "fit_radius": 4
+  },
+  "status": "fail",
+  "reference_count": 2,
+  "quadrants": 2,
+  "convex_hull_fraction": 0.0,
+  "median_residual_pixels": 0.0564501745390244,
+  "p95_residual_pixels": 0.06163492098480766,
+  "pixel_scale_arcsec": 6.15,
+  "median_residual_arcsec": 0.34716857341500007,
+  "p95_residual_arcsec": 0.37905476405656713,
+  "references": [
+    {
+      "source_id": "1609227596164002432",
+      "catalogue_ra_deg": 210.9404071166,
+      "catalogue_dec_deg": 54.32197630174,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609272401262826624",
+      "catalogue_ra_deg": 210.81585164836,
+      "catalogue_dec_deg": 54.26243501702,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609272607421256192",
+      "catalogue_ra_deg": 210.80691406694,
+      "catalogue_dec_deg": 54.26198703841,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609272676140733696",
+      "catalogue_ra_deg": 210.77582296653,
+      "catalogue_dec_deg": 54.28510776993,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273290322043264",
+      "catalogue_ra_deg": 210.74751905096,
+      "catalogue_dec_deg": 54.27417623517,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273359041507072",
+      "catalogue_ra_deg": 210.73788701023,
+      "catalogue_dec_deg": 54.27802221524,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273363335499392",
+      "catalogue_ra_deg": 210.7254927054,
+      "catalogue_dec_deg": 54.27476535224,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273432054978560",
+      "catalogue_ra_deg": 210.77427352325,
+      "catalogue_dec_deg": 54.29035241181,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273706932885376",
+      "catalogue_ra_deg": 210.72844421278,
+      "catalogue_dec_deg": 54.31508201375,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609273844371840128",
+      "catalogue_ra_deg": 210.86098410435,
+      "catalogue_dec_deg": 54.27437652932,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609273913091316224",
+      "catalogue_ra_deg": 210.84927442924,
+      "catalogue_dec_deg": 54.27064777921,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609274016170533120",
+      "catalogue_ra_deg": 210.8496069197,
+      "catalogue_dec_deg": 54.29968190872,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609274565926351104",
+      "catalogue_ra_deg": 210.89843149056,
+      "catalogue_dec_deg": 54.34175292356,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609274600286089984",
+      "catalogue_ra_deg": 210.90065461918,
+      "catalogue_dec_deg": 54.3496822568,
+      "status": "rejected",
+      "reason": "catalogue_neighbor"
+    },
+    {
+      "source_id": "1609274703365302528",
+      "catalogue_ra_deg": 210.82661055707,
+      "catalogue_dec_deg": 54.3479517251,
+      "a": {
+        "status": "rejected",
+        "reason": "centroid_fit_not_reliable"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609274875163997056",
+      "catalogue_ra_deg": 210.85695615212,
+      "catalogue_dec_deg": 54.37872258451,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "measured",
+        "x": 32.07710268659544,
+        "y": 60.08947925588758,
+        "sigma_x_pixels": 0.3577300037898289,
+        "sigma_y_pixels": 0.359668003857877,
+        "profile_fwhm_pixels": 0.8446685060901562,
+        "peak_snr": 52.681718661956715,
+        "background_mjy_sr": 0.7869765217653738,
+        "fit_residual_rms_sigma": 1.6859474865646222,
+        "valid_window_fraction": 0.9753086419753086
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609275115680664832",
+      "catalogue_ra_deg": 210.78049390951,
+      "catalogue_dec_deg": 54.33498938407,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609275562358762368",
+      "catalogue_ra_deg": 210.81085154104,
+      "catalogue_dec_deg": 54.37031401176,
+      "a": {
+        "status": "measured",
+        "x": 41.313159758748135,
+        "y": 45.11905727616053,
+        "sigma_x_pixels": 0.3617278426243803,
+        "sigma_y_pixels": 0.3485158918719349,
+        "profile_fwhm_pixels": 0.8361033776824539,
+        "peak_snr": 393.7907324940503,
+        "background_mjy_sr": 1.3150202272958953,
+        "fit_residual_rms_sigma": 2.0133456161273973,
+        "valid_window_fraction": 1.0
+      },
+      "b": {
+        "status": "measured",
+        "x": 40.771200720707554,
+        "y": 46.08354809725027,
+        "sigma_x_pixels": 0.3437456383557234,
+        "sigma_y_pixels": 0.32023997237381246,
+        "profile_fwhm_pixels": 0.7812932705923691,
+        "peak_snr": 476.5575836455696,
+        "background_mjy_sr": 1.248758745829572,
+        "fit_residual_rms_sigma": 2.3409176256688236,
+        "valid_window_fraction": 1.0
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.03717259954915164,
+      "dy_output_pixels": 0.0344616824166053,
+      "residual_pixels": 0.05068934515482077,
+      "absolute_offset_a_pixels": [
+        0.022400448224814795,
+        -0.025053869259217265
+      ],
+      "absolute_offset_b_pixels": [
+        0.05957304777396644,
+        0.009407813157388034
+      ],
+      "output_x": 32.04209345031603,
+      "output_y": 47.51209986031319
+    },
+    {
+      "source_id": "1609275802876904576",
+      "catalogue_ra_deg": 210.75628599598,
+      "catalogue_dec_deg": 54.38595808847,
+      "a": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 7.958847238249835
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "low_peak_snr",
+        "peak_snr": 6.662663495711163
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609275871594747136",
+      "catalogue_ra_deg": 210.79264599593,
+      "catalogue_dec_deg": 54.39767792261,
+      "a": {
+        "status": "measured",
+        "x": 57.11940487356424,
+        "y": 51.93093719222369,
+        "sigma_x_pixels": 0.33581027008185976,
+        "sigma_y_pixels": 0.3399301250022113,
+        "profile_fwhm_pixels": 0.7956087113835132,
+        "peak_snr": 95.13887855478234,
+        "background_mjy_sr": 0.7872911893662407,
+        "fit_residual_rms_sigma": 1.716090752219291,
+        "valid_window_fraction": 0.9876543209876543
+      },
+      "b": {
+        "status": "measured",
+        "x": 55.92689783247073,
+        "y": 53.83768865588416,
+        "sigma_x_pixels": 0.38366123773104793,
+        "sigma_y_pixels": 0.3498458208550588,
+        "profile_fwhm_pixels": 0.8627203108247189,
+        "peak_snr": 103.44431448634889,
+        "background_mjy_sr": 0.6242351781135124,
+        "fit_residual_rms_sigma": 1.821968772864804,
+        "valid_window_fraction": 1.0
+      },
+      "status": "measured",
+      "dx_output_pixels": 0.03949394902530656,
+      "dy_output_pixels": 0.04806700531052854,
+      "residual_pixels": 0.06221100392322802,
+      "absolute_offset_a_pixels": [
+        -0.008756006699336183,
+        -0.020585760170860112
+      ],
+      "absolute_offset_b_pixels": [
+        0.03073794232597038,
+        0.02748124513966843
+      ],
+      "output_x": 38.29939954427664,
+      "output_y": 63.499178057182945
+    },
+    {
+      "source_id": "1609276661870360320",
+      "catalogue_ra_deg": 210.65626113815,
+      "catalogue_dec_deg": 54.33016752103,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609276730589838592",
+      "catalogue_ra_deg": 210.68754773729,
+      "catalogue_dec_deg": 54.34686106581,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609278242418327424",
+      "catalogue_ra_deg": 210.70715444408,
+      "catalogue_dec_deg": 54.35814718914,
+      "a": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "noncompact_or_elongated_profile"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609278311137804288",
+      "catalogue_ra_deg": 210.67780043969,
+      "catalogue_dec_deg": 54.37530894469,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609278311137804544",
+      "catalogue_ra_deg": 210.69440069953,
+      "catalogue_dec_deg": 54.37001136681,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609298201129806592",
+      "catalogue_ra_deg": 210.94291777909,
+      "catalogue_dec_deg": 54.38513353077,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609298342865303168",
+      "catalogue_ra_deg": 210.88755693995,
+      "catalogue_dec_deg": 54.38778494332,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    },
+    {
+      "source_id": "1609298411584781056",
+      "catalogue_ra_deg": 210.91707008734,
+      "catalogue_dec_deg": 54.39177540816,
+      "a": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "b": {
+        "status": "rejected",
+        "reason": "window_outside_native_footprint"
+      },
+      "status": "rejected",
+      "reason": "unmeasurable_in_one_or_both_epochs"
+    }
+  ],
+  "limitations": [
+    "Reference identity is independent of SPHEREx image processing. No astrometric correction was fitted.",
+    "Empirical Gaussian profiles are diagnostics, not an ePSF astrometric likelihood.",
+    "No formal positional uncertainties or absolute astrometric precision are claimed.",
+    "Catalogue positions use proper motion; sub-5 mas parallax is neglected for this arcsecond-scale check.",
+    "References outside the inspection region can constrain surrounding registration, but do not prove local distortions are absent."
+  ]
+}

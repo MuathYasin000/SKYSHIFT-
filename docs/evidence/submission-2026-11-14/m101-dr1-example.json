@@ -1,0 +1,110 @@
+{
+  "created_at_utc": "2026-11-14T16:49:05.835365+00:00",
+  "request": {
+    "schema_version": "1.0",
+    "kind": "skyshift-observation-request",
+    "release": "dr1",
+    "region": {
+      "ra_deg": 210.8023,
+      "dec_deg": 54.3489,
+      "size_deg": 0.06,
+      "frame": "icrs"
+    },
+    "detector": 2,
+    "max_frames": 3,
+    "deep": false,
+    "use_cache": true,
+    "discovery_only": false,
+    "discovery_scope": "selected",
+    "metadata_provider": "sia2",
+    "selection": "chronological",
+    "wavelength_um": null,
+    "start_date": null,
+    "end_date": null
+  },
+  "timeline_sha256": "fb3bdd534f368b858b825153adb84fc4f198f3fb8add310c866e5c470db16e83",
+  "sequence_id": "sequence-f920e5046f99818812a10fc0",
+  "observations": [
+    {
+      "observation_id": "2025W49_2A_0756_3",
+      "release": "dr1",
+      "detector": 2,
+      "pipeline_version": "7.0.5",
+      "time_start_utc": "2025-12-07T22:47:38.056000Z",
+      "time_end_utc": "2025-12-07T22:49:33.174000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "dr1-m101-dec-0756.fits",
+        "sha256": "7331a91568d1ddf9b08624b249e58314604d5667236d45a77d94b4542cbe22f6",
+        "size_bytes": 3977280,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W49_2A/l2b-v27-2026-209/2/level2_2025W49_2A_0756_3D2_spx_l2b-v27-2026-209.fits?center=210.8023,54.3489&size=0.075",
+        "retrieved_at_utc": "2026-11-14T16:45:04.386958Z"
+      },
+      "spectral_calibration": null,
+      "center_wavelength_um": 1.1008411792208257,
+      "center_bandwidth_um": 0.025618240674789343,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "EPSF",
+        "WCS-WAVE"
+      ]
+    },
+    {
+      "observation_id": "2025W50_1A_0506_1",
+      "release": "dr1",
+      "detector": 2,
+      "pipeline_version": "7.0.5",
+      "time_start_utc": "2025-12-10T06:10:03.494000Z",
+      "time_end_utc": "2025-12-10T06:11:58.612000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "dr1-m101-dec-0506.fits",
+        "sha256": "be3cb998c772703f3ea1ac4719f0eaba2a740e7b8e222c351d1a18a6b78d27b9",
+        "size_bytes": 3977280,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/dr1/level2/2025W50_1A/l2b-v27-2026-209/2/level2_2025W50_1A_0506_1D2_spx_l2b-v27-2026-209.fits?center=210.8023,54.3489&size=0.075",
+        "retrieved_at_utc": "2026-11-14T16:45:03.106879Z"
+      },
+      "spectral_calibration": null,
+      "center_wavelength_um": 1.398005989596093,
+      "center_bandwidth_um": 0.03357533943617014,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "EPSF",
+        "WCS-WAVE"
+      ]
+    }
+  ],
+  "rejections": [],
+  "playback_modes": {
+    "survey_timeline": {
+      "eligible": true,
+      "frame_indices": [
+        0,
+        1
+      ],
+      "physical_comparison": false,
+      "alignment": "Common requested ICRS grid; registration is not assumed verified.",
+      "display_policy": "Shared sequence limits; wavelength-dependent differences must not be interpreted as variability.",
+      "reason": "Genuine observations on the same requested ICRS grid. Dates and wavelengths can differ; brightness or positional differences are visual evidence only, with no physical-change claim."
+    },
+    "matched_wavelength": {
+      "eligible": false,
+      "frame_indices": [],
+      "physical_comparison": false,
+      "comparison_scope": "Qualitative matched-wavelength inspection; no established physical change.",
+      "alignment": "Not verified for a usable matched subset.",
+      "display_policy": "Shared sequence limits; no PSF matching or calibrated photometry.",
+      "reason": "No two prepared epochs passed all required wavelength, support and stationary-reference checks. Inspect the Survey Timeline or individual observations; rejected comparisons remain in the receipt."
+    }
+  }
+}

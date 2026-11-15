@@ -1,0 +1,19 @@
+PASS Homepage shows the requested real 3D SPHEREx model without loading the optional Universe
+PASS Primary call to action opens the actual restricted comparison in one action
+PASS Simple date controls, linked viewport, draggable wipe and blinking work
+PASS Pixel inspection and question add, edit, locate, ZIP save and reopening
+PASS Sources and diagnostics stay optional and preserve exact archive identities
+PASS Home and direct navigation preserve the same scientific state and canvas
+PASS Single observations have clear availability and no nonfunctional comparison control
+PASS Field search and contextual NASA composite legend are functional
+PASS Website spacecraft viewer is opt-in, selectable and pauses offscreen
+PASS Optional universe loads only on entry and returns without losing scientific work
+PASS Universe spacecraft, secondary observatories, solar system and persistent sound controls remain usable
+PASS Fresh profiles reopen current and previous-version JSON/ZIP investigations
+PASS Readable responsive home, comparison and touch questions at 1024px
+PASS Readable responsive home, comparison and touch questions at 390px
+PASS Readable responsive home, comparison and touch questions at 320px
+PASS Science works with WebGL disabled; optional 3D failure has a website exit
+PASS Reduced motion keeps manual comparison accessible and disables blinking
+PASS Corrupted single data are refused and retry preserves source checks
+PASS Keyboard inspection and automated accessibility rules on home and science

@@ -1,0 +1,1534 @@
+@layer pages {
+  .universe-active {
+    height: 100dvh;
+    overflow: hidden;
+    background: var(--black);
+  }
+  .universe-active .site-footer {
+    display: none;
+  }
+  .universe-active main {
+    padding: 0;
+    max-width: none;
+    width: 100%;
+    margin: 0;
+  }
+  .universe-active #universe-view {
+    height: calc(100dvh - 72px);
+    min-height: 0;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+    isolation: isolate;
+  }
+  .space-stage {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .space-stage > canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+  }
+  .space-labels {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .space-object-label {
+    position: absolute;
+    min-height: 44px;
+    padding: 10px 14px;
+    background: var(--black);
+    border: 1px solid var(--line-strong);
+    font: 12px/1.6 var(--mono);
+    color: var(--white);
+    pointer-events: auto;
+    white-space: nowrap;
+    border-radius: var(--radius);
+  }
+  .space-object-label[aria-pressed="true"] {
+    border-color: var(--blue-text);
+  }
+  .space-label-leader {
+    position: absolute;
+    height: 1px;
+    background: var(--white);
+    transform-origin: left center;
+    pointer-events: none;
+    opacity: 0.15;
+  }
+  .optics-ray-label {
+    position: absolute;
+    font: 12px var(--mono);
+    background: var(--black);
+    color: var(--white);
+    padding: 12px;
+    border: 1px solid var(--line);
+    z-index: 4;
+    pointer-events: none;
+  }
+  .optics-ray-label small {
+    display: block;
+    font: 12px var(--mono);
+    color: var(--text-3);
+  }
+  .space-header {
+    position: absolute;
+    top: 16px;
+    left: 24px;
+    right: 24px;
+    z-index: 6;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    pointer-events: none;
+    border: 0;
+    background: none;
+  }
+  .space-actions {
+    display: flex;
+    gap: 0;
+    padding: 0;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid var(--line);
+    background: var(--black);
+    pointer-events: auto;
+  }
+  .space-actions button,
+  .space-actions a {
+    font-size: 14px;
+    min-height: 44px;
+    padding: 12px;
+    border: 0;
+    border-right: 1px solid var(--line);
+    text-decoration: none;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--black);
+  }
+  .space-actions a#observations-button {
+    background: var(--red);
+    color: var(--black);
+    font-weight: 700;
+    padding-inline: 20px;
+  }
+  .space-actions button:hover {
+    background: var(--surface-2);
+  }
+  .destinations-toggle {
+    position: absolute;
+    top: 16px;
+    left: 24px;
+    z-index: 6;
+    font-size: 14px;
+    min-height: 44px;
+    background: var(--black);
+  }
+  .destinations-drawer {
+    position: absolute;
+    top: 80px;
+    left: 24px;
+    width: 300px;
+    max-height: calc(100% - 260px);
+    z-index: 5;
+    background: var(--black);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: auto;
+    padding: 0;
+  }
+  .destination-top {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--black);
+    border-bottom: 1px solid var(--line);
+  }
+  .destination-top .space-eyebrow {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  .destination-top h2 {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+  #destinations-close {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    padding: 8px;
+    font-size: 22px;
+  }
+  .space-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+    padding: 4px;
+    margin: 16px;
+    border: 1px solid var(--line);
+  }
+  .space-tabs button {
+    font-size: 12px;
+    min-width: 0;
+    min-height: 44px;
+    padding: 8px 4px;
+    border: 0;
+    background: transparent;
+  }
+  .space-tabs button[aria-pressed="true"] {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .space-tabs button:hover {
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+  }
+  .destination-panel {
+    padding: 0 16px 16px;
+    border: 0;
+    background: var(--black);
+  }
+  #destination-heading {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+  .destination-description {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-2);
+    margin-block: 8px 16px;
+  }
+  #destination-collection {
+    width: 100%;
+    min-height: 44px;
+    margin-bottom: 16px;
+    padding: 10px;
+    font-size: 13px;
+  }
+  .destination-panel label {
+    display: block;
+    font: 12px var(--mono);
+    color: var(--text-3);
+    margin-bottom: 8px;
+  }
+  .destination-search-row {
+    display: flex;
+    gap: 8px;
+  }
+  .destination-panel input {
+    flex: 1;
+    min-width: 0;
+    width: 0;
+    font-size: 16px;
+  }
+  #destination-clear {
+    flex: none;
+    width: 44px;
+    padding: 8px;
+    font-size: 20px;
+  }
+  #destination-search::-webkit-search-cancel-button {
+    display: none;
+  }
+  .destination-count {
+    font: 11px/1.6 var(--mono);
+    color: var(--text-3);
+    margin-block: 12px;
+  }
+  .space-eyebrow {
+    font: 12px var(--mono);
+    color: var(--text-3);
+    letter-spacing: 0.14em;
+  }
+  .destination-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 0;
+  }
+  #destination-list[hidden] {
+    display: none;
+  }
+  .destination-list button {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) 18px;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    padding: 12px;
+    min-height: 80px;
+    background: var(--black);
+    text-align: left;
+    border: 1px solid var(--line);
+    border-left: 3px solid transparent;
+  }
+  .destination-list button:hover {
+    background: var(--surface-2);
+    border-color: var(--line-strong);
+  }
+  .destination-list button[aria-pressed="true"] {
+    border-color: var(--blue-text);
+    background: var(--surface-2);
+  }
+  .destination-marker {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--line);
+    font: 12px var(--mono);
+    color: var(--text-3);
+  }
+  [aria-pressed="true"] > .destination-marker {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .destination-copy {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .destination-copy strong {
+    display: block;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .destination-list button small {
+    font: 11px/1.5 var(--mono);
+    display: block;
+    color: var(--text-3);
+    margin-top: 4px;
+  }
+  .destination-indicator::before {
+    content: "→";
+    font-size: 18px;
+    color: var(--text-3);
+  }
+  [aria-pressed="true"] > .destination-indicator::before {
+    content: "✓";
+    color: var(--blue-text);
+  }
+  .destination-empty {
+    padding: 20px 12px;
+    border: 1px dashed var(--line-strong);
+    text-align: center;
+    font-size: 14px;
+  }
+  .destination-empty p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-3);
+    margin-block: 8px 16px;
+  }
+  .destination-empty button {
+    font-size: 14px;
+  }
+  .space-context {
+    position: absolute;
+    top: 96px;
+    right: 24px;
+    width: 340px;
+    max-width: calc(100% - 48px);
+    max-height: calc(100% - 280px);
+    overflow: auto;
+    z-index: 5;
+    padding: 24px;
+    background: var(--black);
+    border: 1px solid var(--line);
+    border-top: 2px solid var(--red);
+    border-radius: var(--radius);
+    font-size: 14px;
+  }
+  .space-context h2 {
+    font-size: 40px;
+    margin-bottom: 24px;
+    line-height: 1.1;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .space-context .space-eyebrow {
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+  .space-context p {
+    font-size: 14px;
+    line-height: 1.65;
+    margin-bottom: 16px;
+    color: var(--text-2);
+  }
+  .context-state,
+  .context-credit,
+  .context-date {
+    font: 14px/1.65 var(--mono);
+    color: var(--text-3);
+  }
+  .context-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .context-actions button {
+    font-size: 14px;
+    min-height: 44px;
+    width: 100%;
+    padding: 12px;
+  }
+  .context-actions .space-primary {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--line-strong);
+  }
+  .context-actions .space-primary:hover {
+    background: var(--white);
+    color: var(--black);
+  }
+  .context-toggle {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    min-height: 44px;
+    padding: 12px 40px;
+    background: var(--black);
+    border: 1px solid var(--line-strong);
+    font-size: 14px;
+  }
+  .context-toggle-label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .context-toggle-indicator {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    line-height: 1;
+  }
+  .context-preview {
+    max-height: 180px;
+    width: 100%;
+    object-fit: contain;
+    margin-block: 24px;
+  }
+  .space-context a {
+    font-size: 14px;
+  }
+  .scene-badge {
+    font-size: 14px;
+  }
+  .component-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .component-list button {
+    font-size: 14px;
+    min-height: 44px;
+  }
+  .observatory-thumbnail {
+    width: 48px;
+    height: 36px;
+    object-fit: contain;
+    flex: none;
+  }
+  .mission-dock {
+    right: auto;
+    width: max-content;
+    position: absolute;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    background: var(--black);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    max-width: calc(100% - 48px);
+  }
+  .mission-dock > span {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 0;
+    font: 12px var(--mono);
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+  .mission-dock button {
+    border: 0;
+    border-right: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--black);
+    padding: 12px 16px;
+    min-height: 64px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .mission-dock button small {
+    display: block;
+    font: 12px var(--mono);
+    color: var(--text-3);
+  }
+  .mission-dock button[aria-pressed="true"] {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .mission-dock button[aria-pressed="true"] small {
+    color: var(--white);
+  }
+  .mission-dock button b {
+    display: none;
+  }
+  .mission-dock .observatory-mark {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: var(--white);
+    stroke-width: 1.2;
+    flex: none;
+  }
+  .mission-dock [data-telescope="webb-b"],
+  .mission-dock [data-telescope="hubble"] {
+    display: none;
+  }
+  .hangar-open .mission-dock [data-telescope="webb-b"],
+  .hangar-open .mission-dock [data-telescope="hubble"] {
+    display: flex;
+  }
+  .space-hud {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 16px;
+    z-index: 4;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    pointer-events: none;
+    background: transparent;
+    padding: 0;
+  }
+  .hud-info {
+    font: 12px/1.6 var(--mono);
+    color: var(--text-3);
+    max-width: 65%;
+    pointer-events: none;
+  }
+  .hud-info strong {
+    font: 12px/1.6 var(--mono);
+    color: var(--white);
+    display: block;
+  }
+  .hud-info > div {
+    font: 12px/1.6 var(--mono);
+    color: var(--text-3);
+  }
+  .hud-info button {
+    font-size: 14px;
+    pointer-events: auto;
+    min-height: 44px;
+  }
+  .hud-controls {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--line);
+    background: var(--black);
+    pointer-events: auto;
+  }
+  .hud-controls button {
+    font-size: 14px;
+    min-height: 44px;
+    padding: 12px;
+    border: 0;
+    border-right: 1px solid var(--line);
+  }
+  .space-hud kbd {
+    font: 12px var(--mono);
+    border: 1px solid var(--line-strong);
+    padding: 1px 4px;
+    color: var(--text-2);
+    background: var(--black);
+  }
+  #credits-button {
+    position: fixed;
+    top: 88px;
+    right: 24px;
+    font-size: 12px;
+    z-index: 6;
+  }
+  .space-disclaimer {
+    font-size: 12px;
+  }
+  .telescope-experience {
+    position: absolute;
+    z-index: 8;
+    inset: 80px 24px 100px auto;
+    width: 440px;
+    max-width: calc(100% - 48px);
+    overflow: auto;
+    background: var(--black);
+    border: 1px solid var(--line);
+    padding: 24px;
+    border-top: 2px solid var(--red);
+  }
+  .telescope-experience h2 {
+    font-size: 36px;
+  }
+  .telescope-experience p {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .mission-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .mission-heading button {
+    min-width: 44px;
+  }
+  .mission-band {
+    font: 14px var(--mono);
+    color: var(--text-3);
+    margin-block: 20px;
+  }
+  .mission-stages {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--line);
+    margin-bottom: 24px;
+  }
+  .mission-stages button {
+    font-size: 14px;
+    flex: 1;
+    border: 0;
+    min-height: 44px;
+    padding: 12px 8px;
+  }
+  .mission-stages button[aria-pressed="true"] {
+    background: var(--blue);
+    color: var(--white);
+  }
+  #mission-image:not([hidden]) {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 340px;
+    object-fit: contain;
+  }
+  #mission-published figcaption,
+  .mission-image-actions a {
+    font-size: 14px;
+  }
+  .telescope-experience #mission-step-title {
+    margin-bottom: 12px;
+    font-size: 22px;
+  }
+  .telescope-experience .mission-direction-note {
+    margin-top: 16px;
+    color: var(--text-3);
+  }
+  #mission-hardware,
+  #mission-spectrum {
+    margin-block: 20px;
+  }
+  #mission-components,
+  #mission-component-info,
+  #mission-spectrum-hint {
+    margin-top: 12px;
+  }
+  .mission-fields:not([hidden]) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-block: 20px 12px;
+  }
+  .mission-fields button {
+    min-width: 0;
+    font-size: 14px;
+  }
+  .mission-fields [aria-pressed="true"] {
+    background: var(--blue);
+    color: var(--white);
+  }
+  #mission-field-open {
+    width: 100%;
+    white-space: normal;
+  }
+  #mission-published:not([hidden]) {
+    display: grid;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  #mission-published figcaption {
+    overflow-wrap: anywhere;
+    line-height: 1.65;
+    color: var(--text-3);
+  }
+  .mission-image-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .mission-image-actions a:not([hidden]) {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .mission-bottom {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px 16px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .mission-bottom > * {
+    min-width: 0;
+    font-size: 14px;
+  }
+  .mission-bottom a:not([hidden]) {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    overflow-wrap: anywhere;
+  }
+  .telescope-experience .mission-disclaimer {
+    margin-top: 20px;
+    font: 12px/1.7 var(--mono);
+    color: var(--text-3);
+  }
+  .mission-channels {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .mission-channels button {
+    font: 14px var(--mono);
+    min-height: 44px;
+    min-width: 44px;
+    background: var(--black);
+    color: var(--white);
+    border: 1px solid var(--line-strong);
+  }
+  .mission-channels button::before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    border-radius: 50%;
+    background: var(--channel);
+  }
+  .mission-channels [aria-pressed="true"] {
+    border-color: var(--white);
+    background: var(--surface-3);
+  }
+  .mission-milestones {
+    font: 14px var(--mono);
+    color: var(--text-3);
+  }
+  .telescope-story {
+    position: absolute;
+    left: 24px;
+    top: 96px;
+    z-index: 4;
+    max-width: 380px;
+    padding: 24px;
+    background: var(--black);
+    border: 1px solid var(--line);
+  }
+  .telescope-story h2 {
+    font-size: 32px;
+  }
+  .telescope-story p {
+    font-size: 14px;
+  }
+  .optics-stage {
+    position: relative;
+    min-height: 240px;
+    border: 1px solid var(--line);
+    margin-block: 24px;
+  }
+  .optics-stage svg {
+    width: 100%;
+    height: auto;
+  }
+  .optics-stage svg text {
+    font: 12px var(--mono);
+    fill: var(--white);
+  }
+  .optics-stage svg path,
+  .optics-stage svg line {
+    stroke: var(--white);
+  }
+  .space-fallback {
+    position: absolute;
+    inset: 80px 24px auto;
+    z-index: 10;
+    max-width: 700px;
+    margin: auto;
+    padding: 32px;
+    background: var(--black);
+    border: 1px solid var(--line-strong);
+  }
+  .space-fallback h2 {
+    font-size: 32px;
+  }
+  .space-fallback p {
+    font-size: 16px;
+  }
+  .universe-loading {
+    max-width: var(--content);
+    padding: 80px var(--gutter);
+    min-height: 60vh;
+  }
+  .universe-loading h2 {
+    margin-bottom: 24px;
+  }
+  .space-dialog label {
+    font-size: 14px;
+  }
+  .space-dialog h3 {
+    font-size: 24px;
+    margin-block: 24px;
+  }
+  .space-dialog .sound-palette {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .space-dialog .sound-level input {
+    width: 100%;
+  }
+  .space-dialog .sound-fine {
+    font: 12px/1.7 var(--mono);
+  }
+  @media (max-width: 1100px) {
+    .space-header {
+      justify-content: flex-end;
+    }
+    .space-actions button,
+    .space-actions a {
+      padding-inline: 10px;
+    }
+    .destinations-drawer {
+      width: 270px;
+    }
+    .space-context {
+      width: 300px;
+      padding: 20px;
+    }
+    .space-context h2 {
+      font-size: 32px;
+    }
+    .mission-dock button {
+      padding: 12px;
+    }
+    .mission-dock button small {
+      display: none;
+    }
+    .space-hud {
+      gap: 16px;
+    }
+    .hud-controls #focus-object {
+      display: none;
+    }
+  }
+  @media (max-width: 800px) {
+    .mission-bottom {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .mission-bottom a {
+      justify-content: center;
+      text-align: center;
+    }
+    .universe-active #universe-view {
+      min-height: 0;
+    }
+    .space-header {
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      justify-content: flex-end;
+    }
+    .space-actions {
+      max-width: calc(100% - 58px);
+      justify-content: flex-end;
+    }
+    .space-actions button,
+    .space-actions a {
+      font-size: 14px;
+      padding: 10px;
+    }
+    .space-actions .toolbar-word {
+      display: none;
+    }
+    .destinations-toggle {
+      left: 16px;
+      top: 80px;
+    }
+    .destinations-drawer {
+      top: 136px;
+      left: 16px;
+      right: 16px;
+      width: auto;
+      max-height: 50%;
+      z-index: 7;
+    }
+    .space-context {
+      top: 136px;
+      right: 16px;
+      width: 300px;
+      max-width: calc(100% - 32px);
+      max-height: 50%;
+      padding: 20px;
+    }
+    .space-context h2 {
+      font-size: 32px;
+    }
+    .mission-dock {
+      bottom: 112px;
+      max-width: calc(100% - 32px);
+    }
+    .mission-dock > span {
+      font-size: 12px;
+      white-space: normal;
+      max-width: 100%;
+    }
+    .mission-dock button {
+      padding: 10px;
+      font-size: 14px;
+      min-height: 56px;
+    }
+    .mission-dock .observatory-mark {
+      display: none;
+    }
+    .mission-dock .observatory-thumbnail {
+      width: 32px;
+      height: 24px;
+    }
+    .mission-dock button small {
+      display: none;
+    }
+    .space-hud {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .hud-info {
+      max-width: 100%;
+    }
+    .hud-info #camera-help {
+      display: none;
+    }
+    .hud-info .space-disclaimer {
+      display: none;
+    }
+    .hud-controls {
+      align-self: flex-end;
+    }
+    .hud-controls #focus-object,
+    .hud-controls #camera-reset {
+      display: none;
+    }
+    #credits-button {
+      position: static;
+      font-size: 14px;
+      min-height: 44px;
+    }
+    .hud-info > button {
+      display: none;
+    }
+    .telescope-experience {
+      inset: 136px 16px 100px;
+      width: auto;
+      max-width: none;
+      padding: 20px;
+    }
+    .telescope-experience h2 {
+      font-size: 28px;
+    }
+    .telescope-story {
+      top: 136px;
+      left: 16px;
+      right: 16px;
+      max-width: none;
+      max-height: 50%;
+      overflow: auto;
+    }
+  }
+  @media (max-width: 800px) {
+    .space-actions {
+      max-width: 100%;
+      width: auto;
+      flex-wrap: nowrap;
+    }
+    .space-actions button,
+    .space-actions a {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 8px;
+      flex: none;
+    }
+    .space-actions a#observations-button {
+      padding: 8px;
+    }
+    .space-actions .toolbar-word,
+    .space-actions .sound-word {
+      display: none;
+    }
+    .space-context {
+      display: block;
+      inset: auto 16px 152px;
+      width: auto;
+      max-width: none;
+      max-height: 42%;
+      padding: 16px;
+      overflow: auto;
+    }
+    .space-context .space-eyebrow {
+      margin-bottom: 8px;
+    }
+    .space-context h2 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+    .space-context .context-state {
+      font: 12px/1.5 var(--mono);
+      margin-block: 8px;
+    }
+    .context-toggle {
+      padding-block: 10px;
+    }
+    .context-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .context-actions button {
+      padding: 8px;
+      font-size: 14px;
+      min-width: 0;
+    }
+    .space-context #context-details {
+      font-size: 14px;
+    }
+    .mission-dock {
+      bottom: 64px;
+      width: calc(100% - 32px);
+      max-width: calc(100% - 32px);
+    }
+    .hangar-open .mission-dock .observatory-thumbnail {
+      display: none;
+    }
+    .mission-dock button {
+      flex: 1;
+      min-width: 0;
+      gap: 8px;
+      padding: 8px;
+      white-space: normal;
+    }
+    .mission-dock > span {
+      white-space: nowrap;
+    }
+    .mission-dock .observatory-thumbnail {
+      width: 28px;
+      height: 24px;
+    }
+    .space-hud {
+      inset: 80px 16px auto;
+      align-items: flex-end;
+    }
+    .space-hud .hud-info {
+      display: none;
+    }
+    .hud-controls {
+      align-self: flex-end;
+    }
+    .hud-controls button {
+      width: 44px;
+      padding: 8px;
+    }
+  }
+  /* Keep SVG lettering at its 1:1 minimum scale in narrow information panels. */
+  .optics-details {
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+    margin-block: 16px;
+  }
+  #optics-figure,
+  #optics-expanded {
+    max-width: 100%;
+    overflow: auto;
+    margin: 16px 0;
+    border: 1px solid var(--line);
+    background: var(--black);
+  }
+  #mission-optics svg {
+    display: block;
+    min-width: 490px;
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+  #mission-optics svg text {
+    font: 12px var(--mono);
+    fill: var(--white);
+  }
+  #mission-optics .optics-outline {
+    fill: none;
+    stroke: var(--text-3);
+    stroke-width: 1.5;
+  }
+  #mission-optics .optics-mirror {
+    fill: none;
+    stroke: var(--white);
+    stroke-width: 3;
+  }
+  #mission-optics .optics-detector {
+    fill: var(--surface-3);
+    stroke: var(--white);
+    stroke-width: 1.5;
+  }
+  #mission-optics .optics-path {
+    fill: none;
+    stroke: var(--text-3);
+    stroke-width: 1.5;
+  }
+  #mission-optics .optics-path.current {
+    stroke: var(--red);
+    stroke-width: 2;
+  }
+  #mission-optics .optics-trace-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-block: 12px;
+  }
+  #mission-optics .optics-trace-controls button {
+    flex: 1 1 150px;
+    font-size: 14px;
+  }
+  #mission-optics .optics-diagram-limit {
+    font: 12px/1.6 var(--mono);
+  }
+  .space-context .context-summary {
+    display: block;
+    overflow: visible;
+    max-height: none;
+    height: auto;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    white-space: normal;
+  }
+  .space-context {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .space-actions {
+    height: 48px;
+    align-items: stretch;
+    flex-wrap: nowrap;
+  }
+  .space-actions button,
+  .space-actions a {
+    min-width: 44px;
+    max-height: 48px;
+    padding: 10px 14px;
+    white-space: nowrap;
+  }
+  .toolbar-icon {
+    width: 20px;
+    height: 20px;
+    flex: none;
+    display: block;
+  }
+  .space-actions a#observations-button {
+    padding: 10px 16px;
+  }
+  .space-context {
+    top: 88px;
+    bottom: auto;
+    height: auto;
+    max-height: calc(100% - 288px);
+  }
+  .space-context .context-summary {
+    display: block;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
+    max-height: none;
+  }
+  .mission-dock {
+    bottom: 72px;
+  }
+  .mission-dock > span {
+    bottom: calc(100% + 16px);
+    left: 0;
+    text-align: center;
+  }
+  .hud-info {
+    max-width: 65%;
+  }
+  .context-sheet-toggle {
+    display: none;
+  }
+  .earth-context-status {
+    position: absolute;
+    left: 24px;
+    top: 80px;
+    z-index: 3;
+    max-width: 300px;
+    font: 12px/1.6 var(--mono);
+    padding: 8px;
+    background: var(--black);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 800px) {
+    .space-actions button,
+    .space-actions a,
+    .space-actions a#observations-button {
+      padding: 10px;
+      width: 44px;
+      height: 44px;
+    }
+    .toolbar-icon {
+      width: 20px;
+      height: 20px;
+    }
+    .space-context {
+      inset: auto 16px 136px;
+      max-height: calc(100% - 240px);
+      padding: 12px 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 4px 12px;
+    }
+    .space-context .space-eyebrow {
+      display: none;
+    }
+    .space-context h2 {
+      grid-column: 1;
+      font-size: 24px;
+      max-width: none;
+      margin: 0;
+    }
+    .space-context .context-state {
+      grid-column: 1/-1;
+      font: 12px/1.5 var(--mono);
+      margin: 0;
+    }
+    .space-context .context-summary {
+      display: none;
+    }
+    .space-context .context-toggle {
+      grid-column: 2;
+      grid-row: 1;
+      min-width: 100px;
+      width: auto;
+      padding: 10px 24px;
+      font-size: 12px;
+    }
+    .context-toggle-label {
+      font-size: 12px;
+    }
+    .space-context .context-actions {
+      display: none;
+    }
+    .space-context.details-open {
+      display: block;
+    }
+    .space-context.details-open .context-summary {
+      display: block;
+      margin-top: 12px;
+    }
+    .space-context.details-open .context-actions {
+      display: grid;
+    }
+    .space-context.details-open .context-toggle {
+      width: 100%;
+      margin-top: 12px;
+    }
+    .space-context.details-open #context-details {
+      margin-top: 16px;
+    }
+    .mission-dock {
+      bottom: 56px;
+    }
+    .mission-dock > span {
+      font-size: 12px;
+    }
+    .earth-context-status {
+      left: 16px;
+      top: 136px;
+      max-width: calc(100% - 32px);
+    }
+  }
+}
+
+@layer pages {
+  .mission-dock > span {
+    width: 100%;
+  }
+  @media (max-width: 800px) {
+    .space-context:not(.details-open) .context-state {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  #space-status[data-loading="true"]::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, transparent, var(--white), transparent);
+    animation: loading-sweep 1.5s linear infinite;
+  }
+  @keyframes loading-sweep {
+    from {
+      background-position: -200px 0;
+    }
+    to {
+      background-position: 200px 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #space-status[data-loading="true"]::before {
+      animation: none;
+    }
+  }
+}
+
+/* Reserve layout space for panels and controls above the full-size 3D canvas.
+   Content scrolls inside its panel; the Universe itself stays in the viewport. */
+@layer pages {
+  .universe-active #universe-view {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: 48px minmax(0, 1fr) auto auto auto;
+    gap: 12px 24px;
+    padding: 16px 24px;
+  }
+  .space-header,
+  .destinations-toggle,
+  .destinations-drawer,
+  .space-context,
+  .telescope-experience,
+  .mission-dock,
+  .space-hud,
+  .journey-strip {
+    position: relative;
+    inset: auto;
+    min-height: 0;
+    min-width: 0;
+    max-height: 100%;
+    margin: 0;
+    transform: none;
+  }
+  .space-header {
+    grid-area: 1 / 1 / 2 / -1;
+    margin-left: 190px;
+    align-self: start;
+  }
+  .destinations-toggle {
+    grid-area: 1 / 1;
+    justify-self: start;
+    align-self: start;
+  }
+  .destinations-drawer {
+    grid-area: 2 / 1;
+    width: min(360px, 100%);
+    align-self: start;
+  }
+  .space-context {
+    grid-area: 2 / 2;
+    width: min(340px, 100%);
+    max-width: 100%;
+    align-self: start;
+    justify-self: end;
+  }
+  .telescope-experience {
+    grid-area: 2 / 1 / 3 / -1;
+    width: min(440px, 100%);
+    max-width: 100%;
+    justify-self: end;
+  }
+  .observing-open .space-context {
+    display: none;
+  }
+  #universe-view:has(#journey-strip:not([hidden])) .space-context {
+    display: none;
+  }
+  .destinations-drawer,
+  .telescope-experience,
+  .journey-strip {
+    overscroll-behavior: contain;
+    overflow: auto;
+  }
+  .mission-dock {
+    grid-area: 4 / 1 / 5 / -1;
+    justify-self: center;
+    width: max-content;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+  }
+  .mission-dock > span {
+    position: static;
+    grid-column: 1 / -1;
+    padding: 4px 8px;
+    white-space: normal;
+    border-bottom: 1px solid var(--line);
+  }
+  .space-hud {
+    grid-area: 5 / 1 / 6 / -1;
+  }
+  .hud-info {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 16px;
+    flex: 1;
+    max-width: none;
+  }
+  .hud-info > :not(button) {
+    grid-column: 1;
+  }
+  #credits-button {
+    position: static;
+    grid-column: 2;
+    grid-row: 1 / 5;
+    align-self: end;
+  }
+  .journey-strip {
+    grid-area: 3 / 1 / 4 / -1;
+    max-width: 100%;
+    max-height: 24dvh;
+  }
+  #render-fallback:not([hidden]) {
+    position: relative;
+    inset: auto;
+    grid-area: 2 / 1 / 3 / -1;
+    max-height: 100%;
+    overflow: auto;
+    overscroll-behavior: contain;
+    z-index: 10;
+  }
+  #universe-view:has(#render-fallback:not([hidden])) .space-context {
+    display: none;
+  }
+  @media (max-width: 1100px) {
+    .space-actions .toolbar-word {
+      display: none;
+    }
+  }
+  @media (max-width: 800px) {
+    .universe-active #universe-view {
+      padding: 12px 16px;
+      gap: 8px 12px;
+    }
+    .space-header {
+      margin-left: 0;
+    }
+    .destinations-toggle {
+      width: 44px;
+      height: 48px;
+      padding: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 0;
+    }
+    .destinations-toggle::before {
+      content: "☰";
+      font-size: 18px;
+    }
+    .destinations-drawer,
+    .space-context,
+    .telescope-experience {
+      grid-area: 2 / 1 / 3 / -1;
+      width: 100%;
+      max-width: none;
+    }
+    .space-context {
+      align-self: end;
+      max-height: 60%;
+    }
+    .space-context.details-open {
+      max-height: 100%;
+    }
+    /* Keep the telescope's choices available in its first, compact menu. */
+    [data-environment="observatory"] .space-context {
+      max-height: 100%;
+    }
+    [data-environment="observatory"] .space-context .context-actions {
+      display: grid;
+      grid-column: 1 / -1;
+    }
+    #universe-view:has(.destinations-drawer:not([hidden])) .space-context {
+      display: none;
+    }
+    .mission-dock {
+      width: 100%;
+      grid-template-columns: repeat(4, minmax(0, auto));
+    }
+    .space-hud {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+  }
+  @media (max-height: 600px) and (min-width: 801px) {
+    .destination-top {
+      position: static;
+      padding: 4px 12px;
+    }
+    .destination-top .space-eyebrow {
+      display: none;
+    }
+    .hud-info #camera-help,
+    .hud-info .space-disclaimer {
+      display: none;
+    }
+    .mission-dock button {
+      min-height: 44px;
+      padding-block: 8px;
+    }
+  }
+}

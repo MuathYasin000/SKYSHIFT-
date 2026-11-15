@@ -1,0 +1,20 @@
+{
+  "scope": "Read-only public HTTP verification, not a deployment",
+  "results": [
+    {
+      "path": "/healthz",
+      "status": 200,
+      "response": {
+        "status": "ok",
+        "server_version": "public-static",
+        "app_version": "0.10-native-preparation",
+        "content_id": "a4b80ed914ca06c11ebadc0c13d47548b05faad0981152ad47961d0a9b286f93",
+        "release_id": "skyshift-native-preparation-20261029"
+      }
+    },
+    {
+      "path": "/api/capabilities",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "date_utc": "2026-10-16T19:05:53.544Z",
+  "results": [
+    {
+      "name": "Click and keyboard inspection expose actual prepared-pixel wavelength with live feedback",
+      "status": "pass"
+    },
+    {
+      "name": "Excluded pixels are described as unusable data rather than empty sky",
+      "status": "pass"
+    },
+    {
+      "name": "Rendering batches 60 keyboard moves into bounded repaint work",
+      "status": "pass",
+      "detail": {
+        "input_events": 60,
+        "draw_image_calls": 2,
+        "elapsed_ms": 2.899999998509884
+      }
+    },
+    {
+      "name": "Catalogue HTTP failure is recoverable without reloading the page",
+      "status": "pass"
+    },
+    {
+      "name": "A forged or malformed catalogue fails before exposure fetching and recovers on retry",
+      "status": "pass"
+    },
+    {
+      "name": "Emulated two-finger pinch zooms the observation without firing a tap inspection",
+      "status": "pass"
+    },
+    {
+      "name": "A real emulated touchscreen tap works after pinch and canceled gestures",
+      "status": "pass"
+    },
+    {
+      "name": "Compare pinch cannot create a spurious note; a subsequent tap can attach a valid note",
+      "status": "pass"
+    },
+    {
+      "name": "Compare keyboard zoom fires once and keyboard marking has a usable equivalent",
+      "status": "pass"
+    },
+    {
+      "name": "No outside runtime requests or uncaught script errors",
+      "status": "pass"
+    }
+  ],
+  "external": [],
+  "errors": [],
+  "touch_scope": "Chromium emulated touchscreen; not a physical-device or human study",
+  "scientific_approval": "PENDING"
+}

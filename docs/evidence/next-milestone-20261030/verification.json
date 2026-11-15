@@ -1,0 +1,148 @@
+{
+  "verified_at_utc": "2026-10-30T07:04:09.666040+00:00",
+  "code_commit": "d0ad760a0e4d8bccabf5cb59aa6a04de5656f777",
+  "implementation_commit": "8bbdcfd",
+  "preservation_followup_commit": "d0ad760",
+  "scope": "Locally verified execution milestone; not external public deployment, competition approval, human UX validation or physical-change detection",
+  "python": {
+    "workspace_passed": 162,
+    "workspace_failed": 0,
+    "clean_checkout_passed": 154,
+    "clean_checkout_skipped": 8,
+    "skip_scope": "Optional original context-model inputs and historical review snapshots absent from minimal clean fixtures"
+  },
+  "javascript": {
+    "workspace_passed": 148,
+    "clean_checkout_passed": 148,
+    "failed": 0
+  },
+  "browser_suites": [
+    {
+      "suite": "product",
+      "passed": 19,
+      "browser": "Chrome",
+      "receipt": "docs/evidence/verify_website_product-2026-10-30T06-51-02-298Z-adab6fed/website07_product_tests.json",
+      "receipt_sha256": "88f2659f6eef210c98081d1e2317b8b9f56c27a169a7acff7db30240b0caa75c"
+    },
+    {
+      "suite": "recovery",
+      "passed": 7,
+      "browser": "Chrome",
+      "receipt": "docs/evidence/verify_website_recovery-2026-10-30T06-51-46-628Z-8149bed5/website07_recovery_tests.json",
+      "receipt_sha256": "9d3c6a826a3de1b26c1737ff0aa12187e8b576cb947cf708cdf9fda8184a3b17"
+    },
+    {
+      "suite": "challenge",
+      "passed": 5,
+      "browser": "Chrome",
+      "receipt": "docs/evidence/verify_challenge_readiness-2026-10-30T06-52-06-845Z-3c3d4628/browser.json",
+      "receipt_sha256": "55ddeb499313b0a00eef0f63caf19fe46b099cd7d5d9a63fc0db22b2fc010eff"
+    },
+    {
+      "suite": "native",
+      "passed": 7,
+      "browser": "Chrome",
+      "receipt": "docs/evidence/verify_native_sequence-2026-10-30T06-52-16-130Z-4e83d166/browser.json",
+      "receipt_sha256": "e211576f6fdef5d6bf34956f0d4c30a29f2882096bded36330d73189fd609e76"
+    },
+    {
+      "suite": "temporal",
+      "passed": 3,
+      "browser": "Chrome",
+      "receipt": "docs/evidence/temporal-selection-2026-10-30T06-52-50-124Z-329a7fed/results.json",
+      "receipt_sha256": "9b4c7bfbe1e84826ab8b9b9911caf63b6c897dd9d28a82356d5d8d205971489f"
+    },
+    {
+      "suite": "completion",
+      "passed": 3,
+      "browser": "Chrome",
+      "receipt": "docs/evidence/verify_completion-2026-10-30T06-57-23-900Z-95896c79/results.json",
+      "receipt_sha256": "3dd00e4dea8c36814916cd662c62ee2b8cc4b9c081201cc5f90560105e353a54"
+    },
+    {
+      "suite": "arrival",
+      "passed": 9,
+      "browser": "Chrome",
+      "receipt": "docs/evidence/verify_arrival-2026-10-30T06-59-58-875Z-056ea600/browser.json",
+      "receipt_sha256": "590b4108533db052b84ec37a8297410be42b434ac4d90bb5ab2a56de278be969"
+    },
+    {
+      "suite": "silent-arrival",
+      "passed": 3,
+      "browser": "Chrome",
+      "receipt": "docs/evidence/verify_arrival_sound-2026-10-30T07-00-42-176Z-cd11c808/browser.json",
+      "receipt_sha256": "3055dc2a3b1815dc7da2889e7473882d47cd12dfe37699474982a5b1c34a4f1a"
+    },
+    {
+      "suite": "edge-temporal",
+      "passed": 3,
+      "browser": "Edge",
+      "receipt": "docs/evidence/temporal-selection-2026-10-30T06-59-58-554Z-fd4ee773/results.json",
+      "receipt_sha256": "9b4c7bfbe1e84826ab8b9b9911caf63b6c897dd9d28a82356d5d8d205971489f"
+    }
+  ],
+  "linux": {
+    "receipt": "docs/evidence/linux-service-20261030T065617.625135Z-c1381b26/verification.json",
+    "checks_passed": 4,
+    "image_id": "sha256:861d4b9dbc7bf8d48300dc0b07e8f498ba7bf20644444b2d39de63bd123d9421",
+    "runtime": {
+      "uid": 999,
+      "python": "3.12.16 (main, Oct 28 2026, 02:01:20) [GCC 14.2.0]"
+    },
+    "graceful_stop": {
+      "exit_code": 0,
+      "oom_killed": false
+    },
+    "final_image_arrays_exact": 8,
+    "scientific_decisions_identical": true
+  },
+  "clean_checkout": {
+    "commit": "d0ad760a0e4d8bccabf5cb59aa6a04de5656f777",
+    "tracked_worktree_clean": true,
+    "pip_check": "No broken requirements found.",
+    "orion_reconstruction": "Historical payload metadata and bytes match; fresh acquisition events retained separately",
+    "header_prefixes_verified": 12
+  },
+  "local_service": {
+    "url": "http://localhost:3000/",
+    "content_id": "c31a158e0ba997de798566befae26887212ed2c7151f5f50b2f35066120af811",
+    "preparation_code_sha256": "f78474a713d143a5e7952292c0f9b0f57e217edb74a4766e3721569d1410dcb0",
+    "matches_verified_linux_service": true
+  },
+  "scientific_result": {
+    "example": "#target-example/r-draconis-temporal",
+    "observation_ids": [
+      "2025W49_1A_0009_3",
+      "2025W50_2A_0259_3"
+    ],
+    "engineering_temporal_gates": "pass",
+    "qualified_scientific_approval": "PENDING",
+    "target_identification": "NOT_ESTABLISHED",
+    "physical_change": "NOT_ESTABLISHED",
+    "comet_rejections": "unchanged"
+  },
+  "resolved_verification_failures": [
+    "Date-filter fixture used MJD 61041, which was inside its purported excluded interval; corrected the fixture to MJD 60000.",
+    "Legacy audit import failed under test module loading; helpers now support CLI and module execution. Full suite passes afterward.",
+    "Initial container stop exited 137; explicit SIGTERM shutdown added. Rebuilt image stops with exit 0 and exact receipt persistence.",
+    "Strict Linux/Windows registration-dictionary equality failed on 663 continuous fit values, maximum absolute difference 1.2995561582407333e-7. Only reconstruction diagnostic comparison permits 1e-6 absolute/1e-9 relative error; all science decisions, policies, screens and array hashes remain exact.",
+    "A temporary attributes edit omitted existing byte-preservation rules; restored in d0ad760 before clean-checkout tests. All twelve FITS prefixes retain exact recorded partial hashes."
+  ],
+  "remaining_external_dependencies": [
+    "Python-capable host and authorized deployment access",
+    "Same-origin HTTPS, persistent writable volumes and operational quota management",
+    "Final organizer rules/resources and acceptance of prior development independently verified",
+    "Qualified scientific and internal human review"
+  ],
+  "preservation_incident": {
+    "four_historical_screenshots": "UNRECOVERED",
+    "disclosure": "docs/evidence/arrival-20261029/README_PRESERVATION_NOTICE.md"
+  },
+  "licensing": {
+    "team_code": "Apache-2.0",
+    "Skiper_runtime_adaptation": "retired; historical source/attribution/custom terms retained; not relicensed as OSI",
+    "third_party_assets": "Original terms/source hashes retained; no NASA endorsement or legal certification claimed"
+  },
+  "novice_validation": "NOT_CONDUCTED",
+  "source_credential_path_and_literal_scan": "pass"
+}

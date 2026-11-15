@@ -1,0 +1,780 @@
+[
+  {
+    "observation": {
+      "observation_id": "2025W36_1A_0097_1",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.4+psffix1",
+      "time_start_utc": "2025-09-01T10:12:40.911000Z",
+      "time_end_utc": "2025-09-01T10:14:36.029000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\raw\\ngc188\\2025W36_1A_0097_1_D2.fits",
+        "sha256": "f7b416b43006759995c85d201b7a4059618f47d7c0350696a23975d614dbdd19",
+        "size_bytes": 5279040,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W36_1A/l2b-v20-2025-271/2/level2_2025W36_1A_0097_1D2_spx_l2b-v20-2025-271.fits?center=11.9%2C85.25&size=0.2"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+      },
+      "center_wavelength_um": 1.1309220790863037,
+      "center_bandwidth_um": 0.02679823897778988,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    "shape": [
+      117,
+      117
+    ],
+    "usable_fraction": 0.9891883994448097,
+    "unknown_flag_pixels": 0,
+    "spectral_basis": "calibration_cwave_cband",
+    "flag_policy": "conservative-v0.1",
+    "masked_flags": [
+      "COLD",
+      "DICHROIC",
+      "FULLSAMPLE",
+      "HOT",
+      "MISSING_DATA",
+      "NONFUNC",
+      "NONLINEAR",
+      "OUTLIER",
+      "OVERFLOW",
+      "PERSIST",
+      "PHANMISS",
+      "PHANTOM",
+      "REFERENCE",
+      "SUR_ERROR",
+      "TRANSIENT"
+    ],
+    "retained_flag": "SOURCE",
+    "psf_fwhm_header_arcsec": 5.153916273778412,
+    "fine_astrometry_flag": 0,
+    "limitations": [
+      "Inspection and screening do not establish pair suitability.",
+      "SOURCE alone is retained; all other declared flags are masked.",
+      "Unflagged pixels can still contain artifacts."
+    ]
+  },
+  {
+    "observation": {
+      "observation_id": "2025W36_1A_0157_1",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.4+psffix1",
+      "time_start_utc": "2025-09-01T16:44:24.688000Z",
+      "time_end_utc": "2025-09-01T16:46:19.806000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\raw\\ngc188\\2025W36_1A_0157_1_D2.fits",
+        "sha256": "4becaf30da0679dac528c06aa580a431a9b64f20865908ae256f1f8953b11217",
+        "size_bytes": 5279040,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W36_1A/l2b-v20-2025-271/2/level2_2025W36_1A_0157_1D2_spx_l2b-v20-2025-271.fits?center=11.9%2C85.25&size=0.2"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+      },
+      "center_wavelength_um": 1.2431241273880005,
+      "center_bandwidth_um": 0.029745059087872505,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    "shape": [
+      117,
+      117
+    ],
+    "usable_fraction": 0.9910146833223756,
+    "unknown_flag_pixels": 0,
+    "spectral_basis": "calibration_cwave_cband",
+    "flag_policy": "conservative-v0.1",
+    "masked_flags": [
+      "COLD",
+      "DICHROIC",
+      "FULLSAMPLE",
+      "HOT",
+      "MISSING_DATA",
+      "NONFUNC",
+      "NONLINEAR",
+      "OUTLIER",
+      "OVERFLOW",
+      "PERSIST",
+      "PHANMISS",
+      "PHANTOM",
+      "REFERENCE",
+      "SUR_ERROR",
+      "TRANSIENT"
+    ],
+    "retained_flag": "SOURCE",
+    "psf_fwhm_header_arcsec": 5.153916273778412,
+    "fine_astrometry_flag": 0,
+    "limitations": [
+      "Inspection and screening do not establish pair suitability.",
+      "SOURCE alone is retained; all other declared flags are masked.",
+      "Unflagged pixels can still contain artifacts."
+    ]
+  },
+  {
+    "observation": {
+      "observation_id": "2025W36_1A_0157_4",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.4+psffix1",
+      "time_start_utc": "2025-09-01T16:50:51.481000Z",
+      "time_end_utc": "2025-09-01T16:52:46.599000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\raw\\ngc188\\2025W36_1A_0157_4_D2.fits",
+        "sha256": "c432f262f46cecbb3c2c19f6debe7280767dd905c5974c51bd6b85fdf260b612",
+        "size_bytes": 5279040,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W36_1A/l2b-v20-2025-271/2/level2_2025W36_1A_0157_4D2_spx_l2b-v20-2025-271.fits?center=11.9%2C85.25&size=0.2"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+      },
+      "center_wavelength_um": 1.334173560142517,
+      "center_bandwidth_um": 0.03236255422234535,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    "shape": [
+      117,
+      117
+    ],
+    "usable_fraction": 0.9897728102856308,
+    "unknown_flag_pixels": 0,
+    "spectral_basis": "calibration_cwave_cband",
+    "flag_policy": "conservative-v0.1",
+    "masked_flags": [
+      "COLD",
+      "DICHROIC",
+      "FULLSAMPLE",
+      "HOT",
+      "MISSING_DATA",
+      "NONFUNC",
+      "NONLINEAR",
+      "OUTLIER",
+      "OVERFLOW",
+      "PERSIST",
+      "PHANMISS",
+      "PHANTOM",
+      "REFERENCE",
+      "SUR_ERROR",
+      "TRANSIENT"
+    ],
+    "retained_flag": "SOURCE",
+    "psf_fwhm_header_arcsec": 5.153916273778412,
+    "fine_astrometry_flag": 0,
+    "limitations": [
+      "Inspection and screening do not establish pair suitability.",
+      "SOURCE alone is retained; all other declared flags are masked.",
+      "Unflagged pixels can still contain artifacts."
+    ]
+  },
+  {
+    "observation": {
+      "observation_id": "2025W36_1A_0218_3",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.4+psffix1",
+      "time_start_utc": "2025-09-01T23:20:03.305000Z",
+      "time_end_utc": "2025-09-01T23:21:58.423000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\raw\\ngc188\\2025W36_1A_0218_3_D2.fits",
+        "sha256": "36c7b168a8c4003cf10a19fdab47cb2672a152b40c79482f8e86786b0fefd140",
+        "size_bytes": 5279040,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W36_1A/l2b-v20-2025-271/2/level2_2025W36_1A_0218_3D2_spx_l2b-v20-2025-271.fits?center=11.9%2C85.25&size=0.2"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+      },
+      "center_wavelength_um": 1.5140442848205566,
+      "center_bandwidth_um": 0.0368974432349205,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    "shape": [
+      117,
+      117
+    ],
+    "usable_fraction": 0.988311783183578,
+    "unknown_flag_pixels": 0,
+    "spectral_basis": "calibration_cwave_cband",
+    "flag_policy": "conservative-v0.1",
+    "masked_flags": [
+      "COLD",
+      "DICHROIC",
+      "FULLSAMPLE",
+      "HOT",
+      "MISSING_DATA",
+      "NONFUNC",
+      "NONLINEAR",
+      "OUTLIER",
+      "OVERFLOW",
+      "PERSIST",
+      "PHANMISS",
+      "PHANTOM",
+      "REFERENCE",
+      "SUR_ERROR",
+      "TRANSIENT"
+    ],
+    "retained_flag": "SOURCE",
+    "psf_fwhm_header_arcsec": 5.153916273778412,
+    "fine_astrometry_flag": 0,
+    "limitations": [
+      "Inspection and screening do not establish pair suitability.",
+      "SOURCE alone is retained; all other declared flags are masked.",
+      "Unflagged pixels can still contain artifacts."
+    ]
+  },
+  {
+    "observation": {
+      "observation_id": "2025W36_1A_0724_2",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.4+psffix1",
+      "time_start_utc": "2025-09-04T06:43:07.103000Z",
+      "time_end_utc": "2025-09-04T06:45:02.221000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\raw\\ngc188\\2025W36_1A_0724_2_D2.fits",
+        "sha256": "55e718b02aba4f2164eaa4206fa0c73772d7be225352f266a625dd945825180c",
+        "size_bytes": 5279040,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W36_1A/l2b-v20-2025-271/2/level2_2025W36_1A_0724_2D2_spx_l2b-v20-2025-271.fits?center=11.9%2C85.25&size=0.2"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+      },
+      "center_wavelength_um": 1.1050182580947876,
+      "center_bandwidth_um": 0.025446539744734764,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    "shape": [
+      117,
+      117
+    ],
+    "usable_fraction": 0.9915990941631967,
+    "unknown_flag_pixels": 0,
+    "spectral_basis": "calibration_cwave_cband",
+    "flag_policy": "conservative-v0.1",
+    "masked_flags": [
+      "COLD",
+      "DICHROIC",
+      "FULLSAMPLE",
+      "HOT",
+      "MISSING_DATA",
+      "NONFUNC",
+      "NONLINEAR",
+      "OUTLIER",
+      "OVERFLOW",
+      "PERSIST",
+      "PHANMISS",
+      "PHANTOM",
+      "REFERENCE",
+      "SUR_ERROR",
+      "TRANSIENT"
+    ],
+    "retained_flag": "SOURCE",
+    "psf_fwhm_header_arcsec": 5.153916273778412,
+    "fine_astrometry_flag": 0,
+    "limitations": [
+      "Inspection and screening do not establish pair suitability.",
+      "SOURCE alone is retained; all other declared flags are masked.",
+      "Unflagged pixels can still contain artifacts."
+    ]
+  },
+  {
+    "observation": {
+      "observation_id": "2025W36_2B_0026_2",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.4+psffix1",
+      "time_start_utc": "2025-09-04T14:51:08.208000Z",
+      "time_end_utc": "2025-09-04T14:53:03.326000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\raw\\ngc188\\2025W36_2B_0026_2_D2.fits",
+        "sha256": "59db5fbb9ffed9c88d6b22d57e94b077ab92879cb06050f4c0324910994e4861",
+        "size_bytes": 5279040,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2025W36_2B/l2b-v20-2025-271/2/level2_2025W36_2B_0026_2D2_spx_l2b-v20-2025-271.fits?center=11.9%2C85.25&size=0.2"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+      },
+      "center_wavelength_um": 1.6270697116851807,
+      "center_bandwidth_um": 0.039273716509342194,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    "shape": [
+      117,
+      117
+    ],
+    "usable_fraction": 0.9886039886039886,
+    "unknown_flag_pixels": 0,
+    "spectral_basis": "calibration_cwave_cband",
+    "flag_policy": "conservative-v0.1",
+    "masked_flags": [
+      "COLD",
+      "DICHROIC",
+      "FULLSAMPLE",
+      "HOT",
+      "MISSING_DATA",
+      "NONFUNC",
+      "NONLINEAR",
+      "OUTLIER",
+      "OVERFLOW",
+      "PERSIST",
+      "PHANMISS",
+      "PHANTOM",
+      "REFERENCE",
+      "SUR_ERROR",
+      "TRANSIENT"
+    ],
+    "retained_flag": "SOURCE",
+    "psf_fwhm_header_arcsec": 5.153916273778412,
+    "fine_astrometry_flag": 0,
+    "limitations": [
+      "Inspection and screening do not establish pair suitability.",
+      "SOURCE alone is retained; all other declared flags are masked.",
+      "Unflagged pixels can still contain artifacts."
+    ]
+  },
+  {
+    "observation": {
+      "observation_id": "2026W07_2A_0542_2",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.5.6",
+      "time_start_utc": "2026-02-15T10:00:49.878000Z",
+      "time_end_utc": "2026-02-15T10:02:44.996000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\raw\\ngc188\\2026W07_2A_0542_2_D2.fits",
+        "sha256": "5eb7645c01bec60f7a57e0b05b65b20d0db8eb3e86f546e975f73aa398080920",
+        "size_bytes": 5281920,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2026W07_2A/l2b-v24-2026-089/2/level2_2026W07_2A_0542_2D2_spx_l2b-v24-2026-089.fits?center=11.9%2C85.25&size=0.2"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+      },
+      "center_wavelength_um": 1.2804410457611084,
+      "center_bandwidth_um": 0.030670003965497017,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    "shape": [
+      117,
+      117
+    ],
+    "usable_fraction": 0.9673460442691212,
+    "unknown_flag_pixels": 0,
+    "spectral_basis": "calibration_cwave_cband",
+    "flag_policy": "conservative-v0.1",
+    "masked_flags": [
+      "BLOOM",
+      "COLD",
+      "DICHROIC",
+      "FULLSAMPLE",
+      "GHOST",
+      "GHOST_EXT",
+      "GHOST_FPA",
+      "HALO",
+      "HOT",
+      "MISSING_DATA",
+      "NONFUNC",
+      "NONLINEAR",
+      "OUTLIER",
+      "OVERFLOW",
+      "PERSIST",
+      "PHANMISS",
+      "PHANTOM",
+      "REFERENCE",
+      "SNOWBALL",
+      "SUR_ERROR",
+      "TRANSIENT"
+    ],
+    "retained_flag": "SOURCE",
+    "psf_fwhm_header_arcsec": 5.153916273778412,
+    "fine_astrometry_flag": 0,
+    "limitations": [
+      "Inspection and screening do not establish pair suitability.",
+      "SOURCE alone is retained; all other declared flags are masked.",
+      "Unflagged pixels can still contain artifacts."
+    ]
+  },
+  {
+    "observation": {
+      "observation_id": "2026W08_1A_0591_2",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.5.6",
+      "time_start_utc": "2026-02-19T03:36:33.329000Z",
+      "time_end_utc": "2026-02-19T03:38:28.446000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\raw\\ngc188\\2026W08_1A_0591_2_D2.fits",
+        "sha256": "9623394d04a5116a2d549fcbeb347e4eafe89aadf47c8d02e17cebd9e7a8d75c",
+        "size_bytes": 5281920,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2026W08_1A/l2b-v24-2026-089/2/level2_2026W08_1A_0591_2D2_spx_l2b-v24-2026-089.fits?center=11.9%2C85.25&size=0.2"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+      },
+      "center_wavelength_um": 1.4068059921264648,
+      "center_bandwidth_um": 0.033687788993120193,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    "shape": [
+      117,
+      117
+    ],
+    "usable_fraction": 0.9792534151508511,
+    "unknown_flag_pixels": 0,
+    "spectral_basis": "calibration_cwave_cband",
+    "flag_policy": "conservative-v0.1",
+    "masked_flags": [
+      "BLOOM",
+      "COLD",
+      "DICHROIC",
+      "FULLSAMPLE",
+      "GHOST",
+      "GHOST_EXT",
+      "GHOST_FPA",
+      "HALO",
+      "HOT",
+      "MISSING_DATA",
+      "NONFUNC",
+      "NONLINEAR",
+      "OUTLIER",
+      "OVERFLOW",
+      "PERSIST",
+      "PHANMISS",
+      "PHANTOM",
+      "REFERENCE",
+      "SNOWBALL",
+      "SUR_ERROR",
+      "TRANSIENT"
+    ],
+    "retained_flag": "SOURCE",
+    "psf_fwhm_header_arcsec": 5.153916273778412,
+    "fine_astrometry_flag": 0,
+    "limitations": [
+      "Inspection and screening do not establish pair suitability.",
+      "SOURCE alone is retained; all other declared flags are masked.",
+      "Unflagged pixels can still contain artifacts."
+    ]
+  },
+  {
+    "observation": {
+      "observation_id": "2026W08_2A_0132_1",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.5.6",
+      "time_start_utc": "2026-02-20T04:02:01.070000Z",
+      "time_end_utc": "2026-02-20T04:03:56.188000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\raw\\ngc188\\2026W08_2A_0132_1_D2.fits",
+        "sha256": "b70b03b6727556a78160a2cf4b0bd8cddf778beb542babc06968360b5724568d",
+        "size_bytes": 5281920,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2026W08_2A/l2b-v24-2026-089/2/level2_2026W08_2A_0132_1D2_spx_l2b-v24-2026-089.fits?center=11.9%2C85.25&size=0.2"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+      },
+      "center_wavelength_um": 1.5112649202346802,
+      "center_bandwidth_um": 0.03771854564547539,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    "shape": [
+      117,
+      117
+    ],
+    "usable_fraction": 0.9751625392651033,
+    "unknown_flag_pixels": 0,
+    "spectral_basis": "calibration_cwave_cband",
+    "flag_policy": "conservative-v0.1",
+    "masked_flags": [
+      "BLOOM",
+      "COLD",
+      "DICHROIC",
+      "FULLSAMPLE",
+      "GHOST",
+      "GHOST_EXT",
+      "GHOST_FPA",
+      "HALO",
+      "HOT",
+      "MISSING_DATA",
+      "NONFUNC",
+      "NONLINEAR",
+      "OUTLIER",
+      "OVERFLOW",
+      "PERSIST",
+      "PHANMISS",
+      "PHANTOM",
+      "REFERENCE",
+      "SNOWBALL",
+      "SUR_ERROR",
+      "TRANSIENT"
+    ],
+    "retained_flag": "SOURCE",
+    "psf_fwhm_header_arcsec": 5.153916273778412,
+    "fine_astrometry_flag": 0,
+    "limitations": [
+      "Inspection and screening do not establish pair suitability.",
+      "SOURCE alone is retained; all other declared flags are masked.",
+      "Unflagged pixels can still contain artifacts."
+    ]
+  },
+  {
+    "observation": {
+      "observation_id": "2026W08_2A_0608_1",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.5.6",
+      "time_start_utc": "2026-02-22T17:56:01.094000Z",
+      "time_end_utc": "2026-02-22T17:57:56.212000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\raw\\ngc188\\2026W08_2A_0608_1_D2.fits",
+        "sha256": "337e2f2e2029327533b307ca098342a8dc51e978bbbdeda5096f57a75960d224",
+        "size_bytes": 5281920,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2026W08_2A/l2b-v24-2026-089/2/level2_2026W08_2A_0608_1D2_spx_l2b-v24-2026-089.fits?center=11.9%2C85.25&size=0.2"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+      },
+      "center_wavelength_um": 1.1286026239395142,
+      "center_bandwidth_um": 0.026859669014811516,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    "shape": [
+      117,
+      117
+    ],
+    "usable_fraction": 0.9744320257140769,
+    "unknown_flag_pixels": 0,
+    "spectral_basis": "calibration_cwave_cband",
+    "flag_policy": "conservative-v0.1",
+    "masked_flags": [
+      "BLOOM",
+      "COLD",
+      "DICHROIC",
+      "FULLSAMPLE",
+      "GHOST",
+      "GHOST_EXT",
+      "GHOST_FPA",
+      "HALO",
+      "HOT",
+      "MISSING_DATA",
+      "NONFUNC",
+      "NONLINEAR",
+      "OUTLIER",
+      "OVERFLOW",
+      "PERSIST",
+      "PHANMISS",
+      "PHANTOM",
+      "REFERENCE",
+      "SNOWBALL",
+      "SUR_ERROR",
+      "TRANSIENT"
+    ],
+    "retained_flag": "SOURCE",
+    "psf_fwhm_header_arcsec": 5.153916273778412,
+    "fine_astrometry_flag": 0,
+    "limitations": [
+      "Inspection and screening do not establish pair suitability.",
+      "SOURCE alone is retained; all other declared flags are masked.",
+      "Unflagged pixels can still contain artifacts."
+    ]
+  },
+  {
+    "observation": {
+      "observation_id": "2026W09_1A_0413_1",
+      "release": "qr2",
+      "detector": 2,
+      "pipeline_version": "6.5.6",
+      "time_start_utc": "2026-02-25T02:59:04.819000Z",
+      "time_end_utc": "2026-02-25T03:00:59.937000Z",
+      "original_timescale": "utc",
+      "science_unit": "MJy/sr",
+      "source": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\raw\\ngc188\\2026W09_1A_0413_1_D2.fits",
+        "sha256": "b8e60ad6c0aeeb56723bc03da54f70ec4fbeb754ff07e9f6a5009acc18826b47",
+        "size_bytes": 5281920,
+        "source_url": "https://irsa.ipac.caltech.edu/ibe/data/spherex/qr2/level2/2026W09_1A/l2b-v24-2026-094/2/level2_2026W09_1A_0413_1D2_spx_l2b-v24-2026-094.fits?center=11.9%2C85.25&size=0.2"
+      },
+      "spectral_calibration": {
+        "path": "D:\\Nasa_SKYSHIFT\\data\\calibration\\spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits",
+        "sha256": "40c49a5acbf7047b7cebf3d46471cb99639867996f48a22d0e283f7e529249d7",
+        "size_bytes": 33312960,
+        "source_url": "https://nasa-irsa-spherex.s3.us-east-1.amazonaws.com/qr2/spectral_wcs/cal-wcs-v4-2025-254/2/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits"
+      },
+      "center_wavelength_um": 1.2408835887908936,
+      "center_bandwidth_um": 0.0296796802431345,
+      "hdus": [
+        "PRIMARY",
+        "IMAGE",
+        "FLAGS",
+        "VARIANCE",
+        "ZODI",
+        "PSF",
+        "WCS-WAVE"
+      ]
+    },
+    "shape": [
+      117,
+      117
+    ],
+    "usable_fraction": 0.9831981883263935,
+    "unknown_flag_pixels": 0,
+    "spectral_basis": "calibration_cwave_cband",
+    "flag_policy": "conservative-v0.1",
+    "masked_flags": [
+      "BLOOM",
+      "COLD",
+      "DICHROIC",
+      "FULLSAMPLE",
+      "GHOST",
+      "GHOST_EXT",
+      "GHOST_FPA",
+      "HALO",
+      "HOT",
+      "MISSING_DATA",
+      "NONFUNC",
+      "NONLINEAR",
+      "OUTLIER",
+      "OVERFLOW",
+      "PERSIST",
+      "PHANMISS",
+      "PHANTOM",
+      "REFERENCE",
+      "SNOWBALL",
+      "SUR_ERROR",
+      "TRANSIENT"
+    ],
+    "retained_flag": "SOURCE",
+    "psf_fwhm_header_arcsec": 5.153916273778412,
+    "fine_astrometry_flag": 0,
+    "limitations": [
+      "Inspection and screening do not establish pair suitability.",
+      "SOURCE alone is retained; all other declared flags are masked.",
+      "Unflagged pixels can still contain artifacts."
+    ]
+  }
+]

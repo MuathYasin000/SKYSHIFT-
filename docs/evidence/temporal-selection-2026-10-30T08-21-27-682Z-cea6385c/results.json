@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "name": "Real compatible epochs, manual dates, wipe, source receipt and no-WebGL recovery at 1440px",
+      "status": "pass"
+    },
+    {
+      "name": "Real compatible epochs, manual dates, wipe, source receipt and no-WebGL recovery at 390px",
+      "status": "pass"
+    },
+    {
+      "name": "Shareable date/wavelength/mode filters reach the actual preparation request; service failure remains recoverable",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "scientific_approval": "PENDING",
+  "detected_physical_change": "NOT_ESTABLISHED"
+}

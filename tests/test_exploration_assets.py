@@ -1,0 +1,74 @@
+"""Verify larger contexts stay traceable and separate from temporal evidence."""
+import base64
+import importlib.util
+import json
+from pathlib import Path
+import numpy as np
+import pytest
+from astropy.wcs import WCS
+from reproject import reproject_interp
+from skyshift.archive import sha256_file
+from skyshift.models import SkyRegion
+from skyshift.products import read_product
+from skyshift.preparation import numeric_hash
+
+ROOT=Path(__file__).resolve().parents[1]
+def decode(entry):
+    return np.frombuffer(base64.b64decode(entry['data']),dtype=np.uint8 if entry['dtype']=='uint8' else '<f4').reshape(entry['shape'])
+
+def test_contexts_match_native_data_and_conservative_masks():
+    catalog=json.loads((ROOT/'web/dist/data/explore-catalog.json').read_text())
+    assert {f['id'] for f in catalog['fields']}=={'m101','m67','ngc188','m42'}
+    assert next(f for f in catalog['fields'] if f['id']=='m42')['comparison_status']=='unavailable'
+    count=0
+    for field in catalog['fields']:
+        for entry in field['observations']:
+            path=ROOT/'web/dist'/entry['url'].removeprefix('./')
+            assert sha256_file(path)==entry['sha256']
+            p=json.loads(path.read_text());count+=1
+            assert p['usage']=='single_observation_only' and p['scientific_approval']=='PENDING'
+            source=p['observation']['source']
+            matches=list((ROOT/'data/raw').glob('*/'+source['path']))
+            if not matches:pytest.skip('Original archive cache is not present')
+            original=matches[0];assert sha256_file(original)==source['sha256']
+            native=read_product(original,SkyRegion(**p['region']),calibration=ROOT/'data/calibration'/p['observation']['spectral_calibration']['path'])
+            assert p['native_shape']==list(native.image.shape)
+            wcs=WCS(p['wcs']);shape=tuple(p['shape'])
+            science,_=reproject_interp((native.image,native.wcs),wcs,shape_out=shape,order='bilinear')
+            support,fp=reproject_interp((native.valid.astype(float),native.wcs),wcs,shape_out=shape,order='bilinear')
+            valid=decode(p['arrays']['VALID']).astype(bool)
+            assert np.all((fp>0)[valid] & (support[valid]>=1-1e-10))
+            np.testing.assert_array_equal(np.asarray(science,dtype=np.float32)[valid],decode(p['arrays']['SCI'])[valid])
+            assert np.all(np.isnan(decode(p['arrays']['SCI'])[~valid]))
+            for layer in p['arrays'].values():assert numeric_hash(decode(layer))==layer['numeric_sha256']
+    assert count==5
+
+def test_rebuilding_context_assets_is_byte_reproducible(tmp_path):
+    spec=importlib.util.spec_from_file_location('exploration',ROOT/'tools/build_exploration_assets.py')
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    calibration = ROOT / 'data/calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits'
+    if not calibration.is_file() or any(
+        not any((ROOT / 'data/raw' / field[-1]).glob('*.fits')) for field in module.FIELDS
+    ):
+        pytest.skip('Legacy context reproduction requires the original FITS and calibration cache')
+    module.build(tmp_path/'explore')
+    # The fingerprinted historical preparer still reproduces its original three fields.
+    for path in (ROOT/'web/dist/data/explore').glob('*'):
+        if path.name.startswith('m42-'):continue
+        assert (tmp_path/'explore'/path.name).read_bytes()==path.read_bytes()
+
+
+def test_orion_context_reconstructs_offline_from_original_bytes(tmp_path,monkeypatch):
+    monkeypatch.syspath_prepend(str(ROOT/'tools'))
+    from reconstruct_orion_context import reconstruct
+    inputs = (
+        ROOT / 'data/raw/m42_context/2025W37_2A_0010_1_D2.fits',
+        ROOT / 'data/calibration/spectral_wcs_D2_spx_cal-wcs-v4-2025-254.fits',
+    )
+    if not all(path.is_file() for path in inputs):
+        pytest.skip('Legacy Orion reproduction requires the original FITS and calibration cache')
+    rebuilt=reconstruct(tmp_path/'orion')
+    assert rebuilt['comparison_status']=='unavailable'
+    for path in (ROOT/'web/dist/data/explore').glob('m42-*'):
+        assert (tmp_path/'orion'/path.name).read_bytes()==path.read_bytes()
+    with pytest.raises(FileExistsError):reconstruct(tmp_path/'orion')

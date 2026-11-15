@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "name": "Search anchor remains accessible and scrolling back to the hero starts its model",
+      "status": "fail",
+      "error": "page.waitForFunction: Timeout 10000ms exceeded."
+    },
+    {
+      "name": "Homepage reload starts at the top after scrolling down",
+      "status": "fail",
+      "error": "Homepage restored a middle-of-page position"
+    },
+    {
+      "name": "Home navigation from the search section resets scroll and resumes rendering",
+      "status": "fail",
+      "error": "page.waitForFunction: Timeout 10000ms exceeded."
+    },
+    {
+      "name": "Hero pauses offscreen and in science, and resumes when visible",
+      "status": "pass"
+    },
+    {
+      "name": "No-WebGL home stops loading and exposes recovery while comparison remains available",
+      "status": "pass"
+    }
+  ],
+  "page_errors": []
+}

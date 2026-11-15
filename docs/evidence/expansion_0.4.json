@@ -1,0 +1,44 @@
+{
+  "scope": "Existing real archive sample, smaller crop; no threshold change",
+  "scientific_approval": "PENDING",
+  "registration_performed": false,
+  "new_pairs_enabled": false,
+  "fields": [
+    {
+      "field": "m67_outskirts",
+      "readable_products": 10,
+      "input_failures": [
+        {
+          "file": "2025W44_2B_0591_3_D2.fits",
+          "error": "Requested center is outside this cutout"
+        }
+      ],
+      "pairs_screened": 45,
+      "engineering_candidates": 0,
+      "candidates": [],
+      "limitations": [
+        "No independent reference-source registration or qualified science approval for any new candidate.",
+        "The 0.12-degree prior rejections remain valid at that region size.",
+        "No new comparison was added to the application."
+      ]
+    },
+    {
+      "field": "ngc188",
+      "readable_products": 11,
+      "input_failures": [
+        {
+          "file": "2026W08_2A_0269_3_D2.fits",
+          "error": "Requested center is outside this cutout"
+        }
+      ],
+      "pairs_screened": 55,
+      "engineering_candidates": 0,
+      "candidates": [],
+      "limitations": [
+        "No independent reference-source registration or qualified science approval for any new candidate.",
+        "The 0.12-degree prior rejections remain valid at that region size.",
+        "No new comparison was added to the application."
+      ]
+    }
+  ]
+}

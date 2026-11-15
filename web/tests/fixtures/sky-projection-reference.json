@@ -1,0 +1,39 @@
+{
+  "reference": "Astropy SkyOffsetFrame at ICRS RA 160 deg, Dec 45 deg; orthographic components from offset lon/lat",
+  "astropy_version": "8.0.2",
+  "scope": "Geometric software reference only, not astronomical precision or scientific approval",
+  "values": [
+    {
+      "field": "m101",
+      "ra_deg": 210.80227,
+      "dec_deg": 54.34895,
+      "x": -0.45168882293392776,
+      "y": -0.3141132055887739,
+      "z": 0.8350509573141675
+    },
+    {
+      "field": "m67",
+      "ra_deg": 132.925,
+      "dec_deg": 11.8,
+      "x": 0.4455377912699253,
+      "y": 0.47171002661663164,
+      "z": 0.760911116583043
+    },
+    {
+      "field": "ngc188",
+      "ra_deg": 11.9,
+      "dec_deg": 85.25,
+      "x": 0.043759031279091774,
+      "y": -0.7543891209674899,
+      "z": 0.6549673284580028
+    },
+    {
+      "field": "m42",
+      "ra_deg": 83.82083333333334,
+      "dec_deg": -5.391108333333334,
+      "x": 0.9667521094830369,
+      "y": 0.23460648098434506,
+      "z": 0.10173572573211534
+    }
+  ]
+}

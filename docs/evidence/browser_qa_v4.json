@@ -1,0 +1,34 @@
+{
+  "recorded_at_utc": "2026-10-16T14:21:40.378925+00:00",
+  "type": "agent-operated engineering QA; no human usability study",
+  "release_pair_id": "pair-52ad675d929b0740c23b",
+  "production_url": "https://skyshift-project-mercury.surebream11.chatgpt.site",
+  "verified": [
+    "Production real data and exact pair identity load",
+    "Persistent pending-science labels",
+    "Shared side-by-side and A/B control",
+    "Coordinate note add/edit/delete/locate exercised",
+    "Compact production export/reopen restores a QA note",
+    "Corrupted manifest rejected with checksum mismatch; prior note retained",
+    "Production full packet download matches original SHA-256",
+    "Clean-environment native preparation and Gaia registration summaries reproduce",
+    "Production annotation reconstructs inside common support",
+    "Tab-local session isolation: desktop one note, narrow tab zero",
+    "No horizontal overflow at desktop 1265x720 or narrow 314x655",
+    "Console warning/error logs empty during inspected workflow"
+  ],
+  "limits": [
+    "No five-person novice sessions",
+    "No cross-browser or physical-device certification",
+    "No controlled browser cold-cache/paint benchmark",
+    "No real browser offline-network interception test",
+    "No human internal sign-off",
+    "No qualified scientific approval"
+  ],
+  "screenshots": {
+    "skyshift-production-desktop.png": "6b3b603208260316d979bb3c6c6e16bbcadeb2af2fba370ba89d883580f5e35b",
+    "skyshift-production-evidence.png": "b6375993cc86bcd3144dded49f34c2c382ffae853faef516c47868cabcdcf7f7",
+    "skyshift-production-mobile.png": "96109992848201c05db4a36d6e37e5b30fd87e36e2e9c6a679ee90ec380a625a",
+    "skyshift-production-note.png": "29ef20826412eb41f38b02239ce96dc26a2167ad7ed51a55aed1b4b1b9228a5f"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "kind": "skyshift-observation-request",
+  "release": "qr3",
+  "region": {
+    "ra_deg": 331.04414658852124,
+    "dec_deg": -56.78284419511611,
+    "size_deg": 0.2,
+    "frame": "icrs"
+  }
+}
