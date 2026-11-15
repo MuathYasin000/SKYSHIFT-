@@ -746,7 +746,17 @@ function setBand(window, anchor, feedback=''){
   for(const key of ['mode','frame','a','b','wipe'])url.searchParams.delete(key);
   addViewParameters(url.searchParams);
   history.replaceState(null,'',url);
+  carryBandToCompare();
   render();
+}
+
+function carryBandToCompare(){
+  const link=$('open-compare');
+  if(link.hidden)return;
+  const url=new URL(link.href);
+  writeWavelengthWindow(url.searchParams,state.band);
+  link.href=url.href;
+  if($('dss-view-link'))$('dss-view-link').href=url.href+'#sky-background';
 }
 
 function describeBand(count, total){
@@ -1085,6 +1095,7 @@ function restoreView(){
     const url=new URL(location.href);
     url.search=addViewParameters(url.searchParams);
     history.replaceState(null,'',url);
+    carryBandToCompare();
     refreshControls();
   }
 }
