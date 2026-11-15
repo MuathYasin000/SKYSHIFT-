@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlsplit
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 import xml.etree.ElementTree as ET
 
 from .models import FileRecord, SkyRegion
@@ -19,6 +19,33 @@ from .releases import collection_for
 SIA_ENDPOINT = "https://irsa.ipac.caltech.edu/SIA"
 ALLOWED_HOSTS = {"irsa.ipac.caltech.edu", "nasa-irsa-spherex.s3.us-east-1.amazonaws.com"}
 NS = {"v": "http://www.ivoa.net/xml/VOTable/v1.3"}
+
+
+def approved_url(url, hosts):
+    try:
+        parsed = urlsplit(url)
+        return (parsed.scheme == "https" and parsed.hostname in hosts
+                and parsed.port in (None, 443) and parsed.username is None
+                and parsed.password is None and not parsed.fragment)
+    except ValueError:
+        return False
+
+
+class ArchiveRedirects(HTTPRedirectHandler):
+    def __init__(self, hosts):
+        self.hosts = hosts
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        if not approved_url(newurl, self.hosts):
+            raise ValueError("Archive redirected to an unapproved HTTPS service")
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def archive_opener(hosts):
+    return build_opener(ArchiveRedirects(hosts))
+
+
+urlopen = archive_opener(ALLOWED_HOSTS).open
 
 
 def utc_now():
@@ -38,14 +65,13 @@ def record_file(path: Path, source_url: str | None = None) -> FileRecord:
 
 
 def fetch_bytes(url: str, *, max_bytes: int, timeout: int = 60, attempts: int = 3) -> bytes:
-    parsed = urlsplit(url)
-    if parsed.scheme != "https" or parsed.hostname not in ALLOWED_HOSTS:
+    if not approved_url(url, ALLOWED_HOSTS):
         raise ValueError("Only approved HTTPS archive services may be fetched")
     for attempt in range(attempts):
         try:
             request = Request(url, headers={"User-Agent": "SKYSHIFT/0.1 (student research)"})
             with urlopen(request, timeout=timeout) as response:
-                if urlsplit(response.url).hostname not in ALLOWED_HOSTS:
+                if not approved_url(response.url, ALLOWED_HOSTS):
                     raise ValueError("Archive redirected to an unapproved service")
                 if int(response.headers.get("Content-Length", "0")) > max_bytes:
                     raise ValueError("Archive response exceeds the configured size bound")
@@ -65,15 +91,13 @@ def fetch_bytes(url: str, *, max_bytes: int, timeout: int = 60, attempts: int = 
 
 def fetch_header_prefix(url: str, *, size: int = 65536, timeout: int = 20) -> tuple[bytes, dict]:
     """A strictly bounded Range probe, never an incomplete 'original FITS'."""
-    parsed=urlsplit(url)
-    if parsed.scheme!='https' or parsed.hostname not in ALLOWED_HOSTS or parsed.username or parsed.fragment:
+    if not approved_url(url, ALLOWED_HOSTS):
         raise ValueError('Header probes require an approved HTTPS archive URL')
     if not 2880 <= size <= 65536:
         raise ValueError('Header probe bound must be between 2880 and 65536 bytes')
     request=Request(url,headers={'Range':f'bytes=0-{size-1}','User-Agent':'SKYSHIFT bounded FITS header preflight'})
     with urlopen(request,timeout=timeout) as response:
-        final=urlsplit(response.url)
-        if final.scheme!='https' or final.hostname not in ALLOWED_HOSTS:
+        if not approved_url(response.url, ALLOWED_HOSTS):
             raise ValueError('Header probe redirected to an unapproved service')
         content_range=response.headers.get('Content-Range','')
         match=re.fullmatch(r'bytes 0-(\d+)/(\d+)',content_range)

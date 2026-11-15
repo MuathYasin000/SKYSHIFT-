@@ -6,8 +6,9 @@ import itertools
 import json
 import math
 from urllib.parse import urlencode, urlsplit
-from urllib.request import Request, urlopen
+from urllib.request import Request
 
+from .archive import archive_opener, approved_url
 from .models import SkyRegion
 from .observations_archive import _ARCHIVE_SLOTS, _CUTOUT_LOCKS, write_cache_json
 
@@ -30,7 +31,7 @@ def _number(row, key):
 def reference_cone(kind, payload, directory):
     if kind not in ENDPOINTS:
         raise ValueError("Unknown reference catalog")
-    region = SkyRegion.model_validate(payload)
+    region = SkyRegion.model_validate(payload, strict=True)
     # Include cutout corners and a margin for proper motion. Larger fields
     # intentionally display only the central cone.
     radius = min(0.12, region.size_deg / math.sqrt(2) + 0.02)
@@ -45,8 +46,9 @@ def reference_cone(kind, payload, directory):
     with _CUTOUT_LOCKS[int(key[:8], 16) % len(_CUTOUT_LOCKS)]:
         if path.is_file():
             return json.loads(path.read_text(encoding="utf-8"))
-        with _ARCHIVE_SLOTS, urlopen(Request(url, headers={"User-Agent": "SKYSHIFT/1"}), timeout=12) as response:
-            if urlsplit(response.url).hostname != urlsplit(url).hostname:
+        hosts = {urlsplit(ENDPOINTS[kind]).hostname}
+        with _ARCHIVE_SLOTS, archive_opener(hosts).open(Request(url, headers={"User-Agent": "SKYSHIFT/1"}), timeout=12) as response:
+            if not approved_url(response.url, hosts):
                 raise ValueError("Reference catalog redirected to an unexpected host")
             raw = response.read(MAX_BYTES + 1)
         if len(raw) > MAX_BYTES:

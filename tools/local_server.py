@@ -6,6 +6,7 @@ This server hosts already prepared scientific products; it does not alter them.
 from __future__ import annotations
 
 import argparse
+from collections import deque
 from datetime import datetime, timezone
 import hmac
 import hashlib
@@ -25,7 +26,11 @@ from urllib.parse import unquote, urlsplit
 import webbrowser
 
 ROOT = Path(__file__).resolve().parents[1]
-SERVER_VERSION = '1.2'
+SERVER_VERSION = '1.3'
+PUBLIC_CONNECTION_LIMIT = 64
+PUBLIC_API_LIMITS = {'metadata': (20, 60), 'frames': (60, 60), 'control': (300, 60)}
+MAX_API_BODY = 4096
+API_BODY_TIMEOUT = 5
 CONTENT_SECURITY_POLICY = (
     "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; "
     "img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob:; "
@@ -84,7 +89,12 @@ class LocalServer(ThreadingHTTPServer):
         self.directory_id = hashlib.sha256(str(self.directory).lower().encode()).hexdigest()[:16]
         self.shutdown_token = secrets.token_urlsafe(32)
         self.public_hosts = set(public_hosts or [])
-        self.health_hosts=set(health_hosts or [])
+        self.health_hosts = set(health_hosts or [])
+        self.connection_slots = threading.BoundedSemaphore(PUBLIC_CONNECTION_LIMIT)
+        self.archive_slots = threading.BoundedSemaphore(4)
+        self.api_rate_lock = threading.Lock()
+        self.api_rate = {bucket: deque() for bucket in PUBLIC_API_LIMITS}
+        self.content_id = content_identity(self.directory) if self.public_hosts else None
         self.preparation = None
         self.observations = None
         self.preparation_lock = threading.Lock()
@@ -92,6 +102,41 @@ class LocalServer(ThreadingHTTPServer):
         if self.preparation_enabled and str(ROOT/'src') not in sys.path:
             sys.path.insert(0, str(ROOT/'src'))
         super().__init__((bind, port), LocalHandler)
+
+    def process_request(self, request, client_address):
+        # The reverse proxy may multiplex clients. Bound aggregate work without
+        # trusting a caller-supplied forwarding header.
+        if not self.connection_slots.acquire(blocking=False):
+            self.shutdown_request(request)
+            return
+        try:
+            super().process_request(request, client_address)
+        except Exception:
+            self.connection_slots.release()
+            raise
+
+    def process_request_thread(self, request, client_address):
+        try:
+            super().process_request_thread(request, client_address)
+        finally:
+            self.connection_slots.release()
+
+    def handle_error(self, request, client_address):
+        if not self.public_hosts:
+            return super().handle_error(request, client_address)
+        print('SKYSHIFT could not complete an HTTP request', file=sys.stderr)
+
+    def allow_api(self, bucket):
+        maximum, window = PUBLIC_API_LIMITS[bucket]
+        with self.api_rate_lock:
+            now = time.monotonic()
+            requests = self.api_rate[bucket]
+            while requests and requests[0] <= now - window:
+                requests.popleft()
+            if len(requests) >= maximum:
+                return max(1, int(requests[0] + window - now) + 1)
+            requests.append(now)
+            return None
 
     def preparation_store(self):
         if not self.preparation_enabled:
@@ -121,13 +166,15 @@ class LocalServer(ThreadingHTTPServer):
 
 
 class LocalHandler(SimpleHTTPRequestHandler):
+    def log_request(self, code='-', size='-'):
+        if self.server.public_hosts:
+            return
+        super().log_request(code, size)
+
     server_version = 'SKYSHIFT/' + SERVER_VERSION
     sys_version = ''
     protocol_version = 'HTTP/1.1'
 
-    def setup(self):
-        super().setup()
-        self.connection.settimeout(30)
     extensions_map = {**SimpleHTTPRequestHandler.extensions_map,
         '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json',
         '.fits': 'application/fits', '.fit': 'application/fits', '.bin': 'application/octet-stream',
@@ -145,7 +192,7 @@ class LocalHandler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         policy=CONTENT_SECURITY_POLICY
-        if urlsplit(self.path).path == '/compare.html':
+        if getattr(self, 'path', '').partition('?')[0] in {'/compare.html', '/explore.html'}:
             dss_origin=' https://stpubdata.s3.us-east-1.amazonaws.com'
             policy=policy.replace("img-src 'self' data: blob:", "img-src 'self' data: blob:"+dss_origin)
             policy=policy.replace("connect-src 'self' blob:", "connect-src 'self' blob: data:"+dss_origin)
@@ -158,15 +205,35 @@ class LocalHandler(SimpleHTTPRequestHandler):
             'Cache-Control': 'no-cache',
         }.items():
             self.send_header(name, value)
+        if self.server.public_hosts:
+            self.send_header('Strict-Transport-Security', 'max-age=86400')
         super().end_headers()
 
     def valid_host(self):
-        host = self.headers.get('Host', '')
+        hosts = self.headers.get_all('Host', [])
+        if len(hosts) != 1:
+            return False
+        host = hosts[0]
         port = self.server.server_address[1]
         return host.lower() in ({f'127.0.0.1:{port}', f'localhost:{port}'} | self.server.public_hosts) or (
             self.command in {'GET','HEAD'} and self.path=='/healthz' and host.lower() in self.server.health_hosts)
 
     def api_request(self, path, payload=None):
+        frame_request = '/frames/' in path
+        archive_request = frame_request or path.startswith('/api/observations/reference/')
+        if self.server.public_hosts:
+            bucket = 'frames' if frame_request else 'metadata' if (
+                self.command == 'POST' and not path.endswith('/cancel')
+            ) else 'control'
+            retry_after = self.server.allow_api(bucket)
+            if retry_after is not None:
+                self.send_json(HTTPStatus.TOO_MANY_REQUESTS, {'error': 'Too many requests. Try again shortly.'},
+                               retry_after=retry_after)
+                return
+        if archive_request and not self.server.archive_slots.acquire(blocking=False):
+            self.send_json(HTTPStatus.TOO_MANY_REQUESTS, {'error': 'Archive requests are busy. Try again shortly.'},
+                           retry_after=3)
+            return
         try:
             if path.startswith('/api/observations/'):
                 self.observations_request(path, payload)
@@ -203,9 +270,28 @@ class LocalHandler(SimpleHTTPRequestHandler):
             self.send_json(HTTPStatus.NOT_FOUND, {'error':'Unknown investigation endpoint'})
         except KeyError:
             self.send_json(HTTPStatus.NOT_FOUND, {'error':'Investigation expired or was not found'})
-        except (ValueError, OSError, ImportError) as exc:
-            status = HTTPStatus.TOO_MANY_REQUESTS if getattr(exc, 'retryable', False) else HTTPStatus.BAD_REQUEST
-            self.send_json(status, {'error':str(exc)})
+        except (BrokenPipeError, ConnectionResetError):
+            self.close_connection = True
+        except TimeoutError:
+            self.send_json(HTTPStatus.GATEWAY_TIMEOUT, {'error': 'The upstream archive did not respond in time.'})
+        except (OSError, ImportError) as exc:
+            if self.server.public_hosts:
+                self.send_json(HTTPStatus.SERVICE_UNAVAILABLE, {'error': 'Archive data are temporarily unavailable.'})
+            else:
+                self.send_json(HTTPStatus.BAD_REQUEST, {'error': str(exc)})
+        except ValueError as exc:
+            if getattr(exc, 'retryable', False):
+                self.send_json(HTTPStatus.TOO_MANY_REQUESTS, {'error': str(exc)}, retry_after=3)
+            elif getattr(exc, 'errors', None) is not None:
+                # Validation errors include attacker-controlled field names and values.
+                self.send_json(HTTPStatus.BAD_REQUEST, {'error': 'Invalid request fields or values.'})
+            else:
+                self.send_json(HTTPStatus.BAD_REQUEST, {'error': str(exc)})
+        except Exception:
+            self.send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {'error': 'The service could not complete the request.'})
+        finally:
+            if archive_request:
+                self.server.archive_slots.release()
 
     def observations_request(self, path, payload):
         if path == '/api/observations/releases' and self.command == 'GET':
@@ -221,7 +307,7 @@ class LocalHandler(SimpleHTTPRequestHandler):
         if path == '/api/observations/searches' and self.command == 'POST':
             self.send_json(HTTPStatus.ACCEPTED, store.create(payload))
             return
-        match = re.fullmatch(r'/api/observations/searches/([0-9a-f]{32})(?:/frames/([0-9]+))?', path)
+        match = re.fullmatch(r'/api/observations/searches/([0-9a-f]{32})(?:/frames/([0-9]{1,6}))?', path)
         if match and self.command == 'GET':
             key, index = match.groups()
             result = store.status(key) if index is None else store.frame(key, int(index))
@@ -229,7 +315,7 @@ class LocalHandler(SimpleHTTPRequestHandler):
             return
         self.send_json(HTTPStatus.NOT_FOUND, {'error':'Unknown observation search endpoint'})
 
-    def send_json(self, status, payload):
+    def send_json(self, status, payload, *, retry_after=None):
         if isinstance(payload,dict) and ('error' in payload or 'message' in payload):
             try:
                 from skyshift.messages import public_error_message
@@ -240,6 +326,10 @@ class LocalHandler(SimpleHTTPRequestHandler):
         self.send_response(status)
         self.send_header('Content-Type', 'application/json; charset=utf-8')
         self.send_header('Content-Length', str(len(content)))
+        if self.close_connection:
+            self.send_header('Connection', 'close')
+        if retry_after is not None:
+            self.send_header('Retry-After', str(retry_after))
         self.end_headers()
         if self.command != 'HEAD':
             self.wfile.write(content)
@@ -268,18 +358,25 @@ class LocalHandler(SimpleHTTPRequestHandler):
         if not self.valid_host():
             self.send_json(HTTPStatus.MISDIRECTED_REQUEST, {'error': 'Use the local SKYSHIFT address printed by the startup script.'})
             return None
-        path = urlsplit(self.path).path
+        try:
+            path = urlsplit(self.path).path
+        except ValueError:
+            self.send_error(HTTPStatus.BAD_REQUEST, 'Invalid request target.')
+            return None
         if path.startswith('/api/'):
+            if self.path != path or len(path) > 256:
+                self.send_json(HTTPStatus.BAD_REQUEST, {'error': 'Invalid API request target.'})
+                return None
             self.api_request(path)
             return None
         if path == '/healthz':
             self.send_json(HTTPStatus.OK, {'status': 'ok', 'application': 'SKYSHIFT',
                 'server_version': SERVER_VERSION, 'directory_id': self.server.directory_id,
-                'content_id': content_identity(self.server.directory), **self.server.release})
+                'content_id': self.server.content_id or content_identity(self.server.directory), **self.server.release})
             return None
         if path == '/version.json':
             self.send_json(HTTPStatus.OK, {'application': 'SKYSHIFT', 'server_version': SERVER_VERSION,
-                'content_id': content_identity(self.server.directory), **self.server.release})
+                'content_id': self.server.content_id or content_identity(self.server.directory), **self.server.release})
             return None
         target = self.resolve_requested()
         if target is None:
@@ -310,28 +407,84 @@ class LocalHandler(SimpleHTTPRequestHandler):
         self.end_headers()
         return stream
 
+    def read_api_body(self, length):
+        deadline = time.monotonic() + API_BODY_TIMEOUT
+        data = bytearray()
+        try:
+            while len(data) < length:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise TimeoutError
+                self.connection.settimeout(remaining)
+                block = self.rfile.read1(length - len(data))
+                if not block:
+                    raise ValueError('Truncated request')
+                data.extend(block)
+        finally:
+            self.connection.settimeout(15)
+
+        def unique_keys(pairs):
+            result = {}
+            for key, value in pairs:
+                if key in result:
+                    raise ValueError('Duplicate request key')
+                result[key] = value
+            return result
+
+        def invalid_constant(_value):
+            raise ValueError('Nonfinite number')
+
+        payload = json.loads(data.decode('utf-8'), object_pairs_hook=unique_keys, parse_constant=invalid_constant)
+        if not isinstance(payload, dict):
+            raise ValueError('Object required')
+        return payload
+
     def do_POST(self):
         if not self.valid_host():
-            self.send_json(HTTPStatus.MISDIRECTED_REQUEST, {'error': 'Local host header required.'})
+            self.close_connection = True
+            self.send_json(HTTPStatus.MISDIRECTED_REQUEST, {'error': 'Use a configured SKYSHIFT address.'})
             return
         if self.path.startswith('/api/'):
+            if '?' in self.path or len(self.path) > 256:
+                self.close_connection = True
+                self.send_json(HTTPStatus.BAD_REQUEST, {'error': 'Invalid API request target.'})
+                return
             host = self.headers.get('Host','')
             origin = self.headers.get('Origin')
             if origin and origin not in {f'http://{host}',f'https://{host}'}:
                 self.close_connection = True
                 self.send_json(HTTPStatus.FORBIDDEN, {'error':'Same-origin preparation requests required'})
                 return
-            try:
-                length = int(self.headers.get('Content-Length','0'))
-                if self.headers.get('Transfer-Encoding') or not 0 < length <= 4096 or self.headers.get('Content-Type','').split(';')[0] != 'application/json':
-                    raise ValueError('Use a JSON observation request no larger than 4096 bytes')
-                payload = json.loads(self.rfile.read(length))
-                self.api_request(urlsplit(self.path).path,payload)
-            except (ValueError, OSError) as exc:
+            lengths = self.headers.get_all('Content-Length', [])
+            media_type = self.headers.get('Content-Type', '').split(';')[0].strip().lower()
+            if (self.headers.get_all('Transfer-Encoding') or len(lengths) != 1
+                    or not re.fullmatch(r'[0-9]{1,10}', lengths[0]) or int(lengths[0]) == 0):
                 self.close_connection = True
-                self.send_json(HTTPStatus.BAD_REQUEST, {'error':str(exc)})
+                self.send_json(HTTPStatus.BAD_REQUEST, {'error': 'A single valid Content-Length is required.'})
+                return
+            length = int(lengths[0])
+            if length > MAX_API_BODY or media_type != 'application/json':
+                self.close_connection = True
+                status = HTTPStatus.REQUEST_ENTITY_TOO_LARGE if length > MAX_API_BODY else HTTPStatus.UNSUPPORTED_MEDIA_TYPE
+                self.send_json(status, {'error': 'Use a JSON request no larger than 4096 bytes.'})
+                return
+            try:
+                payload = self.read_api_body(length)
+            except TimeoutError:
+                self.close_connection = True
+                self.send_json(HTTPStatus.REQUEST_TIMEOUT, {'error': 'Request body timed out.'})
+                return
+            except (ValueError, RecursionError):
+                self.close_connection = True
+                self.send_json(HTTPStatus.BAD_REQUEST, {'error': 'Use a complete JSON object with unique keys and finite numbers.'})
+                return
+            except OSError:
+                self.close_connection = True
+                return
+            self.api_request(self.path, payload)
             return
         if self.path != '/__skyshift_shutdown' or self.server.public_hosts:
+            self.close_connection = True
             self.send_json(HTTPStatus.METHOD_NOT_ALLOWED, {'error': 'Static SKYSHIFT hosting does not accept uploads or changes.'})
             return
         expected = 'Bearer '+self.server.shutdown_token

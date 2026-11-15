@@ -18,6 +18,7 @@ import os
 from pathlib import Path
 import secrets
 import threading
+import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urlsplit
 import xml.etree.ElementTree as ET
@@ -44,6 +45,8 @@ METADATA_PAGE_ROWS = 1000
 DEEP_PAGE_DAYS = 120
 METADATA_LIMIT_ERROR = "Archive response exceeds the configured size bound"
 MAX_FRAME_BYTES = 80_000_000
+LIVE_SEARCH_SECONDS = 120
+LIVE_PAGES_PER_COLLECTION = 24
 _ARCHIVE_SLOTS = threading.BoundedSemaphore(2)
 _CUTOUT_LOCKS = [threading.Lock() for _ in range(32)]
 
@@ -168,7 +171,7 @@ def _metadata_page(url, collection, lo, hi, directory, progress, *, provider):
         return page
 
 
-def _query_collection(region: SkyRegion, collection: str, start, end, *, motion_margin, directory, progress):
+def _query_collection(region: SkyRegion, collection: str, start, end, *, motion_margin, directory, progress, live_deadline=None):
     release = collection.split("_")[1]
     deep = collection.endswith("_deep")
     pending = deque()
@@ -181,7 +184,12 @@ def _query_collection(region: SkyRegion, collection: str, start, end, *, motion_
     records = {}
     receipts = []
     failures = []
+    pages = 0
     while pending:
+        if live_deadline is not None and (time.monotonic() >= live_deadline or pages >= LIVE_PAGES_PER_COLLECTION):
+            failures.append("Live metadata search reached its work limit. Coverage is partial.")
+            break
+        pages += 1
         lo, hi = pending.popleft()
         params, _ = sia_query(region, release, deep=deep, detector=None)
         params["POS"] = f"circle {region.ra_deg} {region.dec_deg} {radius}"
@@ -221,7 +229,7 @@ def _query_collection(region: SkyRegion, collection: str, start, end, *, motion_
     return list(records.values()), receipts, failures
 
 
-def search_observations(request: CoreSearchRequest, *, directory=None, progress=lambda message: None):
+def search_observations(request: CoreSearchRequest, *, directory=None, progress=lambda message: None, live=False):
     targets = load_targets()
     target = targets.get(request.target_id) if request.target_id else None
     if request.target_id and not target:
@@ -249,8 +257,10 @@ def search_observations(request: CoreSearchRequest, *, directory=None, progress=
         query_position["query_radius_deg"] = query_region.size_deg / math.sqrt(2) + motion_margin
     wanted = [c for c in CURRENT_COLLECTIONS if c.split("_")[1] in request.releases]
     directory = directory or ROOT / "data" / "cache" / "observations" / "metadata"
+    query_options = {"live_deadline": time.monotonic() + LIVE_SEARCH_SECONDS} if live else {}
     for collection in wanted:
-        rows, receipts, missing = _query_collection(query_region, collection, start, end, motion_margin=motion_margin, directory=directory, progress=progress)
+        rows, receipts, missing = _query_collection(query_region, collection, start, end, motion_margin=motion_margin,
+                                                    directory=directory, progress=progress, **query_options)
         status = ("partial" if receipts else "unavailable") if missing else "complete"
         collections.append({"collection": collection, "status": status, "rows": len(rows), "receipts": receipts, "reason": " | ".join(missing)})
         observations.extend(rows)
@@ -429,7 +439,11 @@ class CoreSearchStore:
         self.lock = threading.RLock()
 
     def create(self, payload):
-        request = CoreSearchRequest.model_validate(payload)
+        request = CoreSearchRequest.model_validate(payload, strict=True)
+        if request.region.size_deg < 1 / 60:
+            raise ValueError("Request field width must be at least one arcminute")
+        if request.target_id and request.target_id not in load_targets():
+            raise ValueError("Unknown challenge target")
         key = secrets.token_hex(16)
         job = {"id": key, "state": "queued", "message": "Waiting to search DR1 and QR3", "request": request, "result": None}
         with self.lock:
@@ -450,12 +464,12 @@ class CoreSearchStore:
             def progress(message):
                 with self.lock:
                     job["message"] = message
-            result = search_observations(job["request"], directory=self.cache_directory / "metadata", progress=progress)
+            result = search_observations(job["request"], directory=self.cache_directory / "metadata", progress=progress, live=True)
             with self.lock:
                 job.update(state="complete", message=result["message"], result=result)
-        except Exception as exc:
+        except Exception:
             with self.lock:
-                job.update(state="failed", message=str(exc))
+                job.update(state="failed", message="The archive search could not be completed.")
 
     def status(self, key):
         with self.lock:
