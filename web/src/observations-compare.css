@@ -4,8 +4,8 @@
   --panel: var(--surface-1);
   --raised: var(--surface-2);
   --accent: var(--blue-text);
-  --warning: #ffcd8c;
-  --error: #ff8b7d;
+  --warning: var(--observation-warning);
+  --error: var(--observation-error);
   --hairline: var(--line);
   --control-radius: 8px;
   --panel-radius: 12px;

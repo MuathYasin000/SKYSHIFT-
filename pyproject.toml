@@ -18,6 +18,13 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=8,<10"]
 
+[project.urls]
+"AI assistance" = "https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury/blob/codex/observations-fix/AI_DISCLOSURE.md"
+
+[tool.skyshift.ai-assistance]
+disclosure = "AI_DISCLOSURE.md"
+usage = "OpenAI Codex assisted implementation, archive integration, tests and documentation. Anthropic Claude assisted review and instructions for the coding agent. Upstream observations are real archive measurements."
+
 [project.scripts]
 skyshift = "skyshift.cli:main"
 

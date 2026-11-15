@@ -3,6 +3,7 @@
   "checked_on": "2026-11-14",
   "scope": "Five challenge targets with ICRS reference positions and proper motions for observation-epoch propagation.",
   "astrometry_note": "SIMBAD pmra is mu_alpha*cos(dec). Propagation is linear from J2000.0 and omits parallax and radial-velocity perspective effects.",
+  "ai_assistance": {"tool":"OpenAI Codex","scope":"Compilation and processing code. Astrometric values come from the named catalog records."},
   "targets": [
     {
       "id": "barnards-star",

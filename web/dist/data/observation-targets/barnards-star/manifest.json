@@ -1,4 +1,4 @@
-{
+{"ai_assistance":{"tool":"OpenAI Codex","scope":"Cache processing software and manifest preparation. Images derive from real NASA/IPAC IRSA FITS."},
   "schema_version": "2.0",
   "kind": "skyshift-target-cache",
   "target_id": "barnards-star",

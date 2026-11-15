@@ -3,6 +3,7 @@
   "scope": "Contextual 3D assets only; none supplies astronomical measurements or scientific evidence",
   "usage_guidance": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
   "no_endorsement": "Independent Project Mercury Team application. No NASA endorsement. NASA identifiers inside supplied models identify actual mission hardware only.",
+  "ai_assistance": {"tool":"OpenAI Codex","scope":"Procedural SPHEREx geometry, materials, studio lighting and atmosphere. Official NASA models retain their separately recorded source identities."},
   "assets": [
     {
       "id": "webb",

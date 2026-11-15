@@ -1,3 +1,4 @@
+/** @provenance OpenAI Codex assisted implementation of the browser-synthesized interface cues. No recorded audio. */
 // Original tonal UI palette: rounded sine fundamentals and quiet triangle overtones.
 // Semantic IDs remain stable for existing scientific and telescope interactions.
 const tone = (hz, duration = 0.09, gain = 0.04, delay = 0, kind = "sine") => ({

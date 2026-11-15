@@ -21,5 +21,4 @@ of Technology, and is funded by the National Aeronautics and Space Administratio
 Gaia data: ESA Gaia mission, processed by the Gaia Data Processing and Analysis
 Consortium (DPAC). See the investigation's reference catalogue and citations.
 
-AI assistance was used in software development, testing, documentation and
-illustrative assets. This is not independent scientific or human approval.
+AI assistance: OpenAI Codex assisted implementation, archive integration, tests and documentation. Anthropic Claude assisted review and instructions for the coding agent. Upstream observations are real archive measurements. See AI_DISCLOSURE.md.

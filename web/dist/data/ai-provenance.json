@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "disclosure": "https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury/blob/codex/observations-fix/AI_DISCLOSURE.md",
+  "processing_software_assistance": "OpenAI Codex assisted archive integration, processing and documentation. Anthropic Claude assisted project review and written instructions.",
+  "input_observations": "Archive measurements and provider-supplied materials with source identities in the associated manifests.",
+  "scope": [
+    "observations-targets.json",
+    "data/observation-targets/**",
+    "data/sequences/**",
+    "data/native/**",
+    "data/mosaics/**",
+    "data/sky-products.json",
+    "data/time-explorer-examples.json",
+    "data/catalog.json",
+    "data/provenance-audit.json"
+  ],
+  "processing": "Regional cutouts from IRSA, reprojection and conservative masks. Display stretch and optional gap fill affect presentation. Source FITS and published measurement identities stay unchanged."
+}

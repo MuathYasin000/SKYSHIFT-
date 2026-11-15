@@ -86,7 +86,7 @@ export function installHeroModel() {
         onComponent: (key) => {
           model?.focusComponent(key);
           $("hero-model-description").textContent =
-            (components[key] || "SPHEREx") + " · Illustrative model";
+            (components[key] || "SPHEREx") + " · AI-generated illustrative geometry";
         },
       });
       model.setVisible(visible());
@@ -124,7 +124,7 @@ export function installHeroModel() {
   $("hero-model-reset").onclick = () => {
     model?.reset();
     $("hero-model-description").textContent =
-      "Interactive 3D · Illustrative spacecraft model";
+      "AI-generated geometry · Illustrative 3D spacecraft model";
   };
   $("hero-model-zoom-in").onclick = () => model?.zoom(0.85);
   $("hero-model-zoom-out").onclick = () => model?.zoom(1.18);

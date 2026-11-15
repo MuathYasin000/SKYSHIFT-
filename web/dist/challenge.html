@@ -17,7 +17,7 @@
   <link rel="preload" href="./assets/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="canonical" href="https://skyshift-j22s.onrender.com/challenge.html">
 <meta property="og:url" content="https://skyshift-j22s.onrender.com/challenge.html">
-<meta property="og:image" content="https://skyshift-j22s.onrender.com/assets/mission-control.webp">
+<meta property="og:image" content="https://skyshift-j22s.onrender.com/assets/mission-control-disclosed.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Challenge fields and sources — SKYSHIFT">
 <meta property="og:image:alt" content="SKYSHIFT mission-control interface with an illustrative SPHEREx model">
@@ -47,12 +47,17 @@
       <h2 id="field-tests">The five challenge targets</h2>
       <p>Each target opens cached 8′ cutouts from NASA/IPAC IRSA. More observations may be available from the live archive. The dates, detector, wavelength and source links are visible in the viewer.</p>
       <dl class="challenge-fields">
-        <dt><a href="./compare.html?target=barnards-star">Barnard’s Star</a></dt><dd>Check the target marker for this high proper-motion star. Bright-source flags can mask its central pixel.</dd>
-        <dt><a href="./compare.html?target=epsilon-indi-b">Epsilon Indi B</a></dt><dd>Browse the observations of this nearby brown dwarf pair. The images can show an unresolved source at this sampling.</dd>
-        <dt><a href="./compare.html?target=wise-0855">WISE 0855-0714</a></dt><dd>Check multiple dates and detector bands around this cold brown dwarf. Compare source positions with the epoch marked on each frame.</dd>
-        <dt><a href="./compare.html?target=rw-aurigae">RW Aurigae</a></dt><dd>Compare this young variable star across dates and read the wavelength and mask details before interpreting brightness changes.</dd>
-        <dt><a href="./compare.html?target=r-draconis">R Draconis</a></dt><dd>Inspect the mask around this pulsating red giant. A central masked area can appear even when the surrounding signal is bright.</dd>
+        <dt><a href="./compare.html?target=barnards-star">Barnard’s Star</a></dt><dd>The marker uses the catalog position at each exposure date. The bundled preview target pixels carry archive flags and are masked.</dd>
+        <dt><a href="./compare.html?target=epsilon-indi-b">Epsilon Indi B</a></dt><dd>Browse the observations of this nearby brown dwarf pair. The displayed sampling limits what you can resolve.</dd>
+        <dt><a href="./compare.html?target=wise-0855">WISE 0855-0714</a></dt><dd>Check multiple dates and detector bands around this cold brown dwarf. Check the catalog position propagated to each exposure date.</dd>
+        <dt><a href="./compare.html?target=rw-aurigae">RW Aurigae</a></dt><dd>Compare frames across dates and check the wavelength and mask details before interpreting image differences.</dd>
+        <dt><a href="./compare.html?target=r-draconis">R Draconis</a></dt><dd>Inspect the mask around this pulsating red giant. The bundled preview target pixels are masked. Read the native flags in Details.</dd>
       </dl>
+    </section>
+    <section id="demo" aria-labelledby="demo-title">
+      <h2 id="demo-title">Project demo</h2>
+      <p><a href="./compare.html?target=rw-aurigae">Open RW Aurigae</a>, press Play, then switch to Side by side and compare the frame dates and wavelengths.</p>
+      <p><a href="https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury/blob/codex/observations-fix/docs/demo/SKYSHIFT-demo.pdf" target="_blank" rel="noopener noreferrer">Open the seven-slide demo ↗</a></p>
     </section>
     <section aria-labelledby="challenge-sources">
       <h2 id="challenge-sources">Data sources and credits</h2>
@@ -79,6 +84,9 @@
       <a href="./challenge.html">Challenge targets and how to compare ↗</a>
       <a href="./assets/assets.json" target="_blank" rel="noopener noreferrer">Mission imagery, hashes and usage terms ↗</a>
       <a href="./methodology.html#models">3D models, hashes and usage terms ↗</a>
+      <h3>AI assistance</h3>
+      <p>OpenAI Codex assisted with software, archive integration, testing, documentation, the illustrative spacecraft geometry, and procedural interface effects. Anthropic Claude assisted with project review and instructions for the coding agent. The SPHEREx cutouts are archive measurements, processed by documented software.</p>
+      <a href="https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury/blob/codex/observations-fix/AI_DISCLOSURE.md" target="_blank" rel="noopener noreferrer">Read the AI assistance inventory ↗</a>
     </dialog>
   <script type="module" src="./site-chrome.js"></script>
 </body>

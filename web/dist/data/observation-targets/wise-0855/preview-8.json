@@ -1,4 +1,4 @@
-{
+{"ai_assistance":{"tool":"OpenAI Codex","scope":"Cache processing software and manifest preparation. Images derive from real NASA/IPAC IRSA FITS."},
   "observations": [
     {
       "observation_id": "2025W19_1B_0116_1",

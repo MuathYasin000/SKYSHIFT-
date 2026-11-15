@@ -1,4 +1,4 @@
-{
+{"ai_assistance":{"tool":"OpenAI Codex","scope":"Cache processing software and manifest preparation. Images derive from real NASA/IPAC IRSA FITS."},
   "status": "partial",
   "field_arcmin": 8,
   "target_id": "barnards-star",

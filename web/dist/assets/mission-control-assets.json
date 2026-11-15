@@ -40,17 +40,40 @@
     },
     {
       "file": "assets/skyshift-mark.svg",
-      "bytes": 444,
-      "sha256": "851908d39fececef6993f5e486725771ad4413d7459ac81577bfff304a7d7767",
+      "bytes": 534,
+      "sha256": "735e89df98a9d00019d8f53f709b2da7a29b634bc7735fc54baeeed61476044c",
       "source": "Simplified hand-coded adaptation of the user-provided SKYSHIFT S/orbit/star mark",
-      "terms": "User-provided project identity; no NASA marks"
+      "terms": "User-provided project identity; no NASA marks",
+      "previous_sha256": "851908d39fececef6993f5e486725771ad4413d7459ac81577bfff304a7d7767",
+      "ai_assistance": "OpenAI Codex assisted adaptation of the owner-provided SKYSHIFT mark."
     },
     {
       "file": "assets/skyshift-wordmark.svg",
-      "bytes": 2366,
-      "sha256": "8c6973717bb4011a4600861579812b73bc2e65d372ddedfd1d3311e672b23064",
+      "bytes": 2463,
+      "sha256": "a05e3f6342bab1156fae96d7c8207bfb007e4750d766d5fb316f52e69d04a922",
       "source": "Outlined glyphs from InterVariable.woff2 in assets/fonts/mission-fonts.json",
-      "terms": "SIL Open Font License 1.1; see assets/fonts/Inter-OFL.txt"
+      "terms": "SIL Open Font License 1.1; see assets/fonts/Inter-OFL.txt",
+      "previous_sha256": "8c6973717bb4011a4600861579812b73bc2e65d372ddedfd1d3311e672b23064",
+      "ai_assistance": "OpenAI Codex assisted conversion of Inter glyphs to SKYSHIFT wordmark paths."
+    },
+    {
+      "file": "assets/mission-control-disclosed.png",
+      "bytes": 108599,
+      "sha256": "1575f99a44f64025a7a8b723fa38a76d269777515b9108f883c8af2438f9b69c",
+      "source": "assets/mission-control.webp",
+      "modifications": "Visible AI-generated spacecraft geometry label and PNG iTXt acknowledgement",
+      "ai_assistance": "OpenAI Codex assisted implementation of the illustrative procedural SPHEREx spacecraft geometry. Screenshot of SKYSHIFT. Published observational measurements are sourced separately from NASA/IPAC IRSA.",
+      "observational_evidence": false
+    },
+    {
+      "file": "assets/space/spherex-thumbnail-disclosed.png",
+      "bytes": 10575,
+      "sha256": "d4d46d7c883c9b217a8d6f0a6a303d13a7c99ac99bef0a9673cc14668f07603e",
+      "source": "assets/space/spherex-thumbnail.webp",
+      "modifications": "Visible AI-generated spacecraft geometry label and PNG iTXt acknowledgement",
+      "ai_assistance": "OpenAI Codex assisted implementation of the illustrative procedural SPHEREx spacecraft geometry. Screenshot of SKYSHIFT. Published observational measurements are sourced separately from NASA/IPAC IRSA.",
+      "observational_evidence": false
     }
-  ]
+  ],
+  "ai_assistance": "OpenAI Codex assisted implementation of the illustrative procedural SPHEREx spacecraft geometry. Screenshot of SKYSHIFT. Published observational measurements are sourced separately from NASA/IPAC IRSA."
 }

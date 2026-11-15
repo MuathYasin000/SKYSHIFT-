@@ -65,7 +65,7 @@ function message(text,error=false,pending=false){
   if(status.textContent!==text)status.textContent=text;
   status.dataset.state=error?'error':pending?'loading':'ready';
 }
-const frameDate=frame=>frame.archiveRow?.time_start_utc??frame.time_start_utc;
+const frameDate=frame=>frame.time_start_utc??frame.archiveRow?.time_start_utc;
 const wavelength=frame=>Number.isFinite(frame.wavelength_center_um)?frame.wavelength_center_um.toFixed(3)+' µm':'λ unavailable';
 const readout=frame=>`${frameDate(frame).slice(0,10)} · D${frame.detector} · ${wavelength(frame)}`;
 function viewerEmpty(title,description,pending=false){
@@ -95,7 +95,11 @@ function requestPayload(){
 async function getJSON(url,options){
   const response=await fetch(url,{cache:'no-cache',...options});
   const value=await response.json().catch(()=>null);
-  if(!response.ok)throw Error(value?.error||`Request failed (HTTP ${response.status}).`);
+  if(!response.ok){
+    const error=Error(value?.error||`Request failed (HTTP ${response.status}).`);
+    error.status=response.status;
+    throw error;
+  }
   if(!value)throw Error('The service returned an unreadable response.');
   return value;
 }
@@ -160,12 +164,12 @@ for(const input of [$('ra'),$('dec')])input.addEventListener('input',()=>{state.
 async function pollSearch(id,signal){
   const started=Date.now();
   while(true){
-    const status=await getJSON(`/api/observations/searches/${id}`,{signal});
+    const status=await getJSON(`/api/observations/searches/${id}`,{signal:AbortSignal.any([signal,AbortSignal.timeout(15000)])});
     signal.throwIfAborted();
     message(status.message,false,status.state==='queued'||status.state==='running');
     if(status.state==='complete')return status.result;
     if(status.state==='failed')throw Error(status.message||'Archive search failed.');
-    if(Date.now()-started>600000)throw Error('Archive search exceeded ten minutes. Retry when IRSA is available.');
+    if(Date.now()-started>180000)throw Error('The archive search timed out. Try again or open a cached target.');
     await sleep(650);
   }
 }
@@ -186,6 +190,12 @@ async function runSearch(event,refresh=false){
   const {signal}=state.search;
   let cachedMatch;
   let cachedPreview;
+  let contactedAPI=false;
+  let jobAccepted=false;
+  const waking=()=>{
+    viewerEmpty('The server may be waking up','Render can take about a minute to start. You can open a cached challenge target.',true);
+    message('Waking the server. This can take about a minute.',false,true);
+  };
   const useOffline=async reason=>{
     await presentResult(cachedPreview,signal);
     if(signal.aborted)return;
@@ -221,7 +231,15 @@ async function runSearch(event,refresh=false){
       }
     }
     if(installed?.failure_reason)message(`Cached target preparation is unavailable: ${installed.failure_reason} Retrying IRSA live…`,true);
-    const job=await getJSON('/api/observations/searches',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(request),signal});
+    contactedAPI=true;
+    const timer=setTimeout(()=>{if(!signal.aborted)waking();},1800);
+    let job;
+    try{
+      job=await getJSON('/api/observations/searches',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(request),signal:AbortSignal.any([signal,AbortSignal.timeout(75000)])});
+      jobAccepted=true;
+    }finally{clearTimeout(timer);}
+    viewerEmpty('Searching the live SPHEREx archive','The archive may take a few moments to respond.',true);
     const result=await pollSearch(job.id,signal);
     if(cachedPreview&&result.status!=='complete'&&!result.observations.length){
       await useOffline(`Live archive search was incomplete. ${(result.failures??[]).join(' ')}`);return;
@@ -230,9 +248,12 @@ async function runSearch(event,refresh=false){
   }catch(error){
     if(signal.aborted)return;
     if(refresh&&cachedPreview){await useOffline(error.message);return;}
+    const mayBeWaking=contactedAPI&&!jobAccepted&&(!error.status||[502,503,504].includes(error.status));
     viewerEmpty(state.request?'The archive search is unavailable':'Check your search coordinates',
+      mayBeWaking?'The server may be waking up. Allow about a minute, then retry or open a cached challenge target.':
       state.request?'Retry the IRSA search or open a cached challenge target.':'Review RA, Dec and field width, then try again.');
-    message(error.message,true);$('retry').hidden=false;
+    message(mayBeWaking?'Could not reach the service. It may take about a minute to wake.':error.message,true);
+    $('retry').hidden=false;
   }
 }
 
@@ -449,7 +470,7 @@ function showReference(kind){
   if(!enabled||!data){
     referenceStatus(kind,'off','Off');
   }else{
-    const markers=kind==='gaia'?'Cyan circles. Catalog epochs are retained where motion is missing.':'Gold squares at catalog positions.';
+    const markers=kind==='gaia'?'Cyan circles. Catalog epochs are retained where motion is missing.':'Gold squares at published ICRS positions. AllWISE is not propagated to the SPHEREx date.';
     referenceStatus(kind,'ready',`${data.sources.length} sources in the ${data.radius_deg.toFixed(3)}° field${data.truncated?' (first 500)':''}. ${markers}`);
   }
   refreshContext(state.displayFrame);
@@ -784,7 +805,8 @@ function windowFrame(reference,frames){
   }
   const waves=group.map(frame=>frame.wavelength_center_um).filter(Number.isFinite);
   return {frame:state.window.frame,count:group.length,detector:mode==='detector',
-    different:waves.length>1&&Math.max(...waves)-Math.min(...waves)>1e-5};
+    different:waves.length<group.length||Math.max(...waves)-Math.min(...waves)>1e-5,
+    mixedReleases:new Set(group.map(frame=>frame.release)).size>1};
 }
 
 function showDerived(mode){
@@ -797,9 +819,11 @@ function showDerived(mode){
     const frame=combineFrames(group[0],mode==='difference'?[group[1]]:group,mode);
     const waves=group.map(item=>item.wavelength_center_um).filter(Number.isFinite);
     const range=waves.length?`${Math.min(...waves).toFixed(3)}–${Math.max(...waves).toFixed(3)} µm at target`:'wavelengths unavailable';
-    const warning=waves.length>1&&Math.max(...waves)-Math.min(...waves)>1e-5?' Brightness may differ because of wavelength, not change.':'';
+    const waveWarning=waves.length<group.length||Math.max(...waves)-Math.min(...waves)>1e-5?' Wavelength coverage differs or is unknown.':'';
+    const releases=new Set(group.map(item=>item.release));
+    const releaseWarning=releases.size>1?' Mixed archive releases can differ in processing.':'';
     $('derived-caption').textContent=`${frame.label}${byDetector?` · D${detector}`:''} · ${range} · ${Math.round(frame.usable_fraction*100)}% usable pixels`;
-    $('analysis-note').textContent=(mode==='difference'?'A − B uses sky pixels usable in both exposures. Blue is negative; orange is positive.':'Usable pixels are averaged on the shared ICRS grid with equal weight.')+warning+' Background and PSF differences may remain.';
+    $('analysis-note').textContent=(mode==='difference'?'Exploratory A − B uses pixels usable in both exposures. Blue is negative and orange is positive.':'Exploratory equal-weight average of usable sky pixels.')+waveWarning+releaseWarning+' Background and PSF differences may remain.';
     const [height,width]=frame.arraysDecoded.shape;
     const view={zoom:1,center_x:(width-1)/2,center_y:(height-1)/2};
     state.derived={frame,view};
@@ -825,7 +849,7 @@ function drawSpectrum(){
     const marker=svg('circle',{cx,cy,r:sample.valid?3:4,class:sample.valid?'spectrum-sample':'spectrum-masked'});
     marker.append(svg('title',{},`${sample.id} · D${sample.detector} · ${sample.wave.toFixed(4)} µm${sample.measured?'':' (nominal)'} · ${sample.valid?sample.value.toPrecision(4)+' MJy/sr':'masked or invalid'}`));plot.append(marker);
   }
-  $('spectrum-status').textContent=`ICRS ${sky.ra_deg.toFixed(6)}°, ${sky.dec_deg.toFixed(6)}° · ${good.length} usable, ${samples.length-good.length} masked / invalid. Nominal channel centers are labelled where pixel wavelengths are unavailable.`;
+  $('spectrum-status').textContent=`ICRS ${sky.ra_deg.toFixed(6)}°, ${sky.dec_deg.toFixed(6)}° · ${good.length} usable, ${samples.length-good.length} masked / invalid. These are exploratory samples across exposures. Nominal channel centers are labelled where pixel wavelengths are unavailable.`;
 }
 
 function sampleSpectrum(frame,point){
@@ -865,14 +889,12 @@ function instrumentScale(side,frame){
 }
 
 function targetMaskNote(id,frame,view){
-  const flag=frame?.quality?.target_flags??[];
-  const bright=flag.some(value=>['BLOOM','OVERFLOW','SATURATED'].includes(value));
   const note=$(id);
-  note.hidden=!frame||Boolean(frame.target?.valid);
-  note.textContent=frame?
-    (frame.target?.valid?'Target position falls on a usable measured pixel.':bright?
-      'Target pixel is masked in this frame. Its flags are consistent with a very bright source.':
-      'Target pixel is masked or outside usable coverage in this frame.')+' '+(view?maskSummary(view):''):'';
+  if(!frame){note.hidden=true;note.textContent='';return;}
+  const flag=frame.quality?.target_flags??[];
+  const mask=frame.target?.valid?'':`Target pixel is masked or outside usable coverage.${flag.length?` Native flags: ${flag.join(', ')}.`:''}`;
+  note.textContent=[mask,view?maskSummary(view):''].filter(Boolean).join(' ');
+  note.hidden=!note.textContent;
 }
 
 function render(){
@@ -881,7 +903,6 @@ function render(){
   const a=currentFrame();
   const pairA=selectedFrame('frame-a'),pairB=selectedFrame('frame-b');
   const releaseWarning=Boolean(pairA&&pairB&&pairA.release!==pairB.release);
-  $('release-note').hidden=!releaseWarning;
   const b=state.mode==='single'?null:pairB;
   let window={frame:a,count:1};
   let windowError='';
@@ -889,6 +910,7 @@ function render(){
     try{window=windowFrame(a,frames);}
     catch(error){windowError=error.message;}
   }
+  $('release-note').hidden=!(releaseWarning||window.mixedReleases);
   let differenceMessage='';
   if(state.mode==='difference'){
     try{window.frame=displayedDifference(a,b);}
@@ -904,10 +926,10 @@ function render(){
   }
   if(state.mode==='side'&&b)drawFrame(canvasB,b);
   if(state.mode==='wipe')$('canvases').style.setProperty('--wipe-position',state.wipe+'%');
-  $('meta-a').textContent=state.mode==='difference'?(differenceMessage||'Difference A − B · signed surface brightness'):
+  $('meta-a').textContent=state.mode==='difference'?(differenceMessage||'Difference A − B · exploratory'):
     a?(state.mode==='single'?'':'A · ')+readout(a)+(window.count>1?` · ${window.count}-frame coadd`:''):'No loaded frame matches these filters.';
   $('window-summary').textContent=windowError||(state.mode!=='single'?'':window.count>1?
-    `Mean of ${window.count} consecutive ${window.detector?`D${a.detector} `:''}exposures starting at the selected frame, using only usable pixels.`:
+    `Exploratory mean of ${window.count} consecutive ${window.detector?`D${a.detector} `:''}exposures starting at the selected frame, using only usable pixels.`:
     a&&$('flipbook-view').value!=='single'&&Number($('window-size').value)>1?'This position in the timeline has one frame available for the coadd.':'');
   $('window-summary').hidden=!$('window-summary').textContent;
   $('meta-b').textContent=b?'B · '+readout(b):'';
@@ -915,7 +937,7 @@ function render(){
   targetMaskNote('mask-b',b,b);
   instrumentScale('a',window.frame);
   instrumentScale('b',state.mode==='side'?b:null);
-  const different=window.different||a&&b&&Number.isFinite(a.wavelength_center_um)&&Number.isFinite(b.wavelength_center_um)&&Math.abs(a.wavelength_center_um-b.wavelength_center_um)>1e-5;$('wavelength-note').hidden=!different;
+  const different=window.different||a&&b&&(!Number.isFinite(a.wavelength_center_um)||!Number.isFinite(b.wavelength_center_um)||Math.abs(a.wavelength_center_um-b.wavelength_center_um)>1e-5);$('wavelength-note').hidden=!different;
   const description= differenceMessage||describeView(a,b,window.count);
   $('view-description').textContent=description;
   const announcement=$('viewer-announcement');

@@ -5,6 +5,7 @@
   "processor": {
     "Pillow": "12.3.0"
   },
+  "ai_assistance": {"tool":"OpenAI Codex","scope":"Inventory and deterministic display processing. The cataloged upstream imagery is provider-supplied."},
   "assets": [
     {
       "id": "spherex-all-sky",

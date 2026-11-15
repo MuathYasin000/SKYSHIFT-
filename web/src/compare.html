@@ -8,7 +8,7 @@
 <meta property="og:title" content="SKYSHIFT — Compare SPHEREx observations">
 <meta property="og:description" content="Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.">
 <meta property="og:url" content="https://skyshift-j22s.onrender.com/compare.html">
-<meta property="og:image" content="https://skyshift-j22s.onrender.com/assets/mission-control.webp">
+<meta property="og:image" content="https://skyshift-j22s.onrender.com/assets/mission-control-disclosed.png">
 <meta property="og:image:alt" content="SKYSHIFT mission-control interface with an illustrative SPHEREx model">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="./kinetic-loader.css">
@@ -128,7 +128,7 @@
 <section id="view-caption" class="tool-section" aria-labelledby="caption-title">
         <h2 id="caption-title">What you’re seeing</h2>
         <p id="view-description">Pick a place to see a dated infrared image.</p>
-        <p id="wavelength-note" class="warning" hidden>Wavelength warning: brightness may differ because of wavelength, not change.</p>
+        <p id="wavelength-note" class="warning" hidden>Wavelength warning: exposure wavelengths differ or are unavailable. Wavelength affects image brightness.</p>
         <p id="release-note" class="warning" role="status" hidden>These exposures use different data releases. Processing may differ.</p>
         <p id="mask-a" class="mask-state" hidden></p>
         <p id="mask-b" class="mask-state" hidden></p>
@@ -148,7 +148,7 @@
 <section id="image-options" class="tool-section" aria-labelledby="image-title">
         <h2 id="image-title">Image display</h2>
         <label>Frames to average<input id="window-size" type="number" min="1" max="15" value="1" aria-describedby="coadd-note"></label>
-        <p id="coadd-note" class="control-reason">Averaging can mix dates and wavelengths and smear a moving object.</p>
+        <p id="coadd-note" class="control-reason">Exploratory averages can mix dates and wavelengths and smear a moving source.</p>
         <label>Flipbook image<select id="flipbook-view"><option value="window">Window coadd</option><option value="detector">Per-detector window</option><option value="single" selected>Single frame</option></select></label>
         <label class="pixel-toggle"><input id="native-pixels" type="checkbox"> Show native pixels</label>
         <label class="pixel-toggle"><input id="show-masks" type="checkbox"> Show masked pixels</label>
@@ -303,8 +303,8 @@
       <button id="retry-dss" type="button" hidden>Retry sky background</button>
     </div>
     <label class="dss-opacity" for="dss-opacity">SPHEREx overlay opacity <output id="dss-opacity-value" for="dss-opacity">65%</output><input id="dss-opacity" type="range" min="0" max="100" value="65" aria-describedby="dss-status"></label>
-    <div class="dss-credits"><p>DSS is an older optical survey. A fast-moving object may appear in a different position in SPHEREx.</p>
-        <p>DSS Color from STScI/NASA via MAST, colored and tiled by CDS. <a href="https://archive.stsci.edu/publishing/data-use" target="_blank" rel="noopener noreferrer">DSS data use ↗</a> · Aladin Lite by CDS under LGPL-3.0-or-later. <a href="./vendor/aladin-lite/README.md">Source and licence</a>.</p></div>
+    <div class="dss-credits"><p>DSS Color uses older optical photographic plates with field-dependent dates. Its background is historical context for the dated infrared frame.</p>
+        <p>DSS Color from STScI/NASA via MAST, colored and tiled by CDS. <a href="https://archive.stsci.edu/publishing/data-use" target="_blank" rel="noopener noreferrer">DSS plate credits and CC BY-NC-SA 4.0 terms ↗</a> · Aladin Lite by CDS under LGPL-3.0-or-later. <a href="./vendor/aladin-lite/README.md">Source and licence</a>.</p></div>
   </dialog>
 </main>
 <footer class="site-footer">
@@ -329,4 +329,7 @@
       <a href="./challenge.html">Challenge targets and how to compare ↗</a>
       <a href="./assets/assets.json" target="_blank" rel="noopener noreferrer">Mission imagery, hashes and usage terms ↗</a>
       <a href="./methodology.html#models">3D models, hashes and usage terms ↗</a>
+      <h3>AI assistance</h3>
+      <p>OpenAI Codex assisted with software, archive integration, testing, documentation, the illustrative spacecraft geometry, and procedural interface effects. Anthropic Claude assisted with project review and instructions for the coding agent. The SPHEREx cutouts are archive measurements, processed by documented software.</p>
+      <a href="https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury/blob/codex/observations-fix/AI_DISCLOSURE.md" target="_blank" rel="noopener noreferrer">Read the AI assistance inventory ↗</a>
     </dialog><script src="./site-chrome.js" type="module"></script></body></html>
