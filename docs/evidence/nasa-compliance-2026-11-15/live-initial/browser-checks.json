@@ -1,0 +1,263 @@
+{
+  "browser": "156.0.8078.4",
+  "base": "https://skyshift-j22s.onrender.com",
+  "started": "2026-11-15T15:47:50.863Z",
+  "targets": {
+    "barnards-star": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-08-15 · D3 · 2.032 µm",
+      "secondDate": "2025-08-21 · D2 · 1.377 µm",
+      "imageChanged": true,
+      "initialMask": "Target pixel is masked in this frame. Its flags are consistent with a very bright source. 691 masked or invalid grid pixels. 315 filled for display only.",
+      "pairNote": "No default pair in these frames. A default needs two dates on one detector, similar wavelengths and two usable target pixels. You can still choose frames manually.",
+      "noHorizontalOverflow": true
+    },
+    "epsilon-indi-b": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-04-24 · D2 · 1.562 µm",
+      "secondDate": "2025-04-27 · D1 · 1.066 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D1 on 2025-04-27 and 2026-05-03. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "wise-0855": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-05-05 · D3 · 2.363 µm",
+      "secondDate": "2025-05-06 · D5 · 4.332 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D5 on 2025-05-06 and 2026-05-14. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "rw-aurigae": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-09-01 · D1 · 1.068 µm",
+      "secondDate": "2025-09-01 · D1 · 1.094 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D1 on 2025-09-02 and 2026-03-10. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "r-draconis": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-04-24 · D3 · 2.032 µm",
+      "secondDate": "2025-06-27 · D2 · 1.377 µm",
+      "imageChanged": true,
+      "initialMask": "Target pixel is masked in this frame. Its flags are consistent with a very bright source. 1449 masked or invalid grid pixels. 292 filled for display only.",
+      "pairNote": "No default pair in these frames. A default needs two dates on one detector, similar wavelengths and two usable target pixels. You can still choose frames manually.",
+      "noHorizontalOverflow": true
+    }
+  },
+  "routes": {
+    "/": {
+      "lang": "en",
+      "title": "SKYSHIFT — SPHEREx observations & comparison",
+      "h1": "Watch the\ninfrared sky\nover time.",
+      "mainText": " SPHEREX DR1 & QR3\n\nWatch the\ninfrared sky\nover time.\n\nBlink through real SPHEREx DR1 and QR3 observations. Compare two dates at the same sky position and check the wavelength, mask and archive source for each.\n\nExplore & Compare\nBlink, align and compare real exposures.\n↗\nFind observations by coordinates ↗\nRead the challenge guide ↗\n\nChallenge targets · Barnard’s Star · Epsilon Indi B · WISE 0855-0714 · RW Aurigae · R Draconis\n\n◉ Infrared lens on\nDisplay effect only · real pixels stay unchanged\nLOCAL VIEW STANDBY\nBarnard’s Star · RA 269.452° / Dec +4.693°\nChallenge reference position · ICRS J2000\nDISPLAY POSITION / move over the hero\n3D starts when this section is visible.\nInteractive 3D · Illustrative spacecraft model\nSpacecraft reference: NASA/JPL-Caltech ↗\nMeet the telescope ↗\n102 INFRARED CHANNELS · 0.75–5.0 μm\nRepresentative colors · schematic channel positions\n0.75 μm\nHover a channel\n5.0 μm\n\nSKY SEARCH\n\nFind your patch of sky.\n\nOpen the full date browser in Observations. This form prepares a small set of exposures for the local workspace.\n\nRight ascension · RA\nDeclination · Dec\nWidth · arcmin\nPrepare this field →\nTry a target\nOpen Observations →\nOpen Compare →\nBrowse the challenge guide →\nOptions & data notes\n\nHISTORICAL SPHEREX PREVIEWS\n\nEarlier windows into the sky.\nFind a sky region\nCtrl K\n\nMove over a field or use Reveal preview to lift the dimming. Both views use the same infrared exposure; no visible-light image or extra detail is synthesized.\n\nMasked / unsupported · hatched areas contain no usable measurement.\n\nLoading\n earlier SPHEREx previews…\n\nBEYOND VISIBLE LIGHT\n\nSame universe.\nA different kind of light.\n\nSPHEREx reveals stars, gas and dust in infrared. This published mission composite is a window into that view.\n\n↔\n\nDimmed display ← → Published infrared composite\n\nVELA MOLECULAR RIDGE\nPublished infrared composite · contextual mission image\nNASA/JPL-Caltech ↗\nWhat do these colors mean? +\nReveal the published infrared composite\n55%\nDisplay demonstration using one image; the dimmed side is not a visible-light observation.\n\nTHE OBSERVATORY BEHIND THE OBSERVATIONS\n\nA new way to read\nthe universe.\n\nSPHEREx surveys the sky in infrared light. Its filters measure different wavelengths at different positions, building a view across 102 infrared colors.\n\nGet to know the spacecraft. Select a component to learn why shielding, passive cooling and a stable platform matter.\n\nActivate the model to rotate it, zoom, or select its researched components. The scientific tools work independently.\n\nOfficial spacecraft reference ↗\nInteract with SPHEREx ↗\nOptional 3D model · loads on your click\n\nArtist’s concept · NASA/JPL-Caltech. Interactive geometry is illustrative; no live spacecraft tracking.\n\nLOOK CLOSELY. KEEP THE CONTEXT.\n\nCuriosity, with a clear trail.\n01\nORIGINAL DATA\nEvery image has a source.\n\nArchive identities, calibration references and checksums stay with each investigation.\n\n02\nHONEST COMPARISONS\nCompatibility comes first.\n\nAvailable dates do not automatically make a suitable pair. Restrictions remain visible.\n\n03\nREPRODUCIBLE WORK\nYour questions. Your evidence.\n\nSave coordinates, settings and notes. Reopen them against the verified local data.\n\nAN OPTIONAL DIFFERENT PERSPECTIVE\n\nStep outside the visible.\n\nExplore the spacecraft, schematic solar system and real sky directions in the 3D Universe. Your scientific work stays with you.\n\nEnter the 3D Universe ↗",
+      "alts": [
+        "",
+        "SPHEREx published infrared composite of the Vela Molecular Ridge, with stars and bright clouds of gas and dust",
+        "",
+        "NASA/JPL-Caltech artist’s concept of SPHEREx above Earth"
+      ],
+      "meta": [
+        "Search current NASA SPHEREx data by sky coordinates, inspect real infrared observations by date, and save the evidence. Independent Project Mercury Team application.",
+        "SKYSHIFT — SPHEREx observations & comparison",
+        "Search current NASA SPHEREx data by sky coordinates, inspect real infrared observations by date, and save the evidence.",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    },
+    "/discover.html": {
+      "lang": "en",
+      "title": "SKYSHIFT — Discover SPHEREx",
+      "h1": "Beyond what\nour eyes can see.",
+      "mainText": "DISCOVER SPHEREX\n\nBeyond what\nour eyes can see.\n\nInfrared light reveals a different view of stars, dust and galaxies. SPHEREx surveys the sky across 102 spectral channels, spanning roughly 0.75–5 micrometers.\n\nOfficial first all-sky infrared composite · NASA/JPL-Caltech · Published December 2025. Spatial resolution heavily reduced for this full-sky presentation. This is a storytelling image, not an interactive all-sky dataset.\n\nLIGHT AS INFORMATION\n\nA color can\nbe a clue.\n\nWavelength describes a kind of light. Different wavelengths can emphasize different objects and materials. Scientists use this information to study the history of galaxies, water and other ices, and the early universe.\n\nThese questions motivate the mission. SKYSHIFT does not identify molecules or make discoveries automatically.\n\nRead NASA’s mission overview ↗\n\nREAD THE IMAGE CAREFULLY\n\nA fair comparison\ntakes more than dates.\n\nSPHEREx’s filter samples different wavelengths across an exposure. A pixel’s location affects what light it records. Two pictures taken on different dates can differ because of wavelength, image blur, background or instrumental artifacts.\n\nThe viewer aligns cutouts to a common sky grid and labels detector, wavelength and release. Check those labels and the quality masks before interpreting an apparent shift.\n\nRead about alignment and masks ↗\n\nTHE OBSERVATORY\n\nA mission.\nA wider perspective.\n\nNASA/IPAC IRSA distributes the calibrated DR1 and QR3 spectral images used here. In Observations you can open five cached targets or search around any sky coordinate covered by the survey.\n\nSpacecraft artist’s concept · NASA/JPL-Caltech. Illustration, not an astronomical measurement.\n\nOpen Observations ↗",
+      "alts": [
+        "",
+        "Official SPHEREx first all-sky infrared composite, with the Milky Way across an oval sky map",
+        "Artist’s concept of the SPHEREx spacecraft above Earth"
+      ],
+      "meta": [
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT — Discover SPHEREx",
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    },
+    "/methodology.html": {
+      "lang": "en",
+      "title": "SKYSHIFT — Data, methods and sources",
+      "h1": "Wonder, with\nthe evidence attached.",
+      "mainText": "PROJECT MERCURY TEAM / METHODS & SOURCES\n\nWonder, with\nthe evidence attached.\n\nSKYSHIFT is an independent Project Mercury Team application for inspecting calibrated SPHEREx DR1 and QR3 observations. Each exposure retains its archive source, measurement date, detector and wavelength information.\n\nFROM CALIBRATED EXPOSURE TO SKY VIEW\n\nA common sky grid.\n\nObservations opens dated cutouts from bundled challenge previews or searches IRSA by sky position. The four viewing modes in Compare use a north-up ICRS tangent grid with an angular sampling of 6.15″ per pixel.\n\nWhen grids differ, the viewer maps exposures to the same grid using the world coordinate system and the available valid pixels. The target marker accounts for the preset’s proper motion at the observation epoch.\n\nThe asinh stretch, optional median background subtraction and display-only gap fill affect the view. “Show masked pixels” exposes missing or flagged samples. Difference and coadds use usable measurements.\n\nCheck the dates, wavelengths, release, masks and source records before interpreting a difference. The tools support visual inspection. Quantitative motion and variability require separate calibration and analysis.\n\nDATA SOURCES & CREDITS\n\nWhere the data comes from.\nSPHEREx DR1 and QR3\n\nThe dated cutouts use calibrated Level 2 spectral images from NASA/IPAC IRSA. DR1 reprocesses Surveys 1 and 2. QR3 covers Surveys 3 and 4, with additional data released as it becomes available. SPHEREx is a NASA-funded project of JPL and Caltech.\n\nSPHEREx mission archive ↗ · Release documentation ↗ · DR1 DOI ↗ · QR3 DOI ↗\n\nSIMBAD target astrometry\n\nChallenge coordinates and proper motions use SIMBAD, operated by CDS in Strasbourg. Cite Wenger et al. (2000), A&AS 143, 9. SKYSHIFT propagates the reference position to each observation epoch. The five preset records include their original astrometric citations.\n\nSIMBAD at CDS ↗ · Target source records ↗\n\nGaia DR3 and AllWISE overlays\n\nThe optional Gaia overlay uses ESA Gaia Data Release 3, processed by DPAC and served through MAST at STScI. Cite Gaia Collaboration, Vallenari et al. (2023), A&A 674, A1. AllWISE combines NASA-funded WISE and NEOWISE survey data. SKYSHIFT queries the AllWISE source catalog, II/328 (Cutri et al., 2013), through CDS VizieR.\n\nGaia at MAST ↗ · AllWISE release and citation ↗ · CDS VizieR citation ↗\n\nAladin Lite and DSS Color\n\nThe optional optical background uses CDS Aladin Lite (Boch & Fernique, 2014, ASP Conference Series 485, 277). DSS photographic plates were digitized by STScI. CDS produced the color HiPS tiles served through the MAST mirror.\n\nAladin Lite and license ↗ · DSS and MAST data-use policy ↗ · Bundled source and licence ↗\n\nCADC and WiseView\n\nThe Canadian Astronomy Data Centre link leads to separate NEOSSat observations from CSA and DRDC. WiseView, developed for Backyard Worlds, inspired the blink interaction. SKYSHIFT uses SPHEREx pixels for its flipbook.\n\nNEOSSat at CADC ↗ · WiseView project and citation ↗\n\nHISTORICAL PROVENANCE AUDIT\n\nEarlier engineering records.\n↓ Download the complete audit\nLoading\nthe recorded provenance audit…\n\nLoading\nChecking historical audit identities…\n\nWebsite release verification unavailable until a matching build receipt is loaded.\n\nThe historical audit independently downloaded the original cutouts and calibration files again, checked archive exposure identities and times, and compared all ten browser arrays against prepared FITS and a fresh reconstruction. That audit covers the earlier prepared comparison package. The live archive viewer has its own source and quality records.\n\nInspect the complete machine-readable audit\nOpen the current archive viewer ↗\nEarlier spectral screen\n\nIMAGE CREDITS & CATEGORIES\n\nBeautiful images.\nExplicit identities.\n\nOfficial mission composites combine wavelengths and use published color assignments. The viewer displays surface brightness from individual spectral exposures, with separate tools to combine frames. NASA logos and insignia are not used. NASA media guidance ↗\n\nDownload image source records and hashes ↗\n\nYOUR COMPUTER. YOUR RECORDS.\n\nIndependent by design.\n\nThe bundled preview cutouts open locally. Custom archive searches send sky coordinates and field width to the application service and IRSA. Live cutouts, reference catalog overlays and external links require internet access.\n\nSOURCES & ACKNOWLEDGMENTS\n\nModels, terms & hashes\n\nContextual spacecraft and planetary assets are illustrations, separate from astronomical measurements. Entries retain their recorded availability, original sources, modifications and checksums.\n\nDownload original source record (.json)\n\nwebb\nhubble\nearth\nmars\njupiter\nvenus\nmoon\nneptune\nsun\nuranus\nmercury\nsaturn\nwebb-b\nspherex\nspherex-materials\nhardware-studio\nearth-natural\nuniverse-atmosphere\nwebb-detail\nThree.js\nDraco decoder\n\nSOURCES & ACKNOWLEDGMENTS\n\nInter & IBM Plex Mono\n\nLocally supplied interface fonts, their license notices, modifications and exact file identities.\n\nDownload original source record (.json)\n\nInterVariable.woff2\nInter-OFL.txt\nIBMPlexMono-Regular.woff2\n\nSOURCES & ACKNOWLEDGMENTS\n\nOriginal pattern notices\n\nInterface studies and adaptations, with original authors and applicable notices. Inspiration-only entries do not imply copied or licensed source code.\n\nDownload original source record (.json)\n\nVengeance UI Kinetic Text Loader\nVengeance UI Spotlight Navbar\nSkiper UI Skiper40 CssLink\ndqnamo Kitchen\n\nRead full adaptation and attribution notices\n\nSOURCES & ACKNOWLEDGMENTS\n\nNative animation & Lenis\n\nOptional locally supplied presentation libraries. Scientific \nloading\n does not depend on these animations or an external CDN.\n\nDownload original source record (.json)\n\nLenis",
+      "alts": [
+        ""
+      ],
+      "meta": [
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT — Data, methods and sources",
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    },
+    "/guide.html": {
+      "lang": "en",
+      "title": "SKYSHIFT — Reconstruction guide",
+      "h1": "Compare the infrared sky over time.",
+      "mainText": "← Back to SKYSHIFT\n\nSPHEREX OBSERVATIONS GUIDE\n\nCompare the infrared sky over time.\n\nStart in Observations with one of five challenge targets or enter right ascension and declination. Coordinates can be in decimal degrees or sexagesimal. The bundled target previews open at 8′. You can request more frames from IRSA.\n\nBrowse the dates\n\nChoose a thumbnail or move the scrubber. Press Play to blink through the timeline and adjust Speed to change how long frames stay on screen. On the canvas, Left and Right step through frames and Space plays or pauses. Home fits the image and + or − adjusts zoom.\n\nChoose two exposures\n\nIn Compare, use Frame A and Frame B or select a thumbnail for A and Shift-select for B. Use “Use current as B” to set B by touch or keyboard. When the viewer suggests a pair, it chooses different dates on one detector, with similar wavelengths and usable target pixels. You can compare other frames manually.\n\nSide by side shows both images. Wipe uncovers the second exposure as you move the slider. Difference shows A minus B on pixels usable in both exposures. A change in wavelength, release, coverage or processing can affect the appearance.\n\nRead the image and follow its source\n\nThe marker shows the reference target position for that exposure. Frame details lists the date, detector and target wavelength. Open the quality flags for the native mask and archive identifiers. Use the IRSA link to inspect the original spectral image.\n\nImage options controls the brightness stretch, display background subtraction and masks. Gap fill is for display only. Overlay catalogs and the DSS optical background give context. A spectrum samples usable positions across the loaded observations.\n\nShare a view\n\nSelect Share view to copy the coordinates or target, release selection and current frame or comparison pair. A cached target opens in a new session. Other coordinates may request archive data again.\n\nRead the methods and source credits →",
+      "alts": [
+        ""
+      ],
+      "meta": [
+        "Reopen and independently reconstruct a SKYSHIFT SPHEREx comparison using its source identities, masks, saved settings and evidence.",
+        "SKYSHIFT — Reconstruction guide",
+        "Reopen and independently reconstruct a SKYSHIFT SPHEREx comparison using its source identities, masks, saved settings and evidence.",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    },
+    "/challenge.html": {
+      "lang": "en",
+      "title": "Challenge fields and sources — SKYSHIFT",
+      "h1": "How can you tell if the sky changed?",
+      "mainText": "Planet X and SPHEREx · November 14, 2026\n\nHow can you tell if the sky changed?\n\nChoose a challenge target in the SPHEREx DR1 and QR3 archive. Blink through dates, then compare two frames and check their wavelengths, releases and masks.\n\nOpen a challenge target in Compare →\nSearch your own coordinates →\nThe five challenge targets\n\nEach target opens cached 8′ cutouts from NASA/IPAC IRSA. More observations may be available from the live archive. The dates, detector, wavelength and source links are visible in the viewer.\n\nBarnard’s Star\nCheck the target marker for this high proper-motion star. Bright-source flags can mask its central pixel.\nEpsilon Indi B\nBrowse the observations of this nearby brown dwarf pair. The images can show an unresolved source at this sampling.\nWISE 0855-0714\nCheck multiple dates and detector bands around this cold brown dwarf. Compare source positions with the epoch marked on each frame.\nRW Aurigae\nCompare this young variable star across dates and read the wavelength and mask details before interpreting brightness changes.\nR Draconis\nInspect the mask around this pulsating red giant. A central masked area can appear even when the surrounding signal is bright.\nData sources and credits\n\nSPHEREx mission archive ↗ · DR1 DOI ↗ · QR3 DOI ↗\n\nPreset coordinates and proper motions are credited to CDS SIMBAD. The flipbook interaction was inspired by WiseView. Read the full archive, catalog and imagery credits ↗",
+      "alts": [
+        ""
+      ],
+      "meta": [
+        "Inspect the five Planet X and SPHEREx challenge fields and follow the evidence back to NASA/IPAC IRSA.",
+        "Challenge fields and sources — SKYSHIFT",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    },
+    "/explore.html": {
+      "lang": "en",
+      "title": "SKYSHIFT — Find SPHEREx observations",
+      "h1": "Observations",
+      "mainText": "Observations\nSPHEREx DR1 / QR3\nFrame A\nChoose a date\nFrame B\nChoose a date\nFind observations\nShare view\nChoose a place in the sky\n\nUse Find observations to pick a challenge target or search IRSA by coordinates.\n\nDetails\nImage\nOverlays\nSpectrum\nWhat you’re seeing\n\nPick a place to see a dated infrared image.\n\nChoose observations to populate the timeline.\n\nSelect a target to open its cached observations.\n\nHow to read this\nFrame range\nObservation sources and earlier comparisons\nData sources, credits and use",
+      "alts": [
+        ""
+      ],
+      "meta": [
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT — Find SPHEREx observations",
+        "Explore real SPHEREx infrared observations with exact source records and reproducible evidence. An independent Project Mercury Team application.",
+        "SKYSHIFT mission-control interface with an illustrative SPHEREx model"
+      ]
+    }
+  },
+  "checks": {
+    "barnards-star": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-08-15 · D3 · 2.032 µm",
+      "secondDate": "2025-08-21 · D2 · 1.377 µm",
+      "imageChanged": true,
+      "initialMask": "Target pixel is masked in this frame. Its flags are consistent with a very bright source. 691 masked or invalid grid pixels. 315 filled for display only.",
+      "pairNote": "No default pair in these frames. A default needs two dates on one detector, similar wavelengths and two usable target pixels. You can still choose frames manually.",
+      "noHorizontalOverflow": true
+    },
+    "epsilon-indi-b": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-04-24 · D2 · 1.562 µm",
+      "secondDate": "2025-04-27 · D1 · 1.066 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D1 on 2025-04-27 and 2026-05-03. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "wise-0855": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-05-05 · D3 · 2.363 µm",
+      "secondDate": "2025-05-06 · D5 · 4.332 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D5 on 2025-05-06 and 2026-05-14. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "rw-aurigae": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-09-01 · D1 · 1.068 µm",
+      "secondDate": "2025-09-01 · D1 · 1.094 µm",
+      "imageChanged": true,
+      "initialMask": "",
+      "pairNote": "Suggested pair uses detector D1 on 2025-09-02 and 2026-03-10. Both target pixels are usable.",
+      "noHorizontalOverflow": true
+    },
+    "r-draconis": {
+      "http": 200,
+      "loaded": 12,
+      "firstDate": "2025-04-24 · D3 · 2.032 µm",
+      "secondDate": "2025-06-27 · D2 · 1.377 µm",
+      "imageChanged": true,
+      "initialMask": "Target pixel is masked in this frame. Its flags are consistent with a very bright source. 1449 masked or invalid grid pixels. 292 filled for display only.",
+      "pairNote": "No default pair in these frames. A default needs two dates on one detector, similar wavelengths and two usable target pixels. You can still choose frames manually.",
+      "noHorizontalOverflow": true
+    },
+    "modes and fresh share": {
+      "side": true,
+      "wipe": true,
+      "difference": "Difference A − B · signed surface brightness",
+      "sharedView": "https://skyshift-j22s.onrender.com/compare.html?ra=76.95652603458333&dec=30.401438173888888&fov=8&release=all&target=rw-aurigae&mode=wipe&a=3&b=8&wipe=1"
+    },
+    "coordinate and frame parameters": {
+      "url": "https://skyshift-j22s.onrender.com/explore.html?ra=133.81890825&dec=-7.247048&fov=8&release=dr1&from=2&to=5&target=wise-0855&frame=2",
+      "frames": 4,
+      "frame": 2,
+      "release": "dr1",
+      "fov": 8
+    },
+    "mobile": {
+      "width": 390,
+      "overflow": 0
+    },
+    "route /": {
+      "http": 200,
+      "h1": "Watch the\ninfrared sky\nover time.",
+      "lang": "en"
+    },
+    "route /discover.html": {
+      "http": 200,
+      "h1": "Beyond what\nour eyes can see.",
+      "lang": "en"
+    },
+    "route /methodology.html": {
+      "http": 200,
+      "h1": "Wonder, with\nthe evidence attached.",
+      "lang": "en"
+    },
+    "route /guide.html": {
+      "http": 200,
+      "h1": "Compare the infrared sky over time.",
+      "lang": "en"
+    },
+    "route /challenge.html": {
+      "http": 200,
+      "h1": "How can you tell if the sky changed?",
+      "lang": "en"
+    },
+    "route /explore.html": {
+      "http": 200,
+      "h1": "Observations",
+      "lang": "en"
+    }
+  },
+  "errors": [],
+  "health": {
+    "status": "ok",
+    "application": "SKYSHIFT",
+    "server_version": "1.2",
+    "directory_id": "3298578fc4ed0f0d",
+    "content_id": "8b16b2efe3482979f7b6916bb856dd3288ebc121acb36c1f44b33bad0f10a806",
+    "release_id": "skyshift-2026-11-14",
+    "app_version": "0.12.0",
+    "created_at_utc": "2026-11-14T16:56:36.975571+00:00"
+  }
+}

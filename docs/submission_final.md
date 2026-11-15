@@ -1,6 +1,8 @@
 # SKYSHIFT — Explore real SPHEREx observations over time
 
-[Public submission snapshot](https://github.com/MuathYasin000/SKYSHIFT-) · [Full Git history](https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury/tree/codex/observations-fix)
+[Public submission repository](https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury)
+
+[Paste-ready portal fields](project_page_fields.md) · [Demo and screenshots](demo_final.md) · [Third-party notices](third_party.md)
 
 ## Summary
 
@@ -32,11 +34,11 @@ SKYSHIFT lets visitors look up a place in the sky and explore NASA’s infrared 
 
 ## Limitations
 
-The viewer claims no detection or measured motion. Different wavelengths, processing, coverage, and masking can change how an object looks. Gap fill is cosmetic and can be toggled off. The bundled cache covers only part of the archive. Live archive search depends on IRSA, which returned HTTP 502 during testing on November 15, 2026, and the bundled previews work independently of the archive.
+The viewer claims no detection or measured motion. Different wavelengths, processing, coverage, and masking can change how an object looks. Gap fill is cosmetic and can be toggled off. The bundled cache covers only part of the archive. Live archive search depends on IRSA availability. The bundled previews work independently of the archive.
 
 ## Project history
 
-A working SKYSHIFT app and review workflow existed before the event. Some of that implementation predates the first Git commit, which already contains an application. Git does not show when that earlier work began. The November 14 snapshot preserved the earlier site, and the November 15 commits document the challenge-target Observations and Compare work.
+A working SKYSHIFT app and review workflow existed before the event. The owner reports organizer permission to reuse earlier work. Some of that implementation predates the first Git commit, which already contains an application. Git does not show when that earlier work began. The November 14 snapshot preserved the earlier site, and the November 15 commits document the challenge-target Observations and Compare work.
 
 Selected lines from `git log --format="%h %ad %s" --date=short`:
 
@@ -55,4 +57,4 @@ ce53450 2026-10-16 Implement traceable SKYSHIFT review workflow and public relea
 
 ## AI assistance
 
-OpenAI Codex assisted with software implementation, archive integration, testing, and documentation. Some earlier illustrative assets also received AI assistance. The observation images are measurements from the SPHEREx archive.
+OpenAI Codex assisted software implementation, archive integration, tests, documentation, illustrative spacecraft geometry and interface cue code. Anthropic Claude assisted project review and written instructions for the coding agent. The observation images are SPHEREx archive measurements. [Complete disclosure](../AI_DISCLOSURE.md).

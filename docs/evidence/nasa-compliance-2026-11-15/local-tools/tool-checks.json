@@ -1,0 +1,29 @@
+{
+  "base": "http://localhost:3017",
+  "at": "2026-11-15T16:07:05.241Z",
+  "checks": {
+    "coadd": {
+      "caption": "Mean coadd · 11 exposures · D1 · 0.747–1.094 µm at target · 97% usable pixels",
+      "note": "Exploratory equal-weight average of usable sky pixels. Wavelength coverage differs or is unknown. Mixed archive releases can differ in processing. Background and PSF differences may remain."
+    },
+    "spectrum": {
+      "caption": "ICRS 76.956586°, 30.401293° · 10 usable, 2 masked / invalid. These are exploratory samples across exposures. Nominal channel centers are labelled where pixel wavelengths are unavailable.",
+      "samples": 12
+    },
+    "overlays": {
+      "gaia": "500 sources in the 0.114° field (first 500). Cyan circles. Catalog epochs are retained where motion is missing.",
+      "wise": "500 sources in the 0.114° field (first 500). Gold squares at published ICRS positions. AllWISE is not propagated to the SPHEREx date."
+    },
+    "DSS Color": {
+      "status": "SPHEREx image over DSS Color. Dark and transparent areas include masked pixels.",
+      "caption": "DSS Color uses older optical photographic plates with field-dependent dates. Its background is historical context for the dated infrared frame.\n\nDSS Color from STScI/NASA via MAST, colored and tiled by CDS. DSS data use ↗ · Aladin Lite by CDS under LGPL-3.0-or-later. Source and licence."
+    },
+    "native quality flags": {
+      "visible": true,
+      "mask": "Target pixel is masked or outside usable coverage. Native flags: OVERFLOW, SUR_ERROR, SOURCE, BLOOM. 691 masked or invalid grid pixels. 315 filled for display only."
+    },
+    "AI disclosure and desktop hero": {
+      "visible": true
+    }
+  }
+}
