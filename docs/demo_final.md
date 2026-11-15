@@ -13,35 +13,35 @@ The voice and the English caption use the same line. Use screen captures only. A
 
 | Time | Live screen action | Narration and caption |
 | --- | --- | --- |
-| 0:00–0:03 | Show the SKYSHIFT title as text over the live Observations screen. | I’m [YOUR NAME] from [TEAM NAME]. |
-| 0:03–0:06 | Open Find observations. Show the five target presets. | Our challenge is Planet X and SPHEREx. |
-| 0:06–0:10 | Select RW Aurigae. Let the cutout and dates appear. | SKYSHIFT. Watch the infrared sky over time. |
-| 0:10–0:16 | Press Play, then pause on a real exposure. | Pick a target and blink through NASA SPHEREx exposures from the IRSA archive. |
-| 0:16–0:22 | Switch to Side by side. Highlight the date and wavelength readouts. | Compare two dates and check the wavelength and pixel masks. |
-| 0:22–0:30 | Show Wipe, then the live link. | As new observations arrive, more people could help spot changes worth a closer look. |
+| 0:00–0:04 | Show the SKYSHIFT title over the homepage. | I’m [YOUR NAME] from [TEAM NAME]. |
+| 0:04–0:07 | Point to the five challenge targets. | Our challenge is Planet X and SPHEREx. |
+| 0:07–0:11 | Open the viewer on RW Aurigae. | SKYSHIFT. Watch the infrared sky over time. |
+| 0:11–0:17 | Select Same band and let the dates advance. | Same band blinks NASA SPHEREx frames from IRSA at similar wavelengths. |
+| 0:17–0:23 | Switch to Wipe with the divider at 50%. | Use Wipe to compare dates and check which pixels are masked. |
+| 0:23–0:30 | Show the live link and the archive credit. | More archive releases can add dates for future comparisons. |
 
-Total planned duration is **30 seconds**. The script has 55 spoken words with one-word placeholders. Check the actual export with the chosen names and shorten pauses or wording if needed.
+Total planned duration is **30 seconds**. The script has 49 spoken words when each placeholder counts as one word, or 54 when the team owner introduces himself by his full name and uses the full team name. Time the actual recording before submission.
 
 ## Seven-slide demo
 
-1. **SKYSHIFT** presents the team, members, challenge and real side-by-side preview.
-2. **Why observe the same sky again?** shows the five presets and coordinate form.
-3. **Blink through dated exposures** shows the timeline, source link and marker.
-4. **Compare a field across dates** shows the actual RW Aurigae Wipe view and wavelength caveat.
+1. **SKYSHIFT** presents the editable team roster placeholders, challenge and RW Aurigae side by side.
+2. **Why observe the same sky again?** shows the homepage with the viewer button and five challenge targets.
+3. **Blink at similar wavelengths** shows Same band playing five RW Aurigae exposures from detector 1.
+4. **Compare a field across dates** shows RW Aurigae at 50% Wipe with the ±0.05 µm window selected and both exposures labelled.
 5. **A masked pixel tells you where to stop** shows Barnard’s Star with a masked center.
 6. **NASA data makes the viewer possible** explains the FITS, WCS, and reference-catalog workflow.
 7. **Sources and limits** covers providers, interpretation limits and the live link.
 
-Total **7 slides**. Screenshots come from the signed-out public app on November 15, 2026. The slide copy and script received OpenAI Codex assistance. No faces, voices, or AI-generated observation images are included in the delivered deck.
+Total **7 slides**. The final-polish screenshots show the local build on November 15, 2026. The previous Render build remained live at capture time. The slide copy and script received OpenAI Codex assistance. The observation screenshots show real NASA/IPAC IRSA data.
 
 ## Project-page images
 
-These live-site JPEG screenshots each fit within the portal’s 10 MB limit. Use the labels as captions or alt text.
+These five JPEGs from the updated local build are each smaller than 0.21 MB. Use the labels as captions or alt text.
 
 | Image | Caption |
 | --- | --- |
-| [Search dialog](evidence/nasa-compliance-2026-11-15/live-initial/coordinate-search.jpg) | Find Observations with five challenge targets, RA, Dec, field width and release |
-| [WISE 0855 flipbook](evidence/nasa-compliance-2026-11-15/live-initial/wise-0855-blink.jpg) | Real SPHEREx cutout and dated thumbnails for WISE 0855-0714 |
-| [RW Aurigae side by side](evidence/nasa-compliance-2026-11-15/live-initial/rw-aurigae-side.jpg) | Two SPHEREx exposures of RW Aurigae with dates and wavelengths |
-| [Barnard’s Star mask](evidence/nasa-compliance-2026-11-15/live-initial/barnards-star-blink.jpg) | Masked central pixel and archive readout in the Barnard’s Star preview |
-| [R Draconis mobile](evidence/nasa-compliance-2026-11-15/live-initial/r-draconis-mobile.jpg) | R Draconis preview in the mobile workbench |
+| [Homepage and challenge targets](evidence/final-polish-2026-11-15/home-1440.jpg) | SKYSHIFT’s viewer button, five challenge targets and illustrative SPHEREx spacecraft |
+| [RW Aurigae Same band](evidence/final-polish-2026-11-15/rw-aurigae-same-band.jpg) | Five dated images of RW Aurigae from SPHEREx detector 1 playing in a narrow wavelength window |
+| [RW Aurigae Wipe](evidence/final-polish-2026-11-15/rw-aurigae-wipe-narrow.jpg) | Two dated RW Aurigae exposures with a centered Wipe divider and a ±0.05 µm wavelength window |
+| [Barnard’s Star masked center](evidence/final-polish-2026-11-15/barnards-star-masked.jpg) | Flags and help explain the masked center and point to nearby Gaia reference stars |
+| [Epsilon Indi B frame details](evidence/final-polish-2026-11-15/epsilon-indi-b-details.jpg) | Real SPHEREx frame with target channel, archive provenance and a source link |
