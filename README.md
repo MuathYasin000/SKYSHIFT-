@@ -39,8 +39,8 @@ Current release entries and collection naming are in [the release registry](src/
 Clone the submission branch and install the project with Python 3.12.
 
 ```sh
-git clone --branch codex/observations-fix https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury.git
-cd SKYSHIFT_Project_Mercury
+git clone --branch codex/observations-fix https://github.com/MuathYasin000/SKYSHIFT-.git
+cd SKYSHIFT-
 python -m pip install -r requirements-lock.txt
 python -m pip install --no-deps -e .
 python tools/local_server.py
@@ -71,9 +71,9 @@ OpenAI Codex assisted with implementation, testing, documentation, archive integ
 
 ## Project history
 
-A working SKYSHIFT application existed before November 14, 2026. The earliest commit, `ce53450`, is dated October 16, 2026 and already contains the application. This submission repository carries the branch’s full Git history, also available in the [original SKYSHIFT repository](https://github.com/MuathYasin000/SKYSHIFT).
+A working SKYSHIFT application existed before November 14, 2026. The earliest commit, `ce53450`, is dated October 16, 2026 and already contains the application. This public repository began as a November 15 snapshot of source commit `c829f26`. The complete development history is preserved locally with its original timestamps. The two earlier GitHub URLs were unavailable at the close of the audit.
 
-The November 14 commit preserved the pre-cleanup project. The owner reports having obtained permission to reuse earlier work. Fresh copy dates are separate from original Git dates. The November 15 work repaired Observations and Compare, expanded live archive discovery, bundled date-spread target data, built the shared workbench, and prepared and verified the public deployment. Selected lines from `git log --date=short --format="%h %ad %s"` follow.
+The November 14 commit preserved the pre-cleanup project. The owner reports having obtained permission to reuse earlier work. Fresh copy dates are separate from original Git dates. The November 15 work repaired Observations and Compare, expanded live archive discovery, bundled date-spread target data, built the shared workbench, and prepared and verified the public deployment. Selected lines from the local source history’s `git log --date=short --format="%h %ad %s"` follow.
 
 ```text
 ee57d2c 2026-11-15 Record signed-out Render workbench verification

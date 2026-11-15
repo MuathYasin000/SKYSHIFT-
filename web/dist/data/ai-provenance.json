@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "disclosure": "https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury/blob/codex/observations-fix/AI_DISCLOSURE.md",
+  "disclosure": "https://github.com/MuathYasin000/SKYSHIFT-/blob/codex/observations-fix/AI_DISCLOSURE.md",
   "processing_software_assistance": "OpenAI Codex assisted archive integration, processing and documentation. Anthropic Claude assisted project review and written instructions.",
   "input_observations": "Archive measurements and provider-supplied materials with source identities in the associated manifests.",
   "scope": [

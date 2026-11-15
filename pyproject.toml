@@ -19,7 +19,7 @@ dependencies = [
 dev = ["pytest>=8,<10"]
 
 [project.urls]
-"AI assistance" = "https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury/blob/codex/observations-fix/AI_DISCLOSURE.md"
+"AI assistance" = "https://github.com/MuathYasin000/SKYSHIFT-/blob/codex/observations-fix/AI_DISCLOSURE.md"
 
 [tool.skyshift.ai-assistance]
 disclosure = "AI_DISCLOSURE.md"

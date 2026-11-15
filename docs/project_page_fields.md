@@ -16,7 +16,7 @@ SKYSHIFT turns real NASA SPHEREx infrared observations into a browser flipbook. 
 
 https://skyshift-j22s.onrender.com/
 
-Source repository and project history: https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury
+Source repository and project history: https://github.com/MuathYasin000/SKYSHIFT-
 
 ## Detailed Project Description
 
@@ -51,7 +51,7 @@ We used OpenAI Codex for application implementation, archive integration, testin
 - Python, Astropy, NumPy, SciPy, reproject, Pydantic, PyVO, Matplotlib, Photutils and Streamlit. HTML, CSS, JavaScript, Canvas and Web Audio. Three.js r180 and loaders, Draco, fflate 0.8.2, Lenis 1.3.11, axe-core 4.14.0 and Playwright. Inter and IBM Plex Mono are under SIL OFL-1.1. Docker and Render package and serve the app.
 - Vengeance UI kinetic loader adapted under MIT. Skiper UI and the earlier Vengeance navigation adaptation are historical. dqnamo Kitchen is visual inspiration. OpenAI Codex and Anthropic Claude assisted as described above.
 - Submission and verification tools include Git, Chromium/Playwright, the Codex presentation runtime, Microsoft PowerPoint PDF export, and Gitleaks. The live app pictures are screenshots.
-- Complete source links, versions, license notices and asset credits: https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury/blob/codex/observations-fix/docs/third_party.md
+- Complete source links, versions, license notices and asset credits: https://github.com/MuathYasin000/SKYSHIFT-/blob/codex/observations-fix/docs/third_party.md
 
 ## FortiGuard
 

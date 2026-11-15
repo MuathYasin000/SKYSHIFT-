@@ -1,6 +1,6 @@
 # SKYSHIFT — Explore real SPHEREx observations over time
 
-[Public submission repository](https://github.com/MuathYasin000/SKYSHIFT_Project_Mercury)
+[Public submission repository](https://github.com/MuathYasin000/SKYSHIFT-)
 
 [Paste-ready portal fields](project_page_fields.md) · [Demo and screenshots](demo_final.md) · [Third-party notices](third_party.md)
 
